@@ -257,6 +257,19 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Common__EnhancedCpc {}
   /**
+   * A URL for deep linking into an app for the given operating system.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__FinalAppUrl {
+    /**
+     * The operating system targeted by this URL. Required.
+     */
+    osType?: string | null;
+    /**
+     * The app deep link URL. Deep links specify a location in an app that corresponds to the content you'd like to show, and should be of the form {scheme\}://{host_path\} The scheme identifies which app to open. For your app, you can use a custom scheme that starts with the app's name. The host and path specify the unique location in the app where your content exists. Example: "exampleapp://productid_1234". Required.
+     */
+    url?: string | null;
+  }
+  /**
    * A rule specifying the maximum number of times an ad (or some set of ads) can be shown to a user over a particular time period.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__FrequencyCapEntry {}
@@ -493,6 +506,10 @@ export namespace searchads360_v0 {
      */
     allConversionsValuePerCost?: number | null;
     /**
+     * Average cart size is the average number of products in each order attributed to your ads. How it works: You report conversions with cart data for completed purchases on your website. Average cart size is the total number of products sold divided by the total number of orders you received. Example: You received 2 orders, the first included 3 products and the second included 2. The average cart size is 2.5 products = (3+2)/2. This metric is only available if you report conversions with cart data.
+     */
+    averageCartSize?: number | null;
+    /**
      * The average amount you pay per interaction. This amount is the total cost of your ads divided by the total number of interactions.
      */
     averageCost?: number | null;
@@ -504,6 +521,14 @@ export namespace searchads360_v0 {
      * Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
     averageCpm?: number | null;
+    /**
+     * The average number of times a unique user saw your ad during the requested time period. This metric cannot be aggregated, and can only be requested for date ranges of 92 days or less. This metric is available for following campaign types - Display, Video, Discovery and App.
+     */
+    averageImpressionFrequencyPerUser?: number | null;
+    /**
+     * Average order value is the average revenue you made per order attributed to your ads. How it works: You report conversions with cart data for completed purchases on your website. Average order value is the total revenue from your orders divided by the total number of orders. Example: You received 3 orders which made $10, $15 and $20 worth of revenue. The average order value is $15 = ($10 + $15 + $20)/3. This metric is only available if you report conversions with cart data.
+     */
+    averageOrderValueMicros?: string | null;
     /**
      * The average quality score.
      */
@@ -605,6 +630,10 @@ export namespace searchads360_v0 {
      */
     costMicros?: string | null;
     /**
+     * Cost of goods sold (COGS) is the total cost of the products you sold in orders attributed to your ads. How it works: You can add a cost of goods sold value to every product in Merchant Center. If you report conversions with cart data, the products you sold are matched with their cost of goods sold value and this can be used to calculate the gross profit you made on each order. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cost of goods sold for this order is $8 = $3 + $5. This metric is only available if you report conversions with cart data.
+     */
+    costOfGoodsSoldMicros?: string | null;
+    /**
      * The cost of ad interactions divided by all conversions.
      */
     costPerAllConversions?: number | null;
@@ -660,6 +689,14 @@ export namespace searchads360_v0 {
      * Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.
      */
     generalInvalidClicks?: string | null;
+    /**
+     * Gross profit margin is the percentage gross profit you made from orders attributed to your ads, after taking out the cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. Gross profit margin is the gross profit you made divided by your total revenue and multiplied by 100%. Gross profit margin calculations only include products that have a cost of goods sold value in Merchant Center. Example: Someone bought a hat and a shirt in an order on your website. The hat is priced $10 and has a cost of goods sold value of $3. The shirt is priced $20 but has no cost of goods sold value. Gross profit margin for this order will only take into account the hat because it has a cost of goods sold value, so it's 70% = ($10 - $3)/$10 x 100%. This metric is only available if you report conversions with cart data.
+     */
+    grossProfitMargin?: number | null;
+    /**
+     * Gross profit is the profit you made from orders attributed to your ads minus the cost of goods sold (COGS). How it works: Gross profit is the revenue you made from sales attributed to your ads minus cost of goods sold. Gross profit calculations only include products that have a cost of goods sold value in Merchant Center. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt in an order from your website. The hat is priced $10 and the shirt is priced $20. The hat has a cost of goods sold value of $3, but the shirt has no cost of goods sold value. Gross profit for this order will only take into account the hat, so it's $7 = $10 - $3. This metric is only available if you report conversions with cart data.
+     */
+    grossProfitMicros?: string | null;
     /**
      * The creative historical quality score.
      */
@@ -721,9 +758,17 @@ export namespace searchads360_v0 {
      */
     mobileFriendlyClicksPercentage?: number | null;
     /**
+     * Orders is the total number of purchase conversions you received attributed to your ads. How it works: You report conversions with cart data for completed purchases on your website. If a conversion is attributed to previous interactions with your ads (clicks for text or Shopping ads, views for video ads etc.) it's counted as an order. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt in an order on your website. Even though they bought 2 products, this would count as 1 order. This metric is only available if you report conversions with cart data.
+     */
+    orders?: number | null;
+    /**
      * The raw event conversion metrics.
      */
     rawEventConversionMetrics?: Schema$GoogleAdsSearchads360V0Common__Value[];
+    /**
+     * Revenue is the total amount you made from orders attributed to your ads. How it works: You report conversions with cart data for completed purchases on your website. Revenue is the total value of all the orders you received attributed to your ads, minus any discount. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt in an order from your website. The hat is priced $10 and the shirt is priced $20. The entire order has a $5 discount. The revenue from this order is $25 = ($10 + $20) - $5. This metric is only available if you report conversions with cart data.
+     */
+    revenueMicros?: string | null;
     /**
      * The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See https://support.google.com/sa360/answer/9566729 for details. Any value below 0.1 is reported as 0.0999.
      */
@@ -772,6 +817,14 @@ export namespace searchads360_v0 {
      * The percent of your ad impressions that are shown adjacent to the top organic search results.
      */
     topImpressionPercentage?: number | null;
+    /**
+     * The number of unique users who saw your ad during the requested time period. This metric cannot be aggregated, and can only be requested for date ranges of 92 days or less. This metric is available for following campaign types - Display, Video, Discovery and App.
+     */
+    uniqueUsers?: string | null;
+    /**
+     * Units sold is the total number of products sold from orders attributed to your ads. How it works: You report conversions with cart data for completed purchases on your website. Units sold is the total number of products sold from all orders attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat, a shirt and a jacket. The units sold in this order is 3. This metric is only available if you report conversions with cart data.
+     */
+    unitsSold?: number | null;
     /**
      * The value of all conversions divided by the number of all conversions.
      */
@@ -2091,9 +2144,21 @@ export namespace searchads360_v0 {
      */
     expandedTextAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo;
     /**
+     * A list of final app URLs that will be used on mobile if the user has the specific app installed.
+     */
+    finalAppUrls?: Schema$GoogleAdsSearchads360V0Common__FinalAppUrl[];
+    /**
+     * The list of possible final mobile URLs after all cross-domain redirects for the ad.
+     */
+    finalMobileUrls?: string[] | null;
+    /**
      * The list of possible final URLs after all cross-domain redirects for the ad.
      */
     finalUrls?: string[] | null;
+    /**
+     * The suffix to use when constructing a final URL.
+     */
+    finalUrlSuffix?: string | null;
     /**
      * Output only. The ID of the ad.
      */
@@ -2118,6 +2183,10 @@ export namespace searchads360_v0 {
      * Immutable. Details pertaining to a text ad.
      */
     textAd?: Schema$GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo;
+    /**
+     * The URL template for constructing a tracking URL.
+     */
+    trackingUrlTemplate?: string | null;
     /**
      * Output only. The type of ad.
      */
@@ -2156,6 +2225,10 @@ export namespace searchads360_v0 {
      */
     engineStatus?: string | null;
     /**
+     * URL template for appending params to Final URL.
+     */
+    finalUrlSuffix?: string | null;
+    /**
      * Output only. The ID of the ad group.
      */
     id?: string | null;
@@ -2191,6 +2264,10 @@ export namespace searchads360_v0 {
      * Setting for targeting related features.
      */
     targetingSetting?: Schema$GoogleAdsSearchads360V0Common__TargetingSetting;
+    /**
+     * The URL template for constructing a tracking URL.
+     */
+    trackingUrlTemplate?: string | null;
     /**
      * Immutable. The type of the ad group.
      */
@@ -2254,7 +2331,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group ad effective label. Ad group ad effective label resource names have the form: `customers/{customer_id\}/adGroupAdEffectiveLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group ad effective label. Ad group ad effective label resource names have the form: `customers/{owner_customer_id\}/adGroupAdEffectiveLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2275,7 +2352,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{customer_id\}/adGroupAdLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{owner_customer_id\}/adGroupAdLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2392,6 +2469,10 @@ export namespace searchads360_v0 {
      */
     engineStatus?: string | null;
     /**
+     * The list of possible final mobile URLs after all cross-domain redirects.
+     */
+    finalMobileUrls?: string[] | null;
+    /**
      * The list of possible final URLs after all cross-domain redirects for the ad.
      */
     finalUrls?: string[] | null;
@@ -2452,6 +2533,10 @@ export namespace searchads360_v0 {
      */
     type?: string | null;
     /**
+     * The list of mappings used to substitute custom parameter tags in a `tracking_url_template`, `final_urls`, or `mobile_final_urls`.
+     */
+    urlCustomParameters?: Schema$GoogleAdsSearchads360V0Common__CustomParameter[];
+    /**
      * Immutable. User List.
      */
     userList?: Schema$GoogleAdsSearchads360V0Common__UserListInfo;
@@ -2477,7 +2562,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group criterion effective label. Ad group criterion effective label resource names have the form: `customers/{customer_id\}/adGroupCriterionEffectiveLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group criterion effective label. Ad group criterion effective label resource names have the form: `customers/{owner_customer_id\}/adGroupCriterionEffectiveLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2498,7 +2583,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id\}/adGroupCriterionLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{owner_customer_id\}/adGroupCriterionLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2519,7 +2604,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group effective label. Ad group effective label resource names have the form: `customers/{customer_id\}/adGroupEffectiveLabels/{ad_group_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group effective label. Ad group effective label resource names have the form: `customers/{owner_customer_id\}/adGroupEffectiveLabels/{ad_group_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2540,7 +2625,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. The resource name of the ad group label. Ad group label resource names have the form: `customers/{customer_id\}/adGroupLabels/{ad_group_id\}~{label_id\}`
+     * Immutable. The resource name of the ad group label. Ad group label resource names have the form: `customers/{owner_customer_id\}/adGroupLabels/{ad_group_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2578,9 +2663,17 @@ export namespace searchads360_v0 {
      */
     engineStatus?: string | null;
     /**
+     * A list of possible final mobile URLs after all cross domain redirects.
+     */
+    finalMobileUrls?: string[] | null;
+    /**
      * A list of possible final URLs after all cross domain redirects.
      */
     finalUrls?: string[] | null;
+    /**
+     * URL template for appending params to landing page URLs served with parallel tracking.
+     */
+    finalUrlSuffix?: string | null;
     /**
      * Output only. The ID of the asset.
      */
@@ -2633,6 +2726,10 @@ export namespace searchads360_v0 {
      * Output only. Type of the asset.
      */
     type?: string | null;
+    /**
+     * A list of mappings to be used for substituting URL custom parameter tags in the tracking_url_template, final_urls, and/or final_mobile_urls.
+     */
+    urlCustomParameters?: Schema$GoogleAdsSearchads360V0Common__CustomParameter[];
     /**
      * Immutable. A YouTube video asset.
      */
@@ -2977,6 +3074,10 @@ export namespace searchads360_v0 {
      */
     excludedParentAssetFieldTypes?: string[] | null;
     /**
+     * Output only. Types of feeds that are attached directly to this campaign.
+     */
+    feedTypes?: string[] | null;
+    /**
      * Suffix used to append query parameters to landing pages that are served with parallel tracking.
      */
     finalUrlSuffix?: string | null;
@@ -3263,7 +3364,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. Name of the resource. CampaignEffectivelabel resource names have the form: `customers/{customer_id\}/campaignEffectiveLabels/{campaign_id\}~{label_id\}`
+     * Immutable. Name of the resource. CampaignEffectivelabel resource names have the form: `customers/{owner_customer_id\}/campaignEffectiveLabels/{campaign_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -3284,7 +3385,7 @@ export namespace searchads360_v0 {
      */
     ownerCustomerId?: string | null;
     /**
-     * Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id\}/campaignLabels/{campaign_id\}~{label_id\}`
+     * Immutable. Name of the resource. Campaign label resource names have the form: `customers/{owner_customer_id\}/campaignLabels/{campaign_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -3905,7 +4006,7 @@ export namespace searchads360_v0 {
      */
     name?: string | null;
     /**
-     * Immutable. Name of the resource. Label resource names have the form: `customers/{customer_id\}/labels/{label_id\}`
+     * Immutable. Name of the resource. Label resource names have the form: `customers/{owner_customer_id\}/labels/{label_id\}`
      */
     resourceName?: string | null;
     /**
@@ -4101,7 +4202,7 @@ export namespace searchads360_v0 {
     typeUrl?: string | null;
   }
   /**
-   * Shopping performance view. Provides Shopping campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded.
+   * Shopping performance view. Provides Shopping campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded. The number of impressions and clicks that shopping_performance_view returns stats for may be different from campaign reports. shopping_performance_view shows impressions and clicks on products appearing in ads, while campaign reports show impressions and clicks on the ads themselves. Depending on the format, an ad can show from zero to several products, so the numbers may not match. In Google Ads UI, you can query impressions and clicks of products appearing in ads by selecting a column from "Product attributes" in the report editor. For example, selecting the "Brand" column is equivalent to selecting `segments.product_brand`.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__ShoppingPerformanceView {
     /**
@@ -4809,8 +4910,7 @@ export namespace searchads360_v0 {
     }
   }
 
-  export interface Params$Resource$Customers$Listaccessiblecustomers
-    extends StandardParameters {}
+  export interface Params$Resource$Customers$Listaccessiblecustomers extends StandardParameters {}
 
   export class Resource$Customers$Customcolumns {
     context: APIRequestContext;
@@ -5121,15 +5221,13 @@ export namespace searchads360_v0 {
     }
   }
 
-  export interface Params$Resource$Customers$Customcolumns$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Customcolumns$Get extends StandardParameters {
     /**
      * Required. The resource name of the custom column to fetch.
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Customers$Customcolumns$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Customcolumns$List extends StandardParameters {
     /**
      * Required. The ID of the customer to apply the CustomColumn list operation to.
      */
@@ -5311,8 +5409,7 @@ export namespace searchads360_v0 {
     }
   }
 
-  export interface Params$Resource$Customers$Searchads360$Search
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Searchads360$Search extends StandardParameters {
     /**
      * Required. The ID of the customer being queried.
      */
@@ -5647,15 +5744,13 @@ export namespace searchads360_v0 {
     }
   }
 
-  export interface Params$Resource$Searchads360fields$Get
-    extends StandardParameters {
+  export interface Params$Resource$Searchads360fields$Get extends StandardParameters {
     /**
      * Required. The resource name of the field to get.
      */
     resourceName?: string;
   }
-  export interface Params$Resource$Searchads360fields$Search
-    extends StandardParameters {
+  export interface Params$Resource$Searchads360fields$Search extends StandardParameters {
     /**
      * Request body metadata
      */
