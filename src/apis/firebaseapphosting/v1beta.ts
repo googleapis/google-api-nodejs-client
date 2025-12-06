@@ -742,7 +742,7 @@ export namespace firebaseapphosting_v1beta {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1439,15 +1439,13 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2295,8 +2293,7 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backends$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Create extends StandardParameters {
     /**
      * Required. Id of the backend. Also used as the service ID for Cloud Run, and as part of the default domain name.
      */
@@ -2319,8 +2316,7 @@ export namespace firebaseapphosting_v1beta {
      */
     requestBody?: Schema$Backend;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag is out of date, delete will be returned FAILED_PRECONDITION error.
      */
@@ -2342,15 +2338,13 @@ export namespace firebaseapphosting_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backends$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$List extends StandardParameters {
     /**
      * Optional. A filter to narrow down results to a preferred subset. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -2376,8 +2370,7 @@ export namespace firebaseapphosting_v1beta {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the backend is not found, a new backend will be created.
      */
@@ -3038,8 +3031,7 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backends$Builds$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Builds$Create extends StandardParameters {
     /**
      * Required. Desired ID of the build being created.
      */
@@ -3062,8 +3054,7 @@ export namespace firebaseapphosting_v1beta {
      */
     requestBody?: Schema$Build;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Builds$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Builds$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag is out of date, delete will be returned FAILED_PRECONDITION error.
      */
@@ -3081,15 +3072,13 @@ export namespace firebaseapphosting_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Builds$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Builds$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}/builds/{buildId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Builds$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Builds$List extends StandardParameters {
     /**
      * Optional. A filter to narrow down results to a preferred subset. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -3914,8 +3903,7 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backends$Domains$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Domains$Create extends StandardParameters {
     /**
      * Required. Id of the domain to create. Must be a valid domain name.
      */
@@ -3938,8 +3926,7 @@ export namespace firebaseapphosting_v1beta {
      */
     requestBody?: Schema$Domain;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Domains$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Domains$Delete extends StandardParameters {
     /**
      * Optional. If the client provided etag is out of date, delete will be returned FAILED_PRECONDITION error.
      */
@@ -3957,15 +3944,13 @@ export namespace firebaseapphosting_v1beta {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Domains$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Domains$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}/domains/{domainId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Domains$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Domains$List extends StandardParameters {
     /**
      * Optional. A filter to narrow down results to a preferred subset. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -3991,8 +3976,7 @@ export namespace firebaseapphosting_v1beta {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Domains$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Domains$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the domain is not found, a new domain will be created.
      */
@@ -4500,8 +4484,7 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backends$Rollouts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Rollouts$Create extends StandardParameters {
     /**
      * Required. The parent backend in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}`.
      */
@@ -4524,15 +4507,13 @@ export namespace firebaseapphosting_v1beta {
      */
     requestBody?: Schema$Rollout;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Rollouts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Rollouts$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}/rollouts/{rolloutId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Rollouts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Rollouts$List extends StandardParameters {
     /**
      * Optional. A filter to narrow down results to a preferred subset. Learn more about filtering in Google's [AIP 160 standard](https://google.aip.dev/160).
      */
@@ -4876,15 +4857,13 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backends$Traffic$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Traffic$Get extends StandardParameters {
     /**
      * Required. Name of the resource in the format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}/traffic`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backends$Traffic$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backends$Traffic$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the backend's traffic. Format: `projects/{project\}/locations/{locationId\}/backends/{backendId\}/traffic`.
      */
@@ -5361,7 +5340,7 @@ export namespace firebaseapphosting_v1beta {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5473,29 +5452,25 @@ export namespace firebaseapphosting_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5513,7 +5488,7 @@ export namespace firebaseapphosting_v1beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
