@@ -840,15 +840,13 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2140,8 +2138,7 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends StandardParameters {
     /**
      * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
      */
@@ -2152,8 +2149,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Delete extends StandardParameters {
     /**
      * This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be deleted instead.
      */
@@ -2163,15 +2159,13 @@ export namespace cloudscheduler_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends StandardParameters {
     /**
      * Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
      * `filter` can be used to specify a subset of jobs. If `filter` equals `target_config="HttpConfig"`, then the http target jobs are retrieved. If `filter` equals `target_config="PubSubConfig"`, then the Pub/Sub target jobs are retrieved. If `filter` equals `labels.foo=value1 labels.foo=value2` then only jobs which are labeled with foo=value1 AND foo=value2 will be returned.
      */
@@ -2193,8 +2187,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Patch extends StandardParameters {
     /**
      * Optionally caller-specified in CreateJob, after which it becomes output only. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the job's location. The list of available locations can be obtained by calling [locations.list](/scheduler/docs/reference/rest/v1beta1/projects.locations/list). For more information, see [Cloud Scheduler locations](/scheduler/docs/locations). * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.
      */
@@ -2209,8 +2202,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Pause extends StandardParameters {
     /**
      * Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      */
@@ -2221,8 +2213,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$PauseJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Resume extends StandardParameters {
     /**
      * Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      */
@@ -2233,8 +2224,7 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$ResumeJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Run extends StandardParameters {
     /**
      * Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      */
@@ -2817,8 +2807,7 @@ export namespace cloudscheduler_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2829,22 +2818,19 @@ export namespace cloudscheduler_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
