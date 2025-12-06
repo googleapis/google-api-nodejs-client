@@ -1339,15 +1339,13 @@ export namespace notebooks_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4676,8 +4674,7 @@ export namespace notebooks_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Checkauthorization
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Checkauthorization extends StandardParameters {
     /**
      * Required. The name of the Notebook Instance resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`
      */
@@ -4688,15 +4685,13 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$CheckAuthorizationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Checkupgradability
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Checkupgradability extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     notebookInstance?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * Required. User-defined unique ID of this instance.
      */
@@ -4715,8 +4710,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4726,8 +4720,7 @@ export namespace notebooks_v2 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Diagnose
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Diagnose extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4738,8 +4731,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$DiagnoseInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Generateaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Generateaccesstoken extends StandardParameters {
     /**
      * Required. Format: `projects/{project\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4750,22 +4742,19 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$GenerateAccessTokenRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getconfig extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4775,8 +4764,7 @@ export namespace notebooks_v2 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * Optional. List filter.
      */
@@ -4798,8 +4786,7 @@ export namespace notebooks_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The name of this notebook instance. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4818,8 +4805,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$Instance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Reportinfosystem
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Reportinfosystem extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4830,8 +4816,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$ReportInstanceInfoSystemRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Reset
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Reset extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4842,8 +4827,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$ResetInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Resizedisk
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Resizedisk extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4854,8 +4838,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$ResizeDiskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Restore extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4866,8 +4849,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$RestoreInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Rollback extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4878,8 +4860,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$RollbackInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4890,8 +4871,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Start
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Start extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4902,8 +4882,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$StartInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Stop extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4914,8 +4893,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$StopInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4926,8 +4904,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -4938,8 +4915,7 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$UpgradeInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Upgradesystem
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Upgradesystem extends StandardParameters {
     /**
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
@@ -5515,8 +5491,7 @@ export namespace notebooks_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5527,22 +5502,19 @@ export namespace notebooks_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
