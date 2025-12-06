@@ -1978,8 +1978,7 @@ export namespace transcoder_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Create extends StandardParameters {
     /**
      * Required. The parent location to create and process this job. Format: `projects/{project\}/locations/{location\}`
      */
@@ -1990,8 +1989,7 @@ export namespace transcoder_v1 {
      */
     requestBody?: Schema$Job;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Delete extends StandardParameters {
     /**
      * If set to true, and the job is not found, the request will succeed but no action will be taken on the server.
      */
@@ -2001,15 +1999,13 @@ export namespace transcoder_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$Get extends StandardParameters {
     /**
      * Required. The name of the job to retrieve. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobs$List extends StandardParameters {
     /**
      * The filter expression, following the syntax outlined in https://google.aip.dev/160.
      */
@@ -2609,8 +2605,7 @@ export namespace transcoder_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Jobtemplates$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtemplates$Create extends StandardParameters {
     /**
      * Required. The ID to use for the job template, which will become the final component of the job template's resource name. This value should be 4-63 characters, and valid characters must match the regular expression `a-zA-Z*`.
      */
@@ -2625,8 +2620,7 @@ export namespace transcoder_v1 {
      */
     requestBody?: Schema$JobTemplate;
   }
-  export interface Params$Resource$Projects$Locations$Jobtemplates$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtemplates$Delete extends StandardParameters {
     /**
      * If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.
      */
@@ -2636,15 +2630,13 @@ export namespace transcoder_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobtemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtemplates$Get extends StandardParameters {
     /**
      * Required. The name of the job template to retrieve. Format: `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Jobtemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Jobtemplates$List extends StandardParameters {
     /**
      * The filter expression, following the syntax outlined in https://google.aip.dev/160.
      */
