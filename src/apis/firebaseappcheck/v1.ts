@@ -1554,8 +1554,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Oauthclients$Exchangeappattestassertion
-    extends StandardParameters {
+  export interface Params$Resource$Oauthclients$Exchangeappattestassertion extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -1566,8 +1565,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest;
   }
-  export interface Params$Resource$Oauthclients$Exchangeappattestattestation
-    extends StandardParameters {
+  export interface Params$Resource$Oauthclients$Exchangeappattestattestation extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -1578,8 +1576,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest;
   }
-  export interface Params$Resource$Oauthclients$Exchangedebugtoken
-    extends StandardParameters {
+  export interface Params$Resource$Oauthclients$Exchangedebugtoken extends StandardParameters {
     /**
      * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -1590,8 +1587,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest;
   }
-  export interface Params$Resource$Oauthclients$Generateappattestchallenge
-    extends StandardParameters {
+  export interface Params$Resource$Oauthclients$Generateappattestchallenge extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3419,8 +3415,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Exchangeappattestassertion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangeappattestassertion extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3431,8 +3426,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangeappattestattestation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangeappattestattestation extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3443,8 +3437,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangecustomtoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangecustomtoken extends StandardParameters {
     /**
      * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3455,8 +3448,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeCustomTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangedebugtoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangedebugtoken extends StandardParameters {
     /**
      * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3467,8 +3459,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangedevicechecktoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangedevicechecktoken extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3479,8 +3470,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeDeviceCheckTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangeplayintegritytoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangeplayintegritytoken extends StandardParameters {
     /**
      * Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3491,8 +3481,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangePlayIntegrityTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangerecaptchaenterprisetoken extends StandardParameters {
     /**
      * Required. The relative resource name of the web app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3503,8 +3492,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeRecaptchaEnterpriseTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangerecaptchav3token
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangerecaptchav3token extends StandardParameters {
     /**
      * Required. The relative resource name of the web app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3515,8 +3503,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Exchangesafetynettoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Exchangesafetynettoken extends StandardParameters {
     /**
      * Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3527,8 +3514,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest;
   }
-  export interface Params$Resource$Projects$Apps$Generateappattestchallenge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Generateappattestchallenge extends StandardParameters {
     /**
      * Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -3539,8 +3525,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1GenerateAppAttestChallengeRequest;
   }
-  export interface Params$Resource$Projects$Apps$Generateplayintegritychallenge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Generateplayintegritychallenge extends StandardParameters {
     /**
      * Required. The relative resource name of the app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
      */
@@ -4020,8 +4005,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Appattestconfig$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Appattestconfig$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the AppAttestConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/appAttestConfig ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -4031,15 +4015,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Appattestconfig$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Appattestconfig$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the AppAttestConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/appAttestConfig ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Appattestconfig$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Appattestconfig$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the App Attest configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/appAttestConfig ```
      */
@@ -4834,8 +4816,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Debugtokens$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Debugtokens$Create extends StandardParameters {
     /**
      * Required. The relative resource name of the parent app in which the specified DebugToken will be created, in the format: ``` projects/{project_number\}/apps/{app_id\} ```
      */
@@ -4846,22 +4827,19 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1DebugToken;
   }
-  export interface Params$Resource$Projects$Apps$Debugtokens$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Debugtokens$Delete extends StandardParameters {
     /**
      * Required. The relative resource name of the DebugToken to delete, in the format: ``` projects/{project_number\}/apps/{app_id\}/debugTokens/{debug_token_id\} ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Debugtokens$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Debugtokens$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the debug token, in the format: ``` projects/{project_number\}/apps/{app_id\}/debugTokens/{debug_token_id\} ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Debugtokens$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Debugtokens$List extends StandardParameters {
     /**
      * The maximum number of DebugTokens to return in the response. Note that an app can have at most 20 debug tokens. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
@@ -4875,8 +4853,7 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Debugtokens$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Debugtokens$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the debug token, in the format: ``` projects/{project_number\}/apps/{app_id\}/debugTokens/{debug_token_id\} ```
      */
@@ -5369,8 +5346,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the DeviceCheckConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/deviceCheckConfig ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -5380,15 +5356,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the DeviceCheckConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/deviceCheckConfig ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Devicecheckconfig$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the DeviceCheck configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/deviceCheckConfig ```
      */
@@ -5884,8 +5858,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the PlayIntegrityConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -5895,15 +5868,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the PlayIntegrityConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Playintegrityconfig$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
      */
@@ -6400,8 +6371,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the RecaptchaEnterpriseConfigs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaEnterpriseConfig ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -6411,15 +6381,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the RecaptchaEnterpriseConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaEnterpriseConfig ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchaenterpriseconfig$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the reCAPTCHA Enterprise configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaEnterpriseConfig ```
      */
@@ -6912,8 +6880,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Recaptchav3config$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the RecaptchaV3Configs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -6923,15 +6890,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Recaptchav3config$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the RecaptchaV3Config, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Recaptchav3config$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
      */
@@ -7415,8 +7380,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Safetynetconfig$Batchget extends StandardParameters {
     /**
      * Required. The relative resource names of the SafetyNetConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ``` A maximum of 100 objects can be retrieved in a batch.
      */
@@ -7426,15 +7390,13 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Safetynetconfig$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the SafetyNetConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Safetynetconfig$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the SafetyNet configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
      */
@@ -8078,8 +8040,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Services$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Batchupdate extends StandardParameters {
     /**
      * Required. The parent project name shared by all Service configurations being updated, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being updated must match this field, or the entire batch fails.
      */
@@ -8090,15 +8051,13 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1BatchUpdateServicesRequest;
   }
-  export interface Params$Resource$Projects$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$List extends StandardParameters {
     /**
      * The maximum number of Services to return in the response. Only explicitly configured services are returned. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.
      */
@@ -8112,8 +8071,7 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Patch extends StandardParameters {
     /**
      * Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
      */
@@ -9080,8 +9038,7 @@ export namespace firebaseappcheck_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Services$Resourcepolicies$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Batchupdate extends StandardParameters {
     /**
      * Required. The parent service name, in the format ``` projects/{project_number\}/services/{service_id\} ``` The parent collection in the `name` field of any resource being updated must match this field, or the entire batch fails.
      */
@@ -9092,8 +9049,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesRequest;
   }
-  export interface Params$Resource$Projects$Services$Resourcepolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Create extends StandardParameters {
     /**
      * Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
@@ -9104,8 +9060,7 @@ export namespace firebaseappcheck_v1 {
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ResourcePolicy;
   }
-  export interface Params$Resource$Projects$Services$Resourcepolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Delete extends StandardParameters {
     /**
      * The checksum to be validated against the current ResourcePolicy, to ensure the client has an up-to-date value before proceeding. This checksum is computed by the server based on the values of fields in the ResourcePolicy object, and can be obtained from the ResourcePolicy object received from the last CreateResourcePolicy, GetResourcePolicy, ListResourcePolicies, UpdateResourcePolicy, or BatchUpdateResourcePolicies call. This etag is strongly validated as defined by RFC 7232.
      */
@@ -9115,15 +9070,13 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Services$Resourcepolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Services$Resourcepolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$List extends StandardParameters {
     /**
      * Optional. Filters the results by the specified rule. For the exact syntax of this field, please consult the [AIP-160](https://google.aip.dev/160) standard. Currently, since the only fields in the ResourcePolicy resource are the scalar fields `enforcement_mode` and `target_resource`, this method does not support the traversal operator (`.`) or the has operator (`:`). Here are some examples of valid filters: * `enforcement_mode = ENFORCED` * `target_resource = "//oauth2.googleapis.com/projects/12345/oauthClients/"` * `enforcement_mode = ENFORCED AND target_resource = "//oauth2.googleapis.com/projects/12345/oauthClients/"`
      */
@@ -9141,8 +9094,7 @@ export namespace firebaseappcheck_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Services$Resourcepolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Services$Resourcepolicies$Patch extends StandardParameters {
     /**
      * Required. Identifier. The relative name of the resource policy object, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS) `resource_policy_id` is a system-generated UID.
      */
