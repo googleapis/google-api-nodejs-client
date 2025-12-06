@@ -1214,8 +1214,7 @@ export namespace siteVerification_v1 {
     }
   }
 
-  export interface Params$Resource$Webresource$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Webresource$Delete extends StandardParameters {
     /**
      * The id of a verified site or domain.
      */
@@ -1227,15 +1226,13 @@ export namespace siteVerification_v1 {
      */
     id?: string;
   }
-  export interface Params$Resource$Webresource$Gettoken
-    extends StandardParameters {
+  export interface Params$Resource$Webresource$Gettoken extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$SiteVerificationWebResourceGettokenRequest;
   }
-  export interface Params$Resource$Webresource$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Webresource$Insert extends StandardParameters {
     /**
      * The method to use for verifying a site or domain.
      */
@@ -1246,10 +1243,8 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$List
-    extends StandardParameters {}
-  export interface Params$Resource$Webresource$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Webresource$List extends StandardParameters {}
+  export interface Params$Resource$Webresource$Patch extends StandardParameters {
     /**
      * The id of a verified site or domain.
      */
@@ -1260,8 +1255,7 @@ export namespace siteVerification_v1 {
      */
     requestBody?: Schema$SiteVerificationWebResourceResource;
   }
-  export interface Params$Resource$Webresource$Update
-    extends StandardParameters {
+  export interface Params$Resource$Webresource$Update extends StandardParameters {
     /**
      * The id of a verified site or domain.
      */
