@@ -615,15 +615,13 @@ export namespace advisorynotifications_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Getsettings extends StandardParameters {
     /**
      * Required. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Updatesettings extends StandardParameters {
     /**
      * Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
      */
@@ -955,8 +953,7 @@ export namespace advisorynotifications_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Notifications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Notifications$Get extends StandardParameters {
     /**
      * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
      */
@@ -966,8 +963,7 @@ export namespace advisorynotifications_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Notifications$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Notifications$List extends StandardParameters {
     /**
      * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
      */
@@ -1314,15 +1310,13 @@ export namespace advisorynotifications_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getsettings extends StandardParameters {
     /**
      * Required. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatesettings extends StandardParameters {
     /**
      * Identifier. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings or projects/{projects\}/locations/{location\}/settings.
      */
@@ -1652,8 +1646,7 @@ export namespace advisorynotifications_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Notifications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notifications$Get extends StandardParameters {
     /**
      * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
      */
@@ -1663,8 +1656,7 @@ export namespace advisorynotifications_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Notifications$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notifications$List extends StandardParameters {
     /**
      * ISO code for requested localization language. If unset, will be interpereted as "en". If the requested language is valid, but not supported for this notification, English will be returned with an "Not applicable" LocalizationState. If the ISO code is invalid (i.e. not a real language), this RPC will throw an error.
      */
