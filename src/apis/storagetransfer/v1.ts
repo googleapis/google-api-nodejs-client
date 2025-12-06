@@ -1187,8 +1187,7 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Googleserviceaccounts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Googleserviceaccounts$Get extends StandardParameters {
     /**
      * Required. The ID of the Google Cloud project that the Google service account is associated with.
      */
@@ -1934,8 +1933,7 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Agentpools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agentpools$Create extends StandardParameters {
     /**
      * Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
      */
@@ -1950,22 +1948,19 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$AgentPool;
   }
-  export interface Params$Resource$Projects$Agentpools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agentpools$Delete extends StandardParameters {
     /**
      * Required. The name of the agent pool to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agentpools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agentpools$Get extends StandardParameters {
     /**
      * Required. The name of the agent pool to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Agentpools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agentpools$List extends StandardParameters {
     /**
      * An optional list of query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project.
      */
@@ -1983,8 +1978,7 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Agentpools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Agentpools$Patch extends StandardParameters {
     /**
      * Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id\}/agentPools/{agent_pool_id\}`
      */
@@ -2907,15 +2901,13 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Transferjobs$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$TransferJob;
   }
-  export interface Params$Resource$Transferjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Transferjobs$Delete extends StandardParameters {
     /**
      * Required. The job to delete.
      */
@@ -2935,8 +2927,7 @@ export namespace storagetransfer_v1 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Transferjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Transferjobs$List extends StandardParameters {
     /**
      * Required. A list of query parameters specified as JSON text in the form of: ``` { "projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...], "dataBackend":"QUERY_REPLICATION_CONFIGS", "sourceBucket":"source-bucket-name", "sinkBucket":"sink-bucket-name", \} ``` The JSON formatting in the example is for display only; provide the query parameters without spaces or line breaks. * `projectId` is required. * Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `jobNames` and `jobStatuses` are optional. Valid values are case-insensitive: * ENABLED * DISABLED * DELETED * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of cross-bucket replication jobs. * Limit the results to jobs from a particular bucket with `sourceBucket` and/or to a particular bucket with `sinkBucket`.
      */
@@ -2950,8 +2941,7 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Transferjobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Transferjobs$Patch extends StandardParameters {
     /**
      * Required. The name of job to update.
      */
@@ -3684,8 +3674,7 @@ export namespace storagetransfer_v1 {
     }
   }
 
-  export interface Params$Resource$Transferoperations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Transferoperations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3696,15 +3685,13 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Transferoperations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Transferoperations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Transferoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Transferoperations$List extends StandardParameters {
     /**
      * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobNamePattern": "job_name_pattern", "operationNames":["opid1","opid2",...], "operationNamePattern": "operation_name_pattern", "minCreationTime": "min_creation_time", "maxCreationTime": "max_creation_time", "transferStatuses":["status1","status2",...]\}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is the only argument that is required. If specified, `jobNamePattern` and `operationNamePattern` must match the full job or operation name respectively. '*' is a wildcard matching 0 or more characters. `minCreationTime` and `maxCreationTime` should be timestamps encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
@@ -3726,8 +3713,7 @@ export namespace storagetransfer_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Transferoperations$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Transferoperations$Pause extends StandardParameters {
     /**
      * Required. The name of the transfer operation.
      */
@@ -3738,8 +3724,7 @@ export namespace storagetransfer_v1 {
      */
     requestBody?: Schema$PauseTransferOperationRequest;
   }
-  export interface Params$Resource$Transferoperations$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Transferoperations$Resume extends StandardParameters {
     /**
      * Required. The name of the transfer operation.
      */
