@@ -775,8 +775,7 @@ export namespace cloudcontrolspartner_v1beta {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Getpartner
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Getpartner extends StandardParameters {
     /**
      * Required. Format: `organizations/{organization\}/locations/{location\}/partner`
      */
@@ -1530,8 +1529,7 @@ export namespace cloudcontrolspartner_v1beta {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Customers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Create extends StandardParameters {
     /**
      * Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.
      */
@@ -1546,22 +1544,19 @@ export namespace cloudcontrolspartner_v1beta {
      */
     requestBody?: Schema$Customer;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Delete extends StandardParameters {
     /**
      * Required. name of the resource to be deleted format: name=organizations/x/locations/x/customers/x
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Get extends StandardParameters {
     /**
      * Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -1583,8 +1578,7 @@ export namespace cloudcontrolspartner_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Patch extends StandardParameters {
     /**
      * Identifier. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
      */
@@ -2201,29 +2195,25 @@ export namespace cloudcontrolspartner_v1beta {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Get extends StandardParameters {
     /**
      * Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Getekmconnections extends StandardParameters {
     /**
      * Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/ekmConnections`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Getpartnerpermissions extends StandardParameters {
     /**
      * Required. Name of the resource to get in the format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/partnerPermissions`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -2416,8 +2406,7 @@ export namespace cloudcontrolspartner_v1beta {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Accessapprovalrequests$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -2754,15 +2743,13 @@ export namespace cloudcontrolspartner_v1beta {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Violations$Get extends StandardParameters {
     /**
      * Required. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}/workloads/{workload\}/violations/{violation\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
