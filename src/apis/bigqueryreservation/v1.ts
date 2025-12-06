@@ -1279,15 +1279,13 @@ export namespace bigqueryreservation_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getbireservation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getbireservation extends StandardParameters {
     /**
      * Required. Name of the requested reservation, for example: `projects/{project_id\}/locations/{location_id\}/biReservation`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Searchallassignments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Searchallassignments extends StandardParameters {
     /**
      * The maximum number of items to return per page.
      */
@@ -1305,8 +1303,7 @@ export namespace bigqueryreservation_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Locations$Searchassignments
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Searchassignments extends StandardParameters {
     /**
      * The maximum number of items to return per page.
      */
@@ -1324,8 +1321,7 @@ export namespace bigqueryreservation_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updatebireservation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatebireservation extends StandardParameters {
     /**
      * Identifier. The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/biReservation`.
      */
@@ -2454,8 +2450,7 @@ export namespace bigqueryreservation_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Create extends StandardParameters {
     /**
      * The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
      */
@@ -2474,8 +2469,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$CapacityCommitment;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete extends StandardParameters {
     /**
      * Can be used to force delete commitments even if assignments exist. Deleting commitments with assignments may cause queries to fail if they no longer have access to slots.
      */
@@ -2485,15 +2479,13 @@ export namespace bigqueryreservation_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Get extends StandardParameters {
     /**
      * Required. Resource name of the capacity commitment to retrieve. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$List extends StandardParameters {
     /**
      * The maximum number of items to return.
      */
@@ -2507,8 +2499,7 @@ export namespace bigqueryreservation_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Merge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Merge extends StandardParameters {
     /**
      * Parent resource that identifies admin project and location e.g., `projects/myproject/locations/us`
      */
@@ -2519,8 +2510,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$MergeCapacityCommitmentsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` The commitment_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
@@ -2535,8 +2525,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$CapacityCommitment;
   }
-  export interface Params$Resource$Projects$Locations$Capacitycommitments$Split
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Capacitycommitments$Split extends StandardParameters {
     /**
      * Required. The resource name e.g.,: `projects/myproject/locations/US/capacityCommitments/123`
      */
@@ -3139,8 +3128,7 @@ export namespace bigqueryreservation_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reservationgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservationgroups$Create extends StandardParameters {
     /**
      * Required. Project, location. E.g., `projects/myproject/locations/US`
      */
@@ -3155,22 +3143,19 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$ReservationGroup;
   }
-  export interface Params$Resource$Projects$Locations$Reservationgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservationgroups$Delete extends StandardParameters {
     /**
      * Required. Resource name of the reservation group to retrieve. E.g., `projects/myproject/locations/US/reservationGroups/team1-prod`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservationgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservationgroups$Get extends StandardParameters {
     /**
      * Required. Resource name of the reservation group to retrieve. E.g., `projects/myproject/locations/US/reservationGroups/team1-prod`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservationgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservationgroups$List extends StandardParameters {
     /**
      * The maximum number of items to return per page.
      */
@@ -4636,8 +4621,7 @@ export namespace bigqueryreservation_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reservations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Create extends StandardParameters {
     /**
      * Required. Project, location. E.g., `projects/myproject/locations/US`
      */
@@ -4652,15 +4636,13 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$Reservation;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Delete extends StandardParameters {
     /**
      * Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Failoverreservation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Failoverreservation extends StandardParameters {
     /**
      * Required. Resource name of the reservation to failover. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
@@ -4671,15 +4653,13 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$FailoverReservationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Get extends StandardParameters {
     /**
      * Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4689,8 +4669,7 @@ export namespace bigqueryreservation_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$List extends StandardParameters {
     /**
      * The maximum number of items to return per page.
      */
@@ -4704,8 +4683,7 @@ export namespace bigqueryreservation_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. The reservation_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
@@ -4720,8 +4698,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$Reservation;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4732,8 +4709,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5992,8 +5968,7 @@ export namespace bigqueryreservation_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create extends StandardParameters {
     /**
      * The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. Max length is 64 characters.
      */
@@ -6008,15 +5983,13 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$Assignment;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Delete extends StandardParameters {
     /**
      * Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6026,8 +5999,7 @@ export namespace bigqueryreservation_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$List extends StandardParameters {
     /**
      * The maximum number of items to return per page.
      */
@@ -6041,8 +6013,7 @@ export namespace bigqueryreservation_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Move
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Move extends StandardParameters {
     /**
      * Required. The resource name of the assignment, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
      */
@@ -6053,8 +6024,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$MoveAssignmentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Patch extends StandardParameters {
     /**
      * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. The assignment_id must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      */
@@ -6069,8 +6039,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$Assignment;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6081,8 +6050,7 @@ export namespace bigqueryreservation_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
