@@ -1573,15 +1573,13 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -3731,8 +3729,7 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Create extends StandardParameters {
     /**
      * Required. The Deployment ID.
      */
@@ -3751,8 +3748,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Delete extends StandardParameters {
     /**
      * Optional. Policy on how resources actuated by the deployment should be deleted. If unspecified, the default behavior is to delete the underlying resources.
      */
@@ -3770,8 +3766,7 @@ export namespace config_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Deletestate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Deletestate extends StandardParameters {
     /**
      * Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
@@ -3782,15 +3777,13 @@ export namespace config_v1 {
      */
     requestBody?: Schema$DeleteStatefileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Exportlock
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Exportlock extends StandardParameters {
     /**
      * Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Exportstate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Exportstate extends StandardParameters {
     /**
      * Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
@@ -3801,15 +3794,13 @@ export namespace config_v1 {
      */
     requestBody?: Schema$ExportDeploymentStatefileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment. Format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -3819,8 +3810,7 @@ export namespace config_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Importstate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Importstate extends StandardParameters {
     /**
      * Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
@@ -3831,8 +3821,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$ImportStatefileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$List extends StandardParameters {
     /**
      * Lists the Deployments that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Deployments in CREATING state. state=CREATING
      */
@@ -3854,8 +3843,7 @@ export namespace config_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Lock
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Lock extends StandardParameters {
     /**
      * Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
@@ -3866,8 +3854,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$LockDeploymentRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
@@ -3886,8 +3873,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$Deployment;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3898,8 +3884,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3910,8 +3895,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Unlock
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Unlock extends StandardParameters {
     /**
      * Required. The name of the deployment in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'.
      */
@@ -4388,8 +4372,7 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Exportstate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Exportstate extends StandardParameters {
     /**
      * Required. The parent in whose context the statefile is listed. The parent value is in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}'.
      */
@@ -4400,15 +4383,13 @@ export namespace config_v1 {
      */
     requestBody?: Schema$ExportRevisionStatefileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Get extends StandardParameters {
     /**
      * Required. The name of the Revision in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Revisions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Revisions$List extends StandardParameters {
     /**
      * Lists the Revisions that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Revisions in CREATING state. state=CREATING
      */
@@ -4730,15 +4711,13 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Resources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Resources$Get extends StandardParameters {
     /**
      * Required. The name of the Resource in the format: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}/revisions/{revision\}/resource/{resource\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Resources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Deployments$Revisions$Resources$List extends StandardParameters {
     /**
      * Lists the Resources that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/dep/revisions/bar/resources/baz
      */
@@ -5325,8 +5304,7 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5337,22 +5315,19 @@ export namespace config_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6151,8 +6126,7 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Previews$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Create extends StandardParameters {
     /**
      * Required. The parent in whose context the Preview is created. The parent value is in the format: 'projects/{project_id\}/locations/{location\}'.
      */
@@ -6171,8 +6145,7 @@ export namespace config_v1 {
      */
     requestBody?: Schema$Preview;
   }
-  export interface Params$Resource$Projects$Locations$Previews$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Delete extends StandardParameters {
     /**
      * Required. The name of the Preview in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
      */
@@ -6182,8 +6155,7 @@ export namespace config_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Previews$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Export extends StandardParameters {
     /**
      * Required. The preview whose results should be exported. The preview value is in the format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
      */
@@ -6194,15 +6166,13 @@ export namespace config_v1 {
      */
     requestBody?: Schema$ExportPreviewResultRequest;
   }
-  export interface Params$Resource$Projects$Locations$Previews$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Get extends StandardParameters {
     /**
      * Required. The name of the preview. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Previews$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$List extends StandardParameters {
     /**
      * Optional. Lists the Deployments that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/deployments/bar - Filter by labels: - Resources that have a key called 'foo' labels.foo:* - Resources that have a key called 'foo' whose value is 'bar' labels.foo = bar - Filter by state: - Deployments in CREATING state. state=CREATING
      */
@@ -6522,15 +6492,13 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$Get extends StandardParameters {
     /**
      * Required. The name of the resource change to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceChanges/{resource_change\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Resourcechanges$List extends StandardParameters {
     /**
      * Optional. Lists the resource changes that match the filter expression. A filter expression filters the resource changes listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceChanges/baz
      */
@@ -6849,15 +6817,13 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$Get extends StandardParameters {
     /**
      * Required. The name of the resource drift to retrieve. Format: 'projects/{project_id\}/locations/{location\}/previews/{preview\}/resourceDrifts/{resource_drift\}'.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Previews$Resourcedrifts$List extends StandardParameters {
     /**
      * Optional. Lists the resource drifts that match the filter expression. A filter expression filters the resource drifts listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/foo/locations/us-central1/previews/dep/resourceDrifts/baz
      */
@@ -7179,15 +7145,13 @@ export namespace config_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Terraformversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Terraformversions$Get extends StandardParameters {
     /**
      * Required. The name of the TerraformVersion. Format: 'projects/{project_id\}/locations/{location\}/terraformVersions/{terraform_version\}'
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Terraformversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Terraformversions$List extends StandardParameters {
     /**
      * Optional. Lists the TerraformVersions that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form '{field\} {operator\} {value\}' where operators: '<', '\>', '<=', '\>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field\} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case.
      */
