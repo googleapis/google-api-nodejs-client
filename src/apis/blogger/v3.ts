@@ -1275,8 +1275,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Bloguserinfos$Get
-    extends StandardParameters {
+  export interface Params$Resource$Bloguserinfos$Get extends StandardParameters {
     /**
      *
      */
@@ -2427,8 +2426,7 @@ export namespace blogger_v3 {
      */
     view?: string;
   }
-  export interface Params$Resource$Comments$Listbyblog
-    extends StandardParameters {
+  export interface Params$Resource$Comments$Listbyblog extends StandardParameters {
     /**
      *
      */
@@ -2458,8 +2456,7 @@ export namespace blogger_v3 {
      */
     status?: string[];
   }
-  export interface Params$Resource$Comments$Markasspam
-    extends StandardParameters {
+  export interface Params$Resource$Comments$Markasspam extends StandardParameters {
     /**
      *
      */
@@ -2473,8 +2470,7 @@ export namespace blogger_v3 {
      */
     postId?: string;
   }
-  export interface Params$Resource$Comments$Removecontent
-    extends StandardParameters {
+  export interface Params$Resource$Comments$Removecontent extends StandardParameters {
     /**
      *
      */
@@ -6263,8 +6259,7 @@ export namespace blogger_v3 {
     }
   }
 
-  export interface Params$Resource$Postuserinfos$Get
-    extends StandardParameters {
+  export interface Params$Resource$Postuserinfos$Get extends StandardParameters {
     /**
      *
      */
@@ -6282,8 +6277,7 @@ export namespace blogger_v3 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Postuserinfos$List
-    extends StandardParameters {
+  export interface Params$Resource$Postuserinfos$List extends StandardParameters {
     /**
      *
      */
