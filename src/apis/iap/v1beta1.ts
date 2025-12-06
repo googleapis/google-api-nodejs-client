@@ -675,8 +675,7 @@ export namespace iap_v1beta1 {
     }
   }
 
-  export interface Params$Resource$V1beta1$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$V1beta1$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -687,8 +686,7 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$V1beta1$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$V1beta1$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -699,8 +697,7 @@ export namespace iap_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$V1beta1$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$V1beta1$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
