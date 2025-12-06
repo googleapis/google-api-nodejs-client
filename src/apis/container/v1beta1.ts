@@ -5722,8 +5722,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Aggregated$Usablesubnetworks$List extends StandardParameters {
     /**
      * Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
      */
@@ -6042,8 +6041,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Getserverconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getserverconfig extends StandardParameters {
     /**
      * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
@@ -6057,8 +6055,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Required. Contains the name of the resource requested. Specified in the format `projects/x`.
      */
@@ -9500,15 +9497,13 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Checkautopilotcompatibility extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9519,8 +9514,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9531,8 +9525,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Create extends StandardParameters {
     /**
      * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
      */
@@ -9543,8 +9536,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Delete extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
@@ -9562,8 +9554,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Fetchclusterupgradeinfo extends StandardParameters {
     /**
      * Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
      */
@@ -9573,8 +9564,7 @@ export namespace container_v1beta1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Get extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
@@ -9592,15 +9582,13 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Getjwks
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Getjwks extends StandardParameters {
     /**
      * The cluster (project, location, cluster name) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$List extends StandardParameters {
     /**
      * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
@@ -9614,8 +9602,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setaddons
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setaddons extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9626,8 +9613,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9638,8 +9624,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlocations
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlocations extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9650,8 +9635,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setlogging
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setlogging extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9662,8 +9646,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9674,8 +9657,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmasterauth extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9686,8 +9668,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setmonitoring extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9698,8 +9679,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9710,8 +9690,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9722,8 +9701,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Startiprotation extends StandardParameters {
     /**
      * The name (project, location, cluster name) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9734,8 +9712,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Update extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -9746,8 +9723,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Updatemaster extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -11543,8 +11519,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Completeupgrade extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11555,8 +11530,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create extends StandardParameters {
     /**
      * The parent (project, location, cluster name) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -11567,8 +11541,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Delete extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -11590,8 +11563,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Fetchnodepoolupgradeinfo extends StandardParameters {
     /**
      * Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
      */
@@ -11601,8 +11573,7 @@ export namespace container_v1beta1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Get extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -11624,8 +11595,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$List extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
@@ -11643,8 +11613,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11655,8 +11624,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11667,8 +11635,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11679,8 +11646,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11691,8 +11657,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Update extends StandardParameters {
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
@@ -11862,8 +11827,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration extends StandardParameters {
     /**
      * The cluster (project, location, cluster name) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -12321,8 +12285,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
      */
@@ -12333,8 +12296,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
@@ -12352,8 +12314,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
@@ -12526,8 +12487,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Getserverconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Getserverconfig extends StandardParameters {
     /**
      * The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
      */
@@ -15736,8 +15696,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Addons
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Addons extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -15756,8 +15715,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetAddonsConfigRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade extends StandardParameters {
     /**
      * The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
      */
@@ -15768,8 +15726,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -15788,8 +15745,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CompleteIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Create extends StandardParameters {
     /**
      * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
@@ -15804,8 +15760,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateClusterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Delete extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
      */
@@ -15823,8 +15778,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Fetchclusterupgradeinfo extends StandardParameters {
     /**
      * Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
      */
@@ -15834,8 +15788,7 @@ export namespace container_v1beta1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Get extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
      */
@@ -15853,8 +15806,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Legacyabac extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
@@ -15873,8 +15825,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLegacyAbacRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$List extends StandardParameters {
     /**
      * The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
@@ -15888,8 +15839,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Locations
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Locations extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -15908,8 +15858,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLocationsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Logging
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Logging extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -15928,8 +15877,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLoggingServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Master
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Master extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -15948,8 +15896,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$UpdateMasterRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Monitoring
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Monitoring extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -15968,8 +15915,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMonitoringServiceRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Resourcelabels extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -15988,8 +15934,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetLabelsRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy extends StandardParameters {
     /**
      * Required. The name of the cluster to update.
      */
@@ -16008,8 +15953,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMaintenancePolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Setmasterauth extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -16028,8 +15972,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetMasterAuthRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -16048,8 +15991,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNetworkPolicyRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Startiprotation extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -16068,8 +16010,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$StartIPRotationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Update extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -17764,8 +17705,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -17788,8 +17728,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolAutoscalingRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Create extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
@@ -17808,8 +17747,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CreateNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Delete extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -17831,8 +17769,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Fetchnodepoolupgradeinfo extends StandardParameters {
     /**
      * Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
      */
@@ -17842,8 +17779,7 @@ export namespace container_v1beta1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Get extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      */
@@ -17865,8 +17801,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$List extends StandardParameters {
     /**
      * Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      */
@@ -17884,8 +17819,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
      */
@@ -17908,8 +17842,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$RollbackNodePoolUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
@@ -17932,8 +17865,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolManagementRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
      */
@@ -17956,8 +17888,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$SetNodePoolSizeRequest;
   }
-  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Clusters$Nodepools$Update extends StandardParameters {
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -18438,8 +18369,7 @@ export namespace container_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Zones$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Operations$Cancel extends StandardParameters {
     /**
      * Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
      */
@@ -18458,8 +18388,7 @@ export namespace container_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Zones$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Operations$Get extends StandardParameters {
     /**
      * The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
      */
@@ -18477,8 +18406,7 @@ export namespace container_v1beta1 {
      */
     zone?: string;
   }
-  export interface Params$Resource$Projects$Zones$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Zones$Operations$List extends StandardParameters {
     /**
      * The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
      */
