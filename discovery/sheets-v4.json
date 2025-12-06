@@ -875,7 +875,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20251110",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -5377,7 +5377,7 @@
       "id": "NumberFormat",
       "properties": {
         "pattern": {
-          "description": "Pattern string used for formatting. If not set, a default pattern based on the user's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.",
+          "description": "Pattern string used for formatting. If not set, a default pattern based on the spreadsheet's locale will be used if necessary for the given type. See the [Date and Number Formats guide](https://developers.google.com/workspace/sheets/api/guides/formats) for more information about the supported patterns.",
           "type": "string"
         },
         "type": {
