@@ -7533,8 +7533,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Accountactiveadsummaries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accountactiveadsummaries$Get extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -7843,8 +7842,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Accountpermissiongroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accountpermissiongroups$Get extends StandardParameters {
     /**
      * Account permission group ID.
      */
@@ -7854,8 +7852,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissiongroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Accountpermissiongroups$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -8157,8 +8154,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Accountpermissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accountpermissions$Get extends StandardParameters {
     /**
      * Account permission ID.
      */
@@ -8168,8 +8164,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountpermissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Accountpermissions$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -9774,8 +9769,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Accountuserprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Get extends StandardParameters {
     /**
      * User profile ID.
      */
@@ -9785,8 +9779,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -9797,8 +9790,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$List extends StandardParameters {
     /**
      * Select only active user profiles.
      */
@@ -9840,8 +9832,7 @@ export namespace dfareporting_v5 {
      */
     userRoleId?: string;
   }
-  export interface Params$Resource$Accountuserprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Patch extends StandardParameters {
     /**
      * Required. AccountUserProfile ID.
      */
@@ -9856,8 +9847,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$AccountUserProfile;
   }
-  export interface Params$Resource$Accountuserprofiles$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accountuserprofiles$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -11939,8 +11929,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Advertisergroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$Delete extends StandardParameters {
     /**
      * Advertiser group ID.
      */
@@ -11950,8 +11939,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$Get extends StandardParameters {
     /**
      * Advertiser group ID.
      */
@@ -11961,8 +11949,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisergroups$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -11973,8 +11960,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$List extends StandardParameters {
     /**
      * Select only advertiser groups with these IDs.
      */
@@ -12004,8 +11990,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Advertisergroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$Patch extends StandardParameters {
     /**
      * Required. Advertiser Group ID.
      */
@@ -12020,8 +12005,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$AdvertiserGroup;
   }
-  export interface Params$Resource$Advertisergroups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Advertisergroups$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -12193,8 +12177,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Advertiserinvoices$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserinvoices$List extends StandardParameters {
     /**
      * Advertiser ID of this invoice.
      */
@@ -13011,8 +12994,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Advertiserlandingpages$Get
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Get extends StandardParameters {
     /**
      * Landing page ID.
      */
@@ -13022,8 +13004,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -13034,8 +13015,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$List
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$List extends StandardParameters {
     /**
      * Select only landing pages that belong to these advertisers.
      */
@@ -13081,8 +13061,7 @@ export namespace dfareporting_v5 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertiserlandingpages$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Patch extends StandardParameters {
     /**
      * Required. Landing Page ID.
      */
@@ -13097,8 +13076,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$LandingPage;
   }
-  export interface Params$Resource$Advertiserlandingpages$Update
-    extends StandardParameters {
+  export interface Params$Resource$Advertiserlandingpages$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -13974,8 +13952,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Advertisers$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -14040,8 +14017,7 @@ export namespace dfareporting_v5 {
      */
     subaccountId?: string;
   }
-  export interface Params$Resource$Advertisers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Patch extends StandardParameters {
     /**
      * Required. Advertiser ID.
      */
@@ -14056,8 +14032,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$Advertiser;
   }
-  export interface Params$Resource$Advertisers$Update
-    extends StandardParameters {
+  export interface Params$Resource$Advertisers$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -14377,8 +14352,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Billingassignments$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Billingassignments$Insert extends StandardParameters {
     /**
      * Billing profile ID of this billing assignment.
      */
@@ -14393,8 +14367,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$BillingAssignment;
   }
-  export interface Params$Resource$Billingassignments$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingassignments$List extends StandardParameters {
     /**
      * Billing profile ID of this billing assignment.
      */
@@ -14895,8 +14868,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Billingprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingprofiles$Get extends StandardParameters {
     /**
      * Billing Profile ID.
      */
@@ -14906,8 +14878,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Billingprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingprofiles$List extends StandardParameters {
     /**
      * Select only billing profile with currency.
      */
@@ -14953,8 +14924,7 @@ export namespace dfareporting_v5 {
      */
     subaccountIds?: string[];
   }
-  export interface Params$Resource$Billingprofiles$Update
-    extends StandardParameters {
+  export interface Params$Resource$Billingprofiles$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -15116,8 +15086,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Billingrates$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingrates$List extends StandardParameters {
     /**
      * Billing profile ID of this billing rate.
      */
@@ -15597,8 +15566,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Campaigncreativeassociations$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Campaigncreativeassociations$Insert extends StandardParameters {
     /**
      * Campaign ID in this association.
      */
@@ -15613,8 +15581,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CampaignCreativeAssociation;
   }
-  export interface Params$Resource$Campaigncreativeassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Campaigncreativeassociations$List extends StandardParameters {
     /**
      * Campaign ID in this association.
      */
@@ -17511,8 +17478,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Connectiontypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Connectiontypes$Get extends StandardParameters {
     /**
      * Connection type ID.
      */
@@ -17522,8 +17488,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Connectiontypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Connectiontypes$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -18423,8 +18388,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Contentcategories$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$Delete extends StandardParameters {
     /**
      * Content category ID.
      */
@@ -18434,8 +18398,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$Get extends StandardParameters {
     /**
      * Content category ID.
      */
@@ -18445,8 +18408,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Contentcategories$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -18457,8 +18419,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$List
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$List extends StandardParameters {
     /**
      * Select only content categories with these IDs.
      */
@@ -18488,8 +18449,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Contentcategories$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$Patch extends StandardParameters {
     /**
      * Required. ContentCategory ID.
      */
@@ -18504,8 +18464,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$ContentCategory;
   }
-  export interface Params$Resource$Contentcategories$Update
-    extends StandardParameters {
+  export interface Params$Resource$Contentcategories$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -18834,8 +18793,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Conversions$Batchinsert
-    extends StandardParameters {
+  export interface Params$Resource$Conversions$Batchinsert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -18846,8 +18804,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$ConversionsBatchInsertRequest;
   }
-  export interface Params$Resource$Conversions$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Conversions$Batchupdate extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -19347,8 +19304,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Creativeassets$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Creativeassets$Insert extends StandardParameters {
     /**
      * Advertiser ID of this creative. This is a required field.
      */
@@ -20293,8 +20249,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Creativefields$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$Delete extends StandardParameters {
     /**
      * Creative Field ID
      */
@@ -20304,8 +20259,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Get
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$Get extends StandardParameters {
     /**
      * Creative Field ID
      */
@@ -20315,8 +20269,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefields$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -20327,8 +20280,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$List
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$List extends StandardParameters {
     /**
      * Select only creative fields that belong to these advertisers.
      */
@@ -20362,8 +20314,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefields$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$Patch extends StandardParameters {
     /**
      * CreativeField ID.
      */
@@ -20378,8 +20329,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeField;
   }
-  export interface Params$Resource$Creativefields$Update
-    extends StandardParameters {
+  export interface Params$Resource$Creativefields$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -21289,8 +21239,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Creativefieldvalues$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Delete extends StandardParameters {
     /**
      * Creative field ID for this creative field value.
      */
@@ -21304,8 +21253,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Get
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Get extends StandardParameters {
     /**
      * Creative field ID for this creative field value.
      */
@@ -21319,8 +21267,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Insert extends StandardParameters {
     /**
      * Creative field ID for this creative field value.
      */
@@ -21335,8 +21282,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$List
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$List extends StandardParameters {
     /**
      * Creative field ID for this creative field value.
      */
@@ -21370,8 +21316,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativefieldvalues$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Patch extends StandardParameters {
     /**
      * CreativeField ID.
      */
@@ -21390,8 +21335,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeFieldValue;
   }
-  export interface Params$Resource$Creativefieldvalues$Update
-    extends StandardParameters {
+  export interface Params$Resource$Creativefieldvalues$Update extends StandardParameters {
     /**
      * Creative field ID for this creative field value.
      */
@@ -22198,8 +22142,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Creativegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Creativegroups$Get extends StandardParameters {
     /**
      * Creative group ID.
      */
@@ -22209,8 +22152,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Creativegroups$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Creativegroups$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -22221,8 +22163,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Creativegroups$List extends StandardParameters {
     /**
      * Select only creative groups that belong to these advertisers.
      */
@@ -22260,8 +22201,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Creativegroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Creativegroups$Patch extends StandardParameters {
     /**
      * Required. Creative Group ID.
      */
@@ -22276,8 +22216,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$CreativeGroup;
   }
-  export interface Params$Resource$Creativegroups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Creativegroups$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -23751,8 +23690,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Dimensionvalues$Query
-    extends StandardParameters {
+  export interface Params$Resource$Dimensionvalues$Query extends StandardParameters {
     /**
      * Maximum number of results to return.
      */
@@ -24252,8 +24190,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Directorysites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Directorysites$Get extends StandardParameters {
     /**
      * Directory site ID.
      */
@@ -24263,8 +24200,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Directorysites$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Directorysites$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -24275,8 +24211,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$DirectorySite;
   }
-  export interface Params$Resource$Directorysites$List
-    extends StandardParameters {
+  export interface Params$Resource$Directorysites$List extends StandardParameters {
     /**
      * This search filter is no longer supported and will have no effect on the results returned.
      */
@@ -24947,22 +24882,19 @@ export namespace dfareporting_v5 {
      */
     dynamicFeedId?: string;
   }
-  export interface Params$Resource$Dynamicfeeds$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicfeeds$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$DynamicFeedsInsertRequest;
   }
-  export interface Params$Resource$Dynamicfeeds$Retransform
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicfeeds$Retransform extends StandardParameters {
     /**
      * Required. Dynamic feed ID.
      */
     dynamicFeedId?: string;
   }
-  export interface Params$Resource$Dynamicfeeds$Update
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicfeeds$Update extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -25724,36 +25656,31 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Dynamicprofiles$Generatecode
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicprofiles$Generatecode extends StandardParameters {
     /**
      * Required. Dynamic profile ID.
      */
     dynamicProfileId?: string;
   }
-  export interface Params$Resource$Dynamicprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicprofiles$Get extends StandardParameters {
     /**
      * Required. Dynamic profile ID.
      */
     dynamicProfileId?: string;
   }
-  export interface Params$Resource$Dynamicprofiles$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicprofiles$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$DynamicProfile;
   }
-  export interface Params$Resource$Dynamicprofiles$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicprofiles$Publish extends StandardParameters {
     /**
      * Required. Dynamic profile ID.
      */
     dynamicProfileId?: string;
   }
-  export interface Params$Resource$Dynamicprofiles$Update
-    extends StandardParameters {
+  export interface Params$Resource$Dynamicprofiles$Update extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -26210,8 +26137,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Dynamictargetingkeys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$Delete extends StandardParameters {
     /**
      * Required. Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
      */
@@ -26229,8 +26155,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Dynamictargetingkeys$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -26241,8 +26166,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$DynamicTargetingKey;
   }
-  export interface Params$Resource$Dynamictargetingkeys$List
-    extends StandardParameters {
+  export interface Params$Resource$Dynamictargetingkeys$List extends StandardParameters {
     /**
      * Select only dynamic targeting keys whose object has this advertiser ID.
      */
@@ -28935,8 +28859,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Delete extends StandardParameters {
     /**
      * Floodlight activity ID.
      */
@@ -28946,8 +28869,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Generatetag
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Generatetag extends StandardParameters {
     /**
      * Floodlight activity ID for which we want to generate a tag.
      */
@@ -28957,8 +28879,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Get extends StandardParameters {
     /**
      * Floodlight activity ID.
      */
@@ -28968,8 +28889,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -28980,8 +28900,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$List
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$List extends StandardParameters {
     /**
      * Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
      */
@@ -29039,8 +28958,7 @@ export namespace dfareporting_v5 {
      */
     tagString?: string;
   }
-  export interface Params$Resource$Floodlightactivities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Patch extends StandardParameters {
     /**
      * Required. EventTag ID.
      */
@@ -29055,8 +28973,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$FloodlightActivity;
   }
-  export interface Params$Resource$Floodlightactivities$Update
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivities$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -29907,8 +29824,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Floodlightactivitygroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Get extends StandardParameters {
     /**
      * Floodlight activity Group ID.
      */
@@ -29918,8 +29834,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -29930,8 +29845,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$List extends StandardParameters {
     /**
      * Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
      */
@@ -29973,8 +29887,7 @@ export namespace dfareporting_v5 {
      */
     type?: string;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Patch extends StandardParameters {
     /**
      * Required. EventTag ID.
      */
@@ -29989,8 +29902,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$FloodlightActivityGroup;
   }
-  export interface Params$Resource$Floodlightactivitygroups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightactivitygroups$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -30683,8 +30595,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Floodlightconfigurations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Get extends StandardParameters {
     /**
      * Floodlight configuration ID.
      */
@@ -30694,8 +30605,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$List
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$List extends StandardParameters {
     /**
      * Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
      */
@@ -30705,8 +30615,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Floodlightconfigurations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Patch extends StandardParameters {
     /**
      * Required. EventTag ID.
      */
@@ -30721,8 +30630,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$FloodlightConfiguration;
   }
-  export interface Params$Resource$Floodlightconfigurations$Update
-    extends StandardParameters {
+  export interface Params$Resource$Floodlightconfigurations$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -31663,8 +31571,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Mobilecarriers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Mobilecarriers$Get extends StandardParameters {
     /**
      * Mobile carrier ID.
      */
@@ -31674,8 +31581,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Mobilecarriers$List
-    extends StandardParameters {
+  export interface Params$Resource$Mobilecarriers$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -31976,8 +31882,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Operatingsystems$Get
-    extends StandardParameters {
+  export interface Params$Resource$Operatingsystems$Get extends StandardParameters {
     /**
      * Operating system DART ID.
      */
@@ -31987,8 +31892,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystems$List
-    extends StandardParameters {
+  export interface Params$Resource$Operatingsystems$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -32296,8 +32200,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Operatingsystemversions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Operatingsystemversions$Get extends StandardParameters {
     /**
      * Operating system version ID.
      */
@@ -32307,8 +32210,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Operatingsystemversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Operatingsystemversions$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -33254,8 +33156,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Placementgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Placementgroups$Get extends StandardParameters {
     /**
      * Placement group ID.
      */
@@ -33265,8 +33166,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementgroups$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Placementgroups$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -33277,8 +33177,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Placementgroups$List extends StandardParameters {
     /**
      * Select only placements with these active statuses.
      */
@@ -33360,8 +33259,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Placementgroups$Patch extends StandardParameters {
     /**
      * Required. Placement ID.
      */
@@ -33376,8 +33274,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$PlacementGroup;
   }
-  export interface Params$Resource$Placementgroups$Update
-    extends StandardParameters {
+  export interface Params$Resource$Placementgroups$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -34629,8 +34526,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Placements$Generatetags
-    extends StandardParameters {
+  export interface Params$Resource$Placements$Generatetags extends StandardParameters {
     /**
      * Generate placements belonging to this campaign. This is a required field.
      */
@@ -34658,8 +34554,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placements$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Placements$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -34779,8 +34674,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$Placement;
   }
-  export interface Params$Resource$Placements$Update
-    extends StandardParameters {
+  export interface Params$Resource$Placements$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -35685,8 +35579,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Placementstrategies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$Delete extends StandardParameters {
     /**
      * Placement strategy ID.
      */
@@ -35696,8 +35589,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$Get extends StandardParameters {
     /**
      * Placement strategy ID.
      */
@@ -35707,8 +35599,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Placementstrategies$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -35719,8 +35610,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$List
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$List extends StandardParameters {
     /**
      * Select only placement strategies with these IDs.
      */
@@ -35750,8 +35640,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Placementstrategies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$Patch extends StandardParameters {
     /**
      * Required. PlacementStrategy ID.
      */
@@ -35766,8 +35655,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$PlacementStrategy;
   }
-  export interface Params$Resource$Placementstrategies$Update
-    extends StandardParameters {
+  export interface Params$Resource$Placementstrategies$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -36069,8 +35957,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Platformtypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Platformtypes$Get extends StandardParameters {
     /**
      * Platform type ID.
      */
@@ -36080,8 +35967,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Platformtypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Platformtypes$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -37370,8 +37256,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Remarketinglists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglists$Get extends StandardParameters {
     /**
      * Remarketing list ID.
      */
@@ -37381,8 +37266,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Remarketinglists$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglists$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -37393,8 +37277,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$List
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglists$List extends StandardParameters {
     /**
      * Select only active or only inactive remarketing lists.
      */
@@ -37432,8 +37315,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Remarketinglists$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglists$Patch extends StandardParameters {
     /**
      * Required. RemarketingList ID.
      */
@@ -37448,8 +37330,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$RemarketingList;
   }
-  export interface Params$Resource$Remarketinglists$Update
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglists$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -37920,8 +37801,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Remarketinglistshares$Get
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Get extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -37931,8 +37811,7 @@ export namespace dfareporting_v5 {
      */
     remarketingListId?: string;
   }
-  export interface Params$Resource$Remarketinglistshares$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Patch extends StandardParameters {
     /**
      * Required. RemarketingList ID.
      */
@@ -37947,8 +37826,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$RemarketingListShare;
   }
-  export interface Params$Resource$Remarketinglistshares$Update
-    extends StandardParameters {
+  export interface Params$Resource$Remarketinglistshares$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -39175,8 +39053,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Reports$Compatiblefields$Query
-    extends StandardParameters {
+  export interface Params$Resource$Reports$Compatiblefields$Query extends StandardParameters {
     /**
      * The Campaign Manager 360 user profile ID.
      */
@@ -39495,8 +39372,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Reports$Files$Get
-    extends StandardParameters {
+  export interface Params$Resource$Reports$Files$Get extends StandardParameters {
     /**
      * The ID of the report file.
      */
@@ -39510,8 +39386,7 @@ export namespace dfareporting_v5 {
      */
     reportId?: string;
   }
-  export interface Params$Resource$Reports$Files$List
-    extends StandardParameters {
+  export interface Params$Resource$Reports$Files$List extends StandardParameters {
     /**
      * Maximum number of results to return.
      */
@@ -41136,8 +41011,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Studiocreativeassets$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Studiocreativeassets$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -41610,22 +41484,19 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Studiocreatives$Get
-    extends StandardParameters {
+  export interface Params$Resource$Studiocreatives$Get extends StandardParameters {
     /**
      * Required. Studio creative ID.
      */
     studioCreativeId?: string;
   }
-  export interface Params$Resource$Studiocreatives$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Studiocreatives$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$StudioCreative;
   }
-  export interface Params$Resource$Studiocreatives$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Studiocreatives$Publish extends StandardParameters {
     /**
      * Required. Studio creative ID.
      */
@@ -42400,8 +42271,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Subaccounts$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Subaccounts$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -42442,8 +42312,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Subaccounts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Subaccounts$Patch extends StandardParameters {
     /**
      * Required. Subaccount ID.
      */
@@ -42458,8 +42327,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$Subaccount;
   }
-  export interface Params$Resource$Subaccounts$Update
-    extends StandardParameters {
+  export interface Params$Resource$Subaccounts$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -42793,8 +42661,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Targetableremarketinglists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Targetableremarketinglists$Get extends StandardParameters {
     /**
      * Remarketing list ID.
      */
@@ -42804,8 +42671,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetableremarketinglists$List
-    extends StandardParameters {
+  export interface Params$Resource$Targetableremarketinglists$List extends StandardParameters {
     /**
      * Select only active or only inactive targetable remarketing lists.
      */
@@ -43673,8 +43539,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Targetingtemplates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Get extends StandardParameters {
     /**
      * Targeting template ID.
      */
@@ -43684,8 +43549,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Insert extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -43696,8 +43560,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$List
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtemplates$List extends StandardParameters {
     /**
      * Select only targeting templates with this advertiser ID.
      */
@@ -43731,8 +43594,7 @@ export namespace dfareporting_v5 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Targetingtemplates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Patch extends StandardParameters {
     /**
      * Required. RemarketingList ID.
      */
@@ -43747,8 +43609,7 @@ export namespace dfareporting_v5 {
      */
     requestBody?: Schema$TargetingTemplate;
   }
-  export interface Params$Resource$Targetingtemplates$Update
-    extends StandardParameters {
+  export interface Params$Resource$Targetingtemplates$Update extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -43910,8 +43771,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Tvcampaigndetails$Get
-    extends StandardParameters {
+  export interface Params$Resource$Tvcampaigndetails$Get extends StandardParameters {
     /**
      * Required. Account ID associated with this request.
      */
@@ -44081,8 +43941,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Tvcampaignsummaries$List
-    extends StandardParameters {
+  export interface Params$Resource$Tvcampaignsummaries$List extends StandardParameters {
     /**
      * Required. Account ID associated with this request.
      */
@@ -44396,8 +44255,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userprofiles$List
-    extends StandardParameters {}
+  export interface Params$Resource$Userprofiles$List extends StandardParameters {}
 
   export class Resource$Userrolepermissiongroups {
     context: APIRequestContext;
@@ -44697,8 +44555,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Userrolepermissiongroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Userrolepermissiongroups$Get extends StandardParameters {
     /**
      * User role permission group ID.
      */
@@ -44708,8 +44565,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissiongroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Userrolepermissiongroups$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
@@ -45012,8 +44868,7 @@ export namespace dfareporting_v5 {
     }
   }
 
-  export interface Params$Resource$Userrolepermissions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Userrolepermissions$Get extends StandardParameters {
     /**
      * User role permission ID.
      */
@@ -45023,8 +44878,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Userrolepermissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Userrolepermissions$List extends StandardParameters {
     /**
      * Select only user role permissions with these IDs.
      */
@@ -46341,8 +46195,7 @@ export namespace dfareporting_v5 {
      */
     profileId?: string;
   }
-  export interface Params$Resource$Videoformats$List
-    extends StandardParameters {
+  export interface Params$Resource$Videoformats$List extends StandardParameters {
     /**
      * User profile ID associated with this request.
      */
