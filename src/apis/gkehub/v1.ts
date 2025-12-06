@@ -1981,7 +1981,7 @@ export namespace gkehub_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3232,8 +3232,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Fleets$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Fleets$List extends StandardParameters {
     /**
      * Optional. The maximum number of fleets to return. The service may return fewer than this value. If unspecified, at most 200 fleets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -3564,15 +3563,13 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4813,8 +4810,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Features$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Create extends StandardParameters {
     /**
      * The ID of the feature to create.
      */
@@ -4833,8 +4829,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Feature;
   }
-  export interface Params$Resource$Projects$Locations$Features$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Delete extends StandardParameters {
     /**
      * If set to true, the delete will ignore any outstanding resources for this Feature (that is, `FeatureState.has_resources` is set to true). These resources will NOT be cleaned up or modified in any way.
      */
@@ -4848,8 +4843,7 @@ export namespace gkehub_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Features$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Get extends StandardParameters {
     /**
      * Required. The Feature resource name in the format `projects/x/locations/x/features/x`
      */
@@ -4859,8 +4853,7 @@ export namespace gkehub_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Features$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4870,8 +4863,7 @@ export namespace gkehub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Features$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$List extends StandardParameters {
     /**
      * Lists Features that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Feature with the name "servicemesh" in project "foo-proj": name = "projects/foo-proj/locations/global/features/servicemesh" - Features that have a label called `foo`: labels.foo:* - Features that have a label called `foo` whose value is `bar`: labels.foo = bar
      */
@@ -4897,8 +4889,7 @@ export namespace gkehub_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Features$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Patch extends StandardParameters {
     /**
      * Required. The Feature resource name in the format `projects/x/locations/x/features/x`.
      */
@@ -4917,8 +4908,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Feature;
   }
-  export interface Params$Resource$Projects$Locations$Features$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4929,8 +4919,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Features$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Features$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5684,8 +5673,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Fleets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fleets$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) where the Fleet will be created. Specified in the format `projects/x/locations/x`.
      */
@@ -5696,22 +5684,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Fleet;
   }
-  export interface Params$Resource$Projects$Locations$Fleets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fleets$Delete extends StandardParameters {
     /**
      * Required. The Fleet resource name in the format `projects/x/locations/x/fleets/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Fleets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fleets$Get extends StandardParameters {
     /**
      * Required. The Fleet resource name in the format `projects/x/locations/x/fleets/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Fleets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fleets$List extends StandardParameters {
     /**
      * Optional. The maximum number of fleets to return. The service may return fewer than this value. If unspecified, at most 200 fleets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -5725,8 +5710,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Fleets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fleets$Patch extends StandardParameters {
     /**
      * Output only. The full, unique resource name of this fleet in the format of `projects/{project\}/locations/{location\}/fleets/{fleet\}`. Each Google Cloud project can have at most one fleet resource, named "default".
      */
@@ -7131,8 +7115,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Memberships$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Create extends StandardParameters {
     /**
      * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
      */
@@ -7151,8 +7134,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Membership;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any subresource from this Membership will also be deleted. Otherwise, the request will only work if the Membership has no subresource.
      */
@@ -7166,8 +7148,7 @@ export namespace gkehub_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest extends StandardParameters {
     /**
      * Optional. The image pull secret content for the registry, if not public.
      */
@@ -7197,15 +7178,13 @@ export namespace gkehub_v1 {
      */
     version?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Get extends StandardParameters {
     /**
      * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7215,8 +7194,7 @@ export namespace gkehub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$List extends StandardParameters {
     /**
      * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Name is `bar` in project `foo-proj` and location `global`: name = "projects/foo-proj/locations/global/membership/bar" - Memberships that have a label called `foo`: labels.foo:* - Memberships that have a label called `foo` whose value is `bar`: labels.foo = bar - Memberships in the CREATING state: state = CREATING
      */
@@ -7238,8 +7216,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Patch extends StandardParameters {
     /**
      * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
      */
@@ -7258,8 +7235,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Membership;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7270,8 +7246,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8040,8 +8015,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Create extends StandardParameters {
     /**
      * Required. The ID to use for the MembershipBinding.
      */
@@ -8056,22 +8030,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$MembershipBinding;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Delete extends StandardParameters {
     /**
      * Required. The MembershipBinding resource name in the format `projects/x/locations/x/memberships/x/bindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Get extends StandardParameters {
     /**
      * Required. The MembershipBinding resource name in the format `projects/x/locations/x/memberships/x/bindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Bindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Bindings$List extends StandardParameters {
     /**
      * Optional. Lists MembershipBindings that match the filter expression, following the syntax outlined in https://google.aip.dev/160.
      */
@@ -8089,8 +8060,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Bindings$Patch extends StandardParameters {
     /**
      * The resource name for the membershipbinding itself `projects/{project\}/locations/{location\}/memberships/{membership\}/bindings/{membershipbinding\}`
      */
@@ -9047,8 +9017,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/memberships/x`.
      */
@@ -9063,15 +9032,13 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$RBACRoleBinding;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Delete extends StandardParameters {
     /**
      * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/memberships/x/rbacrolebindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Generatemembershiprbacrolebindingyaml extends StandardParameters {
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/memberships/x`.
      */
@@ -9086,15 +9053,13 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$RBACRoleBinding;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Get extends StandardParameters {
     /**
      * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/memberships/x/rbacrolebindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List extends StandardParameters {
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
      */
@@ -9108,8 +9073,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$Patch extends StandardParameters {
     /**
      * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
@@ -9578,7 +9542,7 @@ export namespace gkehub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9689,8 +9653,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -9701,22 +9664,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9734,7 +9694,7 @@ export namespace gkehub_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -11226,8 +11186,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scopes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) where the Scope will be created. Specified in the format `projects/x/locations/x`.
      */
@@ -11242,22 +11201,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Scope;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Delete extends StandardParameters {
     /**
      * Required. The Scope resource name in the format `projects/x/locations/x/scopes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Get extends StandardParameters {
     /**
      * Required. The Scope resource name in the format `projects/x/locations/x/scopes/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11267,8 +11223,7 @@ export namespace gkehub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$List extends StandardParameters {
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
      */
@@ -11282,8 +11237,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Listmemberships
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Listmemberships extends StandardParameters {
     /**
      * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Currently, filtering can be done only based on Memberships's `name`, `labels`, `create_time`, `update_time`, and `unique_id`.
      */
@@ -11301,8 +11255,7 @@ export namespace gkehub_v1 {
      */
     scopeName?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Listpermitted
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Listpermitted extends StandardParameters {
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
      */
@@ -11316,8 +11269,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Patch extends StandardParameters {
     /**
      * The resource name for the scope `projects/{project\}/locations/{location\}/scopes/{scope\}`
      */
@@ -11332,8 +11284,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Scope;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11344,8 +11295,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12109,8 +12059,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) where the Namespace will be created. Specified in the format `projects/x/locations/x/scopes/x`.
      */
@@ -12125,22 +12074,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$Namespace;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Delete extends StandardParameters {
     /**
      * Required. The Namespace resource name in the format `projects/x/locations/x/scopes/x/namespaces/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Get extends StandardParameters {
     /**
      * Required. The Namespace resource name in the format `projects/x/locations/x/scopes/x/namespaces/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$List extends StandardParameters {
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
      */
@@ -12154,8 +12100,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Namespaces$Patch extends StandardParameters {
     /**
      * The resource name for the namespace `projects/{project\}/locations/{location\}/namespaces/{namespace\}`
      */
@@ -12933,8 +12878,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Create extends StandardParameters {
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/x/locations/x/scopes/x`.
      */
@@ -12949,22 +12893,19 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$RBACRoleBinding;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Delete extends StandardParameters {
     /**
      * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/scopes/x/rbacrolebindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Get extends StandardParameters {
     /**
      * Required. The RBACRoleBinding resource name in the format `projects/x/locations/x/scopes/x/rbacrolebindings/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$List extends StandardParameters {
     /**
      * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
      */
@@ -12978,8 +12919,7 @@ export namespace gkehub_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Scopes$Rbacrolebindings$Patch extends StandardParameters {
     /**
      * The resource name for the rbacrolebinding `projects/{project\}/locations/{location\}/scopes/{scope\}/rbacrolebindings/{rbacrolebinding\}` or `projects/{project\}/locations/{location\}/memberships/{membership\}/rbacrolebindings/{rbacrolebinding\}`
      */
