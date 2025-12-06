@@ -5608,22 +5608,19 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getsettings extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -5645,8 +5642,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatesettings extends StandardParameters {
     /**
      * Output only. The name of the resource.
      */
@@ -6936,8 +6932,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Assets$Aggregatevalues
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Aggregatevalues extends StandardParameters {
     /**
      * Required. Parent value for `AggregateAssetsValuesRequest`.
      */
@@ -6948,8 +6943,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$AggregateAssetsValuesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Batchdelete extends StandardParameters {
     /**
      * Required. Parent value for batch asset delete.
      */
@@ -6960,8 +6954,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$BatchDeleteAssetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Batchupdate extends StandardParameters {
     /**
      * Required. Parent value for batch asset update.
      */
@@ -6972,8 +6965,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$BatchUpdateAssetsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -6983,8 +6975,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -6994,8 +6985,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -7025,8 +7015,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Patch extends StandardParameters {
     /**
      * Output only. The full name of the asset.
      */
@@ -7045,8 +7034,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$Asset;
   }
-  export interface Params$Resource$Projects$Locations$Assets$Reportassetframes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assets$Reportassetframes extends StandardParameters {
     /**
      * Required. Parent of the resource.
      */
@@ -7818,8 +7806,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Create extends StandardParameters {
     /**
      * Required. The ID to use for the asset export job.
      */
@@ -7838,22 +7825,19 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$AssetsExportJob;
   }
-  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Delete extends StandardParameters {
     /**
      * Required. The name of the assets export job to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assetsexportjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$List extends StandardParameters {
     /**
      * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
      */
@@ -7867,8 +7851,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Run extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -8823,8 +8806,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveryclients$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Create extends StandardParameters {
     /**
      * Required. User specified ID for the discovery client. It will become the last component of the discovery client name. The ID must be unique within the project, is restricted to lower-cased letters and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
@@ -8843,8 +8825,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$DiscoveryClient;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryclients$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Delete extends StandardParameters {
     /**
      * Required. The discovery client name.
      */
@@ -8854,15 +8835,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryclients$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Get extends StandardParameters {
     /**
      * Required. The discovery client name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryclients$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$List extends StandardParameters {
     /**
      * Optional. Filter expression to filter results by.
      */
@@ -8884,8 +8863,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryclients$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Patch extends StandardParameters {
     /**
      * Output only. Identifier. Full name of this discovery client.
      */
@@ -8904,8 +8882,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$DiscoveryClient;
   }
-  export interface Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveryclients$Sendheartbeat extends StandardParameters {
     /**
      * Required. The discovery client name.
      */
@@ -9972,8 +9949,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Groups$Addassets
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Addassets extends StandardParameters {
     /**
      * Required. Group reference.
      */
@@ -9984,8 +9960,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$AddAssetsToGroupRequest;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Create extends StandardParameters {
     /**
      * Required. User specified ID for the group. It will become the last component of the group name. The ID must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. The ID must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
      */
@@ -10004,8 +9979,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Delete extends StandardParameters {
     /**
      * Required. Name of the group resource.
      */
@@ -10015,15 +9989,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -10045,8 +10017,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Patch extends StandardParameters {
     /**
      * Output only. The name of the group.
      */
@@ -10065,8 +10036,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Removeassets
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Removeassets extends StandardParameters {
     /**
      * Required. Group reference.
      */
@@ -11160,8 +11130,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Importjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Create extends StandardParameters {
     /**
      * Required. ID of the import job.
      */
@@ -11180,8 +11149,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ImportJob;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Delete extends StandardParameters {
     /**
      * Optional. If set to `true`, any `ImportDataFiles` of this job will also be deleted If set to `false`, the request only works if the job has no data files.
      */
@@ -11195,8 +11163,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -11206,8 +11173,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -11233,8 +11199,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Patch extends StandardParameters {
     /**
      * Output only. The full name of the import job.
      */
@@ -11253,8 +11218,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ImportJob;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Run extends StandardParameters {
     /**
      * Required. The name of the import job to run.
      */
@@ -11265,8 +11229,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$RunImportJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Validate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Validate extends StandardParameters {
     /**
      * Required. The name of the import job to validate.
      */
@@ -11887,8 +11850,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Create extends StandardParameters {
     /**
      * Required. The ID of the new data file.
      */
@@ -11907,8 +11869,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ImportDataFile;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Delete extends StandardParameters {
     /**
      * Required. Name of the ImportDataFile to delete.
      */
@@ -11918,15 +11879,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$Get extends StandardParameters {
     /**
      * Required. Name of the ImportDataFile.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Importjobs$Importdatafiles$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -12520,8 +12479,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -12532,22 +12490,19 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -13329,8 +13284,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Preferencesets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Preferencesets$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -13349,8 +13303,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$PreferenceSet;
   }
-  export interface Params$Resource$Projects$Locations$Preferencesets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Preferencesets$Delete extends StandardParameters {
     /**
      * Required. Name of the group resource.
      */
@@ -13360,15 +13313,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Preferencesets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Preferencesets$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Preferencesets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Preferencesets$List extends StandardParameters {
     /**
      * Field to sort by. See https://google.aip.dev/132#ordering for more details.
      */
@@ -13386,8 +13337,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Preferencesets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Preferencesets$Patch extends StandardParameters {
     /**
      * Output only. Name of the PreferenceSet.
      */
@@ -13702,15 +13652,13 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Relations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Relations$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Relations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Relations$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -14338,8 +14286,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -14358,8 +14305,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ReportConfig;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Delete extends StandardParameters {
     /**
      * Optional. If set to `true`, any child `Reports` of this entity will also be deleted. If set to `false`, the request only works if the resource has no children.
      */
@@ -14373,15 +14319,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -15328,8 +15272,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -15340,8 +15283,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$GenerateReportArtifactLinkRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -15360,8 +15302,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$Report;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -15371,8 +15312,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Export
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Export extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -15383,8 +15323,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ExportReportRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -15394,8 +15333,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -16184,8 +16122,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Create extends StandardParameters {
     /**
      * Required. The parent resource where this export job will be created.
      */
@@ -16204,8 +16141,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$ReportExportJob;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -16215,15 +16151,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$List extends StandardParameters {
     /**
      * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
      */
@@ -16237,8 +16171,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Reportexportjobs$Run extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -17020,8 +16953,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Create extends StandardParameters {
     /**
      * Required. Value for parent.
      */
@@ -17040,8 +16972,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Delete extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
@@ -17051,15 +16982,13 @@ export namespace migrationcenter_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -17081,8 +17010,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Patch extends StandardParameters {
     /**
      * Output only. The full name of the source.
      */
@@ -17401,8 +17329,7 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Errorframes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Errorframes$Get extends StandardParameters {
     /**
      * Required. The name of the frame to retrieve. Format: projects/{project\}/locations/{location\}/sources/{source\}/errorFrames/{error_frame\}
      */
@@ -17412,8 +17339,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Errorframes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Errorframes$List extends StandardParameters {
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      */
