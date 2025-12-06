@@ -1176,7 +1176,12 @@ export namespace vmmigration_v1 {
   /**
    * Used when the image import is not using OS adaptation process.
    */
-  export interface Schema$DataDiskImageImport {}
+  export interface Schema$DataDiskImageImport {
+    /**
+     * Optional. A list of guest OS features to apply to the imported image. These features are flags that are used by Compute Engine to enable certain capabilities for virtual machine instances that are created from the image. This field does not change the OS of the image; it only marks the image with the specified features. The user must ensure that the OS is compatible with the features. For a list of available features, see https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
+     */
+    guestOsFeatures?: string[] | null;
+  }
   /**
    * A message describing a data disk.
    */
@@ -3235,15 +3240,13 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4314,8 +4317,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Groups$Addgroupmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Addgroupmigration extends StandardParameters {
     /**
      * Required. The full path name of the Group to add to.
      */
@@ -4326,8 +4328,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$AddGroupMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Create extends StandardParameters {
     /**
      * Required. The group identifier.
      */
@@ -4346,8 +4347,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Delete extends StandardParameters {
     /**
      * Required. The Group name.
      */
@@ -4357,15 +4357,13 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Get extends StandardParameters {
     /**
      * Required. The group name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -4387,8 +4385,7 @@ export namespace vmmigration_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Patch extends StandardParameters {
     /**
      * Output only. The Group name.
      */
@@ -4407,8 +4404,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$Group;
   }
-  export interface Params$Resource$Projects$Locations$Groups$Removegroupmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Groups$Removegroupmigration extends StandardParameters {
     /**
      * Required. The name of the Group.
      */
@@ -5020,8 +5016,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Imageimports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Create extends StandardParameters {
     /**
      * Required. The image import identifier. This value maximum length is 63 characters, and valid characters are /a-z-/. It must start with an english letter and must not end with a hyphen.
      */
@@ -5040,8 +5035,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$ImageImport;
   }
-  export interface Params$Resource$Projects$Locations$Imageimports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Delete extends StandardParameters {
     /**
      * Required. The ImageImport name.
      */
@@ -5051,15 +5045,13 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Imageimports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Get extends StandardParameters {
     /**
      * Required. The ImageImport name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Imageimports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$List extends StandardParameters {
     /**
      * Optional. The filter request (according to AIP-160).
      */
@@ -5535,8 +5527,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Cancel extends StandardParameters {
     /**
      * Required. The image import job id.
      */
@@ -5547,15 +5538,13 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CancelImageImportJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$Get extends StandardParameters {
     /**
      * Required. The ImageImportJob name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List extends StandardParameters {
     /**
      * Optional. The filter request (according to AIP-160).
      */
@@ -6142,8 +6131,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6154,22 +6142,19 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7271,8 +7256,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Create extends StandardParameters {
     /**
      * Required. The Source's parent.
      */
@@ -7291,8 +7275,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Delete extends StandardParameters {
     /**
      * Required. The Source name.
      */
@@ -7302,8 +7285,7 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Fetchinventory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Fetchinventory extends StandardParameters {
     /**
      * If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.
      */
@@ -7321,8 +7303,7 @@ export namespace vmmigration_v1 {
      */
     source?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Fetchstorageinventory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Fetchstorageinventory extends StandardParameters {
     /**
      * Optional. If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.
      */
@@ -7344,15 +7325,13 @@ export namespace vmmigration_v1 {
      */
     type?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Get extends StandardParameters {
     /**
      * Required. The Source name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -7374,8 +7353,7 @@ export namespace vmmigration_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Patch extends StandardParameters {
     /**
      * Output only. The Source name.
      */
@@ -8173,8 +8151,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Create extends StandardParameters {
     /**
      * Required. The datacenterConnector identifier.
      */
@@ -8193,8 +8170,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$DatacenterConnector;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Delete extends StandardParameters {
     /**
      * Required. The DatacenterConnector name.
      */
@@ -8204,15 +8180,13 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Get extends StandardParameters {
     /**
      * Required. The name of the DatacenterConnector.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -8234,8 +8208,7 @@ export namespace vmmigration_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance extends StandardParameters {
     /**
      * Required. The DatacenterConnector name.
      */
@@ -9305,8 +9278,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel extends StandardParameters {
     /**
      * Required. The name of the DiskMigrationJob.
      */
@@ -9317,8 +9289,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CancelDiskMigrationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create extends StandardParameters {
     /**
      * Required. The DiskMigrationJob identifier. The maximum length of this value is 63 characters. Valid characters are lower case Latin letters, digits and hyphen. It must start with a Latin letter and must not end with a hyphen.
      */
@@ -9337,22 +9308,19 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$DiskMigrationJob;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete extends StandardParameters {
     /**
      * Required. The name of the DiskMigrationJob.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get extends StandardParameters {
     /**
      * Required. The name of the DiskMigrationJob.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List extends StandardParameters {
     /**
      * Optional. The filter request (according to AIP-160).
      */
@@ -9374,8 +9342,7 @@ export namespace vmmigration_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The identifier of the DiskMigrationJob.
      */
@@ -9394,8 +9361,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$DiskMigrationJob;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run extends StandardParameters {
     /**
      * Required. The name of the DiskMigrationJob.
      */
@@ -10983,8 +10949,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Create extends StandardParameters {
     /**
      * Required. The migratingVm identifier.
      */
@@ -11003,15 +10968,13 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$MigratingVm;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Delete extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Extendmigration extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11022,8 +10985,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$ExtendMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Finalizemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Finalizemigration extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11034,8 +10996,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$FinalizeMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Get extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11045,8 +11006,7 @@ export namespace vmmigration_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -11072,8 +11032,7 @@ export namespace vmmigration_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Patch extends StandardParameters {
     /**
      * Output only. The identifier of the MigratingVm.
      */
@@ -11092,8 +11051,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$MigratingVm;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Pausemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Pausemigration extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11104,8 +11062,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$PauseMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Resumemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Resumemigration extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11116,8 +11073,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$ResumeMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Startmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Startmigration extends StandardParameters {
     /**
      * Required. The name of the MigratingVm.
      */
@@ -11742,8 +11698,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Cancel extends StandardParameters {
     /**
      * Required. The clone job id
      */
@@ -11754,8 +11709,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CancelCloneJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Create extends StandardParameters {
     /**
      * Required. The clone job identifier.
      */
@@ -11774,15 +11728,13 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CloneJob;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$Get extends StandardParameters {
     /**
      * Required. The name of the CloneJob.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Clonejobs$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -12426,8 +12378,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Cancel extends StandardParameters {
     /**
      * Required. The cutover job id
      */
@@ -12438,8 +12389,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CancelCutoverJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Create extends StandardParameters {
     /**
      * Required. The cutover job identifier.
      */
@@ -12458,15 +12408,13 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$CutoverJob;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$Get extends StandardParameters {
     /**
      * Required. The name of the CutoverJob.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Cutoverjobs$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -12801,15 +12749,13 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$Get extends StandardParameters {
     /**
      * Required. The name of the ReplicationCycle.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Replicationcycles$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -13449,8 +13395,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Create extends StandardParameters {
     /**
      * Required. The Utilization Report's parent.
      */
@@ -13469,8 +13414,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$UtilizationReport;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Delete extends StandardParameters {
     /**
      * Required. The Utilization Report name.
      */
@@ -13480,8 +13424,7 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$Get extends StandardParameters {
     /**
      * Required. The Utilization Report name.
      */
@@ -13491,8 +13434,7 @@ export namespace vmmigration_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sources$Utilizationreports$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -14266,8 +14208,7 @@ export namespace vmmigration_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Targetprojects$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targetprojects$Create extends StandardParameters {
     /**
      * Required. The TargetProject's parent.
      */
@@ -14286,8 +14227,7 @@ export namespace vmmigration_v1 {
      */
     requestBody?: Schema$TargetProject;
   }
-  export interface Params$Resource$Projects$Locations$Targetprojects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targetprojects$Delete extends StandardParameters {
     /**
      * Required. The TargetProject name.
      */
@@ -14297,15 +14237,13 @@ export namespace vmmigration_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targetprojects$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targetprojects$Get extends StandardParameters {
     /**
      * Required. The TargetProject name.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targetprojects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targetprojects$List extends StandardParameters {
     /**
      * Optional. The filter request.
      */
@@ -14327,8 +14265,7 @@ export namespace vmmigration_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Targetprojects$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Targetprojects$Patch extends StandardParameters {
     /**
      * Output only. The name of the target project.
      */
