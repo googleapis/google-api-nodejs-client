@@ -923,8 +923,7 @@ export namespace workflowexecutions_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Workflows$Executions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Cancel extends StandardParameters {
     /**
      * Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
@@ -935,8 +934,7 @@ export namespace workflowexecutions_v1beta {
      */
     requestBody?: Schema$CancelExecutionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Executions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Create extends StandardParameters {
     /**
      * Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
      */
@@ -947,8 +945,7 @@ export namespace workflowexecutions_v1beta {
      */
     requestBody?: Schema$Execution;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Executions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Get extends StandardParameters {
     /**
      * Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
@@ -958,8 +955,7 @@ export namespace workflowexecutions_v1beta {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Workflows$Executions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$List extends StandardParameters {
     /**
      * Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      */
