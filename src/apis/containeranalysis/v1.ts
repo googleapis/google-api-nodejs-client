@@ -5060,8 +5060,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Notes$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
      */
@@ -5072,8 +5071,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$BatchCreateNotesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Create extends StandardParameters {
     /**
      * Required. The ID to use for this note.
      */
@@ -5088,22 +5086,19 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Delete extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Get extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5114,8 +5109,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -5137,8 +5131,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Patch extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
@@ -5153,8 +5146,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5165,8 +5157,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Notes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5337,8 +5328,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Notes$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Notes$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7085,8 +7075,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Occurrences$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
      */
@@ -7097,8 +7086,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$BatchCreateOccurrencesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Create extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
      */
@@ -7109,22 +7097,19 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Delete extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Get extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7135,15 +7120,13 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Getnotes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Getnotes extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Getvulnerabilitysummary extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7157,8 +7140,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -7180,8 +7162,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Patch extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
@@ -7196,8 +7177,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7208,8 +7188,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Occurrences$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Occurrences$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7374,8 +7353,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Resources$Exportsbom
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Resources$Exportsbom extends StandardParameters {
     /**
      * Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
      */
@@ -8806,8 +8784,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the notes are to be created.
      */
@@ -8818,8 +8795,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$BatchCreateNotesRequest;
   }
-  export interface Params$Resource$Projects$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Create extends StandardParameters {
     /**
      * Required. The ID to use for this note.
      */
@@ -8834,22 +8810,19 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Delete extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Get extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Notes$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8860,8 +8833,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -8883,8 +8855,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Notes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Patch extends StandardParameters {
     /**
      * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
      */
@@ -8899,8 +8870,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Note;
   }
-  export interface Params$Resource$Projects$Notes$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8911,8 +8881,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Notes$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9080,8 +9049,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Notes$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Notes$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -10815,8 +10783,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Occurrences$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Batchcreate extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrences are to be created.
      */
@@ -10827,8 +10794,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$BatchCreateOccurrencesRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Create extends StandardParameters {
     /**
      * Required. The name of the project in the form of `projects/[PROJECT_ID]`, under which the occurrence is to be created.
      */
@@ -10839,22 +10805,19 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Delete extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Get extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10865,15 +10828,13 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Getnotes
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getnotes extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Getvulnerabilitysummary extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -10887,8 +10848,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Occurrences$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$List extends StandardParameters {
     /**
      * The filter expression.
      */
@@ -10910,8 +10870,7 @@ export namespace containeranalysis_v1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Occurrences$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Patch extends StandardParameters {
     /**
      * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
      */
@@ -10926,8 +10885,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$Occurrence;
   }
-  export interface Params$Resource$Projects$Occurrences$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10938,8 +10896,7 @@ export namespace containeranalysis_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Occurrences$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Occurrences$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11104,8 +11061,7 @@ export namespace containeranalysis_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Resources$Exportsbom
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Resources$Exportsbom extends StandardParameters {
     /**
      * Required. The name of the resource in the form of `projects/[PROJECT_ID]/resources/[RESOURCE_URL]`.
      */
