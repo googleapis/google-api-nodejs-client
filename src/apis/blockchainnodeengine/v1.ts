@@ -739,15 +739,13 @@ export namespace blockchainnodeengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
      */
@@ -1542,8 +1540,7 @@ export namespace blockchainnodeengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Blockchainnodes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Blockchainnodes$Create extends StandardParameters {
     /**
      * Required. ID of the requesting object.
      */
@@ -1562,8 +1559,7 @@ export namespace blockchainnodeengine_v1 {
      */
     requestBody?: Schema$BlockchainNode;
   }
-  export interface Params$Resource$Projects$Locations$Blockchainnodes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Blockchainnodes$Delete extends StandardParameters {
     /**
      * Required. The fully qualified name of the blockchain node to delete. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.
      */
@@ -1573,15 +1569,13 @@ export namespace blockchainnodeengine_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Blockchainnodes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Blockchainnodes$Get extends StandardParameters {
     /**
      * Required. The fully qualified name of the blockchain node to fetch. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Blockchainnodes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Blockchainnodes$List extends StandardParameters {
     /**
      * Filtering results.
      */
@@ -1603,8 +1597,7 @@ export namespace blockchainnodeengine_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Blockchainnodes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Blockchainnodes$Patch extends StandardParameters {
     /**
      * Output only. The fully qualified name of the blockchain node. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.
      */
@@ -2189,8 +2182,7 @@ export namespace blockchainnodeengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2201,22 +2193,19 @@ export namespace blockchainnodeengine_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
