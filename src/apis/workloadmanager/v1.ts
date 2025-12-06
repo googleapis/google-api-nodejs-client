@@ -2075,15 +2075,13 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2266,8 +2264,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Discoveredprofiles$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -3069,8 +3066,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Create extends StandardParameters {
     /**
      * Required. Id of the requesting object
      */
@@ -3089,8 +3085,7 @@ export namespace workloadmanager_v1 {
      */
     requestBody?: Schema$Evaluation;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Delete extends StandardParameters {
     /**
      * Optional. Followed the best practice from https://aip.dev/135#cascading-delete
      */
@@ -3104,15 +3099,13 @@ export namespace workloadmanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$List extends StandardParameters {
     /**
      * Filter to be applied when listing the evaluation results.
      */
@@ -3134,8 +3127,7 @@ export namespace workloadmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Patch extends StandardParameters {
     /**
      * name of resource names have the form 'projects/{project_id\}/locations/{location_id\}/evaluations/{evaluation_id\}'
      */
@@ -3771,8 +3763,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -3782,15 +3773,13 @@ export namespace workloadmanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$List extends StandardParameters {
     /**
      * Filtering results
      */
@@ -3812,8 +3801,7 @@ export namespace workloadmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Run extends StandardParameters {
     /**
      * Required. The resource name of the Execution using the form: 'projects/{project\}/locations/{location\}/evaluations/{evaluation\}/executions/{execution\}'
      */
@@ -3988,8 +3976,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Results$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Results$List extends StandardParameters {
     /**
      * Filtering results
      */
@@ -4175,8 +4162,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Evaluations$Executions$Scannedresources$List extends StandardParameters {
     /**
      * Filtering results
      */
@@ -4495,8 +4481,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Insights$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insights$Delete extends StandardParameters {
     /**
      * Required. The system id of the SAP system resource to delete. Formatted as projects/{project\}/locations/{location\}/sapSystems/{sap_system_id\}
      */
@@ -4506,8 +4491,7 @@ export namespace workloadmanager_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Insights$Writeinsight
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Insights$Writeinsight extends StandardParameters {
     /**
      * Required. The GCP location. The format is: projects/{project\}/locations/{location\}.
      */
@@ -5087,8 +5071,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5099,22 +5082,19 @@ export namespace workloadmanager_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5293,8 +5273,7 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Rules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Rules$List extends StandardParameters {
     /**
      * The Cloud Storage bucket name for custom rules.
      */
