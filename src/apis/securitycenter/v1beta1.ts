@@ -256,6 +256,10 @@ export namespace securitycenter_v1beta1 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -2050,6 +2054,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV1ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$AwsMetadata;
@@ -2111,6 +2119,71 @@ export namespace securitycenter_v1beta1 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -2367,6 +2440,10 @@ export namespace securitycenter_v1beta1 {
      * The publisher of the model, for example, “google” or “nvidia”.
      */
     publisher?: string | null;
+    /**
+     * The purpose of the model, for example, "Inteference" or "Training".
+     */
+    usageCategory?: string | null;
   }
   /**
    * Allowed IP rule.
@@ -4585,6 +4662,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2Resource {
     /**
+     * The App Hub application this resource belongs to.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV2ResourceApplication;
+    /**
      * The AWS metadata associated with the finding.
      */
     awsMetadata?: Schema$GoogleCloudSecuritycenterV2AwsMetadata;
@@ -4626,6 +4707,71 @@ export namespace securitycenter_v1beta1 {
     service?: string | null;
     /**
      * The full resource type of the resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * The App Hub Application associated with the finding's resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplication {
+    /**
+     * Consumer provided attributes for the application
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes;
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * Consumer provided attributes for the application
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes {
+    /**
+     * Business team that ensures user needs are met and value is delivered
+     */
+    businessOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined criticality information.
+     */
+    criticality?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality;
+    /**
+     * Developer team that owns development and coding.
+     */
+    developerOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+    /**
+     * User-defined environment information.
+     */
+    environment?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment;
+    /**
+     * Operator team that ensures runtime and operations.
+     */
+    operatorOwners?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo[];
+  }
+  /**
+   * Contact information of stakeholders.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesContactInfo {
+    /**
+     * Email address of the contacts.
+     */
+    email?: string | null;
+  }
+  /**
+   * Criticality of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesCriticality {
+    /**
+     * Criticality Type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment of the Application, Service, or Workload
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributesEnvironment {
+    /**
+     * Environment Type.
      */
     type?: string | null;
   }
@@ -5358,7 +5504,7 @@ export namespace securitycenter_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -6503,15 +6649,13 @@ export namespace securitycenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getorganizationsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getorganizationsettings extends StandardParameters {
     /**
      * Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updateorganizationsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updateorganizationsettings extends StandardParameters {
     /**
      * The relative resource name of the settings. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/organizationSettings".
      */
@@ -7149,8 +7293,7 @@ export namespace securitycenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Assets$Group
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Group extends StandardParameters {
     /**
      * Required. Name of the organization to groupBy. Its format is "organizations/[organization_id]".
      */
@@ -7161,8 +7304,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$GroupAssetsRequest;
   }
-  export interface Params$Resource$Organizations$Assets$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$List extends StandardParameters {
     /**
      * When compare_duration is set, the ListAssetResult's "state" attribute is updated to indicate whether the asset was added, removed, or remained present during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state value is derived based on the presence of the asset at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the asset is removed and re-created again. Possible "state" values when compare_duration is specified: * "ADDED": indicates that the asset was not present before compare_duration, but present at read_time. * "REMOVED": indicates that the asset was present at the start of compare_duration, but not present at read_time. * "ACTIVE": indicates that the asset was present at both the start and the end of the time period defined by compare_duration and read_time. If compare_duration is not specified, then the only possible state is "UNUSED", which indicates that the asset is present at read_time.
      */
@@ -7196,8 +7338,7 @@ export namespace securitycenter_v1beta1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Assets$Rundiscovery
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Rundiscovery extends StandardParameters {
     /**
      * Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
      */
@@ -7208,8 +7349,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$RunAssetDiscoveryRequest;
   }
-  export interface Params$Resource$Organizations$Assets$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Assets$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
@@ -7688,7 +7828,7 @@ export namespace securitycenter_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7797,8 +7937,7 @@ export namespace securitycenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -7809,22 +7948,19 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7842,7 +7978,7 @@ export namespace securitycenter_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -8884,8 +9020,7 @@ export namespace securitycenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Create extends StandardParameters {
     /**
      * Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
      */
@@ -8896,15 +9031,13 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Get extends StandardParameters {
     /**
      * Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8915,8 +9048,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Sources$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
      */
@@ -8930,8 +9062,7 @@ export namespace securitycenter_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Patch extends StandardParameters {
     /**
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}"
      */
@@ -8946,8 +9077,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$Source;
   }
-  export interface Params$Resource$Organizations$Sources$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8958,8 +9088,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9963,8 +10092,7 @@ export namespace securitycenter_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sources$Findings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Create extends StandardParameters {
     /**
      * Required. Unique identifier provided by the client within the parent scope. It must be alphanumeric and less than or equal to 32 characters and greater than 0 characters in length.
      */
@@ -9979,8 +10107,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1beta1Finding;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Group
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Group extends StandardParameters {
     /**
      * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]". To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-
      */
@@ -9991,8 +10118,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$GroupFindingsRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$List extends StandardParameters {
     /**
      * Optional. A field mask to specify the Finding fields to be listed in the response. An empty field mask will list all fields.
      */
@@ -10022,8 +10148,7 @@ export namespace securitycenter_v1beta1 {
      */
     readTime?: string;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Patch extends StandardParameters {
     /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
@@ -10038,8 +10163,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1beta1Finding;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Setstate
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Setstate extends StandardParameters {
     /**
      * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}".
      */
@@ -10050,8 +10174,7 @@ export namespace securitycenter_v1beta1 {
      */
     requestBody?: Schema$SetFindingStateRequest;
   }
-  export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks extends StandardParameters {
     /**
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
