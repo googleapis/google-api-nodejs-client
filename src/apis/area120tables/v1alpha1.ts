@@ -1971,8 +1971,7 @@ export namespace area120tables_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Tables$Rows$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Batchcreate extends StandardParameters {
     /**
      * Required. The parent table where the rows will be created. Format: tables/{table\}
      */
@@ -1983,8 +1982,7 @@ export namespace area120tables_v1alpha1 {
      */
     requestBody?: Schema$BatchCreateRowsRequest;
   }
-  export interface Params$Resource$Tables$Rows$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Batchdelete extends StandardParameters {
     /**
      * Required. The parent table shared by all rows being deleted. Format: tables/{table\}
      */
@@ -1995,8 +1993,7 @@ export namespace area120tables_v1alpha1 {
      */
     requestBody?: Schema$BatchDeleteRowsRequest;
   }
-  export interface Params$Resource$Tables$Rows$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Batchupdate extends StandardParameters {
     /**
      * Required. The parent table shared by all rows being updated. Format: tables/{table\}
      */
@@ -2007,8 +2004,7 @@ export namespace area120tables_v1alpha1 {
      */
     requestBody?: Schema$BatchUpdateRowsRequest;
   }
-  export interface Params$Resource$Tables$Rows$Create
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Create extends StandardParameters {
     /**
      * Required. The parent table where this row will be created. Format: tables/{table\}
      */
@@ -2023,8 +2019,7 @@ export namespace area120tables_v1alpha1 {
      */
     requestBody?: Schema$Row;
   }
-  export interface Params$Resource$Tables$Rows$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Delete extends StandardParameters {
     /**
      * Required. The name of the row to delete. Format: tables/{table\}/rows/{row\}
      */
@@ -2066,8 +2061,7 @@ export namespace area120tables_v1alpha1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Tables$Rows$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Tables$Rows$Patch extends StandardParameters {
     /**
      * The resource name of the row. Row names have the form `tables/{table\}/rows/{row\}`. The name is ignored when creating a row.
      */
