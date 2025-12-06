@@ -373,6 +373,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     failedReason?: string | null;
     /**
+     * Output only. Indicates that the test replayed saved actions and concluded without a final AI assertion.
+     */
+    finalAiAssertionMissing?: boolean | null;
+    /**
      * Output only. The reason why the test was inconclusive.
      */
     inconclusiveReason?: string | null;
@@ -1545,8 +1549,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Releases$Enable_access
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Releases$Enable_access extends StandardParameters {
     /**
      * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -1725,8 +1728,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Releases$Notes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Releases$Notes$Create extends StandardParameters {
     /**
      * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -1899,8 +1901,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Release_by_hash$Get
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Release_by_hash$Get extends StandardParameters {
     /**
      * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -2067,8 +2068,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Testers$Gettesterudids
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Testers$Gettesterudids extends StandardParameters {
     /**
      * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -2239,8 +2239,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Apps$Upload_status$Get
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Upload_status$Get extends StandardParameters {
     /**
      * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
@@ -2409,8 +2408,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Gettestquota
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Gettestquota extends StandardParameters {
     /**
      * Required. The name of the `TestQuota` resource to retrieve. Format: `projects/{project_number\}/testQuota`
      */
@@ -2737,15 +2735,13 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Gettestconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Gettestconfig extends StandardParameters {
     /**
      * Required. The name of the `TestConfig` resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Updatetestconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Updatetestconfig extends StandardParameters {
     /**
      * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app\}/testConfig`
      */
@@ -3406,15 +3402,13 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Releases$Tests$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Tests$Cancel extends StandardParameters {
     /**
      * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Tests$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Tests$Create extends StandardParameters {
     /**
      * Required. The name of the release resource, which is the parent of the test Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      */
@@ -3429,15 +3423,13 @@ export namespace firebaseappdistribution_v1alpha {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaReleaseTest;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Tests$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Tests$Get extends StandardParameters {
     /**
      * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}/tests/{test\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Releases$Tests$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Releases$Tests$List extends StandardParameters {
     /**
      * Optional. The maximum number of tests to return. The service may return fewer than this value.
      */
@@ -4694,8 +4686,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Apps$Testcases$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Batchdelete extends StandardParameters {
     /**
      * Required. The parent resource of the test cases being deleted. Format: `projects/{project_number\}/apps/{app\}`
      */
@@ -4706,8 +4697,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Batchupdate extends StandardParameters {
     /**
      * Required. The parent resource of the test cases being updated. Format: `projects/{project_number\}/apps/{app\}`
      */
@@ -4718,8 +4708,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaBatchUpdateTestCasesRequest;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Cleartestcasecache
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Cleartestcasecache extends StandardParameters {
     /**
      * Required. The name of the test case resource for which to clear the cache. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
@@ -4730,8 +4719,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaClearTestCaseCacheRequest;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Create extends StandardParameters {
     /**
      * Required. The parent resource where this test case will be created. Format: `projects/{project_number\}/apps/{app\}`
      */
@@ -4746,22 +4734,19 @@ export namespace firebaseappdistribution_v1alpha {
      */
     requestBody?: Schema$GoogleFirebaseAppdistroV1alphaTestCase;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Delete extends StandardParameters {
     /**
      * Required. The name of the test case resource to delete. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Get extends StandardParameters {
     /**
      * Required. The name of the test case resource to retrieve. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$List extends StandardParameters {
     /**
      * Optional. The maximum number of test cases to return. The service may return fewer than this value. If unspecified, at most 50 test cases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -4775,8 +4760,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Apps$Testcases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Apps$Testcases$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the test case is not found, a new test case will be created.
      */
@@ -4949,8 +4933,7 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Testers$Getudids
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testers$Getudids extends StandardParameters {
     /**
      * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
