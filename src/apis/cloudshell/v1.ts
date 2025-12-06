@@ -906,8 +906,7 @@ export namespace cloudshell_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -918,8 +917,7 @@ export namespace cloudshell_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -1853,8 +1851,7 @@ export namespace cloudshell_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Environments$Addpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Addpublickey extends StandardParameters {
     /**
      * Environment this key should be added to, e.g. `users/me/environments/default`.
      */
@@ -1865,8 +1862,7 @@ export namespace cloudshell_v1 {
      */
     requestBody?: Schema$AddPublicKeyRequest;
   }
-  export interface Params$Resource$Users$Environments$Authorize
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Authorize extends StandardParameters {
     /**
      * Name of the resource that should receive the credentials, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
@@ -1877,8 +1873,7 @@ export namespace cloudshell_v1 {
      */
     requestBody?: Schema$AuthorizeEnvironmentRequest;
   }
-  export interface Params$Resource$Users$Environments$Generateaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Generateaccesstoken extends StandardParameters {
     /**
      * Required. The environment to generate the access token for.
      */
@@ -1892,15 +1887,13 @@ export namespace cloudshell_v1 {
      */
     ttl?: string;
   }
-  export interface Params$Resource$Users$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Get extends StandardParameters {
     /**
      * Required. Name of the requested resource, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Environments$Removepublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Removepublickey extends StandardParameters {
     /**
      * Environment this key should be removed from, e.g. `users/me/environments/default`.
      */
@@ -1911,8 +1904,7 @@ export namespace cloudshell_v1 {
      */
     requestBody?: Schema$RemovePublicKeyRequest;
   }
-  export interface Params$Resource$Users$Environments$Start
-    extends StandardParameters {
+  export interface Params$Resource$Users$Environments$Start extends StandardParameters {
     /**
      * Name of the resource that should be started, for example `users/me/environments/default` or `users/someone@example.com/environments/default`.
      */
