@@ -1186,8 +1186,7 @@ export namespace firebaseml_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Models$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Create extends StandardParameters {
     /**
      * Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id\}`
      */
@@ -1198,29 +1197,25 @@ export namespace firebaseml_v1beta2 {
      */
     requestBody?: Schema$Model;
   }
-  export interface Params$Resource$Projects$Models$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Delete extends StandardParameters {
     /**
      * Required. The name of the model to delete. The name must have the form `projects/{project_id\}/models/{model_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Download
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Download extends StandardParameters {
     /**
      * Required. The name of the model to download. The name must have the form `projects/{project\}/models/{model\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Get extends StandardParameters {
     /**
      * Required. The name of the model to get. The name must have the form `projects/{project_id\}/models/{model_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Models$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$List extends StandardParameters {
     /**
      * A filter for the list e.g. 'tags: abc' to list models which are tagged with "abc"
      */
@@ -1238,8 +1233,7 @@ export namespace firebaseml_v1beta2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Models$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Models$Patch extends StandardParameters {
     /**
      * The resource name of the Model. Model names have the form `projects/{project_id\}/models/{model_id\}` The name is ignored when creating a model.
      */
@@ -1400,8 +1394,7 @@ export namespace firebaseml_v1beta2 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
