@@ -1472,8 +1472,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Adsources$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adsources$List extends StandardParameters {
     /**
      * The maximum number of ad sources to return. If unspecified or 0, at most 10,000 ad sources will be returned. The maximum value is 20,000; values above 10,000 will be coerced to 20,000.
      */
@@ -1639,8 +1638,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Adsources$Adapters$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adsources$Adapters$List extends StandardParameters {
     /**
      * The maximum number of adapters to return. If unspecified or 0, at most 10,000 adapters will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
      */
@@ -1816,8 +1814,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunitmappings$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunitmappings$Batchcreate extends StandardParameters {
     /**
      * Required. The AdMob account which owns this collection of ad unit mappings. Format: accounts/{publisher_id\} See https://support.google.com/admob/answer/2784578 for instructions on how to find your AdMob publisher ID.
      */
@@ -2139,8 +2136,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Create extends StandardParameters {
     /**
      * Required. Resource name of the account to create the specified ad unit for. Example: accounts/pub-9876543210987654
      */
@@ -2151,8 +2147,7 @@ export namespace admob_v1beta {
      */
     requestBody?: Schema$AdUnit;
   }
-  export interface Params$Resource$Accounts$Adunits$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$List extends StandardParameters {
     /**
      * The maximum number of ad units to return. If unspecified or 0, at most 10,000 ad units will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
      */
@@ -2475,8 +2470,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Adunits$Adunitmappings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Adunitmappings$Create extends StandardParameters {
     /**
      * Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id\}/adUnits/{ad_unit_id\}
      */
@@ -2487,8 +2481,7 @@ export namespace admob_v1beta {
      */
     requestBody?: Schema$AdUnitMapping;
   }
-  export interface Params$Resource$Accounts$Adunits$Adunitmappings$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Adunits$Adunitmappings$List extends StandardParameters {
     /**
      * The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - "DISPLAY_NAME" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including "DISPLAY_NAME". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, "Test Ad Unit Mapping 1", "Test Ad Unit Mapping 2")
      */
@@ -2811,8 +2804,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Apps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$Create extends StandardParameters {
     /**
      * Required. Resource name of the account for which the app is being created. Example: accounts/pub-9876543210987654
      */
@@ -2823,8 +2815,7 @@ export namespace admob_v1beta {
      */
     requestBody?: Schema$App;
   }
-  export interface Params$Resource$Accounts$Apps$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Apps$List extends StandardParameters {
     /**
      * The maximum number of apps to return. If unspecified or 0, at most 10,000 apps will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.
      */
@@ -2999,8 +2990,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Campaignreport$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Campaignreport$Generate extends StandardParameters {
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
@@ -3485,8 +3475,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Mediationgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationgroups$Create extends StandardParameters {
     /**
      * Required. The parent which owns the mediation group. Format: accounts/{publisher_id\}
      */
@@ -3497,8 +3486,7 @@ export namespace admob_v1beta {
      */
     requestBody?: Schema$MediationGroup;
   }
-  export interface Params$Resource$Accounts$Mediationgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationgroups$List extends StandardParameters {
     /**
      * The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible fields to filter by are: - "AD_SOURCE_IDS" - "AD_UNIT_IDS" - "APP_IDS" - "DISPLAY_NAME" - "FORMAT" - "MEDIATION_GROUP_ID" - "PLATFORM" - "STATE" - "TARGETED_REGION_CODES" Possible filter functions are: - `IN`: Used to filter fields that represent a singleton including "MEDIATION_GROUP_ID", "DISPLAY_NAME", "STATE", "PLATFORM", and "FORMAT". - `CONTAINS_ANY`: Used to filter fields that represent a collection including "AD_SOURCE_IDS", "AD_UNIT_IDS", "APP_IDS", and "TARGETED_REGION_CODES". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, "Test Group 1", "Test Group 2") AND IN(PLATFORM, "ANDROID") AND CONTAINS_ANY(AD_SOURCE_IDS, "5450213213286189855")
      */
@@ -3516,8 +3504,7 @@ export namespace admob_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Mediationgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationgroups$Patch extends StandardParameters {
     /**
      * Resource name for this mediation group. Format is: accounts/{publisher_id\}/mediationGroups/{mediation_group_id\} Example: accounts/pub-9876543210987654/mediationGroups/0123456789
      */
@@ -3867,8 +3854,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Create extends StandardParameters {
     /**
      * Required. The parent which owns the mediation group. Format: accounts/{publisher_id\}/mediationGroups/{mediation_group_id\}
      */
@@ -3879,8 +3865,7 @@ export namespace admob_v1beta {
      */
     requestBody?: Schema$MediationAbExperiment;
   }
-  export interface Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Stop
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Stop extends StandardParameters {
     /**
      * Name of the mediation group, the experiment for which to choose a variant for. Example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiments
      */
@@ -4054,8 +4039,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Mediationreport$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Mediationreport$Generate extends StandardParameters {
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
@@ -4230,8 +4214,7 @@ export namespace admob_v1beta {
     }
   }
 
-  export interface Params$Resource$Accounts$Networkreport$Generate
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Networkreport$Generate extends StandardParameters {
     /**
      * Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
      */
