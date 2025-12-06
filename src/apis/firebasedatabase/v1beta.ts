@@ -1256,8 +1256,7 @@ export namespace firebasedatabase_v1beta {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
     /**
      * The globally unique identifier of the database instance.
      */
@@ -1276,15 +1275,13 @@ export namespace firebasedatabase_v1beta {
      */
     requestBody?: Schema$DatabaseInstance;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Disable extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
@@ -1295,15 +1292,13 @@ export namespace firebasedatabase_v1beta {
      */
     requestBody?: Schema$DisableDatabaseInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. `database-id` is a globally unique identifier across all parent collections. For convenience, this method allows you to supply `-` as a wildcard character in place of specific collections under `projects` and `locations`. The resulting wildcarding form of the method is: `projects/-/locations/-/instances/{database-id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * The maximum number of database instances to return in the response. The server may return fewer than this at its discretion. If no value is specified (or too large a value is specified), then the server will impose its own limit.
      */
@@ -1321,8 +1316,7 @@ export namespace firebasedatabase_v1beta {
      */
     showDeleted?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Reenable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Reenable extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
@@ -1333,8 +1327,7 @@ export namespace firebasedatabase_v1beta {
      */
     requestBody?: Schema$ReenableDatabaseInstanceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Instances$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Instances$Undelete extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
      */
