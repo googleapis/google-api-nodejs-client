@@ -2560,8 +2560,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Userinvitations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Userinvitations$Cancel extends StandardParameters {
     /**
      * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
      */
@@ -2572,22 +2571,19 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$CancelUserInvitationRequest;
   }
-  export interface Params$Resource$Customers$Userinvitations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Userinvitations$Get extends StandardParameters {
     /**
      * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Userinvitations$Isinvitableuser
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Userinvitations$Isinvitableuser extends StandardParameters {
     /**
      * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Userinvitations$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Userinvitations$List extends StandardParameters {
     /**
      * Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `"state=='invited'"`.
      */
@@ -2609,8 +2605,7 @@ export namespace cloudidentity_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Customers$Userinvitations$Send
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Userinvitations$Send extends StandardParameters {
     /**
      * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
      */
@@ -3583,8 +3578,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Cancelwipe
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Cancelwipe extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      */
@@ -4895,8 +4889,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Deviceusers$Approve
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Approve extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
@@ -4907,8 +4900,7 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest;
   }
-  export interface Params$Resource$Devices$Deviceusers$Block
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Block extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
@@ -4919,8 +4911,7 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest;
   }
-  export interface Params$Resource$Devices$Deviceusers$Cancelwipe
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Cancelwipe extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
@@ -4931,8 +4922,7 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest;
   }
-  export interface Params$Resource$Devices$Deviceusers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Delete extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -4942,8 +4932,7 @@ export namespace cloudidentity_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Get extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -4953,8 +4942,7 @@ export namespace cloudidentity_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$List
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$List extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -4980,8 +4968,7 @@ export namespace cloudidentity_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Lookup extends StandardParameters {
     /**
      * Android Id returned by [Settings.Secure#ANDROID_ID](https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID).
      */
@@ -5015,8 +5002,7 @@ export namespace cloudidentity_v1 {
      */
     userId?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$Wipe
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Wipe extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
@@ -5518,8 +5504,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Devices$Deviceusers$Clientstates$Get
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Clientstates$Get extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -5529,8 +5514,7 @@ export namespace cloudidentity_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$Clientstates$List
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Clientstates$List extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -5552,8 +5536,7 @@ export namespace cloudidentity_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Devices$Deviceusers$Clientstates$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Devices$Deviceusers$Clientstates$Patch extends StandardParameters {
     /**
      * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
@@ -6946,8 +6929,7 @@ export namespace cloudidentity_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Groups$Getsecuritysettings
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Getsecuritysettings extends StandardParameters {
     /**
      * Required. The security settings to retrieve. Format: `groups/{group_id\}/securitySettings`
      */
@@ -7018,8 +7000,7 @@ export namespace cloudidentity_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Groups$Updatesecuritysettings
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Updatesecuritysettings extends StandardParameters {
     /**
      * Output only. The resource name of the security settings. Shall be of the form `groups/{group_id\}/securitySettings`.
      */
@@ -8716,8 +8697,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Groups$Memberships$Checktransitivemembership
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Checktransitivemembership extends StandardParameters {
     /**
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group\}`, where `group` is the unique id assigned to the Group to which the Membership belongs to.
      */
@@ -8727,8 +8707,7 @@ export namespace cloudidentity_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Create
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Create extends StandardParameters {
     /**
      * Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group\}`.
      */
@@ -8739,22 +8718,19 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$Membership;
   }
-  export interface Params$Resource$Groups$Memberships$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Delete extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group\}/memberships/{membership\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Get
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Get extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Getmembershipgraph
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Getmembershipgraph extends StandardParameters {
     /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is the unique ID assigned to the Group to which the Membership belongs to. group can be a wildcard collection id "-". When a group is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
      */
@@ -8764,8 +8740,7 @@ export namespace cloudidentity_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Groups$Memberships$List
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$List extends StandardParameters {
     /**
      * The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
      */
@@ -8783,8 +8758,7 @@ export namespace cloudidentity_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Lookup extends StandardParameters {
     /**
      * The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. Email addresses need to adhere to [name guidelines for users and groups](https://support.google.com/a/answer/9193374). For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      */
@@ -8798,8 +8772,7 @@ export namespace cloudidentity_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Modifymembershiproles
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Modifymembershiproles extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group\}/memberships/{membership\}`.
      */
@@ -8810,8 +8783,7 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$ModifyMembershipRolesRequest;
   }
-  export interface Params$Resource$Groups$Memberships$Searchdirectgroups
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Searchdirectgroups extends StandardParameters {
     /**
      * The ordering of membership relation for the display name or email in the response. The syntax for this field can be found at https://cloud.google.com/apis/design/design_patterns#sorting_order. Example: Sort by the ascending display name: order_by="group_name" or order_by="group_name asc". Sort by the descending display name: order_by="group_name desc". Sort by the ascending group key: order_by="group_key" or order_by="group_key asc". Sort by the descending group key: order_by="group_key desc".
      */
@@ -8833,8 +8805,7 @@ export namespace cloudidentity_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Searchtransitivegroups
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Searchtransitivegroups extends StandardParameters {
     /**
      * The default page size is 200 (max 1000).
      */
@@ -8852,8 +8823,7 @@ export namespace cloudidentity_v1 {
      */
     query?: string;
   }
-  export interface Params$Resource$Groups$Memberships$Searchtransitivememberships
-    extends StandardParameters {
+  export interface Params$Resource$Groups$Memberships$Searchtransitivememberships extends StandardParameters {
     /**
      * The default page size is 200 (max 1000).
      */
@@ -9629,29 +9599,25 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Inboundoidcssoprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inboundoidcssoprofiles$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$InboundOidcSsoProfile;
   }
-  export interface Params$Resource$Inboundoidcssoprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inboundoidcssoprofiles$Delete extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to delete. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundoidcssoprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inboundoidcssoprofiles$Get extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to get. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundoidcssoprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Inboundoidcssoprofiles$List extends StandardParameters {
     /**
      * A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to. Specifying a filter of `customer==""` will return the global shared OIDC profiles.
      */
@@ -9665,8 +9631,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Inboundoidcssoprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inboundoidcssoprofiles$Patch extends StandardParameters {
     /**
      * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the OIDC SSO profile.
      */
@@ -10447,29 +10412,25 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Inboundsamlssoprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$InboundSamlSsoProfile;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Delete extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundSamlSsoProfile to delete. Format: `inboundSamlSsoProfiles/{sso_profile_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Get extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundSamlSsoProfile to get. Format: `inboundSamlSsoProfiles/{sso_profile_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$List extends StandardParameters {
     /**
      * A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to.
      */
@@ -10483,8 +10444,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Patch extends StandardParameters {
     /**
      * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the SAML SSO profile.
      */
@@ -11099,8 +11059,7 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Add
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Add extends StandardParameters {
     /**
      * Required. The InboundSamlSsoProfile that owns the IdpCredential. Format: `inboundSamlSsoProfiles/{sso_profile_id\}`
      */
@@ -11111,22 +11070,19 @@ export namespace cloudidentity_v1 {
      */
     requestBody?: Schema$AddIdpCredentialRequest;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Delete extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the IdpCredential to delete. Format: `inboundSamlSsoProfiles/{sso_profile_id\}/idpCredentials/{idp_credential_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$Get extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the IdpCredential to retrieve. Format: `inboundSamlSsoProfiles/{sso_profile_id\}/idpCredentials/{idp_credential_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$List
-    extends StandardParameters {
+  export interface Params$Resource$Inboundsamlssoprofiles$Idpcredentials$List extends StandardParameters {
     /**
      * The maximum number of `IdpCredential`s to return. The service may return fewer than this value.
      */
@@ -11914,29 +11870,25 @@ export namespace cloudidentity_v1 {
     }
   }
 
-  export interface Params$Resource$Inboundssoassignments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Inboundssoassignments$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$InboundSsoAssignment;
   }
-  export interface Params$Resource$Inboundssoassignments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inboundssoassignments$Delete extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundSsoAssignment to delete. Format: `inboundSsoAssignments/{assignment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundssoassignments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inboundssoassignments$Get extends StandardParameters {
     /**
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundSsoAssignment to fetch. Format: `inboundSsoAssignments/{assignment\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Inboundssoassignments$List
-    extends StandardParameters {
+  export interface Params$Resource$Inboundssoassignments$List extends StandardParameters {
     /**
      * A CEL expression to filter the results. The only supported filter is filtering by customer. For example: `customer==customers/C0123abc`. Omitting the filter or specifying a filter of `customer==customers/my_customer` will return the assignments for the customer that the caller (authenticated user) belongs to.
      */
@@ -11950,8 +11902,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Inboundssoassignments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inboundssoassignments$Patch extends StandardParameters {
     /**
      * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Inbound SSO Assignment.
      */
@@ -12007,7 +11958,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.policies.get({
-     *     // Required. The name of the policy to retrieve. Format: "policies/{policy\}".
+     *     // Required. The name of the policy to retrieve. Format: `policies/{policy\}`.
      *     name: 'policies/my-policie',
      *   });
      *   console.log(res.data);
@@ -12261,7 +12212,7 @@ export namespace cloudidentity_v1 {
 
   export interface Params$Resource$Policies$Get extends StandardParameters {
     /**
-     * Required. The name of the policy to retrieve. Format: "policies/{policy\}".
+     * Required. The name of the policy to retrieve. Format: `policies/{policy\}`.
      */
     name?: string;
   }

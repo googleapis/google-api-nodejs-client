@@ -2244,7 +2244,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The name of the policy to retrieve. Format: \"policies/{policy}\".",
+              "description": "Required. The name of the policy to delete. Format: `policies/{policy}`.",
               "location": "path",
               "pattern": "^policies/[^/]+$",
               "required": true,
@@ -2269,7 +2269,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The name of the policy to retrieve. Format: \"policies/{policy}\".",
+              "description": "Required. The name of the policy to retrieve. Format: `policies/{policy}`.",
               "location": "path",
               "pattern": "^policies/[^/]+$",
               "required": true,
@@ -2349,7 +2349,7 @@
       }
     }
   },
-  "revision": "20251027",
+  "revision": "20251125",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
