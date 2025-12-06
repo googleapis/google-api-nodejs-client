@@ -293,7 +293,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20251108",
+  "revision": "20251202",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -2276,6 +2276,10 @@
         },
         "displayName": {
           "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "documentPrompt": {
+          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
           "type": "string"
         },
         "entityTypes": {
@@ -4264,6 +4268,7 @@
           "description": "Inference-time options for the process API"
         },
         "skipHumanReview": {
+          "deprecated": true,
           "description": "Whether human review should be skipped for this request. Default to `false`.",
           "type": "boolean"
         }
@@ -6974,7 +6979,7 @@
         },
         "inlineDocuments": {
           "$ref": "GoogleCloudDocumentaiV1beta3Documents",
-          "description": "The set of documents specified inline."
+          "description": "The set of documents specified inline. For each document, its `uri` or `content` field must be set."
         },
         "rawDocuments": {
           "$ref": "GoogleCloudDocumentaiV1beta3RawDocuments",
@@ -7154,6 +7159,10 @@
             "Identifies the test documents.",
             "Identifies the unassigned documents."
           ],
+          "type": "string"
+        },
+        "documentType": {
+          "description": "Optional. The type of the documents to be imported in this batch. This will be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.",
           "type": "string"
         }
       },
@@ -7586,6 +7595,10 @@
           "description": "Optional. Whether to include table annotations in layout parser response.",
           "type": "boolean"
         },
+        "enableTableSplit": {
+          "description": "Optional. Whether to split table.",
+          "type": "boolean"
+        },
         "returnBoundingBoxes": {
           "description": "Optional. Whether to include bounding boxes in layout parser processor response.",
           "type": "boolean"
@@ -7664,6 +7677,7 @@
           "description": "A raw document content (bytes)."
         },
         "skipHumanReview": {
+          "deprecated": true,
           "description": "Whether human review should be skipped for this request. Default to `false`.",
           "type": "boolean"
         }
@@ -8641,7 +8655,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
