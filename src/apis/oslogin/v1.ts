@@ -210,6 +210,15 @@ export namespace oslogin_v1 {
     username?: string | null;
   }
   /**
+   * A request message for creating a POSIX account entry.
+   */
+  export interface Schema$ProvisionPosixAccountRequest {
+    /**
+     * Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     */
+    regions?: string[] | null;
+  }
+  /**
    * A request message for signing an SSH public key.
    */
   export interface Schema$SignSshPublicKeyRequest {
@@ -429,8 +438,7 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Signsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Signsshpublickey extends StandardParameters {
     /**
      * Required. The parent for the signing request. Format: projects/{project\}/locations/{location\}
      */
@@ -761,8 +769,7 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Getloginprofile
-    extends StandardParameters {
+  export interface Params$Resource$Users$Getloginprofile extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}`.
      */
@@ -776,8 +783,7 @@ export namespace oslogin_v1 {
      */
     systemId?: string;
   }
-  export interface Params$Resource$Users$Importsshpublickey
-    extends StandardParameters {
+  export interface Params$Resource$Users$Importsshpublickey extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}`.
      */
@@ -937,14 +943,181 @@ export namespace oslogin_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+
+    /**
+     * Adds a POSIX account and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.projects.provisionPosixAccount({
+     *     // Required. The unique ID for the user in format `users/{user\}/projects/{project\}`.
+     *     name: 'users/my-user/projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "regions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "gecos": "my_gecos",
+     *   //   "gid": "my_gid",
+     *   //   "homeDirectory": "my_homeDirectory",
+     *   //   "name": "my_name",
+     *   //   "operatingSystemType": "my_operatingSystemType",
+     *   //   "primary": false,
+     *   //   "shell": "my_shell",
+     *   //   "systemId": "my_systemId",
+     *   //   "uid": "my_uid",
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    provisionPosixAccount(
+      params?: Params$Resource$Users$Projects$Provisionposixaccount,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PosixAccount>>;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      options: MethodOptions | BodyResponseCallback<Schema$PosixAccount>,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      params: Params$Resource$Users$Projects$Provisionposixaccount,
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      callback: BodyResponseCallback<Schema$PosixAccount>
+    ): void;
+    provisionPosixAccount(
+      paramsOrCallback?:
+        | Params$Resource$Users$Projects$Provisionposixaccount
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PosixAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PosixAccount>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Projects$Provisionposixaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Projects$Provisionposixaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PosixAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PosixAccount>(parameters);
+      }
+    }
   }
 
-  export interface Params$Resource$Users$Projects$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Projects$Delete extends StandardParameters {
     /**
      * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Users$Projects$Provisionposixaccount extends StandardParameters {
+    /**
+     * Required. The unique ID for the user in format `users/{user\}/projects/{project\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProvisionPosixAccountRequest;
   }
 
   export class Resource$Users$Sshpublickeys {
@@ -1536,8 +1709,7 @@ export namespace oslogin_v1 {
     }
   }
 
-  export interface Params$Resource$Users$Sshpublickeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Create extends StandardParameters {
     /**
      * Required. The unique ID for the user in format `users/{user\}`.
      */
@@ -1548,22 +1720,19 @@ export namespace oslogin_v1 {
      */
     requestBody?: Schema$SshPublicKey;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Delete extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Get
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Get extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Users$Sshpublickeys$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Users$Sshpublickeys$Patch extends StandardParameters {
     /**
      * Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user\}/sshPublicKeys/{fingerprint\}`.
      */
