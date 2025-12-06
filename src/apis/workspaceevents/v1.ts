@@ -116,7 +116,6 @@ export namespace workspaceevents_v1 {
     operations: Resource$Operations;
     subscriptions: Resource$Subscriptions;
     tasks: Resource$Tasks;
-    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -128,219 +127,9 @@ export namespace workspaceevents_v1 {
       this.operations = new Resource$Operations(this.context);
       this.subscriptions = new Resource$Subscriptions(this.context);
       this.tasks = new Resource$Tasks(this.context);
-      this.v1 = new Resource$V1(this.context);
     }
   }
 
-  /**
-   * Defines the A2A feature set supported by the agent
-   */
-  export interface Schema$AgentCapabilities {
-    /**
-     * Extensions supported by this agent.
-     */
-    extensions?: Schema$AgentExtension[];
-    /**
-     * If the agent can send push notifications to the clients webhook
-     */
-    pushNotifications?: boolean | null;
-    /**
-     * If the agent will support streaming responses
-     */
-    streaming?: boolean | null;
-  }
-  /**
-   * AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19
-   */
-  export interface Schema$AgentCard {
-    /**
-     * Announcement of additional supported transports. Client can use any of the supported transports.
-     */
-    additionalInterfaces?: Schema$AgentInterface[];
-    /**
-     * A2A Capability set supported by the agent.
-     */
-    capabilities?: Schema$AgentCapabilities;
-    /**
-     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.
-     */
-    defaultInputModes?: string[] | null;
-    /**
-     * The mime types supported as outputs from this agent.
-     */
-    defaultOutputModes?: string[] | null;
-    /**
-     * A description of the agent's domain of action/solution space. Example: "Agent that helps users with recipes and cooking."
-     */
-    description?: string | null;
-    /**
-     * A url to provide additional documentation about the agent.
-     */
-    documentationUrl?: string | null;
-    /**
-     * An optional URL to an icon for the agent.
-     */
-    iconUrl?: string | null;
-    /**
-     * A human readable name for the agent. Example: "Recipe Agent"
-     */
-    name?: string | null;
-    /**
-     * The transport of the preferred endpoint. If empty, defaults to JSONRPC.
-     */
-    preferredTransport?: string | null;
-    /**
-     * The version of the A2A protocol this agent supports.
-     */
-    protocolVersion?: string | null;
-    /**
-     * The service provider of the agent.
-     */
-    provider?: Schema$AgentProvider;
-    /**
-     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, "callers must either use OAuth OR an API Key AND mTLS." Example: security { schemes { key: "oauth" value { list: ["read"] \} \} \} security { schemes { key: "api-key" \} schemes { key: "mtls" \} \}
-     */
-    security?: Schema$Security[];
-    /**
-     * The security scheme details used for authenticating with this agent.
-     */
-    securitySchemes?: {[key: string]: Schema$SecurityScheme} | null;
-    /**
-     * JSON Web Signatures computed for this AgentCard.
-     */
-    signatures?: Schema$AgentCardSignature[];
-    /**
-     * Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.
-     */
-    skills?: Schema$AgentSkill[];
-    /**
-     * Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.
-     */
-    supportsAuthenticatedExtendedCard?: boolean | null;
-    /**
-     * A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.
-     */
-    url?: string | null;
-    /**
-     * The version of the agent. Example: "1.0.0"
-     */
-    version?: string | null;
-  }
-  /**
-   * AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).
-   */
-  export interface Schema$AgentCardSignature {
-    /**
-     * The unprotected JWS header values.
-     */
-    header?: {[key: string]: any} | null;
-    /**
-     * Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.
-     */
-    protected?: string | null;
-    /**
-     * Required. The computed signature, base64url-encoded. Required.
-     */
-    signature?: string | null;
-  }
-  /**
-   * A declaration of an extension supported by an Agent.
-   */
-  export interface Schema$AgentExtension {
-    /**
-     * A description of how this agent uses this extension. Example: "Google OAuth 2.0 authentication"
-     */
-    description?: string | null;
-    /**
-     * Optional configuration for the extension.
-     */
-    params?: {[key: string]: any} | null;
-    /**
-     * Whether the client must follow specific requirements of the extension. Example: false
-     */
-    required?: boolean | null;
-    /**
-     * The URI of the extension. Example: "https://developers.google.com/identity/protocols/oauth2"
-     */
-    uri?: string | null;
-  }
-  /**
-   * Defines additional transport information for the agent.
-   */
-  export interface Schema$AgentInterface {
-    /**
-     * The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.
-     */
-    transport?: string | null;
-    /**
-     * The url this interface is found at.
-     */
-    url?: string | null;
-  }
-  /**
-   * Represents information about the service provider of an agent.
-   */
-  export interface Schema$AgentProvider {
-    /**
-     * The providers organization name Example: "Google"
-     */
-    organization?: string | null;
-    /**
-     * The providers reference url Example: "https://ai.google.dev"
-     */
-    url?: string | null;
-  }
-  /**
-   * AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.
-   */
-  export interface Schema$AgentSkill {
-    /**
-     * A human (or llm) readable description of the skill details and behaviors.
-     */
-    description?: string | null;
-    /**
-     * A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: ["I need a recipe for bread"]
-     */
-    examples?: string[] | null;
-    /**
-     * Unique identifier of the skill within this agent.
-     */
-    id?: string | null;
-    /**
-     * Possible input modalities supported.
-     */
-    inputModes?: string[] | null;
-    /**
-     * A human readable name for the skill.
-     */
-    name?: string | null;
-    /**
-     * Possible output modalities produced
-     */
-    outputModes?: string[] | null;
-    /**
-     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED
-     */
-    security?: Schema$Security[];
-    /**
-     * A set of tags for the skill to enhance categorization/utilization. Example: ["cooking", "customer support", "billing"]
-     */
-    tags?: string[] | null;
-  }
-  export interface Schema$APIKeySecurityScheme {
-    /**
-     * Description of this security scheme.
-     */
-    description?: string | null;
-    /**
-     * Location of the API key, valid values are "query", "header", or "cookie"
-     */
-    location?: string | null;
-    /**
-     * Name of the header, query or cookie parameter to be used.
-     */
-    name?: string | null;
-  }
   /**
    * Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.
    */
@@ -383,39 +172,7 @@ export namespace workspaceevents_v1 {
      */
     schemes?: string[] | null;
   }
-  export interface Schema$AuthorizationCodeOAuthFlow {
-    /**
-     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
-     */
-    authorizationUrl?: string | null;
-    /**
-     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    refreshUrl?: string | null;
-    /**
-     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
-     */
-    scopes?: {[key: string]: string} | null;
-    /**
-     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    tokenUrl?: string | null;
-  }
   export interface Schema$CancelTaskRequest {}
-  export interface Schema$ClientCredentialsOAuthFlow {
-    /**
-     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    refreshUrl?: string | null;
-    /**
-     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
-     */
-    scopes?: {[key: string]: string} | null;
-    /**
-     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    tokenUrl?: string | null;
-  }
   /**
    * DataPart represents a structured blob. This is most commonly a JSON payload.
    */
@@ -434,34 +191,6 @@ export namespace workspaceevents_v1 {
     fileWithUri?: string | null;
     mimeType?: string | null;
     name?: string | null;
-  }
-  export interface Schema$HTTPAuthSecurityScheme {
-    /**
-     * A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.
-     */
-    bearerFormat?: string | null;
-    /**
-     * Description of this security scheme.
-     */
-    description?: string | null;
-    /**
-     * The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.
-     */
-    scheme?: string | null;
-  }
-  export interface Schema$ImplicitOAuthFlow {
-    /**
-     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
-     */
-    authorizationUrl?: string | null;
-    /**
-     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    refreshUrl?: string | null;
-    /**
-     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
-     */
-    scopes?: {[key: string]: string} | null;
   }
   /**
    * The response message for SubscriptionsService.ListSubscriptions.
@@ -519,12 +248,6 @@ export namespace workspaceevents_v1 {
      */
     taskId?: string | null;
   }
-  export interface Schema$MutualTlsSecurityScheme {
-    /**
-     * Description of this security scheme.
-     */
-    description?: string | null;
-  }
   /**
    * The endpoint where the subscription delivers events.
    */
@@ -533,36 +256,6 @@ export namespace workspaceevents_v1 {
      * Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project\}/topics/{topic\}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).
      */
     pubsubTopic?: string | null;
-  }
-  export interface Schema$OAuth2SecurityScheme {
-    /**
-     * Description of this security scheme.
-     */
-    description?: string | null;
-    /**
-     * An object containing configuration information for the flow types supported
-     */
-    flows?: Schema$OAuthFlows;
-    /**
-     * URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.
-     */
-    oauth2MetadataUrl?: string | null;
-  }
-  export interface Schema$OAuthFlows {
-    authorizationCode?: Schema$AuthorizationCodeOAuthFlow;
-    clientCredentials?: Schema$ClientCredentialsOAuthFlow;
-    implicit?: Schema$ImplicitOAuthFlow;
-    password?: Schema$PasswordOAuthFlow;
-  }
-  export interface Schema$OpenIdConnectSecurityScheme {
-    /**
-     * Description of this security scheme.
-     */
-    description?: string | null;
-    /**
-     * Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.
-     */
-    openIdConnectUrl?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -600,20 +293,6 @@ export namespace workspaceevents_v1 {
      */
     metadata?: {[key: string]: any} | null;
     text?: string | null;
-  }
-  export interface Schema$PasswordOAuthFlow {
-    /**
-     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    refreshUrl?: string | null;
-    /**
-     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
-     */
-    scopes?: {[key: string]: string} | null;
-    /**
-     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
-     */
-    tokenUrl?: string | null;
   }
   /**
    * Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.
@@ -653,16 +332,6 @@ export namespace workspaceevents_v1 {
    * The request message for SubscriptionsService.ReactivateSubscription.
    */
   export interface Schema$ReactivateSubscriptionRequest {}
-  export interface Schema$Security {
-    schemes?: {[key: string]: Schema$StringList} | null;
-  }
-  export interface Schema$SecurityScheme {
-    apiKeySecurityScheme?: Schema$APIKeySecurityScheme;
-    httpAuthSecurityScheme?: Schema$HTTPAuthSecurityScheme;
-    mtlsSecurityScheme?: Schema$MutualTlsSecurityScheme;
-    oauth2SecurityScheme?: Schema$OAuth2SecurityScheme;
-    openIdConnectSecurityScheme?: Schema$OpenIdConnectSecurityScheme;
-  }
   /**
    * Configuration of a send message request.
    */
@@ -726,12 +395,6 @@ export namespace workspaceevents_v1 {
     message?: Schema$Message;
     statusUpdate?: Schema$TaskStatusUpdateEvent;
     task?: Schema$Task;
-  }
-  /**
-   * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED
-   */
-  export interface Schema$StringList {
-    list?: string[] | null;
   }
   /**
    * A subscription to receive events about a Google Workspace resource. To learn more about subscriptions, see the [Google Workspace Events API overview](https://developers.google.com/workspace/events).
@@ -2263,8 +1926,7 @@ export namespace workspaceevents_v1 {
     }
   }
 
-  export interface Params$Resource$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Create extends StandardParameters {
     /**
      * Optional. If set to `true`, validates and previews the request, but doesn't create the subscription.
      */
@@ -2275,8 +1937,7 @@ export namespace workspaceevents_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Delete extends StandardParameters {
     /**
      * Optional. If set to `true` and the subscription isn't found, the request succeeds but doesn't delete the subscription.
      */
@@ -2294,15 +1955,13 @@ export namespace workspaceevents_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Get extends StandardParameters {
     /**
      * Required. Resource name of the subscription. Format: `subscriptions/{subscription\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$List extends StandardParameters {
     /**
      * Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
      */
@@ -2316,8 +1975,7 @@ export namespace workspaceevents_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Subscriptions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Patch extends StandardParameters {
     /**
      * Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
      */
@@ -2336,8 +1994,7 @@ export namespace workspaceevents_v1 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Subscriptions$Reactivate
-    extends StandardParameters {
+  export interface Params$Resource$Subscriptions$Reactivate extends StandardParameters {
     /**
      * Required. Resource name of the subscription. Format: `subscriptions/{subscription\}`
      */
@@ -3398,8 +3055,7 @@ export namespace workspaceevents_v1 {
     }
   }
 
-  export interface Params$Resource$Tasks$Pushnotificationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Create extends StandardParameters {
     /**
      * Required. The ID for the new config.
      */
@@ -3414,22 +3070,19 @@ export namespace workspaceevents_v1 {
      */
     requestBody?: Schema$TaskPushNotificationConfig;
   }
-  export interface Params$Resource$Tasks$Pushnotificationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Delete extends StandardParameters {
     /**
      * The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Tasks$Pushnotificationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Tasks$Pushnotificationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Tasks$Pushnotificationconfigs$List extends StandardParameters {
     /**
      * For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.
      */
@@ -3443,161 +3096,4 @@ export namespace workspaceevents_v1 {
      */
     parent?: string;
   }
-
-  export class Resource$V1 {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * GetAgentCard returns the agent card for the agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workspaceevents.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const workspaceevents = google.workspaceevents('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await workspaceevents.getCard({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalInterfaces": [],
-     *   //   "capabilities": {},
-     *   //   "defaultInputModes": [],
-     *   //   "defaultOutputModes": [],
-     *   //   "description": "my_description",
-     *   //   "documentationUrl": "my_documentationUrl",
-     *   //   "iconUrl": "my_iconUrl",
-     *   //   "name": "my_name",
-     *   //   "preferredTransport": "my_preferredTransport",
-     *   //   "protocolVersion": "my_protocolVersion",
-     *   //   "provider": {},
-     *   //   "security": [],
-     *   //   "securitySchemes": {},
-     *   //   "signatures": [],
-     *   //   "skills": [],
-     *   //   "supportsAuthenticatedExtendedCard": false,
-     *   //   "url": "my_url",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getCard(
-      params: Params$Resource$V1$Getcard,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getCard(
-      params?: Params$Resource$V1$Getcard,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$AgentCard>>;
-    getCard(
-      params: Params$Resource$V1$Getcard,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getCard(
-      params: Params$Resource$V1$Getcard,
-      options: MethodOptions | BodyResponseCallback<Schema$AgentCard>,
-      callback: BodyResponseCallback<Schema$AgentCard>
-    ): void;
-    getCard(
-      params: Params$Resource$V1$Getcard,
-      callback: BodyResponseCallback<Schema$AgentCard>
-    ): void;
-    getCard(callback: BodyResponseCallback<Schema$AgentCard>): void;
-    getCard(
-      paramsOrCallback?:
-        | Params$Resource$V1$Getcard
-        | BodyResponseCallback<Schema$AgentCard>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AgentCard>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AgentCard>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$AgentCard>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$V1$Getcard;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$V1$Getcard;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://workspaceevents.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/card').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AgentCard>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AgentCard>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$V1$Getcard extends StandardParameters {}
 }
