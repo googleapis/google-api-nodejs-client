@@ -273,6 +273,10 @@ export namespace sts_v1 {
      */
     accessBoundary?: Schema$GoogleIdentityStsV1AccessBoundary;
     /**
+     * The unpadded, base64url-encoded SHA-256 hash of the certificate's DER encoding and it must be 43 characters long. The resulting token will be bound to this value.
+     */
+    bindCertFingerprint?: string | null;
+    /**
      * A Google project used for quota and billing purposes when the credential is used to access Google APIs. The provided project overrides the project bound to the credential. The value must be a project number or a project ID. Example: `my-sample-project-191923`. The maximum length is 32 characters.
      */
     userProject?: string | null;
