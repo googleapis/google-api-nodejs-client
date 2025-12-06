@@ -1136,8 +1136,7 @@ export namespace billingbudgets_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Budgets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Budgets$Create extends StandardParameters {
     /**
      * Required. The name of the billing account to create the budget in. Values are of the form `billingAccounts/{billingAccountId\}`.
      */
@@ -1148,22 +1147,19 @@ export namespace billingbudgets_v1beta1 {
      */
     requestBody?: Schema$GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest;
   }
-  export interface Params$Resource$Billingaccounts$Budgets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Budgets$Delete extends StandardParameters {
     /**
      * Required. Name of the budget to delete. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Budgets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Budgets$Get extends StandardParameters {
     /**
      * Required. Name of budget to get. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Budgets$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Budgets$List extends StandardParameters {
     /**
      * Optional. The maximum number of budgets to return per page. The default and maximum value are 100.
      */
@@ -1181,8 +1177,7 @@ export namespace billingbudgets_v1beta1 {
      */
     scope?: string;
   }
-  export interface Params$Resource$Billingaccounts$Budgets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Budgets$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId\}/budgets/{budgetId\}`.
      */
