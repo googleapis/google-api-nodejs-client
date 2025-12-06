@@ -208,7 +208,7 @@ export namespace datamanager_v1 {
      */
     encryptedDek?: string | null;
     /**
-     * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of "arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}"
+     * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of `arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}` or `aws-kms://arn:{partition\}:kms:{region\}:{account_id\}:key/{key_id\}`
      */
     kekUri?: string | null;
     /**
@@ -216,7 +216,7 @@ export namespace datamanager_v1 {
      */
     keyType?: string | null;
     /**
-     * Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of "arn:{partition\}:iam::{account_id\}:role/{role_name\}"
+     * Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of `arn:{partition\}:iam::{account_id\}:role/{role_name\}`
      */
     roleArn?: string | null;
   }
@@ -464,7 +464,7 @@ export namespace datamanager_v1 {
      */
     encryptedDek?: string | null;
     /**
-     * Required. Google Cloud Platform [Cloud Key Management Service resource ID](//cloud.google.com/kms/docs/getting-resource-ids). Should be in the format of "projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}".
+     * Required. Google Cloud Platform [Cloud Key Management Service resource ID](//cloud.google.com/kms/docs/getting-resource-ids). Should be in the format of `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}` or `gcp-kms://projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key\}`
      */
     kekUri?: string | null;
     /**
@@ -1231,15 +1231,13 @@ export namespace datamanager_v1 {
     }
   }
 
-  export interface Params$Resource$Audiencemembers$Ingest
-    extends StandardParameters {
+  export interface Params$Resource$Audiencemembers$Ingest extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$IngestAudienceMembersRequest;
   }
-  export interface Params$Resource$Audiencemembers$Remove
-    extends StandardParameters {
+  export interface Params$Resource$Audiencemembers$Remove extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -1555,8 +1553,7 @@ export namespace datamanager_v1 {
     }
   }
 
-  export interface Params$Resource$Requeststatus$Retrieve
-    extends StandardParameters {
+  export interface Params$Resource$Requeststatus$Retrieve extends StandardParameters {
     /**
      * Required. Required. The request ID of the Data Manager API request.
      */

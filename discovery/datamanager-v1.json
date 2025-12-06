@@ -193,7 +193,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251115",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdIdentifiers": {
@@ -285,7 +285,7 @@
           "type": "string"
         },
         "kekUri": {
-          "description": "Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of \"arn:{partition}:kms:{region}:{account_id}:key/{key_id}\"",
+          "description": "Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`",
           "type": "string"
         },
         "keyType": {
@@ -301,7 +301,7 @@
           "type": "string"
         },
         "roleArn": {
-          "description": "Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of \"arn:{partition}:iam::{account_id}:role/{role_name}\"",
+          "description": "Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of `arn:{partition}:iam::{account_id}:role/{role_name}`",
           "type": "string"
         }
       },
@@ -695,7 +695,7 @@
           "type": "string"
         },
         "kekUri": {
-          "description": "Required. Google Cloud Platform [Cloud Key Management Service resource ID](//cloud.google.com/kms/docs/getting-resource-ids). Should be in the format of \"projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}\".",
+          "description": "Required. Google Cloud Platform [Cloud Key Management Service resource ID](//cloud.google.com/kms/docs/getting-resource-ids). Should be in the format of `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}` or `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`",
           "type": "string"
         },
         "keyType": {
