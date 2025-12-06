@@ -1199,15 +1199,13 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Services$Get extends StandardParameters {
     /**
      * Required. The name of the billing account service to retrieve. Format: billingAccounts/{billing_account\}/services/{service\}
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Services$List extends StandardParameters {
     /**
      * Maximum number of billing account service to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
      */
@@ -1536,15 +1534,13 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Skugroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skugroups$Get extends StandardParameters {
     /**
      * Required. The name of the BillingAccountSkuGroup to retrieve. Format: billingAccounts/{billing_account\}/skuGroups/{sku_group\}
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Skugroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skugroups$List extends StandardParameters {
     /**
      * Maximum number of billing account SKU groups to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
      */
@@ -1875,15 +1871,13 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Skugroups$Skus$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skugroups$Skus$Get extends StandardParameters {
     /**
      * Required. The name of the billing account SKU group SKU to retrieve. Format: billingAccounts/{billing_account\}/skuGroups/{sku_group\}/skus/{sku\}
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Skugroups$Skus$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skugroups$Skus$List extends StandardParameters {
     /**
      * Maximum number of billing account SKU group SKUs to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
      */
@@ -2220,15 +2214,13 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Skus$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skus$Get extends StandardParameters {
     /**
      * Required. The name of the billing account SKU to retrieve. Format: billingAccounts/{billing_account\}/skus/{sku\}
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Skus$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skus$List extends StandardParameters {
     /**
      * Options for how to filter the billing account SKUs. Currently, only filter on `billing_account_service` is supported. Only !=, = operators are supported. Examples: - billing_account_service = "billingAccounts/012345-567890-ABCDEF/services/DA34-426B-A397"
      */
@@ -2408,8 +2400,7 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Skus$Price$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skus$Price$Get extends StandardParameters {
     /**
      * Optional. ISO-4217 currency code for the price. If not specified, the currency of the billing account is used.
      */
@@ -2585,8 +2576,7 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Skus$Prices$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Skus$Prices$List extends StandardParameters {
     /**
      * Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.
      */
@@ -3245,15 +3235,13 @@ export namespace cloudbilling_v1beta {
     }
   }
 
-  export interface Params$Resource$Skugroups$Skus$Get
-    extends StandardParameters {
+  export interface Params$Resource$Skugroups$Skus$Get extends StandardParameters {
     /**
      * Required. The name of the SKU group SKU to retrieve. Format: skuGroups/{sku_group\}/skus/{sku\}
      */
     name?: string;
   }
-  export interface Params$Resource$Skugroups$Skus$List
-    extends StandardParameters {
+  export interface Params$Resource$Skugroups$Skus$List extends StandardParameters {
     /**
      * Maximum number of SKU group SKUs to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.
      */
