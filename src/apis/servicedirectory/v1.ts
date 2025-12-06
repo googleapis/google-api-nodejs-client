@@ -700,15 +700,13 @@ export namespace servicedirectory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1919,8 +1917,7 @@ export namespace servicedirectory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Namespaces$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Create extends StandardParameters {
     /**
      * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -1935,22 +1932,19 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$Namespace;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Delete extends StandardParameters {
     /**
      * Required. The name of the namespace to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Get extends StandardParameters {
     /**
      * Required. The name of the namespace to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1961,8 +1955,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$List extends StandardParameters {
     /**
      * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `labels.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `labels.owner` returns namespaces that have a label with the key `owner`, this is the same as `labels:owner` * `labels.owner=sd` returns namespaces that have key/value `owner=sd` * `name\>projects/my-project/locations/us-east1/namespaces/namespace-c` returns namespaces that have name that is alphabetically later than the string, so "namespace-e" is returned but "namespace-a" is not * `labels.owner!=sd AND labels.foo=bar` returns namespaces that have `owner` in label key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that namespace doesn't have a field called "doesnotexist". Since the filter does not match any namespaces, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -1984,8 +1977,7 @@ export namespace servicedirectory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Patch extends StandardParameters {
     /**
      * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
      */
@@ -2000,8 +1992,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$Namespace;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2012,8 +2003,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3385,8 +3375,7 @@ export namespace servicedirectory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Create extends StandardParameters {
     /**
      * Required. The resource name of the namespace this service will belong to.
      */
@@ -3401,22 +3390,19 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Delete extends StandardParameters {
     /**
      * Required. The name of the service to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Get extends StandardParameters {
     /**
      * Required. The name of the service to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3427,8 +3413,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$List extends StandardParameters {
     /**
      * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns services that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns services that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -3450,8 +3435,7 @@ export namespace servicedirectory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Patch extends StandardParameters {
     /**
      * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
@@ -3466,8 +3450,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Resolve
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Resolve extends StandardParameters {
     /**
      * Required. The name of the service to resolve.
      */
@@ -3478,8 +3461,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$ResolveServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3490,8 +3472,7 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4267,8 +4248,7 @@ export namespace servicedirectory_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create extends StandardParameters {
     /**
      * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
@@ -4283,22 +4263,19 @@ export namespace servicedirectory_v1 {
      */
     requestBody?: Schema$Endpoint;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete extends StandardParameters {
     /**
      * Required. The name of the endpoint to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get extends StandardParameters {
     /**
      * Required. The name of the endpoint to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List extends StandardParameters {
     /**
      * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
@@ -4320,8 +4297,7 @@ export namespace servicedirectory_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch extends StandardParameters {
     /**
      * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
      */
