@@ -2070,15 +2070,13 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsettings extends StandardParameters {
     /**
      * A Project id. Required.
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Initializesettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Initializesettings extends StandardParameters {
     /**
      * A Project id. Required.
      */
@@ -2535,8 +2533,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Create extends StandardParameters {
     /**
      * A Project id. Required.
      */
@@ -2551,8 +2548,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$History;
   }
-  export interface Params$Resource$Projects$Histories$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Get extends StandardParameters {
     /**
      * A History id. Required.
      */
@@ -2562,8 +2558,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$List extends StandardParameters {
     /**
      * If set, only return histories with the given name. Optional.
      */
@@ -3222,8 +3217,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Create extends StandardParameters {
     /**
      * A History id. Required.
      */
@@ -3242,8 +3236,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Execution;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Get extends StandardParameters {
     /**
      * An Execution id. Required.
      */
@@ -3257,8 +3250,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$List extends StandardParameters {
     /**
      * A History id. Required.
      */
@@ -3276,8 +3268,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Patch extends StandardParameters {
     /**
      * Required.
      */
@@ -3603,8 +3594,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$Get extends StandardParameters {
     /**
      * A Cluster id Required.
      */
@@ -3622,8 +3612,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Clusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Clusters$List extends StandardParameters {
     /**
      * An Execution id. Required.
      */
@@ -3958,8 +3947,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Environments$Get extends StandardParameters {
     /**
      * Required. An Environment id.
      */
@@ -3977,8 +3965,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Environments$List extends StandardParameters {
     /**
      * Required. An Execution id.
      */
@@ -5169,8 +5156,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters extends StandardParameters {
     /**
      * The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
      */
@@ -5180,8 +5166,7 @@ export namespace toolresults_v1beta3 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Create extends StandardParameters {
     /**
      * Required. An Execution id.
      */
@@ -5204,8 +5189,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Get extends StandardParameters {
     /**
      * A Execution id. Required.
      */
@@ -5223,8 +5207,7 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -5242,8 +5225,7 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$List extends StandardParameters {
     /**
      * A Execution id. Required.
      */
@@ -5265,8 +5247,7 @@ export namespace toolresults_v1beta3 {
      */
     projectId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Patch extends StandardParameters {
     /**
      * A Execution id. Required.
      */
@@ -5293,8 +5274,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$Step;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles extends StandardParameters {
     /**
      * A Execution id. Required.
      */
@@ -5494,8 +5474,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6015,8 +5994,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6039,8 +6017,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$PerfSampleSeries;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6062,8 +6039,7 @@ export namespace toolresults_v1beta3 {
      */
     stepId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6436,8 +6412,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6464,8 +6439,7 @@ export namespace toolresults_v1beta3 {
      */
     requestBody?: Schema$BatchCreatePerfSamplesRequest;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List extends StandardParameters {
     /**
      * A tool results execution ID.
      */
@@ -6822,8 +6796,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get extends StandardParameters {
     /**
      * A Execution id Required.
      */
@@ -6845,8 +6818,7 @@ export namespace toolresults_v1beta3 {
      */
     testCaseId?: string;
   }
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Testcases$List extends StandardParameters {
     /**
      * A Execution id Required.
      */
@@ -7034,8 +7006,7 @@ export namespace toolresults_v1beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List extends StandardParameters {
     /**
      * An Execution id. Required.
      */
