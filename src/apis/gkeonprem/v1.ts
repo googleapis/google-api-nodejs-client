@@ -147,6 +147,44 @@ export namespace gkeonprem_v1 {
     value?: string | null;
   }
   /**
+   * BareMetalAdminBgpLbConfig represents configuration parameters for a Border Gateway Protocol (BGP) load balancer.
+   */
+  export interface Schema$BareMetalAdminBgpLbConfig {
+    /**
+     * Required. AddressPools is a list of non-overlapping IP pools used by load balancer typed services. All addresses must be routable to load balancer nodes. IngressVIP must be included in the pools.
+     */
+    addressPools?: Schema$BareMetalAdminLoadBalancerAddressPool[];
+    /**
+     * Required. BGP autonomous system number (ASN) of the cluster. This field can be updated after cluster creation.
+     */
+    asn?: string | null;
+    /**
+     * Required. The list of BGP peers that the cluster will connect to. At least one peer must be configured for each control plane node. Control plane nodes will connect to these peers to advertise the control plane VIP. The Services load balancer also uses these peers by default. This field can be updated after cluster creation.
+     */
+    bgpPeerConfigs?: Schema$BareMetalAdminBgpPeerConfig[];
+    /**
+     * Specifies the node pool running data plane load balancing. L2 connectivity is required among nodes in this pool. If missing, the control plane node pool is used for data plane load balancing.
+     */
+    loadBalancerNodePoolConfig?: Schema$BareMetalAdminLoadBalancerNodePoolConfig;
+  }
+  /**
+   * BareMetalAdminBgpPeerConfig represents configuration parameters for a Border Gateway Protocol (BGP) peer.
+   */
+  export interface Schema$BareMetalAdminBgpPeerConfig {
+    /**
+     * Required. BGP autonomous system number (ASN) for the network that contains the external peer device.
+     */
+    asn?: string | null;
+    /**
+     * The IP address of the control plane node that connects to the external peer. If you don't specify any control plane nodes, all control plane nodes can connect to the external peer. If you specify one or more IP addresses, only the nodes specified participate in peering sessions.
+     */
+    controlPlaneNodes?: string[] | null;
+    /**
+     * Required. The IP address of the external peer device.
+     */
+    ipAddress?: string | null;
+  }
+  /**
    * Resource that represents a bare metal admin cluster.
    */
   export interface Schema$BareMetalAdminCluster {
@@ -334,9 +372,34 @@ export namespace gkeonprem_v1 {
     serviceAddressCidrBlocks?: string[] | null;
   }
   /**
+   * Represents an IP pool used by the load balancer.
+   */
+  export interface Schema$BareMetalAdminLoadBalancerAddressPool {
+    /**
+     * Required. The addresses that are part of this pool. Each address must be either in the CIDR form (1.2.3.0/24) or range form (1.2.3.1-1.2.3.5).
+     */
+    addresses?: string[] | null;
+    /**
+     * If true, avoid using IPs ending in .0 or .255. This avoids buggy consumer devices mistakenly dropping IPv4 traffic for those special IP addresses.
+     */
+    avoidBuggyIps?: boolean | null;
+    /**
+     * If true, prevent IP addresses from being automatically assigned.
+     */
+    manualAssign?: boolean | null;
+    /**
+     * Required. The name of the address pool.
+     */
+    pool?: string | null;
+  }
+  /**
    * BareMetalAdminLoadBalancerConfig specifies the load balancer configuration.
    */
   export interface Schema$BareMetalAdminLoadBalancerConfig {
+    /**
+     * Configuration for BGP typed load balancers.
+     */
+    bgpLbConfig?: Schema$BareMetalAdminBgpLbConfig;
     /**
      * Manually configured load balancers.
      */
@@ -349,6 +412,15 @@ export namespace gkeonprem_v1 {
      * The VIPs used by the load balancer.
      */
     vipConfig?: Schema$BareMetalAdminVipConfig;
+  }
+  /**
+   * Specifies the load balancer's node pool configuration.
+   */
+  export interface Schema$BareMetalAdminLoadBalancerNodePoolConfig {
+    /**
+     * The generic configuration for a node pool running a load balancer.
+     */
+    nodePoolConfig?: Schema$BareMetalNodePoolConfig;
   }
   /**
    * BareMetalAdminMachineDrainStatus represents the status of bare metal node machines that are undergoing drain operations.
@@ -391,13 +463,30 @@ export namespace gkeonprem_v1 {
     enabled?: boolean | null;
   }
   /**
+   * Specifies the multiple networking interfaces cluster configuration.
+   */
+  export interface Schema$BareMetalAdminMultipleNetworkInterfacesConfig {
+    /**
+     * Whether to enable multiple network interfaces for your pods. When set network_config.advanced_networking is automatically set to true.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * BareMetalAdminNetworkConfig specifies the cluster network configuration.
    */
   export interface Schema$BareMetalAdminNetworkConfig {
     /**
+     * Enables the use of advanced Anthos networking features, such as Bundled Load Balancing with BGP or the egress NAT gateway. Setting configuration for advanced networking features will automatically set this flag.
+     */
+    advancedNetworking?: boolean | null;
+    /**
      * Configuration for Island mode CIDR.
      */
     islandModeCidr?: Schema$BareMetalAdminIslandModeCidrConfig;
+    /**
+     * Configuration for multiple network interfaces.
+     */
+    multipleNetworkInterfacesConfig?: Schema$BareMetalAdminMultipleNetworkInterfacesConfig;
   }
   /**
    * Specifies the node access related settings for the bare metal admin cluster.
@@ -3285,15 +3374,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4920,8 +5007,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Create extends StandardParameters {
     /**
      * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
      */
@@ -4944,8 +5030,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalAdminCluster;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Enroll extends StandardParameters {
     /**
      * Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
      */
@@ -4956,8 +5041,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollBareMetalAdminClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Get extends StandardParameters {
     /**
      * Optional. If true, return BareMetal Admin Cluster including the one that only exists in RMS.
      */
@@ -4971,8 +5055,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4982,8 +5065,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$List extends StandardParameters {
     /**
      * Optional. If true, return list of BareMetal Admin Clusters including the ones that only exists in RMS.
      */
@@ -5005,8 +5087,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Patch extends StandardParameters {
     /**
      * Immutable. The bare metal admin cluster resource name.
      */
@@ -5025,8 +5106,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalAdminCluster;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Queryversionconfig extends StandardParameters {
     /**
      * Required. The parent of the project and location to query for version config. Format: "projects/{project\}/locations/{location\}"
      */
@@ -5036,8 +5116,7 @@ export namespace gkeonprem_v1 {
      */
     'upgradeConfig.clusterName'?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5048,8 +5127,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -5060,8 +5138,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Unenroll extends StandardParameters {
     /**
      * If set to true, and the bare metal admin cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -5382,15 +5459,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7183,8 +7258,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Create extends StandardParameters {
     /**
      * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
      */
@@ -7207,8 +7281,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalCluster;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Delete extends StandardParameters {
     /**
      * If set to true, and the bare metal cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -7234,8 +7307,7 @@ export namespace gkeonprem_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Enroll extends StandardParameters {
     /**
      * Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
      */
@@ -7246,8 +7318,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollBareMetalClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Get extends StandardParameters {
     /**
      * Optional. If true, return BareMetal Cluster including the one that only exists in RMS.
      */
@@ -7261,8 +7332,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7272,8 +7342,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$List extends StandardParameters {
     /**
      * Optional. If true, return list of BareMetal Clusters including the ones that only exists in RMS.
      */
@@ -7299,8 +7368,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Patch extends StandardParameters {
     /**
      * If set to true, and the bare metal cluster is not found, the request will create a new bare metal cluster with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
      */
@@ -7323,8 +7391,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalCluster;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Queryversionconfig extends StandardParameters {
     /**
      * The admin cluster membership. This is the full resource name of the admin cluster's fleet membership. Format: "projects/{project\}/locations/{location\}/memberships/{membership\}"
      */
@@ -7342,8 +7409,7 @@ export namespace gkeonprem_v1 {
      */
     'upgradeConfig.clusterName'?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7354,8 +7420,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7366,8 +7431,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Unenroll extends StandardParameters {
     /**
      * If set to true, and the bare metal cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -8956,8 +9020,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Create extends StandardParameters {
     /**
      * The ID to use for the node pool, which will become the final component of the node pool's resource name. This value must be up to 63 characters, and valid characters are /a-z-/. The value must not be permitted to be a UUID (or UUID-like: anything matching /^[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}$/i).
      */
@@ -8976,8 +9039,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalNodePool;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Delete extends StandardParameters {
     /**
      * If set to true, and the bare metal node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -8999,8 +9061,7 @@ export namespace gkeonprem_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Enroll extends StandardParameters {
     /**
      * Required. The parent resource where this node pool will be created. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}
      */
@@ -9011,8 +9072,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollBareMetalNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Get extends StandardParameters {
     /**
      * Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/bareMetalClusters/{cluster\}/bareMetalNodePools/{nodepool\}
      */
@@ -9022,8 +9082,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9033,8 +9092,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$List extends StandardParameters {
     /**
      * The maximum number of node pools to return. The service may return fewer than this value. If unspecified, at most 50 node pools will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9052,8 +9110,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Patch extends StandardParameters {
     /**
      * If set to true, and the bare metal node pool is not found, the request will create a new bare metal node pool with the provided configuration. The user must have both create and update permission to call Update with allow_missing set to true.
      */
@@ -9076,8 +9133,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$BareMetalNodePool;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9088,8 +9144,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9100,8 +9155,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Unenroll extends StandardParameters {
     /**
      * If set to true, and the bare metal node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -9422,15 +9476,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Baremetalnodepools$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9751,15 +9803,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Baremetalclusters$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Baremetalclusters$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -10346,8 +10396,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -10358,22 +10407,19 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -10442,6 +10488,8 @@ export namespace gkeonprem_v1 {
      *     allowPreflightFailure: 'placeholder-value',
      *     // Required. The parent of the project and location where the cluster is created in. Format: "projects/{project\}/locations/{location\}"
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. If set, skip the specified validations.
+     *     skipValidations: 'placeholder-value',
      *     // Validate the request without actually doing any updates.
      *     validateOnly: 'placeholder-value',
      *     // Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
@@ -11242,6 +11290,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.vmwareAdminClusters.patch({
      *     // Immutable. The VMware admin cluster resource name.
      *     name: 'projects/my-project/locations/my-location/vmwareAdminClusters/my-vmwareAdminCluster',
+     *     // Optional. If set, the server-side preflight checks will be skipped.
+     *     skipValidations: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten in the VMwareAdminCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareAdminCluster message will be updated. Empty fields will be ignored unless a field mask is used.
      *     updateMask: 'placeholder-value',
      *     // Validate the request without actually doing any updates.
@@ -11842,8 +11892,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Create extends StandardParameters {
     /**
      * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
      */
@@ -11852,6 +11901,10 @@ export namespace gkeonprem_v1 {
      * Required. The parent of the project and location where the cluster is created in. Format: "projects/{project\}/locations/{location\}"
      */
     parent?: string;
+    /**
+     * Optional. If set, skip the specified validations.
+     */
+    skipValidations?: string[];
     /**
      * Validate the request without actually doing any updates.
      */
@@ -11866,8 +11919,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareAdminCluster;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Enroll extends StandardParameters {
     /**
      * Required. The parent of the project and location where the cluster is enrolled in. Format: "projects/{project\}/locations/{location\}"
      */
@@ -11878,8 +11930,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollVmwareAdminClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Get extends StandardParameters {
     /**
      * Optional. If true, return Vmware Admin Cluster including the one that only exists in RMS.
      */
@@ -11893,8 +11944,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -11904,8 +11954,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$List extends StandardParameters {
     /**
      * Optional. If true, return list of Vmware Admin Clusters including the ones that only exists in RMS.
      */
@@ -11927,12 +11976,15 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Patch extends StandardParameters {
     /**
      * Immutable. The VMware admin cluster resource name.
      */
     name?: string;
+    /**
+     * Optional. If set, the server-side preflight checks will be skipped.
+     */
+    skipValidations?: string[];
     /**
      * Required. Field mask is used to specify the fields to be overwritten in the VMwareAdminCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareAdminCluster message will be updated. Empty fields will be ignored unless a field mask is used.
      */
@@ -11947,8 +11999,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareAdminCluster;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11959,8 +12010,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11971,8 +12021,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Unenroll extends StandardParameters {
     /**
      * If set to true, and the VMware admin cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -12293,15 +12342,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -12373,6 +12420,8 @@ export namespace gkeonprem_v1 {
      *     allowPreflightFailure: 'placeholder-value',
      *     // Required. The parent of the project and location where this cluster is created in. Format: "projects/{project\}/locations/{location\}"
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. List of validations to skip during cluster creation.
+     *     skipValidations: 'placeholder-value',
      *     // Validate the request without actually doing any updates.
      *     validateOnly: 'placeholder-value',
      *     // User provided identifier that is used as part of the resource name; This value must be up to 40 characters and follow RFC-1123 (https://tools.ietf.org/html/rfc1123) format.
@@ -13324,6 +13373,8 @@ export namespace gkeonprem_v1 {
      *   const res = await gkeonprem.projects.locations.vmwareClusters.patch({
      *     // Immutable. The VMware user cluster resource name.
      *     name: 'projects/my-project/locations/my-location/vmwareClusters/my-vmwareCluster',
+     *
+     *     skipValidations: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten in the VMwareCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareCluster message will be updated. Empty fields will be ignored unless a field mask is used.
      *     updateMask: 'placeholder-value',
      *     // Validate the request without actually doing any updates.
@@ -14079,8 +14130,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Create extends StandardParameters {
     /**
      * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
      */
@@ -14089,6 +14139,10 @@ export namespace gkeonprem_v1 {
      * Required. The parent of the project and location where this cluster is created in. Format: "projects/{project\}/locations/{location\}"
      */
     parent?: string;
+    /**
+     * Optional. List of validations to skip during cluster creation.
+     */
+    skipValidations?: string[];
     /**
      * Validate the request without actually doing any updates.
      */
@@ -14103,8 +14157,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareCluster;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Delete extends StandardParameters {
     /**
      * If set to true, and the VMware cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -14130,8 +14183,7 @@ export namespace gkeonprem_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Enroll extends StandardParameters {
     /**
      * Required. The parent of the project and location where the cluster is Enrolled in. Format: "projects/{project\}/locations/{location\}"
      */
@@ -14142,8 +14194,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollVmwareClusterRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Get extends StandardParameters {
     /**
      * Optional. If true, return Vmware Cluster including the one that only exists in RMS.
      */
@@ -14157,8 +14208,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -14168,8 +14218,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$List extends StandardParameters {
     /**
      * Optional. If true, return list of Vmware Clusters including the ones that only exists in RMS.
      */
@@ -14195,12 +14244,15 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Patch extends StandardParameters {
     /**
      * Immutable. The VMware user cluster resource name.
      */
     name?: string;
+    /**
+     *
+     */
+    skipValidations?: string[];
     /**
      * Required. Field mask is used to specify the fields to be overwritten in the VMwareCluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all populated fields in the VmwareCluster message will be updated. Empty fields will be ignored unless a field mask is used.
      */
@@ -14215,8 +14267,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareCluster;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Queryversionconfig extends StandardParameters {
     /**
      * The admin cluster membership. This is the full resource name of the admin cluster's fleet membership. Format: "projects/{project\}/locations/{location\}/memberships/{membership\}"
      */
@@ -14234,8 +14285,7 @@ export namespace gkeonprem_v1 {
      */
     'upgradeConfig.clusterName'?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14246,8 +14296,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14258,8 +14307,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Unenroll extends StandardParameters {
     /**
      * If set to true, and the VMware cluster is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -14580,15 +14628,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -16161,8 +16207,7 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Create extends StandardParameters {
     /**
      * Required. The parent resource where this node pool will be created. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}
      */
@@ -16181,8 +16226,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareNodePool;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Delete extends StandardParameters {
     /**
      * If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -16204,8 +16248,7 @@ export namespace gkeonprem_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Enroll extends StandardParameters {
     /**
      * Required. The parent resource where the node pool is enrolled in.
      */
@@ -16216,8 +16259,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$EnrollVmwareNodePoolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Get extends StandardParameters {
     /**
      * Required. The name of the node pool to retrieve. projects/{project\}/locations/{location\}/vmwareClusters/{cluster\}/vmwareNodePools/{nodepool\}
      */
@@ -16227,8 +16269,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -16238,8 +16279,7 @@ export namespace gkeonprem_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$List extends StandardParameters {
     /**
      * The maximum number of node pools to return. The service may return fewer than this value. If unspecified, at most 50 node pools will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -16257,8 +16297,7 @@ export namespace gkeonprem_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Patch extends StandardParameters {
     /**
      * Immutable. The resource name of this node pool.
      */
@@ -16277,8 +16316,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$VmwareNodePool;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16289,8 +16327,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -16301,8 +16338,7 @@ export namespace gkeonprem_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Unenroll extends StandardParameters {
     /**
      * If set to true, and the VMware node pool is not found, the request will succeed but no action will be taken on the server and return a completed LRO.
      */
@@ -16623,15 +16659,13 @@ export namespace gkeonprem_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Vmwareclusters$Vmwarenodepools$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */

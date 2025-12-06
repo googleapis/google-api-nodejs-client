@@ -1766,6 +1766,12 @@
                       "required": true,
                       "type": "string"
                     },
+                    "skipValidations": {
+                      "description": "Optional. If set, skip the specified validations.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
                     "validateOnly": {
                       "description": "Validate the request without actually doing any updates.",
                       "location": "query",
@@ -1962,6 +1968,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vmwareAdminClusters/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "skipValidations": {
+                      "description": "Optional. If set, the server-side preflight checks will be skipped.",
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     },
                     "updateMask": {
@@ -2188,6 +2200,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "skipValidations": {
+                      "description": "Optional. List of validations to skip during cluster creation.",
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     },
                     "validateOnly": {
@@ -2441,6 +2459,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vmwareClusters/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "skipValidations": {
+                      "location": "query",
+                      "repeated": true,
                       "type": "string"
                     },
                     "updateMask": {
@@ -3140,7 +3163,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20251105",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -3167,6 +3190,59 @@
         },
         "value": {
           "description": "Required. The value of the arg as it will be passed to the API Server command line.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BareMetalAdminBgpLbConfig": {
+      "description": "BareMetalAdminBgpLbConfig represents configuration parameters for a Border Gateway Protocol (BGP) load balancer.",
+      "id": "BareMetalAdminBgpLbConfig",
+      "properties": {
+        "addressPools": {
+          "description": "Required. AddressPools is a list of non-overlapping IP pools used by load balancer typed services. All addresses must be routable to load balancer nodes. IngressVIP must be included in the pools.",
+          "items": {
+            "$ref": "BareMetalAdminLoadBalancerAddressPool"
+          },
+          "type": "array"
+        },
+        "asn": {
+          "description": "Required. BGP autonomous system number (ASN) of the cluster. This field can be updated after cluster creation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "bgpPeerConfigs": {
+          "description": "Required. The list of BGP peers that the cluster will connect to. At least one peer must be configured for each control plane node. Control plane nodes will connect to these peers to advertise the control plane VIP. The Services load balancer also uses these peers by default. This field can be updated after cluster creation.",
+          "items": {
+            "$ref": "BareMetalAdminBgpPeerConfig"
+          },
+          "type": "array"
+        },
+        "loadBalancerNodePoolConfig": {
+          "$ref": "BareMetalAdminLoadBalancerNodePoolConfig",
+          "description": "Specifies the node pool running data plane load balancing. L2 connectivity is required among nodes in this pool. If missing, the control plane node pool is used for data plane load balancing."
+        }
+      },
+      "type": "object"
+    },
+    "BareMetalAdminBgpPeerConfig": {
+      "description": "BareMetalAdminBgpPeerConfig represents configuration parameters for a Border Gateway Protocol (BGP) peer.",
+      "id": "BareMetalAdminBgpPeerConfig",
+      "properties": {
+        "asn": {
+          "description": "Required. BGP autonomous system number (ASN) for the network that contains the external peer device.",
+          "format": "int64",
+          "type": "string"
+        },
+        "controlPlaneNodes": {
+          "description": "The IP address of the control plane node that connects to the external peer. If you don't specify any control plane nodes, all control plane nodes can connect to the external peer. If you specify one or more IP addresses, only the nodes specified participate in peering sessions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ipAddress": {
+          "description": "Required. The IP address of the external peer device.",
           "type": "string"
         }
       },
@@ -3419,10 +3495,40 @@
       },
       "type": "object"
     },
+    "BareMetalAdminLoadBalancerAddressPool": {
+      "description": "Represents an IP pool used by the load balancer.",
+      "id": "BareMetalAdminLoadBalancerAddressPool",
+      "properties": {
+        "addresses": {
+          "description": "Required. The addresses that are part of this pool. Each address must be either in the CIDR form (1.2.3.0/24) or range form (1.2.3.1-1.2.3.5).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "avoidBuggyIps": {
+          "description": "If true, avoid using IPs ending in .0 or .255. This avoids buggy consumer devices mistakenly dropping IPv4 traffic for those special IP addresses.",
+          "type": "boolean"
+        },
+        "manualAssign": {
+          "description": "If true, prevent IP addresses from being automatically assigned.",
+          "type": "boolean"
+        },
+        "pool": {
+          "description": "Required. The name of the address pool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BareMetalAdminLoadBalancerConfig": {
       "description": "BareMetalAdminLoadBalancerConfig specifies the load balancer configuration.",
       "id": "BareMetalAdminLoadBalancerConfig",
       "properties": {
+        "bgpLbConfig": {
+          "$ref": "BareMetalAdminBgpLbConfig",
+          "description": "Configuration for BGP typed load balancers."
+        },
         "manualLbConfig": {
           "$ref": "BareMetalAdminManualLbConfig",
           "description": "Manually configured load balancers."
@@ -3434,6 +3540,17 @@
         "vipConfig": {
           "$ref": "BareMetalAdminVipConfig",
           "description": "The VIPs used by the load balancer."
+        }
+      },
+      "type": "object"
+    },
+    "BareMetalAdminLoadBalancerNodePoolConfig": {
+      "description": "Specifies the load balancer's node pool configuration.",
+      "id": "BareMetalAdminLoadBalancerNodePoolConfig",
+      "properties": {
+        "nodePoolConfig": {
+          "$ref": "BareMetalNodePoolConfig",
+          "description": "The generic configuration for a node pool running a load balancer."
         }
       },
       "type": "object"
@@ -3495,13 +3612,32 @@
       },
       "type": "object"
     },
+    "BareMetalAdminMultipleNetworkInterfacesConfig": {
+      "description": "Specifies the multiple networking interfaces cluster configuration.",
+      "id": "BareMetalAdminMultipleNetworkInterfacesConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable multiple network interfaces for your pods. When set network_config.advanced_networking is automatically set to true.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "BareMetalAdminNetworkConfig": {
       "description": "BareMetalAdminNetworkConfig specifies the cluster network configuration.",
       "id": "BareMetalAdminNetworkConfig",
       "properties": {
+        "advancedNetworking": {
+          "description": "Enables the use of advanced Anthos networking features, such as Bundled Load Balancing with BGP or the egress NAT gateway. Setting configuration for advanced networking features will automatically set this flag.",
+          "type": "boolean"
+        },
         "islandModeCidr": {
           "$ref": "BareMetalAdminIslandModeCidrConfig",
           "description": "Configuration for Island mode CIDR."
+        },
+        "multipleNetworkInterfacesConfig": {
+          "$ref": "BareMetalAdminMultipleNetworkInterfacesConfig",
+          "description": "Configuration for multiple network interfaces."
         }
       },
       "type": "object"
