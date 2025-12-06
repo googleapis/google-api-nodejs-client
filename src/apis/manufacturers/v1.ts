@@ -1508,22 +1508,19 @@ export namespace manufacturers_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Languages$Productcertifications$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Delete extends StandardParameters {
     /**
      * Required. The name of the product certification to delete. Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Languages$Productcertifications$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Get extends StandardParameters {
     /**
      * Required. The name of the product certification to get. Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Languages$Productcertifications$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Languages$Productcertifications$List extends StandardParameters {
     /**
      * Optional. The maximum number of product certifications to return. The service may return fewer than this value. If unspecified, at most 50 product certifications will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -1537,8 +1534,7 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Languages$Productcertifications$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Patch extends StandardParameters {
     /**
      * Required. The unique name identifier of a product certification Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\} Where `id` is a some unique identifier and `language_code` is a 2-letter ISO 639-1 code of a Shopping supported language according to https://support.google.com/merchants/answer/160637.
      */
@@ -2183,8 +2179,7 @@ export namespace manufacturers_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Products$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$Delete extends StandardParameters {
     /**
      * Name in the format `{target_country\}:{content_language\}:{product_id\}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
@@ -2194,8 +2189,7 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$Get extends StandardParameters {
     /**
      * The information to be included in the response. Only sections listed here will be returned.
      */
@@ -2209,8 +2203,7 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$List extends StandardParameters {
     /**
      * The information to be included in the response. Only sections listed here will be returned.
      */
@@ -2228,8 +2221,7 @@ export namespace manufacturers_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Products$Update
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Products$Update extends StandardParameters {
     /**
      * Name in the format `{target_country\}:{content_language\}:{product_id\}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
      */
