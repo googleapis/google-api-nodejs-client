@@ -1917,8 +1917,7 @@ export namespace speech_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Customclasses$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customclasses$Create extends StandardParameters {
     /**
      * Required. The parent resource where this custom class will be created. Format: `projects/{project\}/locations/{location\}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
@@ -1929,22 +1928,19 @@ export namespace speech_v1p1beta1 {
      */
     requestBody?: Schema$CreateCustomClassRequest;
   }
-  export interface Params$Resource$Projects$Locations$Customclasses$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customclasses$Delete extends StandardParameters {
     /**
      * Required. The name of the custom class to delete. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customclasses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customclasses$Get extends StandardParameters {
     /**
      * Required. The name of the custom class to retrieve. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customclasses$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customclasses$List extends StandardParameters {
     /**
      * The maximum number of custom classes to return. The service may return fewer than this value. If unspecified, at most 50 custom classes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -1958,8 +1954,7 @@ export namespace speech_v1p1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Customclasses$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Customclasses$Patch extends StandardParameters {
     /**
      * The resource name of the custom class.
      */
@@ -2730,8 +2725,7 @@ export namespace speech_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Phrasesets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasesets$Create extends StandardParameters {
     /**
      * Required. The parent resource where this phrase set will be created. Format: `projects/{project\}/locations/{location\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
@@ -2742,22 +2736,19 @@ export namespace speech_v1p1beta1 {
      */
     requestBody?: Schema$CreatePhraseSetRequest;
   }
-  export interface Params$Resource$Projects$Locations$Phrasesets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasesets$Delete extends StandardParameters {
     /**
      * Required. The name of the phrase set to delete. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasesets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasesets$Get extends StandardParameters {
     /**
      * Required. The name of the phrase set to retrieve. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasesets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasesets$List extends StandardParameters {
     /**
      * The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2771,8 +2762,7 @@ export namespace speech_v1p1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Phrasesets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Phrasesets$Patch extends StandardParameters {
     /**
      * The resource name of the phrase set.
      */
@@ -3091,8 +3081,7 @@ export namespace speech_v1p1beta1 {
     }
   }
 
-  export interface Params$Resource$Speech$Longrunningrecognize
-    extends StandardParameters {
+  export interface Params$Resource$Speech$Longrunningrecognize extends StandardParameters {
     /**
      * Request body metadata
      */
