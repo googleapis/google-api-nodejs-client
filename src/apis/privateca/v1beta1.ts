@@ -659,15 +659,13 @@ export namespace privateca_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1153,8 +1151,7 @@ export namespace privateca_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1164,8 +1161,7 @@ export namespace privateca_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1176,8 +1172,7 @@ export namespace privateca_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1651,8 +1646,7 @@ export namespace privateca_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -1662,8 +1656,7 @@ export namespace privateca_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -1674,8 +1667,7 @@ export namespace privateca_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2254,8 +2246,7 @@ export namespace privateca_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2266,22 +2257,19 @@ export namespace privateca_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2758,8 +2746,7 @@ export namespace privateca_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reusableconfigs$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reusableconfigs$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2769,8 +2756,7 @@ export namespace privateca_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reusableconfigs$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reusableconfigs$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2781,8 +2767,7 @@ export namespace privateca_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Reusableconfigs$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Reusableconfigs$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
