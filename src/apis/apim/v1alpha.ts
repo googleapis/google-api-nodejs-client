@@ -485,7 +485,7 @@ export namespace apim_v1alpha {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1252,22 +1252,19 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getentitlement
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getentitlement extends StandardParameters {
     /**
      * Required. The entitlement resource name Format: projects/{project\}/locations/{location\}/entitlement
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1289,8 +1286,7 @@ export namespace apim_v1alpha {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Listapiobservationtags
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Listapiobservationtags extends StandardParameters {
     /**
      * Optional. The maximum number of tags to return. The service may return fewer than this value. If unspecified, at most 10 tags will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2195,8 +2191,7 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Observationjobs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Observation Job. This value should be 4-63 characters, and valid characters are /a-z-/.
      */
@@ -2215,15 +2210,13 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$ObservationJob;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Delete extends StandardParameters {
     /**
      * Required. Name of the resource Format: projects/{project\}/locations/{location\}/observationJobs/{observation_job\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Disable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Disable extends StandardParameters {
     /**
      * Required. The name of the ObservationJob to disable. Format: projects/{project\}/locations/{location\}/observationJobs/{job\}
      */
@@ -2234,8 +2227,7 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$DisableObservationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Enable
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Enable extends StandardParameters {
     /**
      * Required. The name of the ObservationJob to enable. Format: projects/{project\}/locations/{location\}/observationJobs/{job\}
      */
@@ -2246,15 +2238,13 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$EnableObservationJobRequest;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Get extends StandardParameters {
     /**
      * Required. The name of the ObservationJob to retrieve. Format: projects/{project\}/locations/{location\}/observationJobs/{job\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$List extends StandardParameters {
     /**
      * Optional. The maximum number of ObservationJobs to return. The service may return fewer than this value. If unspecified, at most 10 ObservationJobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -2735,8 +2725,7 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags extends StandardParameters {
     /**
      * Required. The parent resource shared by all ApiObservations being edited. Format: projects/{project\}/locations/{location\}/observationJobs/{observation_job\}
      */
@@ -2747,15 +2736,13 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$BatchEditTagsApiObservationsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get extends StandardParameters {
     /**
      * Required. The name of the ApiObservation to retrieve. Format: projects/{project\}/locations/{location\}/observationJobs/{observation_job\}/apiObservations/{api_observation\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$List extends StandardParameters {
     /**
      * Optional. The maximum number of ApiObservations to return. The service may return fewer than this value. If unspecified, at most 10 ApiObservations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -3070,15 +3057,13 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$Get extends StandardParameters {
     /**
      * Required. The name of the ApiOperation to retrieve. Format: projects/{project\}/locations/{location\}/observationJobs/{observation_job\}/apiObservations/{api_observation\}/apiOperation/{api_operation\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Apioperations$List extends StandardParameters {
     /**
      * Optional. The maximum number of ApiOperations to return. The service may return fewer than this value. If unspecified, at most 10 ApiOperations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -3686,8 +3671,7 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Observationsources$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationsources$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Observation Source. This value should be 4-63 characters, and valid characters are /a-z-/.
      */
@@ -3706,22 +3690,19 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$ObservationSource;
   }
-  export interface Params$Resource$Projects$Locations$Observationsources$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationsources$Delete extends StandardParameters {
     /**
      * Required. Name of the resource Format: projects/{project\}/locations/{location\}/observationSources/{source\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationsources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationsources$Get extends StandardParameters {
     /**
      * Required. The name of the ObservationSource to retrieve. Format: projects/{project\}/locations/{location\}/observationSources/{source\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Observationsources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Observationsources$List extends StandardParameters {
     /**
      * Optional. The maximum number of ObservationSources to return. The service may return fewer than this value. If unspecified, at most 10 ObservationSources will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -4192,7 +4173,7 @@ export namespace apim_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4303,8 +4284,7 @@ export namespace apim_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -4315,22 +4295,19 @@ export namespace apim_v1alpha {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -4348,7 +4325,7 @@ export namespace apim_v1alpha {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
