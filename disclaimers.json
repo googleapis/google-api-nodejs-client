@@ -872,7 +872,7 @@
     "package": "@google-cloud/storagebatchoperations"
   },
   {
-    "api": "cloudtrace",
-    "package": "@google-cloud/trace-agent"
+    "api": "vectorsearch",
+    "package": "@google-cloud/vectorsearch"
   }
 ]

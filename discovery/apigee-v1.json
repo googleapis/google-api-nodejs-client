@@ -7178,7 +7178,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the security monitoring condition to delete. Format: `organizations/{org}/environment/{env}/securityActions/{security_action}`",
+                      "description": "Required. The name of the security action to delete. Format: `organizations/{org}/environment/{env}/securityActions/{security_action}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/securityActions/[^/]+$",
                       "required": true,
@@ -9470,7 +9470,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -11493,7 +11493,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251125",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12084,6 +12084,22 @@
         "lastModifiedAt": {
           "description": "Response only. Modified time of this environment as milliseconds since epoch.",
           "format": "int64",
+          "type": "string"
+        },
+        "llmOperationGroup": {
+          "$ref": "GoogleCloudApigeeV1LlmOperationGroup",
+          "description": "Optional. Configuration used to group Apigee proxies with resources, method types, LLM model and quotas. The resource refers to the resource URI (excluding the base path). With this grouping, the API product creator is able to fine-tune and give precise control over which REST methods have access to specific resources, specific LLM model and how many calls can be made (using the `quota` setting). **Note:** The `api_resources` setting cannot be specified for both the API product and llm operation group; otherwise the call will fail."
+        },
+        "llmQuota": {
+          "description": "Optional. Number of LLM tokens permitted per app by this API product for the specified `llm_quota_interval` and `llm_quota_time_unit`. For example, an `llm_quota` of 50,000, for an `llm_quota_interval` of 12 and an `llm_quota_time_unit` of hours means 50,000 llm tokens are allowed to be used every 12 hours.",
+          "type": "string"
+        },
+        "llmQuotaInterval": {
+          "description": "Optional. Time interval over which the number of tokens from LLM responses is calculated.",
+          "type": "string"
+        },
+        "llmQuotaTimeUnit": {
+          "description": "Optional. Time unit defined for the `llm_quota_interval`. Valid values include `minute`, `hour`, `day`, or `month`.",
           "type": "string"
         },
         "name": {
@@ -15668,6 +15684,10 @@
           "description": "Required. Flag that specifies whether entry values will be encrypted. This field is retained for backward compatibility and the value of encrypted will always be `true`. Apigee X and hybrid do not support unencrypted key value maps.",
           "type": "boolean"
         },
+        "maskedValues": {
+          "description": "Optional. Flag that specifies whether entry values will be masked when returned.",
+          "type": "boolean"
+        },
         "name": {
           "description": "Required. ID of the key value map.",
           "type": "string"
@@ -16434,6 +16454,90 @@
             "$ref": "GoogleCloudApigeeV1TraceConfigOverride"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1LlmOperation": {
+      "description": "Represents the pairing of REST resource path, model and the actions (verbs) allowed on the resource path.",
+      "id": "GoogleCloudApigeeV1LlmOperation",
+      "properties": {
+        "methods": {
+          "description": "Optional. methods refers to the REST verbs as in https://httpwg.org/specs/rfc9110.html For example: GET, POST, PUT, DELETE, etc. They need to be in uppercase. When none specified, all verb types are allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "model": {
+          "description": "Required. LLM model name associated with the API proxy",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Required. REST resource path associated with the API proxy or remote service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1LlmOperationConfig": {
+      "description": "Binds the resources in an API proxy or remote service with the allowed REST methods and associated quota enforcement.",
+      "id": "GoogleCloudApigeeV1LlmOperationConfig",
+      "properties": {
+        "apiSource": {
+          "description": "Required. Name of the API proxy or remote service with which the resources, methods, and quota are associated.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "Optional. Custom attributes associated with the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "llmOperations": {
+          "description": "Required. List of resource/method/model for the API proxy to which quota will applied. **Note**: Currently, you can specify only a single resource/method/model mapping. The call will fail if more than one resource/method/model mappings are provided.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1LlmOperation"
+          },
+          "type": "array"
+        },
+        "llmTokenQuota": {
+          "$ref": "GoogleCloudApigeeV1LlmTokenQuota",
+          "description": "Required. LLM token Quota parameters to be enforced for the resources, methods, and API source & LLM model combination. If none are specified, quota enforcement will not be done."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1LlmOperationGroup": {
+      "description": "List of LLM operation configuration details associated with Apigee API proxies.",
+      "id": "GoogleCloudApigeeV1LlmOperationGroup",
+      "properties": {
+        "operationConfigs": {
+          "description": "Required. List of LLM operation configurations for either Apigee API proxies that are associated with this API product.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1LlmOperationConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1LlmTokenQuota": {
+      "description": "LLM Token Quota contains the essential parameters needed that can be applied on the resources, methods, models, API source combination associated with this API product. While LLM Token Quota is optional, setting it prevents requests from exceeding the provisioned parameters.",
+      "id": "GoogleCloudApigeeV1LlmTokenQuota",
+      "properties": {
+        "interval": {
+          "description": "Required. Time interval over which the number of request messages is calculated.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Required. Upper limit of LLM tokens allowed for the time interval and time unit specified. Requests exceeding this limit will be rejected.",
+          "type": "string"
+        },
+        "timeUnit": {
+          "description": "Optional. Time unit defined for the `interval`. Valid values include `minute`, `hour`, `day`, or `month`. If `limit` and `interval` are valid, the default value is `hour`; otherwise, the default is null.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -20567,7 +20671,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
