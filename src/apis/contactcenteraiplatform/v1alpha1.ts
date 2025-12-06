@@ -372,7 +372,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1079,15 +1079,13 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1109,8 +1107,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Querycontactcenterquota
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Querycontactcenterquota extends StandardParameters {
     /**
      * Required. Parent project resource id.
      */
@@ -1925,8 +1922,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Contactcenters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Contactcenters$Create extends StandardParameters {
     /**
      * Required. Id of the requesting object If auto-generating Id server-side, remove this field and contact_center_id from the method_signature of Create RPC
      */
@@ -1945,8 +1941,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     requestBody?: Schema$ContactCenter;
   }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Contactcenters$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -1956,15 +1951,13 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Contactcenters$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Contactcenters$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Contactcenters$List extends StandardParameters {
     /**
      * Filtering results
      */
@@ -1986,8 +1979,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Contactcenters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Contactcenters$Patch extends StandardParameters {
     /**
      * name of resource
      */
@@ -2468,7 +2460,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2580,8 +2572,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2592,22 +2583,19 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -2625,7 +2613,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
