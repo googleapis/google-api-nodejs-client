@@ -4372,7 +4372,7 @@ export namespace retail_v2 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -6877,8 +6877,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Completequery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Completequery extends StandardParameters {
     /**
      * Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
@@ -6916,8 +6915,7 @@ export namespace retail_v2 {
      */
     visitorId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics extends StandardParameters {
     /**
      * Required. Full resource name of the parent catalog. Expected format: `projects/x/locations/x/catalogs/x`
      */
@@ -6928,43 +6926,37 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ExportAnalyticsMetricsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Getattributesconfig extends StandardParameters {
     /**
      * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Getcompletionconfig extends StandardParameters {
     /**
      * Required. Full CompletionConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/completionConfig`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Getconversationalsearchcustomizationconfig extends StandardParameters {
     /**
      * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch extends StandardParameters {
     /**
      * The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
     catalog?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature extends StandardParameters {
     /**
      * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
     catalog?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$List extends StandardParameters {
     /**
      * Maximum number of Catalogs to return. If unspecified, defaults to 50. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT is returned.
      */
@@ -6978,8 +6970,7 @@ export namespace retail_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Patch extends StandardParameters {
     /**
      * Required. Immutable. The fully qualified resource name of the catalog.
      */
@@ -6994,8 +6985,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Catalog;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch extends StandardParameters {
     /**
      * Full resource name of the catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
@@ -7006,8 +6996,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2SetDefaultBranchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Updateattributesconfig extends StandardParameters {
     /**
      * Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
      */
@@ -7022,8 +7011,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AttributesConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Updatecompletionconfig extends StandardParameters {
     /**
      * Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
      */
@@ -7038,8 +7026,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2CompletionConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Updateconversationalsearchcustomizationconfig extends StandardParameters {
     /**
      * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
@@ -7054,8 +7041,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ConversationalSearchCustomizationConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion extends StandardParameters {
     /**
      * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
@@ -7070,8 +7056,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2GenerativeQuestionConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature extends StandardParameters {
     /**
      * Required. Resource name of the affected catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
@@ -7578,8 +7563,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Addcatalogattribute extends StandardParameters {
     /**
      * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
@@ -7590,8 +7574,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AddCatalogAttributeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Removecatalogattribute extends StandardParameters {
     /**
      * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
@@ -7602,8 +7585,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RemoveCatalogAttributeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Attributesconfig$Replacecatalogattribute extends StandardParameters {
     /**
      * Required. Full AttributesConfig resource name. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/attributesConfig`
      */
@@ -7782,8 +7764,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -9819,8 +9800,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
@@ -9831,8 +9811,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AddFulfillmentPlacesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
@@ -9843,8 +9822,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AddLocalInventoriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create extends StandardParameters {
     /**
      * Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch`.
      */
@@ -9859,22 +9837,19 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Product;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Product does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import extends StandardParameters {
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch` If no updateMask is specified, requires products.create permission. If updateMask is specified, requires products.update permission.
      */
@@ -9885,8 +9860,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ImportProductsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$List extends StandardParameters {
     /**
      * A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List Product.Type.VARIANT Products sharing the same Product.Type.PRIMARY Product. For example: `primary_product_id = "some_product_id"` * List Products bundled in a Product.Type.COLLECTION Product. For example: `collection_product_id = "some_product_id"` * List Products with a partibular type. For example: `type = "PRIMARY"` `type = "VARIANT"` `type = "COLLECTION"` If the field is unrecognizable, an INVALID_ARGUMENT error is returned. If the specified Product.Type.PRIMARY Product or Product.Type.COLLECTION Product does not exist, a NOT_FOUND error is returned.
      */
@@ -9908,8 +9882,7 @@ export namespace retail_v2 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch extends StandardParameters {
     /**
      * If set to true, and the Product is not found, a new Product will be created. In this situation, `update_mask` is ignored.
      */
@@ -9928,8 +9901,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Product;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge extends StandardParameters {
     /**
      * Required. The resource name of the branch under which the products are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/branches/${branchId\}`
      */
@@ -9940,8 +9912,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2PurgeProductsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
@@ -9952,8 +9923,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RemoveFulfillmentPlacesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories extends StandardParameters {
     /**
      * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
      */
@@ -9964,8 +9934,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RemoveLocalInventoriesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory extends StandardParameters {
     /**
      * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      */
@@ -10139,8 +10108,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Completiondata$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Completiondata$Import extends StandardParameters {
     /**
      * Required. The catalog which the suggestions dataset belongs to. Format: `projects/1234/locations/global/catalogs/default_catalog`.
      */
@@ -10911,8 +10879,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Create extends StandardParameters {
     /**
      * Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
      */
@@ -10927,22 +10894,19 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Control;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Get extends StandardParameters {
     /**
      * Required. The resource name of the Control to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Controls$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$List extends StandardParameters {
     /**
      * Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List controls that are used in a single ServingConfig: 'serving_config = "boosted_home_page_cvr"'
      */
@@ -10960,8 +10924,7 @@ export namespace retail_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      */
@@ -11140,8 +11103,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate extends StandardParameters {
     /**
      * Optional. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
@@ -11310,8 +11272,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestions$List extends StandardParameters {
     /**
      * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
@@ -12571,8 +12532,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Create extends StandardParameters {
     /**
      * Optional. Whether to run a dry run to validate the request (without actually creating the model).
      */
@@ -12587,22 +12547,19 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Model;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Delete extends StandardParameters {
     /**
      * Required. The resource name of the Model to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Get extends StandardParameters {
     /**
      * Required. The resource name of the Model to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog\}/models/{model_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      */
@@ -12616,8 +12573,7 @@ export namespace retail_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Patch extends StandardParameters {
     /**
      * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}` catalog_id has char limit of 50. recommendation_model_id has char limit of 40.
      */
@@ -12632,8 +12588,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2Model;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Pause extends StandardParameters {
     /**
      * Required. The name of the model to pause. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
@@ -12644,8 +12599,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2PauseModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Resume extends StandardParameters {
     /**
      * Required. The name of the model to resume. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
@@ -12656,8 +12610,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ResumeModelRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Models$Tune
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Models$Tune extends StandardParameters {
     /**
      * Required. The resource name of the model to tune. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/models/{model_id\}`
      */
@@ -12857,7 +12810,7 @@ export namespace retail_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12977,15 +12930,13 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -13003,7 +12954,7 @@ export namespace retail_v2 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -13550,8 +13501,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch extends StandardParameters {
     /**
      * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
      */
@@ -13562,8 +13512,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ConversationalSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict extends StandardParameters {
     /**
      * Required. Full resource name of the format: `{placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\}` or `{placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
      */
@@ -13574,8 +13523,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2PredictRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search extends StandardParameters {
     /**
      * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      */
@@ -15324,8 +15272,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol extends StandardParameters {
     /**
      * Required. The source ServingConfig resource name . Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
      */
@@ -15336,8 +15283,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AddControlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch extends StandardParameters {
     /**
      * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
      */
@@ -15348,8 +15294,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ConversationalSearchRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create extends StandardParameters {
     /**
      * Required. Full resource name of parent. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}`
      */
@@ -15364,22 +15309,19 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ServingConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the ServingConfig to delete. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get extends StandardParameters {
     /**
      * Required. The resource name of the ServingConfig to get. Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List extends StandardParameters {
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
      */
@@ -15393,8 +15335,7 @@ export namespace retail_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch extends StandardParameters {
     /**
      * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/servingConfig/x`
      */
@@ -15409,8 +15350,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ServingConfig;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict extends StandardParameters {
     /**
      * Required. Full resource name of the format: `{placement=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\}` or `{placement=projects/x/locations/global/catalogs/default_catalog/placements/x\}`. We recommend using the `servingConfigs` resource. `placements` is a legacy resource. The ID of the Recommendations AI serving config or placement. Before you can request predictions from your model, you must create at least one serving config or placement for it. For more information, see [Manage serving configs] (https://cloud.google.com/retail/docs/manage-configs). The full list of available serving configs can be seen at https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
      */
@@ -15421,8 +15361,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2PredictRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol extends StandardParameters {
     /**
      * Required. The source ServingConfig resource name . Format: `projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}`
      */
@@ -15433,8 +15372,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RemoveControlRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search extends StandardParameters {
     /**
      * Required. The resource name of the Retail Search serving config, such as `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` or the name of the legacy placement resource, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving config name and the set of models that are used to make the search.
      */
@@ -16265,8 +16203,7 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Collect
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Collect extends StandardParameters {
     /**
      * Required. The parent catalog name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      */
@@ -16277,8 +16214,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2CollectUserEventRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Import
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Import extends StandardParameters {
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog`
      */
@@ -16289,8 +16225,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2ImportUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Purge extends StandardParameters {
     /**
      * Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}`
      */
@@ -16301,8 +16236,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2PurgeUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin extends StandardParameters {
     /**
      * Required. The parent catalog resource name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      */
@@ -16313,8 +16247,7 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RejoinUserEventsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Write
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Write extends StandardParameters {
     /**
      * Required. The parent catalog resource name, such as `projects/1234/locations/global/catalogs/default_catalog`.
      */
@@ -16517,7 +16450,7 @@ export namespace retail_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16636,15 +16569,13 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -16662,7 +16593,7 @@ export namespace retail_v2 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -16854,7 +16785,7 @@ export namespace retail_v2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16973,15 +16904,13 @@ export namespace retail_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -16999,7 +16928,7 @@ export namespace retail_v2 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
