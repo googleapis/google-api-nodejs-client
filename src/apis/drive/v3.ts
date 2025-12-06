@@ -524,7 +524,7 @@ export namespace drive_v3 {
      */
     anchor?: string | null;
     /**
-     * Output only. The email of the user who is assigned to this comment, if none is assigned this will be unset.
+     * Output only. The email address of the user assigned to this comment. If no user is assigned, the field is unset.
      */
     assigneeEmailAddress?: string | null;
     /**
@@ -556,7 +556,7 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Output only. The emails of the users who were mentioned in this comment, if none were mentioned this will be an empty list.
+     * Output only. A list of email addresses for users mentioned in this comment. If no users are mentioned, the list is empty.
      */
     mentionedEmailAddresses?: string[] | null;
     /**
@@ -1440,7 +1440,7 @@ export namespace drive_v3 {
      */
     action?: string | null;
     /**
-     * Output only. The email of the user who is assigned to this reply, if none is assigned this will be unset.
+     * Output only. The email address of the user assigned to this comment. If no user is assigned, the field is unset.
      */
     assigneeEmailAddress?: string | null;
     /**
@@ -1472,7 +1472,7 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Output only. The emails of the users who were mentioned in this reply, if none were mentioned this will be an empty list.
+     * Output only. A list of email addresses for users mentioned in this comment. If no users are mentioned, the list is empty.
      */
     mentionedEmailAddresses?: string[] | null;
     /**
@@ -2368,8 +2368,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Accessproposals$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accessproposals$Get extends StandardParameters {
     /**
      * Required. The ID of the item the request is on.
      */
@@ -2379,8 +2378,7 @@ export namespace drive_v3 {
      */
     proposalId?: string;
   }
-  export interface Params$Resource$Accessproposals$List
-    extends StandardParameters {
+  export interface Params$Resource$Accessproposals$List extends StandardParameters {
     /**
      * Required. The ID of the item the request is on.
      */
@@ -2394,8 +2392,7 @@ export namespace drive_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Accessproposals$Resolve
-    extends StandardParameters {
+  export interface Params$Resource$Accessproposals$Resolve extends StandardParameters {
     /**
      * Required. The ID of the item the request is on.
      */
@@ -3276,8 +3273,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Changes$Getstartpagetoken
-    extends StandardParameters {
+  export interface Params$Resource$Changes$Getstartpagetoken extends StandardParameters {
     /**
      * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
      */
@@ -8220,8 +8216,7 @@ export namespace drive_v3 {
      */
     mimeType?: string;
   }
-  export interface Params$Resource$Files$Generateids
-    extends StandardParameters {
+  export interface Params$Resource$Files$Generateids extends StandardParameters {
     /**
      * The number of IDs to return.
      */
@@ -8337,8 +8332,7 @@ export namespace drive_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Files$Modifylabels
-    extends StandardParameters {
+  export interface Params$Resource$Files$Modifylabels extends StandardParameters {
     /**
      * The ID of the file to which the labels belong.
      */
@@ -9466,8 +9460,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Permissions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Create extends StandardParameters {
     /**
      * A plain text custom message to include in the notification email.
      */
@@ -9514,8 +9507,7 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Delete extends StandardParameters {
     /**
      * Whether the request should enforce expansive access rules.
      */
@@ -9593,8 +9585,7 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Update extends StandardParameters {
     /**
      * Whether the request should enforce expansive access rules.
      */
@@ -10814,7 +10805,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
+     * Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions). **Important:** The list of revisions returned by this method might be incomplete for files with a large revision history, including frequently edited Google Docs, Sheets, and Slides. Older revisions might be omitted from the response, meaning the first revision returned may not be the oldest existing revision. The revision history visible in the Workspace editor user interface might be more complete than the list returned by the API.
      * @example
      * ```js
      * // Before running the sample:
@@ -11961,8 +11952,7 @@ export namespace drive_v3 {
     }
   }
 
-  export interface Params$Resource$Teamdrives$Create
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Create extends StandardParameters {
     /**
      * Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
@@ -11973,8 +11963,7 @@ export namespace drive_v3 {
      */
     requestBody?: Schema$TeamDrive;
   }
-  export interface Params$Resource$Teamdrives$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Delete extends StandardParameters {
     /**
      * The ID of the Team Drive
      */
@@ -12008,8 +11997,7 @@ export namespace drive_v3 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Update
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Update extends StandardParameters {
     /**
      * The ID of the Team Drive
      */

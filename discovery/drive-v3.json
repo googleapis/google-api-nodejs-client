@@ -2479,7 +2479,7 @@
           "useMediaDownloadService": true
         },
         "list": {
-          "description": "Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).",
+          "description": "Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions). **Important:** The list of revisions returned by this method might be incomplete for files with a large revision history, including frequently edited Google Docs, Sheets, and Slides. Older revisions might be omitted from the response, meaning the first revision returned may not be the oldest existing revision. The revision history visible in the Workspace editor user interface might be more complete than the list returned by the API.",
           "flatPath": "files/{fileId}/revisions",
           "httpMethod": "GET",
           "id": "drive.revisions.list",
@@ -2720,7 +2720,7 @@
       }
     }
   },
-  "revision": "20251019",
+  "revision": "20251114",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3230,7 +3230,7 @@
           "type": "string"
         },
         "assigneeEmailAddress": {
-          "description": "Output only. The email of the user who is assigned to this comment, if none is assigned this will be unset.",
+          "description": "Output only. The email address of the user assigned to this comment. If no user is assigned, the field is unset.",
           "readOnly": true,
           "type": "string"
         },
@@ -3271,7 +3271,7 @@
           "type": "string"
         },
         "mentionedEmailAddresses": {
-          "description": "Output only. The emails of the users who were mentioned in this comment, if none were mentioned this will be an empty list.",
+          "description": "Output only. A list of email addresses for users mentioned in this comment. If no users are mentioned, the list is empty.",
           "items": {
             "type": "string"
           },
@@ -4782,7 +4782,7 @@
           "type": "string"
         },
         "assigneeEmailAddress": {
-          "description": "Output only. The email of the user who is assigned to this reply, if none is assigned this will be unset.",
+          "description": "Output only. The email address of the user assigned to this comment. If no user is assigned, the field is unset.",
           "readOnly": true,
           "type": "string"
         },
@@ -4822,7 +4822,7 @@
           "type": "string"
         },
         "mentionedEmailAddresses": {
-          "description": "Output only. The emails of the users who were mentioned in this reply, if none were mentioned this will be an empty list.",
+          "description": "Output only. A list of email addresses for users mentioned in this comment. If no users are mentioned, the list is empty.",
           "items": {
             "type": "string"
           },

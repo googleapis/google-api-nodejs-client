@@ -3224,8 +3224,7 @@ export namespace drive_v2 {
      */
     teamDriveId?: string;
   }
-  export interface Params$Resource$Changes$Getstartpagetoken
-    extends StandardParameters {
+  export interface Params$Resource$Changes$Getstartpagetoken extends StandardParameters {
     /**
      * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
      */
@@ -9997,8 +9996,7 @@ export namespace drive_v2 {
      */
     mimeType?: string;
   }
-  export interface Params$Resource$Files$Generateids
-    extends StandardParameters {
+  export interface Params$Resource$Files$Generateids extends StandardParameters {
     /**
      * Maximum number of IDs to return.
      */
@@ -10204,8 +10202,7 @@ export namespace drive_v2 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Files$Modifylabels
-    extends StandardParameters {
+  export interface Params$Resource$Files$Modifylabels extends StandardParameters {
     /**
      * The ID of the file to which the labels belong.
      */
@@ -12396,8 +12393,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Permissions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Delete extends StandardParameters {
     /**
      * Whether the request should enforce expansive access rules.
      */
@@ -12445,15 +12441,13 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Getidforemail
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Getidforemail extends StandardParameters {
     /**
      * The email address for which to return a permission ID
      */
     email?: string;
   }
-  export interface Params$Resource$Permissions$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Insert extends StandardParameters {
     /**
      * A plain text custom message to include in notification emails.
      */
@@ -12526,8 +12520,7 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Permissions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Patch extends StandardParameters {
     /**
      * Whether the request should enforce expansive access rules.
      */
@@ -12566,8 +12559,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Permission;
   }
-  export interface Params$Resource$Permissions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Update extends StandardParameters {
     /**
      * Whether the request should enforce expansive access rules.
      */
@@ -13538,8 +13530,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Properties$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Delete extends StandardParameters {
     /**
      * The ID of the file.
      */
@@ -13567,8 +13558,7 @@ export namespace drive_v2 {
      */
     visibility?: string;
   }
-  export interface Params$Resource$Properties$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Insert extends StandardParameters {
     /**
      * The ID of the file.
      */
@@ -13604,8 +13594,7 @@ export namespace drive_v2 {
      */
     requestBody?: Schema$Property;
   }
-  export interface Params$Resource$Properties$Update
-    extends StandardParameters {
+  export interface Params$Resource$Properties$Update extends StandardParameters {
     /**
      * The ID of the file.
      */
@@ -14985,7 +14974,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Lists a file's revisions.
+     * Lists a file's revisions. **Important:** The list of revisions returned by this method might be incomplete for files with a large revision history, including frequently edited Google Docs, Sheets, and Slides. Older revisions might be omitted from the response, meaning the first revision returned may not be the oldest existing revision. The revision history visible in the Workspace editor user interface might be more complete than the list returned by the API.
      * @example
      * ```js
      * // Before running the sample:
@@ -16336,8 +16325,7 @@ export namespace drive_v2 {
     }
   }
 
-  export interface Params$Resource$Teamdrives$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Delete extends StandardParameters {
     /**
      * The ID of the Team Drive
      */
@@ -16353,8 +16341,7 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Insert extends StandardParameters {
     /**
      * Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
@@ -16383,8 +16370,7 @@ export namespace drive_v2 {
      */
     useDomainAdminAccess?: boolean;
   }
-  export interface Params$Resource$Teamdrives$Update
-    extends StandardParameters {
+  export interface Params$Resource$Teamdrives$Update extends StandardParameters {
     /**
      * The ID of the Team Drive
      */
