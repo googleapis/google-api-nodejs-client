@@ -886,15 +886,13 @@ export namespace gmailpostmastertools_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Domains$Trafficstats$Get
-    extends StandardParameters {
+  export interface Params$Resource$Domains$Trafficstats$Get extends StandardParameters {
     /**
      * The resource name of the traffic statistics to get. E.g., domains/mymail.mydomain.com/trafficStats/20160807.
      */
     name?: string;
   }
-  export interface Params$Resource$Domains$Trafficstats$List
-    extends StandardParameters {
+  export interface Params$Resource$Domains$Trafficstats$List extends StandardParameters {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
