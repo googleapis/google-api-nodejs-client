@@ -3551,8 +3551,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigoperations$List extends StandardParameters {
     /**
      * An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \ `(metadata.instance_config.name:custom-config) AND` \ `(metadata.progress.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance configuration name contains "custom-config". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.
      */
@@ -4329,8 +4328,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Create extends StandardParameters {
     /**
      * Required. The name of the project in which to create the instance configuration. Values are of the form `projects/`.
      */
@@ -4341,8 +4339,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceConfigRequest;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Delete extends StandardParameters {
     /**
      * Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance configuration from overwriting each other. If not empty, the API only deletes the instance configuration when the etag provided matches the current status of the requested instance configuration. Otherwise, deletes the instance configuration without checking the current status of the requested instance configuration.
      */
@@ -4356,15 +4353,13 @@ export namespace spanner_v1 {
      */
     validateOnly?: boolean;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Get extends StandardParameters {
     /**
      * Required. The name of the requested instance configuration. Values are of the form `projects//instanceConfigs/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$List extends StandardParameters {
     /**
      * Number of instance configurations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -4378,8 +4373,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Patch extends StandardParameters {
     /**
      * A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`.
      */
@@ -4960,29 +4954,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5590,29 +5580,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instanceconfigs$Ssdcaches$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7011,8 +6997,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Create extends StandardParameters {
     /**
      * Required. The name of the project in which to create the instance. Values are of the form `projects/`.
      */
@@ -7023,15 +7008,13 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Delete extends StandardParameters {
     /**
      * Required. The name of the instance to be deleted. Values are of the form `projects//instances/`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Get extends StandardParameters {
     /**
      * If field_mask is present, specifies the subset of Instance fields that should be returned. If absent, all Instance fields are returned.
      */
@@ -7041,8 +7024,7 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -7053,8 +7035,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$List extends StandardParameters {
     /**
      * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `display_name` * `labels.key` where key is the name of a label Some examples of using filters are: * `name:*` --\> The instance has a name. * `name:Howl` --\> The instance's name contains the string "howl". * `name:HOWL` --\> Equivalent to above. * `NAME:howl` --\> Equivalent to above. * `labels.env:*` --\> The instance has the label "env". * `labels.env:dev` --\> The instance has the label "env" and the value of the label contains the string "dev". * `name:howl labels.env:dev` --\> The instance's name contains "howl" and it has the label "env" with its value containing "dev".
      */
@@ -7076,8 +7057,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Move
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Move extends StandardParameters {
     /**
      * Required. The instance to move. Values are of the form `projects//instances/`.
      */
@@ -7088,8 +7068,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$MoveInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Patch extends StandardParameters {
     /**
      * Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects//instances/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length.
      */
@@ -7100,8 +7079,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$UpdateInstanceRequest;
   }
-  export interface Params$Resource$Projects$Instances$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.
      */
@@ -7112,8 +7090,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -7285,8 +7262,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Backupoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backupoperations$List extends StandardParameters {
     /**
      * An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `metadata.database:prod` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The source database name of backup contains the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata) AND` \ `(metadata.source_backup:test) AND` \ `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CopyBackupMetadata. * The source backup name contains the string "test". * The operation started before 2022-01-18T14:50:00Z. * The operation resulted in an error. * `((metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.database:test_db)) OR` \ `((metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata) AND` \ `(metadata.source_backup:test_bkp)) AND` \ `(error:*)` - Returns operations where: * The operation's metadata matches either of criteria: * The operation's metadata type is CreateBackupMetadata AND the source database name of the backup contains the string "test_db" * The operation's metadata type is CopyBackupMetadata AND the source backup name contains the string "test_bkp" * The operation resulted in an error.
      */
@@ -8722,8 +8698,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Backups$Copy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Copy extends StandardParameters {
     /**
      * Required. The name of the destination instance that will contain the backup copy. Values are of the form: `projects//instances/`.
      */
@@ -8734,8 +8709,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CopyBackupRequest;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Create extends StandardParameters {
     /**
      * Required. The id of the backup to be created. The `backup_id` appended to `parent` forms the full backup name of the form `projects//instances//backups/`.
      */
@@ -8762,22 +8736,19 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Delete extends StandardParameters {
     /**
      * Required. Name of the backup to delete. Values are of the form `projects//instances//backups/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Get extends StandardParameters {
     /**
      * Required. Name of the backup. Values are of the form `projects//instances//backups/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -8788,8 +8759,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$List extends StandardParameters {
     /**
      * An expression that filters the list of returned backups. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Backup are eligible for filtering: * `name` * `database` * `state` * `create_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `expire_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `version_time` (and values are of the format YYYY-MM-DDTHH:MM:SSZ) * `size_bytes` * `backup_schedules` You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `name:Howl` - The backup's name contains the string "howl". * `database:prod` - The database's name contains the string "prod". * `state:CREATING` - The backup is pending creation. * `state:READY` - The backup is fully created and ready for use. * `(name:howl) AND (create_time < \"2018-03-28T14:50:00Z\")` - The backup name contains the string "howl" and `create_time` of the backup is before 2018-03-28T14:50:00Z. * `expire_time < \"2018-03-28T14:50:00Z\"` - The backup `expire_time` is before 2018-03-28T14:50:00Z. * `size_bytes \> 10000000000` - The backup's size is greater than 10GB * `backup_schedules:daily` - The backup is created from a schedule with "daily" in its name.
      */
@@ -8807,8 +8777,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Patch extends StandardParameters {
     /**
      * Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects//instances//backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects//instances/`.
      */
@@ -8823,8 +8792,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.
      */
@@ -8835,8 +8803,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -9419,29 +9386,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Backups$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Backups$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Backups$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -9625,8 +9588,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databaseoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databaseoperations$List extends StandardParameters {
     /**
      * An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for RestoreDatabaseMetadata is `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \ `(metadata.source_type:BACKUP) AND` \ `(metadata.backup_info.backup:backup_howl) AND` \ `(metadata.name:restored_howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is RestoreDatabaseMetadata. * The database is restored from a backup. * The backup name contains "backup_howl". * The restored database's name contains "restored_howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.
      */
@@ -11777,8 +11739,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Addsplitpoints
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Addsplitpoints extends StandardParameters {
     /**
      * Required. The database on whose tables or indexes the split points are to be added. Values are of the form `projects//instances//databases/`.
      */
@@ -11789,8 +11750,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$AddSplitPointsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Changequorum
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Changequorum extends StandardParameters {
     /**
      * Required. Name of the database in which to apply `ChangeQuorum`. Values are of the form `projects//instances//databases/`.
      */
@@ -11801,8 +11761,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ChangeQuorumRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Create extends StandardParameters {
     /**
      * Required. The name of the instance that will serve the new database. Values are of the form `projects//instances/`.
      */
@@ -11813,29 +11772,25 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase extends StandardParameters {
     /**
      * Required. The database to be dropped.
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Get extends StandardParameters {
     /**
      * Required. The name of the requested database. Values are of the form `projects//instances//databases/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getddl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Getddl extends StandardParameters {
     /**
      * Required. The database whose schema we wish to get. Values are of the form `projects//instances//databases/`
      */
     database?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -11846,8 +11801,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Getscans
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Getscans extends StandardParameters {
     /**
      * The upper bound for the time range to retrieve Scan data for.
      */
@@ -11865,8 +11819,7 @@ export namespace spanner_v1 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$List extends StandardParameters {
     /**
      * Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -11880,8 +11833,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Patch extends StandardParameters {
     /**
      * Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
      */
@@ -11896,8 +11848,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$Database;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Restore extends StandardParameters {
     /**
      * Required. The name of the instance in which to create the restored database. This instance must be in the same project and have the same instance configuration as the instance containing the source backup. Values are of the form `projects//instances/`.
      */
@@ -11908,8 +11859,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$RestoreDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.
      */
@@ -11920,8 +11870,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -11932,8 +11881,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Updateddl
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Updateddl extends StandardParameters {
     /**
      * Required. The database to update.
      */
@@ -13172,8 +13120,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Create extends StandardParameters {
     /**
      * Required. The Id to use for the backup schedule. The `backup_schedule_id` appended to `parent` forms the full backup schedule name of the form `projects//instances//databases//backupSchedules/`.
      */
@@ -13188,22 +13135,19 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BackupSchedule;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Delete extends StandardParameters {
     /**
      * Required. The name of the schedule to delete. Values are of the form `projects//instances//databases//backupSchedules/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Get extends StandardParameters {
     /**
      * Required. The name of the schedule to retrieve. Values are of the form `projects//instances//databases//backupSchedules/`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -13214,8 +13158,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$List extends StandardParameters {
     /**
      * Optional. Number of backup schedules to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -13229,8 +13172,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Patch extends StandardParameters {
     /**
      * Identifier. Output only for the CreateBackupSchedule operation. Required for the UpdateBackupSchedule operation. A globally unique identifier for the backup schedule which cannot be changed. Values are of the form `projects//instances//databases//backupSchedules/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.
      */
@@ -13245,8 +13187,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BackupSchedule;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.
      */
@@ -13257,8 +13198,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Backupschedules$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -13584,8 +13524,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Databaseroles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Databaseroles$List extends StandardParameters {
     /**
      * Number of database roles to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
@@ -13599,8 +13538,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Databaseroles$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Databaseroles$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.
      */
@@ -14183,29 +14121,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -17046,8 +16980,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adapter
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adapter extends StandardParameters {
     /**
      * Required. The database in which the new session is created.
      */
@@ -17058,8 +16991,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$AdapterSession;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Adaptmessage extends StandardParameters {
     /**
      * Required. The database session in which the adapter request is processed.
      */
@@ -17070,8 +17002,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$AdaptMessageRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchcreate extends StandardParameters {
     /**
      * Required. The database in which the new sessions are created.
      */
@@ -17082,8 +17013,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BatchCreateSessionsRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite extends StandardParameters {
     /**
      * Required. The session in which the batch request is to be run.
      */
@@ -17094,8 +17024,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BatchWriteRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction extends StandardParameters {
     /**
      * Required. The session in which the transaction runs.
      */
@@ -17106,8 +17035,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$BeginTransactionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit extends StandardParameters {
     /**
      * Required. The session in which the transaction to be committed is running.
      */
@@ -17118,8 +17046,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CommitRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create extends StandardParameters {
     /**
      * Required. The database in which the new session is created.
      */
@@ -17130,15 +17057,13 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateSessionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete extends StandardParameters {
     /**
      * Required. The name of the session to delete.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executebatchdml extends StandardParameters {
     /**
      * Required. The session in which the DML statements should be performed.
      */
@@ -17149,8 +17074,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteBatchDmlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql extends StandardParameters {
     /**
      * Required. The session in which the SQL query should be performed.
      */
@@ -17161,8 +17085,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql extends StandardParameters {
     /**
      * Required. The session in which the SQL query should be performed.
      */
@@ -17173,15 +17096,13 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ExecuteSqlRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get extends StandardParameters {
     /**
      * Required. The name of the session to retrieve.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$List extends StandardParameters {
     /**
      * Required. The database in which to list sessions.
      */
@@ -17199,8 +17120,7 @@ export namespace spanner_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery extends StandardParameters {
     /**
      * Required. The session used to create the partitions.
      */
@@ -17211,8 +17131,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionQueryRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread extends StandardParameters {
     /**
      * Required. The session used to create the partitions.
      */
@@ -17223,8 +17142,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$PartitionReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read extends StandardParameters {
     /**
      * Required. The session in which the read should be performed.
      */
@@ -17235,8 +17153,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$ReadRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback extends StandardParameters {
     /**
      * Required. The session in which the transaction to roll back is running.
      */
@@ -17247,8 +17164,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$RollbackRequest;
   }
-  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread extends StandardParameters {
     /**
      * Required. The session in which the read should be performed.
      */
@@ -17429,8 +17345,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Instancepartitionoperations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitionoperations$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstancePartitionMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstancePartitionMetadata) AND` \ `(metadata.instance_partition.name:custom-instance-partition) AND` \ `(metadata.start_time < \"2021-03-28T14:50:00Z\") AND` \ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstancePartitionMetadata. * The instance partition name contains "custom-instance-partition". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.
      */
@@ -18212,8 +18127,7 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Create extends StandardParameters {
     /**
      * Required. The name of the instance in which to create the instance partition. Values are of the form `projects//instances/`.
      */
@@ -18224,8 +18138,7 @@ export namespace spanner_v1 {
      */
     requestBody?: Schema$CreateInstancePartitionRequest;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Delete extends StandardParameters {
     /**
      * Optional. If not empty, the API only deletes the instance partition when the etag provided matches the current status of the requested instance partition. Otherwise, deletes the instance partition without checking the current status of the requested instance partition.
      */
@@ -18235,15 +18148,13 @@ export namespace spanner_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Get extends StandardParameters {
     /**
      * Required. The name of the requested instance partition. Values are of the form `projects/{project\}/instances/{instance\}/instancePartitions/{instance_partition\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$List extends StandardParameters {
     /**
      * Optional. Deadline used while retrieving metadata for instance partitions. Instance partitions whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancePartitionsResponse.
      */
@@ -18261,8 +18172,7 @@ export namespace spanner_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Patch extends StandardParameters {
     /**
      * Required. A unique identifier for the instance partition. Values are of the form `projects//instances//instancePartitions/a-z*[a-z0-9]`. The final segment of the name must be between 2 and 64 characters in length. An instance partition's name cannot be changed after the instance partition is created.
      */
@@ -18849,29 +18759,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Instancepartitions$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -19461,29 +19367,25 @@ export namespace spanner_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Instances$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Instances$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Instances$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
