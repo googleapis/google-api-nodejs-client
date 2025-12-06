@@ -3115,7 +3115,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20251203",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -5851,7 +5851,7 @@
             "COST_PER_DAY"
           ],
           "enumDescriptions": [
-            "A placeholder for an undefined pricing type. If the pricing type is unpsecified, `COST_PER_MILLE` will be used instead.",
+            "A placeholder for an undefined pricing type. If the pricing type is unspecified, `COST_PER_MILLE` will be used instead.",
             "Cost per thousand impressions.",
             "Cost per day"
           ],
