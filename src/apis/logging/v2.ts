@@ -2284,15 +2284,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Getcmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Getcmeksettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations, and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Getsettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve settings. "projects/[PROJECT_ID]/settings" "organizations/[ORGANIZATION_ID]/settings" "billingAccounts/[BILLING_ACCOUNT_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"Note: Settings can be retrieved for Google Cloud projects, folders, organizations, and billing accounts.
      */
@@ -3049,8 +3047,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Exclusions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-logging-project" "organizations/123456789"
      */
@@ -3061,22 +3058,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Delete extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Get extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -3090,8 +3084,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Exclusions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Exclusions$Patch extends StandardParameters {
     /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
@@ -3426,15 +3419,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -4715,8 +4706,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -4731,8 +4721,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Createasync
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Createasync extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -4747,22 +4736,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Get extends StandardParameters {
     /**
      * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -4776,8 +4762,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -4792,8 +4777,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Undelete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -4804,8 +4788,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$UndeleteBucketRequest;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Updateasync
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Updateasync extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -5423,8 +5406,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Create extends StandardParameters {
     /**
      * Required. The ID to use for the link. The link_id can have up to 100 characters. A valid link_id must only have alphanumeric characters and underscores within it.
      */
@@ -5439,22 +5421,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$Link;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$Get extends StandardParameters {
     /**
      * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Links$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.
      */
@@ -6225,8 +6204,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Create extends StandardParameters {
     /**
      * Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -6241,22 +6219,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Get extends StandardParameters {
     /**
      * Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -6270,8 +6245,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
@@ -6442,8 +6416,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Buckets$Views$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -6909,8 +6882,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6921,15 +6893,13 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -7114,8 +7084,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Recentqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Recentqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
      */
@@ -7904,8 +7873,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
      */
@@ -7920,22 +7888,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Get extends StandardParameters {
     /**
      * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
      */
@@ -7953,8 +7918,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Locations$Savedqueries$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
      */
@@ -8258,15 +8222,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Logs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Logs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log to delete: projects/[PROJECT_ID]/logs/[LOG_ID] organizations/[ORGANIZATION_ID]/logs/[LOG_ID] billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID] folders/[FOLDER_ID]/logs/[LOG_ID][LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/123/logs/cloudaudit.googleapis.com%2Factivity".For more information about log names, see LogEntry.
      */
     logName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -9260,8 +9222,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Billingaccounts$Sinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Create extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -9280,22 +9241,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$List extends StandardParameters {
     /**
      * Optional. A filter expression to constrain the sinks returned. Today, this only supports the following strings: '' 'in_scope("ALL")', 'in_scope("ANCESTOR")', 'in_scope("DEFAULT")'.Description of scopes below. ALL: Includes all of the sinks which can be returned in any other scope. ANCESTOR: Includes intercepting sinks owned by ancestor resources. DEFAULT: Includes sinks owned by parent.When the empty string is provided, then the filter 'in_scope("DEFAULT")' is applied.
      */
@@ -9313,8 +9271,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Patch extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -9337,8 +9294,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Billingaccounts$Sinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Billingaccounts$Sinks$Update extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -10734,8 +10690,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Exclusions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Exclusions$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-logging-project" "organizations/123456789"
      */
@@ -10746,8 +10701,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Exclusions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Exclusions$Delete extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
@@ -11259,22 +11213,19 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Getcmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getcmeksettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations, and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Getsettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve settings. "projects/[PROJECT_ID]/settings" "organizations/[ORGANIZATION_ID]/settings" "billingAccounts/[BILLING_ACCOUNT_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"Note: Settings can be retrieved for Google Cloud projects, folders, organizations, and billing accounts.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Updatesettings extends StandardParameters {
     /**
      * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
      */
@@ -12040,8 +11991,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Exclusions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-logging-project" "organizations/123456789"
      */
@@ -12052,22 +12002,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Folders$Exclusions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Delete extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Get extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -12081,8 +12028,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Exclusions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Exclusions$Patch extends StandardParameters {
     /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
@@ -12415,15 +12361,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -13697,8 +13641,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Buckets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -13713,8 +13656,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Createasync
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Createasync extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -13729,22 +13671,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Get extends StandardParameters {
     /**
      * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -13758,8 +13697,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -13774,8 +13712,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Undelete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -13786,8 +13723,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$UndeleteBucketRequest;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Updateasync
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Updateasync extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -14399,8 +14335,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Buckets$Links$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Links$Create extends StandardParameters {
     /**
      * Required. The ID to use for the link. The link_id can have up to 100 characters. A valid link_id must only have alphanumeric characters and underscores within it.
      */
@@ -14415,22 +14350,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$Link;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Links$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Links$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Links$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Links$Get extends StandardParameters {
     /**
      * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Links$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Links$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.
      */
@@ -15657,8 +15589,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Create extends StandardParameters {
     /**
      * Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -15673,22 +15604,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Get extends StandardParameters {
     /**
      * Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15699,8 +15627,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -15714,8 +15641,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
@@ -15730,8 +15656,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15742,8 +15667,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15910,8 +15834,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Buckets$Views$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Buckets$Views$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -16677,8 +16600,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Logscopes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Logscopes$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
@@ -16693,22 +16615,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogScope;
   }
-  export interface Params$Resource$Folders$Locations$Logscopes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Logscopes$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Logscopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Logscopes$Get extends StandardParameters {
     /**
      * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Logscopes$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Logscopes$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -16722,8 +16641,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Logscopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Logscopes$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
@@ -17184,8 +17102,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -17196,15 +17113,13 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Folders$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -17388,8 +17303,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Recentqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Recentqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
      */
@@ -18173,8 +18087,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Savedqueries$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
      */
@@ -18189,22 +18102,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Folders$Locations$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Savedqueries$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Savedqueries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Savedqueries$Get extends StandardParameters {
     /**
      * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Locations$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Savedqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
      */
@@ -18222,8 +18132,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Locations$Savedqueries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Savedqueries$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
      */
@@ -18527,15 +18436,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Logs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Logs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log to delete: projects/[PROJECT_ID]/logs/[LOG_ID] organizations/[ORGANIZATION_ID]/logs/[LOG_ID] billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID] folders/[FOLDER_ID]/logs/[LOG_ID][LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/123/logs/cloudaudit.googleapis.com%2Factivity".For more information about log names, see LogEntry.
      */
     logName?: string;
   }
-  export interface Params$Resource$Folders$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -19529,8 +19436,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Folders$Sinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Create extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -19549,22 +19455,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Folders$Sinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$List extends StandardParameters {
     /**
      * Optional. A filter expression to constrain the sinks returned. Today, this only supports the following strings: '' 'in_scope("ALL")', 'in_scope("ANCESTOR")', 'in_scope("DEFAULT")'.Description of scopes below. ALL: Includes all of the sinks which can be returned in any other scope. ANCESTOR: Includes intercepting sinks owned by ancestor resources. DEFAULT: Includes sinks owned by parent.When the empty string is provided, then the filter 'in_scope("DEFAULT")' is applied.
      */
@@ -19582,8 +19485,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Folders$Sinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Patch extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -19606,8 +19508,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Folders$Sinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Sinks$Update extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -21216,8 +21117,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Buckets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -21232,8 +21132,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Locations$Buckets$Createasync
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Createasync extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -21248,22 +21147,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Locations$Buckets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Get extends StandardParameters {
     /**
      * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -21277,8 +21173,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -21293,8 +21188,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Locations$Buckets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Undelete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -21305,8 +21199,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$UndeleteBucketRequest;
   }
-  export interface Params$Resource$Locations$Buckets$Updateasync
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Updateasync extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -21918,8 +21811,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Buckets$Links$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Links$Create extends StandardParameters {
     /**
      * Required. The ID to use for the link. The link_id can have up to 100 characters. A valid link_id must only have alphanumeric characters and underscores within it.
      */
@@ -21934,22 +21826,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$Link;
   }
-  export interface Params$Resource$Locations$Buckets$Links$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Links$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Links$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Links$Get extends StandardParameters {
     /**
      * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Links$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Links$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.
      */
@@ -23170,8 +23059,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Buckets$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Create extends StandardParameters {
     /**
      * Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -23186,22 +23074,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Get extends StandardParameters {
     /**
      * Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23212,8 +23097,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Locations$Buckets$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -23227,8 +23111,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
@@ -23243,8 +23126,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23255,8 +23137,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Locations$Buckets$Views$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Buckets$Views$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -23713,8 +23594,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -23725,15 +23605,13 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -24229,8 +24107,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Monitoredresourcedescriptors$List
-    extends StandardParameters {
+  export interface Params$Resource$Monitoredresourcedescriptors$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -24869,22 +24746,19 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Getcmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getcmeksettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations, and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Getsettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve settings. "projects/[PROJECT_ID]/settings" "organizations/[ORGANIZATION_ID]/settings" "billingAccounts/[BILLING_ACCOUNT_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"Note: Settings can be retrieved for Google Cloud projects, folders, organizations, and billing accounts.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Updatecmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatecmeksettings extends StandardParameters {
     /**
      * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
@@ -24899,8 +24773,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CmekSettings;
   }
-  export interface Params$Resource$Organizations$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Updatesettings extends StandardParameters {
     /**
      * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
      */
@@ -25666,8 +25539,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Exclusions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-logging-project" "organizations/123456789"
      */
@@ -25678,22 +25550,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Organizations$Exclusions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Delete extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Get extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -25707,8 +25576,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Exclusions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Exclusions$Patch extends StandardParameters {
     /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
@@ -26045,15 +25913,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -27333,8 +27199,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Buckets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -27349,8 +27214,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Createasync
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Createasync extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -27365,22 +27229,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Get extends StandardParameters {
     /**
      * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -27394,8 +27255,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -27410,8 +27270,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Undelete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -27422,8 +27281,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$UndeleteBucketRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Updateasync
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Updateasync extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -28041,8 +27899,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Buckets$Links$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Links$Create extends StandardParameters {
     /**
      * Required. The ID to use for the link. The link_id can have up to 100 characters. A valid link_id must only have alphanumeric characters and underscores within it.
      */
@@ -28057,22 +27914,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$Link;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Links$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Links$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Links$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Links$Get extends StandardParameters {
     /**
      * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Links$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Links$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.
      */
@@ -29307,8 +29161,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Create extends StandardParameters {
     /**
      * Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -29323,22 +29176,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Get extends StandardParameters {
     /**
      * Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -29349,8 +29199,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -29364,8 +29213,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
@@ -29380,8 +29228,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -29392,8 +29239,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -29560,8 +29406,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Buckets$Views$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Buckets$Views$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -30327,8 +30172,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Logscopes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Logscopes$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
@@ -30343,22 +30187,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogScope;
   }
-  export interface Params$Resource$Organizations$Locations$Logscopes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Logscopes$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Logscopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Logscopes$Get extends StandardParameters {
     /**
      * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Logscopes$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Logscopes$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -30372,8 +30213,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Logscopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Logscopes$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
@@ -30835,8 +30675,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -30847,15 +30686,13 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -31040,8 +30877,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Recentqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Recentqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
      */
@@ -31829,8 +31665,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
      */
@@ -31845,22 +31680,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Organizations$Locations$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Savedqueries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Get extends StandardParameters {
     /**
      * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Savedqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
      */
@@ -31878,8 +31710,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Savedqueries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Savedqueries$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
      */
@@ -32183,15 +32014,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Logs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Logs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log to delete: projects/[PROJECT_ID]/logs/[LOG_ID] organizations/[ORGANIZATION_ID]/logs/[LOG_ID] billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID] folders/[FOLDER_ID]/logs/[LOG_ID][LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/123/logs/cloudaudit.googleapis.com%2Factivity".For more information about log names, see LogEntry.
      */
     logName?: string;
   }
-  export interface Params$Resource$Organizations$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -33185,8 +33014,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Organizations$Sinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Create extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -33205,22 +33033,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$List extends StandardParameters {
     /**
      * Optional. A filter expression to constrain the sinks returned. Today, this only supports the following strings: '' 'in_scope("ALL")', 'in_scope("ANCESTOR")', 'in_scope("DEFAULT")'.Description of scopes below. ALL: Includes all of the sinks which can be returned in any other scope. ANCESTOR: Includes intercepting sinks owned by ancestor resources. DEFAULT: Includes sinks owned by parent.When the empty string is provided, then the filter 'in_scope("DEFAULT")' is applied.
      */
@@ -33238,8 +33063,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Sinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Patch extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -33262,8 +33086,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Organizations$Sinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Sinks$Update extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -33597,15 +33420,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Getcmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getcmeksettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations, and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Getsettings
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getsettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve settings. "projects/[PROJECT_ID]/settings" "organizations/[ORGANIZATION_ID]/settings" "billingAccounts/[BILLING_ACCOUNT_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"Note: Settings can be retrieved for Google Cloud projects, folders, organizations, and billing accounts.
      */
@@ -34362,8 +34183,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Exclusions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the exclusion: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" For examples:"projects/my-logging-project" "organizations/123456789"
      */
@@ -34374,22 +34194,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogExclusion;
   }
-  export interface Params$Resource$Projects$Exclusions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Delete extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion to delete: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Get extends StandardParameters {
     /**
      * Required. The resource name of an existing exclusion: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -34403,8 +34220,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Exclusions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Exclusions$Patch extends StandardParameters {
     /**
      * Required. The resource name of the exclusion to update: "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]" "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]" "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" For example:"projects/my-project/exclusions/my-exclusion"
      */
@@ -34739,15 +34555,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -36021,8 +35835,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Buckets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -36037,8 +35850,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Createasync
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Createasync extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "my-bucket". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. Bucket identifiers must start with an alphanumeric character.
      */
@@ -36053,22 +35865,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Get extends StandardParameters {
     /**
      * Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -36082,8 +35891,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -36098,8 +35906,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogBucket;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Undelete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Undelete extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -36110,8 +35917,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$UndeleteBucketRequest;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Updateasync
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Updateasync extends StandardParameters {
     /**
      * Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -36723,8 +36529,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Buckets$Links$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Links$Create extends StandardParameters {
     /**
      * Required. The ID to use for the link. The link_id can have up to 100 characters. A valid link_id must only have alphanumeric characters and underscores within it.
      */
@@ -36739,22 +36544,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$Link;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Links$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Links$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the link to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Links$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Links$Get extends StandardParameters {
     /**
      * Required. The resource name of the link: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Links$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Links$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.
      */
@@ -37983,8 +37785,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Create extends StandardParameters {
     /**
      * Required. The bucket in which to create the view `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"` For example:"projects/my-project/locations/global/buckets/my-bucket"
      */
@@ -37999,22 +37800,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Get extends StandardParameters {
     /**
      * Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -38025,8 +37823,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -38040,8 +37837,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Patch extends StandardParameters {
     /**
      * Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" For example:"projects/my-project/locations/global/buckets/my-bucket/views/my-view"
      */
@@ -38056,8 +37852,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogView;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -38068,8 +37863,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -38236,8 +38030,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Buckets$Views$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Buckets$Views$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -39003,8 +38796,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Logscopes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Logscopes$Create extends StandardParameters {
     /**
      * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      */
@@ -39019,22 +38811,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogScope;
   }
-  export interface Params$Resource$Projects$Locations$Logscopes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Logscopes$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Logscopes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Logscopes$Get extends StandardParameters {
     /**
      * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Logscopes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Logscopes$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -39048,8 +38837,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Logscopes$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Logscopes$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
@@ -39510,8 +39298,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -39522,15 +39309,13 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -39714,8 +39499,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Recentqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Recentqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") of the recent queries to list. The only valid value for this field is one of the two allowable type function calls, which are the following: type("Logging") type("OpsAnalytics")
      */
@@ -40499,8 +40283,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Savedqueries$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Savedqueries$Create extends StandardParameters {
     /**
      * Required. The parent resource in which to create the saved query: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example: "projects/my-project/locations/global" "organizations/123456789/locations/us-central1"
      */
@@ -40515,22 +40298,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$SavedQuery;
   }
-  export interface Params$Resource$Projects$Locations$Savedqueries$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Savedqueries$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the saved query to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Savedqueries$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Savedqueries$Get extends StandardParameters {
     /**
      * Required. The resource name of the saved query. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For example: "projects/my-project/locations/global/savedQueries/my-saved-query"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Savedqueries$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Savedqueries$List extends StandardParameters {
     /**
      * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
      */
@@ -40548,8 +40328,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Savedqueries$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Savedqueries$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the saved query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/savedQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support#bucket-regions)After the saved query is created, the location cannot be changed.If the user doesn't provide a QUERY_ID, the system will generate an alphanumeric ID.
      */
@@ -40853,15 +40632,13 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Logs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Logs$Delete extends StandardParameters {
     /**
      * Required. The resource name of the log to delete: projects/[PROJECT_ID]/logs/[LOG_ID] organizations/[ORGANIZATION_ID]/logs/[LOG_ID] billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID] folders/[FOLDER_ID]/logs/[LOG_ID][LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/123/logs/cloudaudit.googleapis.com%2Factivity".For more information about log names, see LogEntry.
      */
     logName?: string;
   }
-  export interface Params$Resource$Projects$Logs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Logs$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -41666,8 +41443,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Metrics$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Create extends StandardParameters {
     /**
      * Required. The resource name of the project in which to create the metric: "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
@@ -41678,22 +41454,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogMetric;
   }
-  export interface Params$Resource$Projects$Metrics$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Delete extends StandardParameters {
     /**
      * Required. The resource name of the metric to delete: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Get extends StandardParameters {
     /**
      * Required. The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
     metricName?: string;
   }
-  export interface Params$Resource$Projects$Metrics$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metrics$List extends StandardParameters {
     /**
      * Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -41707,8 +41480,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Metrics$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Metrics$Update extends StandardParameters {
     /**
      * Required. The resource name of the metric to update: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" The updated metric must be provided in the request and it's name field must be the same as [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new metric is created.
      */
@@ -42695,8 +42467,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Sinks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Create extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -42715,22 +42486,19 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Delete extends StandardParameters {
     /**
      * Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Get extends StandardParameters {
     /**
      * Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" For example:"projects/my-project/sinks/my-sink"
      */
     sinkName?: string;
   }
-  export interface Params$Resource$Projects$Sinks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$List extends StandardParameters {
     /**
      * Optional. A filter expression to constrain the sinks returned. Today, this only supports the following strings: '' 'in_scope("ALL")', 'in_scope("ANCESTOR")', 'in_scope("DEFAULT")'.Description of scopes below. ALL: Includes all of the sinks which can be returned in any other scope. ANCESTOR: Includes intercepting sinks owned by ancestor resources. DEFAULT: Includes sinks owned by parent.When the empty string is provided, then the filter 'in_scope("DEFAULT")' is applied.
      */
@@ -42748,8 +42516,7 @@ export namespace logging_v2 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Sinks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Patch extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -42772,8 +42539,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$LogSink;
   }
-  export interface Params$Resource$Projects$Sinks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Sinks$Update extends StandardParameters {
     /**
      * Optional. The service account provided by the caller that will be used to write the log entries. The format must be serviceAccount:some@email. This field can only be specified when you are routing logs to a log bucket that is in a different project than the sink. When not specified, a Logging service account will automatically be generated.
      */
@@ -44282,8 +44048,7 @@ export namespace logging_v2 {
     }
   }
 
-  export interface Params$Resource$V2$Getcmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$V2$Getcmeksettings extends StandardParameters {
     /**
      * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations, and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.
      */
@@ -44295,8 +44060,7 @@ export namespace logging_v2 {
      */
     name?: string;
   }
-  export interface Params$Resource$V2$Updatecmeksettings
-    extends StandardParameters {
+  export interface Params$Resource$V2$Updatecmeksettings extends StandardParameters {
     /**
      * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Log Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
@@ -44311,8 +44075,7 @@ export namespace logging_v2 {
      */
     requestBody?: Schema$CmekSettings;
   }
-  export interface Params$Resource$V2$Updatesettings
-    extends StandardParameters {
+  export interface Params$Resource$V2$Updatesettings extends StandardParameters {
     /**
      * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
      */
