@@ -1088,8 +1088,7 @@ export namespace chromewebstore_v2 {
     }
   }
 
-  export interface Params$Resource$Publishers$Items$Cancelsubmission
-    extends StandardParameters {
+  export interface Params$Resource$Publishers$Items$Cancelsubmission extends StandardParameters {
     /**
      * Required. Name of the item to cancel the submission of in the form `publishers/{publisherId\}/items/{itemId\}`
      */
@@ -1100,15 +1099,13 @@ export namespace chromewebstore_v2 {
      */
     requestBody?: Schema$CancelSubmissionRequest;
   }
-  export interface Params$Resource$Publishers$Items$Fetchstatus
-    extends StandardParameters {
+  export interface Params$Resource$Publishers$Items$Fetchstatus extends StandardParameters {
     /**
      * Required. Name of the item to retrieve the status of in the form `publishers/{publisherId\}/items/{itemId\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Publishers$Items$Publish
-    extends StandardParameters {
+  export interface Params$Resource$Publishers$Items$Publish extends StandardParameters {
     /**
      * Required. Name of the item in the form `publishers/{publisherId\}/items/{itemId\}`
      */
@@ -1119,8 +1116,7 @@ export namespace chromewebstore_v2 {
      */
     requestBody?: Schema$PublishItemRequest;
   }
-  export interface Params$Resource$Publishers$Items$Setpublisheddeploypercentage
-    extends StandardParameters {
+  export interface Params$Resource$Publishers$Items$Setpublisheddeploypercentage extends StandardParameters {
     /**
      * Required. Name of the item to update the published revision of in the form `publishers/{publisherId\}/items/{itemId\}`
      */
