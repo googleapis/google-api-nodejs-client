@@ -372,8 +372,7 @@ export namespace policyanalyzer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} - service_account_key_last_authn.full_resource_name {=\}
      */
@@ -591,8 +590,7 @@ export namespace policyanalyzer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} - service_account_key_last_authn.full_resource_name {=\}
      */
@@ -806,8 +804,7 @@ export namespace policyanalyzer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} - service_account_key_last_authn.full_resource_name {=\}
      */

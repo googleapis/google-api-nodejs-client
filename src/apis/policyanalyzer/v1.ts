@@ -372,8 +372,7 @@ export namespace policyanalyzer_v1 {
     }
   }
 
-  export interface Params$Resource$Folders$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Folders$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account key.
      */
@@ -591,8 +590,7 @@ export namespace policyanalyzer_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account key.
      */
@@ -806,8 +804,7 @@ export namespace policyanalyzer_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Activitytypes$Activities$Query
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Activitytypes$Activities$Query extends StandardParameters {
     /**
      * Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=\} [STRING]` - `activities.fullResourceName {=\} [STRING]` where `[STRING]` is the full resource name of the service account key.
      */
