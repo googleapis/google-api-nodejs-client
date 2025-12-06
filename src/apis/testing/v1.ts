@@ -1906,8 +1906,7 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Applicationdetailservice$Getapkdetails
-    extends StandardParameters {
+  export interface Params$Resource$Applicationdetailservice$Getapkdetails extends StandardParameters {
     /**
      * A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding)
      */
@@ -2691,8 +2690,7 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Devicesessions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Devicesessions$Cancel extends StandardParameters {
     /**
      * Required. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
      */
@@ -2703,8 +2701,7 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$CancelDeviceSessionRequest;
   }
-  export interface Params$Resource$Projects$Devicesessions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Devicesessions$Create extends StandardParameters {
     /**
      * Required. The Compute Engine project under which this device will be allocated. "projects/{project_id\}"
      */
@@ -2715,15 +2712,13 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$DeviceSession;
   }
-  export interface Params$Resource$Projects$Devicesessions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Devicesessions$Get extends StandardParameters {
     /**
      * Required. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Devicesessions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Devicesessions$List extends StandardParameters {
     /**
      * Optional. If specified, responses will be filtered by the given filter. Allowed fields are: session_state.
      */
@@ -2741,8 +2736,7 @@ export namespace testing_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Devicesessions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Devicesessions$Patch extends StandardParameters {
     /**
      * Optional. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
      */
@@ -3235,8 +3229,7 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Testmatrices$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Cancel extends StandardParameters {
     /**
      * Cloud project that owns the test.
      */
@@ -3246,8 +3239,7 @@ export namespace testing_v1 {
      */
     testMatrixId?: string;
   }
-  export interface Params$Resource$Projects$Testmatrices$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Create extends StandardParameters {
     /**
      * The GCE project under which this job will run.
      */
@@ -3262,8 +3254,7 @@ export namespace testing_v1 {
      */
     requestBody?: Schema$TestMatrix;
   }
-  export interface Params$Resource$Projects$Testmatrices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Testmatrices$Get extends StandardParameters {
     /**
      * Cloud project that owns the test matrix.
      */
@@ -3430,8 +3421,7 @@ export namespace testing_v1 {
     }
   }
 
-  export interface Params$Resource$Testenvironmentcatalog$Get
-    extends StandardParameters {
+  export interface Params$Resource$Testenvironmentcatalog$Get extends StandardParameters {
     /**
      * Required. The type of environment that should be listed.
      */
