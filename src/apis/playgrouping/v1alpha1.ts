@@ -344,8 +344,7 @@ export namespace playgrouping_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Apps$Tokens$Verify
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Tokens$Verify extends StandardParameters {
     /**
      * Required. App the token belongs to. Format: apps/{package_name\}
      */
@@ -518,8 +517,7 @@ export namespace playgrouping_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Apps$Tokens$Tags$Createorupdate
-    extends StandardParameters {
+  export interface Params$Resource$Apps$Tokens$Tags$Createorupdate extends StandardParameters {
     /**
      * Required. App whose tags are being manipulated. Format: apps/{package_name\}
      */
