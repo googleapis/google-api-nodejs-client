@@ -679,8 +679,7 @@ export namespace pollen_v1 {
     }
   }
 
-  export interface Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile
-    extends StandardParameters {
+  export interface Params$Resource$Maptypes$Heatmaptiles$Lookupheatmaptile extends StandardParameters {
     /**
      * Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent.
      */
