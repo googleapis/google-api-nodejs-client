@@ -1227,15 +1227,13 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Getpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Getpolicy extends StandardParameters {
     /**
      * Required. The resource name of the policy to retrieve, in the format `projects/x/policy`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Updatepolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Updatepolicy extends StandardParameters {
     /**
      * Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
      */
@@ -2578,8 +2576,7 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Attestors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Create extends StandardParameters {
     /**
      * Required. The attestors ID.
      */
@@ -2594,22 +2591,19 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$Attestor;
   }
-  export interface Params$Resource$Projects$Attestors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Delete extends StandardParameters {
     /**
      * Required. The name of the attestors to delete, in the format `projects/x/attestors/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Get extends StandardParameters {
     /**
      * Required. The name of the attestor to retrieve, in the format `projects/x/attestors/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2619,8 +2613,7 @@ export namespace binaryauthorization_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Attestors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$List extends StandardParameters {
     /**
      * Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
      */
@@ -2634,8 +2627,7 @@ export namespace binaryauthorization_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Attestors$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2646,8 +2638,7 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2658,8 +2649,7 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
-  export interface Params$Resource$Projects$Attestors$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Update extends StandardParameters {
     /**
      * Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
      */
@@ -2670,8 +2660,7 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$Attestor;
   }
-  export interface Params$Resource$Projects$Attestors$Validateattestationoccurrence
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Attestors$Validateattestationoccurrence extends StandardParameters {
     /**
      * Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
      */
@@ -2864,8 +2853,7 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Platforms$Gke$Policies$Evaluate
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Gke$Policies$Evaluate extends StandardParameters {
     /**
      * Required. The name of the platform policy to evaluate in the format `projects/x/platforms/x/policies/x`.
      */
@@ -3620,8 +3608,7 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Platforms$Policies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Policies$Create extends StandardParameters {
     /**
      * Required. The parent of this platform policy.
      */
@@ -3636,8 +3623,7 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$PlatformPolicy;
   }
-  export interface Params$Resource$Projects$Platforms$Policies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Policies$Delete extends StandardParameters {
     /**
      * Optional. Used to prevent deleting the policy when another request has updated it since it was retrieved.
      */
@@ -3647,15 +3633,13 @@ export namespace binaryauthorization_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Platforms$Policies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Policies$Get extends StandardParameters {
     /**
      * Required. The name of the platform policy to retrieve in the format `projects/x/platforms/x/policies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Platforms$Policies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Policies$List extends StandardParameters {
     /**
      * Requested page size. The server may return fewer results than requested. If unspecified, the server picks an appropriate default.
      */
@@ -3669,8 +3653,7 @@ export namespace binaryauthorization_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy extends StandardParameters {
     /**
      * Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/x/platforms/x/policies/x`.
      */
@@ -4129,8 +4112,7 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Policy$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policy$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -4140,8 +4122,7 @@ export namespace binaryauthorization_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Policy$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policy$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4152,8 +4133,7 @@ export namespace binaryauthorization_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Policy$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Policy$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4317,8 +4297,7 @@ export namespace binaryauthorization_v1 {
     }
   }
 
-  export interface Params$Resource$Systempolicy$Getpolicy
-    extends StandardParameters {
+  export interface Params$Resource$Systempolicy$Getpolicy extends StandardParameters {
     /**
      * Required. The resource name, in the format `locations/x/policy`. Note that the system policy is not associated with a project.
      */
