@@ -530,15 +530,13 @@ export namespace cloudlocationfinder_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1012,15 +1010,13 @@ export namespace cloudlocationfinder_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Cloudlocations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudlocations$Get extends StandardParameters {
     /**
      * Required. Name of the resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudlocations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudlocations$List extends StandardParameters {
     /**
      * Optional. A filter expression that filters resources listed in the response. The expression is in the form of field=value. For example, 'cloud_location_type=CLOUD_LOCATION_TYPE_REGION'. Multiple filter queries are space-separated. For example, 'cloud_location_type=CLOUD_LOCATION_TYPE_REGION territory_code="US"' By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
      */
@@ -1038,8 +1034,7 @@ export namespace cloudlocationfinder_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Cloudlocations$Search
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Cloudlocations$Search extends StandardParameters {
     /**
      * Optional. The maximum number of cloud locations to return. The service might return fewer cloud locations than this value. If unspecified, server will pick an appropriate default.
      */
