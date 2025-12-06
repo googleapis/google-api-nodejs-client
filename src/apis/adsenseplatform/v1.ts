@@ -1070,8 +1070,7 @@ export namespace adsenseplatform_v1 {
     }
   }
 
-  export interface Params$Resource$Platforms$Accounts$Close
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Close extends StandardParameters {
     /**
      * Required. Account to close. Format: platforms/{platform\}/accounts/{account_id\}
      */
@@ -1082,8 +1081,7 @@ export namespace adsenseplatform_v1 {
      */
     requestBody?: Schema$CloseAccountRequest;
   }
-  export interface Params$Resource$Platforms$Accounts$Create
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Create extends StandardParameters {
     /**
      * Required. Platform to create an account for. Format: platforms/{platform\}
      */
@@ -1094,15 +1092,13 @@ export namespace adsenseplatform_v1 {
      */
     requestBody?: Schema$Account;
   }
-  export interface Params$Resource$Platforms$Accounts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Get extends StandardParameters {
     /**
      * Required. Account to get information about. Format: platforms/{platform\}/accounts/{account_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Platforms$Accounts$List
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$List extends StandardParameters {
     /**
      * Optional. The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -1116,8 +1112,7 @@ export namespace adsenseplatform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Platforms$Accounts$Lookup
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Lookup extends StandardParameters {
     /**
      * Optional. The creation_request_id provided when calling createAccount.
      */
@@ -1285,8 +1280,7 @@ export namespace adsenseplatform_v1 {
     }
   }
 
-  export interface Params$Resource$Platforms$Accounts$Events$Create
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Events$Create extends StandardParameters {
     /**
      * Required. Account to log events about. Format: platforms/{platform\}/accounts/{account\}
      */
@@ -2014,8 +2008,7 @@ export namespace adsenseplatform_v1 {
     }
   }
 
-  export interface Params$Resource$Platforms$Accounts$Sites$Create
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Sites$Create extends StandardParameters {
     /**
      * Required. Account to create site. Format: platforms/{platform\}/accounts/{account_id\}
      */
@@ -2026,22 +2019,19 @@ export namespace adsenseplatform_v1 {
      */
     requestBody?: Schema$Site;
   }
-  export interface Params$Resource$Platforms$Accounts$Sites$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Sites$Delete extends StandardParameters {
     /**
      * Required. The name of the site to delete. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
      */
     name?: string;
   }
-  export interface Params$Resource$Platforms$Accounts$Sites$Get
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Sites$Get extends StandardParameters {
     /**
      * Required. The name of the site to retrieve. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
      */
     name?: string;
   }
-  export interface Params$Resource$Platforms$Accounts$Sites$List
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Sites$List extends StandardParameters {
     /**
      * The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
      */
@@ -2055,8 +2045,7 @@ export namespace adsenseplatform_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Platforms$Accounts$Sites$Requestreview
-    extends StandardParameters {
+  export interface Params$Resource$Platforms$Accounts$Sites$Requestreview extends StandardParameters {
     /**
      * Required. The name of the site to submit for review. Format: platforms/{platform\}/accounts/{account\}/sites/{site\}
      */
