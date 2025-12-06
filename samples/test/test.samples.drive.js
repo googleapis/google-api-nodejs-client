@@ -29,17 +29,34 @@ const samples = {
   export: {path: '../drive/export'},
   list: {path: '../drive/list'},
   upload: {path: '../drive/upload'},
+  quickstart: {path: '../drive/quickstart'},
+};
+
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
+      },
+    }
+  }
 };
 
 for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
-      },
-    },
-  });
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
@@ -48,6 +65,15 @@ const baseUrl = 'https://www.googleapis.com';
 describe('Drive samples', () => {
   afterEach(() => {
     nock.cleanAll();
+  });
+
+  it('should list files in quickstart', async () => {
+    const scope = nock(baseUrl)
+      .get('/drive/v3/files?pageSize=10&fields=nextPageToken%2C%20files(id%2C%20name)')
+      .reply(200, { files: [] });
+    const data = await samples.quickstart.runSample();
+    assert.deepStrictEqual(data, { files: [] });
+    scope.done();
   });
 
   it('should download the file', async () => {

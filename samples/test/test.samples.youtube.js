@@ -24,17 +24,35 @@ nock.disableNetConnect();
 
 const samples = {
   upload: {path: '../youtube/upload'},
+  playlist: {path: '../youtube/playlist'},
+  search: {path: '../youtube/search'},
+};
+
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
+      },
+    }
+  }
 };
 
 for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
-      },
-    },
-  });
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
@@ -42,6 +60,38 @@ const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
 describe('YouTube samples', () => {
   afterEach(() => {
     nock.cleanAll();
+  });
+
+  it('should get playlist data', async () => {
+    const scope = nock('https://youtube.googleapis.com')
+      .get(
+        '/youtube/v3/playlists?part=id%2Csnippet&id=PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi'
+      )
+      .reply(200, {
+        kind: 'youtube#playlistListResponse',
+        etag: 'a-real-etag',
+      })
+      .get(
+        '/youtube/v3/playlists?part=id%2Csnippet&id=PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi'
+      )
+      .matchHeader('If-None-Match', 'a-real-etag')
+      .reply(304);
+    const res = await samples.playlist.runSample();
+    assert(res.data);
+    assert.strictEqual(res.data.kind, 'youtube#playlistListResponse');
+    scope.done();
+  });
+
+  it('should search for videos', async () => {
+    const scope = nock('https://youtube.googleapis.com')
+      .get(
+        '/youtube/v3/search?part=id%2Csnippet&q=Node.js%20on%20Google%20Cloud'
+      )
+      .reply(200, {kind: 'youtube#searchListResponse'});
+    const data = await samples.search.runSample();
+    assert(data);
+    assert.strictEqual(data.kind, 'youtube#searchListResponse');
+    scope.done();
   });
 
   it('should upload a video', async () => {

@@ -15,20 +15,20 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const people = google.people('v1');
 
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: [
       'https://www.googleapis.com/auth/userinfo.email',
       'https://www.googleapis.com/auth/userinfo.profile',
     ],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   // See documentation of personFields at
   // https://developers.google.com/people/api/rest/v1/people/get

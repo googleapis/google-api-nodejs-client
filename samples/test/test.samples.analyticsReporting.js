@@ -23,15 +23,32 @@ nock.disableNetConnect();
 
 const baseUrl = 'https://analyticsreporting.googleapis.com';
 
-describe('analyticsReporting samples', () => {
-  const batchGet = proxyquire('../analyticsReporting/batchGet', {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
       },
-    },
-  });
+    }
+  }
+};
+
+describe('analyticsReporting samples', () => {
+  const batchGet = proxyquire('../analyticsReporting/batchGet', stubs);
+
 
   afterEach(() => {
     nock.cleanAll();

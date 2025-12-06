@@ -15,20 +15,20 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const jobService = google.jobs('v3');
 
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: [
       'https://www.googleapis.com/auth/jobs',
       'https://www.googleapis.com/auth/cloud-platform',
     ],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const projectId = await google.auth.getProjectId();
   const res = await jobService.projects.companies.create({
