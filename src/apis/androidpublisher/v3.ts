@@ -563,7 +563,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$AutoRenewingBasePlanType {
     /**
-     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
+     * Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     accountHoldDuration?: string | null;
     /**
@@ -616,6 +616,10 @@ export namespace androidpublisher_v3 {
      */
     recurringPrice?: Schema$Money;
   }
+  /**
+   * Details of a base price pricing phase.
+   */
+  export interface Schema$BaseDetails {}
   /**
    * A single base plan for a subscription.
    */
@@ -1596,6 +1600,19 @@ export namespace androidpublisher_v3 {
     obfuscatedExternalProfileId?: string | null;
   }
   /**
+   * User account identifier in your app.
+   */
+  export interface Schema$ExternalAccountIds {
+    /**
+     * Optional. Specifies an optional obfuscated string that is uniquely associated with the purchaser's user account in your app. If you pass this value, Google Play can use it to detect irregular activity. Do not use this field to store any Personally Identifiable Information (PII) such as emails in cleartext. Attempting to store PII in this field will result in purchases being blocked. Google Play recommends that you use either encryption or a one-way hash to generate an obfuscated identifier to send to Google Play. This identifier is limited to 64 characters. This field can only be set for resubscription purchases. See https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid to set this field for purchases made using the standard in-app billing flow.
+     */
+    obfuscatedAccountId?: string | null;
+    /**
+     * Optional. Specifies an optional obfuscated string that is uniquely associated with the purchaser's user profile in your app. If you pass this value, Google Play can use it to detect irregular activity. Do not use this field to store any Personally Identifiable Information (PII) such as emails in cleartext. Attempting to store PII in this field will result in purchases being blocked. Google Play recommends that you use either encryption or a one-way hash to generate an obfuscated identifier to send to Google Play. This identifier is limited to 64 characters. This field can only be set for resubscription purchases. See https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid to set this field for purchases made using the standard in-app billing flow.
+     */
+    obfuscatedProfileId?: string | null;
+  }
+  /**
    * Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to organizations using Managed Play whose application is configured to restrict distribution to the organizations.
    */
   export interface Schema$ExternallyHostedApk {
@@ -1747,6 +1764,10 @@ export namespace androidpublisher_v3 {
    * Represents a transaction performed using a test account. These transactions will not be charged by Google.
    */
   export interface Schema$ExternalTransactionTestPurchase {}
+  /**
+   * Details of a free trial pricing phase.
+   */
+  export interface Schema$FreeTrialDetails {}
   /**
    * A full refund of the remaining amount of a transaction.
    */
@@ -2188,7 +2209,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$InstallmentsBasePlanType {
     /**
-     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
+     * Optional. Custom account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. An empty field represents a recommended account hold, calculated as 60 days minus grace period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     accountHoldDuration?: string | null;
     /**
@@ -2234,6 +2255,10 @@ export namespace androidpublisher_v3 {
     sha256?: string | null;
   }
   /**
+   * Details of an introductory price pricing phase.
+   */
+  export interface Schema$IntroductoryPriceDetails {}
+  /**
    * Contains the introductory price information for a subscription.
    */
   export interface Schema$IntroductoryPriceInfo {
@@ -2253,6 +2278,27 @@ export namespace androidpublisher_v3 {
      * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) "P1W" (one week), "P1M" (one month), "P3M" (three months), "P6M" (six months), and "P1Y" (one year).
      */
     introductoryPricePeriod?: string | null;
+  }
+  /**
+   * Details about a subscription line item that is being replaced.
+   */
+  export interface Schema$ItemReplacement {
+    /**
+     * The base plan ID of the subscription line item being replaced.
+     */
+    basePlanId?: string | null;
+    /**
+     * The offer ID of the subscription line item being replaced, if applicable.
+     */
+    offerId?: string | null;
+    /**
+     * The product ID of the subscription line item being replaced.
+     */
+    productId?: string | null;
+    /**
+     * The replacement mode applied during the purchase.
+     */
+    replacementMode?: string | null;
   }
   /**
    * Targeting based on language.
@@ -2591,6 +2637,27 @@ export namespace androidpublisher_v3 {
      * The latest offer tags associated with the offer. It includes tags inherited from the base plan.
      */
     offerTags?: string[] | null;
+  }
+  /**
+   * Details of a pricing phase for the entitlement period funded by this order.
+   */
+  export interface Schema$OfferPhaseDetails {
+    /**
+     * The order funds a base price period.
+     */
+    baseDetails?: Schema$BaseDetails;
+    /**
+     * The order funds a free trial period.
+     */
+    freeTrialDetails?: Schema$FreeTrialDetails;
+    /**
+     * The order funds an introductory pricing period.
+     */
+    introductoryPriceDetails?: Schema$IntroductoryPriceDetails;
+    /**
+     * The order funds a proration period.
+     */
+    prorationPeriodDetails?: Schema$ProrationPeriodDetails;
   }
   /**
    * Represents a custom tag specified for a product offer.
@@ -2960,6 +3027,10 @@ export namespace androidpublisher_v3 {
      */
     purchaseToken?: string | null;
     /**
+     * The originating sales channel of the order.
+     */
+    salesChannel?: string | null;
+    /**
      * The state of the order.
      */
     state?: string | null;
@@ -3069,6 +3140,19 @@ export namespace androidpublisher_v3 {
      * Required. Price in USD to use for any new locations Play may launch in.
      */
     usdPrice?: Schema$Money;
+  }
+  /**
+   * Information specific to an out of app purchase.
+   */
+  export interface Schema$OutOfAppPurchaseContext {
+    /**
+     * User account identifier from the last expired subscription for this SKU.
+     */
+    expiredExternalAccountIdentifiers?: Schema$ExternalAccountIdentifiers;
+    /**
+     * The purchase token of the last expired subscription. This purchase token must only be used to help identify the user if the link between the purchaseToken and user is stored in your database. This cannot be used to call the Google Developer API if it has been more than 60 days since expiry.
+     */
+    expiredPurchaseToken?: string | null;
   }
   /**
    * Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned.
@@ -3405,6 +3489,19 @@ export namespace androidpublisher_v3 {
      * Information related to test purchases. This will only be set for test purchases.
      */
     testPurchaseContext?: Schema$TestPurchaseContext;
+  }
+  /**
+   * Details of a proration period. A proration period can be a period calculated during a plan change to cover existing entitlements (For more information, see [Allow users to upgrade, downgrade, or change their subscription](https://developer.android.com/google/play/billing/subscriptions#allow-users-change), or a prorated period to align add-on renewal dates with the base (For more information, see [Rules applicable for items in the purchase](https://developer.android.com/google/play/billing/subscription-with-addons#rules-base-addons)).
+   */
+  export interface Schema$ProrationPeriodDetails {
+    /**
+     * The last order id of the original subscription purchase prior to the plan change. This is only populated if this proration period is from an ugrade/downgrade from a previous subscription and carries the remaining offer phase from the linked order of the previous subscription.
+     */
+    linkedOrderId?: string | null;
+    /**
+     * Represent the original offer phase from the purchased the line item if the proration period contains any of them. For example, a proration period from CHARGE_FULL_PRICE plan change may merge the 1st offer phase of the subscription offer of the new product user purchased. In this case, the original offer phase will be set here.
+     */
+    originalOfferPhase?: string | null;
   }
   /**
    * Details about taxation, Google Play policy and legal compliance for one-time product purchase options.
@@ -4006,9 +4103,13 @@ export namespace androidpublisher_v3 {
      */
     offerId?: string | null;
     /**
-     * The pricing phase for the billing period funded by this order.
+     * The pricing phase for the billing period funded by this order. Deprecated. Use offer_phase_details instead.
      */
     offerPhase?: string | null;
+    /**
+     * The pricing phase details for the entitlement period funded by this order.
+     */
+    offerPhaseDetails?: Schema$OfferPhaseDetails;
     /**
      * The end of the billing period funded by this order. This is a snapshot of the billing/service period end time at the moment the order was processed, and should be used only for accounting. To get the current end time of the subscription service period, use purchases.subscriptionsv2.get.
      */
@@ -4294,6 +4395,10 @@ export namespace androidpublisher_v3 {
      */
     expiryTime?: string | null;
     /**
+     * Details of the item being replaced. This field is only populated if this item replaced another item in a previous subscription and is only available for 60 days after the purchase time.
+     */
+    itemReplacement?: Schema$ItemReplacement;
+    /**
      * The order id of the latest successful order associated with this item. Not present if the item is not owned by the user yet (e.g. the item being deferred replaced to).
      */
     latestSuccessfulOrderId?: string | null;
@@ -4322,6 +4427,10 @@ export namespace androidpublisher_v3 {
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
+    /**
+     * Optional. User account identifier in your app.
+     */
+    externalAccountIds?: Schema$ExternalAccountIds;
   }
   /**
    * Request for the purchases.subscriptions.defer API.
@@ -4373,6 +4482,10 @@ export namespace androidpublisher_v3 {
      * The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription.
      */
     linkedPurchaseToken?: string | null;
+    /**
+     * Additional context for out of app purchases. This information is only present for re-subscription purchases (subscription purchases made after the previous subscription of the same product has expired) made through the Google Play subscriptions center. This field will be removed after you acknowledge the subscription.
+     */
+    outOfAppPurchaseContext?: Schema$OutOfAppPurchaseContext;
     /**
      * Additional context around paused subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_PAUSED.
      */
@@ -5295,8 +5408,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Applications$Datasafety
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Datasafety extends StandardParameters {
     /**
      * Required. Package name of the app.
      */
@@ -5761,8 +5873,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Applications$Devicetierconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Devicetierconfigs$Create extends StandardParameters {
     /**
      * Whether the service should accept device IDs that are unknown to Play's device catalog.
      */
@@ -5777,8 +5888,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$DeviceTierConfig;
   }
-  export interface Params$Resource$Applications$Devicetierconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Devicetierconfigs$Get extends StandardParameters {
     /**
      * Required. Id of an existing device tier config.
      */
@@ -5788,8 +5898,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Applications$Devicetierconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Applications$Devicetierconfigs$List extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -6554,8 +6663,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Apprecovery$Addtargeting
-    extends StandardParameters {
+  export interface Params$Resource$Apprecovery$Addtargeting extends StandardParameters {
     /**
      * Required. ID corresponding to the app recovery action.
      */
@@ -6570,8 +6678,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$AddTargetingRequest;
   }
-  export interface Params$Resource$Apprecovery$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Apprecovery$Cancel extends StandardParameters {
     /**
      * Required. ID corresponding to the app recovery action.
      */
@@ -6586,8 +6693,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$CancelAppRecoveryRequest;
   }
-  export interface Params$Resource$Apprecovery$Create
-    extends StandardParameters {
+  export interface Params$Resource$Apprecovery$Create extends StandardParameters {
     /**
      * Required. Package name of the app on which recovery action is performed.
      */
@@ -6598,8 +6704,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$CreateDraftAppRecoveryRequest;
   }
-  export interface Params$Resource$Apprecovery$Deploy
-    extends StandardParameters {
+  export interface Params$Resource$Apprecovery$Deploy extends StandardParameters {
     /**
      * Required. ID corresponding to the app recovery action to deploy.
      */
@@ -7866,8 +7971,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Apks$Addexternallyhosted
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Apks$Addexternallyhosted extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -7892,8 +7996,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Apks$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Apks$Upload extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -8230,8 +8333,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Bundles$List
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Bundles$List extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -8241,8 +8343,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Bundles$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Bundles$Upload extends StandardParameters {
     /**
      * Deprecated. The installation warning has been removed, it's not necessary to set this field anymore.
      */
@@ -8434,8 +8535,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Countryavailability$Get
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Countryavailability$Get extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -8633,8 +8733,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Deobfuscationfiles$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Deobfuscationfiles$Upload extends StandardParameters {
     /**
      * The version code of the APK whose Deobfuscation File is being uploaded.
      */
@@ -9131,8 +9230,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Details$Get
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Details$Get extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -9142,8 +9240,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Details$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Details$Patch extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -9158,8 +9255,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$AppDetails;
   }
-  export interface Params$Resource$Edits$Details$Update
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Details$Update extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -9837,8 +9933,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Expansionfiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Get extends StandardParameters {
     /**
      * The version code of the APK whose expansion file configuration is being read or modified.
      */
@@ -9856,8 +9951,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Patch extends StandardParameters {
     /**
      * The version code of the APK whose expansion file configuration is being read or modified.
      */
@@ -9880,8 +9974,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Update
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Update extends StandardParameters {
     /**
      * The version code of the APK whose expansion file configuration is being read or modified.
      */
@@ -9904,8 +9997,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ExpansionFile;
   }
-  export interface Params$Resource$Edits$Expansionfiles$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Expansionfiles$Upload extends StandardParameters {
     /**
      * The version code of the APK whose expansion file configuration is being read or modified.
      */
@@ -10552,8 +10644,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Images$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Images$Delete extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -10575,8 +10666,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Deleteall
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Images$Deleteall extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -10594,8 +10684,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$List
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Images$List extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -10613,8 +10702,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Images$Upload
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Images$Upload extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11533,8 +11621,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Listings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$Delete extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11548,8 +11635,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Deleteall
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$Deleteall extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11559,8 +11645,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$Get extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11574,8 +11659,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$List
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$List extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11585,8 +11669,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Listings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$Patch extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -11605,8 +11688,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Edits$Listings$Update
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Listings$Update extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12075,8 +12157,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Testers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Testers$Get extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12090,8 +12171,7 @@ export namespace androidpublisher_v3 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Testers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Testers$Patch extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12110,8 +12190,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Testers;
   }
-  export interface Params$Resource$Edits$Testers$Update
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Testers$Update extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12876,8 +12955,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Edits$Tracks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Tracks$Create extends StandardParameters {
     /**
      * Required. Identifier of the edit.
      */
@@ -12906,8 +12984,7 @@ export namespace androidpublisher_v3 {
      */
     track?: string;
   }
-  export interface Params$Resource$Edits$Tracks$List
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Tracks$List extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12917,8 +12994,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
   }
-  export interface Params$Resource$Edits$Tracks$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Tracks$Patch extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -12937,8 +13013,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Track;
   }
-  export interface Params$Resource$Edits$Tracks$Update
-    extends StandardParameters {
+  export interface Params$Resource$Edits$Tracks$Update extends StandardParameters {
     /**
      * Identifier of the edit.
      */
@@ -13462,8 +13537,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Externaltransactions$Createexternaltransaction
-    extends StandardParameters {
+  export interface Params$Resource$Externaltransactions$Createexternaltransaction extends StandardParameters {
     /**
      * Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-zA-Z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.
      */
@@ -13478,15 +13552,13 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ExternalTransaction;
   }
-  export interface Params$Resource$Externaltransactions$Getexternaltransaction
-    extends StandardParameters {
+  export interface Params$Resource$Externaltransactions$Getexternaltransaction extends StandardParameters {
     /**
      * Required. The name of the external transaction to retrieve. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
      */
     name?: string;
   }
-  export interface Params$Resource$Externaltransactions$Refundexternaltransaction
-    extends StandardParameters {
+  export interface Params$Resource$Externaltransactions$Refundexternaltransaction extends StandardParameters {
     /**
      * Required. The name of the external transaction that will be refunded. Format: applications/{package_name\}/externalTransactions/{external_transaction\}
      */
@@ -13784,8 +13856,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Generatedapks$Download
-    extends StandardParameters {
+  export interface Params$Resource$Generatedapks$Download extends StandardParameters {
     /**
      * Download ID, which uniquely identifies the APK to download. Can be obtained from the response of `generatedapks.list` method.
      */
@@ -13799,8 +13870,7 @@ export namespace androidpublisher_v3 {
      */
     versionCode?: number;
   }
-  export interface Params$Resource$Generatedapks$List
-    extends StandardParameters {
+  export interface Params$Resource$Generatedapks$List extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -15693,8 +15763,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Inappproducts$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Batchdelete extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -15705,8 +15774,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InappproductsBatchDeleteRequest;
   }
-  export interface Params$Resource$Inappproducts$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Batchget extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -15716,8 +15784,7 @@ export namespace androidpublisher_v3 {
      */
     sku?: string[];
   }
-  export interface Params$Resource$Inappproducts$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Batchupdate extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -15728,8 +15795,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InappproductsBatchUpdateRequest;
   }
-  export interface Params$Resource$Inappproducts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Delete extends StandardParameters {
     /**
      * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
      */
@@ -15743,8 +15809,7 @@ export namespace androidpublisher_v3 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Get extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -15754,8 +15819,7 @@ export namespace androidpublisher_v3 {
      */
     sku?: string;
   }
-  export interface Params$Resource$Inappproducts$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Insert extends StandardParameters {
     /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
@@ -15770,8 +15834,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$List
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$List extends StandardParameters {
     /**
      * Deprecated and ignored. The page size is determined by the server.
      */
@@ -15789,8 +15852,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Inappproducts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Patch extends StandardParameters {
     /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
@@ -15813,8 +15875,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$InAppProduct;
   }
-  export interface Params$Resource$Inappproducts$Update
-    extends StandardParameters {
+  export interface Params$Resource$Inappproducts$Update extends StandardParameters {
     /**
      * If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.
      */
@@ -16161,8 +16222,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Internalappsharingartifacts$Uploadapk
-    extends StandardParameters {
+  export interface Params$Resource$Internalappsharingartifacts$Uploadapk extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -16188,8 +16248,7 @@ export namespace androidpublisher_v3 {
       body?: any;
     };
   }
-  export interface Params$Resource$Internalappsharingartifacts$Uploadbundle
-    extends StandardParameters {
+  export interface Params$Resource$Internalappsharingartifacts$Uploadbundle extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -16383,8 +16442,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Convertregionprices
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Convertregionprices extends StandardParameters {
     /**
      * Required. The app package name.
      */
@@ -17446,8 +17504,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Onetimeproducts$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchdelete extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources.
      */
@@ -17458,8 +17515,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchDeleteOneTimeProductsRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchget extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests.
      */
@@ -17469,8 +17525,7 @@ export namespace androidpublisher_v3 {
      */
     productIds?: string[];
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchupdate extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources.
      */
@@ -17481,8 +17536,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateOneTimeProductsRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Delete extends StandardParameters {
     /**
      * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
      */
@@ -17496,8 +17550,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Get
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Get extends StandardParameters {
     /**
      * Required. The parent app (package name) of the product to retrieve.
      */
@@ -17507,8 +17560,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$List
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$List extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the one-time product should be read.
      */
@@ -17522,8 +17574,7 @@ export namespace androidpublisher_v3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.
      */
@@ -17874,8 +17925,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete extends StandardParameters {
     /**
      * Required. The parent app (package name) of the purchase options to delete.
      */
@@ -17890,8 +17940,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchDeletePurchaseOptionsRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates extends StandardParameters {
     /**
      * Required. The parent app (package name) of the updated purchase options.
      */
@@ -19238,8 +19287,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate extends StandardParameters {
     /**
      * Required. The offer ID of the offer to activate.
      */
@@ -19262,8 +19310,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ActivateOneTimeProductOfferRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete extends StandardParameters {
     /**
      * Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources.
      */
@@ -19282,8 +19329,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchDeleteOneTimeProductOffersRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget extends StandardParameters {
     /**
      * Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
      */
@@ -19302,8 +19348,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchGetOneTimeProductOffersRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate extends StandardParameters {
     /**
      * Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
      */
@@ -19322,8 +19367,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateOneTimeProductOffersRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates extends StandardParameters {
     /**
      * Required. The parent app (package name) of the updated one-time product offers.
      */
@@ -19342,8 +19386,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateOneTimeProductOfferStatesRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel extends StandardParameters {
     /**
      * Required. The offer ID of the offer to cancel.
      */
@@ -19366,8 +19409,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$CancelOneTimeProductOfferRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate extends StandardParameters {
     /**
      * Required. The offer ID of the offer to deactivate.
      */
@@ -19390,8 +19432,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$DeactivateOneTimeProductOfferRequest;
   }
-  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the offers should be read.
      */
@@ -20637,8 +20678,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Subscriptions$Archive
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Archive extends StandardParameters {
     /**
      * Required. The parent app (package name) of the app of the subscription to delete.
      */
@@ -20653,8 +20693,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ArchiveSubscriptionRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Batchget extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the subscriptions should be retrieved. Must be equal to the package_name field on all the requests.
      */
@@ -20664,8 +20703,7 @@ export namespace androidpublisher_v3 {
      */
     productIds?: string[];
   }
-  export interface Params$Resource$Monetization$Subscriptions$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Batchupdate extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the subscriptions should be updated. Must be equal to the package_name field on all the Subscription resources.
      */
@@ -20676,8 +20714,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateSubscriptionsRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Create extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the subscription should be created. Must be equal to the package_name field on the Subscription resource.
      */
@@ -20696,8 +20733,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Subscription;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Delete extends StandardParameters {
     /**
      * Required. The parent app (package name) of the app of the subscription to delete.
      */
@@ -20707,8 +20743,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Get extends StandardParameters {
     /**
      * Required. The parent app (package name) of the subscription to get.
      */
@@ -20718,8 +20753,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$List
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$List extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the subscriptions should be read.
      */
@@ -20737,8 +20771,7 @@ export namespace androidpublisher_v3 {
      */
     showArchived?: boolean;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the subscription with the given package_name and product_id doesn't exist, the subscription will be created. If a new subscription is created, update_mask is ignored.
      */
@@ -21725,8 +21758,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Activate extends StandardParameters {
     /**
      * Required. The unique base plan ID of the base plan to activate.
      */
@@ -21745,8 +21777,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ActivateBasePlanRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchmigrateprices extends StandardParameters {
     /**
      * Required. The parent app (package name) for which the subscriptions should be created or updated. Must be equal to the package_name field on all the Subscription resources.
      */
@@ -21761,8 +21792,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchMigrateBasePlanPricesRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Batchupdatestates extends StandardParameters {
     /**
      * Required. The parent app (package name) of the updated base plans.
      */
@@ -21777,8 +21807,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateBasePlanStatesRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Deactivate extends StandardParameters {
     /**
      * Required. The unique base plan ID of the base plan to deactivate.
      */
@@ -21797,8 +21826,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$DeactivateBasePlanRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Delete extends StandardParameters {
     /**
      * Required. The unique offer ID of the base plan to delete.
      */
@@ -21812,8 +21840,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Migrateprices extends StandardParameters {
     /**
      * Required. The unique base plan ID of the base plan to update prices on.
      */
@@ -23473,8 +23500,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Activate extends StandardParameters {
     /**
      * Required. The parent base plan (ID) of the offer to activate.
      */
@@ -23497,8 +23523,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ActivateSubscriptionOfferRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchget extends StandardParameters {
     /**
      * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read offers from multiple base plans.
      */
@@ -23517,8 +23542,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchGetSubscriptionOffersRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdate extends StandardParameters {
     /**
      * Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.
      */
@@ -23537,8 +23561,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateSubscriptionOffersRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Batchupdatestates extends StandardParameters {
     /**
      * Required. The parent base plan (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple base plans.
      */
@@ -23557,8 +23580,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$BatchUpdateSubscriptionOfferStatesRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Create extends StandardParameters {
     /**
      * Required. The parent base plan (ID) for which the offer should be created. Must be equal to the base_plan_id field on the SubscriptionOffer resource.
      */
@@ -23585,8 +23607,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$SubscriptionOffer;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Deactivate extends StandardParameters {
     /**
      * Required. The parent base plan (ID) of the offer to deactivate.
      */
@@ -23609,8 +23630,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$DeactivateSubscriptionOfferRequest;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Delete extends StandardParameters {
     /**
      * Required. The parent base plan (ID) of the offer to delete.
      */
@@ -23628,8 +23648,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Get extends StandardParameters {
     /**
      * Required. The parent base plan (ID) of the offer to get.
      */
@@ -23647,8 +23666,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$List extends StandardParameters {
     /**
      * Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.
      */
@@ -23670,8 +23688,7 @@ export namespace androidpublisher_v3 {
      */
     productId?: string;
   }
-  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Monetization$Subscriptions$Baseplans$Offers$Patch extends StandardParameters {
     /**
      * Optional. If set to true, and the subscription offer with the given package_name, product_id, base_plan_id and offer_id doesn't exist, an offer will be created. If a new offer is created, update_mask is ignored.
      */
@@ -23910,6 +23927,7 @@ export namespace androidpublisher_v3 {
      *   //   "orderId": "my_orderId",
      *   //   "pointsDetails": {},
      *   //   "purchaseToken": "my_purchaseToken",
+     *   //   "salesChannel": "my_salesChannel",
      *   //   "state": "my_state",
      *   //   "tax": {},
      *   //   "total": {}
@@ -24643,8 +24661,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Products$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Products$Acknowledge extends StandardParameters {
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -24663,8 +24680,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$ProductPurchasesAcknowledgeRequest;
   }
-  export interface Params$Resource$Purchases$Products$Consume
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Products$Consume extends StandardParameters {
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -24678,8 +24694,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Products$Get
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Products$Get extends StandardParameters {
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -24853,8 +24868,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Productsv2$Getproductpurchasev2
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Productsv2$Getproductpurchasev2 extends StandardParameters {
     /**
      * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
      */
@@ -24913,7 +24927,8 @@ export namespace androidpublisher_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "developerPayload": "my_developerPayload"
+     *       //   "developerPayload": "my_developerPayload",
+     *       //   "externalAccountIds": {}
      *       // }
      *     },
      *   });
@@ -25752,8 +25767,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Subscriptions$Acknowledge
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Acknowledge extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -25772,8 +25786,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$SubscriptionPurchasesAcknowledgeRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Cancel extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -25787,8 +25800,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Defer
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Defer extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -25807,8 +25819,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$SubscriptionPurchasesDeferRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Get extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -25822,8 +25833,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Refund
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Refund extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -25837,8 +25847,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptions$Revoke
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptions$Revoke extends StandardParameters {
     /**
      * The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -26062,6 +26071,7 @@ export namespace androidpublisher_v3 {
      *   //   "latestOrderId": "my_latestOrderId",
      *   //   "lineItems": [],
      *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
+     *   //   "outOfAppPurchaseContext": {},
      *   //   "pausedStateContext": {},
      *   //   "regionCode": "my_regionCode",
      *   //   "startTime": "my_startTime",
@@ -26326,8 +26336,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Subscriptionsv2$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptionsv2$Cancel extends StandardParameters {
     /**
      * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -26342,8 +26351,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$CancelSubscriptionPurchaseRequest;
   }
-  export interface Params$Resource$Purchases$Subscriptionsv2$Get
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptionsv2$Get extends StandardParameters {
     /**
      * The package of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -26353,8 +26361,7 @@ export namespace androidpublisher_v3 {
      */
     token?: string;
   }
-  export interface Params$Resource$Purchases$Subscriptionsv2$Revoke
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Subscriptionsv2$Revoke extends StandardParameters {
     /**
      * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
      */
@@ -26535,8 +26542,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Purchases$Voidedpurchases$List
-    extends StandardParameters {
+  export interface Params$Resource$Purchases$Voidedpurchases$List extends StandardParameters {
     /**
      * The time, in milliseconds since the Epoch, of the newest voided purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time. Note: This filter is applied on the time at which the record is seen as voided by our systems and not the actual voided time returned in the response.
      */
@@ -27658,8 +27664,7 @@ export namespace androidpublisher_v3 {
     }
   }
 
-  export interface Params$Resource$Systemapks$Variants$Create
-    extends StandardParameters {
+  export interface Params$Resource$Systemapks$Variants$Create extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -27674,8 +27679,7 @@ export namespace androidpublisher_v3 {
      */
     requestBody?: Schema$Variant;
   }
-  export interface Params$Resource$Systemapks$Variants$Download
-    extends StandardParameters {
+  export interface Params$Resource$Systemapks$Variants$Download extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -27689,8 +27693,7 @@ export namespace androidpublisher_v3 {
      */
     versionCode?: string;
   }
-  export interface Params$Resource$Systemapks$Variants$Get
-    extends StandardParameters {
+  export interface Params$Resource$Systemapks$Variants$Get extends StandardParameters {
     /**
      * Package name of the app.
      */
@@ -27704,8 +27707,7 @@ export namespace androidpublisher_v3 {
      */
     versionCode?: string;
   }
-  export interface Params$Resource$Systemapks$Variants$List
-    extends StandardParameters {
+  export interface Params$Resource$Systemapks$Variants$List extends StandardParameters {
     /**
      * Package name of the app.
      */
