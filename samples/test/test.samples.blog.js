@@ -23,15 +23,32 @@ nock.disableNetConnect();
 
 const baseUrl = 'https://blogger.googleapis.com';
 
-describe('blogger samples', () => {
-  const insert = proxyquire('../blogger/insert', {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
       },
-    },
-  });
+    }
+  }
+};
+
+describe('blogger samples', () => {
+  const insert = proxyquire('../blogger/insert', stubs);
+
 
   afterEach(() => {
     nock.cleanAll();

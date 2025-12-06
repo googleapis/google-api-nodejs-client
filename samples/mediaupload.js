@@ -15,13 +15,12 @@
 
 const {google} = require('googleapis');
 const path = require('path');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const drive = google.drive('v3');
 
 async function runSamples() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: [
       'https://www.googleapis.com/auth/drive.metadata',
@@ -29,7 +28,8 @@ async function runSamples() {
       'https://www.googleapis.com/auth/drive',
     ],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   // insertion example
   let res = await drive.files.insert({

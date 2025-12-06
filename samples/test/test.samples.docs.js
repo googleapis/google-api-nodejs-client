@@ -28,15 +28,31 @@ const samples = {
 
 const baseUrl = 'https://docs.googleapis.com';
 
-for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
       },
-    },
-  });
+    }
+  }
+};
+
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 describe('docs samples', () => {

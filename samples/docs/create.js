@@ -15,17 +15,17 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const docs = google.docs('v1');
 
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: 'https://www.googleapis.com/auth/documents',
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   // The initial call to create the doc will have a title but no content.
   // This is a limitation of the underlying API.

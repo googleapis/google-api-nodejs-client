@@ -15,17 +15,17 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const blogger = google.blogger('v3');
 
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: 'https://www.googleapis.com/auth/blogger',
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const res = await blogger.posts.insert({
     blogId: '4340475495955554224',

@@ -25,22 +25,50 @@ nock.disableNetConnect();
 
 const samples = {
   append: {path: '../sheets/append'},
+  'insert-column': {path: '../sheets/insert-column'},
+};
+
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
+      },
+    }
+  }
 };
 
 for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
-      },
-    },
-  });
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 describe('sheets samples', () => {
   afterEach(() => {
     nock.cleanAll();
+  });
+
+  it('should insert a column', async () => {
+    const scope = nock(baseUrl)
+      .post(
+        `/v4/spreadsheets/aSheetId:batchUpdate`,
+      )
+      .reply(200, {});
+    const data = await samples['insert-column'].runSample('aSheetId', 'aSheetId', 1, 2);
+    assert(data);
+    scope.done();
   });
 
   it('should append values', async () => {

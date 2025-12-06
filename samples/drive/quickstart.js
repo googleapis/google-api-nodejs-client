@@ -15,7 +15,6 @@
 
 // [START main_body]
 const path = require('path');
-const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
 
 /**
@@ -23,11 +22,12 @@ const {google} = require('googleapis');
  */
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: 'https://www.googleapis.com/auth/drive.metadata.readonly',
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const service = google.drive('v3');
   const res = await service.files.list({
@@ -43,6 +43,7 @@ async function runSample() {
       console.log(`${file.name} (${file.id})`);
     }
   }
+  return res.data;
 }
 if (module === require.main) {
   runSample().catch(console.error);

@@ -15,18 +15,18 @@
 
 const {google} = require('googleapis');
 const path = require('path');
-const {authenticate} = require('@google-cloud/local-auth');
 
 // initialize the Youtube API library
 const youtube = google.youtube('v3');
 
 // a very simple example of getting data from a playlist
 async function runSample() {
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: ['https://www.googleapis.com/auth/youtube'],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   // the first query will return data with an etag
   const res = await getPlaylistData(null);
@@ -37,6 +37,7 @@ async function runSample() {
   // since the If-None-Match header was set with a matching eTag
   const res2 = await getPlaylistData(etag);
   console.log(res2.status);
+  return res;
 }
 
 async function getPlaylistData(etag) {

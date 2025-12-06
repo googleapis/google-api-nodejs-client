@@ -15,17 +15,17 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const gmail = google.gmail('v1');
 
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: 'https://www.googleapis.com/auth/gmail.readonly',
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const res = await gmail.users.messages.list({userId: 'me'});
   console.log(res.data);

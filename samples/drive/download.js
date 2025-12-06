@@ -17,7 +17,6 @@ const {google} = require('googleapis');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const {authenticate} = require('@google-cloud/local-auth');
 const crypto = require('crypto');
 const uuid = crypto.randomUUID();
 
@@ -25,7 +24,7 @@ const drive = google.drive('v3');
 
 async function runSample(fileId) {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: [
       'https://www.googleapis.com/auth/drive',
@@ -37,7 +36,8 @@ async function runSample(fileId) {
       'https://www.googleapis.com/auth/drive.readonly',
     ],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   // For converting document formats, and for downloading template
   // documents, see the method drive.files.export():

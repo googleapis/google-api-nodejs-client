@@ -28,15 +28,31 @@ const samples = {
   send: {path: '../gmail/send'},
 };
 
-for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
+const stubs = {
+  'googleapis': {
+    google: {
+      ...google,
+      options: () => {},
+      auth: {
+        ...google.auth,
+        GoogleAuth: class {
+          constructor() {
+            return {
+              getClient: async () => {
+                const client = new google.auth.OAuth2();
+                client.credentials = {access_token: 'not-a-token'};
+                return client;
+              }
+            }
+          }
+        },
       },
-    },
-  });
+    }
+  }
+};
+
+for (const sample of Object.values(samples)) {
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 const gmailUrl = 'https://gmail.googleapis.com';

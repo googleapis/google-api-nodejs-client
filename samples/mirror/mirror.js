@@ -15,7 +15,6 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 // initialize the Google Mirror API library
 const mirror = google.mirror('v1');
@@ -23,14 +22,15 @@ const mirror = google.mirror('v1');
 // a very simple example of listing locations from the mirror API
 async function runSample() {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: [
       'https://www.googleapis.com/auth/glass.timeline',
       'https://www.googleapis.com/auth/glass.location',
     ],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const res = await mirror.locations.list({});
   console.log(res.data);
