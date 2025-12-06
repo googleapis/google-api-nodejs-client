@@ -732,7 +732,7 @@ export namespace metastore_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1691,15 +1691,13 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2933,8 +2931,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Federations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Create extends StandardParameters {
     /**
      * Required. The ID of the metastore federation, which is used as the final component of the metastore federation's name.This value must be between 2 and 63 characters long inclusive, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      */
@@ -2953,8 +2950,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$Federation;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Delete extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore federation to delete, in the following form:projects/{project_number\}/locations/{location_id\}/federations/{federation_id\}.
      */
@@ -2964,15 +2960,13 @@ export namespace metastore_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore federation to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/federations/{federation_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2982,8 +2976,7 @@ export namespace metastore_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Federations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$List extends StandardParameters {
     /**
      * Optional. The filter to apply to list results.
      */
@@ -3005,8 +2998,7 @@ export namespace metastore_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Patch extends StandardParameters {
     /**
      * Immutable. The relative resource name of the federation, of the form: projects/{project_number\}/locations/{location_id\}/federations/{federation_id\}`.
      */
@@ -3025,8 +3017,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$Federation;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3037,8 +3028,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Federations$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Federations$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3503,7 +3493,7 @@ export namespace metastore_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3614,8 +3604,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3626,22 +3615,19 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3659,7 +3645,7 @@ export namespace metastore_v1 {
      */
     pageToken?: string;
     /**
-     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -6284,8 +6270,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Alterlocation
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Alterlocation extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6296,8 +6281,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$AlterMetadataResourceLocationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Altertableproperties
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Altertableproperties extends StandardParameters {
     /**
      * Required. The relative resource name of the Dataproc Metastore service that's being used to mutate metadata table properties, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6308,8 +6292,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$AlterTablePropertiesRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Cancelmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Cancelmigration extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to cancel the ongoing migration to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6320,8 +6303,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$CancelMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Completemigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Completemigration extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to complete the migration to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6332,8 +6314,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$CompleteMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Create extends StandardParameters {
     /**
      * Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number\}/locations/{location_id\}.
      */
@@ -6352,8 +6333,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Delete extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6363,8 +6343,7 @@ export namespace metastore_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Exportmetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Exportmetadata extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6375,15 +6354,13 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$ExportMetadataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -6393,8 +6370,7 @@ export namespace metastore_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$List extends StandardParameters {
     /**
      * Optional. The filter to apply to list results.
      */
@@ -6416,8 +6392,7 @@ export namespace metastore_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Movetabletodatabase
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Movetabletodatabase extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to mutate metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6428,8 +6403,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$MoveTableToDatabaseRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6448,8 +6422,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$Service;
   }
-  export interface Params$Resource$Projects$Locations$Services$Querymetadata
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Querymetadata extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to query metadata, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6460,8 +6433,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$QueryMetadataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Restore
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Restore extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to run restore, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6472,8 +6444,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$RestoreServiceRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6484,8 +6455,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Startmigration
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Startmigration extends StandardParameters {
     /**
      * Required. The relative resource name of the metastore service to start migrating to, in the following format:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
@@ -6496,8 +6466,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$StartMigrationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Services$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7399,8 +7368,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Backups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$Create extends StandardParameters {
     /**
      * Required. The ID of the backup, which is used as the final component of the backup's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      */
@@ -7419,8 +7387,7 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$Backup;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$Delete extends StandardParameters {
     /**
      * Required. The relative resource name of the backup to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
      */
@@ -7430,15 +7397,13 @@ export namespace metastore_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the backup to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7448,8 +7413,7 @@ export namespace metastore_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$List extends StandardParameters {
     /**
      * Optional. The filter to apply to list results.
      */
@@ -7471,8 +7435,7 @@ export namespace metastore_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Backups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Backups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -7792,8 +7755,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Databases$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Databases$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -7803,8 +7765,7 @@ export namespace metastore_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Databases$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8120,8 +8081,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -8131,8 +8091,7 @@ export namespace metastore_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Databases$Tables$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -8764,8 +8723,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Create extends StandardParameters {
     /**
      * Required. The ID of the metadata import, which is used as the final component of the metadata import's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      */
@@ -8784,15 +8742,13 @@ export namespace metastore_v1 {
      */
     requestBody?: Schema$MetadataImport;
   }
-  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Metadataimports$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Metadataimports$List extends StandardParameters {
     /**
      * Optional. The filter to apply to list results.
      */
@@ -8814,8 +8770,7 @@ export namespace metastore_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Metadataimports$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
@@ -9281,8 +9236,7 @@ export namespace metastore_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Delete extends StandardParameters {
     /**
      * Required. The relative resource name of the migrationExecution to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions/{migration_execution_id\}.
      */
@@ -9292,15 +9246,13 @@ export namespace metastore_v1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$Get extends StandardParameters {
     /**
      * Required. The relative resource name of the migration execution to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/migrationExecutions/{migration_execution_id\}.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Services$Migrationexecutions$List extends StandardParameters {
     /**
      * Optional. The filter to apply to list results.
      */
