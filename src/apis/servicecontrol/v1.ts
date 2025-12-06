@@ -2061,8 +2061,7 @@ export namespace servicecontrol_v1 {
     }
   }
 
-  export interface Params$Resource$Services$Allocatequota
-    extends StandardParameters {
+  export interface Params$Resource$Services$Allocatequota extends StandardParameters {
     /**
      * Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`. See google.api.Service for the definition of a service name.
      */
