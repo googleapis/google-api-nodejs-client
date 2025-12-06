@@ -1397,22 +1397,19 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Getcmekconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Getcmekconfig extends StandardParameters {
     /**
      * Required. The config resource name. For example: projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -1434,8 +1431,7 @@ export namespace cloudtasks_v2beta3 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Updatecmekconfig
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Updatecmekconfig extends StandardParameters {
     /**
      * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
@@ -3124,8 +3120,7 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Create extends StandardParameters {
     /**
      * Required. The location name in which the queue will be created. For example: `projects/PROJECT_ID/locations/LOCATION_ID` The list of allowed locations can be obtained by calling Cloud Tasks' implementation of ListLocations.
      */
@@ -3136,15 +3131,13 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Delete extends StandardParameters {
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Get extends StandardParameters {
     /**
      * Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
@@ -3154,8 +3147,7 @@ export namespace cloudtasks_v2beta3 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3166,8 +3158,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$List extends StandardParameters {
     /**
      * `filter` can be used to specify a subset of queues. Any Queue field can be used as a filter and several operators as supported. For example: `<=, <, \>=, \>, !=, =, :`. The filter syntax is the same as described in [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters). Sample filter "state: PAUSED". Note that using filters might cause fewer queues than the requested page_size to be returned.
      */
@@ -3189,8 +3180,7 @@ export namespace cloudtasks_v2beta3 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Patch extends StandardParameters {
     /**
      * Caller-specified and required in CreateQueue, after which it becomes output only. The queue name. The queue name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the queue's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters.
      */
@@ -3205,8 +3195,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$Queue;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Pause
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Pause extends StandardParameters {
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
@@ -3217,8 +3206,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$PauseQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Purge
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Purge extends StandardParameters {
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
@@ -3229,8 +3217,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$PurgeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Resume
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Resume extends StandardParameters {
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
@@ -3241,8 +3228,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$ResumeQueueRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3253,8 +3239,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4156,8 +4141,7 @@ export namespace cloudtasks_v2beta3 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Buffer
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Buffer extends StandardParameters {
     /**
      * Required. The parent queue name. For example: projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
      */
@@ -4172,8 +4156,7 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$BufferTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create extends StandardParameters {
     /**
      * Required. The queue name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID` The queue must already exist.
      */
@@ -4184,15 +4167,13 @@ export namespace cloudtasks_v2beta3 {
      */
     requestBody?: Schema$CreateTaskRequest;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete extends StandardParameters {
     /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get extends StandardParameters {
     /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
@@ -4202,8 +4183,7 @@ export namespace cloudtasks_v2beta3 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$List extends StandardParameters {
     /**
      * Maximum page size. Fewer tasks than requested might be returned, even if more tasks exist; use next_page_token in the response to determine if more tasks exist. The maximum page size is 1000. If unspecified, the page size will be the maximum.
      */
@@ -4221,8 +4201,7 @@ export namespace cloudtasks_v2beta3 {
      */
     responseView?: string;
   }
-  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run extends StandardParameters {
     /**
      * Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
