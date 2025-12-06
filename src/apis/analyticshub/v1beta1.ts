@@ -867,8 +867,7 @@ export namespace analyticshub_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Dataexchanges$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Dataexchanges$List extends StandardParameters {
     /**
      * Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/us`.
      */
@@ -2124,8 +2123,7 @@ export namespace analyticshub_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Create extends StandardParameters {
     /**
      * Required. The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces. Max length: 100 bytes.
      */
@@ -2140,22 +2138,19 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$DataExchange;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Delete extends StandardParameters {
     /**
      * Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Get extends StandardParameters {
     /**
      * Required. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2166,8 +2161,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
@@ -2181,8 +2175,7 @@ export namespace analyticshub_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
@@ -2197,8 +2190,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$DataExchange;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2209,8 +2201,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3640,8 +3631,7 @@ export namespace analyticshub_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Create extends StandardParameters {
     /**
      * Required. The ID of the listing to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces. Max length: 100 bytes.
      */
@@ -3656,22 +3646,19 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Delete extends StandardParameters {
     /**
      * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Get extends StandardParameters {
     /**
      * Required. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3682,8 +3669,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$List extends StandardParameters {
     /**
      * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
      */
@@ -3697,8 +3683,7 @@ export namespace analyticshub_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch extends StandardParameters {
     /**
      * Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      */
@@ -3713,8 +3698,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$Listing;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3725,8 +3709,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe extends StandardParameters {
     /**
      * Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
@@ -3737,8 +3720,7 @@ export namespace analyticshub_v1beta1 {
      */
     requestBody?: Schema$SubscribeListingRequest;
   }
-  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
