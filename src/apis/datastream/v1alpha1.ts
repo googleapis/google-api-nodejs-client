@@ -1641,8 +1641,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Fetchstaticips
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Fetchstaticips extends StandardParameters {
     /**
      * Required. The name resource of the Response type. Must be in the format `projects/x/locations/x`.
      */
@@ -1656,15 +1655,13 @@ export namespace datastream_v1alpha1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
@@ -2625,8 +2622,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Create extends StandardParameters {
     /**
      * Required. The connection profile identifier.
      */
@@ -2645,8 +2641,7 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$ConnectionProfile;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Delete extends StandardParameters {
     /**
      * Required. The name of the connection profile resource to delete.
      */
@@ -2656,8 +2651,7 @@ export namespace datastream_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Discover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Discover extends StandardParameters {
     /**
      * Required. The parent resource of the ConnectionProfile type. Must be in the format `projects/x/locations/x`.
      */
@@ -2668,15 +2662,13 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$DiscoverConnectionProfileRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Get extends StandardParameters {
     /**
      * Required. The name of the connection profile resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -2698,8 +2690,7 @@ export namespace datastream_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch extends StandardParameters {
     /**
      * Output only. The resource's name.
      */
@@ -3290,8 +3281,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -3302,22 +3292,19 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -3951,8 +3938,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Create extends StandardParameters {
     /**
      * Required. The parent that owns the collection of PrivateConnections.
      */
@@ -3971,8 +3957,7 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$PrivateConnection;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Delete extends StandardParameters {
     /**
      * Optional. If set to true, any child routes that belong to this PrivateConnection will also be deleted.
      */
@@ -3986,15 +3971,13 @@ export namespace datastream_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Get extends StandardParameters {
     /**
      * Required. The name of the private connectivity configuration to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -4621,8 +4604,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Create extends StandardParameters {
     /**
      * Required. The parent that owns the collection of Routes.
      */
@@ -4641,8 +4623,7 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$Route;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Delete extends StandardParameters {
     /**
      * Required. The name of the Route resource to delete.
      */
@@ -4652,15 +4633,13 @@ export namespace datastream_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$Get extends StandardParameters {
     /**
      * Required. The name of the Route resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Privateconnections$Routes$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -5606,8 +5585,7 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Streams$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Create extends StandardParameters {
     /**
      * Optional. Create the stream without validating it.
      */
@@ -5634,8 +5612,7 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$Stream;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Delete extends StandardParameters {
     /**
      * Required. The name of the stream resource to delete.
      */
@@ -5645,8 +5622,7 @@ export namespace datastream_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Fetcherrors
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Fetcherrors extends StandardParameters {
     /**
      * Name of the Stream resource for which to fetch any errors.
      */
@@ -5657,15 +5633,13 @@ export namespace datastream_v1alpha1 {
      */
     requestBody?: Schema$FetchErrorsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Get extends StandardParameters {
     /**
      * Required. The name of the stream resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$List extends StandardParameters {
     /**
      * Filter request.
      */
@@ -5687,8 +5661,7 @@ export namespace datastream_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Patch extends StandardParameters {
     /**
      * Optional. Execute the update without validating it.
      */
@@ -6297,15 +6270,13 @@ export namespace datastream_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Get extends StandardParameters {
     /**
      * Required. The name of the stream object resource to get.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$List extends StandardParameters {
     /**
      * Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -6319,15 +6290,13 @@ export namespace datastream_v1alpha1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob extends StandardParameters {
     /**
      * Required. The name of the stream object resource to start a backfill job for.
      */
     object?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob extends StandardParameters {
     /**
      * Required. The name of the stream object resource to stop the backfill job for.
      */
