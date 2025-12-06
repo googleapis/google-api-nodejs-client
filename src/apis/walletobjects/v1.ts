@@ -310,6 +310,10 @@ export namespace walletobjects_v1 {
      */
     blobId?: string | null;
     /**
+     * A serialized External Read Token passed from Bigstore -\> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
+     */
+    downloadExternalReadToken?: string | null;
+    /**
      * Read handle passed from Bigstore -\> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.
      */
     downloadReadHandle?: string | null;
@@ -5555,8 +5559,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Eventticketclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -5567,22 +5570,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Eventticketclass$Get
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$Get extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Eventticketclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$EventTicketClass;
   }
-  export interface Params$Resource$Eventticketclass$List
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$List extends StandardParameters {
     /**
      * The ID of the issuer authorized to list classes.
      */
@@ -5596,8 +5596,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Eventticketclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -5608,8 +5607,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$EventTicketClass;
   }
-  export interface Params$Resource$Eventticketclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -6932,8 +6930,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Eventticketobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -6944,22 +6941,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Eventticketobject$Get
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Get extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Eventticketobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$EventTicketObject;
   }
-  export interface Params$Resource$Eventticketobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -6973,8 +6967,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Eventticketobject$Modifylinkedofferobjects
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Modifylinkedofferobjects extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -6985,8 +6978,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$ModifyLinkedOfferObjectsRequest;
   }
-  export interface Params$Resource$Eventticketobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -6997,8 +6989,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$EventTicketObject;
   }
-  export interface Params$Resource$Eventticketobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Eventticketobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -8168,8 +8159,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Flightclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Flightclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -8186,8 +8176,7 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Flightclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Flightclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -8207,8 +8196,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Flightclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Flightclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -8219,8 +8207,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$FlightClass;
   }
-  export interface Params$Resource$Flightclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Flightclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -9328,8 +9315,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Flightobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Flightobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -9346,15 +9332,13 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Flightobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Flightobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$FlightObject;
   }
-  export interface Params$Resource$Flightobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Flightobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -9368,8 +9352,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Flightobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Flightobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -9380,8 +9363,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$FlightObject;
   }
-  export interface Params$Resource$Flightobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Flightobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -10363,8 +10345,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Genericclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Genericclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -10381,15 +10362,13 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Genericclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Genericclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GenericClass;
   }
-  export interface Params$Resource$Genericclass$List
-    extends StandardParameters {
+  export interface Params$Resource$Genericclass$List extends StandardParameters {
     /**
      * The ID of the issuer authorized to list classes.
      */
@@ -10403,8 +10382,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Genericclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Genericclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
      */
@@ -10415,8 +10393,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$GenericClass;
   }
-  export interface Params$Resource$Genericclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Genericclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
      */
@@ -11493,8 +11470,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Genericobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -11505,22 +11481,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Genericobject$Get
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$Get extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Genericobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GenericObject;
   }
-  export interface Params$Resource$Genericobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -11534,8 +11507,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Genericobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
      */
@@ -11546,8 +11518,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$GenericObject;
   }
-  export interface Params$Resource$Genericobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Genericobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value needs to follow the format `issuerID.identifier` where `issuerID` is issued by Google and `identifier` is chosen by you. The unique identifier can only include alphanumeric characters, `.`, `_`, or `-`.
      */
@@ -12715,8 +12686,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Giftcardclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -12727,22 +12697,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Giftcardclass$Get
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$Get extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Giftcardclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GiftCardClass;
   }
-  export interface Params$Resource$Giftcardclass$List
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$List extends StandardParameters {
     /**
      * The ID of the issuer authorized to list classes.
      */
@@ -12756,8 +12723,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Giftcardclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -12768,8 +12734,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$GiftCardClass;
   }
-  export interface Params$Resource$Giftcardclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -13885,8 +13850,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Giftcardobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -13897,22 +13861,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Giftcardobject$Get
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$Get extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Giftcardobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$GiftCardObject;
   }
-  export interface Params$Resource$Giftcardobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -13926,8 +13887,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Giftcardobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -13938,8 +13898,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$GiftCardObject;
   }
-  export interface Params$Resource$Giftcardobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Giftcardobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -16083,8 +16042,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Loyaltyclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -16101,15 +16059,13 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Loyaltyclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$LoyaltyClass;
   }
-  export interface Params$Resource$Loyaltyclass$List
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyclass$List extends StandardParameters {
     /**
      * The ID of the issuer authorized to list classes.
      */
@@ -16123,8 +16079,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Loyaltyclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -16135,8 +16090,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$LoyaltyClass;
   }
-  export interface Params$Resource$Loyaltyclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -17428,8 +17382,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Loyaltyobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -17440,22 +17393,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Loyaltyobject$Get
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Get extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Loyaltyobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$LoyaltyObject;
   }
-  export interface Params$Resource$Loyaltyobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -17469,8 +17419,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Loyaltyobject$Modifylinkedofferobjects
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Modifylinkedofferobjects extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -17481,8 +17430,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$ModifyLinkedOfferObjectsRequest;
   }
-  export interface Params$Resource$Loyaltyobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -17493,8 +17441,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$LoyaltyObject;
   }
-  export interface Params$Resource$Loyaltyobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Loyaltyobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -19045,8 +18992,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Offerclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Offerclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -19063,8 +19009,7 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Offerclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Offerclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -19095,8 +19040,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$OfferClass;
   }
-  export interface Params$Resource$Offerclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Offerclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -20168,8 +20112,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Offerobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Offerobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -20186,8 +20129,7 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Offerobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Offerobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
@@ -20207,8 +20149,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Offerobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Offerobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -20219,8 +20160,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$OfferObject;
   }
-  export interface Params$Resource$Offerobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Offerobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -20529,8 +20469,7 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Permissions$Update
-    extends StandardParameters {
+  export interface Params$Resource$Permissions$Update extends StandardParameters {
     /**
      * The unique identifier for an issuer. This ID must be unique across all issuers.
      */
@@ -21961,8 +21900,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Transitclass$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Transitclass$Addmessage extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -21979,15 +21917,13 @@ export namespace walletobjects_v1 {
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Transitclass$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Transitclass$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$TransitClass;
   }
-  export interface Params$Resource$Transitclass$List
-    extends StandardParameters {
+  export interface Params$Resource$Transitclass$List extends StandardParameters {
     /**
      * The ID of the issuer authorized to list classes.
      */
@@ -22001,8 +21937,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Transitclass$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Transitclass$Patch extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -22013,8 +21948,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$TransitClass;
   }
-  export interface Params$Resource$Transitclass$Update
-    extends StandardParameters {
+  export interface Params$Resource$Transitclass$Update extends StandardParameters {
     /**
      * The unique identifier for a class. This ID must be unique across all classes from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -23196,8 +23130,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Transitobject$Addmessage
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$Addmessage extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -23208,22 +23141,19 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$AddMessageRequest;
   }
-  export interface Params$Resource$Transitobject$Get
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$Get extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
     resourceId?: string;
   }
-  export interface Params$Resource$Transitobject$Insert
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$Insert extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$TransitObject;
   }
-  export interface Params$Resource$Transitobject$List
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$List extends StandardParameters {
     /**
      * The ID of the class whose objects will be listed.
      */
@@ -23237,8 +23167,7 @@ export namespace walletobjects_v1 {
      */
     token?: string;
   }
-  export interface Params$Resource$Transitobject$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$Patch extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -23249,8 +23178,7 @@ export namespace walletobjects_v1 {
      */
     requestBody?: Schema$TransitObject;
   }
-  export interface Params$Resource$Transitobject$Update
-    extends StandardParameters {
+  export interface Params$Resource$Transitobject$Update extends StandardParameters {
     /**
      * The unique identifier for an object. This ID must be unique across all objects from an issuer. This value should follow the format issuer ID. identifier where the former is issued by Google and latter is chosen by you. Your unique identifier should only include alphanumeric characters, '.', '_', or '-'.
      */
@@ -23437,8 +23365,7 @@ export namespace walletobjects_v1 {
     }
   }
 
-  export interface Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice
-    extends StandardParameters {
+  export interface Params$Resource$Walletobjects$V1$Privatecontent$Setpassupdatenotice extends StandardParameters {
     /**
      * Request body metadata
      */
