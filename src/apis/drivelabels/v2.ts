@@ -3748,8 +3748,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2PublishLabelRequest;
   }
-  export interface Params$Resource$Labels$Updatelabelcopymode
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Updatelabelcopymode extends StandardParameters {
     /**
      * Required. The resource name of the label to update.
      */
@@ -3760,8 +3759,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest;
   }
-  export interface Params$Resource$Labels$Updatelabelenabledappsettings
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Updatelabelenabledappsettings extends StandardParameters {
     /**
      * Required. The resource name of the label to update. The resource name of the label to update.
      */
@@ -3772,8 +3770,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest;
   }
-  export interface Params$Resource$Labels$Updatepermissions
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Updatepermissions extends StandardParameters {
     /**
      * Required. The parent label resource name.
      */
@@ -3953,8 +3950,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Labels$Locks$List
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Locks$List extends StandardParameters {
     /**
      * Maximum number of locks to return per page. Default: 100. Max: 200.
      */
@@ -4750,8 +4746,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Labels$Permissions$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Permissions$Batchdelete extends StandardParameters {
     /**
      * Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
@@ -4762,8 +4757,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest;
   }
-  export interface Params$Resource$Labels$Permissions$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Permissions$Batchupdate extends StandardParameters {
     /**
      * Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
@@ -4774,8 +4768,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest;
   }
-  export interface Params$Resource$Labels$Permissions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Permissions$Create extends StandardParameters {
     /**
      * Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      */
@@ -4790,8 +4783,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2LabelPermission;
   }
-  export interface Params$Resource$Labels$Permissions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Permissions$Delete extends StandardParameters {
     /**
      * Required. Label permission resource name.
      */
@@ -4801,8 +4793,7 @@ export namespace drivelabels_v2 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Labels$Permissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Permissions$List extends StandardParameters {
     /**
      * Maximum number of permissions to return per page. Default: 50. Max: 200.
      */
@@ -5004,8 +4995,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Labels$Revisions$Updatepermissions
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Updatepermissions extends StandardParameters {
     /**
      * Required. The parent label resource name.
      */
@@ -5185,8 +5175,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Labels$Revisions$Locks$List
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Locks$List extends StandardParameters {
     /**
      * Maximum number of locks to return per page. Default: 100. Max: 200.
      */
@@ -5982,8 +5971,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Labels$Revisions$Permissions$Batchdelete
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Permissions$Batchdelete extends StandardParameters {
     /**
      * Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
@@ -5994,8 +5982,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest;
   }
-  export interface Params$Resource$Labels$Revisions$Permissions$Batchupdate
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Permissions$Batchupdate extends StandardParameters {
     /**
      * Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
@@ -6006,8 +5993,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest;
   }
-  export interface Params$Resource$Labels$Revisions$Permissions$Create
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Permissions$Create extends StandardParameters {
     /**
      * Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      */
@@ -6022,8 +6008,7 @@ export namespace drivelabels_v2 {
      */
     requestBody?: Schema$GoogleAppsDriveLabelsV2LabelPermission;
   }
-  export interface Params$Resource$Labels$Revisions$Permissions$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Permissions$Delete extends StandardParameters {
     /**
      * Required. Label permission resource name.
      */
@@ -6033,8 +6018,7 @@ export namespace drivelabels_v2 {
      */
     useAdminAccess?: boolean;
   }
-  export interface Params$Resource$Labels$Revisions$Permissions$List
-    extends StandardParameters {
+  export interface Params$Resource$Labels$Revisions$Permissions$List extends StandardParameters {
     /**
      * Maximum number of permissions to return per page. Default: 50. Max: 200.
      */
@@ -6383,8 +6367,7 @@ export namespace drivelabels_v2 {
     }
   }
 
-  export interface Params$Resource$Users$Getcapabilities
-    extends StandardParameters {
+  export interface Params$Resource$Users$Getcapabilities extends StandardParameters {
     /**
      * The customer to scope this request to. For example: `customers/abcd1234`. If unset, it will return settings within the current customer.
      */
