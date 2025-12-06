@@ -1627,8 +1627,7 @@ export namespace mybusinessaccountmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Admins$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Admins$Create extends StandardParameters {
     /**
      * Required. The resource name of the account this admin is created for. `accounts/{account_id\}`.
      */
@@ -1639,22 +1638,19 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     requestBody?: Schema$Admin;
   }
-  export interface Params$Resource$Accounts$Admins$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Admins$Delete extends StandardParameters {
     /**
      * Required. The resource name of the admin to remove from the account. `accounts/{account_id\}/admins/{admin_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Accounts$Admins$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Admins$List extends StandardParameters {
     /**
      * Required. The name of the account from which to retrieve a list of admins. `accounts/{account_id\}/admins`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Admins$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Admins$Patch extends StandardParameters {
     /**
      * Immutable. The resource name. For account admins, this is in the form: `accounts/{account_id\}/admins/{admin_id\}` For location admins, this is in the form: `locations/{location_id\}/admins/{admin_id\}` This field will be ignored if set during admin creation.
      */
@@ -2103,8 +2099,7 @@ export namespace mybusinessaccountmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Accounts$Invitations$Accept
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Invitations$Accept extends StandardParameters {
     /**
      * Required. The name of the invitation that is being accepted. `accounts/{account_id\}/invitations/{invitation_id\}`
      */
@@ -2115,8 +2110,7 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     requestBody?: Schema$AcceptInvitationRequest;
   }
-  export interface Params$Resource$Accounts$Invitations$Decline
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Invitations$Decline extends StandardParameters {
     /**
      * Required. The name of the account invitation that is being declined. `accounts/{account_id\}/invitations/{invitation_id\}`
      */
@@ -2127,8 +2121,7 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     requestBody?: Schema$DeclineInvitationRequest;
   }
-  export interface Params$Resource$Accounts$Invitations$List
-    extends StandardParameters {
+  export interface Params$Resource$Accounts$Invitations$List extends StandardParameters {
     /**
      * Optional. Filtering the response is supported via the Invitation.target_type field.
      */
@@ -2293,8 +2286,7 @@ export namespace mybusinessaccountmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Transfer
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Transfer extends StandardParameters {
     /**
      * Required. The name of the location to transfer. `locations/{location_id\}`.
      */
@@ -2899,8 +2891,7 @@ export namespace mybusinessaccountmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Admins$Create
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Admins$Create extends StandardParameters {
     /**
      * Required. The resource name of the location this admin is created for. `locations/{location_id\}/admins`.
      */
@@ -2911,22 +2902,19 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     requestBody?: Schema$Admin;
   }
-  export interface Params$Resource$Locations$Admins$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Admins$Delete extends StandardParameters {
     /**
      * Required. The resource name of the admin to remove from the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Locations$Admins$List
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Admins$List extends StandardParameters {
     /**
      * Required. The name of the location to list admins of. `locations/{location_id\}/admins`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Locations$Admins$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Locations$Admins$Patch extends StandardParameters {
     /**
      * Immutable. The resource name. For account admins, this is in the form: `accounts/{account_id\}/admins/{admin_id\}` For location admins, this is in the form: `locations/{location_id\}/admins/{admin_id\}` This field will be ignored if set during admin creation.
      */
