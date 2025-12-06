@@ -1878,22 +1878,19 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Checkreadiness
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Checkreadiness extends StandardParameters {
     /**
      *
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Checkstatus
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Checkstatus extends StandardParameters {
     /**
      *
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Exchangeauthcode
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Exchangeauthcode extends StandardParameters {
     /**
      *
      */
@@ -1904,8 +1901,7 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$ExchangeAuthCodeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Executesqlquery
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Executesqlquery extends StandardParameters {
     /**
      * Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
@@ -1916,8 +1912,7 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$ExecuteSqlQueryRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Refreshaccesstoken
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Refreshaccesstoken extends StandardParameters {
     /**
      *
      */
@@ -2377,8 +2372,7 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Actions$Execute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Actions$Execute extends StandardParameters {
     /**
      * Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
      */
@@ -2389,8 +2383,7 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$ExecuteActionRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Actions$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Actions$Get extends StandardParameters {
     /**
      * Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
      */
@@ -2400,8 +2393,7 @@ export namespace connectors_v2 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Actions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Actions$List extends StandardParameters {
     /**
      * Number of Actions to return. Defaults to 25.
      */
@@ -2726,8 +2718,7 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Get extends StandardParameters {
     /**
      * Context metadata for request could be used to fetch customization of entity type schema.
      */
@@ -2741,8 +2732,7 @@ export namespace connectors_v2 {
      */
     view?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$List extends StandardParameters {
     /**
      * Number of entity types to return. Defaults to 25.
      */
@@ -3807,8 +3797,7 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create extends StandardParameters {
     /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      */
@@ -3819,15 +3808,13 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$Entity;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete extends StandardParameters {
     /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Deleteentitieswithconditions extends StandardParameters {
     /**
      * Required. Conditions to be used when deleting entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported. Note: If this conditions field is left empty, an exception is thrown. We don't want to consider 'empty conditions' to be a match-all case. Connector developers can determine and document what a match-all case constraint would be.
      */
@@ -3837,15 +3824,13 @@ export namespace connectors_v2 {
      */
     entityType?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get extends StandardParameters {
     /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$List extends StandardParameters {
     /**
      * Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.
      */
@@ -3871,8 +3856,7 @@ export namespace connectors_v2 {
      */
     sortOrder?: string[];
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
@@ -3883,8 +3867,7 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$Entity;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Updateentitieswithconditions extends StandardParameters {
     /**
      * Required. Conditions to be used when updating entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported. Note: If this conditions field is left empty, an exception is thrown. We don't want to consider 'empty conditions' to be a match-all case. Connector developers can determine and document what a match-all case constraint would be.
      */
@@ -4191,15 +4174,13 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Resources$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Resources$Get extends StandardParameters {
     /**
      * Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Resources$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Resources$List extends StandardParameters {
     /**
      * Optional. Page size for the request.
      */
@@ -4513,8 +4494,7 @@ export namespace connectors_v2 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Connections$Tools$Execute
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Tools$Execute extends StandardParameters {
     /**
      * Required. Resource name of the Tool. Format: projects/{project\}/locations/{location\}/connections/{connection\}/tools/{tool\}
      */
@@ -4525,8 +4505,7 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$ExecuteToolRequest;
   }
-  export interface Params$Resource$Projects$Locations$Connections$Tools$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Connections$Tools$List extends StandardParameters {
     /**
      * Page size.
      */
