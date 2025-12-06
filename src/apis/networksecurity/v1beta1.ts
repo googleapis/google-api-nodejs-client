@@ -3972,8 +3972,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Additems
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Additems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to add items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -3984,8 +3983,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddAddressGroupItemsRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Cloneitems
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Cloneitems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -3996,8 +3994,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$CloneAddressGroupItemsRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Create extends StandardParameters {
     /**
      * Required. Short name of the AddressGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "authz_policy".
      */
@@ -4016,8 +4013,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddressGroup;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Delete extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to delete. Must be in the format `projects/x/locations/{location\}/addressGroups/x`.
      */
@@ -4027,15 +4023,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Get extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to get. Must be in the format `projects/x/locations/{location\}/addressGroups/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$List extends StandardParameters {
     /**
      * Maximum number of AddressGroups to return per call.
      */
@@ -4053,8 +4047,7 @@ export namespace networksecurity_v1beta1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Listreferences
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Listreferences extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -4068,8 +4061,7 @@ export namespace networksecurity_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Patch extends StandardParameters {
     /**
      * Required. Name of the AddressGroup resource. It matches pattern `projects/x/locations/{location\}/addressGroups/`.
      */
@@ -4088,8 +4080,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddressGroup;
   }
-  export interface Params$Resource$Organizations$Locations$Addressgroups$Removeitems
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Addressgroups$Removeitems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to remove items from. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -4889,8 +4880,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Create extends StandardParameters {
     /**
      * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
      */
@@ -4909,8 +4899,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$FirewallEndpoint;
   }
-  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -4920,15 +4909,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Firewallendpoints$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -4950,8 +4937,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. Name of resource.
      */
@@ -5544,8 +5530,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -5556,22 +5541,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -6373,8 +6355,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Create extends StandardParameters {
     /**
      * Required. The parent resource of the SecurityProfileGroup. Must be in the format `projects|organizations/x/locations/{location\}`.
      */
@@ -6389,8 +6370,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$SecurityProfileGroup;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Delete extends StandardParameters {
     /**
      * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
      */
@@ -6400,15 +6380,13 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Get extends StandardParameters {
     /**
      * Required. A name of the SecurityProfileGroup to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$List extends StandardParameters {
     /**
      * Maximum number of SecurityProfileGroups to return per call.
      */
@@ -6422,8 +6400,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
@@ -7212,8 +7189,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Securityprofiles$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Create extends StandardParameters {
     /**
      * Required. The parent resource of the SecurityProfile. Must be in the format `projects|organizations/x/locations/{location\}`.
      */
@@ -7228,8 +7204,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$SecurityProfile;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Delete extends StandardParameters {
     /**
      * Optional. If client provided etag is out of date, delete will return FAILED_PRECONDITION error.
      */
@@ -7239,15 +7214,13 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Get extends StandardParameters {
     /**
      * Required. A name of the SecurityProfile to get. Must be in the format `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile_id\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$List extends StandardParameters {
     /**
      * Maximum number of SecurityProfiles to return per call.
      */
@@ -7261,8 +7234,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Securityprofiles$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Securityprofiles$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
      */
@@ -7658,15 +7630,13 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
@@ -9534,8 +9504,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Addressgroups$Additems
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Additems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to add items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -9546,8 +9515,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddAddressGroupItemsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Cloneitems
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Cloneitems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -9558,8 +9526,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$CloneAddressGroupItemsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Create extends StandardParameters {
     /**
      * Required. Short name of the AddressGroup resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "authz_policy".
      */
@@ -9578,8 +9545,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddressGroup;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Delete extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to delete. Must be in the format `projects/x/locations/{location\}/addressGroups/x`.
      */
@@ -9589,15 +9555,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Get extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to get. Must be in the format `projects/x/locations/{location\}/addressGroups/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -9607,8 +9571,7 @@ export namespace networksecurity_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$List extends StandardParameters {
     /**
      * Maximum number of AddressGroups to return per call.
      */
@@ -9626,8 +9589,7 @@ export namespace networksecurity_v1beta1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Listreferences
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Listreferences extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -9641,8 +9603,7 @@ export namespace networksecurity_v1beta1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Patch extends StandardParameters {
     /**
      * Required. Name of the AddressGroup resource. It matches pattern `projects/x/locations/{location\}/addressGroups/`.
      */
@@ -9661,8 +9622,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AddressGroup;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Removeitems
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Removeitems extends StandardParameters {
     /**
      * Required. A name of the AddressGroup to remove items from. Must be in the format `projects|organization/x/locations/{location\}/addressGroups/x`.
      */
@@ -9673,8 +9633,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$RemoveAddressGroupItemsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -9685,8 +9644,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Addressgroups$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Addressgroups$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -10929,8 +10887,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Create extends StandardParameters {
     /**
      * Required. Short name of the AuthorizationPolicy resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "authz_policy".
      */
@@ -10945,22 +10902,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AuthorizationPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the AuthorizationPolicy to delete. Must be in the format `projects/{project\}/locations/{location\}/authorizationPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Get extends StandardParameters {
     /**
      * Required. A name of the AuthorizationPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/authorizationPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -10970,8 +10924,7 @@ export namespace networksecurity_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$List extends StandardParameters {
     /**
      * Maximum number of AuthorizationPolicies to return per call.
      */
@@ -10985,8 +10938,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Patch extends StandardParameters {
     /**
      * Required. Name of the AuthorizationPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/authorizationPolicies/`.
      */
@@ -11001,8 +10953,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AuthorizationPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -11013,8 +10964,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authorizationpolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12252,8 +12202,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Create extends StandardParameters {
     /**
      * Required. User-provided ID of the `AuthzPolicy` resource to be created.
      */
@@ -12272,8 +12221,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AuthzPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Delete extends StandardParameters {
     /**
      * Required. The name of the `AuthzPolicy` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
      */
@@ -12283,15 +12231,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Get extends StandardParameters {
     /**
      * Required. A name of the `AuthzPolicy` resource to get. Must be in the format `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -12301,8 +12247,7 @@ export namespace networksecurity_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$List extends StandardParameters {
     /**
      * Optional. Filtering results.
      */
@@ -12324,8 +12269,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Patch extends StandardParameters {
     /**
      * Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project\}/locations/{location\}/authzPolicies/{authz_policy\}`.
      */
@@ -12344,8 +12288,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$AuthzPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -12356,8 +12299,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Authzpolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -13149,8 +13091,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Create extends StandardParameters {
     /**
      * Required. Short name of the BackendAuthenticationConfig resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "backend-auth-config".
      */
@@ -13165,8 +13106,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$BackendAuthenticationConfig;
   }
-  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Delete extends StandardParameters {
     /**
      * Optional. Etag of the resource. If this is provided, it must match the server's etag.
      */
@@ -13176,15 +13116,13 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Get extends StandardParameters {
     /**
      * Required. A name of the BackendAuthenticationConfig to get. Must be in the format `projects/x/locations/{location\}/backendAuthenticationConfigs/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$List extends StandardParameters {
     /**
      * Maximum number of BackendAuthenticationConfigs to return per call.
      */
@@ -13198,8 +13136,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Backendauthenticationconfigs$Patch extends StandardParameters {
     /**
      * Required. Name of the BackendAuthenticationConfig resource. It matches the pattern `projects/x/locations/{location\}/backendAuthenticationConfigs/{backend_authentication_config\}`
      */
@@ -14439,8 +14376,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Create extends StandardParameters {
     /**
      * Required. Short name of the ClientTlsPolicy resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "client_mtls_policy".
      */
@@ -14455,22 +14391,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$ClientTlsPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the ClientTlsPolicy to delete. Must be in the format `projects/x/locations/{location\}/clientTlsPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Get extends StandardParameters {
     /**
      * Required. A name of the ClientTlsPolicy to get. Must be in the format `projects/x/locations/{location\}/clientTlsPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -14480,8 +14413,7 @@ export namespace networksecurity_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$List extends StandardParameters {
     /**
      * Maximum number of ClientTlsPolicies to return per call.
      */
@@ -14495,8 +14427,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Patch extends StandardParameters {
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      */
@@ -14511,8 +14442,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$ClientTlsPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -14523,8 +14453,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Clienttlspolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -15288,8 +15217,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Create extends StandardParameters {
     /**
      * Optional. The ID of the requesting DnsThreatDetector object. If this field is not supplied, the service generates an identifier.
      */
@@ -15304,22 +15232,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$DnsThreatDetector;
   }
-  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Delete extends StandardParameters {
     /**
      * Required. Name of the DnsThreatDetector resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Get extends StandardParameters {
     /**
      * Required. Name of the DnsThreatDetector resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$List extends StandardParameters {
     /**
      * Optional. The requested page size. The server may return fewer items than requested. If unspecified, the server picks an appropriate default.
      */
@@ -15333,8 +15258,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Dnsthreatdetectors$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. Name of the DnsThreatDetector resource.
      */
@@ -16141,8 +16065,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Create extends StandardParameters {
     /**
      * Optional. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_association_id from the method_signature of Create RPC.
      */
@@ -16161,8 +16084,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$FirewallEndpointAssociation;
   }
-  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -16172,15 +16094,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Get extends StandardParameters {
     /**
      * Required. Name of the resource
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$List extends StandardParameters {
     /**
      * Optional. Filtering results
      */
@@ -16202,8 +16122,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Firewallendpointassociations$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. name of resource
      */
@@ -16986,8 +16905,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Create extends StandardParameters {
     /**
      * Required. Short name of the GatewaySecurityPolicy resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. "gateway_security_policy1".
      */
@@ -17002,22 +16920,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GatewaySecurityPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the GatewaySecurityPolicy to delete. Must be in the format `projects/{project\}/locations/{location\}/gatewaySecurityPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Get extends StandardParameters {
     /**
      * Required. A name of the GatewaySecurityPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/gatewaySecurityPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$List extends StandardParameters {
     /**
      * Maximum number of GatewaySecurityPolicies to return per call.
      */
@@ -17031,8 +16946,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Patch extends StandardParameters {
     /**
      * Required. Name of the resource. Name is of the form projects/{project\}/locations/{location\}/gatewaySecurityPolicies/{gateway_security_policy\} gateway_security_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$).
      */
@@ -17833,8 +17747,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Create extends StandardParameters {
     /**
      * The ID to use for the rule, which will become the final component of the rule's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
      */
@@ -17849,22 +17762,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GatewaySecurityPolicyRule;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Delete extends StandardParameters {
     /**
      * Required. A name of the GatewaySecurityPolicyRule to delete. Must be in the format `projects/{project\}/locations/{location\}/gatewaySecurityPolicies/{gatewaySecurityPolicy\}/rules/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Get extends StandardParameters {
     /**
      * Required. The name of the GatewaySecurityPolicyRule to retrieve. Format: projects/{project\}/location/{location\}/gatewaySecurityPolicies/x/rules/x
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$List extends StandardParameters {
     /**
      * Maximum number of GatewaySecurityPolicyRules to return per call.
      */
@@ -17878,8 +17788,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Gatewaysecuritypolicies$Rules$Patch extends StandardParameters {
     /**
      * Required. Immutable. Name of the resource. ame is the full resource name so projects/{project\}/locations/{location\}/gatewaySecurityPolicies/{gateway_security_policy\}/rules/{rule\} rule should match the pattern: (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$).
      */
@@ -18680,8 +18589,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create extends StandardParameters {
     /**
      * Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.
      */
@@ -18700,8 +18608,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$InterceptDeploymentGroup;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete extends StandardParameters {
     /**
      * Required. The deployment group to delete.
      */
@@ -18711,15 +18618,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get extends StandardParameters {
     /**
      * Required. The name of the deployment group to retrieve. Format: projects/{project\}/locations/{location\}/interceptDeploymentGroups/{intercept_deployment_group\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -18741,8 +18646,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/interceptDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.
      */
@@ -19543,8 +19447,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Interceptdeployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Create extends StandardParameters {
     /**
      * Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.
      */
@@ -19563,8 +19466,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$InterceptDeployment;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -19574,15 +19476,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment to retrieve. Format: projects/{project\}/locations/{location\}/interceptDeployments/{intercept_deployment\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -19604,8 +19504,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptdeployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/interceptDeployments/my-dep`. See https://google.aip.dev/122 for more details.
      */
@@ -20425,8 +20324,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.
      */
@@ -20445,8 +20343,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$InterceptEndpointGroupAssociation;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete extends StandardParameters {
     /**
      * Required. The association to delete.
      */
@@ -20456,15 +20353,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get extends StandardParameters {
     /**
      * Required. The name of the association to retrieve. Format: projects/{project\}/locations/{location\}/interceptEndpointGroupAssociations/{intercept_endpoint_group_association\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -20486,8 +20381,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.
      */
@@ -21289,8 +21183,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Create extends StandardParameters {
     /**
      * Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.
      */
@@ -21309,8 +21202,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$InterceptEndpointGroup;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Delete extends StandardParameters {
     /**
      * Required. The endpoint group to delete.
      */
@@ -21320,15 +21212,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Get extends StandardParameters {
     /**
      * Required. The name of the endpoint group to retrieve. Format: projects/{project\}/locations/{location\}/interceptEndpointGroups/{intercept_endpoint_group\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -21350,8 +21240,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/interceptEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.
      */
@@ -22156,8 +22045,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Create extends StandardParameters {
     /**
      * Required. The ID to use for the new deployment group, which will become the final component of the deployment group's resource name.
      */
@@ -22176,8 +22064,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$MirroringDeploymentGroup;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Delete extends StandardParameters {
     /**
      * Required. The deployment group to delete.
      */
@@ -22187,15 +22074,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Get extends StandardParameters {
     /**
      * Required. The name of the deployment group to retrieve. Format: projects/{project\}/locations/{location\}/mirroringDeploymentGroups/{mirroring_deployment_group\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -22217,8 +22102,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeploymentgroups$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this deployment group, for example: `projects/123456789/locations/global/mirroringDeploymentGroups/my-dg`. See https://google.aip.dev/122 for more details.
      */
@@ -23019,8 +22903,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Create extends StandardParameters {
     /**
      * Required. The ID to use for the new deployment, which will become the final component of the deployment's resource name.
      */
@@ -23039,8 +22922,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$MirroringDeployment;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Delete extends StandardParameters {
     /**
      * Required. Name of the resource
      */
@@ -23050,15 +22932,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Get extends StandardParameters {
     /**
      * Required. The name of the deployment to retrieve. Format: projects/{project\}/locations/{location\}/mirroringDeployments/{mirroring_deployment\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeployments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -23080,8 +22960,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringdeployments$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this deployment, for example: `projects/123456789/locations/us-central1-a/mirroringDeployments/my-dep`. See https://google.aip.dev/122 for more details.
      */
@@ -23901,8 +23780,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Create extends StandardParameters {
     /**
      * Optional. The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.
      */
@@ -23921,8 +23799,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$MirroringEndpointGroupAssociation;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Delete extends StandardParameters {
     /**
      * Required. The association to delete.
      */
@@ -23932,15 +23809,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Get extends StandardParameters {
     /**
      * Required. The name of the association to retrieve. Format: projects/{project\}/locations/{location\}/mirroringEndpointGroupAssociations/{mirroring_endpoint_group_association\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -23962,8 +23837,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroupassociations$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this endpoint group association, for example: `projects/123456789/locations/global/mirroringEndpointGroupAssociations/my-eg-association`. See https://google.aip.dev/122 for more details.
      */
@@ -24768,8 +24642,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Create extends StandardParameters {
     /**
      * Required. The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.
      */
@@ -24788,8 +24661,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$MirroringEndpointGroup;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Delete extends StandardParameters {
     /**
      * Required. The endpoint group to delete.
      */
@@ -24799,15 +24671,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Get extends StandardParameters {
     /**
      * Required. The name of the endpoint group to retrieve. Format: projects/{project\}/locations/{location\}/mirroringEndpointGroups/{mirroring_endpoint_group\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$List extends StandardParameters {
     /**
      * Optional. Filter expression. See https://google.aip.dev/160#filtering for more details.
      */
@@ -24829,8 +24699,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch extends StandardParameters {
     /**
      * Immutable. Identifier. The resource name of this endpoint group, for example: `projects/123456789/locations/global/mirroringEndpointGroups/my-eg`. See https://google.aip.dev/122 for more details.
      */
@@ -25421,8 +25290,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -25433,22 +25301,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -26078,8 +25943,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sacattachments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacattachments$Create extends StandardParameters {
     /**
      * Required. The parent, in the form `projects/{project\}/locations/{location\}`.
      */
@@ -26098,8 +25962,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$SACAttachment;
   }
-  export interface Params$Resource$Projects$Locations$Sacattachments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacattachments$Delete extends StandardParameters {
     /**
      * Required. Name of the resource, in the form `projects/{project\}/locations/{location\}/sacAttachments/{sac_attachment\}`.
      */
@@ -26109,15 +25972,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sacattachments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacattachments$Get extends StandardParameters {
     /**
      * Required. Name of the resource, in the form `projects/{project\}/locations/{location\}/sacAttachments/{sac_attachment\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sacattachments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacattachments$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of results.
      */
@@ -26741,8 +26602,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Sacrealms$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacrealms$Create extends StandardParameters {
     /**
      * Required. The parent, in the form `projects/{project\}/locations/global`.
      */
@@ -26761,8 +26621,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$SACRealm;
   }
-  export interface Params$Resource$Projects$Locations$Sacrealms$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacrealms$Delete extends StandardParameters {
     /**
      * Required. Name of the resource, in the form `projects/{project\}/locations/global/sacRealms/{sacRealm\}`.
      */
@@ -26772,15 +26631,13 @@ export namespace networksecurity_v1beta1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sacrealms$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacrealms$Get extends StandardParameters {
     /**
      * Required. Name of the resource, in the form `projects/{project\}/locations/global/sacRealms/{sacRealm\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Sacrealms$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Sacrealms$List extends StandardParameters {
     /**
      * Optional. An expression that filters the list of results.
      */
@@ -28030,8 +27887,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Create extends StandardParameters {
     /**
      * Required. The parent resource of the ServerTlsPolicy. Must be in the format `projects/x/locations/{location\}`.
      */
@@ -28046,22 +27902,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$ServerTlsPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Delete extends StandardParameters {
     /**
      * Required. A name of the ServerTlsPolicy to delete. Must be in the format `projects/x/locations/{location\}/serverTlsPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Get extends StandardParameters {
     /**
      * Required. A name of the ServerTlsPolicy to get. Must be in the format `projects/x/locations/{location\}/serverTlsPolicies/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -28071,8 +27924,7 @@ export namespace networksecurity_v1beta1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$List extends StandardParameters {
     /**
      * Maximum number of ServerTlsPolicies to return per call.
      */
@@ -28090,8 +27942,7 @@ export namespace networksecurity_v1beta1 {
      */
     returnPartialSuccess?: boolean;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Patch extends StandardParameters {
     /**
      * Required. Name of the ServerTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/serverTlsPolicies/{server_tls_policy\}`
      */
@@ -28106,8 +27957,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$ServerTlsPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -28118,8 +27968,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Servertlspolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -28906,8 +28755,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Create extends StandardParameters {
     /**
      * Required. The parent resource of the TlsInspectionPolicy. Must be in the format `projects/{project\}/locations/{location\}`.
      */
@@ -28922,8 +28770,7 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$TlsInspectionPolicy;
   }
-  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Delete extends StandardParameters {
     /**
      * If set to true, any rules for this TlsInspectionPolicy will also be deleted. (Otherwise, the request will only work if the TlsInspectionPolicy has no rules.)
      */
@@ -28933,15 +28780,13 @@ export namespace networksecurity_v1beta1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Get extends StandardParameters {
     /**
      * Required. A name of the TlsInspectionPolicy to get. Must be in the format `projects/{project\}/locations/{location\}/tlsInspectionPolicies/{tls_inspection_policy\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$List extends StandardParameters {
     /**
      * Maximum number of TlsInspectionPolicies to return per call.
      */
@@ -28955,8 +28800,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Tlsinspectionpolicies$Patch extends StandardParameters {
     /**
      * Required. Name of the resource. Name is of the form projects/{project\}/locations/{location\}/tlsInspectionPolicies/{tls_inspection_policy\} tls_inspection_policy should match the pattern:(^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$).
      */
@@ -29712,8 +29556,7 @@ export namespace networksecurity_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Urllists$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Urllists$Create extends StandardParameters {
     /**
      * Required. The parent resource of the UrlList. Must be in the format `projects/x/locations/{location\}`.
      */
@@ -29728,22 +29571,19 @@ export namespace networksecurity_v1beta1 {
      */
     requestBody?: Schema$UrlList;
   }
-  export interface Params$Resource$Projects$Locations$Urllists$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Urllists$Delete extends StandardParameters {
     /**
      * Required. A name of the UrlList to delete. Must be in the format `projects/x/locations/{location\}/urlLists/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Urllists$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Urllists$Get extends StandardParameters {
     /**
      * Required. A name of the UrlList to get. Must be in the format `projects/x/locations/{location\}/urlLists/x`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Urllists$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Urllists$List extends StandardParameters {
     /**
      * Maximum number of UrlLists to return per call.
      */
@@ -29757,8 +29597,7 @@ export namespace networksecurity_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Urllists$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Urllists$Patch extends StandardParameters {
     /**
      * Required. Name of the resource provided by the user. Name is of the form projects/{project\}/locations/{location\}/urlLists/{url_list\} url_list should match the pattern:(^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$).
      */
