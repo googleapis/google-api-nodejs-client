@@ -696,7 +696,7 @@ export namespace accesscontextmanager_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2261,29 +2261,25 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Create extends StandardParameters {
     /**
      * Request body metadata
      */
     requestBody?: Schema$AccessPolicy;
   }
-  export interface Params$Resource$Accesspolicies$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Delete extends StandardParameters {
     /**
      * Required. Resource name for the access policy to delete. Format `accessPolicies/{policy_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Get extends StandardParameters {
     /**
      * Required. Resource name for the access policy to get. Format `accessPolicies/{policy_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Getiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Getiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2294,8 +2290,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$GetIamPolicyRequest;
   }
-  export interface Params$Resource$Accesspolicies$List
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$List extends StandardParameters {
     /**
      * Number of AccessPolicy instances to include in the list. Default 100.
      */
@@ -2309,8 +2304,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Patch extends StandardParameters {
     /**
      * Output only. Identifier. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
@@ -2325,8 +2319,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$AccessPolicy;
   }
-  export interface Params$Resource$Accesspolicies$Setiampolicy
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Setiampolicy extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -2337,8 +2330,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Accesspolicies$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -3396,8 +3388,7 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Accesslevels$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Create extends StandardParameters {
     /**
      * Required. Resource name for the access policy which owns this Access Level. Format: `accessPolicies/{policy_id\}`
      */
@@ -3408,15 +3399,13 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$AccessLevel;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Delete extends StandardParameters {
     /**
      * Required. Resource name for the Access Level. Format: `accessPolicies/{policy_id\}/accessLevels/{access_level_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Get extends StandardParameters {
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression Language rather than as `BasicLevels`. Defaults to AS_DEFINED, where Access Levels are returned as `BasicLevels` or `CustomLevels` based on how they were created. If set to CEL, all Access Levels are returned as `CustomLevels`. In the CEL case, `BasicLevels` are translated to equivalent `CustomLevels`.
      */
@@ -3426,8 +3415,7 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$List
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$List extends StandardParameters {
     /**
      * Whether to return `BasicLevels` in the Cloud Common Expression language, as `CustomLevels`, rather than as `BasicLevels`. Defaults to returning `AccessLevels` in the format they were defined.
      */
@@ -3445,8 +3433,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Patch extends StandardParameters {
     /**
      * Identifier. Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.
      */
@@ -3461,8 +3448,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$AccessLevel;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Replaceall
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Replaceall extends StandardParameters {
     /**
      * Required. Resource name for the access policy which owns these Access Levels. Format: `accessPolicies/{policy_id\}`
      */
@@ -3473,8 +3459,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$ReplaceAccessLevelsRequest;
   }
-  export interface Params$Resource$Accesspolicies$Accesslevels$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Accesslevels$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -4235,8 +4220,7 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Create extends StandardParameters {
     /**
      * Required. Resource name for the access policy which owns this Authorized Orgs Desc. Format: `accessPolicies/{policy_id\}`
      */
@@ -4247,22 +4231,19 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$AuthorizedOrgsDesc;
   }
-  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Delete extends StandardParameters {
     /**
      * Required. Resource name for the Authorized Orgs Desc. Format: `accessPolicies/{policy_id\}/authorizedOrgsDesc/{authorized_orgs_desc_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Get extends StandardParameters {
     /**
      * Required. Resource name for the Authorized Orgs Desc. Format: `accessPolicies/{policy_id\}/authorizedOrgsDescs/{authorized_orgs_descs_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$List
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$List extends StandardParameters {
     /**
      * Number of Authorized Orgs Descs to include in the list. Default 100.
      */
@@ -4276,8 +4257,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Authorizedorgsdescs$Patch extends StandardParameters {
     /**
      * Identifier. Resource name for the `AuthorizedOrgsDesc`. Format: `accessPolicies/{access_policy\}/authorizedOrgsDescs/{authorized_orgs_desc\}`. The `authorized_orgs_desc` component must begin with a letter, followed by alphanumeric characters or `_`. After you create an `AuthorizedOrgsDesc`, you cannot change its `name`.
      */
@@ -5505,8 +5485,7 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Commit
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Commit extends StandardParameters {
     /**
      * Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation. Format: `accessPolicies/{policy_id\}`
      */
@@ -5517,8 +5496,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$CommitServicePerimetersRequest;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Create
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Create extends StandardParameters {
     /**
      * Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id\}`
      */
@@ -5529,22 +5507,19 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$ServicePerimeter;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Delete extends StandardParameters {
     /**
      * Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeter_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Get extends StandardParameters {
     /**
      * Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeters_id\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$List
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$List extends StandardParameters {
     /**
      * Number of Service Perimeters to include in the list. Default 100.
      */
@@ -5558,8 +5533,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch extends StandardParameters {
     /**
      * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */
@@ -5574,8 +5548,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$ServicePerimeter;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Replaceall
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Replaceall extends StandardParameters {
     /**
      * Required. Resource name for the access policy which owns these Service Perimeters. Format: `accessPolicies/{policy_id\}`
      */
@@ -5586,8 +5559,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$ReplaceServicePerimetersRequest;
   }
-  export interface Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions
-    extends StandardParameters {
+  export interface Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
@@ -6054,7 +6026,7 @@ export namespace accesscontextmanager_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6162,8 +6134,7 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -6174,8 +6145,7 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -6205,7 +6175,7 @@ export namespace accesscontextmanager_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -6983,8 +6953,7 @@ export namespace accesscontextmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Create
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Create extends StandardParameters {
     /**
      * Required. Example: "organizations/256"
      */
@@ -6995,22 +6964,19 @@ export namespace accesscontextmanager_v1 {
      */
     requestBody?: Schema$GcpUserAccessBinding;
   }
-  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Delete extends StandardParameters {
     /**
      * Required. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Get
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Get extends StandardParameters {
     /**
      * Required. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Gcpuseraccessbindings$List
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Gcpuseraccessbindings$List extends StandardParameters {
     /**
      * Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.
      */
@@ -7024,8 +6990,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch extends StandardParameters {
     /**
      * Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with session_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when "scoped_access_settings" is not set in the update_mask.
      */
