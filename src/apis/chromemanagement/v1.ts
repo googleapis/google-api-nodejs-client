@@ -3052,7 +3052,7 @@ export namespace chromemanagement_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3635,8 +3635,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Apps$Countchromeapprequests
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Countchromeapprequests extends StandardParameters {
     /**
      * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
      */
@@ -3658,8 +3657,7 @@ export namespace chromemanagement_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customers$Apps$Fetchdevicesrequestingextension
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Fetchdevicesrequestingextension extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer" prefixed with "customers/".
      */
@@ -3681,8 +3679,7 @@ export namespace chromemanagement_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customers$Apps$Fetchusersrequestingextension
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Fetchusersrequestingextension extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer" prefixed with "customers/".
      */
@@ -3877,8 +3874,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Apps$Android$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Android$Get extends StandardParameters {
     /**
      * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
      */
@@ -4057,8 +4053,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Apps$Chrome$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Chrome$Get extends StandardParameters {
     /**
      * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
      */
@@ -4237,8 +4232,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Apps$Web$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Apps$Web$Get extends StandardParameters {
     /**
      * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
      */
@@ -5044,8 +5038,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Claim
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Claim extends StandardParameters {
     /**
      * Required. Resource name of the `CertificateProvisioningProcess` to claim. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
      */
@@ -5056,15 +5049,13 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest;
   }
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Get extends StandardParameters {
     /**
      * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Setfailure extends StandardParameters {
     /**
      * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
      */
@@ -5075,8 +5066,7 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1SetFailureRequest;
   }
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Signdata
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Signdata extends StandardParameters {
     /**
      * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
      */
@@ -5087,8 +5077,7 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1SignDataRequest;
   }
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Uploadcertificate extends StandardParameters {
     /**
      * Required. Resource name of the `CertificateProvisioningProcess` to return. The name pattern is given as `customers/{customer\}/certificateProvisioningProcesses/{certificate_provisioning_process\}` with `{customer\}` being the obfuscated customer id and `{certificate_provisioning_process\}` being the certificate provisioning process id.
      */
@@ -5254,8 +5243,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Certificateprovisioningprocesses$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
@@ -5739,22 +5727,19 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Profiles$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$Delete extends StandardParameters {
     /**
      * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Profiles$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$Get extends StandardParameters {
     /**
      * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Profiles$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$List extends StandardParameters {
     /**
      * Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '\>', '<=' and '\>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id\}', please note that only single OU ID matching is supported.
      */
@@ -6263,8 +6248,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Profiles$Commands$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$Commands$Create extends StandardParameters {
     /**
      * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
      */
@@ -6275,15 +6259,13 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand;
   }
-  export interface Params$Resource$Customers$Profiles$Commands$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$Commands$Get extends StandardParameters {
     /**
      * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}/commands/{command_id\}
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Profiles$Commands$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Profiles$Commands$List extends StandardParameters {
     /**
      * Optional. The maximum number of commands to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 100.
      */
@@ -8547,8 +8529,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Reports$Countactivedevices
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countactivedevices extends StandardParameters {
     /**
      * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
      */
@@ -8566,8 +8547,7 @@ export namespace chromemanagement_v1 {
      */
     'date.year'?: number;
   }
-  export interface Params$Resource$Customers$Reports$Countchromebrowsersneedingattention
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromebrowsersneedingattention extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer" prefixed with "customers/".
      */
@@ -8577,8 +8557,7 @@ export namespace chromemanagement_v1 {
      */
     orgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countchromecrashevents
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromecrashevents extends StandardParameters {
     /**
      * Customer ID.
      */
@@ -8596,8 +8575,7 @@ export namespace chromemanagement_v1 {
      */
     orgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromedevicesreachingautoexpirationdate extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer" prefixed with "customers/".
      */
@@ -8615,8 +8593,7 @@ export namespace chromemanagement_v1 {
      */
     orgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countchromedevicesthatneedattention
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromedevicesthatneedattention extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer" prefixed with "customers/".
      */
@@ -8630,8 +8607,7 @@ export namespace chromemanagement_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countchromehardwarefleetdevices
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromehardwarefleetdevices extends StandardParameters {
     /**
      * Required. The customer ID or "my_customer".
      */
@@ -8645,8 +8621,7 @@ export namespace chromemanagement_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countchromeversions
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countchromeversions extends StandardParameters {
     /**
      * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
      */
@@ -8668,8 +8643,7 @@ export namespace chromemanagement_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countdevicesperboottype
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countdevicesperboottype extends StandardParameters {
     /**
      * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
      */
@@ -8687,8 +8661,7 @@ export namespace chromemanagement_v1 {
      */
     'date.year'?: number;
   }
-  export interface Params$Resource$Customers$Reports$Countdevicesperreleasechannel
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countdevicesperreleasechannel extends StandardParameters {
     /**
      * Required. Obfuscated customer ID prefixed with "customers/C" or "customers/my_customer".
      */
@@ -8706,8 +8679,7 @@ export namespace chromemanagement_v1 {
      */
     'date.year'?: number;
   }
-  export interface Params$Resource$Customers$Reports$Countinstalledapps
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countinstalledapps extends StandardParameters {
     /**
      * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
      */
@@ -8733,8 +8705,7 @@ export namespace chromemanagement_v1 {
      */
     pageToken?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countprintjobsbyprinter
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countprintjobsbyprinter extends StandardParameters {
     /**
      * Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
      */
@@ -8760,8 +8731,7 @@ export namespace chromemanagement_v1 {
      */
     printerOrgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Countprintjobsbyuser
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Countprintjobsbyuser extends StandardParameters {
     /**
      * Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
      */
@@ -8787,8 +8757,7 @@ export namespace chromemanagement_v1 {
      */
     printerOrgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Enumerateprintjobs
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Enumerateprintjobs extends StandardParameters {
     /**
      * Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
      */
@@ -8814,8 +8783,7 @@ export namespace chromemanagement_v1 {
      */
     printerOrgUnitId?: string;
   }
-  export interface Params$Resource$Customers$Reports$Findinstalledappdevices
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Reports$Findinstalledappdevices extends StandardParameters {
     /**
      * Unique identifier of the app. For Chrome apps and extensions, the 32-character id (e.g. ehoadneljpdggcbbknedodolkkjodefl). For Android apps, the package name (e.g. com.evernote).
      */
@@ -9208,8 +9176,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Telemetry$Devices$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Devices$Get extends StandardParameters {
     /**
      * Required. Name of the `TelemetryDevice` to return.
      */
@@ -9219,8 +9186,7 @@ export namespace chromemanagement_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Customers$Telemetry$Devices$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Devices$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter. Requests that don't specify a "reports_timestamp" value will default to returning only recent reports. Specify "reports_timestamp\>=0" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
@@ -9409,8 +9375,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Telemetry$Events$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Events$List extends StandardParameters {
     /**
      * Optional. Only include resources that match the filter. Although this parameter is currently optional, this parameter will be required- please specify at least 1 event type. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
      */
@@ -9898,8 +9863,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$Create
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$Create extends StandardParameters {
     /**
      * Required. The parent resource where this notification config will be created. Format: `customers/{customer\}`
      */
@@ -9910,15 +9874,13 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleChromeManagementV1TelemetryNotificationConfig;
   }
-  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$Delete extends StandardParameters {
     /**
      * Required. The name of the notification config to delete. Format: `customers/{customer\}/telemetry/notificationConfigs/{notification_config\}`
      */
     name?: string;
   }
-  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Notificationconfigs$List extends StandardParameters {
     /**
      * The maximum number of notification configs to return. The service may return fewer than this value. If unspecified, at most 100 notification configs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
@@ -10253,8 +10215,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Telemetry$Users$Get
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Users$Get extends StandardParameters {
     /**
      * Required. Name of the `TelemetryUser` to return.
      */
@@ -10264,8 +10225,7 @@ export namespace chromemanagement_v1 {
      */
     readMask?: string;
   }
-  export interface Params$Resource$Customers$Telemetry$Users$List
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Telemetry$Users$List extends StandardParameters {
     /**
      * Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id
      */
@@ -10448,8 +10408,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Customers$Thirdpartyprofileusers$Move
-    extends StandardParameters {
+  export interface Params$Resource$Customers$Thirdpartyprofileusers$Move extends StandardParameters {
     /**
      * Required. Format: customers/{customer_id\}/thirdPartyProfileUsers/{third_party_profile_user_id\}
      */
@@ -10778,7 +10737,7 @@ export namespace chromemanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10894,8 +10853,7 @@ export namespace chromemanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -10906,8 +10864,7 @@ export namespace chromemanagement_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
@@ -10931,7 +10888,7 @@ export namespace chromemanagement_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
