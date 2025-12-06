@@ -318,8 +318,7 @@ export namespace publicca_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Externalaccountkeys$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Externalaccountkeys$Create extends StandardParameters {
     /**
      * Required. The parent resource where this external_account_key will be created. Format: projects/[project_id]/locations/[location]. At present only the "global" location is supported.
      */
