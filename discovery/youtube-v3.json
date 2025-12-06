@@ -4166,13 +4166,47 @@
                   }
                 }
               }
+            },
+            "videos": {
+              "methods": {
+                "batchGetStats": {
+                  "description": "Retrieves a batch of VideoStat resources, possibly filtered.",
+                  "flatPath": "youtube/v3/videos:batchGetStats",
+                  "httpMethod": "GET",
+                  "id": "youtube.youtube.v3.videos.batchGetStats",
+                  "parameterOrder": [],
+                  "parameters": {
+                    "onBehalfOfContentOwner": {
+                      "description": "Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "part": {
+                      "description": "Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "videoIds": {
+                      "description": "Required. Return videos with the given ids.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "youtube/v3/videos:batchGetStats",
+                  "response": {
+                    "$ref": "BatchGetStatsResponse"
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20250714",
+  "revision": "20251125",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4642,6 +4676,32 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetStatsResponse": {
+      "description": "Response for the Videos.stats API. Returns VideoStat information about a batch of videos. VideoStat contains a subset of the information in Video that is relevant to statistics and content details.",
+      "id": "BatchGetStatsResponse",
+      "properties": {
+        "etag": {
+          "description": "Output only. Etag of this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "items": {
+          "description": "Output only. The videos' stats information.",
+          "items": {
+            "$ref": "VideoStat"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "kind": {
+          "default": "youtube#batchGetStatsResponse",
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string \"youtube#batchGetStatsResponse\".",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -12068,6 +12128,48 @@
       },
       "type": "object"
     },
+    "VideoStat": {
+      "description": "A *VideoStat* resource represents a YouTube video's stats.",
+      "id": "VideoStat",
+      "properties": {
+        "contentDetails": {
+          "$ref": "VideoStatsContentDetails",
+          "description": "Output only. The VideoStatsContentDetails object contains information about the video content, including the length of the video.",
+          "readOnly": true
+        },
+        "etag": {
+          "description": "Output only. Etag of this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string \"youtube#videoStats\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name for the `VideoStats` resource, in the format `videoStats/{video_stat}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "snippet": {
+          "$ref": "VideoStatsSnippet",
+          "description": "Output only. The VideoStatsSnippet object contains basic details about the video, such publish time.",
+          "readOnly": true
+        },
+        "statistics": {
+          "$ref": "VideoStatsStatistics",
+          "description": "Output only. The VideoStatsStatistics object contains statistics about the video.",
+          "readOnly": true
+        },
+        "videoId": {
+          "description": "Output only. The ID that YouTube uses to uniquely identify the video.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VideoStatistics": {
       "description": "Statistics about the video, such as the number of times the video was viewed or liked.",
       "id": "VideoStatistics",
@@ -12096,6 +12198,57 @@
         "viewCount": {
           "description": "The number of times the video has been viewed.",
           "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoStatsContentDetails": {
+      "description": "Details about the content of a YouTube Video. This is a subset of the information in VideoContentDetails specifically for the Videos.stats API.",
+      "id": "VideoStatsContentDetails",
+      "properties": {
+        "duration": {
+          "description": "Output only. The length of the video. The property value is a [`google.protobuf.Duration`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) object.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoStatsSnippet": {
+      "description": "Basic details about a video. This is a subset of the information in VideoSnippet specifically for the Videos.stats API.",
+      "id": "VideoStatsSnippet",
+      "properties": {
+        "publishTime": {
+          "description": "Output only. The date and time that the video was uploaded. The property value is a [`google.protobuf.Timestamp`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#timestamp) object.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoStatsStatistics": {
+      "description": "Statistics about the video, such as the number of times the video was viewed or liked.",
+      "id": "VideoStatsStatistics",
+      "properties": {
+        "commentCount": {
+          "description": "Output only. The number of comments for the video.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "likeCount": {
+          "description": "Output only. The number of users who have indicated that they liked the video by giving it a positive rating.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "viewCount": {
+          "description": "Output only. The number of times the video has been viewed.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
