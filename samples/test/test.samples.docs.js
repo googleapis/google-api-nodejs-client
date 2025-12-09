@@ -17,6 +17,7 @@ const assert = require('assert');
 const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
 const {google} = require('googleapis');
+const {getStubs} = require('./common.js');
 const proxyquire = require('proxyquire');
 
 nock.disableNetConnect();
@@ -28,28 +29,7 @@ const samples = {
 
 const baseUrl = 'https://docs.googleapis.com';
 
-const stubs = {
-  'googleapis': {
-    google: {
-      ...google,
-      options: () => {},
-      auth: {
-        ...google.auth,
-        GoogleAuth: class {
-          constructor() {
-            return {
-              getClient: async () => {
-                const client = new google.auth.OAuth2();
-                client.credentials = {access_token: 'not-a-token'};
-                return client;
-              }
-            }
-          }
-        },
-      },
-    }
-  }
-};
+const stubs = getStubs();
 
 for (const sample of Object.values(samples)) {
   sample.runSample = proxyquire(sample.path, stubs);

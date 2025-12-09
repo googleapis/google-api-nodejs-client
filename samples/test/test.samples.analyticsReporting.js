@@ -18,33 +18,13 @@ const {describe, it, afterEach} = require('mocha');
 const nock = require('nock');
 const proxyquire = require('proxyquire');
 const {google} = require('googleapis');
+const {getStubs} = require('./common.js');
 
 nock.disableNetConnect();
 
 const baseUrl = 'https://analyticsreporting.googleapis.com';
 
-const stubs = {
-  'googleapis': {
-    google: {
-      ...google,
-      options: () => {},
-      auth: {
-        ...google.auth,
-        GoogleAuth: class {
-          constructor() {
-            return {
-              getClient: async () => {
-                const client = new google.auth.OAuth2();
-                client.credentials = {access_token: 'not-a-token'};
-                return client;
-              }
-            }
-          }
-        },
-      },
-    }
-  }
-};
+const stubs = getStubs();
 
 describe('analyticsReporting samples', () => {
   const batchGet = proxyquire('../analyticsReporting/batchGet', stubs);
