@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/webrisk-v6.0.0...webrisk-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **webrisk:** update the API ([f41c6df](https://github.com/googleapis/google-api-nodejs-client/commit/f41c6df3847d9b2de115f67c8ae4d5b63aefb80b))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webrisk-v5.0.0...webrisk-v6.0.0) (2025-10-15)
 
 

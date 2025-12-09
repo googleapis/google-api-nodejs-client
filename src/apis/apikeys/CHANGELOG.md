@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v5.0.0...apikeys-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **apikeys:** update the API ([998bb0e](https://github.com/googleapis/google-api-nodejs-client/commit/998bb0e015a5b71bbf2b944005fa3101c52dd259))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v4.0.0...apikeys-v5.0.0) (2025-10-15)
 
 

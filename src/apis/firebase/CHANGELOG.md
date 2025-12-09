@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v12.0.0...firebase-v12.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([6593320](https://github.com/googleapis/google-api-nodejs-client/commit/65933201590952bf8fd311bf75f7f47ec29fab9e))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v11.0.0...firebase-v12.0.0) (2025-10-15)
 
 

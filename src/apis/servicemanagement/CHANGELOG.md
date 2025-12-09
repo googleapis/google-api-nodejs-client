@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/servicemanagement-v7.0.1...servicemanagement-v7.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **servicemanagement:** update the API ([791534d](https://github.com/googleapis/google-api-nodejs-client/commit/791534d4808761e177d74471fa5e1dad9a7df9e5))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicemanagement-v7.0.0...servicemanagement-v7.0.1) (2025-11-04)
 
 

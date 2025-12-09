@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v8.0.0...developerconnect-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **developerconnect:** update the API ([4d7a54b](https://github.com/googleapis/google-api-nodejs-client/commit/4d7a54bcce5da4c866a77ff973811069b478480d))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v7.1.0...developerconnect-v8.0.0) (2025-11-11)
 
 
