@@ -138,6 +138,31 @@ export namespace apihub_v1 {
     actionId?: string | null;
   }
   /**
+   * The additional spec content for the spec. This contains the metadata and the last update time for the additional spec content.
+   */
+  export interface Schema$GoogleCloudApihubV1AdditionalSpecContent {
+    /**
+     * Output only. The time at which the spec content was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The labels of the spec content e.g. specboost addon version.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The additional spec contents.
+     */
+    specContents?: Schema$GoogleCloudApihubV1SpecContents;
+    /**
+     * Required. The type of the spec content.
+     */
+    specContentType?: string | null;
+    /**
+     * Output only. The time at which the spec content was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Addon resource.
    */
   export interface Schema$GoogleCloudApihubV1Addon {
@@ -491,6 +516,19 @@ export namespace apihub_v1 {
      * Output only. The time at which the operation was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The view of an API.
+   */
+  export interface Schema$GoogleCloudApihubV1ApiView {
+    /**
+     * Output only. MCP server view.
+     */
+    mcpServerView?: Schema$GoogleCloudApihubV1FlattenedApiVersionDeploymentView;
+    /**
+     * Output only. MCP tools view.
+     */
+    mcpToolView?: Schema$GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView;
   }
   /**
    * The details of the Application Integration endpoint to be triggered for curation.
@@ -1280,6 +1318,53 @@ export namespace apihub_v1 {
     updateTime?: string | null;
   }
   /**
+   * The FetchAdditionalSpecContent method's response.
+   */
+  export interface Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse {
+    /**
+     * The additional spec content.
+     */
+    additionalSpecContent?: Schema$GoogleCloudApihubV1AdditionalSpecContent;
+  }
+  /**
+   * A flattened view of an API, its version and one of the linked deployments.
+   */
+  export interface Schema$GoogleCloudApihubV1FlattenedApiVersionDeploymentView {
+    /**
+     * The API.
+     */
+    api?: Schema$GoogleCloudApihubV1Api;
+    /**
+     * The deployment.
+     */
+    deployment?: Schema$GoogleCloudApihubV1Deployment;
+    /**
+     * The version.
+     */
+    version?: Schema$GoogleCloudApihubV1Version;
+  }
+  /**
+   * A flattened view of an API, its version, one of its operations and one of the linked deployments. If there are no deployments linked to the operation then the result will be empty.
+   */
+  export interface Schema$GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView {
+    /**
+     * The API.
+     */
+    api?: Schema$GoogleCloudApihubV1Api;
+    /**
+     * The API operation.
+     */
+    apiOperation?: Schema$GoogleCloudApihubV1ApiOperation;
+    /**
+     * The deployment.
+     */
+    deployment?: Schema$GoogleCloudApihubV1Deployment;
+    /**
+     * The version.
+     */
+    version?: Schema$GoogleCloudApihubV1Version;
+  }
+  /**
    * Configuration for gateway plugin addons. This is used to specify the list of gateway plugin configs for which the addon is enabled.
    */
   export interface Schema$GoogleCloudApihubV1GatewayPluginAddonConfig {
@@ -1462,6 +1547,10 @@ export namespace apihub_v1 {
      * Output only. The result of the last execution of the plugin instance.
      */
     result?: string | null;
+    /**
+     * Output only. The result metadata of the last execution of the plugin instance. This will be a string representation of a JSON object and will be available on successful execution.
+     */
+    resultMetadata?: string | null;
     /**
      * Output only. The last execution start time of the plugin instance.
      */
@@ -1770,6 +1859,35 @@ export namespace apihub_v1 {
     name?: string | null;
   }
   /**
+   * Details describing an MCP Tool.
+   */
+  export interface Schema$GoogleCloudApihubV1McpTool {
+    /**
+     * Optional. Optional annotations for the tool.
+     */
+    annotations?: Schema$GoogleCloudApihubV1ToolAnnotations;
+    /**
+     * Optional. Description of what the tool does.
+     */
+    description?: string | null;
+    /**
+     * Optional. Input schema for the operation. This can be parsed only from MCP schema type.
+     */
+    inputSchema?: Schema$GoogleCloudApihubV1OperationSchema;
+    /**
+     * Required. The name of the tool, unique within its parent scope (version).
+     */
+    name?: string | null;
+    /**
+     * Optional. Output schema for the operation. This can be parsed only from MCP schema type.
+     */
+    outputSchema?: Schema$GoogleCloudApihubV1OperationSchema;
+    /**
+     * Optional. Optional title for the tool.
+     */
+    title?: string | null;
+  }
+  /**
    * The config variable value of data type multi int.
    */
   export interface Schema$GoogleCloudApihubV1MultiIntValues {
@@ -1846,6 +1964,10 @@ export namespace apihub_v1 {
      * The HTTP Operation.
      */
     httpOperation?: Schema$GoogleCloudApihubV1HttpOperation;
+    /**
+     * The MCP Tool Operation.
+     */
+    mcpTool?: Schema$GoogleCloudApihubV1McpTool;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -1879,6 +2001,15 @@ export namespace apihub_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * The operation schema needed for an operation.
+   */
+  export interface Schema$GoogleCloudApihubV1OperationSchema {
+    /**
+     * The JSON schema. Only valid JSON is accepted but semantic validation of schema is not supported right now.
+     */
+    jsonSchema?: {[key: string]: any} | null;
   }
   /**
    * Owner details.
@@ -2174,6 +2305,19 @@ export namespace apihub_v1 {
     pubsubTopic?: string | null;
   }
   /**
+   * The RetrieveApiViews method's response.
+   */
+  export interface Schema$GoogleCloudApihubV1RetrieveApiViewsResponse {
+    /**
+     * The list of API views.
+     */
+    apiViews?: Schema$GoogleCloudApihubV1ApiView[];
+    /**
+     * Next page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Runtime project attachment represents an attachment from the runtime project to the host project. Api Hub looks for deployments in the attached runtime projects and creates corresponding resources in Api Hub for the discovered deployments.
    */
   export interface Schema$GoogleCloudApihubV1RuntimeProjectAttachment {
@@ -2305,6 +2449,10 @@ export namespace apihub_v1 {
    * Represents a spec associated with an API version in the API Hub. Note that specs of various types can be uploaded, however parsing of details is supported for OpenAPI spec currently.
    */
   export interface Schema$GoogleCloudApihubV1Spec {
+    /**
+     * Output only. The additional spec contents for the spec.
+     */
+    additionalSpecContents?: Schema$GoogleCloudApihubV1AdditionalSpecContent[];
     /**
      * Optional. The list of user defined attributes associated with the spec. The key is the attribute name. It will be of the format: `projects/{project\}/locations/{location\}/attributes/{attribute\}`. The value is the attribute values associated with the resource.
      */
@@ -2458,6 +2606,35 @@ export namespace apihub_v1 {
      * Required. Severity of the issue.
      */
     severity?: string | null;
+  }
+  /**
+   * Annotations for a Tool.
+   */
+  export interface Schema$GoogleCloudApihubV1ToolAnnotations {
+    /**
+     * Optional. Additional hints which may help tools and not covered in defaults.
+     */
+    additionalHints?: {[key: string]: string} | null;
+    /**
+     * Optional. Hint indicating if the tool may have destructive side effects.
+     */
+    destructiveHint?: boolean | null;
+    /**
+     * Optional. Hint indicating if the tool is idempotent.
+     */
+    idempotentHint?: boolean | null;
+    /**
+     * Optional. Hint indicating if the tool interacts with the open world (e.g., internet).
+     */
+    openWorldHint?: boolean | null;
+    /**
+     * Optional. Hint indicating if the tool is read-only.
+     */
+    readOnlyHint?: boolean | null;
+    /**
+     * Optional. A human-readable title for the tool (if different from Tool.title).
+     */
+    title?: string | null;
   }
   /**
    * Parameters to support Username and Password Authentication.
@@ -2660,7 +2837,7 @@ export namespace apihub_v1 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3365,6 +3542,162 @@ export namespace apihub_v1 {
     }
 
     /**
+     * Retrieve API views.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.retrieveApiViews({
+     *     // Optional. The filter expression.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of results to return. Default to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `RetrieveApiViews` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. The view type to return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiViews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveApiViews(
+      params: Params$Resource$Projects$Locations$Retrieveapiviews,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    retrieveApiViews(
+      params?: Params$Resource$Projects$Locations$Retrieveapiviews,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+    >;
+    retrieveApiViews(
+      params: Params$Resource$Projects$Locations$Retrieveapiviews,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveApiViews(
+      params: Params$Resource$Projects$Locations$Retrieveapiviews,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+    ): void;
+    retrieveApiViews(
+      params: Params$Resource$Projects$Locations$Retrieveapiviews,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+    ): void;
+    retrieveApiViews(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+    ): void;
+    retrieveApiViews(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Retrieveapiviews
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Retrieveapiviews;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Retrieveapiviews;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:retrieveApiViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1RetrieveApiViewsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Search across API-Hub resources.
      * @example
      * ```js
@@ -3568,6 +3901,28 @@ export namespace apihub_v1 {
      * Required. Runtime project ID to look up runtime project attachment for. Lookup happens across all regions. Expected format: `projects/{project\}/locations/{location\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Retrieveapiviews extends StandardParameters {
+    /**
+     * Optional. The filter expression.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return. Default to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `RetrieveApiViews` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. The view type to return.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Searchresources extends StandardParameters {
     /**
@@ -5234,7 +5589,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.apis.list({
-     *     // Optional. An expression that filters the list of ApiResources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `ApiResource` are eligible for filtering: * `owner.email` - The email of the team which owns the ApiResource. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiResource was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the ApiResource. Allowed comparison operators: `=`. * `target_user.enum_values.values.id` - The allowed value id of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `target_user.enum_values.values.display_name` - The allowed value display name of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.id` - The allowed value id of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.display_name` - The allowed value display name of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.id` - The allowed value id of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.display_name` - The allowed value display name of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.id` - The allowed value id of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.display_name` - The allowed value display name of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.id` - The allowed value id of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.display_name` - The allowed value display name of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"api-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/apis/api-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `owner.email = \"apihub@google.com\"` - - The owner team email is _apihub@google.com_. * `owner.email = \"apihub@google.com\" AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The owner team email is _apihub@google.com_ and the api was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.id: apihub-team-id` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the id of the allowed value associated with the team attribute is _apihub-team-id_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.display_name: ApiHub Team` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the display name of the allowed value associated with the team attribute is `ApiHub Team`. * `owner.email = \"apihub@google.com\" AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test_enum_id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values: test_string_value` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ and the id of the allowed value associated with the user defined attribute of type enum is _test_enum_id_ and the value of the user defined attribute of type string is _test_..
+     *     // Optional. An expression that filters the list of ApiResources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `ApiResource` are eligible for filtering: * `owner.email` - The email of the team which owns the ApiResource. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiResource was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the ApiResource. Allowed comparison operators: `=`. * `target_user.enum_values.values.id` - The allowed value id of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `target_user.enum_values.values.display_name` - The allowed value display name of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.id` - The allowed value id of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.display_name` - The allowed value display name of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.id` - The allowed value id of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.display_name` - The allowed value display name of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.id` - The allowed value id of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.display_name` - The allowed value display name of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.id` - The allowed value id of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.display_name` - The allowed value display name of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"api-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/apis/api-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Another supported filter function is `plugins(source_metadata)`. This function filters for resources that are associated with a specific plugin. For example, `plugins(source_metadata) : "projects/test-project-id/locations/test-location-id/plugins/test-plugin-id"` will return resources sourced from the given plugin. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `owner.email = \"apihub@google.com\"` - - The owner team email is _apihub@google.com_. * `owner.email = \"apihub@google.com\" AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The owner team email is _apihub@google.com_ and the api was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.id: apihub-team-id` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the id of the allowed value associated with the team attribute is _apihub-team-id_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.display_name: ApiHub Team` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the display name of the allowed value associated with the team attribute is `ApiHub Team`. * `owner.email = \"apihub@google.com\" AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test_enum_id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values: test_string_value` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ and the id of the allowed value associated with the user defined attribute of type enum is _test_enum_id_ and the value of the user defined attribute of type string is _test_..
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of API resources to return. The service may return fewer than this value. If unspecified, at most 50 Apis will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -5572,7 +5927,7 @@ export namespace apihub_v1 {
   }
   export interface Params$Resource$Projects$Locations$Apis$List extends StandardParameters {
     /**
-     * Optional. An expression that filters the list of ApiResources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `ApiResource` are eligible for filtering: * `owner.email` - The email of the team which owns the ApiResource. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiResource was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the ApiResource. Allowed comparison operators: `=`. * `target_user.enum_values.values.id` - The allowed value id of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `target_user.enum_values.values.display_name` - The allowed value display name of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.id` - The allowed value id of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.display_name` - The allowed value display name of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.id` - The allowed value id of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.display_name` - The allowed value display name of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.id` - The allowed value id of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.display_name` - The allowed value display name of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.id` - The allowed value id of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.display_name` - The allowed value display name of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"api-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/apis/api-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `owner.email = \"apihub@google.com\"` - - The owner team email is _apihub@google.com_. * `owner.email = \"apihub@google.com\" AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The owner team email is _apihub@google.com_ and the api was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.id: apihub-team-id` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the id of the allowed value associated with the team attribute is _apihub-team-id_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.display_name: ApiHub Team` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the display name of the allowed value associated with the team attribute is `ApiHub Team`. * `owner.email = \"apihub@google.com\" AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test_enum_id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values: test_string_value` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ and the id of the allowed value associated with the user defined attribute of type enum is _test_enum_id_ and the value of the user defined attribute of type string is _test_..
+     * Optional. An expression that filters the list of ApiResources. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>`, `:` or `=`. Filters are not case sensitive. The following fields in the `ApiResource` are eligible for filtering: * `owner.email` - The email of the team which owns the ApiResource. Allowed comparison operators: `=`. * `create_time` - The time at which the ApiResource was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `display_name` - The display name of the ApiResource. Allowed comparison operators: `=`. * `target_user.enum_values.values.id` - The allowed value id of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `target_user.enum_values.values.display_name` - The allowed value display name of the target users attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.id` - The allowed value id of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `team.enum_values.values.display_name` - The allowed value display name of the team attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.id` - The allowed value id of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `business_unit.enum_values.values.display_name` - The allowed value display name of the business unit attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.id` - The allowed value id of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `maturity_level.enum_values.values.display_name` - The allowed value display name of the maturity level attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.id` - The allowed value id of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `api_style.enum_values.values.display_name` - The allowed value display name of the api style attribute associated with the ApiResource. Allowed comparison operator is `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"api-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/apis/api-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Another supported filter function is `plugins(source_metadata)`. This function filters for resources that are associated with a specific plugin. For example, `plugins(source_metadata) : "projects/test-project-id/locations/test-location-id/plugins/test-plugin-id"` will return resources sourced from the given plugin. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `owner.email = \"apihub@google.com\"` - - The owner team email is _apihub@google.com_. * `owner.email = \"apihub@google.com\" AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The owner team email is _apihub@google.com_ and the api was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.id: apihub-team-id` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the id of the allowed value associated with the team attribute is _apihub-team-id_. * `owner.email = \"apihub@google.com\" OR team.enum_values.values.display_name: ApiHub Team` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ or the display name of the allowed value associated with the team attribute is `ApiHub Team`. * `owner.email = \"apihub@google.com\" AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id: test_enum_id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values: test_string_value` - The filter string specifies the APIs where the owner team email is _apihub@google.com_ and the id of the allowed value associated with the user defined attribute of type enum is _test_enum_id_ and the value of the user defined attribute of type string is _test_..
      */
     filter?: string;
     /**
@@ -7257,7 +7612,7 @@ export namespace apihub_v1 {
     }
 
     /**
-     * Update an operation in an API version. The following fields in the ApiOperation resource can be updated: * details.description * details.documentation * details.http_operation.path * details.http_operation.method * details.deprecated * attributes * details.mcp_tool.title * details.mcp_tool.description * details.input_schema * details.output_schema * details.mcp_tool.annotations.title * details.mcp_tool.annotations.read_only_hint * details.mcp_tool.annotations.destructive_hint * details.mcp_tool.annotations.idempotent_hint * details.mcp_tool.annotations.open_world_hint * details.mcp_tool.annotations.additional_hints The update_mask should be used to specify the fields being updated. An operation can be updated only if the operation was created via CreateApiOperation API. If the operation was created by parsing the spec, then it can be edited by updating the spec.
+     * Update an operation in an API version. The following fields in the ApiOperation resource can be updated: * details.description * details.documentation * details.http_operation.path * details.http_operation.method * details.deprecated * attributes * details.mcp_tool.title * details.mcp_tool.description * details.mcp_tool.input_schema * details.mcp_tool.output_schema * details.input_schema * details.output_schema * details.mcp_tool.annotations.title * details.mcp_tool.annotations.read_only_hint * details.mcp_tool.annotations.destructive_hint * details.mcp_tool.annotations.idempotent_hint * details.mcp_tool.annotations.open_world_hint * details.mcp_tool.annotations.additional_hints The update_mask should be used to specify the fields being updated. An operation can be updated only if the operation was created via CreateApiOperation API. If the operation was created by parsing the spec, then it can be edited by updating the spec.
      * @example
      * ```js
      * // Before running the sample:
@@ -7528,6 +7883,7 @@ export namespace apihub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "additionalSpecContents": [],
      *       //   "attributes": {},
      *       //   "contents": {},
      *       //   "createTime": "my_createTime",
@@ -7548,6 +7904,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "additionalSpecContents": [],
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
@@ -7798,6 +8155,159 @@ export namespace apihub_v1 {
     }
 
     /**
+     * Fetch additional spec content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await apihub.projects.locations.apis.versions.specs.fetchAdditionalSpecContent(
+     *       {
+     *         // Required. The name of the spec whose contents need to be retrieved. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
+     *         name: 'projects/my-project/locations/my-location/apis/my-api/versions/my-version/specs/my-spec',
+     *         // Optional. The type of the spec contents to be retrieved.
+     *         specContentType: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalSpecContent": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAdditionalSpecContent(
+      params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchAdditionalSpecContent(
+      params?: Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+    >;
+    fetchAdditionalSpecContent(
+      params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAdditionalSpecContent(
+      params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+    ): void;
+    fetchAdditionalSpecContent(
+      params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+    ): void;
+    fetchAdditionalSpecContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+    ): void;
+    fetchAdditionalSpecContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchAdditionalSpecContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1FetchAdditionalSpecContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get details about the information parsed from a spec. Note that this method does not return the raw spec contents. Use GetSpecContents method to retrieve the same.
      * @example
      * ```js
@@ -7835,6 +8345,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "additionalSpecContents": [],
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
@@ -8426,6 +8937,7 @@ export namespace apihub_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "additionalSpecContents": [],
      *       //   "attributes": {},
      *       //   "contents": {},
      *       //   "createTime": "my_createTime",
@@ -8446,6 +8958,7 @@ export namespace apihub_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "additionalSpecContents": [],
      *   //   "attributes": {},
      *   //   "contents": {},
      *   //   "createTime": "my_createTime",
@@ -8578,6 +9091,16 @@ export namespace apihub_v1 {
      * Required. The name of the spec to delete. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Fetchadditionalspeccontent extends StandardParameters {
+    /**
+     * Required. The name of the spec whose contents need to be retrieved. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
+     */
+    name?: string;
+    /**
+     * Optional. The type of the spec contents to be retrieved.
+     */
+    specContentType?: string;
   }
   export interface Params$Resource$Projects$Locations$Apis$Versions$Specs$Get extends StandardParameters {
     /**
@@ -14534,7 +15057,7 @@ export namespace apihub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14694,7 +15217,7 @@ export namespace apihub_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -17001,7 +17524,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.plugins.instances.list({
-     *     // Optional. An expression that filters the list of plugin instances. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `PluginInstances` are eligible for filtering: * `state` - The state of the Plugin Instance. Allowed comparison operators: `=`. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"plugin-instance-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/plugins/plugin-1/instances/plugin-instance-1\"` provided the parent is `projects/test-project-id/locations/test-location-id/plugins/plugin-1`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `state = ENABLED` - The plugin instance is in enabled state.
+     *     // Optional. An expression that filters the list of plugin instances. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `PluginInstances` are eligible for filtering: * `state` - The state of the Plugin Instance. Allowed comparison operators: `=`. * `source_project_id` - The source project id of the Plugin Instance. Allowed comparison operators: `=`. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"plugin-instance-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/plugins/plugin-1/instances/plugin-instance-1\"` provided the parent is `projects/test-project-id/locations/test-location-id/plugins/plugin-1`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `state = ENABLED` - The plugin instance is in enabled state.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of hub plugins to return. The service may return fewer than this value. If unspecified, at most 50 hub plugins will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -17521,7 +18044,7 @@ export namespace apihub_v1 {
   }
   export interface Params$Resource$Projects$Locations$Plugins$Instances$List extends StandardParameters {
     /**
-     * Optional. An expression that filters the list of plugin instances. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `PluginInstances` are eligible for filtering: * `state` - The state of the Plugin Instance. Allowed comparison operators: `=`. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"plugin-instance-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/plugins/plugin-1/instances/plugin-instance-1\"` provided the parent is `projects/test-project-id/locations/test-location-id/plugins/plugin-1`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `state = ENABLED` - The plugin instance is in enabled state.
+     * Optional. An expression that filters the list of plugin instances. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `PluginInstances` are eligible for filtering: * `state` - The state of the Plugin Instance. Allowed comparison operators: `=`. * `source_project_id` - The source project id of the Plugin Instance. Allowed comparison operators: `=`. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"plugin-instance-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/plugins/plugin-1/instances/plugin-instance-1\"` provided the parent is `projects/test-project-id/locations/test-location-id/plugins/plugin-1`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `state = ENABLED` - The plugin instance is in enabled state.
      */
     filter?: string;
     /**

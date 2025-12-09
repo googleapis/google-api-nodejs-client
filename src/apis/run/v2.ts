@@ -923,6 +923,10 @@ export namespace run_v2 {
      * The resulting list of Services.
      */
     services?: Schema$GoogleCloudRunV2Service[];
+    /**
+     * Output only. For global requests, returns the list of regions that could not be reached within the deadline.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message containing a list of Tasks.
@@ -2015,7 +2019,7 @@ export namespace run_v2 {
      */
     creator?: string | null;
     /**
-     * One or more custom audiences that you want this worker pool to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.
+     * Not supported, and ignored by Cloud Run.
      */
     customAudiences?: string[] | null;
     /**
@@ -2094,6 +2098,10 @@ export namespace run_v2 {
      * Output only. The Condition of this WorkerPool, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     terminalCondition?: Schema$GoogleCloudRunV2Condition;
+    /**
+     * Output only. Indicates whether Cloud Run Threat Detection monitoring is enabled for the parent project of this worker pool.
+     */
+    threatDetectionEnabled?: boolean | null;
     /**
      * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
      */
@@ -2781,6 +2789,10 @@ export namespace run_v2 {
      */
     artifactId?: string | null;
     /**
+     * Optional. Path to a folder containing the files to upload to Artifact Registry. This can be either an absolute path, e.g. `/workspace/my-app/target/`, or a relative path from /workspace, e.g. `my-app/target/`. This field is mutually exclusive with the `path` field.
+     */
+    deployFolder?: string | null;
+    /**
      * Maven `groupId` value used when uploading the artifact to Artifact Registry.
      */
     groupId?: string | null;
@@ -3282,7 +3294,7 @@ export namespace run_v2 {
      */
     operations?: Schema$GoogleLongrunningOperation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -7278,7 +7290,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // Token identifying which result to start with, which is returned by a previous list call.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7577,7 +7589,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -8305,7 +8317,8 @@ export namespace run_v2 {
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "services": []
+     *   //   "services": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -9787,6 +9800,7 @@ export namespace run_v2 {
      *       //   "scaling": {},
      *       //   "template": {},
      *       //   "terminalCondition": {},
+     *       //   "threatDetectionEnabled": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -10114,6 +10128,7 @@ export namespace run_v2 {
      *   //   "scaling": {},
      *   //   "template": {},
      *   //   "terminalCondition": {},
+     *   //   "threatDetectionEnabled": false,
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -10588,6 +10603,7 @@ export namespace run_v2 {
      *       //   "scaling": {},
      *       //   "template": {},
      *       //   "terminalCondition": {},
+     *       //   "threatDetectionEnabled": false,
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }

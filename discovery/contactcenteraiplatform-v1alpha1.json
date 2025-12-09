@@ -109,6 +109,34 @@
       "resources": {
         "locations": {
           "methods": {
+            "generateShifts": {
+              "description": "Generates shifts constrained by various parameters.",
+              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}:generateShifts",
+              "httpMethod": "POST",
+              "id": "contactcenteraiplatform.projects.locations.generateShifts",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the parent resource associated with the request. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+parent}:generateShifts",
+              "request": {
+                "$ref": "GenerateShiftsRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}",
@@ -523,7 +551,7 @@
       }
     }
   },
-  "revision": "20251115",
+  "revision": "20251204",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -740,10 +768,115 @@
       },
       "type": "object"
     },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DateList": {
+      "description": "List of dates.",
+      "id": "DateList",
+      "properties": {
+        "values": {
+          "description": "Optional. Values in the list.",
+          "items": {
+            "$ref": "Date"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DateTime": {
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "id": "DateTime",
+      "properties": {
+        "day": {
+          "description": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Early": {
       "description": "LINT.IfChange First Channel to receive the updates. Meant to dev/test instances",
       "id": "Early",
       "properties": {},
+      "type": "object"
+    },
+    "EmployeeInfo": {
+      "description": "Information about a particular employee for planning purposes.",
+      "id": "EmployeeInfo",
+      "properties": {
+        "id": {
+          "description": "Required. Unique ID of this employee.",
+          "type": "string"
+        },
+        "unwantedEventIntervals": {
+          "description": "Optional. A list of unwanted event intervals for this employee. The start time of the interval must be in the planning horizon.",
+          "items": {
+            "$ref": "UnwantedEventInterval"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -752,12 +885,76 @@
       "properties": {},
       "type": "object"
     },
+    "EventTemplate": {
+      "description": "Template specifying rules for generating a single event that occurs during a shift. An event may represent a meeting, break, lunch, etc.",
+      "id": "EventTemplate",
+      "properties": {
+        "durationMinutes": {
+          "description": "Required. Fixed duration in minutes of this event.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "Required. Unique ID of this template.",
+          "type": "string"
+        },
+        "maximumMinutesAfterShiftStart": {
+          "description": "Optional. Maximum number of minutes after the beginning of a shift that this event can start.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumMinutesAfterShiftStart": {
+          "description": "Optional. Minimum number of minutes after the beginning of a shift that this event can start.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTimeIncrementMinutes": {
+          "description": "Required. The time increment (in minutes) used to generate the set of possible event start times between `minimum_minutes_after_shift_start` and `maximum_minutes_after_shift_start`. For example, if the minimum minutes after shift start are 30, maximum minutes after shift start are 45, and the start time increment is 5 minutes, the event can take place 30, 35, 40, or 45 minutes after the start of the shift.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "FeatureConfig": {
       "id": "FeatureConfig",
       "properties": {
         "agentDesktopEnabled": {
           "description": "Optional. If true - enables the agent desktop feature. Default is false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateShiftsRequest": {
+      "description": "Request with constraints for generating shifts. The shifts generated must adhere to these constraints.",
+      "id": "GenerateShiftsRequest",
+      "properties": {
+        "employeeInfo": {
+          "description": "Optional. Employee information that should be considered when generating shifts.",
+          "items": {
+            "$ref": "EmployeeInfo"
+          },
+          "type": "array"
+        },
+        "planningHorizon": {
+          "$ref": "PlanningHorizon",
+          "description": "Required. The solver will generate the maximum number of shifts per shift template."
+        },
+        "shiftTemplates": {
+          "description": "Required. Set of shift templates specifying rules for generating shifts. A shift template can be used for generating multiple shifts.",
+          "items": {
+            "$ref": "ShiftTemplate"
+          },
+          "type": "array"
+        },
+        "solverConfig": {
+          "$ref": "SolverConfig",
+          "description": "Optional. Parameters for the solver."
+        },
+        "workforceDemands": {
+          "$ref": "WorkforceDemandList",
+          "description": "Required. All the workforce demands that the generated shifts need to cover. The planning horizon is defined between the earliest start time and the latest end time across all the entries. This field cannot be empty."
         }
       },
       "type": "object"
@@ -1046,6 +1243,21 @@
       },
       "type": "object"
     },
+    "PlanningHorizon": {
+      "description": "Specifies the time interval during which the solver should generate shifts. The start time must be before the end time.",
+      "id": "PlanningHorizon",
+      "properties": {
+        "endTime": {
+          "$ref": "DateTime",
+          "description": "Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+        },
+        "startTime": {
+          "$ref": "DateTime",
+          "description": "Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+        }
+      },
+      "type": "object"
+    },
     "PrivateAccess": {
       "description": "Defines ingress and egress private traffic settings for CCAIP instances.",
       "id": "PrivateAccess",
@@ -1241,6 +1453,101 @@
       },
       "type": "object"
     },
+    "ShiftTemplate": {
+      "description": "Template specifying rules for generating shifts. A shift is a unit of work that specifies a start time, end time, and may contain events (e.g. lunch, breaks etc.). Shifts will be assigned to specific dates in the response.",
+      "id": "ShiftTemplate",
+      "properties": {
+        "assignableEmployeeIds": {
+          "description": "Optional. A list of specific employee IDs that can be assigned to shifts generated by this template. If this field is present, there will be `EmployeeSchedule`s in the response for which the `EmployeeSchedule.employee_id` field is set to one of the IDs in this list. The number of employee schedules with an assigned employee ID will be between `minimum_employee_count` and `maximum_employee_count`. If this field is empty, between `minimum_employee_count` and `maximum_employee_count` employees can be assigned to shifts generated by this template and the employee schedules won't have an assigned employee ID. Currently, only one assignable employee ID is supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "daysOffCountPerWeek": {
+          "description": "Fixed number of days off per week. An employee has a given day off if they are not assigned to a shift that starts on that day. A week is 7 days and begins on Sunday.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "daysOffDates": {
+          "$ref": "DateList",
+          "description": "Fixed dates when shifts from this template should not be generated."
+        },
+        "durationMinutes": {
+          "description": "Required. Fixed duration of a shift generated by this template.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "earliestStartTime": {
+          "$ref": "TimeOfDay",
+          "description": "Required. Earliest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored."
+        },
+        "eventTemplates": {
+          "description": "Optional. Rules for generating events for each shift. Exactly one event will be included in each shift for each `EventTemplate` specified.",
+          "items": {
+            "$ref": "EventTemplate"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. Unique ID of this template.",
+          "type": "string"
+        },
+        "latestStartTime": {
+          "$ref": "TimeOfDay",
+          "description": "Required. Latest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored. If this value is less than the `earliest_start_time`, it may imply an overnight shift."
+        },
+        "maximumEmployeeCount": {
+          "description": "Required. Maximum number of employees that can be assigned to all shifts generated by this template on working days.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumEmployeeCount": {
+          "description": "Optional. Minimum number of employees that can be assigned to all shifts generated by this template on working days.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumIntereventGapMinutes": {
+          "description": "Optional. Minimum minutes between the end of one event and the start of the next.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTimeIncrementMinutes": {
+          "description": "Optional. The time increment (in minutes) used to generate the set of possible start times between `earliest_start_time` and `latest_start_time`. For example, if the earliest start time is 8:00, the latest start time is 8:30, and the start time increment is 10 minutes, then all possible start times for this shift template are: 8:00, 8:10, 8:20, and 8:30.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SolverConfig": {
+      "description": "Specifies additional parameters for the solver generating shifts.",
+      "id": "SolverConfig",
+      "properties": {
+        "maximumProcessingDuration": {
+          "description": "Optional. Maximum time the solver should spend on the problem. If not set, defaults to 1 minute. The choice of a time limit should depend on the size of the problem. To give an example, when solving a 7-day instance with 2 `ShiftTemplates`, each with ~20 possible start times and holding 2 events with ~30 possible start times, and two days off per week, recommended values are: <10s for fast solutions (and likely suboptimal), (10s, 300s) for good quality solutions, and >300s for an exhaustive search. Larger instances may require longer time limits. This value is not a hard limit and it does not account for the communication overhead. The expected latency to solve the problem may slightly exceed this value.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "scheduleType": {
+          "description": "Required. Specifies the type of schedule to generate.",
+          "enum": [
+            "SCHEDULE_TYPE_UNSPECIFIED",
+            "SINGLE_SHIFT",
+            "WEEKLY_WITH_FIXED_EVENTS",
+            "WEEKLY_WITH_VARIABLE_EVENTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified schedule type. Should not be used.",
+            "Each `EmployeeSchedule` will include exactly one shift.",
+            "`EmployeeSchedule`s will include several shifts to generate a week-long schedule. The start and end time of events in a particular `EmployeeSchedule` will be identical. All the shifts have the same start and end time.",
+            "`EmployeeSchedule`s will include several shifts to generate a week-long schedule. The start and end time of events in a particular `EmployeeSchedule` can vary. All the shifts have the same start and end time. This option may result in longer solve times."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1295,6 +1602,21 @@
       },
       "type": "object"
     },
+    "TimeZone": {
+      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "TimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "URIs": {
       "description": "Message storing the URIs of the ContactCenter.",
       "id": "URIs",
@@ -1314,6 +1636,22 @@
         "virtualAgentStreamingServiceUri": {
           "description": "Virtual Agent Streaming Service Uri of the ContactCenter.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnwantedEventInterval": {
+      "description": "Specifies a time interval during which the overlap with events (generated from event templates) should be minimal.",
+      "id": "UnwantedEventInterval",
+      "properties": {
+        "durationMinutes": {
+          "description": "Required. Duration of the event.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTime": {
+          "$ref": "DateTime",
+          "description": "Required. Start time of the event."
         }
       },
       "type": "object"
@@ -1361,6 +1699,40 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Required. Daily start time of the schedule."
+        }
+      },
+      "type": "object"
+    },
+    "WorkforceDemand": {
+      "description": "Specifies the number of employees required to cover the demand in the given time interval. The length of the interval must be strictly positive.",
+      "id": "WorkforceDemand",
+      "properties": {
+        "employeeCount": {
+          "description": "Optional. Number of employees needed to cover the demand for this interval.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "endTime": {
+          "$ref": "DateTime",
+          "description": "Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+        },
+        "startTime": {
+          "$ref": "DateTime",
+          "description": "Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+        }
+      },
+      "type": "object"
+    },
+    "WorkforceDemandList": {
+      "description": "List of workforce demands.",
+      "id": "WorkforceDemandList",
+      "properties": {
+        "values": {
+          "description": "Optional. Values in the list.",
+          "items": {
+            "$ref": "WorkforceDemand"
+          },
+          "type": "array"
         }
       },
       "type": "object"

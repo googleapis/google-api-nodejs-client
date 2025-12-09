@@ -125,7 +125,7 @@ export namespace tpu_v1alpha1 {
   }
 
   /**
-   * A accelerator type that a Node can be configured with.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. A accelerator type that a Node can be configured with.
    */
   export interface Schema$AcceleratorType {
     /**
@@ -142,7 +142,7 @@ export namespace tpu_v1alpha1 {
    */
   export interface Schema$Empty {}
   /**
-   * Response for ListAcceleratorTypes.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListAcceleratorTypes.
    */
   export interface Schema$ListAcceleratorTypesResponse {
     /**
@@ -172,7 +172,7 @@ export namespace tpu_v1alpha1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response for ListNodes.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListNodes.
    */
   export interface Schema$ListNodesResponse {
     /**
@@ -201,12 +201,12 @@ export namespace tpu_v1alpha1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
   /**
-   * Response for ListTensorFlowVersions.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Response for ListTensorFlowVersions.
    */
   export interface Schema$ListTensorFlowVersionsResponse {
     /**
@@ -248,7 +248,7 @@ export namespace tpu_v1alpha1 {
     name?: string | null;
   }
   /**
-   * A network endpoint over which a TPU worker can be reached.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. A network endpoint over which a TPU worker can be reached.
    */
   export interface Schema$NetworkEndpoint {
     /**
@@ -261,7 +261,7 @@ export namespace tpu_v1alpha1 {
     port?: number | null;
   }
   /**
-   * A TPU instance.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. A TPU instance.
    */
   export interface Schema$Node {
     /**
@@ -367,7 +367,7 @@ export namespace tpu_v1alpha1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Metadata describing an Operation
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Metadata describing an Operation
    */
   export interface Schema$OperationMetadata {
     /**
@@ -400,7 +400,7 @@ export namespace tpu_v1alpha1 {
     verb?: string | null;
   }
   /**
-   * Request for ReimageNode.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Request for ReimageNode.
    */
   export interface Schema$ReimageNodeRequest {
     /**
@@ -409,7 +409,7 @@ export namespace tpu_v1alpha1 {
     tensorflowVersion?: string | null;
   }
   /**
-   * Sets the scheduling options for this node.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Sets the scheduling options for this node.
    */
   export interface Schema$SchedulingConfig {
     /**
@@ -422,7 +422,7 @@ export namespace tpu_v1alpha1 {
     reserved?: boolean | null;
   }
   /**
-   * Request for StartNode.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Request for StartNode.
    */
   export interface Schema$StartNodeRequest {}
   /**
@@ -443,11 +443,11 @@ export namespace tpu_v1alpha1 {
     message?: string | null;
   }
   /**
-   * Request for StopNode.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. Request for StopNode.
    */
   export interface Schema$StopNodeRequest {}
   /**
-   * A Symptom instance.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. A Symptom instance.
    */
   export interface Schema$Symptom {
     /**
@@ -468,7 +468,7 @@ export namespace tpu_v1alpha1 {
     workerId?: string | null;
   }
   /**
-   * A tensorflow version that a Node can be configured with.
+   * DEPRECATED: Please use TPU API v2alpha1 instead. A tensorflow version that a Node can be configured with.
    */
   export interface Schema$TensorFlowVersion {
     /**
@@ -678,7 +678,7 @@ export namespace tpu_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -804,7 +804,7 @@ export namespace tpu_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2738,7 +2738,7 @@ export namespace tpu_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2885,7 +2885,7 @@ export namespace tpu_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

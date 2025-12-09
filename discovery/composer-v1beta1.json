@@ -742,71 +742,6 @@
                 }
               },
               "resources": {
-                "dags": {
-                  "resources": {
-                    "dagRuns": {
-                      "resources": {
-                        "taskInstances": {
-                          "methods": {
-                            "analyzeTask": {
-                              "description": "Start a new task analysis operation.",
-                              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/dags/{dagsId}/dagRuns/{dagRunsId}/taskInstances/{taskInstancesId}:analyzeTask",
-                              "httpMethod": "POST",
-                              "id": "composer.projects.locations.environments.dags.dagRuns.taskInstances.analyzeTask",
-                              "parameterOrder": [
-                                "taskInstance"
-                              ],
-                              "parameters": {
-                                "taskInstance": {
-                                  "description": "Required. Fully qualified task instance resource name in the form: projects/{project}/locations/{location}/environments/{environment}/dags/{dag}/dagRuns/{dag_run}/taskInstances/{task_instance_with_optional_map_index}",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/dags/[^/]+/dagRuns/[^/]+/taskInstances/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1beta1/{+taskInstance}:analyzeTask",
-                              "request": {
-                                "$ref": "AnalyzeTaskRequest"
-                              },
-                              "response": {
-                                "$ref": "Operation"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            },
-                            "getAnalyzeTaskOperation": {
-                              "description": "Retrieve task analysis operation for a task instance if it exists.",
-                              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}/dags/{dagsId}/dagRuns/{dagRunsId}/taskInstances/{taskInstancesId}:getAnalyzeTaskOperation",
-                              "httpMethod": "GET",
-                              "id": "composer.projects.locations.environments.dags.dagRuns.taskInstances.getAnalyzeTaskOperation",
-                              "parameterOrder": [
-                                "taskInstance"
-                              ],
-                              "parameters": {
-                                "taskInstance": {
-                                  "description": "Required. Fully qualified task instance resource name in the form: projects/{project}/locations/{location}/environments/{environment}/dags/{dag}/dagRuns/{dag_run}/taskInstances/{task_instance_with_optional_map_index}",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+/dags/[^/]+/dagRuns/[^/]+/taskInstances/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1beta1/{+taskInstance}:getAnalyzeTaskOperation",
-                              "response": {
-                                "$ref": "Operation"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
-                              ]
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
                 "userWorkloadsConfigMaps": {
                   "methods": {
                     "create": {
@@ -1296,7 +1231,7 @@
       }
     }
   },
-  "revision": "20251114",
+  "revision": "20251130",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {

@@ -646,7 +646,7 @@ export namespace composer_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3441,8 +3441,7 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Checkupgrade
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Checkupgrade extends StandardParameters {
     /**
      * The resource name of the environment to check upgrade for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3453,8 +3452,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$CheckUpgradeRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Create extends StandardParameters {
     /**
      * The parent must be of the form "projects/{projectId\}/locations/{locationId\}".
      */
@@ -3465,8 +3463,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Databasefailover
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Databasefailover extends StandardParameters {
     /**
      * Target environment: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3477,15 +3474,13 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$DatabaseFailoverRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Delete extends StandardParameters {
     /**
      * The environment to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Executeairflowcommand
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Executeairflowcommand extends StandardParameters {
     /**
      * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
      */
@@ -3496,22 +3491,19 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$ExecuteAirflowCommandRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Fetchdatabaseproperties extends StandardParameters {
     /**
      * Required. The resource name of the environment, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
     environment?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Get extends StandardParameters {
     /**
      * The resource name of the environment to get, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$List extends StandardParameters {
     /**
      * The maximum number of environments to return.
      */
@@ -3525,8 +3517,7 @@ export namespace composer_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Loadsnapshot
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Loadsnapshot extends StandardParameters {
     /**
      * The resource name of the target environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3537,8 +3528,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$LoadSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Patch
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Patch extends StandardParameters {
     /**
      * The relative resource name of the environment to update, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3553,8 +3543,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$Environment;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Pollairflowcommand
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Pollairflowcommand extends StandardParameters {
     /**
      * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3565,8 +3554,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$PollAirflowCommandRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Restartwebserver
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Restartwebserver extends StandardParameters {
     /**
      * Required. The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3577,8 +3565,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$RestartWebServerRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Savesnapshot
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Savesnapshot extends StandardParameters {
     /**
      * The resource name of the source environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -3589,8 +3576,7 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$SaveSnapshotRequest;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Stopairflowcommand
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Stopairflowcommand extends StandardParameters {
     /**
      * The resource name of the environment in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}".
      */
@@ -4343,8 +4329,7 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create extends StandardParameters {
     /**
      * Required. The environment name to create a ConfigMap for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -4355,22 +4340,19 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$UserWorkloadsConfigMap;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Delete extends StandardParameters {
     /**
      * Required. The ConfigMap to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get extends StandardParameters {
     /**
      * Required. The resource name of the ConfigMap to get, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$List extends StandardParameters {
     /**
      * Optional. The maximum number of ConfigMaps to return.
      */
@@ -4384,8 +4366,7 @@ export namespace composer_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update extends StandardParameters {
     /**
      * Identifier. The resource name of the ConfigMap, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId\}"
      */
@@ -5126,8 +5107,7 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Create extends StandardParameters {
     /**
      * Required. The environment name to create a Secret for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      */
@@ -5138,22 +5118,19 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$UserWorkloadsSecret;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Delete extends StandardParameters {
     /**
      * Required. The Secret to delete, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Get extends StandardParameters {
     /**
      * Required. The resource name of the Secret to get, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$List extends StandardParameters {
     /**
      * Optional. The maximum number of Secrets to return.
      */
@@ -5167,8 +5144,7 @@ export namespace composer_v1beta1 {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Userworkloadssecrets$Update extends StandardParameters {
     /**
      * Identifier. The resource name of the Secret, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
      */
@@ -5335,8 +5311,7 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Environments$Workloads$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Environments$Workloads$List extends StandardParameters {
     /**
      * Optional. The list filter. Currently only supports equality on the type field. The value of a field specified in the filter expression must be one ComposerWorkloadType enum option. It's possible to get multiple types using "OR" operator, e.g.: "type=SCHEDULER OR type=CELERY_WORKER". If not specified, all items are returned.
      */
@@ -5510,8 +5485,7 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Imageversions$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Imageversions$List extends StandardParameters {
     /**
      * Whether or not image versions from old releases should be included.
      */
@@ -5845,7 +5819,7 @@ export namespace composer_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5956,22 +5930,19 @@ export namespace composer_v1beta1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Delete
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$Get
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -5989,7 +5960,7 @@ export namespace composer_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

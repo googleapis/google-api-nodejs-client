@@ -5038,7 +5038,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5300,7 +5300,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -5319,7 +5319,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251203",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -10687,9 +10687,17 @@
           ],
           "type": "string"
         },
+        "defaultRaiSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings",
+          "description": "Optional. Immutable. Default RAI settings to be annotated on the agent, so that users will be able to restore their RAI configurations to the default settings. Read-only field for the API proto only."
+        },
         "promptSecuritySettings": {
           "$ref": "GoogleCloudDialogflowCxV3SafetySettingsPromptSecuritySettings",
           "description": "Optional. Settings for prompt security checks."
+        },
+        "raiSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings",
+          "description": "Optional. Settings for Responsible AI checks."
         }
       },
       "type": "object"
@@ -10716,6 +10724,63 @@
         "enablePromptSecurity": {
           "description": "Optional. Enable prompt security checks.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings": {
+      "description": "Settings for Responsible AI.",
+      "id": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettings",
+      "properties": {
+        "categoryFilters": {
+          "description": "Optional. RAI blocking configurations.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilter": {
+      "description": "Configuration of the sensitivity level for blocking an RAI category.",
+      "id": "GoogleCloudDialogflowCxV3SafetySettingsRaiSettingsCategoryFilter",
+      "properties": {
+        "category": {
+          "description": "RAI category to configure.",
+          "enum": [
+            "SAFETY_CATEGORY_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "HATE_SPEECH",
+            "HARASSMENT",
+            "SEXUALLY_EXPLICIT_CONTENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Dangerous content.",
+            "Hate speech.",
+            "Harassment.",
+            "Sexually explicit content."
+          ],
+          "type": "string"
+        },
+        "filterLevel": {
+          "description": "Blocking sensitivity level to configure for the RAI category.",
+          "enum": [
+            "SAFETY_FILTER_LEVEL_UNSPECIFIED",
+            "BLOCK_NONE",
+            "BLOCK_FEW",
+            "BLOCK_SOME",
+            "BLOCK_MOST"
+          ],
+          "enumDescriptions": [
+            "Unspecified -- uses default sensitivity levels.",
+            "Block no text -- effectively disables the category.",
+            "Block a few suspicious texts.",
+            "Block some suspicious texts.",
+            "Block most suspicious texts."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -21204,7 +21269,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
