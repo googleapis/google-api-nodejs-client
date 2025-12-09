@@ -978,9 +978,6 @@
             }
           },
           "path": "sql/v1beta4/projects/{project}/instances/{instance}/addEntraIdCertificate",
-          "request": {
-            "$ref": "SqlInstancesAddEntraIdCertificateRequest"
-          },
           "response": {
             "$ref": "Operation"
           },
@@ -2798,7 +2795,7 @@
       }
     }
   },
-  "revision": "20251107",
+  "revision": "20251201",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -6827,7 +6824,7 @@
       "type": "object"
     },
     "PasswordValidationPolicy": {
-      "description": "Database instance local user password validation policy",
+      "description": "Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access.",
       "id": "PasswordValidationPolicy",
       "properties": {
         "complexity": {
@@ -6852,7 +6849,7 @@
           "type": "boolean"
         },
         "enablePasswordPolicy": {
-          "description": "Whether the password policy is enabled or not.",
+          "description": "Whether to enable the password policy or not. When enabled, passwords must meet complexity requirements. Keep this policy enabled to help prevent unauthorized access. Disabling this policy allows weak passwords.",
           "type": "boolean"
         },
         "minLength": {
@@ -6881,6 +6878,42 @@
           "description": "The target disk shrink size in GigaBytes.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerformanceCaptureConfig": {
+      "description": "Performance Capture configuration.",
+      "id": "PerformanceCaptureConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Enable or disable the Performance Capture.",
+          "type": "boolean"
+        },
+        "probeThreshold": {
+          "description": "Optional. The minimum number of consecutive readings above threshold that triggers instance state capture.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "probingIntervalSeconds": {
+          "description": "Optional. The time interval in seconds between any two probes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "runningThreadsThreshold": {
+          "description": "Optional. The minimum number of server threads running to trigger the capture on primary.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "secondsBehindSourceThreshold": {
+          "description": "Optional. The minimum number of seconds replica must be lagging behind primary to trigger capture on replica.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionDurationThreshold": {
+          "description": "Optional. The amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6953,6 +6986,19 @@
         },
         "name": {
           "description": "Output only. The name of the read pool node, to be used for retrieving metrics and logs.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscAutoConnections": {
+          "description": "Output only. The list of settings for requested automatically-setup Private Service Connect (PSC) consumer endpoints that can be used to connect to this read pool node.",
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "pscServiceAttachmentLink": {
+          "description": "Output only. The Private Service Connect (PSC) service attachment of the read pool node.",
           "readOnly": true,
           "type": "string"
         },
@@ -7731,6 +7777,10 @@
           "$ref": "PasswordValidationPolicy",
           "description": "The local user password validation policy of the instance."
         },
+        "performanceCaptureConfig": {
+          "$ref": "PerformanceCaptureConfig",
+          "description": "Optional. Configuration for Performance Capture, provides diagnostic metrics during high load situations."
+        },
         "pricingPlan": {
           "description": "The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.",
           "enum": [
@@ -8011,12 +8061,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "SqlInstancesAddEntraIdCertificateRequest": {
-      "description": "Request for AddEntraIdCertificate RPC.",
-      "id": "SqlInstancesAddEntraIdCertificateRequest",
-      "properties": {},
       "type": "object"
     },
     "SqlInstancesExecuteSqlResponse": {
