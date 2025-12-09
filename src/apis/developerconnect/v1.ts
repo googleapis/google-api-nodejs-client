@@ -225,7 +225,7 @@ export namespace developerconnect_v1 {
      */
     readAuthorizerCredential?: Schema$UserCredential;
     /**
-     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`. This is used to validate and create webhooks.
+     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location). This is used to validate and create webhooks.
      */
     webhookSecretSecretVersion?: string | null;
     /**
@@ -262,7 +262,7 @@ export namespace developerconnect_v1 {
      */
     sslCaCertificate?: string | null;
     /**
-     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     * Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location). This is used to validate webhooks.
      */
     webhookSecretSecretVersion?: string | null;
   }
@@ -525,7 +525,7 @@ export namespace developerconnect_v1 {
      */
     installationUri?: string | null;
     /**
-     * Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     * Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
     privateKeySecretVersion?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace developerconnect_v1 {
      */
     sslCaCertificate?: string | null;
     /**
-     * Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     * Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
     webhookSecretSecretVersion?: string | null;
   }
@@ -558,7 +558,7 @@ export namespace developerconnect_v1 {
      */
     readAuthorizerCredential?: Schema$UserCredential;
     /**
-     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location). This is used to validate webhooks.
      */
     webhookSecretSecretVersion?: string | null;
   }
@@ -591,7 +591,7 @@ export namespace developerconnect_v1 {
      */
     sslCaCertificate?: string | null;
     /**
-     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location). This is used to validate webhooks.
      */
     webhookSecretSecretVersion?: string | null;
   }
@@ -955,7 +955,7 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$OAuthCredential {
     /**
-     * Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/x/secrets/x/versions/x`.
+     * Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
     oauthTokenSecretVersion?: string | null;
     /**
@@ -1164,7 +1164,7 @@ export namespace developerconnect_v1 {
      */
     username?: string | null;
     /**
-     * Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/x/secrets/x/versions/x`.
+     * Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
     userTokenSecretVersion?: string | null;
   }
