@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v10.0.0...searchads360-v10.1.0) (2025-12-05)
+
+
+### Features
+
+* **searchads360:** update the API ([62b26f6](https://github.com/googleapis/google-api-nodejs-client/commit/62b26f6626611a1f9c05c5de829113466f74f0fa))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v9.0.0...searchads360-v10.0.0) (2025-10-15)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v19.0.0...testing-v19.1.0) (2025-12-05)
+
+
+### Features
+
+* **testing:** update the API ([144e4b3](https://github.com/googleapis/google-api-nodejs-client/commit/144e4b3c613946b79d9d62b351124aa6fed7c6a7))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v18.0.1...testing-v19.0.0) (2025-10-15)
 
 

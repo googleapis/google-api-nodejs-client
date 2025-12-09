@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v11.0.0...datacatalog-v11.1.0) (2025-12-05)
+
+
+### Features
+
+* **datacatalog:** update the API ([866cd0a](https://github.com/googleapis/google-api-nodejs-client/commit/866cd0a0164e69cba0a38d88b2348078efab70f5))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v10.1.0...datacatalog-v11.0.0) (2025-10-15)
 
 

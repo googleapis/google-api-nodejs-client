@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v8.0.0...homegraph-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **homegraph:** update the API ([0e58d5a](https://github.com/googleapis/google-api-nodejs-client/commit/0e58d5abe617b89560a1e48aa548641994d73ed0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v7.0.0...homegraph-v8.0.0) (2025-10-15)
 
 

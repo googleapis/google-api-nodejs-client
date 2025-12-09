@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v8.0.0...cloudchannel-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([e6f461a](https://github.com/googleapis/google-api-nodejs-client/commit/e6f461a65821d884772f07c2a3bbeee6ab06d039))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v7.0.0...cloudchannel-v8.0.0) (2025-10-15)
 
 

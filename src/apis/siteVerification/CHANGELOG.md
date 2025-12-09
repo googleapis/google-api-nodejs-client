@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v6.0.0...siteverification-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **siteVerification:** update the API ([25e5ba7](https://github.com/googleapis/google-api-nodejs-client/commit/25e5ba7d8e2293dea6bdab4168804b2060420132))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v5.0.0...siteverification-v6.0.0) (2025-10-15)
 
 

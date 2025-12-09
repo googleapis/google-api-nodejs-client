@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v19.2.0...artifactregistry-v19.2.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([48d83d6](https://github.com/googleapis/google-api-nodejs-client/commit/48d83d68101b275bd00cc3a2c783ea0562d339f4))
+
 ## [19.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v19.1.0...artifactregistry-v19.2.0) (2025-11-26)
 
 

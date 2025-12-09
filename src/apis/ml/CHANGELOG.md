@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v8.0.0...ml-v8.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **ml:** update the API ([6ed6570](https://github.com/googleapis/google-api-nodejs-client/commit/6ed6570f939ce194b192f8daea13ec8406143d88))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v7.0.0...ml-v8.0.0) (2025-10-15)
 
 

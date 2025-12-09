@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/readerrevenuesubscriptionlinking-v5.0.0...readerrevenuesubscriptionlinking-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **readerrevenuesubscriptionlinking:** update the API ([d5cdf93](https://github.com/googleapis/google-api-nodejs-client/commit/d5cdf93e7fd18571052cd586ce2ec6664b1bb4c2))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/readerrevenuesubscriptionlinking-v4.0.0...readerrevenuesubscriptionlinking-v5.0.0) (2025-10-15)
 
 

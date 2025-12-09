@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v5.0.0...bigqueryconnection-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **bigqueryconnection:** update the API ([4a1c05a](https://github.com/googleapis/google-api-nodejs-client/commit/4a1c05a8c8886fbca126ad96cf440e2c454ff0f0))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigqueryconnection-v4.0.0...bigqueryconnection-v5.0.0) (2025-10-15)
 
 

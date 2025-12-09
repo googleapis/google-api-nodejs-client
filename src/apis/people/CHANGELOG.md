@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/people-v7.0.0...people-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **people:** update the API ([db42e34](https://github.com/googleapis/google-api-nodejs-client/commit/db42e34d10c49f3c9ca84d3214f2d05b2d6006d2))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/people-v6.0.0...people-v7.0.0) (2025-10-15)
 
 

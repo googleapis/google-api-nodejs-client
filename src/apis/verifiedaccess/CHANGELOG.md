@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v7.0.0...verifiedaccess-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **verifiedaccess:** update the API ([16ad21b](https://github.com/googleapis/google-api-nodejs-client/commit/16ad21b4be3c01e0423e9b9c31ab065be2ad7c52))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/verifiedaccess-v6.0.0...verifiedaccess-v7.0.0) (2025-10-15)
 
 

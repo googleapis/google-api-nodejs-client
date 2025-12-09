@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v15.1.0...places-v15.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **places:** update the API ([ee3308e](https://github.com/googleapis/google-api-nodejs-client/commit/ee3308e3c7f982b2f9542088f28493f48f6d1cae))
+
 ## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v15.0.0...places-v15.1.0) (2025-11-04)
 
 
