@@ -114,6 +114,7 @@ export namespace drive_v3 {
     context: APIRequestContext;
     about: Resource$About;
     accessproposals: Resource$Accessproposals;
+    approvals: Resource$Approvals;
     apps: Resource$Apps;
     changes: Resource$Changes;
     channels: Resource$Channels;
@@ -134,6 +135,7 @@ export namespace drive_v3 {
 
       this.about = new Resource$About(this.context);
       this.accessproposals = new Resource$Accessproposals(this.context);
+      this.approvals = new Resource$Approvals(this.context);
       this.apps = new Resource$Apps(this.context);
       this.changes = new Resource$Changes(this.context);
       this.channels = new Resource$Channels(this.context);
@@ -399,6 +401,68 @@ export namespace drive_v3 {
      * A link back to this list.
      */
     selfLink?: string | null;
+  }
+  /**
+   * Metadata for an approval. An approval is a review/approve process for a Drive item.
+   */
+  export interface Schema$Approval {
+    /**
+     * The Approval ID.
+     */
+    approvalId?: string | null;
+    /**
+     * Output only. The time time the approval was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Output only. The time the approval was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time that the approval is due.
+     */
+    dueTime?: string | null;
+    /**
+     * The user that requested the Approval.
+     */
+    initiator?: Schema$User;
+    /**
+     * This is always drive#approval.
+     */
+    kind?: string | null;
+    /**
+     * Output only. The most recent time the approval was modified.
+     */
+    modifyTime?: string | null;
+    /**
+     * The responses made on the Approval by reviewers.
+     */
+    reviewerResponses?: Schema$ReviewerResponse[];
+    /**
+     * Output only. The status of the approval at the time this resource was requested.
+     */
+    status?: string | null;
+    /**
+     * Target file id of the approval.
+     */
+    targetFileId?: string | null;
+  }
+  /**
+   * The response of an Approvals list request.
+   */
+  export interface Schema$ApprovalList {
+    /**
+     * The list of Approvals. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
+     */
+    items?: Schema$Approval[];
+    /**
+     * This is always drive#approvalList
+     */
+    kind?: string | null;
+    /**
+     * The page token for the next page of Approvals. This will be absent if the end of the Approvals list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * A change to a file or shared drive.
@@ -1519,6 +1583,23 @@ export namespace drive_v3 {
     view?: string | null;
   }
   /**
+   * A response on an Approval made by a specific Reviewer.
+   */
+  export interface Schema$ReviewerResponse {
+    /**
+     * This is always drive#reviewerResponse.
+     */
+    kind?: string | null;
+    /**
+     * A Reviewer’s Response for the Approval.
+     */
+    response?: string | null;
+    /**
+     * The user that is responsible for this response.
+     */
+    reviewer?: Schema$User;
+  }
+  /**
    * The metadata for a revision to a file. Some resource methods (such as `revisions.update`) require a `revisionId`. Use the `revisions.list` method to retrieve the ID for a revision.
    */
   export interface Schema$Revision {
@@ -2406,6 +2487,326 @@ export namespace drive_v3 {
      * Request body metadata
      */
     requestBody?: Schema$ResolveAccessProposalRequest;
+  }
+
+  export class Resource$Approvals {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an Approval by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.approvals.get({
+     *     // Required. The ID of the Approval.
+     *     approvalId: 'placeholder-value',
+     *     // Required. The ID of the file the Approval is on.
+     *     fileId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approvalId": "my_approvalId",
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "dueTime": "my_dueTime",
+     *   //   "initiator": {},
+     *   //   "kind": "my_kind",
+     *   //   "modifyTime": "my_modifyTime",
+     *   //   "reviewerResponses": [],
+     *   //   "status": "my_status",
+     *   //   "targetFileId": "my_targetFileId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Approvals$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Approvals$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Approval>>;
+    get(
+      params: Params$Resource$Approvals$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Approvals$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Approval>,
+      callback: BodyResponseCallback<Schema$Approval>
+    ): void;
+    get(
+      params: Params$Resource$Approvals$Get,
+      callback: BodyResponseCallback<Schema$Approval>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Approval>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Approvals$Get
+        | BodyResponseCallback<Schema$Approval>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Approval>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Approval>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Approval>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Approvals$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Approvals$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/drive/v3/files/{fileId}/approvals/{approvalId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId', 'approvalId'],
+        pathParams: ['approvalId', 'fileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Approval>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Approval>(parameters);
+      }
+    }
+
+    /**
+     * Lists the Approvals on a file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const drive = google.drive('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await drive.approvals.list({
+     *     // Required. The ID of the file the Approval is on.
+     *     fileId: 'placeholder-value',
+     *     // The maximum number of Approvals to return. When not set, at most 100 Approvals will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of nextPageToken from a previous response.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Approvals$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Approvals$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ApprovalList>>;
+    list(
+      params: Params$Resource$Approvals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Approvals$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ApprovalList>,
+      callback: BodyResponseCallback<Schema$ApprovalList>
+    ): void;
+    list(
+      params: Params$Resource$Approvals$List,
+      callback: BodyResponseCallback<Schema$ApprovalList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ApprovalList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Approvals$List
+        | BodyResponseCallback<Schema$ApprovalList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApprovalList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApprovalList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ApprovalList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Approvals$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Approvals$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v3/files/{fileId}/approvals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId'],
+        pathParams: ['fileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ApprovalList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ApprovalList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Approvals$Get extends StandardParameters {
+    /**
+     * Required. The ID of the Approval.
+     */
+    approvalId?: string;
+    /**
+     * Required. The ID of the file the Approval is on.
+     */
+    fileId?: string;
+  }
+  export interface Params$Resource$Approvals$List extends StandardParameters {
+    /**
+     * Required. The ID of the file the Approval is on.
+     */
+    fileId?: string;
+    /**
+     * The maximum number of Approvals to return. When not set, at most 100 Approvals will be returned.
+     */
+    pageSize?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This should be set to the value of nextPageToken from a previous response.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Apps {

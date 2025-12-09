@@ -265,6 +265,76 @@
         }
       }
     },
+    "approvals": {
+      "methods": {
+        "get": {
+          "description": "Gets an Approval by ID.",
+          "flatPath": "files/{fileId}/approvals/{approvalId}",
+          "httpMethod": "GET",
+          "id": "drive.approvals.get",
+          "parameterOrder": [
+            "fileId",
+            "approvalId"
+          ],
+          "parameters": {
+            "approvalId": {
+              "description": "Required. The ID of the Approval.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "fileId": {
+              "description": "Required. The ID of the file the Approval is on.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "files/{fileId}/approvals/{approvalId}",
+          "response": {
+            "$ref": "Approval"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive"
+          ]
+        },
+        "list": {
+          "description": "Lists the Approvals on a file.",
+          "flatPath": "files/{fileId}/approvals",
+          "httpMethod": "GET",
+          "id": "drive.approvals.list",
+          "parameterOrder": [
+            "fileId"
+          ],
+          "parameters": {
+            "fileId": {
+              "description": "Required. The ID of the file the Approval is on.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of Approvals to return. When not set, at most 100 Approvals will be returned.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The token for continuing a previous list request on the next page. This should be set to the value of nextPageToken from a previous response.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "files/{fileId}/approvals",
+          "response": {
+            "$ref": "ApprovalList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive"
+          ]
+        }
+      }
+    },
     "apps": {
       "methods": {
         "get": {
@@ -2720,7 +2790,7 @@
       }
     }
   },
-  "revision": "20251114",
+  "revision": "20251201",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3081,6 +3151,100 @@
         },
         "selfLink": {
           "description": "A link back to this list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Approval": {
+      "description": "Metadata for an approval. An approval is a review/approve process for a Drive item.",
+      "id": "Approval",
+      "properties": {
+        "approvalId": {
+          "description": "The Approval ID.",
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Output only. The time time the approval was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the approval was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dueTime": {
+          "description": "The time that the approval is due.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "initiator": {
+          "$ref": "User",
+          "description": "The user that requested the Approval."
+        },
+        "kind": {
+          "description": "This is always drive#approval.",
+          "type": "string"
+        },
+        "modifyTime": {
+          "description": "Output only. The most recent time the approval was modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reviewerResponses": {
+          "description": "The responses made on the Approval by reviewers.",
+          "items": {
+            "$ref": "ReviewerResponse"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "Output only. The status of the approval at the time this resource was requested.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "IN_PROGRESS",
+            "APPROVED",
+            "CANCELLED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Approval status has not been set or was set to an invalid value.",
+            "The approval process has started and not finished.",
+            "The approval process is finished and the target was approved.",
+            "The approval process was cancelled before it finished.",
+            "The approval process is finished and the target was declined."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetFileId": {
+          "description": "Target file id of the approval.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApprovalList": {
+      "description": "The response of an Approvals list request.",
+      "id": "ApprovalList",
+      "properties": {
+        "items": {
+          "description": "The list of Approvals. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
+          "items": {
+            "$ref": "Approval"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "This is always drive#approvalList",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "The page token for the next page of Approvals. This will be absent if the end of the Approvals list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.",
           "type": "string"
         }
       },
@@ -4892,6 +5056,37 @@
         "view": {
           "description": "Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. Only `published` is supported.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReviewerResponse": {
+      "description": "A response on an Approval made by a specific Reviewer.",
+      "id": "ReviewerResponse",
+      "properties": {
+        "kind": {
+          "description": "This is always drive#reviewerResponse.",
+          "type": "string"
+        },
+        "response": {
+          "description": "A Reviewer’s Response for the Approval.",
+          "enum": [
+            "RESPONSE_UNSPECIFIED",
+            "NO_RESPONSE",
+            "APPROVED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Response was set to an unrecognized value.",
+            "The reviewer has not yet responded",
+            "The Reviewer has approved the item.",
+            "The Reviewer has declined the item."
+          ],
+          "type": "string"
+        },
+        "reviewer": {
+          "$ref": "User",
+          "description": "The user that is responsible for this response."
         }
       },
       "type": "object"
