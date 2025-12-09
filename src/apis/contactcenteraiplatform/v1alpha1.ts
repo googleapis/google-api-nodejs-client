@@ -274,18 +274,148 @@ export namespace contactcenteraiplatform_v1alpha1 {
     peakHours?: Schema$WeeklySchedule[];
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * List of dates.
+   */
+  export interface Schema$DateList {
+    /**
+     * Optional. Values in the list.
+     */
+    values?: Schema$Date[];
+  }
+  /**
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   */
+  export interface Schema$DateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * LINT.IfChange First Channel to receive the updates. Meant to dev/test instances
    */
   export interface Schema$Early {}
   /**
+   * Information about a particular employee for planning purposes.
+   */
+  export interface Schema$EmployeeInfo {
+    /**
+     * Required. Unique ID of this employee.
+     */
+    id?: string | null;
+    /**
+     * Optional. A list of unwanted event intervals for this employee. The start time of the interval must be in the planning horizon.
+     */
+    unwantedEventIntervals?: Schema$UnwantedEventInterval[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Template specifying rules for generating a single event that occurs during a shift. An event may represent a meeting, break, lunch, etc.
+   */
+  export interface Schema$EventTemplate {
+    /**
+     * Required. Fixed duration in minutes of this event.
+     */
+    durationMinutes?: number | null;
+    /**
+     * Required. Unique ID of this template.
+     */
+    id?: string | null;
+    /**
+     * Optional. Maximum number of minutes after the beginning of a shift that this event can start.
+     */
+    maximumMinutesAfterShiftStart?: number | null;
+    /**
+     * Optional. Minimum number of minutes after the beginning of a shift that this event can start.
+     */
+    minimumMinutesAfterShiftStart?: number | null;
+    /**
+     * Required. The time increment (in minutes) used to generate the set of possible event start times between `minimum_minutes_after_shift_start` and `maximum_minutes_after_shift_start`. For example, if the minimum minutes after shift start are 30, maximum minutes after shift start are 45, and the start time increment is 5 minutes, the event can take place 30, 35, 40, or 45 minutes after the start of the shift.
+     */
+    startTimeIncrementMinutes?: number | null;
+  }
   export interface Schema$FeatureConfig {
     /**
      * Optional. If true - enables the agent desktop feature. Default is false.
      */
     agentDesktopEnabled?: boolean | null;
+  }
+  /**
+   * Request with constraints for generating shifts. The shifts generated must adhere to these constraints.
+   */
+  export interface Schema$GenerateShiftsRequest {
+    /**
+     * Optional. Employee information that should be considered when generating shifts.
+     */
+    employeeInfo?: Schema$EmployeeInfo[];
+    /**
+     * Required. The solver will generate the maximum number of shifts per shift template.
+     */
+    planningHorizon?: Schema$PlanningHorizon;
+    /**
+     * Required. Set of shift templates specifying rules for generating shifts. A shift template can be used for generating multiple shifts.
+     */
+    shiftTemplates?: Schema$ShiftTemplate[];
+    /**
+     * Optional. Parameters for the solver.
+     */
+    solverConfig?: Schema$SolverConfig;
+    /**
+     * Required. All the workforce demands that the generated shifts need to cover. The planning horizon is defined between the earliest start time and the latest end time across all the entries. This field cannot be empty.
+     */
+    workforceDemands?: Schema$WorkforceDemandList;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -468,6 +598,19 @@ export namespace contactcenteraiplatform_v1alpha1 {
     verb?: string | null;
   }
   /**
+   * Specifies the time interval during which the solver should generate shifts. The start time must be before the end time.
+   */
+  export interface Schema$PlanningHorizon {
+    /**
+     * Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored.
+     */
+    endTime?: Schema$DateTime;
+    /**
+     * Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored.
+     */
+    startTime?: Schema$DateTime;
+  }
+  /**
    * Defines ingress and egress private traffic settings for CCAIP instances.
    */
   export interface Schema$PrivateAccess {
@@ -544,6 +687,72 @@ export namespace contactcenteraiplatform_v1alpha1 {
     userEmail?: string | null;
   }
   /**
+   * Template specifying rules for generating shifts. A shift is a unit of work that specifies a start time, end time, and may contain events (e.g. lunch, breaks etc.). Shifts will be assigned to specific dates in the response.
+   */
+  export interface Schema$ShiftTemplate {
+    /**
+     * Optional. A list of specific employee IDs that can be assigned to shifts generated by this template. If this field is present, there will be `EmployeeSchedule`s in the response for which the `EmployeeSchedule.employee_id` field is set to one of the IDs in this list. The number of employee schedules with an assigned employee ID will be between `minimum_employee_count` and `maximum_employee_count`. If this field is empty, between `minimum_employee_count` and `maximum_employee_count` employees can be assigned to shifts generated by this template and the employee schedules won't have an assigned employee ID. Currently, only one assignable employee ID is supported.
+     */
+    assignableEmployeeIds?: string[] | null;
+    /**
+     * Fixed number of days off per week. An employee has a given day off if they are not assigned to a shift that starts on that day. A week is 7 days and begins on Sunday.
+     */
+    daysOffCountPerWeek?: number | null;
+    /**
+     * Fixed dates when shifts from this template should not be generated.
+     */
+    daysOffDates?: Schema$DateList;
+    /**
+     * Required. Fixed duration of a shift generated by this template.
+     */
+    durationMinutes?: number | null;
+    /**
+     * Required. Earliest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored.
+     */
+    earliestStartTime?: Schema$TimeOfDay;
+    /**
+     * Optional. Rules for generating events for each shift. Exactly one event will be included in each shift for each `EventTemplate` specified.
+     */
+    eventTemplates?: Schema$EventTemplate[];
+    /**
+     * Required. Unique ID of this template.
+     */
+    id?: string | null;
+    /**
+     * Required. Latest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored. If this value is less than the `earliest_start_time`, it may imply an overnight shift.
+     */
+    latestStartTime?: Schema$TimeOfDay;
+    /**
+     * Required. Maximum number of employees that can be assigned to all shifts generated by this template on working days.
+     */
+    maximumEmployeeCount?: number | null;
+    /**
+     * Optional. Minimum number of employees that can be assigned to all shifts generated by this template on working days.
+     */
+    minimumEmployeeCount?: number | null;
+    /**
+     * Optional. Minimum minutes between the end of one event and the start of the next.
+     */
+    minimumIntereventGapMinutes?: number | null;
+    /**
+     * Optional. The time increment (in minutes) used to generate the set of possible start times between `earliest_start_time` and `latest_start_time`. For example, if the earliest start time is 8:00, the latest start time is 8:30, and the start time increment is 10 minutes, then all possible start times for this shift template are: 8:00, 8:10, 8:20, and 8:30.
+     */
+    startTimeIncrementMinutes?: number | null;
+  }
+  /**
+   * Specifies additional parameters for the solver generating shifts.
+   */
+  export interface Schema$SolverConfig {
+    /**
+     * Optional. Maximum time the solver should spend on the problem. If not set, defaults to 1 minute. The choice of a time limit should depend on the size of the problem. To give an example, when solving a 7-day instance with 2 `ShiftTemplates`, each with ~20 possible start times and holding 2 events with ~30 possible start times, and two days off per week, recommended values are: <10s for fast solutions (and likely suboptimal), (10s, 300s) for good quality solutions, and \>300s for an exhaustive search. Larger instances may require longer time limits. This value is not a hard limit and it does not account for the communication overhead. The expected latency to solve the problem may slightly exceed this value.
+     */
+    maximumProcessingDuration?: string | null;
+    /**
+     * Required. Specifies the type of schedule to generate.
+     */
+    scheduleType?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -580,6 +789,32 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
+  }
+  /**
+   * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$TimeZone {
+    /**
+     * IANA Time Zone Database time zone. For example "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number. For example "2019a".
+     */
+    version?: string | null;
+  }
+  /**
+   * Specifies a time interval during which the overlap with events (generated from event templates) should be minimal.
+   */
+  export interface Schema$UnwantedEventInterval {
+    /**
+     * Required. Duration of the event.
+     */
+    durationMinutes?: number | null;
+    /**
+     * Required. Start time of the event.
+     */
+    startTime?: Schema$DateTime;
   }
   /**
    * Message storing the URIs of the ContactCenter.
@@ -623,6 +858,32 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     startTime?: Schema$TimeOfDay;
   }
+  /**
+   * Specifies the number of employees required to cover the demand in the given time interval. The length of the interval must be strictly positive.
+   */
+  export interface Schema$WorkforceDemand {
+    /**
+     * Optional. Number of employees needed to cover the demand for this interval.
+     */
+    employeeCount?: number | null;
+    /**
+     * Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored.
+     */
+    endTime?: Schema$DateTime;
+    /**
+     * Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored.
+     */
+    startTime?: Schema$DateTime;
+  }
+  /**
+   * List of workforce demands.
+   */
+  export interface Schema$WorkforceDemandList {
+    /**
+     * Optional. Values in the list.
+     */
+    values?: Schema$WorkforceDemand[];
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -645,6 +906,160 @@ export namespace contactcenteraiplatform_v1alpha1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+    }
+
+    /**
+     * Generates shifts constrained by various parameters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenteraiplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenteraiplatform = google.contactcenteraiplatform('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenteraiplatform.projects.locations.generateShifts({
+     *     // Required. Name of the parent resource associated with the request. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "employeeInfo": [],
+     *       //   "planningHorizon": {},
+     *       //   "shiftTemplates": [],
+     *       //   "solverConfig": {},
+     *       //   "workforceDemands": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateShifts(
+      params: Params$Resource$Projects$Locations$Generateshifts,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateShifts(
+      params?: Params$Resource$Projects$Locations$Generateshifts,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    generateShifts(
+      params: Params$Resource$Projects$Locations$Generateshifts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateShifts(
+      params: Params$Resource$Projects$Locations$Generateshifts,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generateShifts(
+      params: Params$Resource$Projects$Locations$Generateshifts,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generateShifts(callback: BodyResponseCallback<Schema$Operation>): void;
+    generateShifts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generateshifts
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generateshifts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Generateshifts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenteraiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}:generateShifts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -1079,6 +1494,17 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Generateshifts extends StandardParameters {
+    /**
+     * Required. Name of the parent resource associated with the request. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateShiftsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
