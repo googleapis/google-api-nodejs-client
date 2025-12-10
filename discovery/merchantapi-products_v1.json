@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20251118",
+  "revision": "20251207",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -1808,7 +1808,7 @@
         },
         "subscriptionCost": {
           "$ref": "SubscriptionCost",
-          "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
+          "description": "Number of periods (weeks, months or years) and amount of payment per period for an item with an associated subscription contract."
         },
         "sustainabilityIncentives": {
           "description": "The list of sustainability incentive programs.",
@@ -2414,16 +2414,18 @@
           "description": "The amount the buyer has to pay per subscription period."
         },
         "period": {
-          "description": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\"",
+          "description": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\" * \"`week`\"",
           "enum": [
             "SUBSCRIPTION_PERIOD_UNSPECIFIED",
             "MONTH",
-            "YEAR"
+            "YEAR",
+            "WEEK"
           ],
           "enumDescriptions": [
             "Indicates that the subscription period is unspecified.",
             "Indicates that the subscription period is month.",
-            "Indicates that the subscription period is year."
+            "Indicates that the subscription period is year.",
+            "Indicates that the subscription period is week."
           ],
           "type": "string"
         },

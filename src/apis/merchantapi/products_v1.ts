@@ -851,7 +851,7 @@ export namespace merchantapi_products_v1 {
      */
     structuredTitle?: Schema$StructuredTitle;
     /**
-     * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
+     * Number of periods (weeks, months or years) and amount of payment per period for an item with an associated subscription contract.
      */
     subscriptionCost?: Schema$SubscriptionCost;
     /**
@@ -1240,7 +1240,7 @@ export namespace merchantapi_products_v1 {
      */
     amount?: Schema$Price;
     /**
-     * The type of subscription period. Supported values are: * "`month`" * "`year`"
+     * The type of subscription period. Supported values are: * "`month`" * "`year`" * "`week`"
      */
     period?: string | null;
     /**
