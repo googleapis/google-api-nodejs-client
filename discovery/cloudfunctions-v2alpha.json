@@ -216,6 +216,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "commitFunctionUpgradeAsGen2": {
+                  "description": "Commits a function upgrade from GCF Gen1 to GCF Gen2. This action deletes the Gen1 function, leaving the Gen2 function active and manageable by the GCFv2 API.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/functions/{functionsId}:commitFunctionUpgradeAsGen2",
+                  "httpMethod": "POST",
+                  "id": "cloudfunctions.projects.locations.functions.commitFunctionUpgradeAsGen2",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the function for which upgrade should be committed to Gen2.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/functions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+name}:commitFunctionUpgradeAsGen2",
+                  "request": {
+                    "$ref": "CommitFunctionUpgradeAsGen2Request"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.",
                   "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/functions",
@@ -701,7 +729,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -755,7 +783,7 @@
       }
     }
   },
-  "revision": "20251106",
+  "revision": "20251204",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -911,6 +939,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CommitFunctionUpgradeAsGen2Request": {
+      "description": "Request for the `CommitFunctionUpgradeAsGen2` method.",
+      "id": "CommitFunctionUpgradeAsGen2Request",
+      "properties": {},
       "type": "object"
     },
     "CommitFunctionUpgradeRequest": {
@@ -1309,7 +1343,8 @@
             "SETUP_FUNCTION_UPGRADE_CONFIG",
             "ABORT_FUNCTION_UPGRADE",
             "COMMIT_FUNCTION_UPGRADE",
-            "DETACH_FUNCTION"
+            "DETACH_FUNCTION",
+            "COMMIT_FUNCTION_UPGRADE_AS_GEN2"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -1321,7 +1356,8 @@
             "SetupFunctionUpgradeConfig",
             "AbortFunctionUpgrade",
             "CommitFunctionUpgrade",
-            "DetachFunction"
+            "DetachFunction",
+            "CommitFunctionUpgradeAsGen2"
           ],
           "type": "string"
         },
@@ -1513,7 +1549,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
