@@ -429,6 +429,21 @@
               "required": true,
               "type": "string"
             },
+            "inProgressReviewBehaviour": {
+              "description": "Optional. The behavior of committing a new edit while a submission is already in review.",
+              "enum": [
+                "IN_PROGRESS_REVIEW_BEHAVIOUR_UNSPECIFIED",
+                "CANCEL_IN_PROGRESS_AND_SUBMIT",
+                "THROW_ERROR_IF_IN_PROGRESS"
+              ],
+              "enumDescriptions": [
+                "The behavior is not specified.",
+                "The changes in review will be canceled, and the new changes will be sent for review. Thus resetting the review process.",
+                "The commit will fail with an error if there are changes in review. If the edit doesn't result in a new submission being created then it won't throw an error even if there are changes in review."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "packageName": {
               "description": "Package name of the app.",
               "location": "path",
@@ -5555,7 +5570,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251208",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
