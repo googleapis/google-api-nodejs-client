@@ -341,6 +341,10 @@ export namespace datafusion_v1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Optional. The monitoring configuration for this instance.
+     */
+    monitoringConfig?: Schema$MonitoringConfig;
+    /**
      * Output only. The name of this instance is in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
      */
     name?: string | null;
@@ -566,6 +570,15 @@ export namespace datafusion_v1 {
      * Required. The recurring time window of the maintenance window.
      */
     recurringTimeWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
+   * Monitoring configuration for a Data Fusion instance.
+   */
+  export interface Schema$MonitoringConfig {
+    /**
+     * Optional. Option to enable the instance v2 metrics for this instance. This field is supported only in CDF versions 6.11.1.1 and above.
+     */
+    enableInstanceV2Metrics?: boolean | null;
   }
   /**
    * Network configuration for a Data Fusion instance. These configurations are used for peering with the customer network. Configurations are optional when a public Data Fusion instance is to be created. However, providing these configurations allows several benefits, such as reduced network latency while accessing the customer resources from managed Data Fusion instance nodes, as well as access to the customer on-prem resources.
@@ -1197,6 +1210,7 @@ export namespace datafusion_v1 {
      *       //   "loggingConfig": {},
      *       //   "maintenanceEvents": [],
      *       //   "maintenancePolicy": {},
+     *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "options": {},
@@ -1524,6 +1538,7 @@ export namespace datafusion_v1 {
      *   //   "loggingConfig": {},
      *   //   "maintenanceEvents": [],
      *   //   "maintenancePolicy": {},
+     *   //   "monitoringConfig": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "options": {},
@@ -1990,6 +2005,7 @@ export namespace datafusion_v1 {
      *       //   "loggingConfig": {},
      *       //   "maintenanceEvents": [],
      *       //   "maintenancePolicy": {},
+     *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "options": {},

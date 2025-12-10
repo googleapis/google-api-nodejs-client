@@ -940,7 +940,7 @@
       }
     }
   },
-  "revision": "20251106",
+  "revision": "20251203",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1260,6 +1260,10 @@
         "maintenancePolicy": {
           "$ref": "MaintenancePolicy",
           "description": "Optional. Configure the maintenance policy for this instance."
+        },
+        "monitoringConfig": {
+          "$ref": "MonitoringConfig",
+          "description": "Optional. The monitoring configuration for this instance."
         },
         "name": {
           "description": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.",
@@ -1614,6 +1618,17 @@
         "recurringTimeWindow": {
           "$ref": "RecurringTimeWindow",
           "description": "Required. The recurring time window of the maintenance window."
+        }
+      },
+      "type": "object"
+    },
+    "MonitoringConfig": {
+      "description": "Monitoring configuration for a Data Fusion instance.",
+      "id": "MonitoringConfig",
+      "properties": {
+        "enableInstanceV2Metrics": {
+          "description": "Optional. Option to enable the instance v2 metrics for this instance. This field is supported only in CDF versions 6.11.1.1 and above.",
+          "type": "boolean"
         }
       },
       "type": "object"
