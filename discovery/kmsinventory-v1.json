@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20251012",
+  "revision": "20251207",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -392,7 +392,7 @@
           "type": "string"
         },
         "cryptoKeyBackend": {
-          "description": "Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/*/locations/*/ekmConnections/*`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.",
+          "description": "Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/*/locations/*/ekmConnections/*`. Only applicable if CryptoKeyVersions have a ProtectionLevel of HSM_SINGLE_TENANT, with the resource name in the format `projects/*/locations/*/singleTenantHsmInstances/*`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.",
           "type": "string"
         },
         "destroyScheduledDuration": {
@@ -514,7 +514,10 @@
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
-            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -560,7 +563,10 @@
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
           ],
           "readOnly": true,
           "type": "string"
@@ -636,14 +642,16 @@
             "SOFTWARE",
             "HSM",
             "EXTERNAL",
-            "EXTERNAL_VPC"
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
             "Crypto operations are performed by an external key manager.",
-            "Crypto operations are performed in an EKM-over-VPC backend."
+            "Crypto operations are performed in an EKM-over-VPC backend.",
+            "Crypto operations are performed in a single-tenant HSM."
           ],
           "readOnly": true,
           "type": "string"
@@ -736,7 +744,10 @@
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_ML_DSA_87",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
-            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -782,7 +793,10 @@
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
-            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
           ],
           "type": "string"
         },
@@ -793,14 +807,16 @@
             "SOFTWARE",
             "HSM",
             "EXTERNAL",
-            "EXTERNAL_VPC"
+            "EXTERNAL_VPC",
+            "HSM_SINGLE_TENANT"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
             "Crypto operations are performed by an external key manager.",
-            "Crypto operations are performed in an EKM-over-VPC backend."
+            "Crypto operations are performed in an EKM-over-VPC backend.",
+            "Crypto operations are performed in a single-tenant HSM."
           ],
           "type": "string"
         }
