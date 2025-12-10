@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v7.0.0...customsearch-v7.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **customsearch:** update the API ([c0e10d5](https://github.com/googleapis/google-api-nodejs-client/commit/c0e10d576836ad4b011572115ddde48b43214102))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v6.0.0...customsearch-v7.0.0) (2025-10-15)
 
 

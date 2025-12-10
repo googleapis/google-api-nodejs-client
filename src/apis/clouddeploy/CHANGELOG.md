@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v13.0.1...clouddeploy-v13.1.0) (2025-12-05)
+
+
+### Features
+
+* **clouddeploy:** update the API ([52d9bce](https://github.com/googleapis/google-api-nodejs-client/commit/52d9bce8fc0a522df53ac20f63d3f3cf42c9519a))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v13.0.0...clouddeploy-v13.0.1) (2025-11-04)
 
 

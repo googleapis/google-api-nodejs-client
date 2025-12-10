@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/searchads360",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "description": "searchads360",
   "main": "build/index.js",
   "types": "build/index.d.ts",

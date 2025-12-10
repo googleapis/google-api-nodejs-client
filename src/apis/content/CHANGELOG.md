@@ -1,5 +1,12 @@
 # Changelog
 
+## [42.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v42.0.0...content-v42.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **content:** update the API ([e5a9ce1](https://github.com/googleapis/google-api-nodejs-client/commit/e5a9ce1d66e8121bb0d762de2f45362e4936077c))
+
 ## [42.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v41.0.0...content-v42.0.0) (2025-11-26)
 
 

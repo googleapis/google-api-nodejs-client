@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v19.0.0...cloudsearch-v19.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **cloudsearch:** update the API ([51d03dc](https://github.com/googleapis/google-api-nodejs-client/commit/51d03dc920a43c9d69eca97a2cc2746712b9fabe))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v18.0.0...cloudsearch-v19.0.0) (2025-10-15)
 
 

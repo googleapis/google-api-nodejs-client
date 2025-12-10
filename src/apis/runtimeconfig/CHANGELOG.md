@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v8.0.0...runtimeconfig-v8.1.0) (2025-12-05)
+
+
+### Features
+
+* **runtimeconfig:** update the API ([50448a9](https://github.com/googleapis/google-api-nodejs-client/commit/50448a97721b02d3ed0c82b5e483277b57d250d9))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/runtimeconfig-v7.0.0...runtimeconfig-v8.0.0) (2025-10-15)
 
 

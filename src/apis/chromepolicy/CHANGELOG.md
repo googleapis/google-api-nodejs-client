@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v13.0.0...chromepolicy-v13.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **chromepolicy:** update the API ([b6b2fb2](https://github.com/googleapis/google-api-nodejs-client/commit/b6b2fb286c460dac0b899606cb2930a9b2f0ee2f))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v12.0.0...chromepolicy-v13.0.0) (2025-10-15)
 
 

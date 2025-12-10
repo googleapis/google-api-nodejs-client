@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v5.0.0...gmailpostmastertools-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **gmailpostmastertools:** update the API ([21f45c5](https://github.com/googleapis/google-api-nodejs-client/commit/21f45c5bcd91f9e31bb6c0488e2acf678be3e370))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v4.0.0...gmailpostmastertools-v5.0.0) (2025-10-15)
 
 

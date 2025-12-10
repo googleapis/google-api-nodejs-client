@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v6.0.0...forms-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([83b66f1](https://github.com/googleapis/google-api-nodejs-client/commit/83b66f16488692f248006e2620eaca08d8f3f4f9))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v5.0.0...forms-v6.0.0) (2025-10-15)
 
 

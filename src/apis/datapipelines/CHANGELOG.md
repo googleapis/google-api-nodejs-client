@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datapipelines-v5.0.0...datapipelines-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **datapipelines:** update the API ([e28e68d](https://github.com/googleapis/google-api-nodejs-client/commit/e28e68de78b1c416166f57c3befc044d65b0336a))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datapipelines-v4.0.0...datapipelines-v5.0.0) (2025-10-15)
 
 
