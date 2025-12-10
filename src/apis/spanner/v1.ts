@@ -583,6 +583,10 @@ export namespace spanner_v1 {
     variable?: string | null;
   }
   /**
+   * Container for various pieces of client-owned context attached to a request.
+   */
+  export interface Schema$ClientContext {}
+  /**
    * Metadata for a column.
    */
   export interface Schema$ColumnMetadata {
@@ -2705,6 +2709,10 @@ export namespace spanner_v1 {
    */
   export interface Schema$RequestOptions {
     /**
+     * Optional. Optional context that may be needed for some requests.
+     */
+    clientContext?: Schema$ClientContext;
+    /**
      * Priority for the request.
      */
     priority?: string | null;
@@ -2924,7 +2932,7 @@ export namespace spanner_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent read-only operations. Don't use them for read-write transactions, partitioned reads, or partitioned queries. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.
+     * Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent operations including any combination of read-only and read-write transactions. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.
      */
     multiplexed?: boolean | null;
     /**
