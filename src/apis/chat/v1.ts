@@ -1425,7 +1425,7 @@ export namespace chat_v1 {
      */
     openAs?: string | null;
     /**
-     * The URL to open.
+     * The URL to open. HTTP URLs are converted to HTTPS.
      */
     url?: string | null;
   }
