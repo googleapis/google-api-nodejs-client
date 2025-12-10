@@ -2163,7 +2163,7 @@ export namespace sqladmin_v1beta4 {
     passwordExpirationTime?: string | null;
   }
   /**
-   * Database instance local user password validation policy
+   * Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access.
    */
   export interface Schema$PasswordValidationPolicy {
     /**
@@ -2179,7 +2179,7 @@ export namespace sqladmin_v1beta4 {
      */
     disallowUsernameSubstring?: boolean | null;
     /**
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must meet complexity requirements. Keep this policy enabled to help prevent unauthorized access. Disabling this policy allows weak passwords.
      */
     enablePasswordPolicy?: boolean | null;
     /**
@@ -2194,6 +2194,35 @@ export namespace sqladmin_v1beta4 {
      * Number of previous passwords that cannot be reused.
      */
     reuseInterval?: number | null;
+  }
+  /**
+   * Performance Capture configuration.
+   */
+  export interface Schema$PerformanceCaptureConfig {
+    /**
+     * Optional. Enable or disable the Performance Capture.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The minimum number of consecutive readings above threshold that triggers instance state capture.
+     */
+    probeThreshold?: number | null;
+    /**
+     * Optional. The time interval in seconds between any two probes.
+     */
+    probingIntervalSeconds?: number | null;
+    /**
+     * Optional. The minimum number of server threads running to trigger the capture on primary.
+     */
+    runningThreadsThreshold?: number | null;
+    /**
+     * Optional. The minimum number of seconds replica must be lagging behind primary to trigger capture on replica.
+     */
+    secondsBehindSourceThreshold?: number | null;
+    /**
+     * Optional. The amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.
+     */
+    transactionDurationThreshold?: number | null;
   }
   /**
    * Perform disk shrink context.
@@ -2261,6 +2290,14 @@ export namespace sqladmin_v1beta4 {
      * Output only. The name of the read pool node, to be used for retrieving metrics and logs.
      */
     name?: string | null;
+    /**
+     * Output only. The list of settings for requested automatically-setup Private Service Connect (PSC) consumer endpoints that can be used to connect to this read pool node.
+     */
+    pscAutoConnections?: Schema$PscAutoConnectionConfig[];
+    /**
+     * Output only. The Private Service Connect (PSC) service attachment of the read pool node.
+     */
+    pscServiceAttachmentLink?: string | null;
     /**
      * Output only. The current state of the read pool node.
      */
@@ -2663,6 +2700,10 @@ export namespace sqladmin_v1beta4 {
      */
     passwordValidationPolicy?: Schema$PasswordValidationPolicy;
     /**
+     * Optional. Configuration for Performance Capture, provides diagnostic metrics during high load situations.
+     */
+    performanceCaptureConfig?: Schema$PerformanceCaptureConfig;
+    /**
      * The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      */
     pricingPlan?: string | null;
@@ -2766,10 +2807,6 @@ export namespace sqladmin_v1beta4 {
      */
     operationId?: string | null;
   }
-  /**
-   * Request for AddEntraIdCertificate RPC.
-   */
-  export interface Schema$SqlInstancesAddEntraIdCertificateRequest {}
   /**
    * Execute SQL statements response.
    */
@@ -6787,12 +6824,6 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // Required. Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
      *   });
      *   console.log(res.data);
      *
@@ -12538,11 +12569,6 @@ export namespace sqladmin_v1beta4 {
      * Required. Project ID of the project that contains the instance.
      */
     project?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SqlInstancesAddEntraIdCertificateRequest;
   }
   export interface Params$Resource$Instances$Addserverca extends StandardParameters {
     /**
