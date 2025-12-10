@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251104",
+  "revision": "20251125",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5101,6 +5101,43 @@
       },
       "type": "object"
     },
+    "DisruptionEvent": {
+      "description": "DisruptionEvent is a notification sent to customers about the disruption event of a resource.",
+      "id": "DisruptionEvent",
+      "properties": {
+        "disruptionType": {
+          "description": "The type of the disruption event.",
+          "enum": [
+            "DISRUPTION_TYPE_UNSPECIFIED",
+            "POD_NOT_ENOUGH_PDB",
+            "POD_PDB_VIOLATION"
+          ],
+          "enumDescriptions": [
+            "DISRUPTION_TYPE_UNSPECIFIED indicates the disruption type is unspecified.",
+            "POD_NOT_ENOUGH_PDB indicates there are still running pods on the node during node drain because their evictions are blocked by PDB.",
+            "POD_PDB_VIOLATION indicates that there are force pod evictions during node drain which violate the PDB."
+          ],
+          "type": "string"
+        },
+        "pdbBlockedNode": {
+          "description": "The node whose drain is blocked by PDB. This field is set for both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.",
+          "type": "string"
+        },
+        "pdbBlockedPod": {
+          "description": "The pods whose evictions are blocked by PDB. This field is set for both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.",
+          "items": {
+            "$ref": "PdbBlockedPod"
+          },
+          "type": "array"
+        },
+        "pdbViolationTimeout": {
+          "description": "The timeout in seconds for which the node drain is blocked by PDB. After this timeout, pods are forcefully evicted. This field is only populated when event_type is POD_PDB_VIOLATION.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DnsCacheConfig": {
       "description": "Configuration for NodeLocal DNSCache",
       "id": "DnsCacheConfig",
@@ -7203,6 +7240,17 @@
       },
       "type": "object"
     },
+    "NodeDrainConfig": {
+      "description": "NodeDrainConfig contains the node drain related configurations for this nodepool.",
+      "id": "NodeDrainConfig",
+      "properties": {
+        "respectPdbDuringNodePoolDeletion": {
+          "description": "Whether to respect PDB during node pool deletion.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "NodeKernelModuleLoading": {
       "description": "Configuration for kernel module loading on nodes.",
       "id": "NodeKernelModuleLoading",
@@ -7411,8 +7459,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "Output only. The subnetwork path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.",
-          "readOnly": true,
+          "description": "The subnetwork path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.",
           "type": "string"
         }
       },
@@ -7484,6 +7531,10 @@
         "networkConfig": {
           "$ref": "NodeNetworkConfig",
           "description": "Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults."
+        },
+        "nodeDrainConfig": {
+          "$ref": "NodeDrainConfig",
+          "description": "Specifies the node drain configuration for this node pool."
         },
         "placementPolicy": {
           "$ref": "PlacementPolicy",
@@ -8045,6 +8096,21 @@
         },
         "productName": {
           "description": "Name of the parent product associated with the cluster.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PdbBlockedPod": {
+      "description": "The namespace/name of the pod whose eviction is blocked by PDB.",
+      "id": "PdbBlockedPod",
+      "properties": {
+        "name": {
+          "description": "The name of the pod.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "The namespace of the pod.",
           "type": "string"
         }
       },
@@ -9806,6 +9872,10 @@
           "description": "The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.",
           "type": "string"
         },
+        "nodeDrainConfig": {
+          "$ref": "NodeDrainConfig",
+          "description": "The desired node drain configuration for nodes in the node pool."
+        },
         "nodeNetworkConfig": {
           "$ref": "NodeNetworkConfig",
           "description": "Node network config."
@@ -10040,6 +10110,10 @@
           "description": "A brief description of the event.",
           "type": "string"
         },
+        "disruptionEvent": {
+          "$ref": "DisruptionEvent",
+          "description": "The information about the disruption event. This field is only populated when event_type is DISRUPTION_EVENT."
+        },
         "endTime": {
           "description": "The time when the operation ended.",
           "format": "google-datetime",
@@ -10051,13 +10125,15 @@
             "EVENT_TYPE_UNSPECIFIED",
             "END_OF_SUPPORT",
             "COS_MILESTONE_VERSION_UPDATE",
-            "UPGRADE_LIFECYCLE"
+            "UPGRADE_LIFECYCLE",
+            "DISRUPTION_EVENT"
           ],
           "enumDescriptions": [
             "EVENT_TYPE_UNSPECIFIED indicates the event type is unspecified.",
             "END_OF_SUPPORT indicates GKE version reaches end of support, check standard_support_end_time and extended_support_end_time for more details.",
             "COS_MILESTONE_VERSION_UPDATE indicates that the COS node image will update COS milestone version for new patch versions starting with the one in the description.",
-            "UPGRADE_LIFECYCLE indicates the event is about the upgrade lifecycle."
+            "UPGRADE_LIFECYCLE indicates the event is about the upgrade lifecycle.",
+            "DISRUPTION_EVENT indicates the event is about the disruption."
           ],
           "type": "string"
         },
