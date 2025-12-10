@@ -646,7 +646,7 @@
       "version": "v1"
     },
     {
-      "description": "",
+      "description": "App Hub lets you build, operate, and manage applications on Google Cloud.",
       "discoveryRestUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://cloud.google.com/app-hub/docs/",
       "icons": {
@@ -661,7 +661,7 @@
       "version": "v1alpha"
     },
     {
-      "description": "",
+      "description": "App Hub lets you build, operate, and manage applications on Google Cloud.",
       "discoveryRestUrl": "https://apphub.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/app-hub/docs/",
       "icons": {
