@@ -458,7 +458,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2467,7 +2467,7 @@
       }
     }
   },
-  "revision": "20251111",
+  "revision": "20251202",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -2901,6 +2901,11 @@
           "description": "Output only. The compilation result's name.",
           "readOnly": true,
           "type": "string"
+        },
+        "privateResourceMetadata": {
+          "$ref": "PrivateResourceMetadata",
+          "description": "Output only. Metadata indicating whether this resource is user-scoped. `CompilationResult` resource is `user_scoped` only if it is sourced from a workspace.",
+          "readOnly": true
         },
         "releaseConfig": {
           "description": "Immutable. The name of the release config to compile. Must be in the format `projects/*/locations/*/repositories/*/releaseConfigs/*`.",
@@ -3513,7 +3518,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -3982,6 +3987,18 @@
         "type": {
           "description": "Resource type. Types are defined in IAM's .service files. Valid values for type might be 'storage_buckets', 'compute_instances', 'resourcemanager_customers', 'billing_accounts', etc.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrivateResourceMetadata": {
+      "description": "Metadata used to identify if a resource is user scoped.",
+      "id": "PrivateResourceMetadata",
+      "properties": {
+        "userScoped": {
+          "description": "Output only. If true, this resource is user-scoped, meaning it is either a workspace or sourced from a workspace.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4759,6 +4776,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "privateResourceMetadata": {
+          "$ref": "PrivateResourceMetadata",
+          "description": "Output only. Metadata indicating whether this resource is user-scoped. `WorkflowInvocation` resource is `user_scoped` only if it is sourced from a compilation result and the compilation result is user-scoped.",
+          "readOnly": true
+        },
         "resolvedCompilationResult": {
           "description": "Output only. The resolved compilation result that was used to create this invocation. Will be in the format `projects/*/locations/*/repositories/*/compilationResults/*`.",
           "readOnly": true,
@@ -4885,6 +4907,11 @@
         "name": {
           "description": "Identifier. The workspace's name.",
           "type": "string"
+        },
+        "privateResourceMetadata": {
+          "$ref": "PrivateResourceMetadata",
+          "description": "Output only. Metadata indicating whether this resource is user-scoped. For `Workspace` resources, the `user_scoped` field is always `true`.",
+          "readOnly": true
         }
       },
       "type": "object"
