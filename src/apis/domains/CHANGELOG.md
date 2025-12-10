@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v6.0.0...domains-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **domains:** update the API ([b642545](https://github.com/googleapis/google-api-nodejs-client/commit/b642545700a3f30f50bac6d84a1a2a9501019764))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v5.0.0...domains-v6.0.0) (2025-10-15)
 
 

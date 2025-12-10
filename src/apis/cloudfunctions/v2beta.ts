@@ -227,6 +227,10 @@ export namespace cloudfunctions_v2beta {
     workerPool?: string | null;
   }
   /**
+   * Request for the `CommitFunctionUpgradeAsGen2` method.
+   */
+  export interface Schema$CommitFunctionUpgradeAsGen2Request {}
+  /**
    * Request for the `CommitFunctionUpgrade` method.
    */
   export interface Schema$CommitFunctionUpgradeRequest {}
@@ -610,7 +614,7 @@ export namespace cloudfunctions_v2beta {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1574,6 +1578,159 @@ export namespace cloudfunctions_v2beta {
               /([^:]\/)\/+/g,
               '$1'
             ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Commits a function upgrade from GCF Gen1 to GCF Gen2. This action deletes the Gen1 function, leaving the Gen2 function active and manageable by the GCFv2 API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.commitFunctionUpgradeAsGen2(
+     *       {
+     *         // Required. The name of the function for which upgrade should be committed to Gen2.
+     *         name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commitFunctionUpgradeAsGen2(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    commitFunctionUpgradeAsGen2(
+      params?: Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    commitFunctionUpgradeAsGen2(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commitFunctionUpgradeAsGen2(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgradeAsGen2(
+      params: Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgradeAsGen2(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    commitFunctionUpgradeAsGen2(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudfunctions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta/{+name}:commitFunctionUpgradeAsGen2'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -3750,6 +3907,17 @@ export namespace cloudfunctions_v2beta {
      */
     requestBody?: Schema$CommitFunctionUpgradeRequest;
   }
+  export interface Params$Resource$Projects$Locations$Functions$Commitfunctionupgradeasgen2 extends StandardParameters {
+    /**
+     * Required. The name of the function for which upgrade should be committed to Gen2.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitFunctionUpgradeAsGen2Request;
+  }
   export interface Params$Resource$Projects$Locations$Functions$Create extends StandardParameters {
     /**
      * The ID to use for the function, which will become the final component of the function's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
@@ -4101,7 +4269,7 @@ export namespace cloudfunctions_v2beta {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4237,7 +4405,7 @@ export namespace cloudfunctions_v2beta {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

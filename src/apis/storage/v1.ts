@@ -647,6 +647,10 @@ export namespace storage_v1 {
    */
   export interface Schema$ComposeRequest {
     /**
+     * If true, the source objects will be deleted.
+     */
+    deleteSourceObjects?: boolean | null;
+    /**
      * Properties of the resulting object.
      */
     destination?: Schema$Object;
@@ -11596,6 +11600,7 @@ export namespace storage_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "deleteSourceObjects": false,
      *       //   "destination": {},
      *       //   "kind": "my_kind",
      *       //   "sourceObjects": []

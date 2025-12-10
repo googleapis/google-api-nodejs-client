@@ -1823,6 +1823,27 @@ export namespace container_v1beta1 {
     desiredTier?: string | null;
   }
   /**
+   * DisruptionEvent is a notification sent to customers about the disruption event of a resource.
+   */
+  export interface Schema$DisruptionEvent {
+    /**
+     * The type of the disruption event.
+     */
+    disruptionType?: string | null;
+    /**
+     * The node whose drain is blocked by PDB. This field is set for both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
+     */
+    pdbBlockedNode?: string | null;
+    /**
+     * The pods whose evictions are blocked by PDB. This field is set for both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
+     */
+    pdbBlockedPod?: Schema$PdbBlockedPod[];
+    /**
+     * The timeout in seconds for which the node drain is blocked by PDB. After this timeout, pods are forcefully evicted. This field is only populated when event_type is POD_PDB_VIOLATION.
+     */
+    pdbViolationTimeout?: string | null;
+  }
+  /**
    * Configuration for NodeLocal DNSCache
    */
   export interface Schema$DnsCacheConfig {
@@ -3269,6 +3290,15 @@ export namespace container_v1beta1 {
     nodeKubeletConfig?: Schema$NodeKubeletConfig;
   }
   /**
+   * NodeDrainConfig contains the node drain related configurations for this nodepool.
+   */
+  export interface Schema$NodeDrainConfig {
+    /**
+     * Whether to respect PDB during node pool deletion.
+     */
+    respectPdbDuringNodePoolDeletion?: boolean | null;
+  }
+  /**
    * Configuration for kernel module loading on nodes.
    */
   export interface Schema$NodeKernelModuleLoading {
@@ -3437,7 +3467,7 @@ export namespace container_v1beta1 {
      */
     podRange?: string | null;
     /**
-     * Output only. The subnetwork path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.
+     * The subnetwork path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.
      */
     subnetwork?: string | null;
   }
@@ -3497,6 +3527,10 @@ export namespace container_v1beta1 {
      * Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults.
      */
     networkConfig?: Schema$NodeNetworkConfig;
+    /**
+     * Specifies the node drain configuration for this node pool.
+     */
+    nodeDrainConfig?: Schema$NodeDrainConfig;
     /**
      * Specifies the node placement policy.
      */
@@ -3815,6 +3849,19 @@ export namespace container_v1beta1 {
      * Name of the parent product associated with the cluster.
      */
     productName?: string | null;
+  }
+  /**
+   * The namespace/name of the pod whose eviction is blocked by PDB.
+   */
+  export interface Schema$PdbBlockedPod {
+    /**
+     * The name of the pod.
+     */
+    name?: string | null;
+    /**
+     * The namespace of the pod.
+     */
+    namespace?: string | null;
   }
   /**
    * PlacementPolicy defines the placement policy used by the node pool.
@@ -5089,6 +5136,10 @@ export namespace container_v1beta1 {
      */
     name?: string | null;
     /**
+     * The desired node drain configuration for nodes in the node pool.
+     */
+    nodeDrainConfig?: Schema$NodeDrainConfig;
+    /**
      * Node network config.
      */
     nodeNetworkConfig?: Schema$NodeNetworkConfig;
@@ -5260,6 +5311,10 @@ export namespace container_v1beta1 {
      * A brief description of the event.
      */
     description?: string | null;
+    /**
+     * The information about the disruption event. This field is only populated when event_type is DISRUPTION_EVENT.
+     */
+    disruptionEvent?: Schema$DisruptionEvent;
     /**
      * The time when the operation ended.
      */
@@ -10414,6 +10469,7 @@ export namespace container_v1beta1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "nodeDrainConfig": {},
      *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "queuedProvisioning": {},
@@ -11386,6 +11442,7 @@ export namespace container_v1beta1 {
      *       //   "machineType": "my_machineType",
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
+     *       //   "nodeDrainConfig": {},
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
@@ -16740,6 +16797,7 @@ export namespace container_v1beta1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "nodeDrainConfig": {},
      *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "queuedProvisioning": {},
@@ -17570,6 +17628,7 @@ export namespace container_v1beta1 {
      *       //   "machineType": "my_machineType",
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
+     *       //   "nodeDrainConfig": {},
      *       //   "nodeNetworkConfig": {},
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",

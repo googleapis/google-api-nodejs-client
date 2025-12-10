@@ -354,6 +354,10 @@ export namespace datafusion_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Optional. The monitoring configuration for this instance.
+     */
+    monitoringConfig?: Schema$MonitoringConfig;
+    /**
      * Output only. The name of this instance is in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
      */
     name?: string | null;
@@ -592,6 +596,15 @@ export namespace datafusion_v1beta1 {
      * Required. The recurring time window of the maintenance window.
      */
     recurringTimeWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
+   * Monitoring configuration for a Data Fusion instance.
+   */
+  export interface Schema$MonitoringConfig {
+    /**
+     * Optional. Option to enable the instance v2 metrics for this instance. This field is supported only in CDF versions 6.11.1.1 and above.
+     */
+    enableInstanceV2Metrics?: boolean | null;
   }
   /**
    * Represents the information of a namespace
@@ -1408,6 +1421,7 @@ export namespace datafusion_v1beta1 {
      *       //   "loggingConfig": {},
      *       //   "maintenanceEvents": [],
      *       //   "maintenancePolicy": {},
+     *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "options": {},
@@ -1735,6 +1749,7 @@ export namespace datafusion_v1beta1 {
      *   //   "loggingConfig": {},
      *   //   "maintenanceEvents": [],
      *   //   "maintenancePolicy": {},
+     *   //   "monitoringConfig": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "options": {},
@@ -2201,6 +2216,7 @@ export namespace datafusion_v1beta1 {
      *       //   "loggingConfig": {},
      *       //   "maintenanceEvents": [],
      *       //   "maintenancePolicy": {},
+     *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "options": {},

@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v5.0.0...adexperiencereport-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **adexperiencereport:** update the API ([badffa2](https://github.com/googleapis/google-api-nodejs-client/commit/badffa2942ab352a5d3703b9e51461b4bc7747be))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adexperiencereport-v4.0.0...adexperiencereport-v5.0.0) (2025-10-15)
 
 

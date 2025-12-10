@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v5.0.0...firebaserules-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **firebaserules:** update the API ([ce90e92](https://github.com/googleapis/google-api-nodejs-client/commit/ce90e926eacc2f8ebf36733020a66e3ceb44c887))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v4.0.0...firebaserules-v5.0.0) (2025-10-15)
 
 

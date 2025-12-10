@@ -1046,6 +1046,10 @@ export namespace searchads360_v0 {
      */
     geoTargetMetro?: string | null;
     /**
+     * Resource name of the geo target constant that represents a postal code.
+     */
+    geoTargetPostalCode?: string | null;
+    /**
      * Resource name of the geo target constant that represents a region.
      */
     geoTargetRegion?: string | null;
@@ -2412,7 +2416,7 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupBidModifier {
     /**
-     * The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent. Use 0 to opt out of a Device type.
+     * The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. Use 0 to opt out of a Device type.
      */
     bidModifier?: number | null;
     /**

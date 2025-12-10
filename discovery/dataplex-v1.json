@@ -728,7 +728,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -870,7 +870,7 @@
                     "Returns entry only, without aspects.",
                     "Returns all required aspects as well as the keys of all non-required aspects.",
                     "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
-                    ""
+                    "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
                   ],
                   "location": "query",
                   "type": "string"
@@ -3041,7 +3041,7 @@
                             "Returns entry only, without aspects.",
                             "Returns all required aspects as well as the keys of all non-required aspects.",
                             "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
-                            ""
+                            "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
                           ],
                           "location": "query",
                           "type": "string"
@@ -7209,7 +7209,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -7229,7 +7229,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20251128",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8715,7 +8715,12 @@
     "GoogleCloudDataplexV1DataDocumentationSpec": {
       "description": "DataDocumentation scan related spec.",
       "id": "GoogleCloudDataplexV1DataDocumentationSpec",
-      "properties": {},
+      "properties": {
+        "catalogPublishingEnabled": {
+          "description": "Optional. Whether to publish result to Dataplex Catalog.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProfileResult": {
@@ -14402,7 +14407,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },

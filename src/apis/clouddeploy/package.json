@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/clouddeploy",
-  "version": "13.0.1",
+  "version": "13.1.0",
   "description": "clouddeploy",
   "main": "build/index.js",
   "types": "build/index.d.ts",

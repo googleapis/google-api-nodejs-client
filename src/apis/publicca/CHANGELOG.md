@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v5.0.0...publicca-v5.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **publicca:** update the API ([0b6b491](https://github.com/googleapis/google-api-nodejs-client/commit/0b6b4916157664be91218c5e8dfb8814030e0632))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v4.0.0...publicca-v5.0.0) (2025-10-15)
 
 

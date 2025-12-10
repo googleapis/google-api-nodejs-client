@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v18.1.0...analyticshub-v18.1.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([ecacc8e](https://github.com/googleapis/google-api-nodejs-client/commit/ecacc8e74da8842e471c7802c3c72f27e658992a))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v18.0.0...analyticshub-v18.1.0) (2025-11-04)
 
 

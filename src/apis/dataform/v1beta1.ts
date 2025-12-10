@@ -473,6 +473,10 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Metadata indicating whether this resource is user-scoped. `CompilationResult` resource is `user_scoped` only if it is sourced from a workspace.
+     */
+    privateResourceMetadata?: Schema$PrivateResourceMetadata;
+    /**
      * Immutable. The name of the release config to compile. Must be in the format `projects/x/locations/x/repositories/x/releaseConfigs/x`.
      */
     releaseConfig?: string | null;
@@ -932,7 +936,7 @@ export namespace dataform_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1281,6 +1285,15 @@ export namespace dataform_v1beta1 {
      * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'storage_buckets', 'compute_instances', 'resourcemanager_customers', 'billing_accounts', etc.
      */
     type?: string | null;
+  }
+  /**
+   * Metadata used to identify if a resource is user scoped.
+   */
+  export interface Schema$PrivateResourceMetadata {
+    /**
+     * Output only. If true, this resource is user-scoped, meaning it is either a workspace or sourced from a workspace.
+     */
+    userScoped?: boolean | null;
   }
   /**
    * `PullGitCommits` request message.
@@ -1855,6 +1868,10 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Metadata indicating whether this resource is user-scoped. `WorkflowInvocation` resource is `user_scoped` only if it is sourced from a compilation result and the compilation result is user-scoped.
+     */
+    privateResourceMetadata?: Schema$PrivateResourceMetadata;
+    /**
      * Output only. The resolved compilation result that was used to create this invocation. Will be in the format `projects/x/locations/x/repositories/x/compilationResults/x`.
      */
     resolvedCompilationResult?: string | null;
@@ -1928,6 +1945,10 @@ export namespace dataform_v1beta1 {
      * Identifier. The workspace's name.
      */
     name?: string | null;
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped. For `Workspace` resources, the `user_scoped` field is always `true`.
+     */
+    privateResourceMetadata?: Schema$PrivateResourceMetadata;
   }
   /**
    * Configures workspace compilation overrides for a repository. Primarily used by the UI (`console.cloud.google.com`). `schema_suffix` and `table_prefix` can have a special expression - `${workspaceName\}`, which refers to the workspace name from which the compilation results will be created. API callers are expected to resolve the expression in these overrides and provide them explicitly in `code_compilation_config` (https://cloud.google.com/dataform/reference/rest/v1beta1/projects.locations.repositories.compilationResults#codecompilationconfig) when creating workspace-scoped compilation results.
@@ -3590,7 +3611,7 @@ export namespace dataform_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3742,7 +3763,7 @@ export namespace dataform_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -6155,6 +6176,7 @@ export namespace dataform_v1beta1 {
      *         //   "gitCommitish": "my_gitCommitish",
      *         //   "internalMetadata": "my_internalMetadata",
      *         //   "name": "my_name",
+     *         //   "privateResourceMetadata": {},
      *         //   "releaseConfig": "my_releaseConfig",
      *         //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
      *         //   "workspace": "my_workspace"
@@ -6173,6 +6195,7 @@ export namespace dataform_v1beta1 {
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {},
      *   //   "releaseConfig": "my_releaseConfig",
      *   //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
      *   //   "workspace": "my_workspace"
@@ -6325,6 +6348,7 @@ export namespace dataform_v1beta1 {
      *   //   "gitCommitish": "my_gitCommitish",
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {},
      *   //   "releaseConfig": "my_releaseConfig",
      *   //   "resolvedGitCommitSha": "my_resolvedGitCommitSha",
      *   //   "workspace": "my_workspace"
@@ -8688,6 +8712,7 @@ export namespace dataform_v1beta1 {
      *         //   "invocationConfig": {},
      *         //   "invocationTiming": {},
      *         //   "name": "my_name",
+     *         //   "privateResourceMetadata": {},
      *         //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *         //   "state": "my_state",
      *         //   "workflowConfig": "my_workflowConfig"
@@ -8704,6 +8729,7 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {},
      *   //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *   //   "state": "my_state",
      *   //   "workflowConfig": "my_workflowConfig"
@@ -8991,6 +9017,7 @@ export namespace dataform_v1beta1 {
      *   //   "invocationConfig": {},
      *   //   "invocationTiming": {},
      *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {},
      *   //   "resolvedCompilationResult": "my_resolvedCompilationResult",
      *   //   "state": "my_state",
      *   //   "workflowConfig": "my_workflowConfig"
@@ -9686,7 +9713,8 @@ export namespace dataform_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
      *       //   "internalMetadata": "my_internalMetadata",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "privateResourceMetadata": {}
      *       // }
      *     },
      *   });
@@ -9697,7 +9725,8 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "internalMetadata": "my_internalMetadata",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {}
      *   // }
      * }
      *
@@ -10427,7 +10456,8 @@ export namespace dataform_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "internalMetadata": "my_internalMetadata",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "privateResourceMetadata": {}
      *   // }
      * }
      *

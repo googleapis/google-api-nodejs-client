@@ -239,7 +239,7 @@ export namespace cloudkms_v1 {
     logType?: string | null;
   }
   /**
-   * Cloud KMS Autokey configuration for a folder or project.
+   * Cloud KMS Autokey configuration for a folder.
    */
   export interface Schema$AutokeyConfig {
     /**
@@ -251,7 +251,7 @@ export namespace cloudkms_v1 {
      */
     keyProject?: string | null;
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
      */
     name?: string | null;
     /**
@@ -356,7 +356,7 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
-     * Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/x/locations/x/ekmConnections/x`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.
+     * Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/x/locations/x/ekmConnections/x`. Only applicable if CryptoKeyVersions have a ProtectionLevel of HSM_SINGLE_TENANT, with the resource name in the format `projects/x/locations/x/singleTenantHsmInstances/x`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.
      */
     cryptoKeyBackend?: string | null;
     /**
@@ -773,6 +773,10 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
+     * Immutable. The resource name of the backend environment where the key material for the wrapping key resides and where all related cryptographic operations are performed. Currently, this field is only populated for keys stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.
+     */
+    cryptoKeyBackend?: string | null;
+    /**
      * Output only. The time this ImportJob expired. Only present if state is EXPIRED.
      */
     expireEventTime?: string | null;
@@ -1035,6 +1039,10 @@ export namespace cloudkms_v1 {
      * Indicates whether CryptoKeys with protection_level HSM can be created in this location.
      */
     hsmAvailable?: boolean | null;
+    /**
+     * Indicates whether CryptoKeys with protection_level HSM_SINGLE_TENANT can be created in this location.
+     */
+    hsmSingleTenantAvailable?: boolean | null;
   }
   /**
    * Request message for KeyManagementService.MacSign.
@@ -1800,7 +1808,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
      *     name: 'folders/my-folder/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -2095,7 +2103,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Folders$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
      */
     name?: string;
     /**
@@ -11803,6 +11811,7 @@ export namespace cloudkms_v1 {
      *       // {
      *       //   "attestation": {},
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *       //   "expireEventTime": "my_expireEventTime",
      *       //   "expireTime": "my_expireTime",
      *       //   "generateTime": "my_generateTime",
@@ -11820,6 +11829,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "attestation": {},
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "expireEventTime": "my_expireEventTime",
      *   //   "expireTime": "my_expireTime",
      *   //   "generateTime": "my_generateTime",
@@ -11970,6 +11980,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "attestation": {},
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "expireEventTime": "my_expireEventTime",
      *   //   "expireTime": "my_expireTime",
      *   //   "generateTime": "my_generateTime",

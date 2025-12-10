@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20251116",
+  "revision": "20251204",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -1877,6 +1877,10 @@
         },
         "geoTargetMetro": {
           "description": "Resource name of the geo target constant that represents a metro.",
+          "type": "string"
+        },
+        "geoTargetPostalCode": {
+          "description": "Resource name of the geo target constant that represents a postal code.",
           "type": "string"
         },
         "geoTargetRegion": {
@@ -4625,7 +4629,7 @@
       "id": "GoogleAdsSearchads360V0Resources__AdGroupBidModifier",
       "properties": {
         "bidModifier": {
-          "description": "The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. The range is 1.0 - 6.0 for PreferredContent. Use 0 to opt out of a Device type.",
+          "description": "The modifier for the bid when the criterion matches. The modifier must be in the range: 0.1 - 10.0. Use 0 to opt out of a Device type.",
           "format": "double",
           "type": "number"
         },

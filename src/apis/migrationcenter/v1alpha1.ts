@@ -1833,19 +1833,6 @@ export namespace migrationcenter_v1alpha1 {
     totalRowsCount?: number | null;
   }
   /**
-   * Request to export a detailed pricing report.
-   */
-  export interface Schema$ExportReportRequest {}
-  /**
-   * Response message for exporting report.
-   */
-  export interface Schema$ExportReportResponse {
-    /**
-     * For large generated report, we may return multiple links
-     */
-    reportArtifactLinks?: Schema$ReportArtifactLink[];
-  }
-  /**
    * A resource that aggregates the validation errors found in an import job file.
    */
   export interface Schema$FileValidationReport {
@@ -1947,15 +1934,6 @@ export namespace migrationcenter_v1alpha1 {
      * The payload path in Google Cloud Storage.
      */
     path?: string | null;
-  }
-  /**
-   * A request to generate a link to an artifact for a Report.
-   */
-  export interface Schema$GenerateReportArtifactLinkRequest {
-    /**
-     * Required. Type of the artifact requested.
-     */
-    artifactType?: string | null;
   }
   /**
    * A generic insight about an asset.
@@ -2606,7 +2584,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -3616,10 +3594,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     summary?: Schema$ReportSummary;
     /**
-     * Output only. Detailed data related to TCO reports.
-     */
-    tcoDetails?: Schema$ReportTotalCostOfOwnershipDetails;
-    /**
      * Report type.
      */
     type?: string | null;
@@ -3627,23 +3601,6 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Last update timestamp.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Describes a link to a generated artifact of the report.
-   */
-  export interface Schema$ReportArtifactLink {
-    /**
-     * Output only. Human friendly display name of the artifact.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. URI of the artifact.
-     */
-    uri?: string | null;
-    /**
-     * Output only. Expiration time of the URI.
-     */
-    uriExpirationTime?: string | null;
   }
   /**
    * A response to a call to `ReportAssetFrame`.
@@ -3807,6 +3764,10 @@ export namespace migrationcenter_v1alpha1 {
      * Count of assets grouped by Operating System families. Only present for virtual machines.
      */
     operatingSystem?: Schema$ReportSummaryChartData;
+    /**
+     * Output only. Count of assets grouped by software name. Only present for virtual machines.
+     */
+    softwareInstances?: Schema$ReportSummaryChartData;
     /**
      * Histogram showing a distribution of storage sizes.
      */
@@ -4146,15 +4107,6 @@ export namespace migrationcenter_v1alpha1 {
      * VMWare node type, e.g. "ve1-standard-72"
      */
     vmwareNode?: Schema$ReportSummaryVMWareNode;
-  }
-  /**
-   * Detailed data related to Total Cost of Ownership (TCO) pricing.
-   */
-  export interface Schema$ReportTotalCostOfOwnershipDetails {
-    /**
-     * Output only. Whether the report has detailed pricing data.
-     */
-    hasPricingData?: boolean | null;
   }
   /**
    * Location of a resource.
@@ -12367,7 +12319,7 @@ export namespace migrationcenter_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12520,7 +12472,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -14360,160 +14312,6 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
-     * Gets the link to the generated artifact of a given type for a Report.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const migrationcenter = google.migrationcenter('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await migrationcenter.projects.locations.reportConfigs.reports.artifactLink(
-     *       {
-     *         // Required. Name of the resource.
-     *         name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "artifactType": "my_artifactType"
-     *           // }
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "uri": "my_uri",
-     *   //   "uriExpirationTime": "my_uriExpirationTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    artifactLink(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    artifactLink(
-      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportArtifactLink>>;
-    artifactLink(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    artifactLink(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
-      options: MethodOptions | BodyResponseCallback<Schema$ReportArtifactLink>,
-      callback: BodyResponseCallback<Schema$ReportArtifactLink>
-    ): void;
-    artifactLink(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink,
-      callback: BodyResponseCallback<Schema$ReportArtifactLink>
-    ): void;
-    artifactLink(
-      callback: BodyResponseCallback<Schema$ReportArtifactLink>
-    ): void;
-    artifactLink(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink
-        | BodyResponseCallback<Schema$ReportArtifactLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ReportArtifactLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ReportArtifactLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ReportArtifactLink>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://migrationcenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}:artifactLink').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ReportArtifactLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ReportArtifactLink>(parameters);
-      }
-    }
-
-    /**
      * Creates a report.
      * @example
      * ```js
@@ -14563,7 +14361,6 @@ export namespace migrationcenter_v1alpha1 {
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "summary": {},
-     *         //   "tcoDetails": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -14822,156 +14619,6 @@ export namespace migrationcenter_v1alpha1 {
     }
 
     /**
-     * Export a Report into a supported format.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const migrationcenter = google.migrationcenter('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await migrationcenter.projects.locations.reportConfigs.reports.export({
-     *       // Required. Name of the resource.
-     *       name: 'projects/my-project/locations/my-location/reportConfigs/my-reportConfig/reports/my-report',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    export(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    export(
-      params?: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    export(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    export(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    export(
-      params: Params$Resource$Projects$Locations$Reportconfigs$Reports$Export,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    export(callback: BodyResponseCallback<Schema$Operation>): void;
-    export(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Reportconfigs$Reports$Export
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Reportconfigs$Reports$Export;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Reportconfigs$Reports$Export;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://migrationcenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}:export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Gets details of a single Report.
      * @example
      * ```js
@@ -15018,7 +14665,6 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "summary": {},
-     *   //   "tcoDetails": {},
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -15272,17 +14918,6 @@ export namespace migrationcenter_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Artifactlink extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GenerateReportArtifactLinkRequest;
-  }
   export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Create extends StandardParameters {
     /**
      * Required. Value for parent.
@@ -15311,17 +14946,6 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Export extends StandardParameters {
-    /**
-     * Required. Name of the resource.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ExportReportRequest;
   }
   export interface Params$Resource$Projects$Locations$Reportconfigs$Reports$Get extends StandardParameters {
     /**

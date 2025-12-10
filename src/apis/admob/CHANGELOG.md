@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v6.0.0...admob-v6.0.1) (2025-12-05)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([dcd467a](https://github.com/googleapis/google-api-nodejs-client/commit/dcd467ad14ed502bdebdfa20d9b2434e142e73a0))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v5.0.0...admob-v6.0.0) (2025-10-15)
 
 

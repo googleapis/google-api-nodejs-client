@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v12.0.1...privateca-v12.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* **privateca:** update the API ([f5907e0](https://github.com/googleapis/google-api-nodejs-client/commit/f5907e0af630d513c65e6ddc726e9efcf743c649))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v12.0.0...privateca-v12.0.1) (2025-11-04)
 
 

@@ -2160,7 +2160,7 @@ export namespace sqladmin_v1 {
     passwordExpirationTime?: string | null;
   }
   /**
-   * Database instance local user password validation policy
+   * Database instance local user password validation policy. This message defines the password policy for local database users. When enabled, it enforces constraints on password complexity, length, and reuse. Keep this policy enabled to help prevent unauthorized access.
    */
   export interface Schema$PasswordValidationPolicy {
     /**
@@ -2176,7 +2176,7 @@ export namespace sqladmin_v1 {
      */
     disallowUsernameSubstring?: boolean | null;
     /**
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must meet complexity requirements. Keep this policy enabled to help prevent unauthorized access. Disabling this policy allows weak passwords.
      */
     enablePasswordPolicy?: boolean | null;
     /**
@@ -2191,6 +2191,35 @@ export namespace sqladmin_v1 {
      * Number of previous passwords that cannot be reused.
      */
     reuseInterval?: number | null;
+  }
+  /**
+   * Performance Capture configuration.
+   */
+  export interface Schema$PerformanceCaptureConfig {
+    /**
+     * Optional. Enable or disable the Performance Capture feature.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. The minimum number of consecutive readings above threshold that triggers instance state capture.
+     */
+    probeThreshold?: number | null;
+    /**
+     * Optional. The time interval in seconds between any two probes.
+     */
+    probingIntervalSeconds?: number | null;
+    /**
+     * Optional. The minimum number of server threads running to trigger the capture on primary.
+     */
+    runningThreadsThreshold?: number | null;
+    /**
+     * Optional. The minimum number of seconds replica must be lagging behind primary to trigger capture on replica.
+     */
+    secondsBehindSourceThreshold?: number | null;
+    /**
+     * Optional. The amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.
+     */
+    transactionDurationThreshold?: number | null;
   }
   /**
    * Perform disk shrink context.
@@ -2258,6 +2287,14 @@ export namespace sqladmin_v1 {
      * Output only. The name of the read pool node, to be used for retrieving metrics and logs.
      */
     name?: string | null;
+    /**
+     * Output only. The list of settings for requested automatically-setup Private Service Connect (PSC) consumer endpoints that can be used to connect to this read pool node.
+     */
+    pscAutoConnections?: Schema$PscAutoConnectionConfig[];
+    /**
+     * Output only. The Private Service Connect (PSC) service attachment of the read pool node.
+     */
+    pscServiceAttachmentLink?: string | null;
     /**
      * Output only. The current state of the read pool node.
      */
@@ -2659,6 +2696,10 @@ export namespace sqladmin_v1 {
      * The local user password validation policy of the instance.
      */
     passwordValidationPolicy?: Schema$PasswordValidationPolicy;
+    /**
+     * Optional. Configuration for Performance Capture, provides diagnostic metrics during high load situations.
+     */
+    performanceCaptureConfig?: Schema$PerformanceCaptureConfig;
     /**
      * The pricing plan for this instance. This can be either `PER_USE` or `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      */
@@ -6732,6 +6773,169 @@ export namespace sqladmin_v1 {
         return createAPIRequest<Schema$SqlInstancesAcquireSsrsLeaseResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Adds a new Entra ID certificate for the specified instance. If an Entra ID certificate was previously added but never used in a certificate rotation, this operation replaces that version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.addEntraIdCertificate({
+     *     // Required. Cloud SQL instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acquireSsrsLeaseContext": {},
+     *   //   "apiWarning": {},
+     *   //   "backupContext": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "exportContext": {},
+     *   //   "importContext": {},
+     *   //   "insertTime": "my_insertTime",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationType": "my_operationType",
+     *   //   "preCheckMajorVersionUpgradeContext": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "subOperationType": {},
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "targetProject": "my_targetProject",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addEntraIdCertificate(
+      params: Params$Resource$Instances$Addentraidcertificate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addEntraIdCertificate(
+      params?: Params$Resource$Instances$Addentraidcertificate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    addEntraIdCertificate(
+      params: Params$Resource$Instances$Addentraidcertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addEntraIdCertificate(
+      params: Params$Resource$Instances$Addentraidcertificate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addEntraIdCertificate(
+      params: Params$Resource$Instances$Addentraidcertificate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addEntraIdCertificate(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addEntraIdCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Addentraidcertificate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Addentraidcertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Addentraidcertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/addEntraIdCertificate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -12339,6 +12543,16 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesAcquireSsrsLeaseRequest;
+  }
+  export interface Params$Resource$Instances$Addentraidcertificate extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
   }
   export interface Params$Resource$Instances$Addserverca extends StandardParameters {
     /**

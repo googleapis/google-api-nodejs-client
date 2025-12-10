@@ -1329,7 +1329,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2177,7 +2177,7 @@
       }
     }
   },
-  "revision": "20251107",
+  "revision": "20251202",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2363,7 +2363,8 @@
             "NON_ZERO_EXIT_CODE",
             "CANCELLED",
             "CANCELLING",
-            "DELETED"
+            "DELETED",
+            "FLEX_START_PENDING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -2371,7 +2372,8 @@
             "A task reached its retry limit and the last attempt failed due to the user container exiting with a non-zero exit code.",
             "The execution was cancelled by users.",
             "The execution is in the process of being cancelled.",
-            "The execution was deleted."
+            "The execution was deleted.",
+            "A Flex priority execution is waiting for a start time."
           ],
           "readOnly": true,
           "type": "string"
@@ -3417,6 +3419,14 @@
           "items": {
             "$ref": "GoogleCloudRunV2Service"
           },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Output only. For global requests, returns the list of regions that could not be reached within the deadline.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -4982,7 +4992,7 @@
           "type": "string"
         },
         "customAudiences": {
-          "description": "One or more custom audiences that you want this worker pool to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.",
+          "description": "Not supported, and ignored by Cloud Run.",
           "items": {
             "type": "string"
           },
@@ -5107,6 +5117,11 @@
           "$ref": "GoogleCloudRunV2Condition",
           "description": "Output only. The Condition of this WorkerPool, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "readOnly": true
+        },
+        "threatDetectionEnabled": {
+          "description": "Output only. Indicates whether Cloud Run Threat Detection monitoring is enabled for the parent project of this worker pool.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "uid": {
           "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
@@ -6195,6 +6210,10 @@
           "description": "Maven `artifactId` value used when uploading the artifact to Artifact Registry.",
           "type": "string"
         },
+        "deployFolder": {
+          "description": "Optional. Path to a folder containing the files to upload to Artifact Registry. This can be either an absolute path, e.g. `/workspace/my-app/target/`, or a relative path from /workspace, e.g. `my-app/target/`. This field is mutually exclusive with the `path` field.",
+          "type": "string"
+        },
         "groupId": {
           "description": "Maven `groupId` value used when uploading the artifact to Artifact Registry.",
           "type": "string"
@@ -6867,7 +6886,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },

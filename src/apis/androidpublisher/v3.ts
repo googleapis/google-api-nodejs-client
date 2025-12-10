@@ -6795,6 +6795,8 @@ export namespace androidpublisher_v3 {
      *     changesNotSentForReview: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
+     *     // Optional. The behavior of committing a new edit while a submission is already in review.
+     *     inProgressReviewBehaviour: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
@@ -7470,6 +7472,10 @@ export namespace androidpublisher_v3 {
      * Identifier of the edit.
      */
     editId?: string;
+    /**
+     * Optional. The behavior of committing a new edit while a submission is already in review.
+     */
+    inProgressReviewBehaviour?: string;
     /**
      * Package name of the app.
      */

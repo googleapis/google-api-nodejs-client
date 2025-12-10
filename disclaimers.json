@@ -870,5 +870,9 @@
   {
     "api": "storagebatchoperations",
     "package": "@google-cloud/storagebatchoperations"
+  },
+  {
+    "api": "vectorsearch",
+    "package": "@google-cloud/vectorsearch"
   }
 ]

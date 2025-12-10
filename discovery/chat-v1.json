@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20251118",
+  "revision": "20251205",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -3477,7 +3477,7 @@
           "type": "string"
         },
         "url": {
-          "description": "The URL to open.",
+          "description": "The URL to open. HTTP URLs are converted to HTTPS.",
           "type": "string"
         }
       },

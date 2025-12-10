@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v16.1.0...merchantapi-v17.0.0) (2025-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **merchantapi:** This release has breaking changes.
+
+### Features
+
+* **merchantapi:** update the API ([920e402](https://github.com/googleapis/google-api-nodejs-client/commit/920e4028ac92a218bc281365b5c0280cf33ac716))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v16.0.0...merchantapi-v16.1.0) (2025-11-26)
 
 

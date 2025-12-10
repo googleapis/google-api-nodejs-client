@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v27.0.0...aiplatform-v27.1.0) (2025-12-05)
+
+
+### Features
+
+* **aiplatform:** update the API ([7dded21](https://github.com/googleapis/google-api-nodejs-client/commit/7dded21047caf6b998ba2933b576301ded6a6d0c))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v26.0.0...aiplatform-v27.0.0) (2025-11-11)
 
 

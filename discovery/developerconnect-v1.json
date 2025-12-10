@@ -1606,7 +1606,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20251201",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1735,7 +1735,7 @@
           "description": "Required. An access token with the minimum `repository` access. It can either be a workspace, project or repository access token. It's recommended to use a system account to generate the credentials."
         },
         "webhookSecretSecretVersion": {
-          "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*`. This is used to validate and create webhooks.",
+          "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location). This is used to validate and create webhooks.",
           "type": "string"
         },
         "workspace": {
@@ -1775,7 +1775,7 @@
           "type": "string"
         },
         "webhookSecretSecretVersion": {
-          "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*`. This is used to validate webhooks.",
+          "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks.",
           "type": "string"
         }
       },
@@ -2134,7 +2134,7 @@
           "type": "string"
         },
         "privateKeySecretVersion": {
-          "description": "Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/*/secrets/*/versions/*`.",
+          "description": "Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location).",
           "type": "string"
         },
         "serverVersion": {
@@ -2151,7 +2151,7 @@
           "type": "string"
         },
         "webhookSecretSecretVersion": {
-          "description": "Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/*/secrets/*/versions/*`.",
+          "description": "Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location).",
           "type": "string"
         }
       },
@@ -2170,7 +2170,7 @@
           "description": "Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to."
         },
         "webhookSecretSecretVersion": {
-          "description": "Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*/secrets/*/versions/*`. This is used to validate webhooks.",
+          "description": "Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks.",
           "type": "string"
         }
       },
@@ -2206,7 +2206,7 @@
           "type": "string"
         },
         "webhookSecretSecretVersion": {
-          "description": "Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*/secrets/*/versions/*`. This is used to validate webhooks.",
+          "description": "Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks.",
           "type": "string"
         }
       },
@@ -2717,7 +2717,7 @@
       "id": "OAuthCredential",
       "properties": {
         "oauthTokenSecretVersion": {
-          "description": "Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/*/secrets/*/versions/*`.",
+          "description": "Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location).",
           "type": "string"
         },
         "username": {
@@ -3019,7 +3019,7 @@
       "id": "UserCredential",
       "properties": {
         "userTokenSecretVersion": {
-          "description": "Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/*/secrets/*/versions/*`.",
+          "description": "Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/*/secrets/*/versions/*` or `projects/*/locations/*/secrets/*/versions/*` (if regional secrets are supported in that location).",
           "type": "string"
         },
         "username": {

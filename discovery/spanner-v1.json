@@ -3436,7 +3436,7 @@
       }
     }
   },
-  "revision": "20251031",
+  "revision": "20251121",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AdaptMessageRequest": {
@@ -4045,6 +4045,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ClientContext": {
+      "description": "Container for various pieces of client-owned context attached to a request.",
+      "id": "ClientContext",
+      "properties": {},
       "type": "object"
     },
     "ColumnMetadata": {
@@ -7115,6 +7121,10 @@
       "description": "Common request options for various APIs.",
       "id": "RequestOptions",
       "properties": {
+        "clientContext": {
+          "$ref": "ClientContext",
+          "description": "Optional. Optional context that may be needed for some requests."
+        },
         "priority": {
           "description": "Priority for the request.",
           "enum": [
@@ -7430,7 +7440,7 @@
           "type": "object"
         },
         "multiplexed": {
-          "description": "Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent read-only operations. Don't use them for read-write transactions, partitioned reads, or partitioned queries. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.",
+          "description": "Optional. If `true`, specifies a multiplexed session. Use a multiplexed session for multiple, concurrent operations including any combination of read-only and read-write transactions. Use `sessions.create` to create multiplexed sessions. Don't use BatchCreateSessions to create a multiplexed session. You can't delete or list multiplexed sessions.",
           "type": "boolean"
         },
         "name": {
@@ -7643,7 +7653,7 @@
           "enumDescriptions": [
             "Default value. If the value is not specified, the `SERIALIZABLE` isolation level is used.",
             "All transactions appear as if they executed in a serial order, even if some of the reads, writes, and other operations of distinct transactions actually occurred in parallel. Spanner assigns commit timestamps that reflect the order of committed transactions to implement this property. Spanner offers a stronger guarantee than serializability called external consistency. For more information, see [TrueTime and external consistency](https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability).",
-            "All reads performed during the transaction observe a consistent snapshot of the database, and the transaction is only successfully committed in the absence of conflicts between its updates and any concurrent updates that have occurred since that snapshot. Consequently, in contrast to `SERIALIZABLE` transactions, only write-write conflicts are detected in snapshot transactions. This isolation level does not support Read-only and Partitioned DML transactions. When `REPEATABLE_READ` is specified on a read-write transaction, the locking semantics default to `OPTIMISTIC`."
+            "All reads performed during the transaction observe a consistent snapshot of the database, and the transaction is only successfully committed in the absence of conflicts between its updates and any concurrent updates that have occurred since that snapshot. Consequently, in contrast to `SERIALIZABLE` transactions, only write-write conflicts are detected in snapshot transactions. This isolation level does not support read-only and partitioned DML transactions. When `REPEATABLE_READ` is specified on a read-write transaction, the locking semantics default to `OPTIMISTIC`."
           ],
           "type": "string"
         },
