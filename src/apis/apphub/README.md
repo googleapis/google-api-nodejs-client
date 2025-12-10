@@ -2,7 +2,7 @@
 
 # apphub
 
-> 
+> App Hub lets you build, operate, and manage applications on Google Cloud.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
