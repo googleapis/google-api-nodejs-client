@@ -18,6 +18,7 @@ const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
 const proxyquire = require('proxyquire');
 const {google} = require('googleapis');
+const {getStubs} = require('./common.js');
 
 nock.disableNetConnect();
 
@@ -28,15 +29,10 @@ const samples = {
   send: {path: '../gmail/send'},
 };
 
+const stubs = getStubs();
+
 for (const sample of Object.values(samples)) {
-  sample.runSample = proxyquire(sample.path, {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
-      },
-    },
-  });
+  sample.runSample = proxyquire(sample.path, stubs);
 }
 
 const gmailUrl = 'https://gmail.googleapis.com';

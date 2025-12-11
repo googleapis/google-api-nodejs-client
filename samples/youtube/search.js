@@ -15,24 +15,25 @@
 
 const {google} = require('googleapis');
 const path = require('path');
-const {authenticate} = require('@google-cloud/local-auth');
 
 // initialize the Youtube API library
 const youtube = google.youtube('v3');
 
 // a very simple example of searching for youtube videos
 async function runSample() {
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: ['https://www.googleapis.com/auth/youtube'],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const res = await youtube.search.list({
     part: 'id,snippet',
     q: 'Node.js on Google Cloud',
   });
   console.log(res.data);
+  return res.data;
 }
 
 if (module === require.main) {

@@ -18,20 +18,17 @@ const nock = require('nock');
 const {describe, it, afterEach} = require('mocha');
 const proxyquire = require('proxyquire');
 const {google} = require('googleapis');
+const {getStubs} = require('./common.js');
 
 nock.disableNetConnect();
 
 const baseUrl = 'https://blogger.googleapis.com';
 
+const stubs = getStubs();
+
 describe('blogger samples', () => {
-  const insert = proxyquire('../blogger/insert', {
-    '@google-cloud/local-auth': {
-      authenticate: async () => {
-        const client = new google.auth.OAuth2();
-        client.credentials = {access_token: 'not-a-token'};
-      },
-    },
-  });
+  const insert = proxyquire('../blogger/insert', stubs);
+
 
   afterEach(() => {
     nock.cleanAll();

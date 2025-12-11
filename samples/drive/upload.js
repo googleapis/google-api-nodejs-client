@@ -17,17 +17,17 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const drive = google.drive('v3');
 
 async function runSample(fileName) {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: 'https://www.googleapis.com/auth/drive.file',
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const fileSize = fs.statSync(fileName).size;
   const res = await drive.files.create(

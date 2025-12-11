@@ -15,17 +15,17 @@
 
 const path = require('path');
 const {google} = require('googleapis');
-const {authenticate} = require('@google-cloud/local-auth');
 
 const sheets = google.sheets('v4');
 
 async function runSample(spreadsheetId, sheetId, startIndex, endIndex) {
   // Obtain user credentials to use for the request
-  const auth = await authenticate({
+  const auth = new google.auth.GoogleAuth({
     keyfilePath: path.join(__dirname, '../oauth2.keys.json'),
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
-  google.options({auth});
+  const client = await auth.getClient();
+  google.options({auth: client});
 
   const res = await sheets.spreadsheets.batchUpdate({
     spreadsheetId,
@@ -46,6 +46,7 @@ async function runSample(spreadsheetId, sheetId, startIndex, endIndex) {
     },
   });
   console.info(res);
+  return res.data;
 }
 
 if (module === require.main) {
