@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v17.0.0...merchantapi-v17.0.1) (2025-12-12)
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([db0f171](https://github.com/googleapis/google-api-nodejs-client/commit/db0f17164b586a493baae9a16436832574b5a3a4))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v16.1.0...merchantapi-v17.0.0) (2025-12-05)
 
 

@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "express": "^5.0.0",
-    "googleapis": "^168.0.0",
+    "googleapis": "^169.0.0",
     "googleapis-common": "^8.0.2-rc.0",
     "nconf": "^0.13.0",
     "open": "^8.0.0",
