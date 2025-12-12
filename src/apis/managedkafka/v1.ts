@@ -385,7 +385,7 @@ export namespace managedkafka_v1 {
    */
   export interface Schema$ConnectNetworkConfig {
     /**
-     * Optional. Additional subnets may be specified. They may be in another region, but must be in the same VPC network. The Connect workers can communicate with network endpoints in either the primary or additional subnets.
+     * Optional. Deprecated: Managed Kafka Connect clusters can now reach any endpoint accessible from the primary subnet without the need to define additional subnets. Please see https://cloud.google.com/managed-service-for-apache-kafka/docs/connect-cluster/create-connect-cluster#worker-subnet for more information.
      */
     additionalSubnets?: string[] | null;
     /**
@@ -3682,6 +3682,8 @@ export namespace managedkafka_v1 {
      *       pageToken: 'placeholder-value',
      *       // Required. The parent cluster whose consumer groups are to be listed. Structured like `projects/{project\}/locations/{location\}/clusters/{cluster\}`.
      *       parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *       // Optional. Specifies the view (BASIC or FULL) of the ConsumerGroup resource to be returned in the response. Defaults to FULL view.
+     *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -3966,6 +3968,10 @@ export namespace managedkafka_v1 {
      * Required. The parent cluster whose consumer groups are to be listed. Structured like `projects/{project\}/locations/{location\}/clusters/{cluster\}`.
      */
     parent?: string;
+    /**
+     * Optional. Specifies the view (BASIC or FULL) of the ConsumerGroup resource to be returned in the response. Defaults to FULL view.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$Patch extends StandardParameters {
     /**
