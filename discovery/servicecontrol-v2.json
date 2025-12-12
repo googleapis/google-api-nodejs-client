@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20251125",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1308,6 +1308,14 @@
         "constraint": {
           "description": "Optional. Constraint name",
           "type": "string"
+        },
+        "constraintViolationInfo": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Provides extra information for the specific violated constraint. See the constraint's documentation to determine if this field is populated and what the structure of the message should be.",
+          "type": "object"
         },
         "errorMessage": {
           "description": "Optional. Error message that policy is indicating.",
