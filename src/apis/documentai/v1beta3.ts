@@ -3828,7 +3828,7 @@ export namespace documentai_v1beta3 {
      */
     datasetSplit?: string | null;
     /**
-     * Optional. The type of the documents to be imported in this batch. This will be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.
+     * Optional. If set, determines the type of the documents to be imported in this batch. It can be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.
      */
     documentType?: string | null;
   }
@@ -4012,7 +4012,7 @@ export namespace documentai_v1beta3 {
      */
     createTime?: string | null;
     /**
-     * Optional. The user-defined name of the Schema.
+     * Required. The user-defined name of the Schema.
      */
     displayName?: string | null;
     /**
@@ -4641,7 +4641,7 @@ export namespace documentai_v1beta3 {
      */
     createTime?: string | null;
     /**
-     * Optional. The user-defined name of the SchemaVersion.
+     * Required. The user-defined name of the SchemaVersion.
      */
     displayName?: string | null;
     /**
