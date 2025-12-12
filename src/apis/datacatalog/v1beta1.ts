@@ -1500,17 +1500,17 @@ export namespace datacatalog_v1beta1 {
      */
     dataSource?: string | null;
     /**
-     * Optional. Only applies to `kind = EDGE`.
+     * Optional. The destination node reference of the edge.
      */
-    destinationNodeReference?: string | null;
+    destinationNodeReference?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference;
     /**
-     * Optional. If true, the graph element has a dynamic label in schemaless model.
+     * Optional. If set, this is the input column for dynamic label in schemaless data model.
      */
-    dynamicLabelEnabled?: boolean | null;
+    dynamicLabelColumn?: string | null;
     /**
-     * Optional. If true, the graph element has dynamic properties in schemaless model.
+     * Optional. If set, this is the input column for dynamic properties in schemaless data model.
      */
-    dynamicPropertiesEnabled?: boolean | null;
+    dynamicPropertiesColumn?: string | null;
     /**
      * Required. The name of the keys of the elements in the table.
      */
@@ -1528,9 +1528,26 @@ export namespace datacatalog_v1beta1 {
      */
     labelAndProperties?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties[];
     /**
-     * Optional. Only applies to `kind = EDGE`. The reference to the source node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node of an edge element `Person_to_Address`. Similar rule applies to `destination_node_reference`.
+     * Optional. The source node reference of the edge.
      */
-    sourceNodeReference?: string | null;
+    sourceNodeReference?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference;
+  }
+  /**
+   * A reference to a source or destination node in a graph edge.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference {
+    /**
+     * Required. The referencing columns in the edge table. The size of `edge_table_columns` must be equal to the size of `node_table_columns`.
+     */
+    edgeTableColumns?: string[] | null;
+    /**
+     * Required. The reference to the source/destination node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node name of an edge element `Person_to_Address`.
+     */
+    nodeAlias?: string | null;
+    /**
+     * Required. The referenced columns of the source node table.
+     */
+    nodeTableColumns?: string[] | null;
   }
   /**
    * The label and its properties. Each label is associated with a set of properties.

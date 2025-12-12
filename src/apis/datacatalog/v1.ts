@@ -852,17 +852,17 @@ export namespace datacatalog_v1 {
      */
     dataSource?: string | null;
     /**
-     * Optional. Only applies to `kind = EDGE`.
+     * Optional. The destination node reference of the edge.
      */
-    destinationNodeReference?: string | null;
+    destinationNodeReference?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference;
     /**
-     * Optional. If true, the graph element has a dynamic label in schemaless model.
+     * Optional. If set, this is the input column for dynamic label in schemaless data model.
      */
-    dynamicLabelEnabled?: boolean | null;
+    dynamicLabelColumn?: string | null;
     /**
-     * Optional. If true, the graph element has dynamic properties in schemaless model.
+     * Optional. If set, this is the input column for dynamic properties in schemaless data model.
      */
-    dynamicPropertiesEnabled?: boolean | null;
+    dynamicPropertiesColumn?: string | null;
     /**
      * Required. The name of the keys of the elements in the table.
      */
@@ -880,9 +880,26 @@ export namespace datacatalog_v1 {
      */
     labelAndProperties?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableLabelAndProperties[];
     /**
-     * Optional. Only applies to `kind = EDGE`. The reference to the source node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node of an edge element `Person_to_Address`. Similar rule applies to `destination_node_reference`.
+     * Optional. The source node reference of the edge.
      */
-    sourceNodeReference?: string | null;
+    sourceNodeReference?: Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference;
+  }
+  /**
+   * A reference to a source or destination node in a graph edge.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GraphSpecGraphElementTableGraphNodeReference {
+    /**
+     * Required. The referencing columns in the edge table. The size of `edge_table_columns` must be equal to the size of `node_table_columns`.
+     */
+    edgeTableColumns?: string[] | null;
+    /**
+     * Required. The reference to the source/destination node of the edge. This name must be a valid `alias` of a node element in the same graph. Example, `Person` node can be a source node name of an edge element `Person_to_Address`.
+     */
+    nodeAlias?: string | null;
+    /**
+     * Required. The referenced columns of the source node table.
+     */
+    nodeTableColumns?: string[] | null;
   }
   /**
    * The label and its properties. Each label is associated with a set of properties.
@@ -1934,7 +1951,7 @@ export namespace datacatalog_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -8615,7 +8632,7 @@ export namespace datacatalog_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8762,7 +8779,7 @@ export namespace datacatalog_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
