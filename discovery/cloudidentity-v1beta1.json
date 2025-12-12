@@ -2349,7 +2349,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20251208",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2525,7 +2525,8 @@
           "type": "boolean"
         },
         "isChromeCleanupEnabled": {
-          "description": "Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
+          "deprecated": true,
+          "description": "Deprecated: This field is not used for Chrome version 118 and later. Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
           "type": "boolean"
         },
         "isChromeRemoteDesktopAppBlocked": {
@@ -3584,7 +3585,8 @@
           "type": "boolean"
         },
         "isChromeCleanupEnabled": {
-          "description": "Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
+          "deprecated": true,
+          "description": "Deprecated: This field is not used for Chrome version 118 and later. Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).",
           "type": "boolean"
         },
         "isChromeRemoteDesktopAppBlocked": {
