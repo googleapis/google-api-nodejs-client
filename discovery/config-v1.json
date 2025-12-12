@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getAutoMigrationConfig": {
+              "description": "Get the AutoMigrationConfig for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoMigrationConfig",
+              "httpMethod": "GET",
+              "id": "config.projects.locations.getAutoMigrationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the AutoMigrationConfig. Format: 'projects/{project_id}/locations/{location}/AutoMigrationConfig'.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/autoMigrationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "AutoMigrationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -176,6 +201,40 @@
               "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateAutoMigrationConfig": {
+              "description": "Updates the AutoMigrationConfig for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoMigrationConfig",
+              "httpMethod": "PATCH",
+              "id": "config.projects.locations.updateAutoMigrationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the AutoMigrationConfig. Format: 'projects/{project_id}/locations/{location}/AutoMigrationConfig'.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/autoMigrationConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The update mask applies to the resource. See google.protobuf.FieldMask.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "AutoMigrationConfig"
+              },
+              "response": {
+                "$ref": "Operation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -932,7 +991,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1350,7 +1409,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20251202",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -1418,6 +1477,27 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutoMigrationConfig": {
+      "description": "AutoMigrationConfig contains the automigration configuration for a project.",
+      "id": "AutoMigrationConfig",
+      "properties": {
+        "autoMigrationEnabled": {
+          "description": "Optional. Whether the auto migration is enabled for the project.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. The name of the AutoMigrationConfig. Format: 'projects/{project_id}/locations/{location}/AutoMigrationConfig'.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time the AutoMigrationConfig was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1508,7 +1588,8 @@
             "DELETE_BUILD_API_FAILED",
             "DELETE_BUILD_RUN_FAILED",
             "BUCKET_CREATION_PERMISSION_DENIED",
-            "BUCKET_CREATION_FAILED"
+            "BUCKET_CREATION_FAILED",
+            "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
           ],
           "enumDescriptions": [
             "No error code was specified.",
@@ -1517,7 +1598,8 @@
             "Cloud Build job associated with a deployment deletion could not be started.",
             "Cloud Build job associated with a deployment deletion was started but failed.",
             "Cloud Storage bucket creation failed due to a permission issue.",
-            "Cloud Storage bucket creation failed due to an issue unrelated to permissions."
+            "Cloud Storage bucket creation failed due to an issue unrelated to permissions.",
+            "Failed to import values from an external source."
           ],
           "readOnly": true,
           "type": "string"
@@ -1864,7 +1946,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -2255,7 +2337,8 @@
             "BUCKET_CREATION_FAILED",
             "DEPLOYMENT_LOCK_ACQUIRE_FAILED",
             "PREVIEW_BUILD_API_FAILED",
-            "PREVIEW_BUILD_RUN_FAILED"
+            "PREVIEW_BUILD_RUN_FAILED",
+            "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
           ],
           "enumDescriptions": [
             "No error code was specified.",
@@ -2264,7 +2347,8 @@
             "Cloud Storage bucket failed for a non-permissions-related issue.",
             "Acquiring lock on provided deployment reference failed.",
             "Preview encountered an error when trying to access Cloud Build API.",
-            "Preview created a build but build failed and logs were generated."
+            "Preview created a build but build failed and logs were generated.",
+            "Failed to import values from an external source."
           ],
           "readOnly": true,
           "type": "string"
@@ -2825,14 +2909,16 @@
             "CLOUD_BUILD_PERMISSION_DENIED",
             "APPLY_BUILD_API_FAILED",
             "APPLY_BUILD_RUN_FAILED",
-            "QUOTA_VALIDATION_FAILED"
+            "QUOTA_VALIDATION_FAILED",
+            "EXTERNAL_VALUE_SOURCE_IMPORT_FAILED"
           ],
           "enumDescriptions": [
             "No error code was specified.",
             "Cloud Build failed due to a permission issue.",
             "Cloud Build job associated with creating or updating a deployment could not be started.",
             "Cloud Build job associated with creating or updating a deployment was started but failed.",
-            "quota validation failed for one or more resources in terraform configuration files."
+            "quota validation failed for one or more resources in terraform configuration files.",
+            "Failed to import values from an external source."
           ],
           "readOnly": true,
           "type": "string"
