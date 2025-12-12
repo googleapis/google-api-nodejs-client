@@ -848,7 +848,7 @@ export namespace cloudasset_v1 {
      */
     actionType?: string | null;
     /**
-     * Organization Policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")'` or, `resource.management.auto_upgrade == true`
+     * Organization Policy condition/expression. For example: `resource.instanceName.matches("(production|test)_(.+_)?[\d]+")'` or, `resource.management.auto_upgrade == true`
      */
     condition?: string | null;
     /**
