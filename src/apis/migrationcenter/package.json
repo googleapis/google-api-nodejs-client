@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/migrationcenter",
-  "version": "16.2.0",
+  "version": "17.0.0",
   "description": "migrationcenter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
