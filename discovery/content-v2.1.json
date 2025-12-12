@@ -4282,7 +4282,7 @@
       }
     }
   },
-  "revision": "20251112",
+  "revision": "20251209",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10691,6 +10691,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "channel": {
+          "description": "The channel of the destination.",
+          "type": "string"
         },
         "destination": {
           "description": "The name of the destination",
