@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -276,6 +276,198 @@
                   "path": "v1/{+parent}/announcements",
                   "response": {
                     "$ref": "ListAnnouncementsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "datastores": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `Datastore` resource in a given project and location. Datastores are regional resources",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.datastores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "datastoreId": {
+                      "description": "Required. The user-provided identifier of the datastore to be created. This identifier must be unique among each `Datastore` within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location to create the new datastore in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/datastores",
+                  "request": {
+                    "$ref": "Datastore"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a `Datastore` resource. You can only delete a Datastore after all resources that refer to it are deleted. For example, multiple clusters of the same private cloud or different private clouds can refer to the same datastore.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores/{datastoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "vmwareengine.projects.locations.datastores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the Datastore to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastore/my-datastore`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a `Datastore` resource by its resource name. The resource contains details of the Datastore, such as its description, subnets, type, and more.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores/{datastoresId}",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.datastores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Datastore to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Datastore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `Datastore` resources in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores",
+                  "httpMethod": "GET",
+                  "id": "vmwareengine.projects.locations.datastores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `>`, or `<`. For example, if you are filtering a list of datastores, you can exclude the ones named `example-datastore` by specifying `name != \"example-datastore\"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = \"example-datastore\") (createTime > \"2021-04-12T08:15:10.40Z\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = \"example-datastore-1\") AND (createTime > \"2021-04-12T08:15:10.40Z\") OR (name = \"example-datastore-2\") ```",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy=\"name desc\"`. Currently, only ordering by `name` is supported.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDatastores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatastores` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location to query for Datastores. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/datastores",
+                  "response": {
+                    "$ref": "ListDatastoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Modifies a Datastore resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores/{datastoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "vmwareengine.projects.locations.datastores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. The resource name of this datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/datastore`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datastores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Datastore"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1129,7 +1321,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1837,6 +2029,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "mountDatastore": {
+                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:mountDatastore",
+                      "httpMethod": "POST",
+                      "id": "vmwareengine.projects.locations.privateClouds.clusters.mountDatastore",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the cluster to mount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:mountDatastore",
+                      "request": {
+                        "$ref": "MountDatastoreRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Modifies a `Cluster` resource. Only fields specified in `updateMask` are applied. During operation processing, the resource is temporarily in the `ACTIVE` state before the operation fully completes. For that period of time, you can't update the resource. Use the operation status to determine when the processing fully completes.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}",
@@ -1932,6 +2152,34 @@
                       },
                       "response": {
                         "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "unmountDatastore": {
+                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:unmountDatastore",
+                      "httpMethod": "POST",
+                      "id": "vmwareengine.projects.locations.privateClouds.clusters.unmountDatastore",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the cluster to unmount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:unmountDatastore",
+                      "request": {
+                        "$ref": "UnmountDatastoreRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3401,7 +3649,7 @@
       }
     }
   },
-  "revision": "20251020",
+  "revision": "20251113",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -3641,6 +3889,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "datastoreMountConfig": {
+          "description": "Output only. Configuration of a mounted datastore.",
+          "items": {
+            "$ref": "DatastoreMountConfig"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "management": {
           "description": "Output only. True if the cluster is a management cluster; false otherwise. There can only be one management cluster in a private cloud and it has to be the first one.",
           "readOnly": true,
@@ -3739,6 +3995,164 @@
         },
         "username": {
           "description": "Initial username.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Datastore": {
+      "description": "Represents a datastore resource.",
+      "id": "Datastore",
+      "properties": {
+        "clusters": {
+          "description": "Output only. Clusters to which the datastore is attached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Creation time of this resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-provided description for this datastore",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Checksum that may be sent on update and delete requests to ensure that the user-provided value is up to date before the server processes a request. The server computes checksums based on the value of other fields in the request.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of this datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/datastore`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nfsDatastore": {
+          "$ref": "NfsDatastore",
+          "description": "Required. Settings for the NFS datastore."
+        },
+        "state": {
+          "description": "Output only. The state of the Datastore.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "The NFS volume is being created.",
+            "The NFS volume is active.",
+            "The NFS volume is being updated.",
+            "The NFS volume is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System-generated unique identifier for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time of this resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatastoreMountConfig": {
+      "description": "The Datastore Mount configuration",
+      "id": "DatastoreMountConfig",
+      "properties": {
+        "accessMode": {
+          "description": "Optional. NFS is accessed by hosts in read mode Optional. Default value used will be READ_WRITE",
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "READ_ONLY",
+            "READ_WRITE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "NFS is accessed by hosts in read mode",
+            "NFS is accessed by hosts in read and write mode"
+          ],
+          "type": "string"
+        },
+        "datastore": {
+          "description": "Required. The resource name of the datastore to unmount. The datastore requested to be mounted should be in same region/zone as the cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
+          "type": "string"
+        },
+        "datastoreNetwork": {
+          "$ref": "DatastoreNetwork",
+          "description": "Required. The network configuration for the datastore."
+        },
+        "fileShare": {
+          "description": "Output only. File share name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nfsVersion": {
+          "description": "Optional. The NFS protocol supported by the NFS volume. Default value used will be NFS_V3",
+          "enum": [
+            "NFS_VERSION_UNSPECIFIED",
+            "NFS_V3"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "NFS 3"
+          ],
+          "type": "string"
+        },
+        "securityType": {
+          "description": "Optional. ONLY required when NFS 4.1 version is used",
+          "enum": [
+            "SECURITY_TYPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used."
+          ],
+          "type": "string"
+        },
+        "servers": {
+          "description": "Output only. Server IP addresses of the NFS volume. For NFS 3, you can only provide a single server IP address or DNS names.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatastoreNetwork": {
+      "description": "The network configuration for the datastore.",
+      "id": "DatastoreNetwork",
+      "properties": {
+        "connectionCount": {
+          "description": "Optional. The number of connections of the NFS volume. Spported from vsphere 8.0u1",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mtu": {
+          "description": "Optional. The Maximal Transmission Unit (MTU) of the datastore. System sets default MTU size. It prefers the VPC peering MTU, falling back to the VEN MTU if no peering MTU is found. when detected, and falling back to the VEN MTU otherwise.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "networkPeering": {
+          "description": "Output only. The resource name of the network peering, used to access the file share by clients on private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. e.g. projects/my-project/locations/us-central1/networkPeerings/my-network-peering",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Required. The resource name of the subnet Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. e.g. projects/my-project/locations/us-central1/subnets/my-subnet",
           "type": "string"
         }
       },
@@ -4024,6 +4438,27 @@
       },
       "type": "object"
     },
+    "GoogleFileService": {
+      "description": "Google service file service configuration",
+      "id": "GoogleFileService",
+      "properties": {
+        "filestoreInstance": {
+          "description": "Google filestore instance resource name e.g. projects/my-project/locations/me-west1-b/instances/my-instance",
+          "type": "string"
+        },
+        "netappVolume": {
+          "description": "Google netapp volume resource name e.g. projects/my-project/locations/me-west1-b/volumes/my-volume",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleVmwareFileService": {
+      "description": "Volume message captures user inputs for creation of file services managed by GCVE",
+      "id": "GoogleVmwareFileService",
+      "properties": {},
+      "type": "object"
+    },
     "GrantDnsBindPermissionRequest": {
       "description": "Request message for VmwareEngine.GrantDnsBindPermission",
       "id": "GrantDnsBindPermissionRequest",
@@ -4198,6 +4633,31 @@
         },
         "unreachable": {
           "description": "Locations that could not be reached when making an aggregated query using wildcards.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDatastoresResponse": {
+      "description": "Response message for VmwareEngine.ListDatastores",
+      "id": "ListDatastoresResponse",
+      "properties": {
+        "datastores": {
+          "description": "A list of Datastores.",
+          "items": {
+            "$ref": "Datastore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable resources.",
           "items": {
             "type": "string"
           },
@@ -4458,7 +4918,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -4841,6 +5301,25 @@
       },
       "type": "object"
     },
+    "MountDatastoreRequest": {
+      "description": "Mount Datastore Request message",
+      "id": "MountDatastoreRequest",
+      "properties": {
+        "datastoreMountConfig": {
+          "$ref": "DatastoreMountConfig",
+          "description": "Required. The datastore mount configuration."
+        },
+        "ignoreColocation": {
+          "description": "Optional. If set to true, the colocation requirement will be ignored. If set to false, the colocation requirement will be enforced. If not set, the colocation requirement will be enforced. Colocation requirement is the requirement that the cluster must be in the same region/zone of datastore(regional/zonal datastore).",
+          "type": "boolean"
+        },
+        "requestId": {
+          "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkConfig": {
       "description": "Network configuration in the consumer project with which the peering has to be done.",
       "id": "NetworkConfig",
@@ -5066,6 +5545,25 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NfsDatastore": {
+      "description": "The NFS datastore configuration.",
+      "id": "NfsDatastore",
+      "properties": {
+        "googleFileService": {
+          "$ref": "GoogleFileService",
+          "description": "Google service file service configuration"
+        },
+        "googleVmwareFileService": {
+          "$ref": "GoogleVmwareFileService",
+          "description": "GCVE file service configuration"
+        },
+        "thirdPartyFileService": {
+          "$ref": "ThirdPartyFileService",
+          "description": "Third party file service configuration"
         }
       },
       "type": "object"
@@ -5919,6 +6417,28 @@
       },
       "type": "object"
     },
+    "ThirdPartyFileService": {
+      "description": "Third party file service configuration",
+      "id": "ThirdPartyFileService",
+      "properties": {
+        "fileShare": {
+          "description": "Required. Required Mount Folder name",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Required to identify vpc peering used for NFS access network name of NFS's vpc e.g. projects/project-id/global/networks/my-network_id",
+          "type": "string"
+        },
+        "servers": {
+          "description": "Required. Server IP addresses of the NFS file service. NFS v3, provide a single IP address or DNS name. Multiple servers can be supported in future when NFS 4.1 protocol support is enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Thresholds": {
       "description": "Thresholds define the utilization of resources triggering scale-out and scale-in operations.",
       "id": "Thresholds",
@@ -6007,6 +6527,21 @@
       "description": "Request message for VmwareEngine.UndeletePrivateCloud",
       "id": "UndeletePrivateCloudRequest",
       "properties": {
+        "requestId": {
+          "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnmountDatastoreRequest": {
+      "description": "Unmount Datastore Request messag",
+      "id": "UnmountDatastoreRequest",
+      "properties": {
+        "datastore": {
+          "description": "Required. The resource name of the datastore to unmount. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
+          "type": "string"
+        },
         "requestId": {
           "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
