@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20251102",
+  "revision": "20251207",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -2095,7 +2095,7 @@
           "type": "string"
         },
         "condition": {
-          "description": "Organization Policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true`",
+          "description": "Organization Policy condition/expression. For example: `resource.instanceName.matches(\"(production|test)_(.+_)?[\\d]+\")'` or, `resource.management.auto_upgrade == true`",
           "type": "string"
         },
         "description": {
