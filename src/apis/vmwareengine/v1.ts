@@ -292,6 +292,10 @@ export namespace vmwareengine_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Configuration of a mounted datastore.
+     */
+    datastoreMountConfig?: Schema$DatastoreMountConfig[];
+    /**
      * Output only. True if the cluster is a management cluster; false otherwise. There can only be one management cluster in a private cloud and it has to be the first one.
      */
     management?: boolean | null;
@@ -353,6 +357,101 @@ export namespace vmwareengine_v1 {
      * Initial username.
      */
     username?: string | null;
+  }
+  /**
+   * Represents a datastore resource.
+   */
+  export interface Schema$Datastore {
+    /**
+     * Output only. Clusters to which the datastore is attached.
+     */
+    clusters?: string[] | null;
+    /**
+     * Output only. Creation time of this resource.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description for this datastore
+     */
+    description?: string | null;
+    /**
+     * Optional. Checksum that may be sent on update and delete requests to ensure that the user-provided value is up to date before the server processes a request. The server computes checksums based on the value of other fields in the request.
+     */
+    etag?: string | null;
+    /**
+     * Output only. Identifier. The resource name of this datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/datastore`
+     */
+    name?: string | null;
+    /**
+     * Required. Settings for the NFS datastore.
+     */
+    nfsDatastore?: Schema$NfsDatastore;
+    /**
+     * Output only. The state of the Datastore.
+     */
+    state?: string | null;
+    /**
+     * Output only. System-generated unique identifier for the resource.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Last update time of this resource.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The Datastore Mount configuration
+   */
+  export interface Schema$DatastoreMountConfig {
+    /**
+     * Optional. NFS is accessed by hosts in read mode Optional. Default value used will be READ_WRITE
+     */
+    accessMode?: string | null;
+    /**
+     * Required. The resource name of the datastore to unmount. The datastore requested to be mounted should be in same region/zone as the cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
+     */
+    datastore?: string | null;
+    /**
+     * Required. The network configuration for the datastore.
+     */
+    datastoreNetwork?: Schema$DatastoreNetwork;
+    /**
+     * Output only. File share name.
+     */
+    fileShare?: string | null;
+    /**
+     * Optional. The NFS protocol supported by the NFS volume. Default value used will be NFS_V3
+     */
+    nfsVersion?: string | null;
+    /**
+     * Optional. ONLY required when NFS 4.1 version is used
+     */
+    securityType?: string | null;
+    /**
+     * Output only. Server IP addresses of the NFS volume. For NFS 3, you can only provide a single server IP address or DNS names.
+     */
+    servers?: string[] | null;
+  }
+  /**
+   * The network configuration for the datastore.
+   */
+  export interface Schema$DatastoreNetwork {
+    /**
+     * Optional. The number of connections of the NFS volume. Spported from vsphere 8.0u1
+     */
+    connectionCount?: number | null;
+    /**
+     * Optional. The Maximal Transmission Unit (MTU) of the datastore. System sets default MTU size. It prefers the VPC peering MTU, falling back to the VEN MTU if no peering MTU is found. when detected, and falling back to the VEN MTU otherwise.
+     */
+    mtu?: number | null;
+    /**
+     * Output only. The resource name of the network peering, used to access the file share by clients on private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. e.g. projects/my-project/locations/us-central1/networkPeerings/my-network-peering
+     */
+    networkPeering?: string | null;
+    /**
+     * Required. The resource name of the subnet Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. e.g. projects/my-project/locations/us-central1/subnets/my-subnet
+     */
+    subnet?: string | null;
   }
   /**
    * DnsBindPermission resource that contains the accounts having the consumer DNS bind permission on the corresponding intranet VPC of the consumer project.
@@ -534,6 +633,23 @@ export namespace vmwareengine_v1 {
     nameServers?: string[] | null;
   }
   /**
+   * Google service file service configuration
+   */
+  export interface Schema$GoogleFileService {
+    /**
+     * Google filestore instance resource name e.g. projects/my-project/locations/me-west1-b/instances/my-instance
+     */
+    filestoreInstance?: string | null;
+    /**
+     * Google netapp volume resource name e.g. projects/my-project/locations/me-west1-b/volumes/my-volume
+     */
+    netappVolume?: string | null;
+  }
+  /**
+   * Volume message captures user inputs for creation of file services managed by GCVE
+   */
+  export interface Schema$GoogleVmwareFileService {}
+  /**
    * Request message for VmwareEngine.GrantDnsBindPermission
    */
   export interface Schema$GrantDnsBindPermissionRequest {
@@ -653,6 +769,23 @@ export namespace vmwareengine_v1 {
     nextPageToken?: string | null;
     /**
      * Locations that could not be reached when making an aggregated query using wildcards.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for VmwareEngine.ListDatastores
+   */
+  export interface Schema$ListDatastoresResponse {
+    /**
+     * A list of Datastores.
+     */
+    datastores?: Schema$Datastore[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unreachable resources.
      */
     unreachable?: string[] | null;
   }
@@ -831,7 +964,7 @@ export namespace vmwareengine_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1072,6 +1205,23 @@ export namespace vmwareengine_v1 {
     vpcNetwork?: string | null;
   }
   /**
+   * Mount Datastore Request message
+   */
+  export interface Schema$MountDatastoreRequest {
+    /**
+     * Required. The datastore mount configuration.
+     */
+    datastoreMountConfig?: Schema$DatastoreMountConfig;
+    /**
+     * Optional. If set to true, the colocation requirement will be ignored. If set to false, the colocation requirement will be enforced. If not set, the colocation requirement will be enforced. Colocation requirement is the requirement that the cluster must be in the same region/zone of datastore(regional/zonal datastore).
+     */
+    ignoreColocation?: boolean | null;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * Network configuration in the consumer project with which the peering has to be done.
    */
   export interface Schema$NetworkConfig {
@@ -1222,6 +1372,23 @@ export namespace vmwareengine_v1 {
      * Output only. State of the service. New values may be added to this enum when appropriate.
      */
     state?: string | null;
+  }
+  /**
+   * The NFS datastore configuration.
+   */
+  export interface Schema$NfsDatastore {
+    /**
+     * Google service file service configuration
+     */
+    googleFileService?: Schema$GoogleFileService;
+    /**
+     * GCVE file service configuration
+     */
+    googleVmwareFileService?: Schema$GoogleVmwareFileService;
+    /**
+     * Third party file service configuration
+     */
+    thirdPartyFileService?: Schema$ThirdPartyFileService;
   }
   /**
    * Node in a cluster.
@@ -1738,6 +1905,23 @@ export namespace vmwareengine_v1 {
     permissions?: string[] | null;
   }
   /**
+   * Third party file service configuration
+   */
+  export interface Schema$ThirdPartyFileService {
+    /**
+     * Required. Required Mount Folder name
+     */
+    fileShare?: string | null;
+    /**
+     * Required. Required to identify vpc peering used for NFS access network name of NFS's vpc e.g. projects/project-id/global/networks/my-network_id
+     */
+    network?: string | null;
+    /**
+     * Required. Server IP addresses of the NFS file service. NFS v3, provide a single IP address or DNS name. Multiple servers can be supported in future when NFS 4.1 protocol support is enabled.
+     */
+    servers?: string[] | null;
+  }
+  /**
    * Thresholds define the utilization of resources triggering scale-out and scale-in operations.
    */
   export interface Schema$Thresholds {
@@ -1792,6 +1976,19 @@ export namespace vmwareengine_v1 {
    * Request message for VmwareEngine.UndeletePrivateCloud
    */
   export interface Schema$UndeletePrivateCloudRequest {
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Unmount Datastore Request messag
+   */
+  export interface Schema$UnmountDatastoreRequest {
+    /**
+     * Required. The resource name of the datastore to unmount. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
+     */
+    datastore?: string | null;
     /**
      * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -1984,6 +2181,7 @@ export namespace vmwareengine_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     announcements: Resource$Projects$Locations$Announcements;
+    datastores: Resource$Projects$Locations$Datastores;
     dnsBindPermission: Resource$Projects$Locations$Dnsbindpermission;
     networkPeerings: Resource$Projects$Locations$Networkpeerings;
     networkPolicies: Resource$Projects$Locations$Networkpolicies;
@@ -1995,6 +2193,9 @@ export namespace vmwareengine_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.announcements = new Resource$Projects$Locations$Announcements(
+        this.context
+      );
+      this.datastores = new Resource$Projects$Locations$Datastores(
         this.context
       );
       this.dnsBindPermission =
@@ -2324,7 +2525,7 @@ export namespace vmwareengine_v1 {
      *
      *   // Do the magic
      *   const res = await vmwareengine.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2456,7 +2657,7 @@ export namespace vmwareengine_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2806,6 +3007,852 @@ export namespace vmwareengine_v1 {
      * Required. The resource name of the location to be queried for announcements. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-west1-a`
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Datastores {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `Datastore` resource in a given project and location. Datastores are regional resources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.datastores.create({
+     *     // Required. The user-provided identifier of the datastore to be created. This identifier must be unique among each `Datastore` within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     *     datastoreId: 'placeholder-value',
+     *     // Required. The resource name of the location to create the new datastore in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusters": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "nfsDatastore": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datastores$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datastores$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datastores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a `Datastore` resource. You can only delete a Datastore after all resources that refer to it are deleted. For example, multiple clusters of the same private cloud or different private clouds can refer to the same datastore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.datastores.delete({
+     *     // Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the Datastore to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastore/my-datastore`
+     *     name: 'projects/my-project/locations/my-location/datastores/my-datastore',
+     *     // Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Datastores$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Datastores$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Datastores$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datastores$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Datastores$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datastores$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a `Datastore` resource by its resource name. The resource contains details of the Datastore, such as its description, subnets, type, and more.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.datastores.get({
+     *     // Required. The resource name of the Datastore to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
+     *     name: 'projects/my-project/locations/my-location/datastores/my-datastore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "nfsDatastore": {},
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datastores$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Datastore>>;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Datastore>,
+      callback: BodyResponseCallback<Schema$Datastore>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datastores$Get,
+      callback: BodyResponseCallback<Schema$Datastore>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Datastore>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Get
+        | BodyResponseCallback<Schema$Datastore>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Datastore>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Datastore>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Datastore>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datastores$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Datastore>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Datastore>(parameters);
+      }
+    }
+
+    /**
+     * Lists `Datastore` resources in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.datastores.list({
+     *     // Optional. A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of datastores, you can exclude the ones named `example-datastore` by specifying `name != "example-datastore"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-datastore") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-datastore-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-datastore-2") ```
+     *     filter: 'placeholder-value',
+     *     // Optional. Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of results to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListDatastores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatastores` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location to query for Datastores. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "datastores": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Datastores$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDatastoresResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDatastoresResponse>,
+      callback: BodyResponseCallback<Schema$ListDatastoresResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Datastores$List,
+      callback: BodyResponseCallback<Schema$ListDatastoresResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDatastoresResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$List
+        | BodyResponseCallback<Schema$ListDatastoresResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDatastoresResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDatastoresResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDatastoresResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datastores$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datastores').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDatastoresResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDatastoresResponse>(parameters);
+      }
+    }
+
+    /**
+     * Modifies a Datastore resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await vmwareengine.projects.locations.datastores.patch({
+     *     // Output only. Identifier. The resource name of this datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/datastore`
+     *     name: 'projects/my-project/locations/my-location/datastores/my-datastore',
+     *     // Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusters": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "nfsDatastore": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Datastores$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Datastores$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datastores$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datastores$Create extends StandardParameters {
+    /**
+     * Required. The user-provided identifier of the datastore to be created. This identifier must be unique among each `Datastore` within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)
+     */
+    datastoreId?: string;
+    /**
+     * Required. The resource name of the location to create the new datastore in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`
+     */
+    parent?: string;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Datastore;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Delete extends StandardParameters {
+    /**
+     * Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.
+     */
+    etag?: string;
+    /**
+     * Required. The resource name of the Datastore to be deleted. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastore/my-datastore`
+     */
+    name?: string;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the Datastore to retrieve. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that matches resources returned in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be `=`, `!=`, `\>`, or `<`. For example, if you are filtering a list of datastores, you can exclude the ones named `example-datastore` by specifying `name != "example-datastore"`. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (name = "example-datastore") (createTime \> "2021-04-12T08:15:10.40Z") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (name = "example-datastore-1") AND (createTime \> "2021-04-12T08:15:10.40Z") OR (name = "example-datastore-2") ```
+     */
+    filter?: string;
+    /**
+     * Optional. Sorts list results by a certain order. By default, returned results are ordered by `name` in ascending order. You can also sort results in descending order based on the `name` value using `orderBy="name desc"`. Currently, only ordering by `name` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of results to return in one page. The maximum value is coerced to 1000. The default value of this field is 500.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDatastores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatastores` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location to query for Datastores. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1`
+     */
+    parent?: string;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Patch extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of this datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/datastore`
+     */
+    name?: string;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Datastore;
   }
 
   export class Resource$Projects$Locations$Dnsbindpermission {
@@ -6701,7 +7748,7 @@ export namespace vmwareengine_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6842,7 +7889,7 @@ export namespace vmwareengine_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -9567,6 +10614,7 @@ export namespace vmwareengine_v1 {
      *         // {
      *         //   "autoscalingSettings": {},
      *         //   "createTime": "my_createTime",
+     *         //   "datastoreMountConfig": [],
      *         //   "management": false,
      *         //   "name": "my_name",
      *         //   "nodeTypeConfigs": {},
@@ -9867,6 +10915,7 @@ export namespace vmwareengine_v1 {
      *   // {
      *   //   "autoscalingSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "datastoreMountConfig": [],
      *   //   "management": false,
      *   //   "name": "my_name",
      *   //   "nodeTypeConfigs": {},
@@ -10269,6 +11318,161 @@ export namespace vmwareengine_v1 {
     }
 
     /**
+     * Mounts a `Datastore` on a cluster resource Datastores are zonal resources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmwareengine.projects.locations.privateClouds.clusters.mountDatastore(
+     *       {
+     *         // Required. The resource name of the cluster to mount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *         name: 'projects/my-project/locations/my-location/privateClouds/my-privateCloud/clusters/my-cluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "datastoreMountConfig": {},
+     *           //   "ignoreColocation": false,
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    mountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    mountDatastore(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    mountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    mountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    mountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    mountDatastore(callback: BodyResponseCallback<Schema$Operation>): void;
+    mountDatastore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:mountDatastore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Modifies a `Cluster` resource. Only fields specified in `updateMask` are applied. During operation processing, the resource is temporarily in the `ACTIVE` state before the operation fully completes. For that period of time, you can't update the resource. Use the operation status to determine when the processing fully completes.
      * @example
      * ```js
@@ -10315,6 +11519,7 @@ export namespace vmwareengine_v1 {
      *         // {
      *         //   "autoscalingSettings": {},
      *         //   "createTime": "my_createTime",
+     *         //   "datastoreMountConfig": [],
      *         //   "management": false,
      *         //   "name": "my_name",
      *         //   "nodeTypeConfigs": {},
@@ -10735,6 +11940,160 @@ export namespace vmwareengine_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Mounts a `Datastore` on a cluster resource Datastores are zonal resources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmwareengine.projects.locations.privateClouds.clusters.unmountDatastore(
+     *       {
+     *         // Required. The resource name of the cluster to unmount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     *         name: 'projects/my-project/locations/my-location/privateClouds/my-privateCloud/clusters/my-cluster',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "datastore": "my_datastore",
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    unmountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    unmountDatastore(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    unmountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    unmountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    unmountDatastore(
+      params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    unmountDatastore(callback: BodyResponseCallback<Schema$Operation>): void;
+    unmountDatastore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:unmountDatastore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Create extends StandardParameters {
@@ -10808,6 +12167,17 @@ export namespace vmwareengine_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Mountdatastore extends StandardParameters {
+    /**
+     * Required. The resource name of the cluster to mount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MountDatastoreRequest;
+  }
   export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch extends StandardParameters {
     /**
      * Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
@@ -10852,6 +12222,17 @@ export namespace vmwareengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Unmountdatastore extends StandardParameters {
+    /**
+     * Required. The resource name of the cluster to unmount the datastore. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnmountDatastoreRequest;
   }
 
   export class Resource$Projects$Locations$Privateclouds$Clusters$Nodes {
