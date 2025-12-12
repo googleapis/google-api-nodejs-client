@@ -5570,7 +5570,7 @@
       }
     }
   },
-  "revision": "20251208",
+  "revision": "20251210",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -7670,6 +7670,49 @@
       },
       "type": "object"
     },
+    "ExternalOfferDetails": {
+      "description": "Reporting details unique to the external offers program.",
+      "id": "ExternalOfferDetails",
+      "properties": {
+        "appDownloadEventExternalTransactionId": {
+          "description": "Optional. The external transaction id associated with the app download event through an external link. Required when reporting transactions made in externally installed apps.",
+          "type": "string"
+        },
+        "installedAppCategory": {
+          "description": "Optional. The category of the downloaded app though this transaction. This must match the category provided in Play Console during the external app verification process. Only required for app downloads.",
+          "enum": [
+            "EXTERNAL_OFFER_APP_CATEGORY_UNSPECIFIED",
+            "APP",
+            "GAME"
+          ],
+          "enumDescriptions": [
+            "Unspecified, do not use.",
+            "The app is classified under the app category.",
+            "The app is classified under the game category."
+          ],
+          "type": "string"
+        },
+        "installedAppPackage": {
+          "description": "Optional. The package name of the app downloaded through this transaction. Required when link_type is LINK_TO_APP_DOWNLOAD.",
+          "type": "string"
+        },
+        "linkType": {
+          "description": "Optional. The type of content being reported by this transaction. Required when reporting app downloads or purchased digital content offers made in app installed through Google Play.",
+          "enum": [
+            "EXTERNAL_OFFER_LINK_TYPE_UNSPECIFIED",
+            "LINK_TO_DIGITAL_CONTENT_OFFER",
+            "LINK_TO_APP_DOWNLOAD"
+          ],
+          "enumDescriptions": [
+            "Unspecified, do not use.",
+            "An offer to purchase digital content.",
+            "An app install."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalSubscription": {
       "description": "Details of an external subscription.",
       "id": "ExternalSubscription",
@@ -7710,6 +7753,10 @@
           "$ref": "Price",
           "description": "Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.",
           "readOnly": true
+        },
+        "externalOfferDetails": {
+          "$ref": "ExternalOfferDetails",
+          "description": "Optional. Details necessary to accurately report external offers transactions."
         },
         "externalTransactionId": {
           "description": "Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.",
