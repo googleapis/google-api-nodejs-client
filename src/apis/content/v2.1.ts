@@ -5015,6 +5015,10 @@ export namespace content_v2_1 {
      */
     approvedCountries?: string[] | null;
     /**
+     * The channel of the destination.
+     */
+    channel?: string | null;
+    /**
      * The name of the destination
      */
     destination?: string | null;
