@@ -853,7 +853,7 @@ export namespace chat_v1 {
      */
     displayStyle?: string | null;
     /**
-     * The expression data for the card. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * The expression data for the card. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     expressionData?: Schema$GoogleAppsCardV1ExpressionData[];
     /**
@@ -1044,7 +1044,7 @@ export namespace chat_v1 {
     columnItems?: Schema$GoogleAppsCardV1Column[];
   }
   /**
-   * Represents an action that is not specific to a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents an action that is not specific to a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1CommonWidgetAction {
     /**
@@ -1053,7 +1053,7 @@ export namespace chat_v1 {
     updateVisibilityAction?: Schema$GoogleAppsCardV1UpdateVisibilityAction;
   }
   /**
-   * Represents a condition that can be used to trigger an action. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents a condition that can be used to trigger an action. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1Condition {
     /**
@@ -1066,7 +1066,7 @@ export namespace chat_v1 {
     expressionDataCondition?: Schema$GoogleAppsCardV1ExpressionDataCondition;
   }
   /**
-   * A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1DataSourceConfig {
     /**
@@ -1083,7 +1083,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
     /**
-     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     hostAppDataSource?: Schema$HostAppDataSourceMarkup;
     /**
@@ -1177,7 +1177,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
-   * Represents an actionthat can be performed on an ui element. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents an actionthat can be performed on an ui element. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1EventAction {
     /**
@@ -1194,7 +1194,7 @@ export namespace chat_v1 {
     postEventTriggers?: Schema$GoogleAppsCardV1Trigger[];
   }
   /**
-   * Represents the data that is used to evaluate an expression. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents the data that is used to evaluate an expression. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1ExpressionData {
     /**
@@ -1215,7 +1215,7 @@ export namespace chat_v1 {
     id?: string | null;
   }
   /**
-   * Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1ExpressionDataCondition {
     /**
@@ -1489,7 +1489,7 @@ export namespace chat_v1 {
      */
     header?: string | null;
     /**
-     * A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     id?: string | null;
     /**
@@ -1506,7 +1506,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` widget in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
      */
     dataSourceConfigs?: Schema$GoogleAppsCardV1DataSourceConfig[];
     /**
@@ -1514,7 +1514,7 @@ export namespace chat_v1 {
      */
     externalDataSource?: Schema$GoogleAppsCardV1Action;
     /**
-     * Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     hintText?: string | null;
     /**
@@ -1628,7 +1628,7 @@ export namespace chat_v1 {
      */
     hintText?: string | null;
     /**
-     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     hostAppDataSource?: Schema$HostAppDataSourceMarkup;
     /**
@@ -1682,7 +1682,7 @@ export namespace chat_v1 {
     textSyntax?: string | null;
   }
   /**
-   * Represents a trigger. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents a trigger. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1Trigger {
     /**
@@ -1691,7 +1691,7 @@ export namespace chat_v1 {
     actionRuleId?: string | null;
   }
   /**
-   * Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+   * Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1UpdateVisibilityAction {
     /**
@@ -1745,7 +1745,7 @@ export namespace chat_v1 {
      */
     divider?: Schema$GoogleAppsCardV1Divider;
     /**
-     * Specifies the event actions that can be performed on the widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * Specifies the event actions that can be performed on the widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     eventActions?: Schema$GoogleAppsCardV1EventAction[];
     /**
@@ -1757,7 +1757,7 @@ export namespace chat_v1 {
      */
     horizontalAlignment?: string | null;
     /**
-     * A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     id?: string | null;
     /**
@@ -1777,7 +1777,7 @@ export namespace chat_v1 {
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
     /**
-     * Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.
+     * Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
      */
     visibility?: string | null;
   }
@@ -4952,7 +4952,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.patch({
      *     // Identifier. Resource name of the space. Format: `spaces/{space\}` Where `{space\}` represents the system-assigned ID for the space. You can obtain the space ID by calling the [`spaces.list()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/list) method or from the space URL. For example, if the space URL is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID is `AAAAAAAAA`.
      *     name: 'spaces/my-space',
-     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     *     // Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      *     updateMask: 'placeholder-value',
      *     // Optional. When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Some `FieldMask` values are not supported using admin access. For details, see the description of `update_mask`.
      *     useAdminAccess: 'placeholder-value',
@@ -5484,7 +5484,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+     * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
      */
     updateMask?: string;
     /**

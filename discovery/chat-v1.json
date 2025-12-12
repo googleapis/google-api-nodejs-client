@@ -577,7 +577,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. `permissionSettings` is not supported with `useAdminAccess`. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`",
+              "description": "Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both description and guidelines in the update request as `SpaceDetails`. If you only want to update one of the fields, pass the existing value for the other field. `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with `useAdminAccess`. `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with `useAdminAccess`. `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` - `permission_settings.manageApps` - `permission_settings.manageWebhooks` - `permission_settings.replyMessages`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20251205",
+  "revision": "20251207",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -2649,7 +2649,7 @@
           "type": "string"
         },
         "expressionData": {
-          "description": "The expression data for the card. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "The expression data for the card. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "items": {
             "$ref": "GoogleAppsCardV1ExpressionData"
           },
@@ -2961,7 +2961,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CommonWidgetAction": {
-      "description": "Represents an action that is not specific to a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents an action that is not specific to a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1CommonWidgetAction",
       "properties": {
         "updateVisibilityAction": {
@@ -2972,7 +2972,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Condition": {
-      "description": "Represents a condition that can be used to trigger an action. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents a condition that can be used to trigger an action. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1Condition",
       "properties": {
         "actionRuleId": {
@@ -2987,7 +2987,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1DataSourceConfig": {
-      "description": "A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1DataSourceConfig",
       "properties": {
         "platformDataSource": {
@@ -3007,7 +3007,7 @@
       "properties": {
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps."
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps."
         },
         "label": {
           "description": "The text that prompts users to input a date, a time, or a date and time. For example, if users are scheduling an appointment, use a label such as `Appointment date` or `Appointment date and time`.",
@@ -3131,7 +3131,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1EventAction": {
-      "description": "Represents an actionthat can be performed on an ui element. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents an actionthat can be performed on an ui element. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1EventAction",
       "properties": {
         "actionRuleId": {
@@ -3153,7 +3153,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ExpressionData": {
-      "description": "Represents the data that is used to evaluate an expression. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents the data that is used to evaluate an expression. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1ExpressionData",
       "properties": {
         "conditions": {
@@ -3182,7 +3182,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1ExpressionDataCondition": {
-      "description": "Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents a condition that is evaluated using CEL. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1ExpressionDataCondition",
       "properties": {
         "conditionType": {
@@ -3560,7 +3560,7 @@
           "type": "string"
         },
         "id": {
-          "description": "A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "type": "string"
         },
         "uncollapsibleWidgetsCount": {
@@ -3583,7 +3583,7 @@
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
         "dataSourceConfigs": {
-          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` widget in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.",
           "items": {
             "$ref": "GoogleAppsCardV1DataSourceConfig"
           },
@@ -3594,7 +3594,7 @@
           "description": "An external data source, such as a relational database."
         },
         "hintText": {
-          "description": "Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "Optional. Text that appears below the selection input field meant to assist users by prompting them to enter a certain value. This text is always visible. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "type": "string"
         },
         "items": {
@@ -3643,7 +3643,7 @@
             "A set of checkboxes. Users can select one or more checkboxes.",
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
-            "A dropdown menu. Users can select one item from the menu.",
+            "A dropdown menu. Users can select one item from the menu. For Google Chat apps, as part of the [Developer Preview Program](https://developers.google.com/workspace/preview), you can populate items using a dynamic data source and autosuggest items as users type in the menu. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To dynamically populate items for a dropdown menu, use one of the following types of data sources: * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement dropdown menus for Chat apps, see [Add a dropdown menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dropdown-menu) and [Dynamically populate drop-down menus](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dynamic-dropdown-menu). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):",
             "A menu with a text box. Users can type and select one or more items. For Google Workspace add-ons, you must populate items using a static array of `SelectionItem` objects. For Google Chat apps, you can also populate items using a dynamic data source and autosuggest items as users type in the menu. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To dynamically populate items for a multiselect menu, use one of the following types of data sources: * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus for Chat apps, see [Add a multiselect menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#multiselect-menu). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):"
           ],
           "type": "string"
@@ -3753,7 +3753,7 @@
         },
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps."
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps."
         },
         "initialSuggestions": {
           "$ref": "GoogleAppsCardV1Suggestions",
@@ -3829,7 +3829,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Trigger": {
-      "description": "Represents a trigger. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents a trigger. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1Trigger",
       "properties": {
         "actionRuleId": {
@@ -3840,7 +3840,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1UpdateVisibilityAction": {
-      "description": "Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+      "description": "Represents an action that updates the visibility of a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
       "id": "GoogleAppsCardV1UpdateVisibilityAction",
       "properties": {
         "visibility": {
@@ -3925,7 +3925,7 @@
           "description": "Displays a horizontal line divider between widgets. For example, the following JSON creates a divider: ``` \"divider\": { } ```"
         },
         "eventActions": {
-          "description": "Specifies the event actions that can be performed on the widget. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "Specifies the event actions that can be performed on the widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "items": {
             "$ref": "GoogleAppsCardV1EventAction"
           },
@@ -3952,7 +3952,7 @@
           "type": "string"
         },
         "id": {
-          "description": "A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "type": "string"
         },
         "image": {
@@ -3972,7 +3972,7 @@
           "description": "Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` \"textParagraph\": { \"text\": \" *bold text*\" } ```"
         },
         "visibility": {
-          "description": "Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Available for Google Workspace add-ons that extend Google Workspace flows, which is available as part of the [Gemini Alpha program](https://support.google.com/a/answer/14170809). Unavailable for Google Chat apps.",
+          "description": "Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.",
           "enum": [
             "VISIBILITY_UNSPECIFIED",
             "VISIBLE",
@@ -5040,6 +5040,7 @@
             "RICH_LINK_TYPE_UNSPECIFIED",
             "DRIVE_FILE",
             "CHAT_SPACE",
+            "GMAIL_MESSAGE",
             "MEET_SPACE",
             "CALENDAR_EVENT"
           ],
@@ -5047,6 +5048,7 @@
             "Default value for the enum. Don't use.",
             "A Google Drive rich link type.",
             "A Chat space rich link type. For example, a space smart chip.",
+            "A Gmail message rich link type. Specifically, a Gmail chip from [Share to Chat](https://support.google.com/chat?p=chat_gmail). The API only supports reading messages with GMAIL_MESSAGE rich links.",
             "A Meet message rich link type. For example, a Meet chip.",
             "A Calendar message rich link type. For example, a Calendar chip."
           ],
