@@ -1060,7 +1060,7 @@
                   "type": "string"
                 },
                 "returnPartialSuccess": {
-                  "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -1294,6 +1294,47 @@
                     }
                   },
                   "path": "v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "exportAppImage": {
+                  "description": "Exports a user image to Artifact Registry.",
+                  "flatPath": "v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
+                  "httpMethod": "POST",
+                  "id": "appengine.apps.services.versions.exportAppImage",
+                  "parameterOrder": [
+                    "appsId",
+                    "servicesId",
+                    "versionsId"
+                  ],
+                  "parameters": {
+                    "appsId": {
+                      "description": "Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app}/services/{service}/versions/{version}",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "servicesId": {
+                      "description": "Part of `name`. See documentation of `appsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "versionsId": {
+                      "description": "Part of `name`. See documentation of `appsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/apps/{appsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
+                  "request": {
+                    "$ref": "ExportAppImageRequest"
+                  },
                   "response": {
                     "$ref": "Operation"
                   },
@@ -2458,6 +2499,61 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "exportAppImage": {
+                          "description": "Exports a user image to Artifact Registry.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
+                          "httpMethod": "POST",
+                          "id": "appengine.projects.locations.applications.services.versions.exportAppImage",
+                          "parameterOrder": [
+                            "projectsId",
+                            "locationsId",
+                            "applicationsId",
+                            "servicesId",
+                            "versionsId"
+                          ],
+                          "parameters": {
+                            "applicationsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "locationsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectsId": {
+                              "description": "Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app}/services/{service}/versions/{version}",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "servicesId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "versionsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
+                          "request": {
+                            "$ref": "ExportAppImageRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}",
@@ -2530,7 +2626,7 @@
       }
     }
   },
-  "revision": "20251103",
+  "revision": "20251208",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3228,6 +3324,21 @@
       },
       "type": "object"
     },
+    "ExportAppImageRequest": {
+      "description": "Request message for Versions.ExportAppImage.",
+      "id": "ExportAppImageRequest",
+      "properties": {
+        "destinationRepository": {
+          "description": "Optional. The full resource name of the AR repository to export to. Format: projects/{project}/locations/{location}/repositories/{repository} If not specified, defaults to projects/{project}/locations/{location}/repositories/gae-standard in the same region as the app. The default repository will be created if it does not exist.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. Optional: A service account to use for authenticating to Artifact Registry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FeatureSettings": {
       "description": "The feature specific settings to be used in the application. These define behaviors that are user configurable.",
       "id": "FeatureSettings",
@@ -3675,7 +3786,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
