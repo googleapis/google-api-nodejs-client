@@ -5318,6 +5318,2766 @@ export namespace contactcenterinsights_v1 {
     views?: Schema$GoogleCloudContactcenterinsightsV1View[];
   }
   /**
+   * The analysis resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnalysis {
+    /**
+     * Output only. The result of the analysis, which is populated when the analysis finishes.
+     */
+    analysisResult?: Schema$GoogleCloudContactcenterinsightsV1mainAnalysisResult;
+    /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelector;
+    /**
+     * Output only. The time at which the analysis was created, which occurs when the long-running operation completes.
+     */
+    createTime?: string | null;
+    /**
+     * Immutable. The resource name of the analysis. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/analyses/{analysis\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The time at which the analysis was requested.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * The result of an analysis.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnalysisResult {
+    /**
+     * Call-specific metadata created by the analysis.
+     */
+    callAnalysisMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainAnalysisResultCallAnalysisMetadata;
+    /**
+     * The time at which the analysis ended.
+     */
+    endTime?: string | null;
+  }
+  /**
+   * Call-specific metadata created during analysis.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnalysisResultCallAnalysisMetadata {
+    /**
+     * A list of call annotations that apply to this call.
+     */
+    annotations?: Schema$GoogleCloudContactcenterinsightsV1mainCallAnnotation[];
+    /**
+     * All the entities in the call.
+     */
+    entities?: {
+      [key: string]: Schema$GoogleCloudContactcenterinsightsV1mainEntity;
+    } | null;
+    /**
+     * All the matched intents in the call.
+     */
+    intents?: {
+      [key: string]: Schema$GoogleCloudContactcenterinsightsV1mainIntent;
+    } | null;
+    /**
+     * Overall conversation-level issue modeling result.
+     */
+    issueModelResult?: Schema$GoogleCloudContactcenterinsightsV1mainIssueModelResult;
+    /**
+     * All the matched phrase matchers in the call.
+     */
+    phraseMatchers?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudContactcenterinsightsV1mainPhraseMatchData;
+    } | null;
+    /**
+     * Results of scoring QaScorecards.
+     */
+    qaScorecardResults?: Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResult[];
+    /**
+     * Overall conversation-level sentiment for each channel of the call.
+     */
+    sentiments?: Schema$GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment[];
+    /**
+     * Overall conversation-level silence during the call.
+     */
+    silence?: Schema$GoogleCloudContactcenterinsightsV1mainConversationLevelSilence;
+  }
+  /**
+   * A point in a conversation that marks the start or the end of an annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnnotationBoundary {
+    /**
+     * The index in the sequence of transcribed pieces of the conversation where the boundary is located. This index starts at zero.
+     */
+    transcriptIndex?: number | null;
+    /**
+     * The word index of this boundary with respect to the first word in the transcript piece. This index starts at zero.
+     */
+    wordIndex?: number | null;
+  }
+  /**
+   * Selector of all available annotators and phrase matchers to run.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelector {
+    /**
+     * The issue model to run. If not provided, the most recently deployed topic model will be used. The provided issue model will only be used for inference if the issue model is deployed and if run_issue_model_annotator is set to true. If more than one issue model is provided, only the first provided issue model will be used for inference.
+     */
+    issueModels?: string[] | null;
+    /**
+     * The list of phrase matchers to run. If not provided, all active phrase matchers will be used. If inactive phrase matchers are provided, they will not be used. Phrase matchers will be run only if run_phrase_matcher_annotator is set to true. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
+     */
+    phraseMatchers?: string[] | null;
+    /**
+     * Configuration for the QA annotator.
+     */
+    qaConfig?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig;
+    /**
+     * Whether to run the entity annotator.
+     */
+    runEntityAnnotator?: boolean | null;
+    /**
+     * Whether to run the intent annotator.
+     */
+    runIntentAnnotator?: boolean | null;
+    /**
+     * Whether to run the interruption annotator.
+     */
+    runInterruptionAnnotator?: boolean | null;
+    /**
+     * Whether to run the issue model annotator. A model should have already been deployed for this to take effect.
+     */
+    runIssueModelAnnotator?: boolean | null;
+    /**
+     * Whether to run the active phrase matcher annotator(s).
+     */
+    runPhraseMatcherAnnotator?: boolean | null;
+    /**
+     * Whether to run the QA annotator.
+     */
+    runQaAnnotator?: boolean | null;
+    /**
+     * Whether to run the sentiment annotator.
+     */
+    runSentimentAnnotator?: boolean | null;
+    /**
+     * Whether to run the silence annotator.
+     */
+    runSilenceAnnotator?: boolean | null;
+    /**
+     * Whether to run the summarization annotator.
+     */
+    runSummarizationAnnotator?: boolean | null;
+    /**
+     * Configuration for the summarization annotator.
+     */
+    summarizationConfig?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorSummarizationConfig;
+  }
+  /**
+   * Configuration for the QA feature.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig {
+    /**
+     * A manual list of scorecards to score.
+     */
+    scorecardList?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfigScorecardList;
+  }
+  /**
+   * Container for a list of scorecards.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfigScorecardList {
+    /**
+     * List of QaScorecardRevisions.
+     */
+    qaScorecardRevisions?: string[] | null;
+  }
+  /**
+   * Configuration for summarization.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorSummarizationConfig {
+    /**
+     * Resource name of the Dialogflow conversation profile. Format: projects/{project\}/locations/{location\}/conversationProfiles/{conversation_profile\}
+     */
+    conversationProfile?: string | null;
+    /**
+     * The resource name of the existing created generator. Format: projects//locations//generators/
+     */
+    generator?: string | null;
+    /**
+     * Default summarization model to be used.
+     */
+    summarizationModel?: string | null;
+  }
+  /**
+   * The feedback that the customer has about a certain answer in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainAnswerFeedback {
+    /**
+     * Indicates whether an answer or item was clicked by the human agent.
+     */
+    clicked?: boolean | null;
+    /**
+     * The correctness level of an answer.
+     */
+    correctnessLevel?: string | null;
+    /**
+     * Indicates whether an answer or item was displayed to the human agent in the agent desktop UI.
+     */
+    displayed?: boolean | null;
+  }
+  /**
+   * Agent Assist Article Suggestion data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainArticleSuggestionData {
+    /**
+     * The system's confidence score that this article is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidenceScore?: number | null;
+    /**
+     * Map that contains metadata about the Article Suggestion and the document that it originates from.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    queryRecord?: string | null;
+    /**
+     * The knowledge document that this answer was extracted from. Format: projects/{project\}/knowledgeBases/{knowledge_base\}/documents/{document\}
+     */
+    source?: string | null;
+    /**
+     * Article title.
+     */
+    title?: string | null;
+    /**
+     * Article URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * The metadata for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsMetadata {
+    /**
+     * The number of requested analyses that have completed successfully so far.
+     */
+    completedAnalysesCount?: number | null;
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The number of requested analyses that have failed so far.
+     */
+    failedAnalysesCount?: number | null;
+    /**
+     * Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The original request for bulk analyze.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest;
+    /**
+     * Total number of analyses requested. Computed by the number of conversations returned by `filter` multiplied by `analysis_percentage` in the request.
+     */
+    totalRequestedAnalysesCount?: number | null;
+  }
+  /**
+   * The request to analyze conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest {
+    /**
+     * Required. Percentage of selected conversation to analyze, between [0, 100].
+     */
+    analysisPercentage?: number | null;
+    /**
+     * To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run.
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelector;
+    /**
+     * Required. Filter used to select the subset of conversations to analyze.
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource to create analyses in.
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk analyze conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsResponse {
+    /**
+     * Count of failed analyses.
+     */
+    failedAnalysisCount?: number | null;
+    /**
+     * Count of successful analyses.
+     */
+    successfulAnalysisCount?: number | null;
+  }
+  /**
+   * The metadata for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The original request for bulk delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsRequest;
+  }
+  /**
+   * The request to delete conversations in bulk.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsRequest {
+    /**
+     * Filter used to select the subset of conversations to delete.
+     */
+    filter?: string | null;
+    /**
+     * If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.
+     */
+    force?: boolean | null;
+    /**
+     * Maximum number of conversations to delete.
+     */
+    maxDeleteCount?: number | null;
+    /**
+     * Required. The parent resource to delete conversations from. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string | null;
+  }
+  /**
+   * The response for a bulk delete conversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsResponse {}
+  /**
+   * Metadata for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsMetadata {
+    /**
+     * Partial errors during deletion operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for delete.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsRequest;
+  }
+  /**
+   * Request for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsRequest {
+    /**
+     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string | null;
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Response for the BulkDeleteFeedbackLabels endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsResponse {}
+  /**
+   * Metadata for the BulkDownloadFeedbackLabel endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Statistics for BulkDownloadFeedbackLabels operation.
+     */
+    downloadStats?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadataDownloadStats;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during ingest operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for download.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequest;
+  }
+  /**
+   * Statistics for BulkDownloadFeedbackLabels operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadataDownloadStats {
+    /**
+     * Output only. Full name of the files written to Cloud storage.
+     */
+    fileNames?: string[] | null;
+    /**
+     * The number of objects processed during the download operation.
+     */
+    processedObjectCount?: number | null;
+    /**
+     * The number of new feedback labels downloaded during this operation. Different from "processed" because some labels might not be downloaded because an error.
+     */
+    successfulDownloadCount?: number | null;
+    /**
+     * Total number of files written to the provided Cloud Storage bucket.
+     */
+    totalFilesWritten?: number | null;
+  }
+  /**
+   * Request for the BulkDownloadFeedbackLabel endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequest {
+    /**
+     * Optional. Filter parent conversations to download feedback labels for. When specified, the feedback labels will be downloaded for the conversations that match the filter. If `template_qa_scorecard_id` is set, all the conversations that match the filter will be paired with the questions under the scorecard for labeling.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. The type of feedback labels that will be downloaded.
+     */
+    feedbackLabelType?: string | null;
+    /**
+     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING
+     */
+    filter?: string | null;
+    /**
+     * A cloud storage bucket destination.
+     */
+    gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestGcsDestination;
+    /**
+     * Optional. Limits the maximum number of feedback labels that will be downloaded. The first `N` feedback labels will be downloaded.
+     */
+    maxDownloadCount?: number | null;
+    /**
+     * Required. The parent resource for new feedback labels.
+     */
+    parent?: string | null;
+    /**
+     * A sheets document destination.
+     */
+    sheetsDestination?: Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestSheetsDestination;
+    /**
+     * Optional. If set, a template for labeling conversations and scorecard questions will be created from the conversation_filter and the questions under the scorecard(s). The feedback label `filter` will be ignored.
+     */
+    templateQaScorecardId?: string[] | null;
+  }
+  /**
+   * Google Cloud Storage Object details to write the feedback labels to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestGcsDestination {
+    /**
+     * Optional. Add whitespace to the JSON file. Makes easier to read, but increases file size. Only applicable for JSON format.
+     */
+    addWhitespace?: boolean | null;
+    /**
+     * Optional. Always print fields with no presence. This is useful for printing fields that are not set, like implicit 0 value or empty lists/maps. Only applicable for JSON format.
+     */
+    alwaysPrintEmptyFields?: boolean | null;
+    /**
+     * Required. File format in which the labels will be exported.
+     */
+    format?: string | null;
+    /**
+     * Required. The Google Cloud Storage URI to write the feedback labels to. The file name will be used as a prefix for the files written to the bucket if the output needs to be split across multiple files, otherwise it will be used as is. The file extension will be appended to the file name based on the format selected. E.g. `gs://bucket_name/object_uri_prefix`
+     */
+    objectUri?: string | null;
+    /**
+     * Optional. The number of records per file. Applicable for either format.
+     */
+    recordsPerFileCount?: string | null;
+  }
+  /**
+   * Google Sheets document details to write the feedback labels to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestSheetsDestination {
+    /**
+     * Optional. The title of the new sheet to write the feedback labels to.
+     */
+    sheetTitle?: string | null;
+    /**
+     * Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA. The spreadsheet ID written to will be returned as `file_names` in the BulkDownloadFeedbackLabelsMetadata.
+     */
+    spreadsheetUri?: string | null;
+  }
+  /**
+   * Response for the BulkDownloadFeedbackLabel endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsResponse {}
+  /**
+   * A piece of metadata that applies to a window of a call.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCallAnnotation {
+    /**
+     * The boundary in the conversation where the annotation ends, inclusive.
+     */
+    annotationEndBoundary?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotationBoundary;
+    /**
+     * The boundary in the conversation where the annotation starts, inclusive.
+     */
+    annotationStartBoundary?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotationBoundary;
+    /**
+     * The channel of the audio where the annotation occurs. For single-channel audio, this field is not populated.
+     */
+    channelTag?: number | null;
+    /**
+     * Data specifying an entity mention.
+     */
+    entityMentionData?: Schema$GoogleCloudContactcenterinsightsV1mainEntityMentionData;
+    /**
+     * Data specifying a hold.
+     */
+    holdData?: Schema$GoogleCloudContactcenterinsightsV1mainHoldData;
+    /**
+     * Data specifying an intent match.
+     */
+    intentMatchData?: Schema$GoogleCloudContactcenterinsightsV1mainIntentMatchData;
+    /**
+     * Data specifying an interruption.
+     */
+    interruptionData?: Schema$GoogleCloudContactcenterinsightsV1mainInterruptionData;
+    /**
+     * Data specifying an issue match.
+     */
+    issueMatchData?: Schema$GoogleCloudContactcenterinsightsV1mainIssueMatchData;
+    /**
+     * Data specifying a phrase match.
+     */
+    phraseMatchData?: Schema$GoogleCloudContactcenterinsightsV1mainPhraseMatchData;
+    /**
+     * Data specifying sentiment.
+     */
+    sentimentData?: Schema$GoogleCloudContactcenterinsightsV1mainSentimentData;
+    /**
+     * Data specifying silence.
+     */
+    silenceData?: Schema$GoogleCloudContactcenterinsightsV1mainSilenceData;
+  }
+  /**
+   * The conversation resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversation {
+    /**
+     * An opaque, user-specified string representing the human agent who handled the conversation.
+     */
+    agentId?: string | null;
+    /**
+     * Call-specific metadata.
+     */
+    callMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainConversationCallMetadata;
+    /**
+     * Output only. The time at which the conversation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The source of the audio and transcription for the conversation.
+     */
+    dataSource?: Schema$GoogleCloudContactcenterinsightsV1mainConversationDataSource;
+    /**
+     * Output only. All the matched Dialogflow intents in the call. The key corresponds to a Dialogflow intent, format: projects/{project\}/agent/{agent\}/intents/{intent\}
+     */
+    dialogflowIntents?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudContactcenterinsightsV1mainDialogflowIntent;
+    } | null;
+    /**
+     * Output only. The duration of the conversation.
+     */
+    duration?: string | null;
+    /**
+     * The time at which this conversation should expire. After this time, the conversation data and any associated analyses will be deleted.
+     */
+    expireTime?: string | null;
+    /**
+     * A map for the user to specify any custom fields. A maximum of 100 labels per conversation is allowed, with a maximum of 256 characters per entry.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * A user-specified language code for the conversation.
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. The conversation's latest analysis, if one exists.
+     */
+    latestAnalysis?: Schema$GoogleCloudContactcenterinsightsV1mainAnalysis;
+    /**
+     * Output only. Latest summary of the conversation.
+     */
+    latestSummary?: Schema$GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData;
+    /**
+     * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
+     */
+    medium?: string | null;
+    /**
+     * Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.
+     */
+    metadataJson?: string | null;
+    /**
+     * Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
+     */
+    name?: string | null;
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     */
+    obfuscatedUserId?: string | null;
+    /**
+     * Conversation metadata related to quality management.
+     */
+    qualityMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata;
+    /**
+     * Output only. The annotations that were generated during the customer and agent interaction.
+     */
+    runtimeAnnotations?: Schema$GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation[];
+    /**
+     * The time at which the conversation started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The conversation transcript.
+     */
+    transcript?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscript;
+    /**
+     * Input only. The TTL for this resource. If specified, then this TTL will be used to calculate the expire time.
+     */
+    ttl?: string | null;
+    /**
+     * Output only. The number of turns in the conversation.
+     */
+    turnCount?: number | null;
+    /**
+     * Output only. The most recent time at which the conversation was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Call-specific metadata.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationCallMetadata {
+    /**
+     * The audio channel that contains the agent.
+     */
+    agentChannel?: number | null;
+    /**
+     * The audio channel that contains the customer.
+     */
+    customerChannel?: number | null;
+  }
+  /**
+   * The conversation source, which is a combination of transcript and audio.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationDataSource {
+    /**
+     * The source when the conversation comes from Dialogflow.
+     */
+    dialogflowSource?: Schema$GoogleCloudContactcenterinsightsV1mainDialogflowSource;
+    /**
+     * A Cloud Storage location specification for the audio and transcript.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1mainGcsSource;
+    /**
+     * Cloud Storage URI that points to a file that contains the conversation metadata.
+     */
+    metadataUri?: string | null;
+  }
+  /**
+   * One channel of conversation-level sentiment data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment {
+    /**
+     * The channel of the audio that the data applies to.
+     */
+    channelTag?: number | null;
+    /**
+     * Data specifying sentiment.
+     */
+    sentimentData?: Schema$GoogleCloudContactcenterinsightsV1mainSentimentData;
+  }
+  /**
+   * Conversation-level silence data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationLevelSilence {
+    /**
+     * Amount of time calculated to be in silence.
+     */
+    silenceDuration?: string | null;
+    /**
+     * Percentage of the total conversation spent in silence.
+     */
+    silencePercentage?: number | null;
+  }
+  /**
+   * The call participant speaking for a given utterance.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationParticipant {
+    /**
+     * Deprecated. Use `dialogflow_participant_name` instead. The name of the Dialogflow participant. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/participants/{participant\}
+     */
+    dialogflowParticipant?: string | null;
+    /**
+     * The name of the participant provided by Dialogflow. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/participants/{participant\}
+     */
+    dialogflowParticipantName?: string | null;
+    /**
+     * Obfuscated user ID from Dialogflow.
+     */
+    obfuscatedExternalUserId?: string | null;
+    /**
+     * The role of the participant.
+     */
+    role?: string | null;
+    /**
+     * A user-specified ID representing the participant.
+     */
+    userId?: string | null;
+  }
+  /**
+   * Conversation metadata related to quality management.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata {
+    /**
+     * Information about agents involved in the call.
+     */
+    agentInfo?: Schema$GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo[];
+    /**
+     * An arbitrary integer value indicating the customer's satisfaction rating.
+     */
+    customerSatisfactionRating?: number | null;
+    /**
+     * Input only. The feedback labels associated with the conversation.
+     */
+    feedbackLabels?: Schema$GoogleCloudContactcenterinsightsV1mainFeedbackLabel[];
+    /**
+     * An arbitrary string value specifying the menu path the customer took.
+     */
+    menuPath?: string | null;
+    /**
+     * The amount of time the customer waited to connect with an agent.
+     */
+    waitDuration?: string | null;
+  }
+  /**
+   * Information about an agent involved in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo {
+    /**
+     * A user-specified string representing the agent.
+     */
+    agentId?: string | null;
+    /**
+     * The agent type, e.g. HUMAN_AGENT.
+     */
+    agentType?: string | null;
+    /**
+     * The agent's deployment display name. Only applicable to automated agents.
+     */
+    deploymentDisplayName?: string | null;
+    /**
+     * The agent's deployment ID. Only applicable to automated agents.
+     */
+    deploymentId?: string | null;
+    /**
+     * The agent's name.
+     */
+    displayName?: string | null;
+    /**
+     * A user-provided string indicating the outcome of the agent's segment of the call.
+     */
+    dispositionCode?: string | null;
+    /**
+     * The agent's location.
+     */
+    location?: string | null;
+    /**
+     * A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.
+     */
+    team?: string | null;
+    /**
+     * User-specified strings representing the agent's teams.
+     */
+    teams?: string[] | null;
+    /**
+     * The agent's version display name. Only applicable to automated agents.
+     */
+    versionDisplayName?: string | null;
+    /**
+     * The agent's version ID. Only applicable to automated agents.
+     */
+    versionId?: string | null;
+  }
+  /**
+   * Conversation summarization suggestion data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData {
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    answerRecord?: string | null;
+    /**
+     * The confidence score of the summarization.
+     */
+    confidence?: number | null;
+    /**
+     * The name of the model that generates this summary. Format: projects/{project\}/locations/{location\}/conversationModels/{conversation_model\}
+     */
+    conversationModel?: string | null;
+    /**
+     * Agent Assist generator ID.
+     */
+    generatorId?: string | null;
+    /**
+     * A map that contains metadata about the summarization and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The summarization content that is concatenated into one string.
+     */
+    text?: string | null;
+    /**
+     * The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.
+     */
+    textSections?: {[key: string]: string} | null;
+  }
+  /**
+   * A message representing the transcript of a conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscript {
+    /**
+     * A list of sequential transcript segments that comprise the conversation.
+     */
+    transcriptSegments?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegment[];
+  }
+  /**
+   * A segment of a full transcript.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegment {
+    /**
+     * For conversations derived from multi-channel audio, this is the channel number corresponding to the audio from that channel. For audioChannelCount = N, its output values can range from '1' to 'N'. A channel tag of 0 indicates that the audio is mono.
+     */
+    channelTag?: number | null;
+    /**
+     * A confidence estimate between 0.0 and 1.0 of the fidelity of this segment. A default value of 0.0 indicates that the value is unset.
+     */
+    confidence?: number | null;
+    /**
+     * CCAI metadata relating to the current transcript segment.
+     */
+    dialogflowSegmentMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata;
+    /**
+     * The language code of this segment as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * The time that the message occurred, if provided.
+     */
+    messageTime?: string | null;
+    /**
+     * The participant of this segment.
+     */
+    segmentParticipant?: Schema$GoogleCloudContactcenterinsightsV1mainConversationParticipant;
+    /**
+     * The sentiment for this transcript segment.
+     */
+    sentiment?: Schema$GoogleCloudContactcenterinsightsV1mainSentimentData;
+    /**
+     * The text of this segment.
+     */
+    text?: string | null;
+    /**
+     * A list of the word-specific information for each word in the segment.
+     */
+    words?: Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo[];
+  }
+  /**
+   * Metadata from Dialogflow relating to the current transcript segment.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata {
+    /**
+     * Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.
+     */
+    smartReplyAllowlistCovered?: boolean | null;
+  }
+  /**
+   * Word-level info for words in a transcript.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo {
+    /**
+     * A confidence estimate between 0.0 and 1.0 of the fidelity of this word. A default value of 0.0 indicates that the value is unset.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset of the end of this word relative to the beginning of the total conversation.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset of the start of this word relative to the beginning of the total conversation.
+     */
+    startOffset?: string | null;
+    /**
+     * The word itself. Includes punctuation marks that surround the word.
+     */
+    word?: string | null;
+  }
+  /**
+   * Metadata for a create analysis operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCreateAnalysisOperationMetadata {
+    /**
+     * Output only. The annotator selector used for the analysis (if any).
+     */
+    annotatorSelector?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelector;
+    /**
+     * Output only. The Conversation that this Analysis Operation belongs to.
+     */
+    conversation?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+  }
+  /**
+   * Metadata for creating an issue.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request for creation.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueRequest;
+  }
+  /**
+   * Metadata for creating an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueModelMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request for creation.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueModelRequest;
+  }
+  /**
+   * The request to create an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueModelRequest {
+    /**
+     * Required. The issue model to create.
+     */
+    issueModel?: Schema$GoogleCloudContactcenterinsightsV1mainIssueModel;
+    /**
+     * Required. The parent resource of the issue model.
+     */
+    parent?: string | null;
+  }
+  /**
+   * The request to create an issue.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainCreateIssueRequest {
+    /**
+     * Required. The values for the new issue.
+     */
+    issue?: Schema$GoogleCloudContactcenterinsightsV1mainIssue;
+    /**
+     * Required. The parent resource of the issue.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDataset {
+    /**
+     * Output only. Dataset create time.
+     */
+    createTime?: string | null;
+    /**
+     * Dataset description.
+     */
+    description?: string | null;
+    /**
+     * Display name for the dataaset
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. Identifier. Resource name of the dataset. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}
+     */
+    name?: string | null;
+    /**
+     * Optional. Option TTL for the dataset.
+     */
+    ttl?: string | null;
+    /**
+     * Dataset usage type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Dataset update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata for deleting an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeleteIssueModelMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request for deletion.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainDeleteIssueModelRequest;
+  }
+  /**
+   * The request to delete an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeleteIssueModelRequest {
+    /**
+     * Required. The name of the issue model to delete.
+     */
+    name?: string | null;
+  }
+  /**
+   * The metadata for deleting a QaQuestionTag Resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The original request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagRequest;
+  }
+  /**
+   * The request for deleting a QaQuestionTag.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagRequest {
+    /**
+     * Required. The name of the QaQuestionTag to delete.
+     */
+    name?: string | null;
+  }
+  /**
+   * Metadata for deploying an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeployIssueModelMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request for deployment.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest;
+  }
+  /**
+   * The request to deploy an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest {
+    /**
+     * Required. The issue model to deploy.
+     */
+    name?: string | null;
+  }
+  /**
+   * The response to deploy an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDeployIssueModelResponse {}
+  /**
+   * The data for a Dialogflow intent. Represents a detected intent in the conversation, e.g. MAKES_PROMISE.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDialogflowIntent {
+    /**
+     * The human-readable name of the intent.
+     */
+    displayName?: string | null;
+  }
+  /**
+   * Dialogflow interaction data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDialogflowInteractionData {
+    /**
+     * The confidence of the match ranging from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * The Dialogflow intent resource path. Format: projects/{project\}/agent/{agent\}/intents/{intent\}
+     */
+    dialogflowIntentId?: string | null;
+  }
+  /**
+   * A Dialogflow source of conversation data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDialogflowSource {
+    /**
+     * Cloud Storage URI that points to a file that contains the conversation audio.
+     */
+    audioUri?: string | null;
+    /**
+     * Output only. The name of the Dialogflow conversation that this conversation resource is derived from. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
+     */
+    dialogflowConversation?: string | null;
+  }
+  /**
+   * A dimension determines the grouping key for the query. In SQL terms, these would be part of both the "SELECT" and "GROUP BY" clauses.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimension {
+    /**
+     * Output only. Metadata about the agent dimension.
+     */
+    agentDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionAgentDimensionMetadata;
+    /**
+     * Output only. Metadata about the client sentiment category dimension.
+     */
+    clientSentimentCategoryDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionClientSentimentCategoryDimensionMetadata;
+    /**
+     * Output only. Metadata about the Conversational Agents playbook dimension.
+     */
+    conversationalAgentsPlaybookDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsPlaybookDimensionMetadata;
+    /**
+     * Output only. Metadata about the Conversational Agents tool dimension.
+     */
+    conversationalAgentsToolDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsToolDimensionMetadata;
+    /**
+     * Output only. Metadata about the conversation profile dimension.
+     */
+    conversationProfileDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationProfileDimensionMetadata;
+    /**
+     * The key of the dimension.
+     */
+    dimensionKey?: string | null;
+    /**
+     * Output only. Metadata about the issue dimension.
+     */
+    issueDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata;
+    /**
+     * Output only. Metadata about conversation labels.
+     */
+    labelDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionLabelDimensionMetadata;
+    /**
+     * Output only. Metadata about the conversation medium dimension.
+     */
+    mediumDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionMediumDimensionMetadata;
+    /**
+     * Output only. Metadata about the QA question-answer dimension.
+     */
+    qaQuestionAnswerDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionAnswerDimensionMetadata;
+    /**
+     * Output only. Metadata about the QA question dimension.
+     */
+    qaQuestionDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionDimensionMetadata;
+    /**
+     * Output only. Metadata about the QA scorecard dimension.
+     */
+    qaScorecardDimensionMetadata?: Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaScorecardDimensionMetadata;
+  }
+  /**
+   * Metadata about the agent dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionAgentDimensionMetadata {
+    /**
+     * Optional. The agent's deployment display name. Only applicable to automated agents. This will be populated for AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentDeploymentDisplayName?: string | null;
+    /**
+     * Optional. The agent's deployment ID. Only applicable to automated agents. This will be populated for AGENT and AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentDeploymentId?: string | null;
+    /**
+     * Optional. The agent's name This will be populated for AGENT, AGENT_TEAM, AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentDisplayName?: string | null;
+    /**
+     * Optional. A user-specified string representing the agent. This will be populated for AGENT, AGENT_TEAM, AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentId?: string | null;
+    /**
+     * Optional. A user-specified string representing the agent's team.
+     */
+    agentTeam?: string | null;
+    /**
+     * Optional. The agent's version display name. Only applicable to automated agents. This will be populated for AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentVersionDisplayName?: string | null;
+    /**
+     * Optional. The agent's version ID. Only applicable to automated agents. This will be populated for AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.
+     */
+    agentVersionId?: string | null;
+  }
+  /**
+   * Metadata about the client sentiment category dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionClientSentimentCategoryDimensionMetadata {
+    /**
+     * Optional. The client sentiment category.
+     */
+    sentimentCategory?: string | null;
+  }
+  /**
+   * Metadata about the Conversational Agents playbook dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsPlaybookDimensionMetadata {
+    /**
+     * Optional. The dialogflow playbook display name.
+     */
+    playbookDisplayName?: string | null;
+    /**
+     * Optional. The dialogflow playbook ID.
+     */
+    playbookId?: string | null;
+  }
+  /**
+   * Metadata about the Conversational Agents tool dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsToolDimensionMetadata {
+    /**
+     * Optional. The dialogflow tool display name.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * Optional. The dialogflow tool ID.
+     */
+    toolId?: string | null;
+  }
+  /**
+   * Metadata about the conversation profile dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionConversationProfileDimensionMetadata {
+    /**
+     * Optional. The conversation profile ID.
+     */
+    conversationProfileId?: string | null;
+  }
+  /**
+   * Metadata about the issue dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata {
+    /**
+     * The issue display name.
+     */
+    issueDisplayName?: string | null;
+    /**
+     * The issue ID.
+     */
+    issueId?: string | null;
+    /**
+     * The parent issue model ID.
+     */
+    issueModelId?: string | null;
+  }
+  /**
+   * Metadata about conversation labels.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionLabelDimensionMetadata {
+    /**
+     * Optional. The label key.
+     */
+    labelKey?: string | null;
+    /**
+     * Optional. The label value.
+     */
+    labelValue?: string | null;
+  }
+  /**
+   * Metadata about the conversation medium dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionMediumDimensionMetadata {
+    /**
+     * Optional. The conversation medium. Currently supports : PHONE_CALL, CHAT.
+     */
+    medium?: string | null;
+  }
+  /**
+   * Metadata about the QA question-answer dimension. This is useful for showing the answer distribution for questions for a given scorecard.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionAnswerDimensionMetadata {
+    /**
+     * Optional. The full body of the question.
+     */
+    answerValue?: string | null;
+    /**
+     * Optional. The QA question ID.
+     */
+    qaQuestionId?: string | null;
+    /**
+     * Optional. The QA scorecard ID.
+     */
+    qaScorecardId?: string | null;
+    /**
+     * Optional. The full body of the question.
+     */
+    questionBody?: string | null;
+  }
+  /**
+   * Metadata about the QA question dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionDimensionMetadata {
+    /**
+     * Optional. The QA question ID.
+     */
+    qaQuestionId?: string | null;
+    /**
+     * Optional. The QA scorecard ID.
+     */
+    qaScorecardId?: string | null;
+    /**
+     * Optional. The full body of the question.
+     */
+    questionBody?: string | null;
+  }
+  /**
+   * Metadata about the QA scorecard dimension.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainDimensionQaScorecardDimensionMetadata {
+    /**
+     * Optional. The QA scorecard ID.
+     */
+    qaScorecardId?: string | null;
+  }
+  /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. `Conversation`).
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainEncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by our default encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
+   * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainEntity {
+    /**
+     * The representative name for the entity.
+     */
+    displayName?: string | null;
+    /**
+     * Metadata associated with the entity. For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The salience score associated with the entity in the [0, 1.0] range. The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.
+     */
+    salience?: number | null;
+    /**
+     * The aggregate sentiment expressed for this entity in the conversation.
+     */
+    sentiment?: Schema$GoogleCloudContactcenterinsightsV1mainSentimentData;
+    /**
+     * The entity type.
+     */
+    type?: string | null;
+  }
+  /**
+   * The data for an entity mention annotation. This represents a mention of an `Entity` in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainEntityMentionData {
+    /**
+     * The key of this entity in conversation entities. Can be used to retrieve the exact `Entity` this mention is attached to.
+     */
+    entityUniqueId?: string | null;
+    /**
+     * Sentiment expressed for this mention of the entity.
+     */
+    sentiment?: Schema$GoogleCloudContactcenterinsightsV1mainSentimentData;
+    /**
+     * The type of the entity mention.
+     */
+    type?: string | null;
+  }
+  /**
+   * Metadata for an export insights operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataMetadata {
+    /**
+     * The number of conversations that were exported successfully.
+     */
+    completedExportCount?: number | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The number of conversations that failed to be exported.
+     */
+    failedExportCount?: number | null;
+    /**
+     * Partial errors during export operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The original request for export.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequest;
+  }
+  /**
+   * The request to export insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequest {
+    /**
+     * Specified if sink is a BigQuery table.
+     */
+    bigQueryDestination?: Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequestBigQueryDestination;
+    /**
+     * Optional. Version of the export schema.
+     */
+    exportSchemaVersion?: string | null;
+    /**
+     * A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.
+     */
+    filter?: string | null;
+    /**
+     * A fully qualified KMS key name for BigQuery tables protected by CMEK. Format: projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}/cryptoKeyVersions/{version\}
+     */
+    kmsKey?: string | null;
+    /**
+     * Required. The parent resource to export data from.
+     */
+    parent?: string | null;
+    /**
+     * Options for what to do if the destination table already exists.
+     */
+    writeDisposition?: string | null;
+  }
+  /**
+   * A BigQuery Table Reference.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequestBigQueryDestination {
+    /**
+     * Required. The name of the BigQuery dataset that the snapshot result should be exported to. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.
+     */
+    dataset?: string | null;
+    /**
+     * A project ID or number. If specified, then export will attempt to write data to this project instead of the resource project. Otherwise, the resource project will be used.
+     */
+    projectId?: string | null;
+    /**
+     * The BigQuery table name to which the insights data should be written. If this table does not exist, the export call returns an INVALID_ARGUMENT error.
+     */
+    table?: string | null;
+  }
+  /**
+   * Response for an export insights operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportInsightsDataResponse {}
+  /**
+   * Metadata used for export issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original export request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelRequest;
+  }
+  /**
+   * Request to export an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelRequest {
+    /**
+     * Google Cloud Storage URI to export the issue model to.
+     */
+    gcsDestination?: Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelRequestGcsDestination;
+    /**
+     * Required. The issue model to export.
+     */
+    name?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to save the issue model to.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelRequestGcsDestination {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from export issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainExportIssueModelResponse {}
+  /**
+   * Agent Assist frequently-asked-question answer data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainFaqAnswerData {
+    /**
+     * The piece of text from the `source` knowledge base document.
+     */
+    answer?: string | null;
+    /**
+     * The system's confidence score that this answer is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidenceScore?: number | null;
+    /**
+     * Map that contains metadata about the FAQ answer and the document that it originates from.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    queryRecord?: string | null;
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+    /**
+     * The knowledge document that this answer was extracted from. Format: projects/{project\}/knowledgeBases/{knowledge_base\}/documents/{document\}.
+     */
+    source?: string | null;
+  }
+  /**
+   * Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling. AgentAssistSummary labels are used for Agent Assist Summarization.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainFeedbackLabel {
+    /**
+     * Output only. Create time of the label.
+     */
+    createTime?: string | null;
+    /**
+     * String label used for Topic Modeling.
+     */
+    label?: string | null;
+    /**
+     * Name of the resource to be labeled. Supported resources are: * `projects/{project\}/locations/{location\}/qaScorecards/{scorecard\}/revisions/{revision\}/qaQuestions/{question\}` * `projects/{project\}/locations/{location\}/issueModels/{issue_model\}` * `projects/{project\}/locations/{location\}/generators/{generator_id\}`
+     */
+    labeledResource?: string | null;
+    /**
+     * Immutable. Resource name of the FeedbackLabel. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/feedbackLabels/{feedback_label\}
+     */
+    name?: string | null;
+    /**
+     * QaAnswer label used for Quality AI example conversations.
+     */
+    qaAnswerLabel?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
+    /**
+     * Output only. Update time of the label.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A Cloud Storage source of conversation data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGcsSource {
+    /**
+     * Cloud Storage URI that points to a file that contains the conversation audio.
+     */
+    audioUri?: string | null;
+    /**
+     * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
+     */
+    transcriptUri?: string | null;
+  }
+  /**
+   * The data for a hold annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainHoldData {}
+  /**
+   * Metadata used for import issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelMetadata {
+    /**
+     * The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original import request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelRequest;
+  }
+  /**
+   * Request to import an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelRequest {
+    /**
+     * Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.
+     */
+    createNewModel?: boolean | null;
+    /**
+     * Google Cloud Storage source message.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelRequestGcsSource;
+    /**
+     * Required. The parent resource of the issue model.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Google Cloud Storage Object URI to get the issue model file from.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelRequestGcsSource {
+    /**
+     * Required. Format: `gs:///`
+     */
+    objectUri?: string | null;
+  }
+  /**
+   * Response from import issue model
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainImportIssueModelResponse {
+    /**
+     * The issue model that was imported.
+     */
+    issueModel?: Schema$GoogleCloudContactcenterinsightsV1mainIssueModel;
+  }
+  /**
+   * The metadata for an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Statistics for IngestConversations operation.
+     */
+    ingestConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadataIngestConversationsStats;
+    /**
+     * Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for ingest.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequest;
+    /**
+     * Output only. Stores the conversation resources produced by ingest sampling operations.
+     */
+    sampledConversations?: string[] | null;
+  }
+  /**
+   * Statistics for IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadataIngestConversationsStats {
+    /**
+     * Output only. The number of objects skipped because another conversation with the same transcript uri had already been ingested.
+     */
+    duplicatesSkippedCount?: number | null;
+    /**
+     * Output only. The number of objects which were unable to be ingested due to errors. The errors are populated in the partial_errors field.
+     */
+    failedIngestCount?: number | null;
+    /**
+     * Output only. The number of objects processed during the ingest operation.
+     */
+    processedObjectCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this ingest operation.
+     */
+    successfulIngestCount?: number | null;
+  }
+  /**
+   * The request to ingest conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequest {
+    /**
+     * Configuration that applies to all conversations.
+     */
+    conversationConfig?: Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestConversationConfig;
+    /**
+     * A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication.
+     */
+    gcsSource?: Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestGcsSource;
+    /**
+     * Required. The parent resource for new conversations.
+     */
+    parent?: string | null;
+    /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
+     */
+    redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1mainRedactionConfig;
+    /**
+     * Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.
+     */
+    sampleSize?: number | null;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1mainSpeechConfig;
+    /**
+     * Configuration for when `source` contains conversation transcripts.
+     */
+    transcriptObjectConfig?: Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestTranscriptObjectConfig;
+  }
+  /**
+   * Configuration that applies to all conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestConversationConfig {
+    /**
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
+     */
+    agentChannel?: number | null;
+    /**
+     * Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.
+     */
+    agentId?: string | null;
+    /**
+     * Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.
+     */
+    customerChannel?: number | null;
+  }
+  /**
+   * Configuration for Cloud Storage bucket sources.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestGcsSource {
+    /**
+     * Optional. The Cloud Storage path to the conversation audio file. Note that: [1] Audio files will be transcribed if not already. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.
+     */
+    audioBucketUri?: string | null;
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`. Avoid passing this. This is inferred from the `transcript_bucket_uri`, `audio_bucket_uri`.
+     */
+    bucketObjectType?: string | null;
+    /**
+     * Optional. The Cloud Storage bucket containing source objects. Avoid passing this. Pass this through one of `transcript_bucket_uri` or `audio_bucket_uri`.
+     */
+    bucketUri?: string | null;
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 100 labels per conversation.
+     */
+    customMetadataKeys?: string[] | null;
+    /**
+     * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
+     */
+    metadataBucketUri?: string | null;
+    /**
+     * Optional. The Cloud Storage path to the conversation transcripts. Note that: [1] Transcript files are expected to be in JSON format. [2] Transcript, audio, metadata files must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
+     */
+    transcriptBucketUri?: string | null;
+  }
+  /**
+   * Configuration for processing transcript objects.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestTranscriptObjectConfig {
+    /**
+     * Required. The medium transcript objects represent.
+     */
+    medium?: string | null;
+  }
+  /**
+   * The response to an IngestConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIngestConversationsResponse {}
+  /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during initializing operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the `kms_key_name` field is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudContactcenterinsightsV1mainEncryptionSpec;
+  }
+  /**
+   * The response to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecResponse {}
+  /**
+   * The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIntent {
+    /**
+     * The human-readable name of the intent.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier of the intent.
+     */
+    id?: string | null;
+  }
+  /**
+   * The data for an intent match. Represents an intent match for a text segment in the conversation. A text segment can be part of a sentence, a complete sentence, or an utterance with multiple sentences.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIntentMatchData {
+    /**
+     * The id of the matched intent. Can be used to retrieve the corresponding intent information.
+     */
+    intentUniqueId?: string | null;
+  }
+  /**
+   * The data for an interruption annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainInterruptionData {}
+  /**
+   * The issue resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssue {
+    /**
+     * Output only. The time at which this issue was created.
+     */
+    createTime?: string | null;
+    /**
+     * Representative description of the issue.
+     */
+    displayDescription?: string | null;
+    /**
+     * The representative name for the issue.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. The resource name of the issue. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Resource names of the sample representative utterances that match to this issue.
+     */
+    sampleUtterances?: string[] | null;
+    /**
+     * Output only. The most recent time that this issue was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Information about the issue.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueAssignment {
+    /**
+     * Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name of the assigned issue.
+     */
+    issue?: string | null;
+    /**
+     * Score indicating the likelihood of the issue assignment. currently bounded on [0,1].
+     */
+    score?: number | null;
+  }
+  /**
+   * The data for an issue match annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueMatchData {
+    /**
+     * Information about the issue's assignment.
+     */
+    issueAssignment?: Schema$GoogleCloudContactcenterinsightsV1mainIssueAssignment;
+  }
+  /**
+   * The issue model resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueModel {
+    /**
+     * Output only. The time at which this issue model was created.
+     */
+    createTime?: string | null;
+    /**
+     * The representative name for the issue model.
+     */
+    displayName?: string | null;
+    /**
+     * Configs for the input data that used to create the issue model.
+     */
+    inputDataConfig?: Schema$GoogleCloudContactcenterinsightsV1mainIssueModelInputDataConfig;
+    /**
+     * Output only. Number of issues in this issue model.
+     */
+    issueCount?: string | null;
+    /**
+     * Language of the model.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the model.
+     */
+    modelType?: string | null;
+    /**
+     * Immutable. The resource name of the issue model. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the model.
+     */
+    state?: string | null;
+    /**
+     * Output only. Immutable. The issue model's label statistics on its training data.
+     */
+    trainingStats?: Schema$GoogleCloudContactcenterinsightsV1mainIssueModelLabelStats;
+    /**
+     * Output only. The most recent time at which the issue model was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configs for the input data used to create the issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueModelInputDataConfig {
+    /**
+     * A filter to reduce the conversations used for training the model to a specific subset. Refer to https://cloud.google.com/contact-center/insights/docs/filtering for details.
+     */
+    filter?: string | null;
+    /**
+     * Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.
+     */
+    medium?: string | null;
+    /**
+     * Output only. Number of conversations used in training. Output only.
+     */
+    trainingConversationsCount?: string | null;
+  }
+  /**
+   * Aggregated statistics about an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueModelLabelStats {
+    /**
+     * Number of conversations the issue model has analyzed at this point in time.
+     */
+    analyzedConversationsCount?: string | null;
+    /**
+     * Statistics on each issue. Key is the issue's resource name.
+     */
+    issueStats?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudContactcenterinsightsV1mainIssueModelLabelStatsIssueStats;
+    } | null;
+    /**
+     * Number of analyzed conversations for which no issue was applicable at this point in time.
+     */
+    unclassifiedConversationsCount?: string | null;
+  }
+  /**
+   * Aggregated statistics about an issue.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueModelLabelStatsIssueStats {
+    /**
+     * Display name of the issue.
+     */
+    displayName?: string | null;
+    /**
+     * Issue resource. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
+     */
+    issue?: string | null;
+    /**
+     * Number of conversations attached to the issue at this point in time.
+     */
+    labeledConversationsCount?: string | null;
+  }
+  /**
+   * Issue Modeling result on a conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainIssueModelResult {
+    /**
+     * Issue model that generates the result. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}
+     */
+    issueModel?: string | null;
+    /**
+     * All the matched issues.
+     */
+    issues?: Schema$GoogleCloudContactcenterinsightsV1mainIssueAssignment[];
+  }
+  /**
+   * The response for listing all feedback labels.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainListAllFeedbackLabelsResponse {
+    /**
+     * The feedback labels that match the request.
+     */
+    feedbackLabels?: Schema$GoogleCloudContactcenterinsightsV1mainFeedbackLabel[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response for listing feedback labels.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainListFeedbackLabelsResponse {
+    /**
+     * The feedback labels that match the request.
+     */
+    feedbackLabels?: Schema$GoogleCloudContactcenterinsightsV1mainFeedbackLabel[];
+    /**
+     * The next page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The data for a matched phrase matcher. Represents information identifying a phrase matcher for a given match.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainPhraseMatchData {
+    /**
+     * The human-readable name of the phrase matcher.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier (the resource name) of the phrase matcher.
+     */
+    phraseMatcher?: string | null;
+  }
+  /**
+   * An answer to a QaQuestion.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaAnswer {
+    /**
+     * List of all individual answers given to the question.
+     */
+    answerSources?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource[];
+    /**
+     * The main answer value, incorporating any manual edits if they exist.
+     */
+    answerValue?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
+    /**
+     * The conversation the answer applies to.
+     */
+    conversation?: string | null;
+    /**
+     * The QaQuestion answered by this answer.
+     */
+    qaQuestion?: string | null;
+    /**
+     * Question text. E.g., "Did the agent greet the customer?"
+     */
+    questionBody?: string | null;
+    /**
+     * User-defined list of arbitrary tags. Matches the value from QaScorecard.ScorecardQuestion.tags. Used for grouping/organization and for weighting the score of each answer.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * A question may have multiple answers from varying sources, one of which becomes the "main" answer above. AnswerSource represents each individual answer.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource {
+    /**
+     * The answer value from this source.
+     */
+    answerValue?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
+    /**
+     * What created the answer.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * Message for holding the value of a QaAnswer. QaQuestion.AnswerChoice defines the possible answer values for a question.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue {
+    /**
+     * Boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * A short string used as an identifier. Matches the value used in QaQuestion.AnswerChoice.key.
+     */
+    key?: string | null;
+    /**
+     * A value of "Not Applicable (N/A)". Should only ever be `true`.
+     */
+    naValue?: boolean | null;
+    /**
+     * Output only. Normalized score of the questions. Calculated as score / potential_score.
+     */
+    normalizedScore?: number | null;
+    /**
+     * Numerical value.
+     */
+    numValue?: number | null;
+    /**
+     * Output only. The maximum potential score of the question.
+     */
+    potentialScore?: number | null;
+    /**
+     * Output only. Numerical score of the answer.
+     */
+    score?: number | null;
+    /**
+     * Output only. A value of "Skip". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.
+     */
+    skipValue?: boolean | null;
+    /**
+     * String value.
+     */
+    strValue?: string | null;
+  }
+  /**
+   * A tag is a resource which aims to categorize a set of questions across multiple scorecards, e.g., "Customer Satisfaction","Billing", etc.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaQuestionTag {
+    /**
+     * Output only. The time at which the question tag was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. A user-specified display name for the tag.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. Resource name for the QaQuestionTag Format projects/{project\}/locations/{location\}/qaQuestionTags/{qa_question_tag\} In the above format, the last segment, i.e., qa_question_tag, is a server-generated ID corresponding to the tag resource.
+     */
+    name?: string | null;
+    /**
+     * Optional. The list of Scorecard Question IDs that the tag applies to. Each QaQuestionId is represented as a full resource name containing the Question ID. Lastly, Since a tag may not necessarily be referenced by any Scorecard Questions, we treat this field as optional.
+     */
+    qaQuestionIds?: string[] | null;
+    /**
+     * Output only. The most recent time at which the question tag was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The results of scoring a single conversation against a QaScorecard. Contains a collection of QaAnswers and aggregate score.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResult {
+    /**
+     * ID of the agent that handled the conversation.
+     */
+    agentId?: string | null;
+    /**
+     * The conversation scored by this result.
+     */
+    conversation?: string | null;
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The name of the scorecard result. Format: projects/{project\}/locations/{location\}/qaScorecardResults/{qa_scorecard_result\}
+     */
+    name?: string | null;
+    /**
+     * The normalized score, which is the score divided by the potential score. Any manual edits are included if they exist.
+     */
+    normalizedScore?: number | null;
+    /**
+     * The maximum potential overall score of the scorecard. Any questions answered using `na_value` are excluded from this calculation.
+     */
+    potentialScore?: number | null;
+    /**
+     * Set of QaAnswers represented in the result.
+     */
+    qaAnswers?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswer[];
+    /**
+     * The QaScorecardRevision scored by this result.
+     */
+    qaScorecardRevision?: string | null;
+    /**
+     * Collection of tags and their scores.
+     */
+    qaTagResults?: Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult[];
+    /**
+     * The overall numerical score of the result, incorporating any manual edits if they exist.
+     */
+    score?: number | null;
+    /**
+     * List of all individual score sets.
+     */
+    scoreSources?: Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResultScoreSource[];
+  }
+  /**
+   * Tags and their corresponding results.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult {
+    /**
+     * The normalized score the tag applies to.
+     */
+    normalizedScore?: number | null;
+    /**
+     * The potential score the tag applies to.
+     */
+    potentialScore?: number | null;
+    /**
+     * The score the tag applies to.
+     */
+    score?: number | null;
+    /**
+     * The tag the score applies to.
+     */
+    tag?: string | null;
+  }
+  /**
+   * A scorecard result may have multiple sets of scores from varying sources, one of which becomes the "main" answer above. A ScoreSource represents each individual set of scores.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResultScoreSource {
+    /**
+     * The normalized score, which is the score divided by the potential score.
+     */
+    normalizedScore?: number | null;
+    /**
+     * The maximum potential overall score of the scorecard. Any questions answered using `na_value` are excluded from this calculation.
+     */
+    potentialScore?: number | null;
+    /**
+     * Collection of tags and their scores.
+     */
+    qaTagResults?: Schema$GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult[];
+    /**
+     * The overall numerical score of the result.
+     */
+    score?: number | null;
+    /**
+     * What created the score.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * The metadata from querying metrics.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsMetadata {
+    /**
+     * Whether the result rows were truncated because the result row size is too large to materialize.
+     */
+    resultIsTruncated?: boolean | null;
+  }
+  /**
+   * The response for querying metrics.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponse {
+    /**
+     * Required. The location of the data. "projects/{project\}/locations/{location\}"
+     */
+    location?: string | null;
+    /**
+     * The macro average slice contains aggregated averages across all selected dimensions. i.e. if group_by agent and scorecard_id is specified, this field will contain the average across all agents and all scorecards. This field is only populated if the request specifies a Dimension.
+     */
+    macroAverageSlice?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice;
+    /**
+     * A slice contains a total and (if the request specified a time granularity) a time series of metric values. Each slice contains a unique combination of the cardinality of dimensions from the request.
+     */
+    slices?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice[];
+    /**
+     * The metrics last update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A slice contains a total and (if the request specified a time granularity) a time series of metric values. Each slice contains a unique combination of the cardinality of dimensions from the request. For example, if the request specifies a single ISSUE dimension and it has a cardinality of 2 (i.e. the data used to compute the metrics has 2 issues in total), the response will have 2 slices: * Slice 1 -\> dimensions=[Issue 1] * Slice 2 -\> dimensions=[Issue 2]
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice {
+    /**
+     * A unique combination of dimensions that this slice represents.
+     */
+    dimensions?: Schema$GoogleCloudContactcenterinsightsV1mainDimension[];
+    /**
+     * A time series of metric values. This is only populated if the request specifies a time granularity other than NONE.
+     */
+    timeSeries?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceTimeSeries;
+    /**
+     * The total metric value. The interval of this data point is [starting create time, ending create time) from the request.
+     */
+    total?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint;
+  }
+  /**
+   * A data point contains the metric values mapped to an interval.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint {
+    /**
+     * The measure related to conversations.
+     */
+    conversationMeasure?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure;
+    /**
+     * The interval that this data point represents. * If this is the total data point, the interval is [starting create time, ending create time) from the request. * If this a data point from the time series, the interval is [time, time + time granularity from the request).
+     */
+    interval?: Schema$GoogleTypeInterval;
+  }
+  /**
+   * The measure related to conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure {
+    /**
+     * The average agent's sentiment score.
+     */
+    averageAgentSentimentScore?: number | null;
+    /**
+     * The average client's sentiment score.
+     */
+    averageClientSentimentScore?: number | null;
+    /**
+     * The average customer satisfaction rating.
+     */
+    averageCustomerSatisfactionRating?: number | null;
+    /**
+     * The average duration.
+     */
+    averageDuration?: string | null;
+    /**
+     * The average normalized QA score for a scorecard. When computing the average across a set of conversations, if a conversation has been evaluated with multiple revisions of a scorecard, only the latest revision results will be used. Will exclude 0's in average calculation. Will be only populated if the request specifies a dimension of QA_SCORECARD_ID.
+     */
+    averageQaNormalizedScore?: number | null;
+    /**
+     * Average QA normalized score averaged for questions averaged across all revisions of the parent scorecard. Will be only populated if the request specifies a dimension of QA_QUESTION_ID.
+     */
+    averageQaQuestionNormalizedScore?: number | null;
+    /**
+     * The average silence percentage.
+     */
+    averageSilencePercentage?: number | null;
+    /**
+     * The average turn count.
+     */
+    averageTurnCount?: number | null;
+    /**
+     * The conversation count.
+     */
+    conversationCount?: number | null;
+    /**
+     * Average QA normalized score for all the tags.
+     */
+    qaTagScores?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore[];
+  }
+  /**
+   * Average QA normalized score for the tag.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore {
+    /**
+     * Average tag normalized score per tag.
+     */
+    averageTagNormalizedScore?: number | null;
+    /**
+     * Tag name.
+     */
+    tag?: string | null;
+  }
+  /**
+   * A time series of metric values.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceTimeSeries {
+    /**
+     * The data points that make up the time series .
+     */
+    dataPoints?: Schema$GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint[];
+  }
+  /**
+   * The metadata for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewMetadata {}
+  /**
+   * The response for querying performance overview.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewResponse {
+    /**
+     * The summary text of the performance.
+     */
+    summaryText?: string | null;
+  }
+  /**
+   * DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainRedactionConfig {
+    /**
+     * The fully-qualified DLP deidentify template resource name. Format: `projects/{project\}/deidentifyTemplates/{template\}`
+     */
+    deidentifyTemplate?: string | null;
+    /**
+     * The fully-qualified DLP inspect template resource name. Format: `projects/{project\}/locations/{location\}/inspectTemplates/{template\}`
+     */
+    inspectTemplate?: string | null;
+  }
+  /**
+   * An annotation that was generated during the customer and agent interaction.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation {
+    /**
+     * The unique identifier of the annotation. Format: projects/{project\}/locations/{location\}/conversationDatasets/{dataset\}/conversationDataItems/{data_item\}/conversationAnnotations/{annotation\}
+     */
+    annotationId?: string | null;
+    /**
+     * The feedback that the customer has about the answer in `data`.
+     */
+    answerFeedback?: Schema$GoogleCloudContactcenterinsightsV1mainAnswerFeedback;
+    /**
+     * Agent Assist Article Suggestion data.
+     */
+    articleSuggestion?: Schema$GoogleCloudContactcenterinsightsV1mainArticleSuggestionData;
+    /**
+     * Conversation summarization suggestion data.
+     */
+    conversationSummarizationSuggestion?: Schema$GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData;
+    /**
+     * The time at which this annotation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Dialogflow interaction data.
+     */
+    dialogflowInteraction?: Schema$GoogleCloudContactcenterinsightsV1mainDialogflowInteractionData;
+    /**
+     * The boundary in the conversation where the annotation ends, inclusive.
+     */
+    endBoundary?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotationBoundary;
+    /**
+     * Agent Assist FAQ answer data.
+     */
+    faqAnswer?: Schema$GoogleCloudContactcenterinsightsV1mainFaqAnswerData;
+    /**
+     * Agent Assist Smart Compose suggestion data.
+     */
+    smartComposeSuggestion?: Schema$GoogleCloudContactcenterinsightsV1mainSmartComposeSuggestionData;
+    /**
+     * Agent Assist Smart Reply data.
+     */
+    smartReply?: Schema$GoogleCloudContactcenterinsightsV1mainSmartReplyData;
+    /**
+     * The boundary in the conversation where the annotation starts, inclusive.
+     */
+    startBoundary?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotationBoundary;
+    /**
+     * Explicit input used for generating the answer
+     */
+    userInput?: Schema$GoogleCloudContactcenterinsightsV1mainRuntimeAnnotationUserInput;
+  }
+  /**
+   * Explicit input used for generating the answer
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainRuntimeAnnotationUserInput {
+    /**
+     * The resource name of associated generator. Format: `projects//locations//generators/`
+     */
+    generatorName?: string | null;
+    /**
+     * Query text. Article Search uses this to store the input query used to generate the search results.
+     */
+    query?: string | null;
+    /**
+     * Query source for the answer.
+     */
+    querySource?: string | null;
+  }
+  /**
+   * The metadata for an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for sample conversations to dataset.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsRequest;
+    /**
+     * Output only. Statistics for SampleConversations operation.
+     */
+    sampleConversationsStats?: Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadataSampleConversationsStats;
+  }
+  /**
+   * Statistics for SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadataSampleConversationsStats {
+    /**
+     * Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.
+     */
+    failedSampleCount?: number | null;
+    /**
+     * Output only. The number of new conversations added during this sample operation.
+     */
+    successfulSampleCount?: number | null;
+  }
+  /**
+   * The request to sample conversations to a dataset.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsRequest {
+    /**
+     * The dataset resource to copy the sampled conversations to.
+     */
+    destinationDataset?: Schema$GoogleCloudContactcenterinsightsV1mainDataset;
+    /**
+     * Required. The parent resource of the dataset.
+     */
+    parent?: string | null;
+    /**
+     * Optional. The sample rule used for sampling conversations.
+     */
+    sampleRule?: Schema$GoogleCloudContactcenterinsightsV1mainSampleRule;
+  }
+  /**
+   * The response to an SampleConversations operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSampleConversationsResponse {}
+  /**
+   * Message for sampling conversations.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSampleRule {
+    /**
+     * To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.
+     */
+    conversationFilter?: string | null;
+    /**
+     * Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.
+     */
+    dimension?: string | null;
+    /**
+     * Percentage of conversations that we should sample based on the dimension between [0, 100].
+     */
+    samplePercentage?: number | null;
+    /**
+     * Number of the conversations that we should sample based on the dimension.
+     */
+    sampleRow?: string | null;
+  }
+  /**
+   * The data for a sentiment annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSentimentData {
+    /**
+     * A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.
+     */
+    magnitude?: number | null;
+    /**
+     * The sentiment score between -1.0 (negative) and 1.0 (positive).
+     */
+    score?: number | null;
+  }
+  /**
+   * The data for a silence annotation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSilenceData {}
+  /**
+   * Agent Assist Smart Compose suggestion data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSmartComposeSuggestionData {
+    /**
+     * The system's confidence score that this suggestion is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidenceScore?: number | null;
+    /**
+     * Map that contains metadata about the Smart Compose suggestion and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    queryRecord?: string | null;
+    /**
+     * The content of the suggestion.
+     */
+    suggestion?: string | null;
+  }
+  /**
+   * Agent Assist Smart Reply data.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSmartReplyData {
+    /**
+     * The system's confidence score that this reply is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidenceScore?: number | null;
+    /**
+     * Map that contains metadata about the Smart Reply and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The name of the answer record. Format: projects/{project\}/locations/{location\}/answerRecords/{answer_record\}
+     */
+    queryRecord?: string | null;
+    /**
+     * The content of the reply.
+     */
+    reply?: string | null;
+  }
+  /**
+   * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainSpeechConfig {
+    /**
+     * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
+     */
+    speechRecognizer?: string | null;
+  }
+  /**
+   * Metadata for undeploying an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUndeployIssueModelMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * The original request for undeployment.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainUndeployIssueModelRequest;
+  }
+  /**
+   * The request to undeploy an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUndeployIssueModelRequest {
+    /**
+     * Required. The issue model to undeploy.
+     */
+    name?: string | null;
+  }
+  /**
+   * The response to undeploy an issue model.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUndeployIssueModelResponse {}
+  /**
+   * The metadata for updating a QaQuestionTag Resource.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The original request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagRequest;
+  }
+  /**
+   * The request for updating a QaQuestionTag.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagRequest {
+    /**
+     * Required. The QaQuestionTag to update.
+     */
+    qaQuestionTag?: Schema$GoogleCloudContactcenterinsightsV1mainQaQuestionTag;
+    /**
+     * Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `qa_question_tag_name` - the name of the tag * `qa_question_ids` - the list of questions the tag applies to
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * The metadata for an `UploadConversation` operation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUploadConversationMetadata {
+    /**
+     * Output only. The operation name for a successfully created analysis operation, if any.
+     */
+    analysisOperation?: string | null;
+    /**
+     * Output only. The redaction config applied to the uploaded conversation.
+     */
+    appliedRedactionConfig?: Schema$GoogleCloudContactcenterinsightsV1mainRedactionConfig;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The original request.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1mainUploadConversationRequest;
+  }
+  /**
+   * Request to upload a conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainUploadConversationRequest {
+    /**
+     * Required. The conversation resource to create.
+     */
+    conversation?: Schema$GoogleCloudContactcenterinsightsV1mainConversation;
+    /**
+     * Optional. A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z0-9-]{4,64\}$`. Valid characters are `a-z-`
+     */
+    conversationId?: string | null;
+    /**
+     * Required. The parent resource of the conversation.
+     */
+    parent?: string | null;
+    /**
+     * Optional. DLP settings for transcript redaction. Will default to the config specified in Settings.
+     */
+    redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1mainRedactionConfig;
+    /**
+     * Optional. Speech-to-Text configuration. Will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1mainSpeechConfig;
+  }
+  /**
    * The conversation assessment note resource.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Note {
@@ -5463,6 +8223,10 @@ export namespace contactcenterinsights_v1 {
      * The configuration for the exact match rule.
      */
     exactMatchConfig?: Schema$GoogleCloudContactcenterinsightsV1ExactMatchConfig;
+    /**
+     * The configuration for the regex match rule.
+     */
+    regexMatchConfig?: Schema$GoogleCloudContactcenterinsightsV1RegexMatchConfig;
   }
   /**
    * A message representing a rule in the phrase matcher.
@@ -6080,6 +8844,10 @@ export namespace contactcenterinsights_v1 {
      */
     inspectTemplate?: string | null;
   }
+  /**
+   * Regex match configuration.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1RegexMatchConfig {}
   /**
    * An annotation that was generated during the customer and agent interaction.
    */

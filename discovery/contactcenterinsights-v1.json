@@ -5378,7 +5378,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20251208",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -9016,6 +9016,10 @@
         "exactMatchConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1ExactMatchConfig",
           "description": "The configuration for the exact match rule."
+        },
+        "regexMatchConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1RegexMatchConfig",
+          "description": "The configuration for the regex match rule."
         }
       },
       "type": "object"
@@ -9996,6 +10000,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1RegexMatchConfig": {
+      "description": "Regex match configuration.",
+      "id": "GoogleCloudContactcenterinsightsV1RegexMatchConfig",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1RuntimeAnnotation": {
@@ -14163,6 +14173,3754 @@
         },
         "speechConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
+          "description": "Optional. Speech-to-Text configuration. Will default to the config specified in Settings."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnalysis": {
+      "description": "The analysis resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnalysis",
+      "properties": {
+        "analysisResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnalysisResult",
+          "description": "Output only. The result of the analysis, which is populated when the analysis finishes.",
+          "readOnly": true
+        },
+        "annotatorSelector": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelector",
+          "description": "To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the analysis was created, which occurs when the long-running operation completes.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the analysis. Format: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}",
+          "type": "string"
+        },
+        "requestTime": {
+          "description": "Output only. The time at which the analysis was requested.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnalysisResult": {
+      "description": "The result of an analysis.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnalysisResult",
+      "properties": {
+        "callAnalysisMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnalysisResultCallAnalysisMetadata",
+          "description": "Call-specific metadata created by the analysis."
+        },
+        "endTime": {
+          "description": "The time at which the analysis ended.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnalysisResultCallAnalysisMetadata": {
+      "description": "Call-specific metadata created during analysis.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnalysisResultCallAnalysisMetadata",
+      "properties": {
+        "annotations": {
+          "description": "A list of call annotations that apply to this call.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainCallAnnotation"
+          },
+          "type": "array"
+        },
+        "entities": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainEntity"
+          },
+          "description": "All the entities in the call.",
+          "type": "object"
+        },
+        "intents": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainIntent"
+          },
+          "description": "All the matched intents in the call.",
+          "type": "object"
+        },
+        "issueModelResult": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModelResult",
+          "description": "Overall conversation-level issue modeling result."
+        },
+        "phraseMatchers": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainPhraseMatchData"
+          },
+          "description": "All the matched phrase matchers in the call.",
+          "type": "object"
+        },
+        "qaScorecardResults": {
+          "description": "Results of scoring QaScorecards.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaScorecardResult"
+          },
+          "type": "array"
+        },
+        "sentiments": {
+          "description": "Overall conversation-level sentiment for each channel of the call.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment"
+          },
+          "type": "array"
+        },
+        "silence": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationLevelSilence",
+          "description": "Overall conversation-level silence during the call."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary": {
+      "description": "A point in a conversation that marks the start or the end of an annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary",
+      "properties": {
+        "transcriptIndex": {
+          "description": "The index in the sequence of transcribed pieces of the conversation where the boundary is located. This index starts at zero.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "wordIndex": {
+          "description": "The word index of this boundary with respect to the first word in the transcript piece. This index starts at zero.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnnotatorSelector": {
+      "description": "Selector of all available annotators and phrase matchers to run.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelector",
+      "properties": {
+        "issueModels": {
+          "description": "The issue model to run. If not provided, the most recently deployed topic model will be used. The provided issue model will only be used for inference if the issue model is deployed and if run_issue_model_annotator is set to true. If more than one issue model is provided, only the first provided issue model will be used for inference.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phraseMatchers": {
+          "description": "The list of phrase matchers to run. If not provided, all active phrase matchers will be used. If inactive phrase matchers are provided, they will not be used. Phrase matchers will be run only if run_phrase_matcher_annotator is set to true. Format: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qaConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig",
+          "description": "Configuration for the QA annotator."
+        },
+        "runEntityAnnotator": {
+          "description": "Whether to run the entity annotator.",
+          "type": "boolean"
+        },
+        "runIntentAnnotator": {
+          "description": "Whether to run the intent annotator.",
+          "type": "boolean"
+        },
+        "runInterruptionAnnotator": {
+          "description": "Whether to run the interruption annotator.",
+          "type": "boolean"
+        },
+        "runIssueModelAnnotator": {
+          "description": "Whether to run the issue model annotator. A model should have already been deployed for this to take effect.",
+          "type": "boolean"
+        },
+        "runPhraseMatcherAnnotator": {
+          "description": "Whether to run the active phrase matcher annotator(s).",
+          "type": "boolean"
+        },
+        "runQaAnnotator": {
+          "description": "Whether to run the QA annotator.",
+          "type": "boolean"
+        },
+        "runSentimentAnnotator": {
+          "description": "Whether to run the sentiment annotator.",
+          "type": "boolean"
+        },
+        "runSilenceAnnotator": {
+          "description": "Whether to run the silence annotator.",
+          "type": "boolean"
+        },
+        "runSummarizationAnnotator": {
+          "description": "Whether to run the summarization annotator.",
+          "type": "boolean"
+        },
+        "summarizationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorSummarizationConfig",
+          "description": "Configuration for the summarization annotator."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig": {
+      "description": "Configuration for the QA feature.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig",
+      "properties": {
+        "scorecardList": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfigScorecardList",
+          "description": "A manual list of scorecards to score."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfigScorecardList": {
+      "description": "Container for a list of scorecards.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfigScorecardList",
+      "properties": {
+        "qaScorecardRevisions": {
+          "description": "List of QaScorecardRevisions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorSummarizationConfig": {
+      "description": "Configuration for summarization.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorSummarizationConfig",
+      "properties": {
+        "conversationProfile": {
+          "description": "Resource name of the Dialogflow conversation profile. Format: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}",
+          "type": "string"
+        },
+        "generator": {
+          "description": "The resource name of the existing created generator. Format: projects//locations//generators/",
+          "type": "string"
+        },
+        "summarizationModel": {
+          "description": "Default summarization model to be used.",
+          "enum": [
+            "SUMMARIZATION_MODEL_UNSPECIFIED",
+            "BASELINE_MODEL",
+            "BASELINE_MODEL_V2_0"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true
+          ],
+          "enumDescriptions": [
+            "Unspecified summarization model.",
+            "The CCAI baseline model. This model is deprecated and will be removed in the future. We recommend using `generator` instead.",
+            "The CCAI baseline model, V2.0. This model is deprecated and will be removed in the future. We recommend using `generator` instead."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainAnswerFeedback": {
+      "description": "The feedback that the customer has about a certain answer in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainAnswerFeedback",
+      "properties": {
+        "clicked": {
+          "description": "Indicates whether an answer or item was clicked by the human agent.",
+          "type": "boolean"
+        },
+        "correctnessLevel": {
+          "description": "The correctness level of an answer.",
+          "enum": [
+            "CORRECTNESS_LEVEL_UNSPECIFIED",
+            "NOT_CORRECT",
+            "PARTIALLY_CORRECT",
+            "FULLY_CORRECT"
+          ],
+          "enumDescriptions": [
+            "Correctness level unspecified.",
+            "Answer is totally wrong.",
+            "Answer is partially correct.",
+            "Answer is fully correct."
+          ],
+          "type": "string"
+        },
+        "displayed": {
+          "description": "Indicates whether an answer or item was displayed to the human agent in the agent desktop UI.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainArticleSuggestionData": {
+      "description": "Agent Assist Article Suggestion data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainArticleSuggestionData",
+      "properties": {
+        "confidenceScore": {
+          "description": "The system's confidence score that this article is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map that contains metadata about the Article Suggestion and the document that it originates from.",
+          "type": "object"
+        },
+        "queryRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "source": {
+          "description": "The knowledge document that this answer was extracted from. Format: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}",
+          "type": "string"
+        },
+        "title": {
+          "description": "Article title.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Article URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsMetadata": {
+      "description": "The metadata for a bulk analyze conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsMetadata",
+      "properties": {
+        "completedAnalysesCount": {
+          "description": "The number of requested analyses that have completed successfully so far.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failedAnalysesCount": {
+          "description": "The number of requested analyses that have failed so far.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during bulk analyze operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest",
+          "description": "The original request for bulk analyze."
+        },
+        "totalRequestedAnalysesCount": {
+          "description": "Total number of analyses requested. Computed by the number of conversations returned by `filter` multiplied by `analysis_percentage` in the request.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest": {
+      "description": "The request to analyze conversations in bulk.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest",
+      "properties": {
+        "analysisPercentage": {
+          "description": "Required. Percentage of selected conversation to analyze, between [0, 100].",
+          "format": "float",
+          "type": "number"
+        },
+        "annotatorSelector": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelector",
+          "description": "To select the annotators to run and the phrase matchers to use (if any). If not specified, all annotators will be run."
+        },
+        "filter": {
+          "description": "Required. Filter used to select the subset of conversations to analyze.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent resource to create analyses in.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsResponse": {
+      "description": "The response for a bulk analyze conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsResponse",
+      "properties": {
+        "failedAnalysisCount": {
+          "description": "Count of failed analyses.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "successfulAnalysisCount": {
+          "description": "Count of successful analyses.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsMetadata": {
+      "description": "The metadata for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during bulk delete conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsRequest",
+          "description": "The original request for bulk delete."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsRequest": {
+      "description": "The request to delete conversations in bulk.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsRequest",
+      "properties": {
+        "filter": {
+          "description": "Filter used to select the subset of conversations to delete.",
+          "type": "string"
+        },
+        "force": {
+          "description": "If set to true, all of this conversation's analyses will also be deleted. Otherwise, the request will only succeed if the conversation has no analyses.",
+          "type": "boolean"
+        },
+        "maxDeleteCount": {
+          "description": "Maximum number of conversations to delete.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "description": "Required. The parent resource to delete conversations from. Format: projects/{project}/locations/{location}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsResponse": {
+      "description": "The response for a bulk delete conversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteConversationsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsMetadata": {
+      "description": "Metadata for the BulkDeleteFeedbackLabels endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsMetadata",
+      "properties": {
+        "partialErrors": {
+          "description": "Partial errors during deletion operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsRequest",
+          "description": "Output only. The original request for delete.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsRequest": {
+      "description": "Request for the BulkDeleteFeedbackLabels endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent resource for new feedback labels.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsResponse": {
+      "description": "Response for the BulkDeleteFeedbackLabels endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDeleteFeedbackLabelsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadata": {
+      "description": "Metadata for the BulkDownloadFeedbackLabel endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "downloadStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadataDownloadStats",
+          "description": "Output only. Statistics for BulkDownloadFeedbackLabels operation.",
+          "readOnly": true
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during ingest operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequest",
+          "description": "Output only. The original request for download.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadataDownloadStats": {
+      "description": "Statistics for BulkDownloadFeedbackLabels operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsMetadataDownloadStats",
+      "properties": {
+        "fileNames": {
+          "description": "Output only. Full name of the files written to Cloud storage.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "processedObjectCount": {
+          "description": "The number of objects processed during the download operation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "successfulDownloadCount": {
+          "description": "The number of new feedback labels downloaded during this operation. Different from \"processed\" because some labels might not be downloaded because an error.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalFilesWritten": {
+          "description": "Total number of files written to the provided Cloud Storage bucket.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequest": {
+      "description": "Request for the BulkDownloadFeedbackLabel endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequest",
+      "properties": {
+        "conversationFilter": {
+          "description": "Optional. Filter parent conversations to download feedback labels for. When specified, the feedback labels will be downloaded for the conversations that match the filter. If `template_qa_scorecard_id` is set, all the conversations that match the filter will be paired with the questions under the scorecard for labeling.",
+          "type": "string"
+        },
+        "feedbackLabelType": {
+          "description": "Optional. The type of feedback labels that will be downloaded.",
+          "enum": [
+            "FEEDBACK_LABEL_TYPE_UNSPECIFIED",
+            "QUALITY_AI",
+            "TOPIC_MODELING",
+            "AGENT_ASSIST_SUMMARY"
+          ],
+          "enumDescriptions": [
+            "Unspecified format",
+            "Downloaded file will contain all Quality AI labels from the latest scorecard revision.",
+            "Downloaded file will contain only Topic Modeling labels.",
+            "Agent Assist Summarization labels."
+          ],
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields: * `issue_model_id` * `qa_question_id` * `qa_scorecard_id` * `min_create_time` * `max_create_time` * `min_update_time` * `max_update_time` * `feedback_label_type`: QUALITY_AI, TOPIC_MODELING",
+          "type": "string"
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestGcsDestination",
+          "description": "A cloud storage bucket destination."
+        },
+        "maxDownloadCount": {
+          "description": "Optional. Limits the maximum number of feedback labels that will be downloaded. The first `N` feedback labels will be downloaded.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "description": "Required. The parent resource for new feedback labels.",
+          "type": "string"
+        },
+        "sheetsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestSheetsDestination",
+          "description": "A sheets document destination."
+        },
+        "templateQaScorecardId": {
+          "description": "Optional. If set, a template for labeling conversations and scorecard questions will be created from the conversation_filter and the questions under the scorecard(s). The feedback label `filter` will be ignored.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestGcsDestination": {
+      "description": "Google Cloud Storage Object details to write the feedback labels to.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestGcsDestination",
+      "properties": {
+        "addWhitespace": {
+          "description": "Optional. Add whitespace to the JSON file. Makes easier to read, but increases file size. Only applicable for JSON format.",
+          "type": "boolean"
+        },
+        "alwaysPrintEmptyFields": {
+          "description": "Optional. Always print fields with no presence. This is useful for printing fields that are not set, like implicit 0 value or empty lists/maps. Only applicable for JSON format.",
+          "type": "boolean"
+        },
+        "format": {
+          "description": "Required. File format in which the labels will be exported.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "CSV",
+            "JSON"
+          ],
+          "enumDescriptions": [
+            "Unspecified format.",
+            "CSV format. 1,000 labels are stored per CSV file by default.",
+            "JSON format. 1 label stored per JSON file by default."
+          ],
+          "type": "string"
+        },
+        "objectUri": {
+          "description": "Required. The Google Cloud Storage URI to write the feedback labels to. The file name will be used as a prefix for the files written to the bucket if the output needs to be split across multiple files, otherwise it will be used as is. The file extension will be appended to the file name based on the format selected. E.g. `gs://bucket_name/object_uri_prefix`",
+          "type": "string"
+        },
+        "recordsPerFileCount": {
+          "description": "Optional. The number of records per file. Applicable for either format.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestSheetsDestination": {
+      "description": "Google Sheets document details to write the feedback labels to.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsRequestSheetsDestination",
+      "properties": {
+        "sheetTitle": {
+          "description": "Optional. The title of the new sheet to write the feedback labels to.",
+          "type": "string"
+        },
+        "spreadsheetUri": {
+          "description": "Required. The Google Sheets document to write the feedback labels to. Retrieved from Google Sheets URI. E.g. `https://docs.google.com/spreadsheets/d/1234567890` The spreadsheet must be shared with the Insights P4SA. The spreadsheet ID written to will be returned as `file_names` in the BulkDownloadFeedbackLabelsMetadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsResponse": {
+      "description": "Response for the BulkDownloadFeedbackLabel endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainBulkDownloadFeedbackLabelsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCallAnnotation": {
+      "description": "A piece of metadata that applies to a window of a call.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCallAnnotation",
+      "properties": {
+        "annotationEndBoundary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary",
+          "description": "The boundary in the conversation where the annotation ends, inclusive."
+        },
+        "annotationStartBoundary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary",
+          "description": "The boundary in the conversation where the annotation starts, inclusive."
+        },
+        "channelTag": {
+          "description": "The channel of the audio where the annotation occurs. For single-channel audio, this field is not populated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "entityMentionData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainEntityMentionData",
+          "description": "Data specifying an entity mention."
+        },
+        "holdData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainHoldData",
+          "description": "Data specifying a hold."
+        },
+        "intentMatchData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIntentMatchData",
+          "description": "Data specifying an intent match."
+        },
+        "interruptionData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainInterruptionData",
+          "description": "Data specifying an interruption."
+        },
+        "issueMatchData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueMatchData",
+          "description": "Data specifying an issue match."
+        },
+        "phraseMatchData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainPhraseMatchData",
+          "description": "Data specifying a phrase match."
+        },
+        "sentimentData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+          "description": "Data specifying sentiment."
+        },
+        "silenceData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSilenceData",
+          "description": "Data specifying silence."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversation": {
+      "description": "The conversation resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversation",
+      "properties": {
+        "agentId": {
+          "description": "An opaque, user-specified string representing the human agent who handled the conversation.",
+          "type": "string"
+        },
+        "callMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationCallMetadata",
+          "description": "Call-specific metadata."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the conversation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationDataSource",
+          "description": "The source of the audio and transcription for the conversation."
+        },
+        "dialogflowIntents": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainDialogflowIntent"
+          },
+          "description": "Output only. All the matched Dialogflow intents in the call. The key corresponds to a Dialogflow intent, format: projects/{project}/agent/{agent}/intents/{intent}",
+          "readOnly": true,
+          "type": "object"
+        },
+        "duration": {
+          "description": "Output only. The duration of the conversation.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "The time at which this conversation should expire. After this time, the conversation data and any associated analyses will be deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map for the user to specify any custom fields. A maximum of 100 labels per conversation is allowed, with a maximum of 256 characters per entry.",
+          "type": "object"
+        },
+        "languageCode": {
+          "description": "A user-specified language code for the conversation.",
+          "type": "string"
+        },
+        "latestAnalysis": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnalysis",
+          "description": "Output only. The conversation's latest analysis, if one exists.",
+          "readOnly": true
+        },
+        "latestSummary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData",
+          "description": "Output only. Latest summary of the conversation.",
+          "readOnly": true
+        },
+        "medium": {
+          "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
+          "enum": [
+            "MEDIUM_UNSPECIFIED",
+            "PHONE_CALL",
+            "CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value, if unspecified will default to PHONE_CALL.",
+            "The format for conversations that took place over the phone.",
+            "The format for conversations that took place over chat."
+          ],
+          "type": "string"
+        },
+        "metadataJson": {
+          "description": "Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with various telephony systems and must be in one of Insight's supported formats.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the conversation. Format: projects/{project}/locations/{location}/conversations/{conversation}",
+          "type": "string"
+        },
+        "obfuscatedUserId": {
+          "description": "Obfuscated user ID which the customer sent to us.",
+          "type": "string"
+        },
+        "qualityMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata",
+          "description": "Conversation metadata related to quality management."
+        },
+        "runtimeAnnotations": {
+          "description": "Output only. The annotations that were generated during the customer and agent interaction.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "startTime": {
+          "description": "The time at which the conversation started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "transcript": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationTranscript",
+          "description": "Output only. The conversation transcript.",
+          "readOnly": true
+        },
+        "ttl": {
+          "description": "Input only. The TTL for this resource. If specified, then this TTL will be used to calculate the expire time.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "turnCount": {
+          "description": "Output only. The number of turns in the conversation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the conversation was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationCallMetadata": {
+      "description": "Call-specific metadata.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationCallMetadata",
+      "properties": {
+        "agentChannel": {
+          "description": "The audio channel that contains the agent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "customerChannel": {
+          "description": "The audio channel that contains the customer.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationDataSource": {
+      "description": "The conversation source, which is a combination of transcript and audio.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationDataSource",
+      "properties": {
+        "dialogflowSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDialogflowSource",
+          "description": "The source when the conversation comes from Dialogflow."
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGcsSource",
+          "description": "A Cloud Storage location specification for the audio and transcript."
+        },
+        "metadataUri": {
+          "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment": {
+      "description": "One channel of conversation-level sentiment data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationLevelSentiment",
+      "properties": {
+        "channelTag": {
+          "description": "The channel of the audio that the data applies to.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sentimentData": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+          "description": "Data specifying sentiment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationLevelSilence": {
+      "description": "Conversation-level silence data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationLevelSilence",
+      "properties": {
+        "silenceDuration": {
+          "description": "Amount of time calculated to be in silence.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "silencePercentage": {
+          "description": "Percentage of the total conversation spent in silence.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationParticipant": {
+      "description": "The call participant speaking for a given utterance.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationParticipant",
+      "properties": {
+        "dialogflowParticipant": {
+          "deprecated": true,
+          "description": "Deprecated. Use `dialogflow_participant_name` instead. The name of the Dialogflow participant. Format: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}",
+          "type": "string"
+        },
+        "dialogflowParticipantName": {
+          "description": "The name of the participant provided by Dialogflow. Format: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}",
+          "type": "string"
+        },
+        "obfuscatedExternalUserId": {
+          "description": "Obfuscated user ID from Dialogflow.",
+          "type": "string"
+        },
+        "role": {
+          "description": "The role of the participant.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER",
+            "ANY_AGENT"
+          ],
+          "enumDescriptions": [
+            "Participant's role is not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent.",
+            "Participant is an end user who conversed with the contact center.",
+            "Participant is either a human or automated agent."
+          ],
+          "type": "string"
+        },
+        "userId": {
+          "description": "A user-specified ID representing the participant.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata": {
+      "description": "Conversation metadata related to quality management.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata",
+      "properties": {
+        "agentInfo": {
+          "description": "Information about agents involved in the call.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo"
+          },
+          "type": "array"
+        },
+        "customerSatisfactionRating": {
+          "description": "An arbitrary integer value indicating the customer's satisfaction rating.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "feedbackLabels": {
+          "description": "Input only. The feedback labels associated with the conversation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainFeedbackLabel"
+          },
+          "type": "array"
+        },
+        "menuPath": {
+          "description": "An arbitrary string value specifying the menu path the customer took.",
+          "type": "string"
+        },
+        "waitDuration": {
+          "description": "The amount of time the customer waited to connect with an agent.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo": {
+      "description": "Information about an agent involved in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationQualityMetadataAgentInfo",
+      "properties": {
+        "agentId": {
+          "description": "A user-specified string representing the agent.",
+          "type": "string"
+        },
+        "agentType": {
+          "description": "The agent type, e.g. HUMAN_AGENT.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER",
+            "ANY_AGENT"
+          ],
+          "enumDescriptions": [
+            "Participant's role is not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent.",
+            "Participant is an end user who conversed with the contact center.",
+            "Participant is either a human or automated agent."
+          ],
+          "type": "string"
+        },
+        "deploymentDisplayName": {
+          "description": "The agent's deployment display name. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "deploymentId": {
+          "description": "The agent's deployment ID. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The agent's name.",
+          "type": "string"
+        },
+        "dispositionCode": {
+          "description": "A user-provided string indicating the outcome of the agent's segment of the call.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The agent's location.",
+          "type": "string"
+        },
+        "team": {
+          "deprecated": true,
+          "description": "A user-specified string representing the agent's team. Deprecated in favor of the `teams` field.",
+          "type": "string"
+        },
+        "teams": {
+          "description": "User-specified strings representing the agent's teams.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "versionDisplayName": {
+          "description": "The agent's version display name. Only applicable to automated agents.",
+          "type": "string"
+        },
+        "versionId": {
+          "description": "The agent's version ID. Only applicable to automated agents.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData": {
+      "description": "Conversation summarization suggestion data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "The confidence score of the summarization.",
+          "format": "float",
+          "type": "number"
+        },
+        "conversationModel": {
+          "description": "The name of the model that generates this summary. Format: projects/{project}/locations/{location}/conversationModels/{conversation_model}",
+          "type": "string"
+        },
+        "generatorId": {
+          "description": "Agent Assist generator ID.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map that contains metadata about the summarization and the document from which it originates.",
+          "type": "object"
+        },
+        "text": {
+          "description": "The summarization content that is concatenated into one string.",
+          "type": "string"
+        },
+        "textSections": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The summarization content that is divided into sections. The key is the section's name and the value is the section's content. There is no specific format for the key or value.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationTranscript": {
+      "description": "A message representing the transcript of a conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationTranscript",
+      "properties": {
+        "transcriptSegments": {
+          "description": "A list of sequential transcript segments that comprise the conversation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegment": {
+      "description": "A segment of a full transcript.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegment",
+      "properties": {
+        "channelTag": {
+          "description": "For conversations derived from multi-channel audio, this is the channel number corresponding to the audio from that channel. For audioChannelCount = N, its output values can range from '1' to 'N'. A channel tag of 0 indicates that the audio is mono.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "confidence": {
+          "description": "A confidence estimate between 0.0 and 1.0 of the fidelity of this segment. A default value of 0.0 indicates that the value is unset.",
+          "format": "float",
+          "type": "number"
+        },
+        "dialogflowSegmentMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata",
+          "description": "CCAI metadata relating to the current transcript segment."
+        },
+        "languageCode": {
+          "description": "The language code of this segment as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\".",
+          "type": "string"
+        },
+        "messageTime": {
+          "description": "The time that the message occurred, if provided.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "segmentParticipant": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationParticipant",
+          "description": "The participant of this segment."
+        },
+        "sentiment": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+          "description": "The sentiment for this transcript segment."
+        },
+        "text": {
+          "description": "The text of this segment.",
+          "type": "string"
+        },
+        "words": {
+          "description": "A list of the word-specific information for each word in the segment.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata": {
+      "description": "Metadata from Dialogflow relating to the current transcript segment.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata",
+      "properties": {
+        "smartReplyAllowlistCovered": {
+          "description": "Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo": {
+      "description": "Word-level info for words in a transcript.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo",
+      "properties": {
+        "confidence": {
+          "description": "A confidence estimate between 0.0 and 1.0 of the fidelity of this word. A default value of 0.0 indicates that the value is unset.",
+          "format": "float",
+          "type": "number"
+        },
+        "endOffset": {
+          "description": "Time offset of the end of this word relative to the beginning of the total conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Time offset of the start of this word relative to the beginning of the total conversation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "word": {
+          "description": "The word itself. Includes punctuation marks that surround the word.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCreateAnalysisOperationMetadata": {
+      "description": "Metadata for a create analysis operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCreateAnalysisOperationMetadata",
+      "properties": {
+        "annotatorSelector": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelector",
+          "description": "Output only. The annotator selector used for the analysis (if any).",
+          "readOnly": true
+        },
+        "conversation": {
+          "description": "Output only. The Conversation that this Analysis Operation belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCreateIssueMetadata": {
+      "description": "Metadata for creating an issue.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCreateIssueMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainCreateIssueRequest",
+          "description": "The original request for creation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCreateIssueModelMetadata": {
+      "description": "Metadata for creating an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCreateIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainCreateIssueModelRequest",
+          "description": "The original request for creation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCreateIssueModelRequest": {
+      "description": "The request to create an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCreateIssueModelRequest",
+      "properties": {
+        "issueModel": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModel",
+          "description": "Required. The issue model to create."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the issue model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainCreateIssueRequest": {
+      "description": "The request to create an issue.",
+      "id": "GoogleCloudContactcenterinsightsV1mainCreateIssueRequest",
+      "properties": {
+        "issue": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssue",
+          "description": "Required. The values for the new issue."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDataset": {
+      "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
+      "id": "GoogleCloudContactcenterinsightsV1mainDataset",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dataset create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Dataset description.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name for the dataaset",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. Option TTL for the dataset.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "type": {
+          "description": "Dataset usage type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EVAL",
+            "LIVE"
+          ],
+          "enumDescriptions": [
+            "Default value for unspecified.",
+            "For evals only.",
+            "Dataset with new conversations coming in regularly (Insights legacy conversations and AI trainer)"
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Dataset update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeleteIssueModelMetadata": {
+      "description": "Metadata for deleting an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeleteIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDeleteIssueModelRequest",
+          "description": "The original request for deletion."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeleteIssueModelRequest": {
+      "description": "The request to delete an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeleteIssueModelRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the issue model to delete.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagMetadata": {
+      "description": "The metadata for deleting a QaQuestionTag Resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagRequest",
+          "description": "Output only. The original request.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagRequest": {
+      "description": "The request for deleting a QaQuestionTag.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeleteQaQuestionTagRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the QaQuestionTag to delete.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeployIssueModelMetadata": {
+      "description": "Metadata for deploying an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeployIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest",
+          "description": "The original request for deployment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest": {
+      "description": "The request to deploy an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeployIssueModelRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The issue model to deploy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDeployIssueModelResponse": {
+      "description": "The response to deploy an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDeployIssueModelResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDialogflowIntent": {
+      "description": "The data for a Dialogflow intent. Represents a detected intent in the conversation, e.g. MAKES_PROMISE.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDialogflowIntent",
+      "properties": {
+        "displayName": {
+          "description": "The human-readable name of the intent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDialogflowInteractionData": {
+      "description": "Dialogflow interaction data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDialogflowInteractionData",
+      "properties": {
+        "confidence": {
+          "description": "The confidence of the match ranging from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "dialogflowIntentId": {
+          "description": "The Dialogflow intent resource path. Format: projects/{project}/agent/{agent}/intents/{intent}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDialogflowSource": {
+      "description": "A Dialogflow source of conversation data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDialogflowSource",
+      "properties": {
+        "audioUri": {
+          "description": "Cloud Storage URI that points to a file that contains the conversation audio.",
+          "type": "string"
+        },
+        "dialogflowConversation": {
+          "description": "Output only. The name of the Dialogflow conversation that this conversation resource is derived from. Format: projects/{project}/locations/{location}/conversations/{conversation}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimension": {
+      "description": "A dimension determines the grouping key for the query. In SQL terms, these would be part of both the \"SELECT\" and \"GROUP BY\" clauses.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimension",
+      "properties": {
+        "agentDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionAgentDimensionMetadata",
+          "description": "Output only. Metadata about the agent dimension.",
+          "readOnly": true
+        },
+        "clientSentimentCategoryDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionClientSentimentCategoryDimensionMetadata",
+          "description": "Output only. Metadata about the client sentiment category dimension.",
+          "readOnly": true
+        },
+        "conversationProfileDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionConversationProfileDimensionMetadata",
+          "description": "Output only. Metadata about the conversation profile dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsPlaybookDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsPlaybookDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents playbook dimension.",
+          "readOnly": true
+        },
+        "conversationalAgentsToolDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsToolDimensionMetadata",
+          "description": "Output only. Metadata about the Conversational Agents tool dimension.",
+          "readOnly": true
+        },
+        "dimensionKey": {
+          "description": "The key of the dimension.",
+          "enum": [
+            "DIMENSION_KEY_UNSPECIFIED",
+            "ISSUE",
+            "ISSUE_NAME",
+            "AGENT",
+            "AGENT_TEAM",
+            "QA_QUESTION_ID",
+            "QA_QUESTION_ANSWER_VALUE",
+            "QA_SCORECARD_ID",
+            "CONVERSATION_PROFILE_ID",
+            "MEDIUM",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_ID",
+            "CONVERSATIONAL_AGENTS_PLAYBOOK_NAME",
+            "CONVERSATIONAL_AGENTS_TOOL_ID",
+            "CONVERSATIONAL_AGENTS_TOOL_NAME",
+            "CLIENT_SENTIMENT_CATEGORY",
+            "AGENT_VERSION_ID",
+            "AGENT_DEPLOYMENT_ID",
+            "AGENT_ASSIST_SUPERVISOR_ID",
+            "LABEL_KEY",
+            "LABEL_VALUE",
+            "LABEL_KEY_AND_VALUE"
+          ],
+          "enumDescriptions": [
+            "The key of the dimension is unspecified.",
+            "The dimension is keyed by issues.",
+            "The dimension is keyed by issue names.",
+            "The dimension is keyed by agents.",
+            "The dimension is keyed by agent teams.",
+            "The dimension is keyed by QaQuestionIds. Note that: We only group by the QuestionId and not the revision-id of the scorecard this question is a part of. This allows for showing stats for the same question across different scorecard revisions.",
+            "The dimension is keyed by QaQuestionIds-Answer value pairs. Note that: We only group by the QuestionId and not the revision-id of the scorecard this question is a part of. This allows for showing distribution of answers per question across different scorecard revisions.",
+            "The dimension is keyed by QaScorecardIds. Note that: We only group by the ScorecardId and not the revision-id of the scorecard. This allows for showing stats for the same scorecard across different revisions. This metric is mostly only useful if querying the average normalized score per scorecard.",
+            "The dimension is keyed by the conversation profile ID.",
+            "The dimension is keyed by the conversation medium.",
+            "The dimension is keyed by the Conversational Agents playbook ID.",
+            "The dimension is keyed by the Conversational Agents playbook display name.",
+            "The dimension is keyed by the Conversational Agents tool ID.",
+            "The dimension is keyed by the Conversational Agents tool display name.",
+            "The dimension is keyed by the client sentiment category.",
+            "The dimension is keyed by the agent version ID.",
+            "The dimension is keyed by the agent deployment ID.",
+            "The dimension is keyed by the supervisor ID of the assigned human supervisor for virtual agents.",
+            "The dimension is keyed by label keys.",
+            "The dimension is keyed by label values.",
+            "The dimension is keyed by label key-value pairs."
+          ],
+          "type": "string"
+        },
+        "issueDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata",
+          "description": "Output only. Metadata about the issue dimension.",
+          "readOnly": true
+        },
+        "labelDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionLabelDimensionMetadata",
+          "description": "Output only. Metadata about conversation labels.",
+          "readOnly": true
+        },
+        "mediumDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionMediumDimensionMetadata",
+          "description": "Output only. Metadata about the conversation medium dimension.",
+          "readOnly": true
+        },
+        "qaQuestionAnswerDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionAnswerDimensionMetadata",
+          "description": "Output only. Metadata about the QA question-answer dimension.",
+          "readOnly": true
+        },
+        "qaQuestionDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionDimensionMetadata",
+          "description": "Output only. Metadata about the QA question dimension.",
+          "readOnly": true
+        },
+        "qaScorecardDimensionMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDimensionQaScorecardDimensionMetadata",
+          "description": "Output only. Metadata about the QA scorecard dimension.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionAgentDimensionMetadata": {
+      "description": "Metadata about the agent dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionAgentDimensionMetadata",
+      "properties": {
+        "agentDeploymentDisplayName": {
+          "description": "Optional. The agent's deployment display name. Only applicable to automated agents. This will be populated for AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        },
+        "agentDeploymentId": {
+          "description": "Optional. The agent's deployment ID. Only applicable to automated agents. This will be populated for AGENT and AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        },
+        "agentDisplayName": {
+          "description": "Optional. The agent's name This will be populated for AGENT, AGENT_TEAM, AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        },
+        "agentId": {
+          "description": "Optional. A user-specified string representing the agent. This will be populated for AGENT, AGENT_TEAM, AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        },
+        "agentTeam": {
+          "description": "Optional. A user-specified string representing the agent's team.",
+          "type": "string"
+        },
+        "agentVersionDisplayName": {
+          "description": "Optional. The agent's version display name. Only applicable to automated agents. This will be populated for AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        },
+        "agentVersionId": {
+          "description": "Optional. The agent's version ID. Only applicable to automated agents. This will be populated for AGENT_VERSION_ID, and AGENT_DEPLOYMENT_ID dimensions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionClientSentimentCategoryDimensionMetadata": {
+      "description": "Metadata about the client sentiment category dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionClientSentimentCategoryDimensionMetadata",
+      "properties": {
+        "sentimentCategory": {
+          "description": "Optional. The client sentiment category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionConversationProfileDimensionMetadata": {
+      "description": "Metadata about the conversation profile dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionConversationProfileDimensionMetadata",
+      "properties": {
+        "conversationProfileId": {
+          "description": "Optional. The conversation profile ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsPlaybookDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents playbook dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsPlaybookDimensionMetadata",
+      "properties": {
+        "playbookDisplayName": {
+          "description": "Optional. The dialogflow playbook display name.",
+          "type": "string"
+        },
+        "playbookId": {
+          "description": "Optional. The dialogflow playbook ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsToolDimensionMetadata": {
+      "description": "Metadata about the Conversational Agents tool dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionConversationalAgentsToolDimensionMetadata",
+      "properties": {
+        "toolDisplayName": {
+          "description": "Optional. The dialogflow tool display name.",
+          "type": "string"
+        },
+        "toolId": {
+          "description": "Optional. The dialogflow tool ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata": {
+      "description": "Metadata about the issue dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionIssueDimensionMetadata",
+      "properties": {
+        "issueDisplayName": {
+          "description": "The issue display name.",
+          "type": "string"
+        },
+        "issueId": {
+          "description": "The issue ID.",
+          "type": "string"
+        },
+        "issueModelId": {
+          "description": "The parent issue model ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionLabelDimensionMetadata": {
+      "description": "Metadata about conversation labels.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionLabelDimensionMetadata",
+      "properties": {
+        "labelKey": {
+          "description": "Optional. The label key.",
+          "type": "string"
+        },
+        "labelValue": {
+          "description": "Optional. The label value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionMediumDimensionMetadata": {
+      "description": "Metadata about the conversation medium dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionMediumDimensionMetadata",
+      "properties": {
+        "medium": {
+          "description": "Optional. The conversation medium. Currently supports : PHONE_CALL, CHAT.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionAnswerDimensionMetadata": {
+      "description": "Metadata about the QA question-answer dimension. This is useful for showing the answer distribution for questions for a given scorecard.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionAnswerDimensionMetadata",
+      "properties": {
+        "answerValue": {
+          "description": "Optional. The full body of the question.",
+          "type": "string"
+        },
+        "qaQuestionId": {
+          "description": "Optional. The QA question ID.",
+          "type": "string"
+        },
+        "qaScorecardId": {
+          "description": "Optional. The QA scorecard ID.",
+          "type": "string"
+        },
+        "questionBody": {
+          "description": "Optional. The full body of the question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionDimensionMetadata": {
+      "description": "Metadata about the QA question dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionQaQuestionDimensionMetadata",
+      "properties": {
+        "qaQuestionId": {
+          "description": "Optional. The QA question ID.",
+          "type": "string"
+        },
+        "qaScorecardId": {
+          "description": "Optional. The QA scorecard ID.",
+          "type": "string"
+        },
+        "questionBody": {
+          "description": "Optional. The full body of the question.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainDimensionQaScorecardDimensionMetadata": {
+      "description": "Metadata about the QA scorecard dimension.",
+      "id": "GoogleCloudContactcenterinsightsV1mainDimensionQaScorecardDimensionMetadata",
+      "properties": {
+        "qaScorecardId": {
+          "description": "Optional. The QA scorecard ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainEncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. `Conversation`).",
+      "id": "GoogleCloudContactcenterinsightsV1mainEncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by our default encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainEntity": {
+      "description": "The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.",
+      "id": "GoogleCloudContactcenterinsightsV1mainEntity",
+      "properties": {
+        "displayName": {
+          "description": "The representative name for the entity.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata associated with the entity. For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.",
+          "type": "object"
+        },
+        "salience": {
+          "description": "The salience score associated with the entity in the [0, 1.0] range. The salience score for an entity provides information about the importance or centrality of that entity to the entire document text. Scores closer to 0 are less salient, while scores closer to 1.0 are highly salient.",
+          "format": "float",
+          "type": "number"
+        },
+        "sentiment": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+          "description": "The aggregate sentiment expressed for this entity in the conversation."
+        },
+        "type": {
+          "description": "The entity type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PERSON",
+            "LOCATION",
+            "ORGANIZATION",
+            "EVENT",
+            "WORK_OF_ART",
+            "CONSUMER_GOOD",
+            "OTHER",
+            "PHONE_NUMBER",
+            "ADDRESS",
+            "DATE",
+            "NUMBER",
+            "PRICE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Person.",
+            "Location.",
+            "Organization.",
+            "Event.",
+            "Artwork.",
+            "Consumer product.",
+            "Other types of entities.",
+            "Phone number. The metadata lists the phone number (formatted according to local convention), plus whichever additional elements appear in the text: * `number` - The actual number, broken down into sections according to local convention. * `national_prefix` - Country code, if detected. * `area_code` - Region or area code, if detected. * `extension` - Phone extension (to be dialed after connection), if detected.",
+            "Address. The metadata identifies the street number and locality plus whichever additional elements appear in the text: * `street_number` - Street number. * `locality` - City or town. * `street_name` - Street/route name, if detected. * `postal_code` - Postal code, if detected. * `country` - Country, if detected. * `broad_region` - Administrative area, such as the state, if detected. * `narrow_region` - Smaller administrative area, such as county, if detected. * `sublocality` - Used in Asian addresses to demark a district within a city, if detected.",
+            "Date. The metadata identifies the components of the date: * `year` - Four digit year, if detected. * `month` - Two digit month number, if detected. * `day` - Two digit day number, if detected.",
+            "Number. The metadata is the number itself.",
+            "Price. The metadata identifies the `value` and `currency`."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainEntityMentionData": {
+      "description": "The data for an entity mention annotation. This represents a mention of an `Entity` in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainEntityMentionData",
+      "properties": {
+        "entityUniqueId": {
+          "description": "The key of this entity in conversation entities. Can be used to retrieve the exact `Entity` this mention is attached to.",
+          "type": "string"
+        },
+        "sentiment": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+          "description": "Sentiment expressed for this mention of the entity."
+        },
+        "type": {
+          "description": "The type of the entity mention.",
+          "enum": [
+            "MENTION_TYPE_UNSPECIFIED",
+            "PROPER",
+            "COMMON"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Proper noun.",
+            "Common noun (or noun compound)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportInsightsDataMetadata": {
+      "description": "Metadata for an export insights operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataMetadata",
+      "properties": {
+        "completedExportCount": {
+          "description": "The number of conversations that were exported successfully.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "failedExportCount": {
+          "description": "The number of conversations that failed to be exported.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialErrors": {
+          "description": "Partial errors during export operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequest",
+          "description": "The original request for export."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequest": {
+      "description": "The request to export insights.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequest",
+      "properties": {
+        "bigQueryDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequestBigQueryDestination",
+          "description": "Specified if sink is a BigQuery table."
+        },
+        "exportSchemaVersion": {
+          "description": "Optional. Version of the export schema.",
+          "enum": [
+            "EXPORT_SCHEMA_VERSION_UNSPECIFIED",
+            "EXPORT_V1",
+            "EXPORT_V2",
+            "EXPORT_V3",
+            "EXPORT_V4",
+            "EXPORT_V5",
+            "EXPORT_V6",
+            "EXPORT_V7",
+            "EXPORT_V8",
+            "EXPORT_V9",
+            "EXPORT_V10",
+            "EXPORT_V11",
+            "EXPORT_V12",
+            "EXPORT_V13",
+            "EXPORT_V14",
+            "EXPORT_VERSION_LATEST_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to EXPORT_V3.",
+            "Export schema version 1.",
+            "Export schema version 2.",
+            "Export schema version 3.",
+            "Export schema version 4.",
+            "Export schema version 5.",
+            "Export schema version 6.",
+            "Export schema version 7.",
+            "Export schema version 8.",
+            "Export schema version 9.",
+            "Export schema version 10.",
+            "Export schema version 11.",
+            "Export schema version 12.",
+            "Export schema version 13.",
+            "Export schema version 14.",
+            "Export schema version latest available."
+          ],
+          "type": "string"
+        },
+        "filter": {
+          "description": "A filter to reduce results to a specific subset. Useful for exporting conversations with specific properties.",
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "A fully qualified KMS key name for BigQuery tables protected by CMEK. Format: projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent resource to export data from.",
+          "type": "string"
+        },
+        "writeDisposition": {
+          "description": "Options for what to do if the destination table already exists.",
+          "enum": [
+            "WRITE_DISPOSITION_UNSPECIFIED",
+            "WRITE_TRUNCATE",
+            "WRITE_APPEND"
+          ],
+          "enumDescriptions": [
+            "Write disposition is not specified. Defaults to WRITE_TRUNCATE.",
+            "If the table already exists, BigQuery will overwrite the table data and use the schema from the load.",
+            "If the table already exists, BigQuery will append data to the table."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequestBigQueryDestination": {
+      "description": "A BigQuery Table Reference.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataRequestBigQueryDestination",
+      "properties": {
+        "dataset": {
+          "description": "Required. The name of the BigQuery dataset that the snapshot result should be exported to. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "A project ID or number. If specified, then export will attempt to write data to this project instead of the resource project. Otherwise, the resource project will be used.",
+          "type": "string"
+        },
+        "table": {
+          "description": "The BigQuery table name to which the insights data should be written. If this table does not exist, the export call returns an INVALID_ARGUMENT error.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportInsightsDataResponse": {
+      "description": "Response for an export insights operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportInsightsDataResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportIssueModelMetadata": {
+      "description": "Metadata used for export issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequest",
+          "description": "The original export request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequest": {
+      "description": "Request to export an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequest",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequestGcsDestination",
+          "description": "Google Cloud Storage URI to export the issue model to."
+        },
+        "name": {
+          "description": "Required. The issue model to export.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequestGcsDestination": {
+      "description": "Google Cloud Storage Object URI to save the issue model to.",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportIssueModelRequestGcsDestination",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainExportIssueModelResponse": {
+      "description": "Response from export issue model",
+      "id": "GoogleCloudContactcenterinsightsV1mainExportIssueModelResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainFaqAnswerData": {
+      "description": "Agent Assist frequently-asked-question answer data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainFaqAnswerData",
+      "properties": {
+        "answer": {
+          "description": "The piece of text from the `source` knowledge base document.",
+          "type": "string"
+        },
+        "confidenceScore": {
+          "description": "The system's confidence score that this answer is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map that contains metadata about the FAQ answer and the document that it originates from.",
+          "type": "object"
+        },
+        "queryRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "question": {
+          "description": "The corresponding FAQ question.",
+          "type": "string"
+        },
+        "source": {
+          "description": "The knowledge document that this answer was extracted from. Format: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainFeedbackLabel": {
+      "description": "Represents a conversation, resource, and label provided by the user. Can take the form of a string label or a QaAnswer label. QaAnswer labels are used for Quality AI example conversations. String labels are used for Topic Modeling. AgentAssistSummary labels are used for Agent Assist Summarization.",
+      "id": "GoogleCloudContactcenterinsightsV1mainFeedbackLabel",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time of the label.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "label": {
+          "description": "String label used for Topic Modeling.",
+          "type": "string"
+        },
+        "labeledResource": {
+          "description": "Name of the resource to be labeled. Supported resources are: * `projects/{project}/locations/{location}/qaScorecards/{scorecard}/revisions/{revision}/qaQuestions/{question}` * `projects/{project}/locations/{location}/issueModels/{issue_model}` * `projects/{project}/locations/{location}/generators/{generator_id}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Resource name of the FeedbackLabel. Format: projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}",
+          "type": "string"
+        },
+        "qaAnswerLabel": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
+          "description": "QaAnswer label used for Quality AI example conversations."
+        },
+        "updateTime": {
+          "description": "Output only. Update time of the label.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGcsSource": {
+      "description": "A Cloud Storage source of conversation data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGcsSource",
+      "properties": {
+        "audioUri": {
+          "description": "Cloud Storage URI that points to a file that contains the conversation audio.",
+          "type": "string"
+        },
+        "transcriptUri": {
+          "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainHoldData": {
+      "description": "The data for a hold annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainHoldData",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainImportIssueModelMetadata": {
+      "description": "Metadata used for import issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainImportIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the operation finished running.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequest",
+          "description": "The original import request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequest": {
+      "description": "Request to import an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequest",
+      "properties": {
+        "createNewModel": {
+          "description": "Optional. If set to true, will create an issue model from the imported file with randomly generated IDs for the issue model and corresponding issues. Otherwise, replaces an existing model with the same ID as the file.",
+          "type": "boolean"
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequestGcsSource",
+          "description": "Google Cloud Storage source message."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the issue model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequestGcsSource": {
+      "description": "Google Cloud Storage Object URI to get the issue model file from.",
+      "id": "GoogleCloudContactcenterinsightsV1mainImportIssueModelRequestGcsSource",
+      "properties": {
+        "objectUri": {
+          "description": "Required. Format: `gs:///`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainImportIssueModelResponse": {
+      "description": "Response from import issue model",
+      "id": "GoogleCloudContactcenterinsightsV1mainImportIssueModelResponse",
+      "properties": {
+        "issueModel": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModel",
+          "description": "The issue model that was imported."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadata": {
+      "description": "The metadata for an IngestConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ingestConversationsStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadataIngestConversationsStats",
+          "description": "Output only. Statistics for IngestConversations operation.",
+          "readOnly": true
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during ingest operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequest",
+          "description": "Output only. The original request for ingest.",
+          "readOnly": true
+        },
+        "sampledConversations": {
+          "description": "Output only. Stores the conversation resources produced by ingest sampling operations.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadataIngestConversationsStats": {
+      "description": "Statistics for IngestConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsMetadataIngestConversationsStats",
+      "properties": {
+        "duplicatesSkippedCount": {
+          "description": "Output only. The number of objects skipped because another conversation with the same transcript uri had already been ingested.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "failedIngestCount": {
+          "description": "Output only. The number of objects which were unable to be ingested due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "processedObjectCount": {
+          "description": "Output only. The number of objects processed during the ingest operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulIngestCount": {
+          "description": "Output only. The number of new conversations added during this ingest operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequest": {
+      "description": "The request to ingest conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequest",
+      "properties": {
+        "conversationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestConversationConfig",
+          "description": "Configuration that applies to all conversations."
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestGcsSource",
+          "description": "A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication."
+        },
+        "parent": {
+          "description": "Required. The parent resource for new conversations.",
+          "type": "string"
+        },
+        "redactionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainRedactionConfig",
+          "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+        },
+        "sampleSize": {
+          "description": "Optional. If set, this fields indicates the number of objects to ingest from the Cloud Storage bucket. If empty, the entire bucket will be ingested. Unless they are first deleted, conversations produced through sampling won't be ingested by subsequent ingest requests.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSpeechConfig",
+          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
+        },
+        "transcriptObjectConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestTranscriptObjectConfig",
+          "description": "Configuration for when `source` contains conversation transcripts."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestConversationConfig": {
+      "description": "Configuration that applies to all conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestConversationConfig",
+      "properties": {
+        "agentChannel": {
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "agentId": {
+          "description": "Optional. An opaque, user-specified string representing a human agent who handled all conversations in the import. Note that this will be overridden if per-conversation metadata is provided through the `metadata_bucket_uri`.",
+          "type": "string"
+        },
+        "customerChannel": {
+          "description": "Optional. Indicates which of the channels, 1 or 2, contains the agent. Note that this must be set for conversations to be properly displayed and analyzed.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestGcsSource": {
+      "description": "Configuration for Cloud Storage bucket sources.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestGcsSource",
+      "properties": {
+        "audioBucketUri": {
+          "description": "Optional. The Cloud Storage path to the conversation audio file. Note that: [1] Audio files will be transcribed if not already. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.",
+          "type": "string"
+        },
+        "bucketObjectType": {
+          "description": "Optional. Specifies the type of the objects in `bucket_uri`. Avoid passing this. This is inferred from the `transcript_bucket_uri`, `audio_bucket_uri`.",
+          "enum": [
+            "BUCKET_OBJECT_TYPE_UNSPECIFIED",
+            "TRANSCRIPT",
+            "AUDIO"
+          ],
+          "enumDescriptions": [
+            "The object type is unspecified and will default to `TRANSCRIPT`.",
+            "The object is a transcript.",
+            "The object is an audio file."
+          ],
+          "type": "string"
+        },
+        "bucketUri": {
+          "description": "Optional. The Cloud Storage bucket containing source objects. Avoid passing this. Pass this through one of `transcript_bucket_uri` or `audio_bucket_uri`.",
+          "type": "string"
+        },
+        "customMetadataKeys": {
+          "description": "Optional. Custom keys to extract as conversation labels from metadata files in `metadata_bucket_uri`. Keys not included in this field will be ignored. Note that there is a limit of 100 labels per conversation.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadataBucketUri": {
+          "description": "Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.",
+          "type": "string"
+        },
+        "transcriptBucketUri": {
+          "description": "Optional. The Cloud Storage path to the conversation transcripts. Note that: [1] Transcript files are expected to be in JSON format. [2] Transcript, audio, metadata files must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestTranscriptObjectConfig": {
+      "description": "Configuration for processing transcript objects.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsRequestTranscriptObjectConfig",
+      "properties": {
+        "medium": {
+          "description": "Required. The medium transcript objects represent.",
+          "enum": [
+            "MEDIUM_UNSPECIFIED",
+            "PHONE_CALL",
+            "CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value, if unspecified will default to PHONE_CALL.",
+            "The format for conversations that took place over the phone.",
+            "The format for conversations that took place over chat."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIngestConversationsResponse": {
+      "description": "The response to an IngestConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIngestConversationsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during initializing operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainEncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the `kms_key_name` field is left empty, no encryption will be enforced."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecResponse": {
+      "description": "The response to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1mainInitializeEncryptionSpecResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIntent": {
+      "description": "The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIntent",
+      "properties": {
+        "displayName": {
+          "description": "The human-readable name of the intent.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier of the intent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIntentMatchData": {
+      "description": "The data for an intent match. Represents an intent match for a text segment in the conversation. A text segment can be part of a sentence, a complete sentence, or an utterance with multiple sentences.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIntentMatchData",
+      "properties": {
+        "intentUniqueId": {
+          "description": "The id of the matched intent. Can be used to retrieve the corresponding intent information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainInterruptionData": {
+      "description": "The data for an interruption annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainInterruptionData",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssue": {
+      "description": "The issue resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssue",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which this issue was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayDescription": {
+          "description": "Representative description of the issue.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The representative name for the issue.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the issue. Format: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}",
+          "type": "string"
+        },
+        "sampleUtterances": {
+          "description": "Output only. Resource names of the sample representative utterances that match to this issue.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time that this issue was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueAssignment": {
+      "description": "Information about the issue.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueAssignment",
+      "properties": {
+        "displayName": {
+          "description": "Immutable. Display name of the assigned issue. This field is set at time of analysis and immutable since then.",
+          "type": "string"
+        },
+        "issue": {
+          "description": "Resource name of the assigned issue.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Score indicating the likelihood of the issue assignment. currently bounded on [0,1].",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueMatchData": {
+      "description": "The data for an issue match annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueMatchData",
+      "properties": {
+        "issueAssignment": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueAssignment",
+          "description": "Information about the issue's assignment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueModel": {
+      "description": "The issue model resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueModel",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which this issue model was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The representative name for the issue model.",
+          "type": "string"
+        },
+        "inputDataConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModelInputDataConfig",
+          "description": "Configs for the input data that used to create the issue model."
+        },
+        "issueCount": {
+          "description": "Output only. Number of issues in this issue model.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Language of the model.",
+          "type": "string"
+        },
+        "modelType": {
+          "description": "Type of the model.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "TYPE_V1",
+            "TYPE_V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified model type.",
+            "Type V1.",
+            "Type V2."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the issue model. Format: projects/{project}/locations/{location}/issueModels/{issue_model}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the model.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UNDEPLOYED",
+            "DEPLOYING",
+            "DEPLOYED",
+            "UNDEPLOYING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Model is not deployed but is ready to deploy.",
+            "Model is being deployed.",
+            "Model is deployed and is ready to be used. A model can only be used in analysis if it's in this state.",
+            "Model is being undeployed.",
+            "Model is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "trainingStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStats",
+          "description": "Output only. Immutable. The issue model's label statistics on its training data.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the issue model was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueModelInputDataConfig": {
+      "description": "Configs for the input data used to create the issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueModelInputDataConfig",
+      "properties": {
+        "filter": {
+          "description": "A filter to reduce the conversations used for training the model to a specific subset. Refer to https://cloud.google.com/contact-center/insights/docs/filtering for details.",
+          "type": "string"
+        },
+        "medium": {
+          "deprecated": true,
+          "description": "Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.",
+          "enum": [
+            "MEDIUM_UNSPECIFIED",
+            "PHONE_CALL",
+            "CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value, if unspecified will default to PHONE_CALL.",
+            "The format for conversations that took place over the phone.",
+            "The format for conversations that took place over chat."
+          ],
+          "type": "string"
+        },
+        "trainingConversationsCount": {
+          "description": "Output only. Number of conversations used in training. Output only.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStats": {
+      "description": "Aggregated statistics about an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStats",
+      "properties": {
+        "analyzedConversationsCount": {
+          "description": "Number of conversations the issue model has analyzed at this point in time.",
+          "format": "int64",
+          "type": "string"
+        },
+        "issueStats": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStatsIssueStats"
+          },
+          "description": "Statistics on each issue. Key is the issue's resource name.",
+          "type": "object"
+        },
+        "unclassifiedConversationsCount": {
+          "description": "Number of analyzed conversations for which no issue was applicable at this point in time.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStatsIssueStats": {
+      "description": "Aggregated statistics about an issue.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueModelLabelStatsIssueStats",
+      "properties": {
+        "displayName": {
+          "description": "Display name of the issue.",
+          "type": "string"
+        },
+        "issue": {
+          "description": "Issue resource. Format: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}",
+          "type": "string"
+        },
+        "labeledConversationsCount": {
+          "description": "Number of conversations attached to the issue at this point in time.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainIssueModelResult": {
+      "description": "Issue Modeling result on a conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainIssueModelResult",
+      "properties": {
+        "issueModel": {
+          "description": "Issue model that generates the result. Format: projects/{project}/locations/{location}/issueModels/{issue_model}",
+          "type": "string"
+        },
+        "issues": {
+          "description": "All the matched issues.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainIssueAssignment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainListAllFeedbackLabelsResponse": {
+      "description": "The response for listing all feedback labels.",
+      "id": "GoogleCloudContactcenterinsightsV1mainListAllFeedbackLabelsResponse",
+      "properties": {
+        "feedbackLabels": {
+          "description": "The feedback labels that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainFeedbackLabel"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainListFeedbackLabelsResponse": {
+      "description": "The response for listing feedback labels.",
+      "id": "GoogleCloudContactcenterinsightsV1mainListFeedbackLabelsResponse",
+      "properties": {
+        "feedbackLabels": {
+          "description": "The feedback labels that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainFeedbackLabel"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The next page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainPhraseMatchData": {
+      "description": "The data for a matched phrase matcher. Represents information identifying a phrase matcher for a given match.",
+      "id": "GoogleCloudContactcenterinsightsV1mainPhraseMatchData",
+      "properties": {
+        "displayName": {
+          "description": "The human-readable name of the phrase matcher.",
+          "type": "string"
+        },
+        "phraseMatcher": {
+          "description": "The unique identifier (the resource name) of the phrase matcher.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaAnswer": {
+      "description": "An answer to a QaQuestion.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaAnswer",
+      "properties": {
+        "answerSources": {
+          "description": "List of all individual answers given to the question.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource"
+          },
+          "type": "array"
+        },
+        "answerValue": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
+          "description": "The main answer value, incorporating any manual edits if they exist."
+        },
+        "conversation": {
+          "description": "The conversation the answer applies to.",
+          "type": "string"
+        },
+        "qaQuestion": {
+          "description": "The QaQuestion answered by this answer.",
+          "type": "string"
+        },
+        "questionBody": {
+          "description": "Question text. E.g., \"Did the agent greet the customer?\"",
+          "type": "string"
+        },
+        "tags": {
+          "description": "User-defined list of arbitrary tags. Matches the value from QaScorecard.ScorecardQuestion.tags. Used for grouping/organization and for weighting the score of each answer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource": {
+      "description": "A question may have multiple answers from varying sources, one of which becomes the \"main\" answer above. AnswerSource represents each individual answer.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource",
+      "properties": {
+        "answerValue": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
+          "description": "The answer value from this source."
+        },
+        "sourceType": {
+          "description": "What created the answer.",
+          "enum": [
+            "SOURCE_TYPE_UNSPECIFIED",
+            "SYSTEM_GENERATED",
+            "MANUAL_EDIT"
+          ],
+          "enumDescriptions": [
+            "Source type is unspecified.",
+            "Answer was system-generated; created during an Insights analysis.",
+            "Answer was created by a human via manual edit."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue": {
+      "description": "Message for holding the value of a QaAnswer. QaQuestion.AnswerChoice defines the possible answer values for a question.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
+      "properties": {
+        "boolValue": {
+          "description": "Boolean value.",
+          "type": "boolean"
+        },
+        "key": {
+          "description": "A short string used as an identifier. Matches the value used in QaQuestion.AnswerChoice.key.",
+          "type": "string"
+        },
+        "naValue": {
+          "description": "A value of \"Not Applicable (N/A)\". Should only ever be `true`.",
+          "type": "boolean"
+        },
+        "normalizedScore": {
+          "description": "Output only. Normalized score of the questions. Calculated as score / potential_score.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "numValue": {
+          "description": "Numerical value.",
+          "format": "double",
+          "type": "number"
+        },
+        "potentialScore": {
+          "description": "Output only. The maximum potential score of the question.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "score": {
+          "description": "Output only. Numerical score of the answer.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "skipValue": {
+          "description": "Output only. A value of \"Skip\". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "strValue": {
+          "description": "String value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaQuestionTag": {
+      "description": "A tag is a resource which aims to categorize a set of questions across multiple scorecards, e.g., \"Customer Satisfaction\",\"Billing\", etc.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaQuestionTag",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the question tag was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. A user-specified display name for the tag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name for the QaQuestionTag Format projects/{project}/locations/{location}/qaQuestionTags/{qa_question_tag} In the above format, the last segment, i.e., qa_question_tag, is a server-generated ID corresponding to the tag resource.",
+          "type": "string"
+        },
+        "qaQuestionIds": {
+          "description": "Optional. The list of Scorecard Question IDs that the tag applies to. Each QaQuestionId is represented as a full resource name containing the Question ID. Lastly, Since a tag may not necessarily be referenced by any Scorecard Questions, we treat this field as optional.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the question tag was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaScorecardResult": {
+      "description": "The results of scoring a single conversation against a QaScorecard. Contains a collection of QaAnswers and aggregate score.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaScorecardResult",
+      "properties": {
+        "agentId": {
+          "description": "ID of the agent that handled the conversation.",
+          "type": "string"
+        },
+        "conversation": {
+          "description": "The conversation scored by this result.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp that the revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the scorecard result. Format: projects/{project}/locations/{location}/qaScorecardResults/{qa_scorecard_result}",
+          "type": "string"
+        },
+        "normalizedScore": {
+          "description": "The normalized score, which is the score divided by the potential score. Any manual edits are included if they exist.",
+          "format": "double",
+          "type": "number"
+        },
+        "potentialScore": {
+          "description": "The maximum potential overall score of the scorecard. Any questions answered using `na_value` are excluded from this calculation.",
+          "format": "double",
+          "type": "number"
+        },
+        "qaAnswers": {
+          "description": "Set of QaAnswers represented in the result.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswer"
+          },
+          "type": "array"
+        },
+        "qaScorecardRevision": {
+          "description": "The QaScorecardRevision scored by this result.",
+          "type": "string"
+        },
+        "qaTagResults": {
+          "description": "Collection of tags and their scores.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "The overall numerical score of the result, incorporating any manual edits if they exist.",
+          "format": "double",
+          "type": "number"
+        },
+        "scoreSources": {
+          "description": "List of all individual score sets.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaScorecardResultScoreSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult": {
+      "description": "Tags and their corresponding results.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult",
+      "properties": {
+        "normalizedScore": {
+          "description": "The normalized score the tag applies to.",
+          "format": "double",
+          "type": "number"
+        },
+        "potentialScore": {
+          "description": "The potential score the tag applies to.",
+          "format": "double",
+          "type": "number"
+        },
+        "score": {
+          "description": "The score the tag applies to.",
+          "format": "double",
+          "type": "number"
+        },
+        "tag": {
+          "description": "The tag the score applies to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQaScorecardResultScoreSource": {
+      "description": "A scorecard result may have multiple sets of scores from varying sources, one of which becomes the \"main\" answer above. A ScoreSource represents each individual set of scores.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQaScorecardResultScoreSource",
+      "properties": {
+        "normalizedScore": {
+          "description": "The normalized score, which is the score divided by the potential score.",
+          "format": "double",
+          "type": "number"
+        },
+        "potentialScore": {
+          "description": "The maximum potential overall score of the scorecard. Any questions answered using `na_value` are excluded from this calculation.",
+          "format": "double",
+          "type": "number"
+        },
+        "qaTagResults": {
+          "description": "Collection of tags and their scores.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQaScorecardResultQaTagResult"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "The overall numerical score of the result.",
+          "format": "double",
+          "type": "number"
+        },
+        "sourceType": {
+          "description": "What created the score.",
+          "enum": [
+            "SOURCE_TYPE_UNSPECIFIED",
+            "SYSTEM_GENERATED_ONLY",
+            "INCLUDES_MANUAL_EDITS"
+          ],
+          "enumDescriptions": [
+            "Source type is unspecified.",
+            "Score is derived only from system-generated answers.",
+            "Score is derived from both system-generated answers, and includes any manual edits if they exist."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsMetadata": {
+      "description": "The metadata from querying metrics.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsMetadata",
+      "properties": {
+        "resultIsTruncated": {
+          "description": "Whether the result rows were truncated because the result row size is too large to materialize.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponse": {
+      "description": "The response for querying metrics.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponse",
+      "properties": {
+        "location": {
+          "description": "Required. The location of the data. \"projects/{project}/locations/{location}\"",
+          "type": "string"
+        },
+        "macroAverageSlice": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice",
+          "description": "The macro average slice contains aggregated averages across all selected dimensions. i.e. if group_by agent and scorecard_id is specified, this field will contain the average across all agents and all scorecards. This field is only populated if the request specifies a Dimension."
+        },
+        "slices": {
+          "description": "A slice contains a total and (if the request specified a time granularity) a time series of metric values. Each slice contains a unique combination of the cardinality of dimensions from the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "The metrics last update time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice": {
+      "description": "A slice contains a total and (if the request specified a time granularity) a time series of metric values. Each slice contains a unique combination of the cardinality of dimensions from the request. For example, if the request specifies a single ISSUE dimension and it has a cardinality of 2 (i.e. the data used to compute the metrics has 2 issues in total), the response will have 2 slices: * Slice 1 -> dimensions=[Issue 1] * Slice 2 -> dimensions=[Issue 2]",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSlice",
+      "properties": {
+        "dimensions": {
+          "description": "A unique combination of dimensions that this slice represents.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainDimension"
+          },
+          "type": "array"
+        },
+        "timeSeries": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceTimeSeries",
+          "description": "A time series of metric values. This is only populated if the request specifies a time granularity other than NONE."
+        },
+        "total": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint",
+          "description": "The total metric value. The interval of this data point is [starting create time, ending create time) from the request."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint": {
+      "description": "A data point contains the metric values mapped to an interval.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint",
+      "properties": {
+        "conversationMeasure": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure",
+          "description": "The measure related to conversations."
+        },
+        "interval": {
+          "$ref": "GoogleTypeInterval",
+          "description": "The interval that this data point represents. * If this is the total data point, the interval is [starting create time, ending create time) from the request. * If this a data point from the time series, the interval is [time, time + time granularity from the request)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure": {
+      "description": "The measure related to conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure",
+      "properties": {
+        "averageAgentSentimentScore": {
+          "description": "The average agent's sentiment score.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageClientSentimentScore": {
+          "description": "The average client's sentiment score.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageCustomerSatisfactionRating": {
+          "description": "The average customer satisfaction rating.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageDuration": {
+          "description": "The average duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "averageQaNormalizedScore": {
+          "description": "The average normalized QA score for a scorecard. When computing the average across a set of conversations, if a conversation has been evaluated with multiple revisions of a scorecard, only the latest revision results will be used. Will exclude 0's in average calculation. Will be only populated if the request specifies a dimension of QA_SCORECARD_ID.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageQaQuestionNormalizedScore": {
+          "description": "Average QA normalized score averaged for questions averaged across all revisions of the parent scorecard. Will be only populated if the request specifies a dimension of QA_QUESTION_ID.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageSilencePercentage": {
+          "description": "The average silence percentage.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageTurnCount": {
+          "description": "The average turn count.",
+          "format": "float",
+          "type": "number"
+        },
+        "conversationCount": {
+          "description": "The conversation count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "qaTagScores": {
+          "description": "Average QA normalized score for all the tags.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore": {
+      "description": "Average QA normalized score for the tag.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore",
+      "properties": {
+        "averageTagNormalizedScore": {
+          "description": "Average tag normalized score per tag.",
+          "format": "double",
+          "type": "number"
+        },
+        "tag": {
+          "description": "Tag name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceTimeSeries": {
+      "description": "A time series of metric values.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceTimeSeries",
+      "properties": {
+        "dataPoints": {
+          "description": "The data points that make up the time series .",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewMetadata": {
+      "description": "The metadata for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewResponse": {
+      "description": "The response for querying performance overview.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryPerformanceOverviewResponse",
+      "properties": {
+        "summaryText": {
+          "description": "The summary text of the performance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainRedactionConfig": {
+      "description": "DLP resources used for redaction while ingesting conversations. DLP settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint or the Dialogflow / Agent Assist runtime integrations. When using Dialogflow / Agent Assist runtime integrations, redaction should be performed in Dialogflow / Agent Assist.",
+      "id": "GoogleCloudContactcenterinsightsV1mainRedactionConfig",
+      "properties": {
+        "deidentifyTemplate": {
+          "description": "The fully-qualified DLP deidentify template resource name. Format: `projects/{project}/deidentifyTemplates/{template}`",
+          "type": "string"
+        },
+        "inspectTemplate": {
+          "description": "The fully-qualified DLP inspect template resource name. Format: `projects/{project}/locations/{location}/inspectTemplates/{template}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation": {
+      "description": "An annotation that was generated during the customer and agent interaction.",
+      "id": "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation",
+      "properties": {
+        "annotationId": {
+          "description": "The unique identifier of the annotation. Format: projects/{project}/locations/{location}/conversationDatasets/{dataset}/conversationDataItems/{data_item}/conversationAnnotations/{annotation}",
+          "type": "string"
+        },
+        "answerFeedback": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnswerFeedback",
+          "description": "The feedback that the customer has about the answer in `data`."
+        },
+        "articleSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainArticleSuggestionData",
+          "description": "Agent Assist Article Suggestion data."
+        },
+        "conversationSummarizationSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationSummarizationSuggestionData",
+          "description": "Conversation summarization suggestion data."
+        },
+        "createTime": {
+          "description": "The time at which this annotation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "dialogflowInteraction": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDialogflowInteractionData",
+          "description": "Dialogflow interaction data."
+        },
+        "endBoundary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary",
+          "description": "The boundary in the conversation where the annotation ends, inclusive."
+        },
+        "faqAnswer": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainFaqAnswerData",
+          "description": "Agent Assist FAQ answer data."
+        },
+        "smartComposeSuggestion": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSmartComposeSuggestionData",
+          "description": "Agent Assist Smart Compose suggestion data."
+        },
+        "smartReply": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSmartReplyData",
+          "description": "Agent Assist Smart Reply data."
+        },
+        "startBoundary": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotationBoundary",
+          "description": "The boundary in the conversation where the annotation starts, inclusive."
+        },
+        "userInput": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotationUserInput",
+          "description": "Explicit input used for generating the answer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotationUserInput": {
+      "description": "Explicit input used for generating the answer",
+      "id": "GoogleCloudContactcenterinsightsV1mainRuntimeAnnotationUserInput",
+      "properties": {
+        "generatorName": {
+          "description": "The resource name of associated generator. Format: `projects//locations//generators/`",
+          "type": "string"
+        },
+        "query": {
+          "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
+          "type": "string"
+        },
+        "querySource": {
+          "description": "Query source for the answer.",
+          "enum": [
+            "QUERY_SOURCE_UNSPECIFIED",
+            "AGENT_QUERY",
+            "SUGGESTED_QUERY"
+          ],
+          "enumDescriptions": [
+            "Unknown query source.",
+            "The query is from agents.",
+            "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadata": {
+      "description": "The metadata for an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Output only. Partial errors during sample conversations operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSampleConversationsRequest",
+          "description": "Output only. The original request for sample conversations to dataset.",
+          "readOnly": true
+        },
+        "sampleConversationsStats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadataSampleConversationsStats",
+          "description": "Output only. Statistics for SampleConversations operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadataSampleConversationsStats": {
+      "description": "Statistics for SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSampleConversationsMetadataSampleConversationsStats",
+      "properties": {
+        "failedSampleCount": {
+          "description": "Output only. The number of objects which were unable to be sampled due to errors. The errors are populated in the partial_errors field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "successfulSampleCount": {
+          "description": "Output only. The number of new conversations added during this sample operation.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSampleConversationsRequest": {
+      "description": "The request to sample conversations to a dataset.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSampleConversationsRequest",
+      "properties": {
+        "destinationDataset": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainDataset",
+          "description": "The dataset resource to copy the sampled conversations to."
+        },
+        "parent": {
+          "description": "Required. The parent resource of the dataset.",
+          "type": "string"
+        },
+        "sampleRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSampleRule",
+          "description": "Optional. The sample rule used for sampling conversations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSampleConversationsResponse": {
+      "description": "The response to an SampleConversations operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSampleConversationsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSampleRule": {
+      "description": "Message for sampling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSampleRule",
+      "properties": {
+        "conversationFilter": {
+          "description": "To specify the filter for the conversions that should apply this sample rule. An empty filter means this sample rule applies to all conversations.",
+          "type": "string"
+        },
+        "dimension": {
+          "description": "Optional. Group by dimension to sample the conversation. If no dimension is provided, the sampling will be applied to the project level. Current supported dimensions is 'quality_metadata.agent_info.agent_id'.",
+          "type": "string"
+        },
+        "samplePercentage": {
+          "description": "Percentage of conversations that we should sample based on the dimension between [0, 100].",
+          "format": "double",
+          "type": "number"
+        },
+        "sampleRow": {
+          "description": "Number of the conversations that we should sample based on the dimension.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSentimentData": {
+      "description": "The data for a sentiment annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSentimentData",
+      "properties": {
+        "magnitude": {
+          "description": "A non-negative number from 0 to infinity which represents the absolute magnitude of sentiment regardless of score.",
+          "format": "float",
+          "type": "number"
+        },
+        "score": {
+          "description": "The sentiment score between -1.0 (negative) and 1.0 (positive).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSilenceData": {
+      "description": "The data for a silence annotation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSilenceData",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSmartComposeSuggestionData": {
+      "description": "Agent Assist Smart Compose suggestion data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSmartComposeSuggestionData",
+      "properties": {
+        "confidenceScore": {
+          "description": "The system's confidence score that this suggestion is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "double",
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map that contains metadata about the Smart Compose suggestion and the document from which it originates.",
+          "type": "object"
+        },
+        "queryRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "suggestion": {
+          "description": "The content of the suggestion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSmartReplyData": {
+      "description": "Agent Assist Smart Reply data.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSmartReplyData",
+      "properties": {
+        "confidenceScore": {
+          "description": "The system's confidence score that this reply is a good match for this conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "double",
+          "type": "number"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map that contains metadata about the Smart Reply and the document from which it originates.",
+          "type": "object"
+        },
+        "queryRecord": {
+          "description": "The name of the answer record. Format: projects/{project}/locations/{location}/answerRecords/{answer_record}",
+          "type": "string"
+        },
+        "reply": {
+          "description": "The content of the reply.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainSpeechConfig": {
+      "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
+      "id": "GoogleCloudContactcenterinsightsV1mainSpeechConfig",
+      "properties": {
+        "speechRecognizer": {
+          "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelMetadata": {
+      "description": "Metadata for undeploying an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelRequest",
+          "description": "The original request for undeployment."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelRequest": {
+      "description": "The request to undeploy an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The issue model to undeploy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelResponse": {
+      "description": "The response to undeploy an issue model.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUndeployIssueModelResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagMetadata": {
+      "description": "The metadata for updating a QaQuestionTag Resource.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagRequest",
+          "description": "Output only. The original request.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagRequest": {
+      "description": "The request for updating a QaQuestionTag.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUpdateQaQuestionTagRequest",
+      "properties": {
+        "qaQuestionTag": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQaQuestionTag",
+          "description": "Required. The QaQuestionTag to update."
+        },
+        "updateMask": {
+          "description": "Optional. The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `qa_question_tag_name` - the name of the tag * `qa_question_ids` - the list of questions the tag applies to",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUploadConversationMetadata": {
+      "description": "The metadata for an `UploadConversation` operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUploadConversationMetadata",
+      "properties": {
+        "analysisOperation": {
+          "description": "Output only. The operation name for a successfully created analysis operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "appliedRedactionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainRedactionConfig",
+          "description": "Output only. The redaction config applied to the uploaded conversation.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainUploadConversationRequest",
+          "description": "Output only. The original request.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainUploadConversationRequest": {
+      "description": "Request to upload a conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainUploadConversationRequest",
+      "properties": {
+        "conversation": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversation",
+          "description": "Required. The conversation resource to create."
+        },
+        "conversationId": {
+          "description": "Optional. A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z0-9-]{4,64}$`. Valid characters are `a-z-`",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The parent resource of the conversation.",
+          "type": "string"
+        },
+        "redactionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainRedactionConfig",
+          "description": "Optional. DLP settings for transcript redaction. Will default to the config specified in Settings."
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainSpeechConfig",
           "description": "Optional. Speech-to-Text configuration. Will default to the config specified in Settings."
         }
       },
