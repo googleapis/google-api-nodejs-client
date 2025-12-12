@@ -1678,6 +1678,27 @@ export namespace androidpublisher_v3 {
     versionName?: string | null;
   }
   /**
+   * Reporting details unique to the external offers program.
+   */
+  export interface Schema$ExternalOfferDetails {
+    /**
+     * Optional. The external transaction id associated with the app download event through an external link. Required when reporting transactions made in externally installed apps.
+     */
+    appDownloadEventExternalTransactionId?: string | null;
+    /**
+     * Optional. The category of the downloaded app though this transaction. This must match the category provided in Play Console during the external app verification process. Only required for app downloads.
+     */
+    installedAppCategory?: string | null;
+    /**
+     * Optional. The package name of the app downloaded through this transaction. Required when link_type is LINK_TO_APP_DOWNLOAD.
+     */
+    installedAppPackage?: string | null;
+    /**
+     * Optional. The type of content being reported by this transaction. Required when reporting app downloads or purchased digital content offers made in app installed through Google Play.
+     */
+    linkType?: string | null;
+  }
+  /**
    * Details of an external subscription.
    */
   export interface Schema$ExternalSubscription {
@@ -1702,6 +1723,10 @@ export namespace androidpublisher_v3 {
      * Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.
      */
     currentTaxAmount?: Schema$Price;
+    /**
+     * Optional. Details necessary to accurately report external offers transactions.
+     */
+    externalOfferDetails?: Schema$ExternalOfferDetails;
     /**
      * Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.
      */
@@ -13089,6 +13114,7 @@ export namespace androidpublisher_v3 {
      *         //   "createTime": "my_createTime",
      *         //   "currentPreTaxAmount": {},
      *         //   "currentTaxAmount": {},
+     *         //   "externalOfferDetails": {},
      *         //   "externalTransactionId": "my_externalTransactionId",
      *         //   "oneTimeTransaction": {},
      *         //   "originalPreTaxAmount": {},
@@ -13110,6 +13136,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
      *   //   "originalPreTaxAmount": {},
@@ -13264,6 +13291,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
      *   //   "originalPreTaxAmount": {},
@@ -13429,6 +13457,7 @@ export namespace androidpublisher_v3 {
      *   //   "createTime": "my_createTime",
      *   //   "currentPreTaxAmount": {},
      *   //   "currentTaxAmount": {},
+     *   //   "externalOfferDetails": {},
      *   //   "externalTransactionId": "my_externalTransactionId",
      *   //   "oneTimeTransaction": {},
      *   //   "originalPreTaxAmount": {},
