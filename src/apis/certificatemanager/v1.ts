@@ -191,6 +191,10 @@ export namespace certificatemanager_v1 {
      */
     managed?: Schema$ManagedCertificate;
     /**
+     * If set, contains configuration and state of a managed identity certificate.
+     */
+    managedIdentity?: Schema$ManagedIdentityCertificate;
+    /**
      * Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
      */
     name?: string | null;
@@ -590,7 +594,7 @@ export namespace certificatemanager_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -658,6 +662,23 @@ export namespace certificatemanager_v1 {
     issuanceConfig?: string | null;
     /**
      * Output only. Information about issues with provisioning a Managed Certificate.
+     */
+    provisioningIssue?: Schema$ProvisioningIssue;
+    /**
+     * Output only. State of the managed certificate resource.
+     */
+    state?: string | null;
+  }
+  /**
+   * Configuration and state of a Managed Identity Certificate. Certificate Manager provisions and renews Managed Identity Certificates automatically, for as long as it's authorized to do so.
+   */
+  export interface Schema$ManagedIdentityCertificate {
+    /**
+     * Required. Immutable. SPIFFE ID of the Managed Identity used for this certificate.
+     */
+    identity?: string | null;
+    /**
+     * Output only. Information about issues with provisioning a managed certificate.
      */
     provisioningIssue?: Schema$ProvisioningIssue;
     /**
@@ -820,6 +841,10 @@ export namespace certificatemanager_v1 {
      * Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
      */
     name?: string | null;
+    /**
+     * Optional. Defines a mapping from a trust domain to a TrustStore. This is used for SPIFFE certificate validation.
+     */
+    spiffeTrustStores?: {[key: string]: Schema$TrustStore} | null;
     /**
      * Optional. Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed.
      */
@@ -3785,6 +3810,7 @@ export namespace certificatemanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "managed": {},
+     *       //   "managedIdentity": {},
      *       //   "name": "my_name",
      *       //   "pemCertificate": "my_pemCertificate",
      *       //   "sanDnsnames": [],
@@ -4085,6 +4111,7 @@ export namespace certificatemanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "managed": {},
+     *   //   "managedIdentity": {},
      *   //   "name": "my_name",
      *   //   "pemCertificate": "my_pemCertificate",
      *   //   "sanDnsnames": [],
@@ -4383,6 +4410,7 @@ export namespace certificatemanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "managed": {},
+     *       //   "managedIdentity": {},
      *       //   "name": "my_name",
      *       //   "pemCertificate": "my_pemCertificate",
      *       //   "sanDnsnames": [],
@@ -5852,7 +5880,7 @@ export namespace certificatemanager_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6005,7 +6033,7 @@ export namespace certificatemanager_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -6062,6 +6090,7 @@ export namespace certificatemanager_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "spiffeTrustStores": {},
      *       //   "trustStores": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6360,6 +6389,7 @@ export namespace certificatemanager_v1 {
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "spiffeTrustStores": {},
      *   //   "trustStores": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6654,6 +6684,7 @@ export namespace certificatemanager_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "spiffeTrustStores": {},
      *       //   "trustStores": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
