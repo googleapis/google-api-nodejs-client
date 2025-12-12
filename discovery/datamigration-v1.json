@@ -2350,7 +2350,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20251203",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2379,14 +2379,16 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDescriptions": [
             "This is an unknown database version.",
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         },
