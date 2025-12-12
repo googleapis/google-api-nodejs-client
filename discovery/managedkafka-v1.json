@@ -868,6 +868,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. Specifies the view (BASIC or FULL) of the ConsumerGroup resource to be returned in the response. Defaults to FULL view.",
+                          "enum": [
+                            "CONSUMER_GROUP_VIEW_UNSPECIFIED",
+                            "CONSUMER_GROUP_VIEW_BASIC",
+                            "CONSUMER_GROUP_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. The API will default to the FULL view.",
+                            "Include the name of the ConsumerGroup. This hides partition and topic metadata.",
+                            "Include everything, including partition and topic metadata. This is the default value."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+parent}/consumerGroups",
@@ -3151,7 +3166,7 @@
       }
     }
   },
-  "revision": "20251114",
+  "revision": "20251204",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3525,7 +3540,8 @@
       "id": "ConnectNetworkConfig",
       "properties": {
         "additionalSubnets": {
-          "description": "Optional. Additional subnets may be specified. They may be in another region, but must be in the same VPC network. The Connect workers can communicate with network endpoints in either the primary or additional subnets.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Managed Kafka Connect clusters can now reach any endpoint accessible from the primary subnet without the need to define additional subnets. Please see https://cloud.google.com/managed-service-for-apache-kafka/docs/connect-cluster/create-connect-cluster#worker-subnet for more information.",
           "items": {
             "type": "string"
           },
