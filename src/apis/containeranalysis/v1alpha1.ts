@@ -734,6 +734,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     artifactId?: string | null;
     /**
+     * Optional. Path to a folder containing the files to upload to Artifact Registry. This can be either an absolute path, e.g. `/workspace/my-app/target/`, or a relative path from /workspace, e.g. `my-app/target/`. This field is mutually exclusive with the `path` field.
+     */
+    deployFolder?: string | null;
+    /**
      * Maven `groupId` value used when uploading the artifact to Artifact Registry.
      */
     groupId?: string | null;
