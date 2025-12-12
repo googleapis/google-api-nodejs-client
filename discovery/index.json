@@ -5227,7 +5227,7 @@
       "version": "v2"
     },
     {
-      "description": "",
+      "description": "Provides functionality for configuring the observability scope, which controls the log, metric, and trace data that you can view.",
       "discoveryRestUrl": "https://observability.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/stackdriver/docs/",
       "icons": {
