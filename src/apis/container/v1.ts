@@ -853,6 +853,10 @@ export namespace container_v1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Configuration for Managed OpenTelemetry pipeline.
+     */
+    managedOpentelemetryConfig?: Schema$ManagedOpenTelemetryConfig;
+    /**
      * The authentication information for accessing the master endpoint. If unspecified, the defaults are used: For clusters before v1.12, if master_auth is unspecified, `username` will be set to "admin", a random password will be generated, and a client certificate will be issued.
      */
     masterAuth?: Schema$MasterAuth;
@@ -1187,6 +1191,10 @@ export namespace container_v1 {
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
+    /**
+     * The desired managed open telemetry configuration.
+     */
+    desiredManagedOpentelemetryConfig?: Schema$ManagedOpenTelemetryConfig;
     /**
      * The desired configuration options for master authorized networks feature. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config instead.
      */
@@ -2465,6 +2473,15 @@ export namespace container_v1 {
      * RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time.
      */
     recurringWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
+   * ManagedOpenTelemetryConfig is the configuration for the GKE Managed OpenTelemetry pipeline.
+   */
+  export interface Schema$ManagedOpenTelemetryConfig {
+    /**
+     * Scope of the Managed OpenTelemetry pipeline.
+     */
+    scope?: string | null;
   }
   /**
    * ManagedPrometheusConfig defines the configuration for Google Cloud Managed Service for Prometheus.
@@ -6247,6 +6264,7 @@ export namespace container_v1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedOpentelemetryConfig": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "meshCertificates": {},
@@ -12517,6 +12535,7 @@ export namespace container_v1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedOpentelemetryConfig": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "meshCertificates": {},
