@@ -19456,7 +19456,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_filed}\"}` Updatable fields: * `encryption_spec.kms_key_name`",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_field}\"}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -22241,6 +22241,508 @@
                 }
               },
               "resources": {
+                "memories": {
+                  "methods": {
+                    "create": {
+                      "description": "Create a Memory.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the ReasoningEngine to create the Memory under. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/memories",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1Memory"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Delete a Memory.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Memory to delete. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "generate": {
+                      "description": "Generate memories.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories:generate",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.generate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the ReasoningEngine to generate memories for. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/memories:generate",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get a Memory.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Memory. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1Memory"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List Memories.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields: * `scope` (as a JSON string with equality match only) * `topics` (i.e. `topics.custom_memory_topic_label: \"example topic\" OR topics.managed_memory_topic: USER_PREFERENCES`)",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. The standard list order by string. If not specified, the default order is `create_time desc`. If specified, the default sorting order of provided fields is ascending. More detail in [AIP-132](https://google.aip.dev/132). Supported fields: * `create_time` * `update_time`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the ReasoningEngine to list the Memories under. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/memories",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1ListMemoriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update a Memory.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}",
+                      "httpMethod": "PATCH",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the Memory. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1Memory"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "purge": {
+                      "description": "Purge memories.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories:purge",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.purge",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the ReasoningEngine to purge memories from. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/memories:purge",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1PurgeMemoriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "retrieve": {
+                      "description": "Retrieve memories.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories:retrieve",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.retrieve",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the ReasoningEngine to retrieve memories from. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/memories:retrieve",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1RetrieveMemoriesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1RetrieveMemoriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "rollback": {
+                      "description": "Rollback Memory to a specific revision.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}:rollback",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.memories.rollback",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Memory to rollback. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:rollback",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1RollbackMemoryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "operations": {
+                      "methods": {
+                        "cancel": {
+                          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}:cancel",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.operations.cancel",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be cancelled.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:cancel",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.operations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be deleted.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "wait": {
+                          "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}:wait",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.operations.wait",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to wait on.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                              "format": "google-duration",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:wait",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "revisions": {
+                      "methods": {
+                        "get": {
+                          "description": "Get a Memory Revision.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions/{revisionsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.revisions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Memory Revision to retrieve. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{revision}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+/revisions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1MemoryRevision"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List Memory Revisions for a Memory.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/revisions",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.memories.revisions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the Memory to list revisions for. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/memories/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/revisions",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1ListMemoryRevisionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "operations": {
                   "methods": {
                     "cancel": {
@@ -22394,6 +22896,404 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  }
+                },
+                "sessions": {
+                  "methods": {
+                    "appendEvent": {
+                      "description": "Appends an event to a given session.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}:appendEvent",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.appendEvent",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the session to append event to. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:appendEvent",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1SessionEvent"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1AppendEventResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a new Session.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the location to create the session in. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/sessions",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1Session"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes details of the specific Session.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the session. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of the specific Session.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the session. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1Session"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Sessions in a given reasoning engine.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter. Supported fields: * `display_name` * `user_id` * `labels` Example: `display_name=\"abc\"`, `user_id=\"123\"`, `labels.key=\"value\"`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of sessions to return. The service may return fewer than this value. If unspecified, at most 100 sessions will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous list SessionService.ListSessions call.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the location to list sessions from. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/sessions",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1ListSessionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specific Session.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}",
+                      "httpMethod": "PATCH",
+                      "id": "aiplatform.projects.locations.reasoningEngines.sessions.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The resource name of the session. Format: 'projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1Session"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1Session"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "events": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists Events in a given session.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/events",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.events.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. The standard list filter. Supported fields: * `timestamp` range (i.e. `timestamp>=\"2025-01-31T11:30:00-04:00\"` where the timestamp is in RFC 3339 format) More detail in [AIP-160](https://google.aip.dev/160).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `timestamp` Example: `timestamp desc`.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of events to return. The service may return fewer than this value. If unspecified, at most 100 events will be returned. These events are ordered by timestamp in ascending order.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list SessionService.ListEvents call.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the session to list events from. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/events",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1ListEventsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "operations": {
+                      "methods": {
+                        "cancel": {
+                          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}:cancel",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.operations.cancel",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be cancelled.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:cancel",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}",
+                          "httpMethod": "DELETE",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.operations.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to be deleted.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.operations.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.operations.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "The standard list filter.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The name of the operation's parent resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The standard list page size.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The standard list page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "returnPartialSuccess": {
+                              "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1/{+name}/operations",
+                          "response": {
+                            "$ref": "GoogleLongrunningListOperationsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "wait": {
+                          "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}:wait",
+                          "httpMethod": "POST",
+                          "id": "aiplatform.projects.locations.reasoningEngines.sessions.operations.wait",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "The name of the operation resource to wait on.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                              "format": "google-duration",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:wait",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -27017,6 +27917,166 @@
         }
       },
       "resources": {
+        "memories": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.reasoningEngines.memories.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.reasoningEngines.memories.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.memories.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.memories.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}/operations",
+                  "response": {
+                    "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/memories/{memoriesId}/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.reasoningEngines.memories.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/memories/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "timeout": {
+                      "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                      "format": "google-duration",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:wait",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "operations": {
           "methods": {
             "cancel": {
@@ -27170,6 +28230,166 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            }
+          }
+        },
+        "sessions": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.reasoningEngines.sessions.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.reasoningEngines.sessions.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.sessions.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.reasoningEngines.sessions.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/sessions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}/operations",
+                  "response": {
+                    "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v1/reasoningEngines/{reasoningEnginesId}/sessions/{sessionsId}/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.reasoningEngines.sessions.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^reasoningEngines/[^/]+/sessions/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "timeout": {
+                      "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                      "format": "google-duration",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:wait",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
@@ -28745,7 +29965,7 @@
       }
     }
   },
-  "revision": "20251117",
+  "revision": "20251204",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -29393,6 +30613,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1AppendEventResponse": {
+      "description": "Response message for SessionService.AppendEvent.",
+      "id": "GoogleCloudAiplatformV1AppendEventResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1Artifact": {
@@ -30160,7 +31386,7 @@
           "description": "Immutable. Parameters configuring the batch behavior. Currently only applicable when dedicated_resources are used (in other cases Vertex AI does the tuning itself)."
         },
         "model": {
-          "description": "The name of the Model resource that produces the predictions via this job, must share the same ancestor Location. Starting this job has no impact on any existing deployments of the Model and their resources. Exactly one of model and unmanaged_container_model must be set. The model resource name may contain version id or version alias to specify the version. Example: `projects/{project}/locations/{location}/models/{model}@2` or `projects/{project}/locations/{location}/models/{model}@golden` if no version is specified, the default version will be deployed. The model resource could also be a publisher model. Example: `publishers/{publisher}/models/{model}` or `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`",
+          "description": "The name of the Model resource that produces the predictions via this job, must share the same ancestor Location. Starting this job has no impact on any existing deployments of the Model and their resources. Exactly one of model, unmanaged_container_model, or endpoint must be set. The model resource name may contain version id or version alias to specify the version. Example: `projects/{project}/locations/{location}/models/{model}@2` or `projects/{project}/locations/{location}/models/{model}@golden` if no version is specified, the default version will be deployed. The model resource could also be a publisher model. Example: `publishers/{publisher}/models/{model}` or `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`",
           "type": "string"
         },
         "modelParameters": {
@@ -30254,7 +31480,7 @@
         },
         "unmanagedContainerModel": {
           "$ref": "GoogleCloudAiplatformV1UnmanagedContainerModel",
-          "description": "Contains model information necessary to perform batch prediction without requiring uploading to model registry. Exactly one of model and unmanaged_container_model must be set."
+          "description": "Contains model information necessary to perform batch prediction without requiring uploading to model registry. Exactly one of model, unmanaged_container_model, or endpoint must be set."
         },
         "updateTime": {
           "description": "Output only. Time when the BatchPredictionJob was most recently updated.",
@@ -35327,6 +36553,91 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1EventActions": {
+      "description": "Actions are parts of events that are executed by the agent.",
+      "id": "GoogleCloudAiplatformV1EventActions",
+      "properties": {
+        "artifactDelta": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "Optional. Indicates that the event is updating an artifact. key is the filename, value is the version.",
+          "type": "object"
+        },
+        "escalate": {
+          "description": "Optional. The agent is escalating to a higher level agent.",
+          "type": "boolean"
+        },
+        "requestedAuthConfigs": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Will only be set by a tool response indicating tool request euc. Struct key is the function call id since one function call response (from model) could correspond to multiple function calls. Struct value is the required auth config, which can be another struct.",
+          "type": "object"
+        },
+        "skipSummarization": {
+          "description": "Optional. If true, it won't call model to summarize function response. Only used for function_response event.",
+          "type": "boolean"
+        },
+        "stateDelta": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Indicates that the event is updating the state with the given delta.",
+          "type": "object"
+        },
+        "transferAgent": {
+          "description": "Optional. If set, the event transfers to the specified agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EventMetadata": {
+      "description": "Metadata relating to a LLM response event.",
+      "id": "GoogleCloudAiplatformV1EventMetadata",
+      "properties": {
+        "branch": {
+          "description": "Optional. The branch of the event. The format is like agent_1.agent_2.agent_3, where agent_1 is the parent of agent_2, and agent_2 is the parent of agent_3. Branch is used when multiple child agents shouldn't see their siblings' conversation history.",
+          "type": "string"
+        },
+        "customMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The custom metadata of the LlmResponse.",
+          "type": "object"
+        },
+        "groundingMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GroundingMetadata",
+          "description": "Optional. Metadata returned to client when grounding is enabled."
+        },
+        "interrupted": {
+          "description": "Optional. Flag indicating that LLM was interrupted when generating the content. Usually it's due to user interruption during a bidi streaming.",
+          "type": "boolean"
+        },
+        "longRunningToolIds": {
+          "description": "Optional. Set of ids of the long running function calls. Agent client will know from this field about which function call is long running. Only valid for function call event.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "partial": {
+          "description": "Optional. Indicates whether the text content is part of a unfinished text stream. Only used for streaming mode and when the content is plain text.",
+          "type": "boolean"
+        },
+        "turnComplete": {
+          "description": "Optional. Indicates whether the response from the model is complete. Only used for streaming mode.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ExactMatchInput": {
       "description": "Input for exact match metric.",
       "id": "GoogleCloudAiplatformV1ExactMatchInput",
@@ -36800,6 +38111,10 @@
         "enableDirectBigtableAccess": {
           "description": "Optional. It true, enable direct access to the Bigtable instance.",
           "type": "boolean"
+        },
+        "zone": {
+          "description": "Optional. The zone where the underlying Bigtable cluster for the primary Bigtable instance will be provisioned. Only the zone must be provided. For example, only \"us-central1-a\" should be provided.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -38657,6 +39972,135 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequest": {
+      "description": "Request message for MemoryBankService.GenerateMemories. Maximum size is 8 MB.",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequest",
+      "properties": {
+        "directContentsSource": {
+          "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSource",
+          "description": "Defines a direct source of content as the source content from which to generate memories."
+        },
+        "directMemoriesSource": {
+          "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSource",
+          "description": "Defines a direct source of memories that should be uploaded to Memory Bank. This is similar to `CreateMemory`, but it allows for consolidation between these new memories and existing memories for the same scope."
+        },
+        "disableConsolidation": {
+          "description": "Optional. If true, generated memories will not be consolidated with existing memories; all generated memories will be added as new memories regardless of whether they are duplicates of or contradictory to existing memories. By default, memory consolidation is enabled.",
+          "type": "boolean"
+        },
+        "disableMemoryRevisions": {
+          "description": "Optional. If true, no revisions will be created for this request.",
+          "type": "boolean"
+        },
+        "revisionExpireTime": {
+          "description": "Optional. Timestamp of when the revision is considered expired. If not set, the memory revision will be kept until manually deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels to be applied to the generated memory revisions. For example, you can use this to label a revision with its data source.",
+          "type": "object"
+        },
+        "revisionTtl": {
+          "description": "Optional. The TTL for the revision. The expiration time is computed: now + TTL.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "scope": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The scope of the memories that should be generated. Memories will be consolidated across memories with the same scope. Must be provided unless the scope is defined in the source content. If `scope` is provided, it will override the scope defined in the source content. Scope values cannot contain the wildcard character '*'.",
+          "type": "object"
+        },
+        "vertexSessionSource": {
+          "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequestVertexSessionSource",
+          "description": "Defines a Vertex Session as the source content from which to generate memories."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSource": {
+      "description": "Defines a direct source of content from which to generate the memories.",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSource",
+      "properties": {
+        "events": {
+          "description": "Required. The source content (i.e. chat history) to generate memories from.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSourceEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSourceEvent": {
+      "description": "A single piece of conversation from which to generate memories.",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectContentsSourceEvent",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1Content",
+          "description": "Required. A single piece of content from which to generate memories."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSource": {
+      "description": "Defines a direct source of memories that should be uploaded to Memory Bank with consolidation.",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSource",
+      "properties": {
+        "directMemories": {
+          "description": "Required. The direct memories to upload to Memory Bank. At most 5 direct memories are allowed per request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory": {
+      "description": "A direct memory to upload to Memory Bank.",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory",
+      "properties": {
+        "fact": {
+          "description": "Required. The fact to consolidate with existing memories.",
+          "type": "string"
+        },
+        "topics": {
+          "description": "Optional. The topics that the consolidated memories should be associated with.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryTopicId"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateMemoriesRequestVertexSessionSource": {
+      "description": "Defines an Agent Engine Session from which to generate the memories. If `scope` is not provided, the scope will be extracted from the Session (i.e. {\"user_id\": sesison.user_id}).",
+      "id": "GoogleCloudAiplatformV1GenerateMemoriesRequestVertexSessionSource",
+      "properties": {
+        "endTime": {
+          "description": "Optional. End time (exclusive) of the time range. If not set, the end time is unbounded.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "session": {
+          "description": "Required. The resource name of the Session to generate memories for. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}`",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Time range to define which session events should be used to generate memories. Start time (inclusive) of the time range. If not set, the start time is unbounded.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1GenerateSyntheticDataRequest": {
       "description": "Request message for DataFoundryService.GenerateSyntheticData.",
       "id": "GoogleCloudAiplatformV1GenerateSyntheticDataRequest",
@@ -40301,6 +41745,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1IntermediateExtractedMemory": {
+      "description": "An extracted memory that is the intermediate result before consolidation.",
+      "id": "GoogleCloudAiplatformV1IntermediateExtractedMemory",
+      "properties": {
+        "fact": {
+          "description": "Output only. The fact of the extracted memory.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1InvokeRequest": {
       "description": "Request message for PredictionService.Invoke.",
       "id": "GoogleCloudAiplatformV1InvokeRequest",
@@ -40729,6 +42185,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ListEventsResponse": {
+      "description": "Response message for SessionService.ListEvents.",
+      "id": "GoogleCloudAiplatformV1ListEventsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListEventsRequest.page_token to retrieve the next page. Absence of this field indicates there are no subsequent pages.",
+          "type": "string"
+        },
+        "sessionEvents": {
+          "description": "A list of events matching the request. Ordered by timestamp in ascending order.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1SessionEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ListExecutionsResponse": {
       "description": "Response message for MetadataService.ListExecutions.",
       "id": "GoogleCloudAiplatformV1ListExecutionsResponse",
@@ -40904,6 +42378,42 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve next page of results. Pass to ListIndexesRequest.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ListMemoriesResponse": {
+      "description": "Response message for MemoryBankService.ListMemories.",
+      "id": "GoogleCloudAiplatformV1ListMemoriesResponse",
+      "properties": {
+        "memories": {
+          "description": "List of Memories in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Memory"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListMemoriesRequest.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ListMemoryRevisionsResponse": {
+      "description": "Response message for MemoryBankService.ListMemoryRevisions.",
+      "id": "GoogleCloudAiplatformV1ListMemoryRevisionsResponse",
+      "properties": {
+        "memoryRevisions": {
+          "description": "The list of Memory Revisions in the request page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryRevision"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -41288,6 +42798,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ListSessionsResponse": {
+      "description": "Response message for SessionService.ListSessions.",
+      "id": "GoogleCloudAiplatformV1ListSessionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListSessionsRequest.page_token to retrieve the next page. Absence of this field indicates there are no subsequent pages.",
+          "type": "string"
+        },
+        "sessions": {
+          "description": "A list of sessions matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Session"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ListSpecialistPoolsResponse": {
       "description": "Response message for SpecialistPoolService.ListSpecialistPools.",
       "id": "GoogleCloudAiplatformV1ListSpecialistPoolsResponse",
@@ -41545,7 +43073,7 @@
       "id": "GoogleCloudAiplatformV1MachineSpec",
       "properties": {
         "acceleratorCount": {
-          "description": "The number of accelerators to attach to the machine.",
+          "description": "The number of accelerators to attach to the machine. For accelerator optimized machine types (https://cloud.google.com/compute/docs/accelerator-optimized-machines), One may set the accelerator_count from 1 to N for machine with N GPUs. If accelerator_count is less than or equal to N / 2, Vertex will co-schedule the replicas of the model into the same VM to save cost. For example, if the machine type is a3-highgpu-8g, which has 8 H100 GPUs, one can set accelerator_count to 1 to 8. If accelerator_count is 1, 2, 3, or 4, Vertex will co-schedule 8, 4, 2, or 2 replicas of the model into the same VM to save cost. When co-scheduling, CPU, memory and storage on the VM will be distributed to replicas on the VM. For example, one can expect a co-scheduled replica requesting 2 GPUs out of a 8-GPU VM will receive 25% of the CPU, memory and storage of the VM. Note that the feature is not compatible with multihost_gpu_node_count. When multihost_gpu_node_count is set, the co-scheduling will not be enabled.",
           "format": "int32",
           "type": "integer"
         },
@@ -41616,6 +43144,10 @@
           ],
           "type": "string"
         },
+        "gpuPartitionSize": {
+          "description": "Optional. Immutable. The Nvidia GPU partition size. When specified, the requested accelerators will be partitioned into smaller GPU partitions. For example, if the request is for 8 units of NVIDIA A100 GPUs, and gpu_partition_size=\"1g.10gb\", the service will create 8 * 7 = 56 partitioned MIG instances. The partition size must be a value supported by the requested accelerator. Refer to [Nvidia GPU Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions) for the available partition sizes. If set, the accelerator_count should be set to 1.",
+          "type": "string"
+        },
         "machineType": {
           "description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
           "type": "string"
@@ -41684,6 +43216,86 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1Memory": {
+      "description": "A memory.",
+      "id": "GoogleCloudAiplatformV1Memory",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this Memory was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the Memory.",
+          "type": "string"
+        },
+        "disableMemoryRevisions": {
+          "description": "Optional. Input only. If true, no revision will be created for this request.",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the Memory.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Optional. Timestamp of when this resource is considered expired. This is *always* provided on output when `expiration` is set on input, regardless of whether `expire_time` or `ttl` was provided.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "fact": {
+          "description": "Required. Semantic knowledge extracted from the source content.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Memory. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}`",
+          "type": "string"
+        },
+        "revisionExpireTime": {
+          "description": "Optional. Input only. Timestamp of when the revision is considered expired. If not set, the memory revision will be kept until manually deleted.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "revisionLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. The labels to apply to the Memory Revision created as a result of this request.",
+          "type": "object"
+        },
+        "revisionTtl": {
+          "description": "Optional. Input only. The TTL for the revision. The expiration time is computed: now + TTL.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "scope": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Immutable. The scope of the Memory. Memories are isolated within their scope. The scope is defined when creating or generating memories. Scope values cannot contain the wildcard character '*'.",
+          "type": "object"
+        },
+        "topics": {
+          "description": "Optional. The Topics of the Memory.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MemoryTopicId"
+          },
+          "type": "array"
+        },
+        "ttl": {
+          "description": "Optional. Input only. The TTL for this resource. The expiration time is computed: now + TTL.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this Memory was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -41827,6 +43439,50 @@
             "Important milestones or conclusions within the dialogue.",
             "Information that the user explicitly requested to remember or forget."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MemoryRevision": {
+      "description": "A revision of a Memory.",
+      "id": "GoogleCloudAiplatformV1MemoryRevision",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this Memory Revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp of when this resource is considered expired.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extractedMemories": {
+          "description": "Output only. The extracted memories from the source content before consolidation when the memory was updated via GenerateMemories. This information was used to modify an existing Memory via Consolidation.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1IntermediateExtractedMemory"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fact": {
+          "description": "Output only. The fact of the Memory Revision. This corresponds to the `fact` field of the parent Memory at the time of revision creation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The labels of the Memory Revision. These labels are applied to the MemoryRevision when it is created based on `GenerateMemoriesRequest.revision_labels`.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Memory Revision. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/memories/{memory}/revisions/{memory_revision}`",
           "type": "string"
         }
       },
@@ -47330,6 +48986,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1PurgeMemoriesRequest": {
+      "description": "Request message for MemoryBankService.PurgeMemories.",
+      "id": "GoogleCloudAiplatformV1PurgeMemoriesRequest",
+      "properties": {
+        "filter": {
+          "description": "Required. The standard list filter to determine which memories to purge. More detail in [AIP-160](https://google.aip.dev/160).",
+          "type": "string"
+        },
+        "force": {
+          "description": "Optional. If true, the memories will actually be purged. If false, the purge request will be validated but not executed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1PythonPackageSpec": {
       "description": "The spec of a Python packaged code.",
       "id": "GoogleCloudAiplatformV1PythonPackageSpec",
@@ -48770,6 +50441,25 @@
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec",
           "description": "Optional. The specification of a Reasoning Engine deployment."
         },
+        "effectiveIdentity": {
+          "description": "Output only. The identity to use for the Reasoning Engine. It can contain one of the following values: * service-{project}@gcp-sa-aiplatform-re.googleapis.com (for SERVICE_AGENT identity type) * {name}@{project}.gserviceaccount.com (for SERVICE_ACCOUNT identity type) * agents.global.{org}.system.id.goog/resources/aiplatform/projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine} (for AGENT_IDENTITY identity type)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "identityType": {
+          "description": "Optional. The identity type to use for the Reasoning Engine. If not specified, the `service_account` field will be used if set, otherwise the default Vertex AI Reasoning Engine Service Agent in the project will be used.",
+          "enum": [
+            "IDENTITY_TYPE_UNSPECIFIED",
+            "SERVICE_ACCOUNT",
+            "AGENT_IDENTITY"
+          ],
+          "enumDescriptions": [
+            "Default value. Use a custom service account if the `service_account` field is set, otherwise use the default Vertex AI Reasoning Engine Service Agent in the project. Same behavior as SERVICE_ACCOUNT.",
+            "Use a custom service account if the `service_account` field is set, otherwise use the default Vertex AI Reasoning Engine Service Agent in the project.",
+            "Use Agent Identity. The `service_account` field must not be set."
+          ],
+          "type": "string"
+        },
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
           "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes. The `deployment_source` field should not be set if `package_spec` is specified."
@@ -48859,6 +50549,10 @@
       "description": "Specification for deploying from source code.",
       "id": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpec",
       "properties": {
+        "developerConnectSource": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource",
+          "description": "Source code is in a Git repository managed by Developer Connect."
+        },
         "inlineSource": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource",
           "description": "Source code is provided directly in the request."
@@ -48870,12 +50564,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig": {
+      "description": "Specifies the configuration for fetching source code from a Git repository that is managed by Developer Connect. This includes the repository, revision, and directory to use.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig",
+      "properties": {
+        "dir": {
+          "description": "Required. Directory, relative to the source root, in which to run the build.",
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Required. The Developer Connect Git repository link, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`.",
+          "type": "string"
+        },
+        "revision": {
+          "description": "Required. The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource": {
+      "description": "Specifies source code to be fetched from a Git repository managed through the Developer Connect service.",
+      "id": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectSource",
+      "properties": {
+        "config": {
+          "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecDeveloperConnectConfig",
+          "description": "Required. The Developer Connect configuration that defines the specific repository, revision, and directory to use as the source code root."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource": {
       "description": "Specifies source code provided as a byte stream.",
       "id": "GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpecInlineSource",
       "properties": {
         "sourceArchive": {
-          "description": "Required. Input only. The application source code archive, provided as a compressed tarball (.tar.gz) file.",
+          "description": "Required. Input only. The application source code archive. It must be a compressed tarball (.tar.gz) file.",
           "format": "byte",
           "type": "string"
         }
@@ -48994,7 +50718,7 @@
       "id": "GoogleCloudAiplatformV1ReplicatedVoiceConfig",
       "properties": {
         "mimeType": {
-          "description": "Optional. The mimetype of the voice sample. Currently only mime_type=audio/pcm is supported, which is raw mono 16-bit signed little-endian pcm data, with 24k sampling rate.",
+          "description": "Optional. The mimetype of the voice sample. The only currently supported value is `audio/wav`. This represents 16-bit signed little-endian wav data, with a 24kHz sampling rate. `mime_type` will default to `audio/wav` if not set.",
           "type": "string"
         },
         "voiceSampleAudio": {
@@ -49272,6 +50996,110 @@
         "contexts": {
           "$ref": "GoogleCloudAiplatformV1RagContexts",
           "description": "The contexts of the query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RetrieveMemoriesRequest": {
+      "description": "Request message for MemoryBankService.RetrieveMemories.",
+      "id": "GoogleCloudAiplatformV1RetrieveMemoriesRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. The standard list filter that will be applied to the retrieved memories. More detail in [AIP-160](https://google.aip.dev/160). Supported fields: * `fact` * `create_time` * `update_time` * `topics` (i.e. `topics.custom_memory_topic_label: \"example topic\" OR topics.managed_memory_topic: USER_PREFERENCES`)",
+          "type": "string"
+        },
+        "scope": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. The scope of the memories to retrieve. A memory must have exactly the same scope (`Memory.scope`) as the scope provided here to be retrieved (same keys and values). Order does not matter, but it is case-sensitive.",
+          "type": "object"
+        },
+        "similaritySearchParams": {
+          "$ref": "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimilaritySearchParams",
+          "description": "Parameters for semantic similarity search based retrieval."
+        },
+        "simpleRetrievalParams": {
+          "$ref": "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimpleRetrievalParams",
+          "description": "Parameters for simple (non-similarity search) retrieval."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimilaritySearchParams": {
+      "description": "Parameters for semantic similarity search based retrieval.",
+      "id": "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimilaritySearchParams",
+      "properties": {
+        "searchQuery": {
+          "description": "Required. Query to use for similarity search retrieval. If provided, then the parent ReasoningEngine must have ReasoningEngineContextSpec.MemoryBankConfig.SimilaritySearchConfig set.",
+          "type": "string"
+        },
+        "topK": {
+          "description": "Optional. The maximum number of memories to return. The service may return fewer than this value. If unspecified, at most 3 memories will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimpleRetrievalParams": {
+      "description": "Parameters for simple (non-similarity search) retrieval.",
+      "id": "GoogleCloudAiplatformV1RetrieveMemoriesRequestSimpleRetrievalParams",
+      "properties": {
+        "pageSize": {
+          "description": "Optional. The maximum number of memories to return. The service may return fewer than this value. If unspecified, at most 3 memories will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `RetrieveMemories` call. Provide this to retrieve the subsequent page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RetrieveMemoriesResponse": {
+      "description": "Response message for MemoryBankService.RetrieveMemories.",
+      "id": "GoogleCloudAiplatformV1RetrieveMemoriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. This token is not set if similarity search was used for retrieval.",
+          "type": "string"
+        },
+        "retrievedMemories": {
+          "description": "The retrieved memories.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1RetrieveMemoriesResponseRetrievedMemory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RetrieveMemoriesResponseRetrievedMemory": {
+      "description": "A retrieved memory.",
+      "id": "GoogleCloudAiplatformV1RetrieveMemoriesResponseRetrievedMemory",
+      "properties": {
+        "distance": {
+          "description": "The distance between the query and the retrieved Memory. Smaller values indicate more similar memories. This is only set if similarity search was used for retrieval.",
+          "format": "double",
+          "type": "number"
+        },
+        "memory": {
+          "$ref": "GoogleCloudAiplatformV1Memory",
+          "description": "The retrieved Memory."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RollbackMemoryRequest": {
+      "description": "Request message for MemoryBankService.RollbackMemory.",
+      "id": "GoogleCloudAiplatformV1RollbackMemoryRequest",
+      "properties": {
+        "targetRevisionId": {
+          "description": "Required. The ID of the revision to rollback to.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -54717,6 +56545,106 @@
         },
         "serviceAccount": {
           "description": "Optional. Required when all below conditions are met * `enable_custom_service_account` is true; * any runtime is specified via `ResourceRuntimeSpec` on creation time, for example, Ray The users must have `iam.serviceAccounts.actAs` permission on this service account and then the specified runtime containers will run as it. Do not set this field if you want to submit jobs using custom service account to this PersistentResource after creation, but only specify the `service_account` inside the job.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1Session": {
+      "description": "A session contains a set of actions between users and Vertex agents.",
+      "id": "GoogleCloudAiplatformV1Session",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when the session was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of the session.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Optional. Timestamp of when this session is considered expired. This is *always* provided on output, regardless of what was sent on input. The minimum value is 24 hours from the time of creation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize your Sessions. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the session. Format: 'projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}'.",
+          "type": "string"
+        },
+        "sessionState": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Session specific memory which stores key conversation points.",
+          "type": "object"
+        },
+        "ttl": {
+          "description": "Optional. Input only. The TTL for this session. The minimum value is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the session was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userId": {
+          "description": "Required. Immutable. String id provided by the user",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SessionEvent": {
+      "description": "An event represents a message from either the user or agent.",
+      "id": "GoogleCloudAiplatformV1SessionEvent",
+      "properties": {
+        "actions": {
+          "$ref": "GoogleCloudAiplatformV1EventActions",
+          "description": "Optional. Actions executed by the agent."
+        },
+        "author": {
+          "description": "Required. The name of the agent that sent the event, or user.",
+          "type": "string"
+        },
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1Content",
+          "description": "Optional. Content of the event provided by the author."
+        },
+        "errorCode": {
+          "description": "Optional. Error code if the response is an error. Code varies by model.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Optional. Error message if the response is an error.",
+          "type": "string"
+        },
+        "eventMetadata": {
+          "$ref": "GoogleCloudAiplatformV1EventMetadata",
+          "description": "Optional. Metadata relating to this event."
+        },
+        "invocationId": {
+          "description": "Required. The invocation id of the event, multiple events can have the same invocation id.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the event. Format:`projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}/events/{event}`.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Required. Timestamp when the event was created on client side.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
