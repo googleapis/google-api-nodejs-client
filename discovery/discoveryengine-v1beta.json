@@ -2164,6 +2164,32 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "delete": {
+                          "description": "Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "get": {
                           "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
@@ -4408,6 +4434,32 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "delete": {
+                          "description": "Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the ServingConfig to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "get": {
                           "description": "Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
@@ -6357,6 +6409,32 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the ServingConfig to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -8926,7 +9004,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251209",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -10882,6 +10960,10 @@
           "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
+        "naturalLanguageQueryUnderstandingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig",
+          "description": "Optional. Configuration for Natural Language Query Understanding."
+        },
         "servingConfigDataStore": {
           "$ref": "GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore",
           "description": "Optional. Stores serving config at DataStore level."
@@ -12126,6 +12208,27 @@
             "EDU emerging market tier.",
             "EDU Pro emerging market tier.",
             "Frontline starter tier."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig": {
+      "description": "Configuration for Natural Language Query Understanding.",
+      "id": "GoogleCloudDiscoveryengineV1NaturalLanguageQueryUnderstandingConfig",
+      "properties": {
+        "mode": {
+          "description": "Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Natural Language Query Understanding is disabled.",
+            "Natural Language Query Understanding is enabled."
           ],
           "type": "string"
         }
@@ -18652,7 +18755,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -27788,7 +27891,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -30378,7 +30481,7 @@
           "type": "string"
         },
         "filter": {
-          "description": "The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. One example is for `search` events, the associated SearchRequest may contain a filter expression in SearchRequest.filter conforming to https://google.aip.dev/160#filtering. Similarly, for `view-item-list` events that are generated from a RecommendRequest, this field may be populated directly from RecommendRequest.filter conforming to https://google.aip.dev/160#filtering. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
           "type": "string"
         },
         "mediaInfo": {
