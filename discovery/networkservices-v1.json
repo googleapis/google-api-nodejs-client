@@ -2236,7 +2236,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -3191,7 +3191,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251203",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3320,7 +3320,7 @@
           "type": "string"
         },
         "wireFormat": {
-          "description": "Optional. The format of communication supported by the callout extension. If not specified, the default value `EXT_PROC_GRPC` is used.",
+          "description": "Optional. The format of communication supported by the callout extension. This field is supported only for regional `AuthzExtension` resources. If not specified, the default value `EXT_PROC_GRPC` is used. Global `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.",
           "enum": [
             "WIRE_FORMAT_UNSPECIFIED",
             "EXT_PROC_GRPC",
@@ -3329,7 +3329,7 @@
           "enumDescriptions": [
             "Not specified.",
             "The extension service uses ext_proc gRPC API over a gRPC stream. This is the default value if the wire format is not specified. The backend service for the extension must use HTTP2 or H2C as the protocol. All `supported_events` for a client request are sent as part of the same gRPC stream.",
-            "The extension service uses Envoy's `ext_authz` gRPC API. The backend service for the extension must use HTTP2, or H2C as the protocol. `EXT_AUTHZ_GRPC` is only supported for regional `AuthzExtension` resources."
+            "The extension service uses Envoy's `ext_authz` gRPC API. The backend service for the extension must use HTTP2 or H2C as the protocol. `EXT_AUTHZ_GRPC` is only supported for regional `AuthzExtension` resources."
           ],
           "type": "string"
         }
@@ -3686,7 +3686,7 @@
           "enumDescriptions": [
             "Defaults to NONE.",
             "Suppress envoy debug headers.",
-            "Envoy will insert default internal debug headers into upstream requests: x-envoy-attempt-count x-envoy-is-timeout-retry x-envoy-expected-rq-timeout-ms x-envoy-original-path x-envoy-upstream-stream-duration-ms"
+            "Envoy will insert default internal debug headers into upstream requests: x-envoy-attempt-count, x-envoy-is-timeout-retry, x-envoy-expected-rq-timeout-ms, x-envoy-original-path, x-envoy-upstream-stream-duration-ms"
           ],
           "type": "string"
         },
@@ -5184,7 +5184,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -5436,7 +5436,7 @@
           "enumDescriptions": [
             "Defaults to NONE.",
             "Suppress envoy debug headers.",
-            "Envoy will insert default internal debug headers into upstream requests: x-envoy-attempt-count x-envoy-is-timeout-retry x-envoy-expected-rq-timeout-ms x-envoy-original-path x-envoy-upstream-stream-duration-ms"
+            "Envoy will insert default internal debug headers into upstream requests: x-envoy-attempt-count, x-envoy-is-timeout-retry, x-envoy-expected-rq-timeout-ms, x-envoy-original-path, x-envoy-upstream-stream-duration-ms"
           ],
           "type": "string"
         },
