@@ -273,7 +273,7 @@ export namespace cloudidentity_v1beta1 {
      */
     isBulkDataEntryAnalysisEnabled?: boolean | null;
     /**
-     * Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
+     * Deprecated: This field is not used for Chrome version 118 and later. Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
      */
     isChromeCleanupEnabled?: boolean | null;
     /**
@@ -921,7 +921,7 @@ export namespace cloudidentity_v1beta1 {
      */
     isBulkDataEntryAnalysisEnabled?: boolean | null;
     /**
-     * Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
+     * Deprecated: This field is not used for Chrome version 118 and later. Current state of [Chrome Cleanup](https://chromeenterprise.google/policies/#ChromeCleanupEnabled).
      */
     isChromeCleanupEnabled?: boolean | null;
     /**
