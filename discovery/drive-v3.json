@@ -2255,7 +2255,7 @@
     "replies": {
       "methods": {
         "create": {
-          "description": "Creates a reply to a comment.",
+          "description": "Creates a reply to a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).",
           "flatPath": "files/{fileId}/comments/{commentId}/replies",
           "httpMethod": "POST",
           "id": "drive.replies.create",
@@ -2290,7 +2290,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a reply.",
+          "description": "Deletes a reply. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).",
           "flatPath": "files/{fileId}/comments/{commentId}/replies/{replyId}",
           "httpMethod": "DELETE",
           "id": "drive.replies.delete",
@@ -2326,7 +2326,7 @@
           ]
         },
         "get": {
-          "description": "Gets a reply by ID.",
+          "description": "Gets a reply by ID. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).",
           "flatPath": "files/{fileId}/comments/{commentId}/replies/{replyId}",
           "httpMethod": "GET",
           "id": "drive.replies.get",
@@ -2350,7 +2350,7 @@
             },
             "includeDeleted": {
               "default": "false",
-              "description": "Whether to return deleted replies. Deleted replies will not include their original content.",
+              "description": "Whether to return deleted replies. Deleted replies don't include their original content.",
               "location": "query",
               "type": "boolean"
             },
@@ -2373,7 +2373,7 @@
           ]
         },
         "list": {
-          "description": "Lists a comment's replies.",
+          "description": "Lists a comment's replies. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).",
           "flatPath": "files/{fileId}/comments/{commentId}/replies",
           "httpMethod": "GET",
           "id": "drive.replies.list",
@@ -2396,7 +2396,7 @@
             },
             "includeDeleted": {
               "default": "false",
-              "description": "Whether to include deleted replies. Deleted replies will not include their original content.",
+              "description": "Whether to include deleted replies. Deleted replies don't include their original content.",
               "location": "query",
               "type": "boolean"
             },
@@ -2410,7 +2410,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
+              "description": "The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.",
               "location": "query",
               "type": "string"
             }
@@ -2427,7 +2427,7 @@
           ]
         },
         "update": {
-          "description": "Updates a reply with patch semantics.",
+          "description": "Updates a reply with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).",
           "flatPath": "files/{fileId}/comments/{commentId}/replies/{replyId}",
           "httpMethod": "PATCH",
           "id": "drive.replies.update",
@@ -2790,7 +2790,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20251204",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4942,7 +4942,7 @@
       "id": "Reply",
       "properties": {
         "action": {
-          "description": "The action the reply performed to the parent comment. Valid values are: * `resolve` * `reopen`",
+          "description": "The action the reply performed to the parent comment. The supported values are: * `resolve` * `reopen`",
           "type": "string"
         },
         "assigneeEmailAddress": {
@@ -4952,7 +4952,7 @@
         },
         "author": {
           "$ref": "User",
-          "description": "Output only. The author of the reply. The author's email address and permission ID will not be populated."
+          "description": "Output only. The author of the reply. The author's email address and permission ID won't be populated."
         },
         "content": {
           "annotations": {
@@ -4960,7 +4960,7 @@
               "drive.replies.update"
             ]
           },
-          "description": "The plain text content of the reply. This field is used for setting the content, while `htmlContent` should be displayed. This is required on creates if no `action` is specified.",
+          "description": "The plain text content of the reply. This field is used for setting the content, while `htmlContent` should be displayed. This field is required by the `create` method if no `action` value is specified.",
           "type": "string"
         },
         "createdTime": {
@@ -5015,7 +5015,7 @@
           "type": "string"
         },
         "replies": {
-          "description": "The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
+          "description": "The list of replies. If `nextPageToken` is populated, then this list may be incomplete and an additional page of results should be fetched.",
           "items": {
             "$ref": "Reply"
           },

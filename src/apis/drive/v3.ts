@@ -1500,7 +1500,7 @@ export namespace drive_v3 {
    */
   export interface Schema$Reply {
     /**
-     * The action the reply performed to the parent comment. Valid values are: * `resolve` * `reopen`
+     * The action the reply performed to the parent comment. The supported values are: * `resolve` * `reopen`
      */
     action?: string | null;
     /**
@@ -1508,11 +1508,11 @@ export namespace drive_v3 {
      */
     assigneeEmailAddress?: string | null;
     /**
-     * Output only. The author of the reply. The author's email address and permission ID will not be populated.
+     * Output only. The author of the reply. The author's email address and permission ID won't be populated.
      */
     author?: Schema$User;
     /**
-     * The plain text content of the reply. This field is used for setting the content, while `htmlContent` should be displayed. This is required on creates if no `action` is specified.
+     * The plain text content of the reply. This field is used for setting the content, while `htmlContent` should be displayed. This field is required by the `create` method if no `action` value is specified.
      */
     content?: string | null;
     /**
@@ -1557,7 +1557,7 @@ export namespace drive_v3 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
+     * The list of replies. If `nextPageToken` is populated, then this list may be incomplete and an additional page of results should be fetched.
      */
     replies?: Schema$Reply[];
   }
@@ -10033,7 +10033,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a reply to a comment.
+     * Creates a reply to a comment. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      * @example
      * ```js
      * // Before running the sample:
@@ -10201,7 +10201,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Deletes a reply.
+     * Deletes a reply. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      * @example
      * ```js
      * // Before running the sample:
@@ -10337,7 +10337,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a reply by ID.
+     * Gets a reply by ID. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      * @example
      * ```js
      * // Before running the sample:
@@ -10376,7 +10376,7 @@ export namespace drive_v3 {
      *     commentId: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
-     *     // Whether to return deleted replies. Deleted replies will not include their original content.
+     *     // Whether to return deleted replies. Deleted replies don't include their original content.
      *     includeDeleted: 'placeholder-value',
      *     // The ID of the reply.
      *     replyId: 'placeholder-value',
@@ -10494,7 +10494,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a comment's replies.
+     * Lists a comment's replies. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      * @example
      * ```js
      * // Before running the sample:
@@ -10533,11 +10533,11 @@ export namespace drive_v3 {
      *     commentId: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
-     *     // Whether to include deleted replies. Deleted replies will not include their original content.
+     *     // Whether to include deleted replies. Deleted replies don't include their original content.
      *     includeDeleted: 'placeholder-value',
      *     // The maximum number of replies to return per page.
      *     pageSize: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     *     // The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10644,7 +10644,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates a reply with patch semantics.
+     * Updates a reply with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/workspace/drive/api/guides/manage-comments).
      * @example
      * ```js
      * // Before running the sample:
@@ -10854,7 +10854,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether to return deleted replies. Deleted replies will not include their original content.
+     * Whether to return deleted replies. Deleted replies don't include their original content.
      */
     includeDeleted?: boolean;
     /**
@@ -10872,7 +10872,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * Whether to include deleted replies. Deleted replies will not include their original content.
+     * Whether to include deleted replies. Deleted replies don't include their original content.
      */
     includeDeleted?: boolean;
     /**
@@ -10880,7 +10880,7 @@ export namespace drive_v3 {
      */
     pageSize?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
   }
