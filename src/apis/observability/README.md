@@ -2,7 +2,7 @@
 
 # observability
 
-> 
+> Provides functionality for configuring the observability scope, which controls the log, metric, and trace data that you can view.
 
 ## Installation
 
