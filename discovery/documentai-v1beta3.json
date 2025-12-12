@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20251209",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -7162,7 +7162,7 @@
           "type": "string"
         },
         "documentType": {
-          "description": "Optional. The type of the documents to be imported in this batch. This will be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.",
+          "description": "Optional. If set, determines the type of the documents to be imported in this batch. It can be used to auto-label the documents with a single entity of the provided type. This field can only be used with a classifier or splitter processor. Providing this field is mutually exclusive with `entities` and `auto_labeling_config`.",
           "type": "string"
         }
       },
@@ -7407,7 +7407,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user-defined name of the Schema.",
+          "description": "Required. The user-defined name of the Schema.",
           "type": "string"
         },
         "labels": {
@@ -8295,7 +8295,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user-defined name of the SchemaVersion.",
+          "description": "Required. The user-defined name of the SchemaVersion.",
           "type": "string"
         },
         "labels": {
