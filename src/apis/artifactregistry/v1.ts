@@ -323,9 +323,17 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$DockerImage {
     /**
+     * ArtifactType of this image, e.g. "application/vnd.example+type". If the `subject_digest` is set and no `artifact_type` is given, the `media_type` will be considered as the `artifact_type`. This field is returned as the `metadata.artifactType` field in the Version resource.
+     */
+    artifactType?: string | null;
+    /**
      * The time this image was built. This field is returned as the 'metadata.buildTime' field in the Version resource. The build time is returned to the client as an RFC 3339 string, which can be easily used with the JavaScript Date constructor.
      */
     buildTime?: string | null;
+    /**
+     * Optional. For multi-arch images (manifest lists), this field contains the list of image manifests.
+     */
+    imageManifests?: Schema$ImageManifest[];
     /**
      * Calculated size of the image. This field is returned as the 'metadata.imageSizeBytes' field in the Version resource.
      */
@@ -668,6 +676,39 @@ export namespace artifactregistry_v1 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * Details of a single image manifest within a multi-arch image.
+   */
+  export interface Schema$ImageManifest {
+    /**
+     * Optional. The CPU architecture of the image. Values are provided by the Docker client and are not validated by Artifact Registry. Example values include "amd64", "arm64", "ppc64le", "s390x", "riscv64", "mips64le", etc.
+     */
+    architecture?: string | null;
+    /**
+     * Optional. The manifest digest, in the format "sha256:".
+     */
+    digest?: string | null;
+    /**
+     * Optional. The media type of the manifest, e.g., "application/vnd.docker.distribution.manifest.v2+json"
+     */
+    mediaType?: string | null;
+    /**
+     * Optional. The operating system of the image. Values are provided by the Docker client and are not validated by Artifact Registry. Example values include "linux", "windows", "darwin", "aix", etc.
+     */
+    os?: string | null;
+    /**
+     * Optional. The required OS features for the image, for example on Windows `win32k`.
+     */
+    osFeatures?: string[] | null;
+    /**
+     * Optional. The OS version of the image, for example on Windows `10.0.14393.1066`.
+     */
+    osVersion?: string | null;
+    /**
+     * Optional. The variant of the CPU in the image, for example `v7` to specify ARMv7 when architecture is `arm`.
+     */
+    variant?: string | null;
   }
   /**
    * Error information explaining why a package was not imported.
@@ -3252,7 +3293,7 @@ export namespace artifactregistry_v1 {
     }
 
     /**
-     * Exports an artifact.
+     * Exports an artifact to a Cloud Storage bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -5526,7 +5567,9 @@ export namespace artifactregistry_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "artifactType": "my_artifactType",
      *   //   "buildTime": "my_buildTime",
+     *   //   "imageManifests": [],
      *   //   "imageSizeBytes": "my_imageSizeBytes",
      *   //   "mediaType": "my_mediaType",
      *   //   "name": "my_name",
