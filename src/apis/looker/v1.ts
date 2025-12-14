@@ -149,6 +149,10 @@ export namespace looker_v1 {
      * Optional. Whether marketplace is enabled.
      */
     marketplaceEnabled?: boolean | null;
+    /**
+     * Output only. The list of IP addresses used by Secure Web Proxy for outbound traffic.
+     */
+    webProxyIps?: string[] | null;
   }
   /**
    * Custom domain information.

@@ -177,7 +177,7 @@ export namespace networkservices_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The format of communication supported by the callout extension. If not specified, the default value `EXT_PROC_GRPC` is used.
+     * Optional. The format of communication supported by the callout extension. This field is supported only for regional `AuthzExtension` resources. If not specified, the default value `EXT_PROC_GRPC` is used. Global `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
      */
     wireFormat?: string | null;
   }
@@ -1461,7 +1461,7 @@ export namespace networkservices_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2086,6 +2086,14 @@ export namespace networkservices_v1beta1 {
      * Optional. A human-readable description of the resource.
      */
     description?: string | null;
+    /**
+     * Optional. The name of the customer managed Cloud KMS key to be used to encrypt the `WasmPlugin` image (provided by image_uri) and configuration (provided by plugin_config_data or plugin_config_uri) that are stored by the `Service Extensions` product at rest. Format: "projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}" By default, Google Cloud automatically encrypts all data at rest using Google-owned and Google-managed encryption keys. If you need ownership and control of the keys that protect your data at rest, you can specify a customer-managed encryption key (CMEK) to encrypt your `WasmPlugin` data. For more information, see [Using customer-managed encryption keys](https://cloud.google.com/kms/docs/cmek).
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Output only. The name of the specific CryptoKeyVersion used to encrypt the `WasmPlugin` data, if the kms_key_name field is set. Format: "projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}/cryptoKeyVersions/{version\}" This is a read-only field. `WasmPlugin` data is automatically encrypted using the most recent `CryptoKeyVersion` of the `CryptoKey` provided in the `kms_key_name` field. See [Cloud KMS resources](https://cloud.google.com/kms/docs/resource-hierarchy) for more information.
+     */
+    kmsKeyVersion?: string | null;
     /**
      * Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
      */
@@ -12073,7 +12081,7 @@ export namespace networkservices_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12226,7 +12234,7 @@ export namespace networkservices_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -15541,6 +15549,8 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
      *       //   "labels": {},
      *       //   "logConfig": {},
      *       //   "mainVersionId": "my_mainVersionId",
@@ -15840,6 +15850,8 @@ export namespace networkservices_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersion": "my_kmsKeyVersion",
      *   //   "labels": {},
      *   //   "logConfig": {},
      *   //   "mainVersionId": "my_mainVersionId",
@@ -16131,6 +16143,8 @@ export namespace networkservices_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
      *       //   "labels": {},
      *       //   "logConfig": {},
      *       //   "mainVersionId": "my_mainVersionId",

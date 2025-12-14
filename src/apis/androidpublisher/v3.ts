@@ -2526,6 +2526,10 @@ export namespace androidpublisher_v3 {
      */
     isTokenizedDigitalAsset?: boolean | null;
     /**
+     * Product tax category code to assign to the in-app product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
+     */
+    productTaxCategoryCode?: string | null;
+    /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
     taxRateInfoByRegionCode?: {
@@ -2977,6 +2981,10 @@ export namespace androidpublisher_v3 {
      * Whether this one-time product is declared as a product representing a tokenized digital asset.
      */
     isTokenizedDigitalAsset?: boolean | null;
+    /**
+     * Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
+     */
+    productTaxCategoryCode?: string | null;
     /**
      * Regional tax configuration.
      */
@@ -4548,6 +4556,10 @@ export namespace androidpublisher_v3 {
      * Whether this subscription is declared as a product representing a tokenized digital asset.
      */
     isTokenizedDigitalAsset?: boolean | null;
+    /**
+     * Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
+     */
+    productTaxCategoryCode?: string | null;
     /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
@@ -6820,8 +6832,6 @@ export namespace androidpublisher_v3 {
      *     changesNotSentForReview: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
-     *     // Optional. The behavior of committing a new edit while a submission is already in review.
-     *     inProgressReviewBehaviour: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *   });
@@ -7497,10 +7507,6 @@ export namespace androidpublisher_v3 {
      * Identifier of the edit.
      */
     editId?: string;
-    /**
-     * Optional. The behavior of committing a new edit while a submission is already in review.
-     */
-    inProgressReviewBehaviour?: string;
     /**
      * Package name of the app.
      */

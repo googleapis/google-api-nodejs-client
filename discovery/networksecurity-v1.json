@@ -701,7 +701,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1083,7 +1083,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2425,6 +2425,163 @@
                 }
               }
             },
+            "dnsThreatDetectors": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new DnsThreatDetector in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dnsThreatDetectorId": {
+                      "description": "Optional. The ID of the requesting DnsThreatDetector object. If this field is not supplied, the service generates an identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for the parent of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dnsThreatDetectors",
+                  "request": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single DnsThreatDetector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a single DnsThreatDetector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DnsThreatDetectors in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server may return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for `ListDnsThreatDetectorsRequest`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dnsThreatDetectors",
+                  "response": {
+                    "$ref": "ListDnsThreatDetectorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single DnsThreatDetector.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Name of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "firewallEndpointAssociations": {
               "methods": {
                 "create": {
@@ -2597,6 +2754,188 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "FirewallEndpointAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "firewallEndpoints": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new FirewallEndpoint in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.firewallEndpoints.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "firewallEndpointId": {
+                      "description": "Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpoints",
+                  "request": {
+                    "$ref": "FirewallEndpoint"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Endpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.firewallEndpoints.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Endpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.firewallEndpoints.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "FirewallEndpoint"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists FirewallEndpoints in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.firewallEndpoints.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListEndpointsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/firewallEndpoints",
+                  "response": {
+                    "$ref": "ListFirewallEndpointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single Endpoint.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.firewallEndpoints.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Name of resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "FirewallEndpoint"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -4492,7 +4831,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5080,7 +5419,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20251203",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5825,7 +6164,7 @@
       "id": "CustomMirroringProfile",
       "properties": {
         "mirroringEndpointGroup": {
-          "description": "Required. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
+          "description": "Required. Immutable. The target MirroringEndpointGroup. When a mirroring rule with this security profile attached matches a packet, a replica will be mirrored to the location-local target in this group.",
           "type": "string"
         }
       },
@@ -5860,6 +6199,55 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DnsThreatDetector": {
+      "description": "A DNS threat detector sends DNS query logs to a _provider_ that then analyzes the logs to identify threat events in the DNS queries. By default, all VPC networks in your projects are included. You can exclude specific networks by supplying `excluded_networks`.",
+      "id": "DnsThreatDetector",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create time stamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "excludedNetworks": {
+          "description": "Optional. A list of network resource names which aren't monitored by this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Any labels associated with the DnsThreatDetector, listed as key value pairs.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Name of the DnsThreatDetector resource.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Required. The provider used for DNS threat analysis.",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "INFOBLOX"
+          ],
+          "enumDescriptions": [
+            "An unspecified provider.",
+            "The Infoblox DNS threat detector provider."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time stamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -6988,6 +7376,31 @@
       },
       "type": "object"
     },
+    "ListDnsThreatDetectorsResponse": {
+      "description": "The response message to requesting a list of DnsThreatDetectors.",
+      "id": "ListDnsThreatDetectorsResponse",
+      "properties": {
+        "dnsThreatDetectors": {
+          "description": "The list of DnsThreatDetector resources.",
+          "items": {
+            "$ref": "DnsThreatDetector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token`, to retrieve the next page.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable `DnsThreatDetector` resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListFirewallEndpointAssociationsResponse": {
       "description": "Message for response to listing Associations",
       "id": "ListFirewallEndpointAssociationsResponse",
@@ -7280,7 +7693,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },

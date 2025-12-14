@@ -2517,7 +2517,14 @@ export namespace drive_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2663,7 +2670,14 @@ export namespace drive_v3 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.appdata',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/drive.metadata',
+     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
+     *       'https://www.googleapis.com/auth/drive.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

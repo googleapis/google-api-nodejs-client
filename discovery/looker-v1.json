@@ -715,7 +715,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20251203",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -752,6 +752,14 @@
         "marketplaceEnabled": {
           "description": "Optional. Whether marketplace is enabled.",
           "type": "boolean"
+        },
+        "webProxyIps": {
+          "description": "Output only. The list of IP addresses used by Secure Web Proxy for outbound traffic.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
