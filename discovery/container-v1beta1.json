@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20251202",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3807,6 +3807,10 @@
           "$ref": "MaintenancePolicy",
           "description": "Configure the maintenance policy for this cluster."
         },
+        "managedOpentelemetryConfig": {
+          "$ref": "ManagedOpenTelemetryConfig",
+          "description": "Configuration for Managed OpenTelemetry pipeline."
+        },
         "master": {
           "$ref": "Master",
           "description": "Configuration for master components."
@@ -4310,6 +4314,10 @@
         "desiredLoggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
+        },
+        "desiredManagedOpentelemetryConfig": {
+          "$ref": "ManagedOpenTelemetryConfig",
+          "description": "The desired managed open telemetry configuration."
         },
         "desiredMaster": {
           "$ref": "Master",
@@ -6485,6 +6493,27 @@
         "recurringWindow": {
           "$ref": "RecurringTimeWindow",
           "description": "RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time."
+        }
+      },
+      "type": "object"
+    },
+    "ManagedOpenTelemetryConfig": {
+      "description": "ManagedOpenTelemetryConfig is the configuration for the GKE Managed OpenTelemetry pipeline.",
+      "id": "ManagedOpenTelemetryConfig",
+      "properties": {
+        "scope": {
+          "description": "Scope of the Managed OpenTelemetry pipeline.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "NONE",
+            "COLLECTION_AND_INSTRUMENTATION_COMPONENTS"
+          ],
+          "enumDescriptions": [
+            "SCOPE_UNSPECIFIED is when the scope is not set.",
+            "NONE is used to disable the Managed OpenTelemetry pipeline.",
+            "COLLECTION_AND_INSTRUMENTATION_COMPONENTS is used to enable the Managed OpenTelemetry pipeline for collection and instrumentation components."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

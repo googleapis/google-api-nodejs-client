@@ -920,6 +920,10 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Configuration for Managed OpenTelemetry pipeline.
+     */
+    managedOpentelemetryConfig?: Schema$ManagedOpenTelemetryConfig;
+    /**
      * Configuration for master components.
      */
     master?: Schema$Master;
@@ -1311,6 +1315,10 @@ export namespace container_v1beta1 {
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
+    /**
+     * The desired managed open telemetry configuration.
+     */
+    desiredManagedOpentelemetryConfig?: Schema$ManagedOpenTelemetryConfig;
     /**
      * Configuration for master components.
      */
@@ -2781,6 +2789,15 @@ export namespace container_v1beta1 {
      * RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time.
      */
     recurringWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
+   * ManagedOpenTelemetryConfig is the configuration for the GKE Managed OpenTelemetry pipeline.
+   */
+  export interface Schema$ManagedOpenTelemetryConfig {
+    /**
+     * Scope of the Managed OpenTelemetry pipeline.
+     */
+    scope?: string | null;
   }
   /**
    * ManagedPrometheusConfig defines the configuration for Google Cloud Managed Service for Prometheus.
@@ -7159,6 +7176,7 @@ export namespace container_v1beta1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedOpentelemetryConfig": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
@@ -13622,6 +13640,7 @@ export namespace container_v1beta1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedOpentelemetryConfig": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
