@@ -29963,9 +29963,67 @@
           }
         }
       }
+    },
+    "v1": {
+      "methods": {
+        "evaluateDataset": {
+          "description": "Evaluates a dataset based on a set of given metrics.",
+          "flatPath": "v1:evaluateDataset",
+          "httpMethod": "POST",
+          "id": "aiplatform.evaluateDataset",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1:evaluateDataset",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1EvaluateDatasetRequest"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "evaluateInstances": {
+          "description": "Evaluates instances based on a given metric.",
+          "flatPath": "v1:evaluateInstances",
+          "httpMethod": "POST",
+          "id": "aiplatform.evaluateInstances",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1:evaluateInstances",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1EvaluateInstancesRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1EvaluateInstancesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "generateInstanceRubrics": {
+          "description": "Generates rubrics for a given prompt. A rubric represents a single testable criterion for evaluation. One input prompt could have multiple rubrics This RPC allows users to get suggested rubrics based on provided prompt, which can then be reviewed and used for subsequent evaluations.",
+          "flatPath": "v1:generateInstanceRubrics",
+          "httpMethod": "POST",
+          "id": "aiplatform.generateInstanceRubrics",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1:generateInstanceRubrics",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1GenerateInstanceRubricsRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1GenerateInstanceRubricsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20251204",
+  "revision": "20251210",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -35339,6 +35397,10 @@
           "$ref": "GoogleCloudAiplatformV1EvaluationDataset",
           "description": "Required. The dataset used for evaluation."
         },
+        "location": {
+          "description": "Required. The resource name of the Location to evaluate the dataset. Format: `projects/{project}/locations/{location}`",
+          "type": "string"
+        },
         "metrics": {
           "description": "Required. The metrics used for evaluation.",
           "items": {
@@ -35392,6 +35454,10 @@
         "instance": {
           "$ref": "GoogleCloudAiplatformV1EvaluationInstance",
           "description": "The instance to be evaluated."
+        },
+        "location": {
+          "description": "Required. The resource name of the Location to evaluate the instances. Format: `projects/{project}/locations/{location}`",
+          "type": "string"
         },
         "metrics": {
           "description": "The metrics used for evaluation. Currently, we only support evaluating a single metric. If multiple metrics are provided, only the first one will be evaluated.",
@@ -39946,6 +40012,10 @@
           },
           "type": "array"
         },
+        "location": {
+          "description": "Required. The resource name of the Location to generate rubrics from. Format: `projects/{project}/locations/{location}`",
+          "type": "string"
+        },
         "predefinedRubricGenerationSpec": {
           "$ref": "GoogleCloudAiplatformV1PredefinedMetricSpec",
           "description": "Optional. Specification for using the rubric generation configs of a pre-defined metric, e.g. \"generic_quality_v1\" and \"instruction_following_v1\". Some of the configs may be only used in rubric generation and not supporting evaluation, e.g. \"fully_customized_generic_quality_v1\". If this field is set, the `rubric_generation_spec` field will be ignored."
@@ -43304,6 +43374,10 @@
       "description": "Configuration for organizing memories for a particular scope.",
       "id": "GoogleCloudAiplatformV1MemoryBankCustomizationConfig",
       "properties": {
+        "enableThirdPersonMemories": {
+          "description": "Optional. If true, then the memories will be generated in the third person (i.e. \"The user generates memories with Memory Bank.\"). By default, the memories will be generated in the first person (i.e. \"I generate memories with Memory Bank.\")",
+          "type": "boolean"
+        },
         "generateMemoriesExamples": {
           "description": "Optional. Examples of how to generate memories for a particular scope.",
           "items": {
