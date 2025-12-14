@@ -2177,7 +2177,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20251205",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2364,7 +2364,7 @@
             "CANCELLED",
             "CANCELLING",
             "DELETED",
-            "FLEX_START_PENDING"
+            "DELAYED_START_PENDING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -2373,7 +2373,7 @@
             "The execution was cancelled by users.",
             "The execution is in the process of being cancelled.",
             "The execution was deleted.",
-            "A Flex priority execution is waiting for a start time."
+            "A delayed execution is waiting for a start time."
           ],
           "readOnly": true,
           "type": "string"
