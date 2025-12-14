@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20251123",
+  "revision": "20251207",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2065,6 +2065,10 @@
         "accessRole": {
           "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
+        },
+        "autoAcceptInvitations": {
+          "description": "Whether this calendar automatically accepts invitations. Only valid for resource calendars. Read-only.",
+          "type": "boolean"
         },
         "backgroundColor": {
           "description": "The main color of the calendar in the hexadecimal format \"#0088aa\". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.",
