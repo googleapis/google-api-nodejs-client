@@ -1680,15 +1680,15 @@ export namespace chromemanagement_v1 {
    */
   export interface Schema$GoogleChromeManagementV1RiskAssessmentEntry {
     /**
-     * The risk assessment provider from which this entry comes from.
+     * Output only. The risk assessment provider from which this entry comes from.
      */
     provider?: string | null;
     /**
-     * The details of the provider's risk assessment.
+     * Output only. The details of the provider's risk assessment.
      */
     riskAssessment?: Schema$GoogleChromeManagementV1RiskAssessment;
     /**
-     * The bucketed risk level for the risk assessment.
+     * Output only. The bucketed risk level for the risk assessment.
      */
     riskLevel?: string | null;
   }
