@@ -1394,7 +1394,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20251209",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -6008,7 +6008,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user-defined name of the Schema.",
+          "description": "Required. The user-defined name of the Schema.",
           "type": "string"
         },
         "labels": {
@@ -6780,7 +6780,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. The user-defined name of the SchemaVersion.",
+          "description": "Required. The user-defined name of the SchemaVersion.",
           "type": "string"
         },
         "labels": {
