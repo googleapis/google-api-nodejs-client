@@ -764,6 +764,18 @@ export namespace authorizedbuyersmarketplace_v1 {
      * Output only. Account ID of the media planner.
      */
     accountId?: string | null;
+    /**
+     * Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId\}` Can be used to filter the response of the mediaPlanners.list method.
+     */
+    ancestorNames?: string[] | null;
+    /**
+     * Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId\}` Can be used to filter the response of the mediaPlanners.list method.
+     */
+    name?: string | null;
   }
   /**
    * Mobile application targeting settings.
