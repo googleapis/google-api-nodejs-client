@@ -5446,7 +5446,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251209",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9705,6 +9705,20 @@
         "queryParams": {
           "$ref": "GoogleCloudDialogflowCxV3beta1QueryParameters",
           "description": "The parameters of this query."
+        },
+        "responseView": {
+          "description": "Optional. Specifies which fields in the QueryResult to return. If not set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.",
+          "enum": [
+            "DETECT_INTENT_RESPONSE_VIEW_UNSPECIFIED",
+            "DETECT_INTENT_RESPONSE_VIEW_FULL",
+            "DETECT_INTENT_RESPONSE_VIEW_BASIC"
+          ],
+          "enumDescriptions": [
+            "Not specified. `FULL` will be used.",
+            "Full response view includes all fields.",
+            "Basic response view omits the following fields: - QueryResult.diagnostic_info - QueryResult.generative_info"
+          ],
+          "type": "string"
         },
         "session": {
           "description": "Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).",

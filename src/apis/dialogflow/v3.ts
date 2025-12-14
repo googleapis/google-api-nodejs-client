@@ -2898,6 +2898,10 @@ export namespace dialogflow_v3 {
      * The parameters of this query.
      */
     queryParams?: Schema$GoogleCloudDialogflowCxV3QueryParameters;
+    /**
+     * Optional. Specifies which fields in the QueryResult to return. If not set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     */
+    responseView?: string | null;
   }
   /**
    * The message returned from the DetectIntent method.
@@ -18666,7 +18670,8 @@ export namespace dialogflow_v3 {
      *           // {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
-     *           //   "queryParams": {}
+     *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView"
      *           // }
      *         },
      *       },
@@ -19174,7 +19179,8 @@ export namespace dialogflow_v3 {
      *           // {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
-     *           //   "queryParams": {}
+     *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView"
      *           // }
      *         },
      *       },
@@ -29934,7 +29940,8 @@ export namespace dialogflow_v3 {
      *       // {
      *       //   "outputAudioConfig": {},
      *       //   "queryInput": {},
-     *       //   "queryParams": {}
+     *       //   "queryParams": {},
+     *       //   "responseView": "my_responseView"
      *       // }
      *     },
      *   });
@@ -30437,7 +30444,8 @@ export namespace dialogflow_v3 {
      *           // {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
-     *           //   "queryParams": {}
+     *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView"
      *           // }
      *         },
      *       },
