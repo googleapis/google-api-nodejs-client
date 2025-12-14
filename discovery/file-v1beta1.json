@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1116,7 +1116,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1136,7 +1136,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251204",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1720,7 +1720,7 @@
           "type": "string"
         },
         "capacityStepSizeGb": {
-          "description": "Output only. The increase/decrease capacity step size.",
+          "description": "Output only. The incremental increase or decrease in capacity, designated in some number of GB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1775,18 +1775,18 @@
           "type": "object"
         },
         "maxCapacityGb": {
-          "description": "Output only. The max capacity of the instance.",
+          "description": "Output only. The maximum capacity of the instance.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxShareCount": {
-          "description": "The max number of shares allowed.",
+          "description": "The maximum number of shares allowed.",
           "format": "int64",
           "type": "string"
         },
         "minCapacityGb": {
-          "description": "Output only. The min capacity of the instance.",
+          "description": "Output only. The minimum capacity of the instance.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -2044,7 +2044,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -2457,31 +2457,31 @@
       "id": "PerformanceLimits",
       "properties": {
         "maxIops": {
-          "description": "Output only. The max IOPS.",
+          "description": "Output only. The maximum IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxReadIops": {
-          "description": "Output only. The max read IOPS.",
+          "description": "Output only. The maximum read IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxReadThroughputBps": {
-          "description": "Output only. The max read throughput in bytes per second.",
+          "description": "Output only. The maximum read throughput in bytes per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxWriteIops": {
-          "description": "Output only. The max write IOPS.",
+          "description": "Output only. The maximum write IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxWriteThroughputBps": {
-          "description": "Output only. The max write throughput in bytes per second.",
+          "description": "Output only. The maximumwrite throughput in bytes per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -2521,7 +2521,7 @@
           "type": "string"
         },
         "peerInstance": {
-          "description": "The peer instance.",
+          "description": "The name of the source instance for the replica, in the format `projects/{project}/locations/{location}/instances/{instance}`. This field is required when creating a replica.",
           "type": "string"
         },
         "state": {
@@ -2581,7 +2581,7 @@
       "type": "object"
     },
     "Replication": {
-      "description": "Replication specifications.",
+      "description": "Optional. The configuration used to replicate an instance.",
       "id": "Replication",
       "properties": {
         "replicas": {
@@ -2592,7 +2592,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Output only. The replication role.",
+          "description": "Output only. The replication role. When creating a new replica, this field must be set to `STANDBY`.",
           "enum": [
             "ROLE_UNSPECIFIED",
             "ACTIVE",
