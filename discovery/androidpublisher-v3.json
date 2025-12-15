@@ -429,21 +429,6 @@
               "required": true,
               "type": "string"
             },
-            "inProgressReviewBehaviour": {
-              "description": "Optional. The behavior of committing a new edit while a submission is already in review.",
-              "enum": [
-                "IN_PROGRESS_REVIEW_BEHAVIOUR_UNSPECIFIED",
-                "CANCEL_IN_PROGRESS_AND_SUBMIT",
-                "THROW_ERROR_IF_IN_PROGRESS"
-              ],
-              "enumDescriptions": [
-                "The behavior is not specified.",
-                "The changes in review will be canceled, and the new changes will be sent for review. Thus resetting the review process.",
-                "The commit will fail with an error if there are changes in review. If the edit doesn't result in a new submission being created then it won't throw an error even if there are changes in review."
-              ],
-              "location": "query",
-              "type": "string"
-            },
             "packageName": {
               "description": "Package name of the app.",
               "location": "path",
@@ -5570,7 +5555,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20251211",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -9001,6 +8986,10 @@
           "description": "Whether this in-app product is declared as a product representing a tokenized digital asset.",
           "type": "boolean"
         },
+        "productTaxCategoryCode": {
+          "description": "Product tax category code to assign to the in-app product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
+          "type": "string"
+        },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {
             "$ref": "RegionalTaxRateInfo"
@@ -9660,6 +9649,10 @@
         "isTokenizedDigitalAsset": {
           "description": "Whether this one-time product is declared as a product representing a tokenized digital asset.",
           "type": "boolean"
+        },
+        "productTaxCategoryCode": {
+          "description": "Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
+          "type": "string"
         },
         "regionalTaxConfigs": {
           "description": "Regional tax configuration.",
@@ -11884,6 +11877,10 @@
         "isTokenizedDigitalAsset": {
           "description": "Whether this subscription is declared as a product representing a tokenized digital asset.",
           "type": "boolean"
+        },
+        "productTaxCategoryCode": {
+          "description": "Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
+          "type": "string"
         },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {
