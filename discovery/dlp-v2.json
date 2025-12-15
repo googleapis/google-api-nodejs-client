@@ -5123,7 +5123,7 @@
       }
     }
   },
-  "revision": "20251120",
+  "revision": "20251204",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5144,7 +5144,8 @@
         },
         "publishFindingsToCloudDataCatalog": {
           "$ref": "GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog",
-          "description": "Publish findings to Cloud Datahub."
+          "deprecated": true,
+          "description": "Deprecated because Data Catalog is being turned down. Use publish_findings_to_dataplex_catalog to publish findings to Dataplex Universal Catalog."
         },
         "publishFindingsToDataplexCatalog": {
           "$ref": "GooglePrivacyDlpV2PublishFindingsToDataplexCatalog",
