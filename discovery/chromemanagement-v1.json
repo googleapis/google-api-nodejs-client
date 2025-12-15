@@ -1786,7 +1786,7 @@
       }
     }
   },
-  "revision": "20251112",
+  "revision": "20251211",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4250,7 +4250,7 @@
       "id": "GoogleChromeManagementV1RiskAssessmentEntry",
       "properties": {
         "provider": {
-          "description": "The risk assessment provider from which this entry comes from.",
+          "description": "Output only. The risk assessment provider from which this entry comes from.",
           "enum": [
             "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
             "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
@@ -4263,14 +4263,16 @@
             "Spin.Ai.",
             "LayerX Security."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "riskAssessment": {
           "$ref": "GoogleChromeManagementV1RiskAssessment",
-          "description": "The details of the provider's risk assessment."
+          "description": "Output only. The details of the provider's risk assessment.",
+          "readOnly": true
         },
         "riskLevel": {
-          "description": "The bucketed risk level for the risk assessment.",
+          "description": "Output only. The bucketed risk level for the risk assessment.",
           "enum": [
             "RISK_LEVEL_UNSPECIFIED",
             "RISK_LEVEL_LOW",
@@ -4283,6 +4285,7 @@
             "Extension that represents a medium risk.",
             "Extension that represents a high risk."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
