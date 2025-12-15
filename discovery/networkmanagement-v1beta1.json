@@ -298,7 +298,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -961,7 +961,7 @@
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20251203",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2891,7 +2891,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -3127,6 +3127,26 @@
       "description": "For display only. Metadata associated with NAT.",
       "id": "NatInfo",
       "properties": {
+        "cloudNatGatewayType": {
+          "description": "Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.",
+          "enum": [
+            "CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED",
+            "PUBLIC_NAT44",
+            "PUBLIC_NAT64",
+            "PRIVATE_NAT_NCC",
+            "PRIVATE_NAT_HYBRID",
+            "PRIVATE_NAT64"
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "Public NAT gateway.",
+            "Public NAT64 gateway.",
+            "Private NAT gateway for NCC.",
+            "Private NAT gateway for hybrid connectivity.",
+            "Private NAT64 gateway."
+          ],
+          "type": "string"
+        },
         "natGatewayName": {
           "description": "The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.",
           "type": "string"
