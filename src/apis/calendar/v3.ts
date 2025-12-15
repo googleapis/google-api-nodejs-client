@@ -247,6 +247,10 @@ export namespace calendar_v3 {
      */
     accessRole?: string | null;
     /**
+     * Whether this calendar automatically accepts invitations. Only valid for resource calendars. Read-only.
+     */
+    autoAcceptInvitations?: boolean | null;
+    /**
      * The main color of the calendar in the hexadecimal format "#0088aa". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
      */
     backgroundColor?: string | null;
@@ -2588,6 +2592,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "accessRole": "my_accessRole",
+     *   //   "autoAcceptInvitations": false,
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
@@ -2745,6 +2750,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "accessRole": "my_accessRole",
+     *       //   "autoAcceptInvitations": false,
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
@@ -2772,6 +2778,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "accessRole": "my_accessRole",
+     *   //   "autoAcceptInvitations": false,
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
@@ -3094,6 +3101,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "accessRole": "my_accessRole",
+     *       //   "autoAcceptInvitations": false,
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
@@ -3121,6 +3129,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "accessRole": "my_accessRole",
+     *   //   "autoAcceptInvitations": false,
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
@@ -3282,6 +3291,7 @@ export namespace calendar_v3 {
      *       // request body parameters
      *       // {
      *       //   "accessRole": "my_accessRole",
+     *       //   "autoAcceptInvitations": false,
      *       //   "backgroundColor": "my_backgroundColor",
      *       //   "colorId": "my_colorId",
      *       //   "conferenceProperties": {},
@@ -3309,6 +3319,7 @@ export namespace calendar_v3 {
      *   // Example response
      *   // {
      *   //   "accessRole": "my_accessRole",
+     *   //   "autoAcceptInvitations": false,
      *   //   "backgroundColor": "my_backgroundColor",
      *   //   "colorId": "my_colorId",
      *   //   "conferenceProperties": {},
