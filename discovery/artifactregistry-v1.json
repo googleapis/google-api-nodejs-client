@@ -638,7 +638,7 @@
                   ]
                 },
                 "exportArtifact": {
-                  "description": "Exports an artifact.",
+                  "description": "Exports an artifact to a Cloud Storage bucket.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:exportArtifact",
                   "httpMethod": "POST",
                   "id": "artifactregistry.projects.locations.repositories.exportArtifact",
@@ -2493,7 +2493,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20251201",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2788,10 +2788,21 @@
       "description": "DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime",
       "id": "DockerImage",
       "properties": {
+        "artifactType": {
+          "description": "ArtifactType of this image, e.g. \"application/vnd.example+type\". If the `subject_digest` is set and no `artifact_type` is given, the `media_type` will be considered as the `artifact_type`. This field is returned as the `metadata.artifactType` field in the Version resource.",
+          "type": "string"
+        },
         "buildTime": {
           "description": "The time this image was built. This field is returned as the 'metadata.buildTime' field in the Version resource. The build time is returned to the client as an RFC 3339 string, which can be easily used with the JavaScript Date constructor.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "imageManifests": {
+          "description": "Optional. For multi-arch images (manifest lists), this field contains the list of image manifests.",
+          "items": {
+            "$ref": "ImageManifest"
+          },
+          "type": "array"
         },
         "imageSizeBytes": {
           "description": "Calculated size of the image. This field is returned as the 'metadata.imageSizeBytes' field in the Version resource.",
@@ -3285,6 +3296,44 @@
         "value": {
           "description": "The hash value.",
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImageManifest": {
+      "description": "Details of a single image manifest within a multi-arch image.",
+      "id": "ImageManifest",
+      "properties": {
+        "architecture": {
+          "description": "Optional. The CPU architecture of the image. Values are provided by the Docker client and are not validated by Artifact Registry. Example values include \"amd64\", \"arm64\", \"ppc64le\", \"s390x\", \"riscv64\", \"mips64le\", etc.",
+          "type": "string"
+        },
+        "digest": {
+          "description": "Optional. The manifest digest, in the format \"sha256:\".",
+          "type": "string"
+        },
+        "mediaType": {
+          "description": "Optional. The media type of the manifest, e.g., \"application/vnd.docker.distribution.manifest.v2+json\"",
+          "type": "string"
+        },
+        "os": {
+          "description": "Optional. The operating system of the image. Values are provided by the Docker client and are not validated by Artifact Registry. Example values include \"linux\", \"windows\", \"darwin\", \"aix\", etc.",
+          "type": "string"
+        },
+        "osFeatures": {
+          "description": "Optional. The required OS features for the image, for example on Windows `win32k`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "osVersion": {
+          "description": "Optional. The OS version of the image, for example on Windows `10.0.14393.1066`.",
+          "type": "string"
+        },
+        "variant": {
+          "description": "Optional. The variant of the CPU in the image, for example `v7` to specify ARMv7 when architecture is `arm`.",
           "type": "string"
         }
       },
