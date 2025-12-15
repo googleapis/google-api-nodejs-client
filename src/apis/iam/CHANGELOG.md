@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v35.1.1...iam-v35.1.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([d40f0f8](https://github.com/googleapis/google-api-nodejs-client/commit/d40f0f88c75ffdad86ebe0fbdcff97619d304809))
+
 ## [35.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/iam-v35.1.0...iam-v35.1.1) (2025-12-05)
 
 

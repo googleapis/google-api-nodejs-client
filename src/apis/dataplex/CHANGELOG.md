@@ -1,5 +1,17 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v24.1.0...dataplex-v25.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([3a23fd3](https://github.com/googleapis/google-api-nodejs-client/commit/3a23fd35b9c0d941e9af2995a82b7471553372d5))
+* run the generator ([#3850](https://github.com/googleapis/google-api-nodejs-client/issues/3850)) ([e609c06](https://github.com/googleapis/google-api-nodejs-client/commit/e609c06a573ca72dfd5e57816ab5a320ea99c9bd))
+
 ## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v24.0.0...dataplex-v24.1.0) (2025-12-05)
 
 

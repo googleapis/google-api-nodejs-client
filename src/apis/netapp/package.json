@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/netapp",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "netapp",
   "main": "build/index.js",
   "types": "build/index.d.ts",

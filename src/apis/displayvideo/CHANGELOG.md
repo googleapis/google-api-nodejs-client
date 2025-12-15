@@ -1,5 +1,16 @@
 # Changelog
 
+## [38.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v37.0.0...displayvideo-v38.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3850](https://github.com/googleapis/google-api-nodejs-client/issues/3850)) ([e609c06](https://github.com/googleapis/google-api-nodejs-client/commit/e609c06a573ca72dfd5e57816ab5a320ea99c9bd))
+
 ## [37.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v36.1.0...displayvideo-v37.0.0) (2025-12-05)
 
 

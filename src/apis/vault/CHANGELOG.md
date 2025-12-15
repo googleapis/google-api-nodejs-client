@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v8.1.1...vault-v8.1.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([c63a2ed](https://github.com/googleapis/google-api-nodejs-client/commit/c63a2ed541ad7fbbfa3849e7ed4a32cdb297d1cf))
+
 ## [8.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v8.1.0...vault-v8.1.1) (2025-12-05)
 
 
