@@ -143,7 +143,7 @@ export namespace dlp_v2 {
      */
     jobNotificationEmails?: Schema$GooglePrivacyDlpV2JobNotificationEmails;
     /**
-     * Publish findings to Cloud Datahub.
+     * Deprecated because Data Catalog is being turned down. Use publish_findings_to_dataplex_catalog to publish findings to Dataplex Universal Catalog.
      */
     publishFindingsToCloudDataCatalog?: Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog;
     /**
