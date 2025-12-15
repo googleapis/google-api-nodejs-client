@@ -1,5 +1,18 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v8.2.0...apphub-v8.3.0) (2025-12-15)
+
+
+### Features
+
+* **apphub:** update the API ([ae58a71](https://github.com/googleapis/google-api-nodejs-client/commit/ae58a719a3fb5fbaea3875e9931914c42fc933d2))
+* regenerate index files ([1e2be3e](https://github.com/googleapis/google-api-nodejs-client/commit/1e2be3ec4fa73be8c995c76220c4d0a096ad005c))
+
+
+### Bug Fixes
+
+* **apphub:** update the API ([c2466dc](https://github.com/googleapis/google-api-nodejs-client/commit/c2466dcee0a6b05767ee1dc9fbc9845e8659549a))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v8.1.0...apphub-v8.2.0) (2025-12-05)
 
 

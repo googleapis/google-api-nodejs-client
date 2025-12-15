@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v8.0.1...workflows-v8.0.2) (2025-12-15)
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([f2dc214](https://github.com/googleapis/google-api-nodejs-client/commit/f2dc21408e2c8173c2541f40deebd49d09f31c9a))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v8.0.0...workflows-v8.0.1) (2025-12-05)
 
 

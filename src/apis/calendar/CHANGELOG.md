@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v14.1.0...calendar-v14.2.0) (2025-12-15)
+
+
+### Features
+
+* **calendar:** update the API ([b6b8b99](https://github.com/googleapis/google-api-nodejs-client/commit/b6b8b99f03c0208739b470167b66b094a83725a0))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v14.0.0...calendar-v14.1.0) (2025-12-05)
 
 

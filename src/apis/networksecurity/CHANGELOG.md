@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v15.0.1...networksecurity-v15.1.0) (2025-12-15)
+
+
+### Features
+
+* **networksecurity:** update the API ([469b6fe](https://github.com/googleapis/google-api-nodejs-client/commit/469b6fe4415d5ab227d392e609a477840f15aeb3))
+* **networksecurity:** update the API ([82ec6df](https://github.com/googleapis/google-api-nodejs-client/commit/82ec6dfd6ab4a81aab2ad5d304acc28c612b708a))
+
 ## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v15.0.0...networksecurity-v15.0.1) (2025-12-05)
 
 

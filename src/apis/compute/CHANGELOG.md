@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v35.1.0...compute-v35.2.0) (2025-12-15)
+
+
+### Features
+
+* **compute:** update the API ([4d6393b](https://github.com/googleapis/google-api-nodejs-client/commit/4d6393b62ffcc04d0f45805de615d5be3234b1e3))
+
 ## [35.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v35.0.0...compute-v35.1.0) (2025-12-05)
 
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v13.2.0...gkebackup-v14.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gkebackup:** This release has breaking changes.
+
+### Features
+
+* **gkebackup:** update the API ([09cac21](https://github.com/googleapis/google-api-nodejs-client/commit/09cac214a4baf8c468342f28971fa17e65a0ae51))
+
 ## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkebackup-v13.1.0...gkebackup-v13.2.0) (2025-12-05)
 
 

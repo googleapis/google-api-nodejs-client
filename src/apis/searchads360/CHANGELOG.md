@@ -1,5 +1,21 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v10.1.0...searchads360-v11.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3850](https://github.com/googleapis/google-api-nodejs-client/issues/3850)) ([e609c06](https://github.com/googleapis/google-api-nodejs-client/commit/e609c06a573ca72dfd5e57816ab5a320ea99c9bd))
+
+
+### Bug Fixes
+
+* **searchads360:** update the API ([a1ade6e](https://github.com/googleapis/google-api-nodejs-client/commit/a1ade6e3e845afcb755e4fc5eb082c838e93b6e6))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v10.0.0...searchads360-v10.1.0) (2025-12-05)
 
 

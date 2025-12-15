@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v16.2.0...migrationcenter-v17.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **migrationcenter:** This release has breaking changes.
+
+### Features
+
+* **migrationcenter:** update the API ([7c56cb0](https://github.com/googleapis/google-api-nodejs-client/commit/7c56cb081f467e5cb04a79bbecc1ac20d00bdf56))
+* regenerate index files ([1e2be3e](https://github.com/googleapis/google-api-nodejs-client/commit/1e2be3ec4fa73be8c995c76220c4d0a096ad005c))
+
 ## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v16.1.0...migrationcenter-v16.2.0) (2025-12-05)
 
 

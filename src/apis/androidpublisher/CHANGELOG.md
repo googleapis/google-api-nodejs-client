@@ -1,5 +1,19 @@
 # Changelog
 
+## [34.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v33.2.0...androidpublisher-v34.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidpublisher:** This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([6d4518a](https://github.com/googleapis/google-api-nodejs-client/commit/6d4518a1af3ae9fbde1e6262c029228e03f4b299))
+* **androidpublisher:** update the API ([e38d361](https://github.com/googleapis/google-api-nodejs-client/commit/e38d36161f37c0304994c893c98b1df4bdf28631))
+* **androidpublisher:** update the API ([cc7a05d](https://github.com/googleapis/google-api-nodejs-client/commit/cc7a05db3d34da22a06aa01a021ea7d715d2f3b2))
+* regenerate index files ([1e2be3e](https://github.com/googleapis/google-api-nodejs-client/commit/1e2be3ec4fa73be8c995c76220c4d0a096ad005c))
+
 ## [33.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v33.1.0...androidpublisher-v33.2.0) (2025-12-05)
 
 

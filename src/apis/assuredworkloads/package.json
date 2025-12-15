@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/assuredworkloads",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "description": "assuredworkloads",
   "main": "build/index.js",
   "types": "build/index.d.ts",

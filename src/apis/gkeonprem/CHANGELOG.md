@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v13.2.0...gkeonprem-v13.2.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* **gkeonprem:** update the API ([8a6c19b](https://github.com/googleapis/google-api-nodejs-client/commit/8a6c19bc1ee0f9173a9becdb3fb93c5269edf9b0))
+
 ## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v13.1.0...gkeonprem-v13.2.0) (2025-12-05)
 
 

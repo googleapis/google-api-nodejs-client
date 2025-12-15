@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v17.0.0...merchantapi-v17.1.0) (2025-12-15)
+
+
+### Features
+
+* regenerate index files ([1e2be3e](https://github.com/googleapis/google-api-nodejs-client/commit/1e2be3ec4fa73be8c995c76220c4d0a096ad005c))
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([db0f171](https://github.com/googleapis/google-api-nodejs-client/commit/db0f17164b586a493baae9a16436832574b5a3a4))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v16.1.0...merchantapi-v17.0.0) (2025-12-05)
 
 
