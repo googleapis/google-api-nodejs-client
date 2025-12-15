@@ -1395,7 +1395,7 @@
       }
     }
   },
-  "revision": "20251119",
+  "revision": "20251211",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -2512,6 +2512,23 @@
           "deprecated": true,
           "description": "Output only. Account ID of the media planner.",
           "readOnly": true,
+          "type": "string"
+        },
+        "ancestorNames": {
+          "description": "Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method.",
           "type": "string"
         }
       },
