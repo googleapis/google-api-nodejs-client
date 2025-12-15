@@ -213,6 +213,39 @@ export namespace developerconnect_v1 {
     uri?: string | null;
   }
   /**
+   * The ArtifactDeployment resource represents the deployment of the artifact within the InsightsConfig resource.
+   */
+  export interface Schema$ArtifactDeployment {
+    /**
+     * Output only. The artifact alias in the deployment spec, with Tag/SHA. e.g. us-docker.pkg.dev/my-project/my-repo/image:1.0.0
+     */
+    artifactAlias?: string | null;
+    /**
+     * Output only. The artifact that is deployed.
+     */
+    artifactReference?: string | null;
+    /**
+     * Output only. The summary of container status of the artifact deployment. Format as `ContainerStatusState-Reason : restartCount` e.g. "Waiting-ImagePullBackOff : 3"
+     */
+    containerStatusSummary?: string | null;
+    /**
+     * Output only. The time at which the deployment was deployed.
+     */
+    deployTime?: string | null;
+    /**
+     * Output only. Unique identifier of `ArtifactDeployment`.
+     */
+    id?: string | null;
+    /**
+     * Output only. The source commits at which this artifact was built. Extracted from provenance.
+     */
+    sourceCommitUris?: string[] | null;
+    /**
+     * Output only. The time at which the deployment was undeployed, all artifacts are considered undeployed once this time is set.
+     */
+    undeployTime?: string | null;
+  }
+  /**
    * Configuration for connections to an instance of Bitbucket Cloud.
    */
   export interface Schema$BitbucketCloudConfig {
@@ -361,6 +394,47 @@ export namespace developerconnect_v1 {
     keyReference?: string | null;
   }
   /**
+   * The DeploymentEvent resource represents the deployment of the artifact within the InsightsConfig resource.
+   */
+  export interface Schema$DeploymentEvent {
+    /**
+     * Output only. The artifact deployments of the DeploymentEvent. Each artifact deployment contains the artifact uri and the runtime configuration uri. For GKE, this would be all the containers images that are deployed in the pod.
+     */
+    artifactDeployments?: Schema$ArtifactDeployment[];
+    /**
+     * Output only. The create time of the DeploymentEvent.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time at which the DeploymentEvent was deployed. This would be the min of all ArtifactDeployment deploy_times.
+     */
+    deployTime?: string | null;
+    /**
+     * Identifier. The name of the DeploymentEvent. This name is provided by DCI. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}/deploymentEvents/{uuid\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The runtime configurations where the DeploymentEvent happened.
+     */
+    runtimeConfig?: Schema$RuntimeConfig;
+    /**
+     * Output only. The runtime assigned URI of the DeploymentEvent. For GKE, this is the fully qualified replica set uri. e.g. container.googleapis.com/projects/{project\}/locations/{location\}/clusters/{cluster\}/k8s/namespaces/{namespace\}/apps/replicasets/{replica-set-id\} For Cloud Run, this is the revision name.
+     */
+    runtimeDeploymentUri?: string | null;
+    /**
+     * Output only. The state of the DeploymentEvent.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time at which the DeploymentEvent was undeployed, all artifacts are considered undeployed once this time is set. This would be the max of all ArtifactDeployment undeploy_times. If any ArtifactDeployment is still active (i.e. does not have an undeploy_time), this field will be empty.
+     */
+    undeployTime?: string | null;
+    /**
+     * Output only. The update time of the DeploymentEvent.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -478,6 +552,15 @@ export namespace developerconnect_v1 {
      * The token content.
      */
     token?: string | null;
+  }
+  /**
+   * Message for responding to finishing an OAuth flow.
+   */
+  export interface Schema$FinishOAuthResponse {
+    /**
+     * The error resulted from exchanging OAuth tokens from the service provider.
+     */
+    exchangeError?: Schema$ExchangeError;
   }
   /**
    * Configuration for connections to github.com.
@@ -751,6 +834,10 @@ export namespace developerconnect_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The GCP projects to track with the InsightsConfig.
+     */
+    projects?: Schema$Projects;
+    /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of InsightsConfig does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.
      */
     reconciling?: boolean | null;
@@ -843,6 +930,19 @@ export namespace developerconnect_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response to listing DeploymentEvents.
+   */
+  export interface Schema$ListDeploymentEventsResponse {
+    /**
+     * The list of DeploymentEvents.
+     */
+    deploymentEvents?: Schema$DeploymentEvent[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Message for response to listing GitRepositoryLinks
@@ -1067,6 +1167,15 @@ export namespace developerconnect_v1 {
     body?: Schema$HttpBody;
   }
   /**
+   * Projects represents the projects to track with the InsightsConfig.
+   */
+  export interface Schema$Projects {
+    /**
+     * Optional. The GCP Project IDs. Format: projects/{project\}
+     */
+    projectIds?: string[] | null;
+  }
+  /**
    * ProviderOAuthConfig is the OAuth config for a provider.
    */
   export interface Schema$ProviderOAuthConfig {
@@ -1116,6 +1225,39 @@ export namespace developerconnect_v1 {
      * Required. The Service Directory service name. Format: projects/{project\}/locations/{location\}/namespaces/{namespace\}/services/{service\}.
      */
     service?: string | null;
+  }
+  /**
+   * Message for responding to starting an OAuth flow.
+   */
+  export interface Schema$StartOAuthResponse {
+    /**
+     * The authorization server URL to the OAuth flow of the service provider.
+     */
+    authUri?: string | null;
+    /**
+     * The client ID to the OAuth App of the service provider.
+     */
+    clientId?: string | null;
+    /**
+     * https://datatracker.ietf.org/doc/html/rfc7636#section-4.1 Follow http://shortn/_WFYl6U0NyC to include it in the AutoCodeURL.
+     */
+    codeChallenge?: string | null;
+    /**
+     * https://datatracker.ietf.org/doc/html/rfc7636#section-4.2
+     */
+    codeChallengeMethod?: string | null;
+    /**
+     * The list of scopes requested by the application.
+     */
+    scopes?: string[] | null;
+    /**
+     * The ID of the system provider.
+     */
+    systemProviderId?: string | null;
+    /**
+     * The ticket to be used for post processing the callback from the service provider.
+     */
+    ticket?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -3005,6 +3147,160 @@ export namespace developerconnect_v1 {
     }
 
     /**
+     * Finishes OAuth flow for an account connector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.accountConnectors.users.finishOAuthFlow(
+     *       {
+     *         // Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
+     *         accountConnector:
+     *           'projects/my-project/locations/my-location/accountConnectors/my-accountConnector',
+     *         // Required. The scopes returned by Google OAuth flow.
+     *         'googleOauthParams.scopes': 'placeholder-value',
+     *         // Required. The ticket to be used for post processing the callback from Google OAuth flow.
+     *         'googleOauthParams.ticket': 'placeholder-value',
+     *         // Optional. The version info returned by Google OAuth flow.
+     *         'googleOauthParams.versionInfo': 'placeholder-value',
+     *         // Required. The code to be used for getting the token from SCM provider.
+     *         'oauthParams.code': 'placeholder-value',
+     *         // Required. The ticket to be used for post processing the callback from SCM provider.
+     *         'oauthParams.ticket': 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exchangeError": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    finishOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    finishOAuthFlow(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FinishOAuthResponse>>;
+    finishOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    finishOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow,
+      options: MethodOptions | BodyResponseCallback<Schema$FinishOAuthResponse>,
+      callback: BodyResponseCallback<Schema$FinishOAuthResponse>
+    ): void;
+    finishOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow,
+      callback: BodyResponseCallback<Schema$FinishOAuthResponse>
+    ): void;
+    finishOAuthFlow(
+      callback: BodyResponseCallback<Schema$FinishOAuthResponse>
+    ): void;
+    finishOAuthFlow(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow
+        | BodyResponseCallback<Schema$FinishOAuthResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FinishOAuthResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FinishOAuthResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FinishOAuthResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+accountConnector}/users:finishOAuthFlow'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountConnector'],
+        pathParams: ['accountConnector'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FinishOAuthResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FinishOAuthResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Users in a given project, location, and account_connector.
      * @example
      * ```js
@@ -3154,6 +3450,156 @@ export namespace developerconnect_v1 {
         return createAPIRequest<Schema$ListUsersResponse>(parameters);
       }
     }
+
+    /**
+     * Starts OAuth flow for an account connector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.accountConnectors.users.startOAuthFlow(
+     *       {
+     *         // Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
+     *         accountConnector:
+     *           'projects/my-project/locations/my-location/accountConnectors/my-accountConnector',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authUri": "my_authUri",
+     *   //   "clientId": "my_clientId",
+     *   //   "codeChallenge": "my_codeChallenge",
+     *   //   "codeChallengeMethod": "my_codeChallengeMethod",
+     *   //   "scopes": [],
+     *   //   "systemProviderId": "my_systemProviderId",
+     *   //   "ticket": "my_ticket"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    startOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    startOAuthFlow(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StartOAuthResponse>>;
+    startOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    startOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow,
+      options: MethodOptions | BodyResponseCallback<Schema$StartOAuthResponse>,
+      callback: BodyResponseCallback<Schema$StartOAuthResponse>
+    ): void;
+    startOAuthFlow(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow,
+      callback: BodyResponseCallback<Schema$StartOAuthResponse>
+    ): void;
+    startOAuthFlow(
+      callback: BodyResponseCallback<Schema$StartOAuthResponse>
+    ): void;
+    startOAuthFlow(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow
+        | BodyResponseCallback<Schema$StartOAuthResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StartOAuthResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StartOAuthResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StartOAuthResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+accountConnector}/users:startOAuthFlow'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountConnector'],
+        pathParams: ['accountConnector'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StartOAuthResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StartOAuthResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Delete extends StandardParameters {
@@ -3197,6 +3643,32 @@ export namespace developerconnect_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Finishoauthflow extends StandardParameters {
+    /**
+     * Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
+     */
+    accountConnector?: string;
+    /**
+     * Required. The scopes returned by Google OAuth flow.
+     */
+    'googleOauthParams.scopes'?: string[];
+    /**
+     * Required. The ticket to be used for post processing the callback from Google OAuth flow.
+     */
+    'googleOauthParams.ticket'?: string;
+    /**
+     * Optional. The version info returned by Google OAuth flow.
+     */
+    'googleOauthParams.versionInfo'?: string;
+    /**
+     * Required. The code to be used for getting the token from SCM provider.
+     */
+    'oauthParams.code'?: string;
+    /**
+     * Required. The ticket to be used for post processing the callback from SCM provider.
+     */
+    'oauthParams.ticket'?: string;
+  }
   export interface Params$Resource$Projects$Locations$Accountconnectors$Users$List extends StandardParameters {
     /**
      * Optional. Filtering results
@@ -3218,6 +3690,12 @@ export namespace developerconnect_v1 {
      * Required. Parent value for ListUsersRequest
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Users$Startoauthflow extends StandardParameters {
+    /**
+     * Required. The resource name of the AccountConnector in the format `projects/x/locations/x/accountConnectors/x`.
+     */
+    accountConnector?: string;
   }
 
   export class Resource$Projects$Locations$Connections {
@@ -6466,8 +6944,13 @@ export namespace developerconnect_v1 {
 
   export class Resource$Projects$Locations$Insightsconfigs {
     context: APIRequestContext;
+    deploymentEvents: Resource$Projects$Locations$Insightsconfigs$Deploymentevents;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deploymentEvents =
+        new Resource$Projects$Locations$Insightsconfigs$Deploymentevents(
+          this.context
+        );
     }
 
     /**
@@ -6519,6 +7002,7 @@ export namespace developerconnect_v1 {
      *       //   "errors": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "projects": {},
      *       //   "reconciling": false,
      *       //   "runtimeConfigs": [],
      *       //   "state": "my_state",
@@ -6826,6 +7310,7 @@ export namespace developerconnect_v1 {
      *   //   "errors": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "projects": {},
      *   //   "reconciling": false,
      *   //   "runtimeConfigs": [],
      *   //   "state": "my_state",
@@ -7129,6 +7614,7 @@ export namespace developerconnect_v1 {
      *       //   "errors": [],
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "projects": {},
      *       //   "reconciling": false,
      *       //   "runtimeConfigs": [],
      *       //   "state": "my_state",
@@ -7329,6 +7815,341 @@ export namespace developerconnect_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InsightsConfig;
+  }
+
+  export class Resource$Projects$Locations$Insightsconfigs$Deploymentevents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a single Deployment Event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.insightsConfigs.deploymentEvents.get(
+     *       {
+     *         // Required. The name of the deployment event to retrieve. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}/deploymentEvents/{uuid\}
+     *         name: 'projects/my-project/locations/my-location/insightsConfigs/my-insightsConfig/deploymentEvents/my-deploymentEvent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactDeployments": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "deployTime": "my_deployTime",
+     *   //   "name": "my_name",
+     *   //   "runtimeConfig": {},
+     *   //   "runtimeDeploymentUri": "my_runtimeDeploymentUri",
+     *   //   "state": "my_state",
+     *   //   "undeployTime": "my_undeployTime",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeploymentEvent>>;
+    get(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DeploymentEvent>,
+      callback: BodyResponseCallback<Schema$DeploymentEvent>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get,
+      callback: BodyResponseCallback<Schema$DeploymentEvent>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DeploymentEvent>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get
+        | BodyResponseCallback<Schema$DeploymentEvent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeploymentEvent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeploymentEvent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeploymentEvent>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeploymentEvent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeploymentEvent>(parameters);
+      }
+    }
+
+    /**
+     * Lists Deployment Events in a given insights config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.insightsConfigs.deploymentEvents.list(
+     *       {
+     *         // Optional. Filter expression that matches a subset of the DeploymentEvents. https://google.aip.dev/160.
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListDeploymentEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDeploymentEvents` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent insights config that owns this collection of deployment events. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/insightsConfigs/my-insightsConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deploymentEvents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentEventsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentEventsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List,
+      callback: BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List
+        | BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeploymentEventsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentEventsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deploymentEvents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeploymentEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeploymentEventsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$Get extends StandardParameters {
+    /**
+     * Required. The name of the deployment event to retrieve. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}/deploymentEvents/{uuid\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Insightsconfigs$Deploymentevents$List extends StandardParameters {
+    /**
+     * Optional. Filter expression that matches a subset of the DeploymentEvents. https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDeploymentEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDeploymentEvents` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent insights config that owns this collection of deployment events. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
