@@ -1603,6 +1603,10 @@ export namespace dialogflow_v3beta1 {
      */
     queryParams?: Schema$GoogleCloudDialogflowCxV3beta1QueryParameters;
     /**
+     * Optional. Specifies which fields in the QueryResult to return. If not set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     */
+    responseView?: string | null;
+    /**
      * Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session). Note: Always use agent versions for production traffic. See [Versions and environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
      */
     session?: string | null;
@@ -19999,6 +20003,7 @@ export namespace dialogflow_v3beta1 {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
      *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView",
      *           //   "session": "my_session"
      *           // }
      *         },
@@ -20508,6 +20513,7 @@ export namespace dialogflow_v3beta1 {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
      *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView",
      *           //   "session": "my_session"
      *           // }
      *         },
@@ -31322,6 +31328,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "outputAudioConfig": {},
      *       //   "queryInput": {},
      *       //   "queryParams": {},
+     *       //   "responseView": "my_responseView",
      *       //   "session": "my_session"
      *       // }
      *     },
@@ -31826,6 +31833,7 @@ export namespace dialogflow_v3beta1 {
      *           //   "outputAudioConfig": {},
      *           //   "queryInput": {},
      *           //   "queryParams": {},
+     *           //   "responseView": "my_responseView",
      *           //   "session": "my_session"
      *           // }
      *         },

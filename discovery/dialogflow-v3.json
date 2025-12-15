@@ -5319,7 +5319,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251209",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -6600,6 +6600,20 @@
         "queryParams": {
           "$ref": "GoogleCloudDialogflowCxV3QueryParameters",
           "description": "The parameters of this query."
+        },
+        "responseView": {
+          "description": "Optional. Specifies which fields in the QueryResult to return. If not set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.",
+          "enum": [
+            "DETECT_INTENT_RESPONSE_VIEW_UNSPECIFIED",
+            "DETECT_INTENT_RESPONSE_VIEW_FULL",
+            "DETECT_INTENT_RESPONSE_VIEW_BASIC"
+          ],
+          "enumDescriptions": [
+            "Not specified. `FULL` will be used.",
+            "Full response view includes all fields.",
+            "Basic response view omits the following fields: - QueryResult.diagnostic_info"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
