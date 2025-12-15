@@ -18,6 +18,16 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://alloydb.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://alloydb.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://alloydb.northamerica-northeast1.rep.googleapis.com/",
       "location": "northamerica-northeast1"
     },
@@ -1794,7 +1804,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1869,7 +1879,7 @@
       }
     }
   },
-  "revision": "20251106",
+  "revision": "20251204",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1989,11 +1999,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2005,7 +2017,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "readOnly": true,
           "type": "string"
@@ -2391,11 +2404,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2407,7 +2422,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         },
@@ -2628,11 +2644,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2644,7 +2662,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         },
@@ -3729,7 +3748,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -4824,6 +4843,47 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata": {
+      "description": "BigQueryResourceMetadata contains information about the BigQuery resource. Next ID: 9",
+      "id": "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "Required. Full resource name of this instance.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. location of the resource",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "StorageDatabasecenterProtoCommonProduct",
+          "description": "The product this resource represents."
+        },
+        "resourceContainer": {
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
+          "type": "string"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
+          "description": "Required. Database resource id."
+        },
+        "updateTime": {
+          "description": "The time at which the resource was updated and recorded at partner service.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "userLabelSet": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
+          "description": "User-provided labels associated with the resource"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainCompliance": {
       "description": "Contains compliance information about a security standard indicating unmet recommendations.",
       "id": "StorageDatabasecenterPartnerapiV1mainCompliance",
@@ -4869,7 +4929,8 @@
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -4878,7 +4939,8 @@
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support."
+            "Represents if a resource version is in extended support.",
+            "Represents if a resource has no automated backup policy."
           ],
           "type": "string"
         }
@@ -4907,6 +4969,10 @@
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
           "description": "BackupDR metadata is used to ingest metadata from BackupDR."
         },
+        "bigqueryResourceMetadata": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata",
+          "description": "For BigQuery resource metadata."
+        },
         "configBasedSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
           "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
@@ -4930,7 +4996,8 @@
             "RECOMMENDATION_SIGNAL_DATA",
             "CONFIG_BASED_SIGNAL_DATA",
             "BACKUPDR_METADATA",
-            "DATABASE_RESOURCE_SIGNAL_DATA"
+            "DATABASE_RESOURCE_SIGNAL_DATA",
+            "BIGQUERY_RESOURCE_METADATA"
           ],
           "enumDescriptions": [
             "",
@@ -4940,7 +5007,8 @@
             "Database resource recommendation signal data",
             "Database config based signal data",
             "Database resource metadata from BackupDR",
-            "Database resource signal data"
+            "Database resource signal data",
+            "BigQuery resource metadata"
           ],
           "type": "string"
         },
@@ -5238,6 +5306,7 @@
             false,
             false,
             false,
+            true,
             false,
             false,
             false,
@@ -5287,8 +5356,7 @@
             false,
             false,
             false,
-            false,
-            false,
+            true,
             false,
             false,
             false,
@@ -5454,7 +5522,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigquery.googleapis.com/Dataset, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -5897,6 +5965,7 @@
             false,
             false,
             false,
+            true,
             false,
             false,
             false,
@@ -5946,8 +6015,7 @@
             false,
             false,
             false,
-            false,
-            false,
+            true,
             false,
             false,
             false,
@@ -6114,7 +6182,8 @@
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -6123,7 +6192,8 @@
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support."
+            "Represents if a resource version is in extended support.",
+            "Represents if a resource has no automated backup policy."
           ],
           "type": "string"
         }
@@ -6741,11 +6811,13 @@
               "POSTGRES_14",
               "POSTGRES_15",
               "POSTGRES_16",
-              "POSTGRES_17"
+              "POSTGRES_17",
+              "POSTGRES_18"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -6757,7 +6829,8 @@
               "The database version is Postgres 14.",
               "The database version is Postgres 15.",
               "The database version is Postgres 16.",
-              "The database version is Postgres 17."
+              "The database version is Postgres 17.",
+              "The database version is Postgres 18."
             ],
             "type": "string"
           },
@@ -6882,11 +6955,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6898,7 +6973,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         }
@@ -6963,11 +7039,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6979,7 +7057,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         },
@@ -7022,11 +7101,13 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
-            "POSTGRES_17"
+            "POSTGRES_17",
+            "POSTGRES_18"
           ],
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7038,7 +7119,8 @@
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
             "The database version is Postgres 16.",
-            "The database version is Postgres 17."
+            "The database version is Postgres 17.",
+            "The database version is Postgres 18."
           ],
           "type": "string"
         }
