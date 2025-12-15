@@ -1135,11 +1135,13 @@
                               "description": "Optional. The type of the spec contents to be retrieved.",
                               "enum": [
                                 "SPEC_CONTENT_TYPE_UNSPECIFIED",
-                                "BOOSTED_SPEC_CONTENT"
+                                "BOOSTED_SPEC_CONTENT",
+                                "GATEWAY_OPEN_API_SPEC"
                               ],
                               "enumDescriptions": [
                                 "Unspecified spec content type. Defaults to spec content uploaded by the user.",
-                                "The spec content type for boosted spec."
+                                "The spec content type for boosted spec.",
+                                "The spec content type for OpenAPI spec. This enum is used for OpenAPI specs ingested via APIGEE X Gateway."
                               ],
                               "location": "query",
                               "type": "string"
@@ -3171,7 +3173,7 @@
       }
     }
   },
-  "revision": "20251205",
+  "revision": "20251210",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3244,11 +3246,13 @@
           "description": "Required. The type of the spec content.",
           "enum": [
             "SPEC_CONTENT_TYPE_UNSPECIFIED",
-            "BOOSTED_SPEC_CONTENT"
+            "BOOSTED_SPEC_CONTENT",
+            "GATEWAY_OPEN_API_SPEC"
           ],
           "enumDescriptions": [
             "Unspecified spec content type. Defaults to spec content uploaded by the user.",
-            "The spec content type for boosted spec."
+            "The spec content type for boosted spec.",
+            "The spec content type for OpenAPI spec. This enum is used for OpenAPI specs ingested via APIGEE X Gateway."
           ],
           "type": "string"
         },
