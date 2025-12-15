@@ -1918,7 +1918,7 @@ export namespace searchads360_v0 {
      */
     enableLocal?: boolean | null;
     /**
-     * Feed label of products to include in the campaign. Only one of feed_label or sales_country can be set. If used instead of sales_country, the feed_label field accepts country codes in the same format for example: 'XX'. Otherwise can be any string used for feed label in Google Merchant Center.
+     * Feed label of products to include in the campaign. Valid feed labels may contain a maximum of 20 characters including uppercase letters, numbers, hyphens, and underscores. If you previously used the deprecated `sales_country` in the two-letter country code (`XX`) format, the `feed_label` field should be used instead. For more information see the [feed label](//support.google.com/merchants/answer/12453549) support article.
      */
     feedLabel?: string | null;
     /**
@@ -4206,7 +4206,7 @@ export namespace searchads360_v0 {
     typeUrl?: string | null;
   }
   /**
-   * Shopping performance view. Provides Shopping campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded. The number of impressions and clicks that shopping_performance_view returns stats for may be different from campaign reports. shopping_performance_view shows impressions and clicks on products appearing in ads, while campaign reports show impressions and clicks on the ads themselves. Depending on the format, an ad can show from zero to several products, so the numbers may not match. In Google Ads UI, you can query impressions and clicks of products appearing in ads by selecting a column from "Product attributes" in the report editor. For example, selecting the "Brand" column is equivalent to selecting `segments.product_brand`.
+   * Shopping performance view. Provides Shopping campaign and Performance Max campaign statistics aggregated at several product dimension levels. Product dimension values from Merchant Center such as brand, category, custom attributes, product condition, and product type will reflect the state of each dimension as of the date and time when the corresponding event was recorded. The number of impressions and clicks that `shopping_performance_view` returns stats for may be different from campaign reports. `shopping_performance_view` shows impressions and clicks on products appearing in ads, while campaign reports show impressions and clicks on the ads themselves. Depending on the format, an ad can show from zero to several products, so the numbers may not match. In Search Ads 360 UI, you can query impressions and clicks of products appearing in ads by selecting a column from "Product attributes" in the report editor. For example, selecting the "Brand" column is equivalent to selecting `segments.product_brand`.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__ShoppingPerformanceView {
     /**
