@@ -4344,7 +4344,7 @@ export namespace documentai_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The user-defined name of the Schema.
+     * Required. The user-defined name of the Schema.
      */
     displayName?: string | null;
     /**
@@ -4895,7 +4895,7 @@ export namespace documentai_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The user-defined name of the SchemaVersion.
+     * Required. The user-defined name of the SchemaVersion.
      */
     displayName?: string | null;
     /**
