@@ -567,6 +567,57 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "finishOAuthFlow": {
+                      "description": "Finishes OAuth flow for an account connector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users:finishOAuthFlow",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.finishOAuthFlow",
+                      "parameterOrder": [
+                        "accountConnector"
+                      ],
+                      "parameters": {
+                        "accountConnector": {
+                          "description": "Required. The resource name of the AccountConnector in the format `projects/*/locations/*/accountConnectors/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "googleOauthParams.scopes": {
+                          "description": "Required. The scopes returned by Google OAuth flow.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "googleOauthParams.ticket": {
+                          "description": "Required. The ticket to be used for post processing the callback from Google OAuth flow.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "googleOauthParams.versionInfo": {
+                          "description": "Optional. The version info returned by Google OAuth flow.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "oauthParams.code": {
+                          "description": "Required. The code to be used for getting the token from SCM provider.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "oauthParams.ticket": {
+                          "description": "Required. The ticket to be used for post processing the callback from SCM provider.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+accountConnector}/users:finishOAuthFlow",
+                      "response": {
+                        "$ref": "FinishOAuthResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists Users in a given project, location, and account_connector.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users",
@@ -608,6 +659,31 @@
                       "path": "v1/{+parent}/users",
                       "response": {
                         "$ref": "ListUsersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "startOAuthFlow": {
+                      "description": "Starts OAuth flow for an account connector.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}/users:startOAuthFlow",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.accountConnectors.users.startOAuthFlow",
+                      "parameterOrder": [
+                        "accountConnector"
+                      ],
+                      "parameters": {
+                        "accountConnector": {
+                          "description": "Required. The resource name of the AccountConnector in the format `projects/*/locations/*/accountConnectors/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+accountConnector}/users:startOAuthFlow",
+                      "response": {
+                        "$ref": "StartOAuthResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1471,6 +1547,78 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "deploymentEvents": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a single Deployment Event.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightsConfigs/{insightsConfigsId}/deploymentEvents/{deploymentEventsId}",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.insightsConfigs.deploymentEvents.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the deployment event to retrieve. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{uuid}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/insightsConfigs/[^/]+/deploymentEvents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "DeploymentEvent"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Deployment Events in a given insights config.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightsConfigs/{insightsConfigsId}/deploymentEvents",
+                      "httpMethod": "GET",
+                      "id": "developerconnect.projects.locations.insightsConfigs.deploymentEvents.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression that matches a subset of the DeploymentEvents. https://google.aip.dev/160.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListDeploymentEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDeploymentEvents` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent insights config that owns this collection of deployment events. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/insightsConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/deploymentEvents",
+                      "response": {
+                        "$ref": "ListDeploymentEventsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -1606,7 +1754,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20251209",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1717,6 +1865,53 @@
         },
         "uri": {
           "description": "Required. Immutable. The URI of the artifact that is deployed. e.g. `us-docker.pkg.dev/my-project/my-repo/image`. The URI does not include the tag / digest because it captures a lineage of artifacts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ArtifactDeployment": {
+      "description": "The ArtifactDeployment resource represents the deployment of the artifact within the InsightsConfig resource.",
+      "id": "ArtifactDeployment",
+      "properties": {
+        "artifactAlias": {
+          "description": "Output only. The artifact alias in the deployment spec, with Tag/SHA. e.g. us-docker.pkg.dev/my-project/my-repo/image:1.0.0",
+          "readOnly": true,
+          "type": "string"
+        },
+        "artifactReference": {
+          "description": "Output only. The artifact that is deployed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "containerStatusSummary": {
+          "description": "Output only. The summary of container status of the artifact deployment. Format as `ContainerStatusState-Reason : restartCount` e.g. \"Waiting-ImagePullBackOff : 3\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deployTime": {
+          "description": "Output only. The time at which the deployment was deployed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Unique identifier of `ArtifactDeployment`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceCommitUris": {
+          "description": "Output only. The source commits at which this artifact was built. Extracted from provenance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "undeployTime": {
+          "description": "Output only. The time at which the deployment was undeployed, all artifacts are considered undeployed once this time is set.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1896,6 +2091,74 @@
       },
       "type": "object"
     },
+    "DeploymentEvent": {
+      "description": "The DeploymentEvent resource represents the deployment of the artifact within the InsightsConfig resource.",
+      "id": "DeploymentEvent",
+      "properties": {
+        "artifactDeployments": {
+          "description": "Output only. The artifact deployments of the DeploymentEvent. Each artifact deployment contains the artifact uri and the runtime configuration uri. For GKE, this would be all the containers images that are deployed in the pod.",
+          "items": {
+            "$ref": "ArtifactDeployment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The create time of the DeploymentEvent.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deployTime": {
+          "description": "Output only. The time at which the DeploymentEvent was deployed. This would be the min of all ArtifactDeployment deploy_times.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the DeploymentEvent. This name is provided by DCI. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{uuid}",
+          "type": "string"
+        },
+        "runtimeConfig": {
+          "$ref": "RuntimeConfig",
+          "description": "Output only. The runtime configurations where the DeploymentEvent happened.",
+          "readOnly": true
+        },
+        "runtimeDeploymentUri": {
+          "description": "Output only. The runtime assigned URI of the DeploymentEvent. For GKE, this is the fully qualified replica set uri. e.g. container.googleapis.com/projects/{project}/locations/{location}/clusters/{cluster}/k8s/namespaces/{namespace}/apps/replicasets/{replica-set-id} For Cloud Run, this is the revision name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the DeploymentEvent.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_ACTIVE",
+            "STATE_INACTIVE"
+          ],
+          "enumDescriptions": [
+            "No state specified.",
+            "The deployment is active in the runtime.",
+            "The deployment is not in the runtime."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "undeployTime": {
+          "description": "Output only. The time at which the DeploymentEvent was undeployed, all artifacts are considered undeployed once this time is set. This would be the max of all ArtifactDeployment undeploy_times. If any ArtifactDeployment is still active (i.e. does not have an undeploy_time), this field will be empty.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The update time of the DeploymentEvent.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2048,6 +2311,17 @@
         "token": {
           "description": "The token content.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FinishOAuthResponse": {
+      "description": "Message for responding to finishing an OAuth flow.",
+      "id": "FinishOAuthResponse",
+      "properties": {
+        "exchangeError": {
+          "$ref": "ExchangeError",
+          "description": "The error resulted from exchanging OAuth tokens from the service provider."
         }
       },
       "type": "object"
@@ -2405,6 +2679,10 @@
           "description": "Identifier. The name of the InsightsConfig. Format: projects/{project}/locations/{location}/insightsConfigs/{insightsConfig}",
           "type": "string"
         },
+        "projects": {
+          "$ref": "Projects",
+          "description": "Optional. The GCP projects to track with the InsightsConfig."
+        },
         "reconciling": {
           "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of InsightsConfig does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
           "readOnly": true,
@@ -2556,6 +2834,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDeploymentEventsResponse": {
+      "description": "Response to listing DeploymentEvents.",
+      "id": "ListDeploymentEventsResponse",
+      "properties": {
+        "deploymentEvents": {
+          "description": "The list of DeploymentEvents.",
+          "items": {
+            "$ref": "DeploymentEvent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2862,6 +3158,20 @@
       },
       "type": "object"
     },
+    "Projects": {
+      "description": "Projects represents the projects to track with the InsightsConfig.",
+      "id": "Projects",
+      "properties": {
+        "projectIds": {
+          "description": "Optional. The GCP Project IDs. Format: projects/{project}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ProviderOAuthConfig": {
       "description": "ProviderOAuthConfig is the OAuth config for a provider.",
       "id": "ProviderOAuthConfig",
@@ -2954,6 +3264,66 @@
       "properties": {
         "service": {
           "description": "Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StartOAuthResponse": {
+      "description": "Message for responding to starting an OAuth flow.",
+      "id": "StartOAuthResponse",
+      "properties": {
+        "authUri": {
+          "description": "The authorization server URL to the OAuth flow of the service provider.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "The client ID to the OAuth App of the service provider.",
+          "type": "string"
+        },
+        "codeChallenge": {
+          "description": "https://datatracker.ietf.org/doc/html/rfc7636#section-4.1 Follow http://shortn/_WFYl6U0NyC to include it in the AutoCodeURL.",
+          "type": "string"
+        },
+        "codeChallengeMethod": {
+          "description": "https://datatracker.ietf.org/doc/html/rfc7636#section-4.2",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "The list of scopes requested by the application.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "systemProviderId": {
+          "description": "The ID of the system provider.",
+          "enum": [
+            "SYSTEM_PROVIDER_UNSPECIFIED",
+            "GITHUB",
+            "GITLAB",
+            "GOOGLE",
+            "SENTRY",
+            "ROVO",
+            "NEW_RELIC",
+            "DATASTAX",
+            "DYNATRACE"
+          ],
+          "enumDescriptions": [
+            "No system provider specified.",
+            "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
+            "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
+            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Rovo provider. Must select the \"rovo\" scope.",
+            "New Relic provider. No scopes are allowed.",
+            "Datastax provider. No scopes are allowed.",
+            "Dynatrace provider."
+          ],
+          "type": "string"
+        },
+        "ticket": {
+          "description": "The ticket to be used for post processing the callback from the service provider.",
           "type": "string"
         }
       },
