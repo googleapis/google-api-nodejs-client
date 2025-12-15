@@ -5032,7 +5032,7 @@
       }
     }
   },
-  "revision": "20251104",
+  "revision": "20251203",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -7061,6 +7061,13 @@
       "description": "Common config settings for resources of Compute Engine cluster instances, applicable to all instances in the cluster.",
       "id": "GceClusterConfig",
       "properties": {
+        "autoZoneExcludeZoneUris": {
+          "description": "Optional. An optional list of Compute Engine zones where the Dataproc cluster will not be located when Auto Zone is enabled. Only one of zone_uri or auto_zone_exclude_zone_uris can be set. If both are omitted, the service will pick a zone in the cluster Compute Engine region. If auto_zone_exclude_zone_uris is set and there is more than one non-excluded zone, the service will pick one of the non-excluded zones. Otherwise, cluster creation will fail with INVALID_ARGUMENT error.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig",
           "description": "Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)."
