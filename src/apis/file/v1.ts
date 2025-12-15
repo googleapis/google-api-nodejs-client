@@ -505,7 +505,7 @@ export namespace file_v1 {
    */
   export interface Schema$Instance {
     /**
-     * Output only. The increase/decrease capacity step size in GB.
+     * Output only. The incremental increase or decrease in capacity, designated in some number of GB.
      */
     capacityStepSizeGb?: string | null;
     /**
@@ -549,11 +549,11 @@ export namespace file_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The max capacity of the instance in GB.
+     * Output only. The maximum capacity of the instance in GB.
      */
     maxCapacityGb?: string | null;
     /**
-     * Output only. The min capacity of the instance in GB.
+     * Output only. The minimum capacity of the instance in GB.
      */
     minCapacityGb?: string | null;
     /**
@@ -699,7 +699,7 @@ export namespace file_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -908,6 +908,10 @@ export namespace file_v1 {
     verb?: string | null;
   }
   /**
+   * PauseReplicaRequest pauses a Filestore standby instance (replica).
+   */
+  export interface Schema$PauseReplicaRequest {}
+  /**
    * Used for setting the performance configuration. If the user doesn't specify PerformanceConfig, automatically provision the default performance settings as described in https://cloud.google.com/filestore/docs/performance. Larger instances will be linearly set to more IOPS. If the instance's capacity is increased or decreased, its performance will be automatically adjusted upwards or downwards accordingly (respectively).
    */
   export interface Schema$PerformanceConfig {
@@ -925,23 +929,23 @@ export namespace file_v1 {
    */
   export interface Schema$PerformanceLimits {
     /**
-     * Output only. The max IOPS.
+     * Output only. The maximum IOPS.
      */
     maxIops?: string | null;
     /**
-     * Output only. The max read IOPS.
+     * Output only. The maximum read IOPS.
      */
     maxReadIops?: string | null;
     /**
-     * Output only. The max read throughput in bytes per second.
+     * Output only. The maximum read throughput in bytes per second.
      */
     maxReadThroughputBps?: string | null;
     /**
-     * Output only. The max write IOPS.
+     * Output only. The maximum write IOPS.
      */
     maxWriteIops?: string | null;
     /**
-     * Output only. The max write throughput in bytes per second.
+     * Output only. The maximum write throughput in bytes per second.
      */
     maxWriteThroughputBps?: string | null;
   }
@@ -972,7 +976,7 @@ export namespace file_v1 {
      */
     lastActiveSyncTime?: string | null;
     /**
-     * Optional. The peer instance.
+     * Optional. The name of the source instance for the replica, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`. This field is required when creating a replica.
      */
     peerInstance?: string | null;
     /**
@@ -989,7 +993,7 @@ export namespace file_v1 {
     stateUpdateTime?: string | null;
   }
   /**
-   * Replication specifications.
+   * Optional. The configuration used to replicate an instance.
    */
   export interface Schema$Replication {
     /**
@@ -997,7 +1001,7 @@ export namespace file_v1 {
      */
     replicas?: Schema$ReplicaConfig[];
     /**
-     * Optional. The replication role.
+     * Optional. The replication role. When creating a new replica, this field must be set to `STANDBY`.
      */
     role?: string | null;
   }
@@ -1014,6 +1018,10 @@ export namespace file_v1 {
      */
     sourceBackup?: string | null;
   }
+  /**
+   * ResumeReplicaRequest resumes a Filestore standby instance (replica).
+   */
+  export interface Schema$ResumeReplicaRequest {}
   /**
    * RevertInstanceRequest reverts the given instance's file share to the specified snapshot.
    */
@@ -1330,7 +1338,7 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1456,7 +1464,7 @@ export namespace file_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3120,6 +3128,154 @@ export namespace file_v1 {
     }
 
     /**
+     * Pause the standby instance (replica). WARNING: This operation makes the standby instance's NFS filesystem writable. Any data written to the standby instance while paused will be lost when the replica is resumed or promoted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.pauseReplica({
+     *     // Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pauseReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pauseReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    pauseReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Pausereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Pausereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Pausereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:pauseReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Promote the standby instance (replica).
      * @example
      * ```js
@@ -3420,6 +3576,154 @@ export namespace file_v1 {
     }
 
     /**
+     * Resume the standby instance (replica). WARNING: Any data written to the standby instance while paused will be lost when the replica is resumed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.resumeReplica({
+     *     // Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resumeReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resumeReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    resumeReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Resumereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Resumereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Resumereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:resumeReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Revert an existing instance's file system to a specified snapshot.
      * @example
      * ```js
@@ -3634,6 +3938,17 @@ export namespace file_v1 {
      */
     requestBody?: Schema$Instance;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Pausereplica extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PauseReplicaRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Promotereplica extends StandardParameters {
     /**
      * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
@@ -3655,6 +3970,17 @@ export namespace file_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Resumereplica extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResumeReplicaRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Revert extends StandardParameters {
     /**
@@ -4942,7 +5268,7 @@ export namespace file_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5094,7 +5420,7 @@ export namespace file_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
