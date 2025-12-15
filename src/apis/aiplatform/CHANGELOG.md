@@ -1,5 +1,17 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v27.1.0...aiplatform-v28.0.0) (2025-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([c07d35a](https://github.com/googleapis/google-api-nodejs-client/commit/c07d35a0fa42d567085e15f8761bf0d76ed409f6))
+* **aiplatform:** update the API ([1948e38](https://github.com/googleapis/google-api-nodejs-client/commit/1948e385529ef806df1c0c8093a6063d74de9b97))
+
 ## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v27.0.0...aiplatform-v27.1.0) (2025-12-05)
 
 

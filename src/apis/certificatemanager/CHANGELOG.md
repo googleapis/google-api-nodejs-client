@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v11.0.1...certificatemanager-v11.1.0) (2025-12-15)
+
+
+### Features
+
+* **certificatemanager:** update the API ([e29c692](https://github.com/googleapis/google-api-nodejs-client/commit/e29c692202345fe543c6cfdeeca12d66ebea8eab))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v11.0.0...certificatemanager-v11.0.1) (2025-12-05)
 
 
