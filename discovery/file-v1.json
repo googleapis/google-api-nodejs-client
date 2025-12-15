@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -520,6 +520,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "pauseReplica": {
+                  "description": "Pause the standby instance (replica). WARNING: This operation makes the standby instance's NFS filesystem writable. Any data written to the standby instance while paused will be lost when the replica is resumed or promoted.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:pauseReplica",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.pauseReplica",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:pauseReplica",
+                  "request": {
+                    "$ref": "PauseReplicaRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "promoteReplica": {
                   "description": "Promote the standby instance (replica).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:promoteReplica",
@@ -568,6 +596,34 @@
                   "path": "v1/{+name}:restore",
                   "request": {
                     "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "resumeReplica": {
+                  "description": "Resume the standby instance (replica). WARNING: Any data written to the standby instance while paused will be lost when the replica is resumed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:resumeReplica",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.resumeReplica",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the instance, in the format `projects/{project_id}/locations/{location_id}/instances/{instance_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:resumeReplica",
+                  "request": {
+                    "$ref": "ResumeReplicaRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -893,7 +949,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -913,7 +969,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20251204",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1474,7 +1530,7 @@
       "id": "Instance",
       "properties": {
         "capacityStepSizeGb": {
-          "description": "Output only. The increase/decrease capacity step size in GB.",
+          "description": "Output only. The incremental increase or decrease in capacity, designated in some number of GB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1529,13 +1585,13 @@
           "type": "object"
         },
         "maxCapacityGb": {
-          "description": "Output only. The max capacity of the instance in GB.",
+          "description": "Output only. The maximum capacity of the instance in GB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "minCapacityGb": {
-          "description": "Output only. The min capacity of the instance in GB.",
+          "description": "Output only. The minimum capacity of the instance in GB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -1789,7 +1845,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -2115,6 +2171,12 @@
       },
       "type": "object"
     },
+    "PauseReplicaRequest": {
+      "description": "PauseReplicaRequest pauses a Filestore standby instance (replica).",
+      "id": "PauseReplicaRequest",
+      "properties": {},
+      "type": "object"
+    },
     "PerformanceConfig": {
       "description": "Used for setting the performance configuration. If the user doesn't specify PerformanceConfig, automatically provision the default performance settings as described in https://cloud.google.com/filestore/docs/performance. Larger instances will be linearly set to more IOPS. If the instance's capacity is increased or decreased, its performance will be automatically adjusted upwards or downwards accordingly (respectively).",
       "id": "PerformanceConfig",
@@ -2135,31 +2197,31 @@
       "id": "PerformanceLimits",
       "properties": {
         "maxIops": {
-          "description": "Output only. The max IOPS.",
+          "description": "Output only. The maximum IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxReadIops": {
-          "description": "Output only. The max read IOPS.",
+          "description": "Output only. The maximum read IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxReadThroughputBps": {
-          "description": "Output only. The max read throughput in bytes per second.",
+          "description": "Output only. The maximum read throughput in bytes per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxWriteIops": {
-          "description": "Output only. The max write IOPS.",
+          "description": "Output only. The maximum write IOPS.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "maxWriteThroughputBps": {
-          "description": "Output only. The max write throughput in bytes per second.",
+          "description": "Output only. The maximum write throughput in bytes per second.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -2200,7 +2262,7 @@
           "type": "string"
         },
         "peerInstance": {
-          "description": "Optional. The peer instance.",
+          "description": "Optional. The name of the source instance for the replica, in the format `projects/{project}/locations/{location}/instances/{instance}`. This field is required when creating a replica.",
           "type": "string"
         },
         "state": {
@@ -2262,7 +2324,7 @@
       "type": "object"
     },
     "Replication": {
-      "description": "Replication specifications.",
+      "description": "Optional. The configuration used to replicate an instance.",
       "id": "Replication",
       "properties": {
         "replicas": {
@@ -2273,7 +2335,7 @@
           "type": "array"
         },
         "role": {
-          "description": "Optional. The replication role.",
+          "description": "Optional. The replication role. When creating a new replica, this field must be set to `STANDBY`.",
           "enum": [
             "ROLE_UNSPECIFIED",
             "ACTIVE",
@@ -2302,6 +2364,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ResumeReplicaRequest": {
+      "description": "ResumeReplicaRequest resumes a Filestore standby instance (replica).",
+      "id": "ResumeReplicaRequest",
+      "properties": {},
       "type": "object"
     },
     "RevertInstanceRequest": {

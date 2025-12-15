@@ -517,7 +517,7 @@ export namespace file_v1beta1 {
      */
     capacityGb?: string | null;
     /**
-     * Output only. The increase/decrease capacity step size.
+     * Output only. The incremental increase or decrease in capacity, designated in some number of GB.
      */
     capacityStepSizeGb?: string | null;
     /**
@@ -561,15 +561,15 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The max capacity of the instance.
+     * Output only. The maximum capacity of the instance.
      */
     maxCapacityGb?: string | null;
     /**
-     * The max number of shares allowed.
+     * The maximum number of shares allowed.
      */
     maxShareCount?: string | null;
     /**
-     * Output only. The min capacity of the instance.
+     * Output only. The minimum capacity of the instance.
      */
     minCapacityGb?: string | null;
     /**
@@ -719,7 +719,7 @@ export namespace file_v1beta1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -983,23 +983,23 @@ export namespace file_v1beta1 {
    */
   export interface Schema$PerformanceLimits {
     /**
-     * Output only. The max IOPS.
+     * Output only. The maximum IOPS.
      */
     maxIops?: string | null;
     /**
-     * Output only. The max read IOPS.
+     * Output only. The maximum read IOPS.
      */
     maxReadIops?: string | null;
     /**
-     * Output only. The max read throughput in bytes per second.
+     * Output only. The maximum read throughput in bytes per second.
      */
     maxReadThroughputBps?: string | null;
     /**
-     * Output only. The max write IOPS.
+     * Output only. The maximum write IOPS.
      */
     maxWriteIops?: string | null;
     /**
-     * Output only. The max write throughput in bytes per second.
+     * Output only. The maximumwrite throughput in bytes per second.
      */
     maxWriteThroughputBps?: string | null;
   }
@@ -1030,7 +1030,7 @@ export namespace file_v1beta1 {
      */
     lastActiveSyncTime?: string | null;
     /**
-     * The peer instance.
+     * The name of the source instance for the replica, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`. This field is required when creating a replica.
      */
     peerInstance?: string | null;
     /**
@@ -1047,7 +1047,7 @@ export namespace file_v1beta1 {
     stateUpdateTime?: string | null;
   }
   /**
-   * Replication specifications.
+   * Optional. The configuration used to replicate an instance.
    */
   export interface Schema$Replication {
     /**
@@ -1055,7 +1055,7 @@ export namespace file_v1beta1 {
      */
     replicas?: Schema$ReplicaConfig[];
     /**
-     * Output only. The replication role.
+     * Output only. The replication role. When creating a new replica, this field must be set to `STANDBY`.
      */
     role?: string | null;
   }
@@ -1437,7 +1437,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1563,7 +1563,7 @@ export namespace file_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6207,7 +6207,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6359,7 +6359,7 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
