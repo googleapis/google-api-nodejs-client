@@ -295,7 +295,12 @@
             "$ref": "Approval"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/drive"
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.appdata",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
           ]
         },
         "list": {
@@ -330,7 +335,12 @@
             "$ref": "ApprovalList"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/drive"
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.appdata",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
           ]
         }
       }
@@ -2790,7 +2800,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20251210",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
