@@ -1580,6 +1580,10 @@ export namespace servicecontrol_v1 {
      */
     constraint?: string | null;
     /**
+     * Optional. Provides extra information for the specific violated constraint. See the constraint's documentation to determine if this field is populated and what the structure of the message should be.
+     */
+    constraintViolationInfo?: {[key: string]: any} | null;
+    /**
      * Optional. Error message that policy is indicating.
      */
     errorMessage?: string | null;
