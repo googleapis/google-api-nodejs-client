@@ -12,7 +12,7 @@
   "baseUrl": "https://apphub.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "App Hub",
-  "description": "",
+  "description": "App Hub lets you build, operate, and manage applications on Google Cloud.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/app-hub/docs/",
   "fullyEncodeReservedExpansion": true,
@@ -1237,6 +1237,71 @@
                 }
               }
             },
+            "extendedMetadataSchemas": {
+              "methods": {
+                "get": {
+                  "description": "Gets an Extended Metadata Schema.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/extendedMetadataSchemas/{extendedMetadataSchemasId}",
+                  "httpMethod": "GET",
+                  "id": "apphub.projects.locations.extendedMetadataSchemas.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be \"apphub.googleapis.com/Name\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/extendedMetadataSchemas/.*$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "ExtendedMetadataSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Extended Metadata Schemas available in a host project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/extendedMetadataSchemas",
+                  "httpMethod": "GET",
+                  "id": "apphub.projects.locations.extendedMetadataSchemas.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Project and location to list Extended Metadata Schemas on. Expected format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/extendedMetadataSchemas",
+                  "response": {
+                    "$ref": "ListExtendedMetadataSchemasResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -1513,7 +1578,7 @@
       }
     }
   },
-  "revision": "20251114",
+  "revision": "20251210",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1694,7 +1759,7 @@
           "type": "string"
         },
         "crmNode": {
-          "description": "Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number}` or `projects/{project-id}`",
+          "description": "Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number}`",
           "type": "string"
         },
         "name": {
@@ -1927,6 +1992,28 @@
       },
       "type": "object"
     },
+    "ExtendedMetadataSchema": {
+      "description": "ExtendedMetadataSchema represents a schema for extended metadata of a service or workload.",
+      "id": "ExtendedMetadataSchema",
+      "properties": {
+        "jsonSchema": {
+          "description": "Output only. The JSON schema as a string.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the schema. Format: projects//locations//extendedMetadataSchemas/",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "description": "Output only. The version of the schema. New versions are required to be backwards compatible.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FindUnregisteredServicesResponse": {
       "description": "Response for FindUnregisteredServices.",
       "id": "FindUnregisteredServicesResponse",
@@ -2004,7 +2091,7 @@
       "id": "Identity",
       "properties": {
         "principal": {
-          "description": "Output only. Principal of the identity. Supported formats: * `sa://my-sa@xxxx.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity",
+          "description": "Output only. The principal of the identity. Supported formats: * `sa://my-sa@PROJECT_ID.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity",
           "readOnly": true,
           "type": "string"
         }
@@ -2082,6 +2169,24 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListExtendedMetadataSchemasResponse": {
+      "description": "Response for ListExtendedMetadataSchemas.",
+      "id": "ListExtendedMetadataSchemasResponse",
+      "properties": {
+        "extendedMetadataSchemas": {
+          "description": "List of Extended Metadata Schemas.",
+          "items": {
+            "$ref": "ExtendedMetadataSchema"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
         }
       },
       "type": "object"

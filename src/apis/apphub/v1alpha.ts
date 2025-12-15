@@ -102,7 +102,7 @@ export namespace apphub_v1alpha {
   /**
    * App Hub API
    *
-   *
+   * App Hub lets you build, operate, and manage applications on Google Cloud.
    *
    * @example
    * ```js
@@ -242,7 +242,7 @@ export namespace apphub_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number\}` or `projects/{project-id\}`
+     * Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number\}`
      */
     crmNode?: string | null;
     /**
@@ -395,6 +395,23 @@ export namespace apphub_v1alpha {
     metadataStruct?: {[key: string]: any} | null;
   }
   /**
+   * ExtendedMetadataSchema represents a schema for extended metadata of a service or workload.
+   */
+  export interface Schema$ExtendedMetadataSchema {
+    /**
+     * Output only. The JSON schema as a string.
+     */
+    jsonSchema?: string | null;
+    /**
+     * Identifier. Resource name of the schema. Format: projects//locations//extendedMetadataSchemas/
+     */
+    name?: string | null;
+    /**
+     * Output only. The version of the schema. New versions are required to be backwards compatible.
+     */
+    schemaVersion?: string | null;
+  }
+  /**
    * Response for FindUnregisteredServices.
    */
   export interface Schema$FindUnregisteredServicesResponse {
@@ -442,7 +459,7 @@ export namespace apphub_v1alpha {
    */
   export interface Schema$Identity {
     /**
-     * Output only. Principal of the identity. Supported formats: * `sa://my-sa@xxxx.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity
+     * Output only. The principal of the identity. Supported formats: * `sa://my-sa@PROJECT_ID.iam.gserviceaccount.com` for GCP Service Account * `principal://POOL_ID.global.PROJECT_NUMBER.workload.id.goog/ns/NAMESPACE_ID/sa/MANAGED_IDENTITY_ID` for Managed Workload Identity
      */
     principal?: string | null;
   }
@@ -496,6 +513,19 @@ export namespace apphub_v1alpha {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Response for ListExtendedMetadataSchemas.
+   */
+  export interface Schema$ListExtendedMetadataSchemasResponse {
+    /**
+     * List of Extended Metadata Schemas.
+     */
+    extendedMetadataSchemas?: Schema$ExtendedMetadataSchema[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -997,6 +1027,7 @@ export namespace apphub_v1alpha {
     applications: Resource$Projects$Locations$Applications;
     discoveredServices: Resource$Projects$Locations$Discoveredservices;
     discoveredWorkloads: Resource$Projects$Locations$Discoveredworkloads;
+    extendedMetadataSchemas: Resource$Projects$Locations$Extendedmetadataschemas;
     operations: Resource$Projects$Locations$Operations;
     serviceProjectAttachments: Resource$Projects$Locations$Serviceprojectattachments;
     constructor(context: APIRequestContext) {
@@ -1008,6 +1039,8 @@ export namespace apphub_v1alpha {
         new Resource$Projects$Locations$Discoveredservices(this.context);
       this.discoveredWorkloads =
         new Resource$Projects$Locations$Discoveredworkloads(this.context);
+      this.extendedMetadataSchemas =
+        new Resource$Projects$Locations$Extendedmetadataschemas(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -6304,6 +6337,325 @@ export namespace apphub_v1alpha {
      * Required. Resource URI to find Discovered Workload for. Accepts both project number and project ID and does translation when needed.
      */
     uri?: string;
+  }
+
+  export class Resource$Projects$Locations$Extendedmetadataschemas {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets an Extended Metadata Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apphub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apphub = google.apphub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apphub.projects.locations.extendedMetadataSchemas.get({
+     *     // Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be "apphub.googleapis.com/Name"
+     *     name: 'projects/my-project/locations/my-location/extendedMetadataSchemas/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jsonSchema": "my_jsonSchema",
+     *   //   "name": "my_name",
+     *   //   "schemaVersion": "my_schemaVersion"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Extendedmetadataschemas$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExtendedMetadataSchema>>;
+    get(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExtendedMetadataSchema>,
+      callback: BodyResponseCallback<Schema$ExtendedMetadataSchema>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$Get,
+      callback: BodyResponseCallback<Schema$ExtendedMetadataSchema>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ExtendedMetadataSchema>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extendedmetadataschemas$Get
+        | BodyResponseCallback<Schema$ExtendedMetadataSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExtendedMetadataSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExtendedMetadataSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExtendedMetadataSchema>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extendedmetadataschemas$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extendedmetadataschemas$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExtendedMetadataSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExtendedMetadataSchema>(parameters);
+      }
+    }
+
+    /**
+     * Lists Extended Metadata Schemas available in a host project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apphub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apphub = google.apphub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apphub.projects.locations.extendedMetadataSchemas.list({
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project and location to list Extended Metadata Schemas on. Expected format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "extendedMetadataSchemas": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Extendedmetadataschemas$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListExtendedMetadataSchemasResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>,
+      callback: BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Extendedmetadataschemas$List,
+      callback: BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Extendedmetadataschemas$List
+        | BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListExtendedMetadataSchemasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListExtendedMetadataSchemasResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Extendedmetadataschemas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Extendedmetadataschemas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/extendedMetadataSchemas'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListExtendedMetadataSchemasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListExtendedMetadataSchemasResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Extendedmetadataschemas$Get extends StandardParameters {
+    /**
+     * Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be "apphub.googleapis.com/Name"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Extendedmetadataschemas$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project and location to list Extended Metadata Schemas on. Expected format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
