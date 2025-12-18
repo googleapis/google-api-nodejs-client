@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v7.1.0...observability-v8.0.0) (2025-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **observability:** This release has breaking changes.
+
+### Features
+
+* **observability:** update the API ([ca98051](https://github.com/googleapis/google-api-nodejs-client/commit/ca98051ee9866202cff318c78d40d7b8b10bb012))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v7.0.2...observability-v7.1.0) (2025-12-15)
 
 
