@@ -197,6 +197,23 @@ export namespace managedkafka_v1 {
     aclCreated?: boolean | null;
   }
   /**
+   * Details of a broker in the Kafka cluster.
+   */
+  export interface Schema$BrokerDetails {
+    /**
+     * Output only. The index of the broker.
+     */
+    brokerIndex?: string | null;
+    /**
+     * Output only. The node id of the broker.
+     */
+    nodeId?: string | null;
+    /**
+     * Output only. The rack of the broker.
+     */
+    rack?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -261,6 +278,10 @@ export namespace managedkafka_v1 {
    */
   export interface Schema$Cluster {
     /**
+     * Output only. Only populated when FULL view is requested. Details of each broker in the cluster.
+     */
+    brokerDetails?: Schema$BrokerDetails[];
+    /**
      * Required. Capacity configuration for the Kafka cluster.
      */
     capacityConfig?: Schema$CapacityConfig;
@@ -272,6 +293,10 @@ export namespace managedkafka_v1 {
      * Required. Configuration properties for a Kafka cluster deployed to Google Cloud Platform.
      */
     gcpConfig?: Schema$GcpConfig;
+    /**
+     * Output only. Only populated when FULL view is requested. The Kafka version of the cluster.
+     */
+    kafkaVersion?: string | null;
     /**
      * Optional. Labels as key value pairs.
      */
@@ -1460,9 +1485,11 @@ export namespace managedkafka_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "brokerDetails": [],
      *       //   "capacityConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "gcpConfig": {},
+     *       //   "kafkaVersion": "my_kafkaVersion",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "rebalanceConfig": {},
@@ -1755,14 +1782,18 @@ export namespace managedkafka_v1 {
      *   const res = await managedkafka.projects.locations.clusters.get({
      *     // Required. The name of the cluster whose configuration to return.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Optional. Specifies the view of the Cluster resource to be returned. Defaults to CLUSTER_VIEW_BASIC. See the ClusterView enum for possible values.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "brokerDetails": [],
      *   //   "capacityConfig": {},
      *   //   "createTime": "my_createTime",
      *   //   "gcpConfig": {},
+     *   //   "kafkaVersion": "my_kafkaVersion",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "rebalanceConfig": {},
@@ -2058,9 +2089,11 @@ export namespace managedkafka_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "brokerDetails": [],
      *       //   "capacityConfig": {},
      *       //   "createTime": "my_createTime",
      *       //   "gcpConfig": {},
+     *       //   "kafkaVersion": "my_kafkaVersion",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "rebalanceConfig": {},
@@ -2212,6 +2245,10 @@ export namespace managedkafka_v1 {
      * Required. The name of the cluster whose configuration to return.
      */
     name?: string;
+    /**
+     * Optional. Specifies the view of the Cluster resource to be returned. Defaults to CLUSTER_VIEW_BASIC. See the ClusterView enum for possible values.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$List extends StandardParameters {
     /**
