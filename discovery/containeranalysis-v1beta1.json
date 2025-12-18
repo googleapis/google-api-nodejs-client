@@ -1771,7 +1771,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251212",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -5284,13 +5284,15 @@
             "HASH_TYPE_UNSPECIFIED",
             "SHA256",
             "GO_MODULE_H1",
-            "SHA512"
+            "SHA512",
+            "DIRSUM_SHA256"
           ],
           "enumDescriptions": [
             "Unknown.",
             "A SHA-256 hash.",
             "Dirhash of a Go module's source code which is then hex-encoded. See b/244466565 and https://github.com/in-toto/attestation/pull/108.",
-            "A SHA-512 hash."
+            "A SHA-512 hash.",
+            "A Dirsum SHA-256 hash."
           ],
           "type": "string"
         },

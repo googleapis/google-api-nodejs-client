@@ -1574,109 +1574,109 @@ export namespace firebaseml_v2beta {
     threshold?: string | null;
   }
   /**
-   * Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.
+   * Defines the schema of input and output data. This is a subset of the [OpenAPI 3.0 Schema Object](https://spec.openapis.org/oas/v3.0.3#schema-object).
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Schema {
     /**
-     * Optional. Can either be a boolean or an object; controls the presence of additional properties.
+     * Optional. If `type` is `OBJECT`, specifies how to handle properties not defined in `properties`. If it is a boolean `false`, no additional properties are allowed. If it is a schema, additional properties are allowed if they conform to the schema.
      */
     additionalProperties?: any | null;
     /**
-     * Optional. The value should be validated against any (one or more) of the subschemas in the list.
+     * Optional. The instance must be valid against any (one or more) of the subschemas listed in `any_of`.
      */
     anyOf?: Schema$GoogleCloudAiplatformV1beta1Schema[];
     /**
-     * Optional. Default value of the data.
+     * Optional. Default value to use if the field is not specified.
      */
     default?: any | null;
     /**
-     * Optional. A map of definitions for use by `ref` Only allowed at the root of the schema.
+     * Optional. `defs` provides a map of schema definitions that can be reused by `ref` elsewhere in the schema. Only allowed at root level of the schema.
      */
     defs?: {[key: string]: Schema$GoogleCloudAiplatformV1beta1Schema} | null;
     /**
-     * Optional. The description of the data.
+     * Optional. Description of the schema.
      */
     description?: string | null;
     /**
-     * Optional. Possible values of the element of primitive type with enum format. Examples: 1. We can define direction as : {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]\} 2. We can define apartment number as : {type:INTEGER, format:enum, enum:["101", "201", "301"]\}
+     * Optional. Possible values of the field. This field can be used to restrict a value to a fixed set of values. To mark a field as an enum, set `format` to `enum` and provide the list of possible values in `enum`. For example: 1. To define directions: `{type:STRING, format:enum, enum:["EAST", "NORTH", "SOUTH", "WEST"]\}` 2. To define apartment numbers: `{type:INTEGER, format:enum, enum:["101", "201", "301"]\}`
      */
     enum?: string[] | null;
     /**
-     * Optional. Example of the object. Will only populated when the object is the root.
+     * Optional. Example of an instance of this schema.
      */
     example?: any | null;
     /**
-     * Optional. The format of the data. Supported formats: for NUMBER type: "float", "double" for INTEGER type: "int32", "int64" for STRING type: "email", "byte", etc
+     * Optional. The format of the data. For `NUMBER` type, format can be `float` or `double`. For `INTEGER` type, format can be `int32` or `int64`. For `STRING` type, format can be `email`, `byte`, `date`, `date-time`, `password`, and other formats to further refine the data type.
      */
     format?: string | null;
     /**
-     * Optional. SCHEMA FIELDS FOR TYPE ARRAY Schema of the elements of Type.ARRAY.
+     * Optional. If type is `ARRAY`, `items` specifies the schema of elements in the array.
      */
     items?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
-     * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     * Optional. If type is `INTEGER` or `NUMBER`, `maximum` specifies the maximum allowed value.
      */
     maximum?: number | null;
     /**
-     * Optional. Maximum number of the elements for Type.ARRAY.
+     * Optional. If type is `ARRAY`, `max_items` specifies the maximum number of items in an array.
      */
     maxItems?: string | null;
     /**
-     * Optional. Maximum length of the Type.STRING
+     * Optional. If type is `STRING`, `max_length` specifies the maximum length of the string.
      */
     maxLength?: string | null;
     /**
-     * Optional. Maximum number of the properties for Type.OBJECT.
+     * Optional. If type is `OBJECT`, `max_properties` specifies the maximum number of properties that can be provided.
      */
     maxProperties?: string | null;
     /**
-     * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER Minimum value of the Type.INTEGER and Type.NUMBER
+     * Optional. If type is `INTEGER` or `NUMBER`, `minimum` specifies the minimum allowed value.
      */
     minimum?: number | null;
     /**
-     * Optional. Minimum number of the elements for Type.ARRAY.
+     * Optional. If type is `ARRAY`, `min_items` specifies the minimum number of items in an array.
      */
     minItems?: string | null;
     /**
-     * Optional. SCHEMA FIELDS FOR TYPE STRING Minimum length of the Type.STRING
+     * Optional. If type is `STRING`, `min_length` specifies the minimum length of the string.
      */
     minLength?: string | null;
     /**
-     * Optional. Minimum number of the properties for Type.OBJECT.
+     * Optional. If type is `OBJECT`, `min_properties` specifies the minimum number of properties that can be provided.
      */
     minProperties?: string | null;
     /**
-     * Optional. Indicates if the value may be null.
+     * Optional. Indicates if the value of this field can be null.
      */
     nullable?: boolean | null;
     /**
-     * Optional. Pattern of the Type.STRING to restrict a string to a regular expression.
+     * Optional. If type is `STRING`, `pattern` specifies a regular expression that the string must match.
      */
     pattern?: string | null;
     /**
-     * Optional. SCHEMA FIELDS FOR TYPE OBJECT Properties of Type.OBJECT.
+     * Optional. If type is `OBJECT`, `properties` is a map of property names to schema definitions for each property of the object.
      */
     properties?: {
       [key: string]: Schema$GoogleCloudAiplatformV1beta1Schema;
     } | null;
     /**
-     * Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.
+     * Optional. Order of properties displayed or used where order matters. This is not a standard field in OpenAPI specification, but can be used to control the order of properties.
      */
     propertyOrdering?: string[] | null;
     /**
-     * Optional. Allows indirect references between schema nodes. The value should be a valid reference to a child of the root `defs`. For example, the following schema defines a reference to a schema node named "Pet": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the "pet" property is a reference to the schema node named "Pet". See details in https://json-schema.org/understanding-json-schema/structuring
+     * Optional. Allows referencing another schema definition to use in place of this schema. The value must be a valid reference to a schema in `defs`. For example, the following schema defines a reference to a schema node named "Pet": type: object properties: pet: ref: #/defs/Pet defs: Pet: type: object properties: name: type: string The value of the "pet" property is a reference to the schema node named "Pet". See details in https://json-schema.org/understanding-json-schema/structuring
      */
     ref?: string | null;
     /**
-     * Optional. Required properties of Type.OBJECT.
+     * Optional. If type is `OBJECT`, `required` lists the names of properties that must be present.
      */
     required?: string[] | null;
     /**
-     * Optional. The title of the Schema.
+     * Optional. Title for the schema.
      */
     title?: string | null;
     /**
-     * Optional. The type of the data.
+     * Optional. Data type of the schema field.
      */
     type?: string | null;
   }
@@ -1777,6 +1777,10 @@ export namespace firebaseml_v2beta {
      */
     googleSearchRetrieval?: Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval;
     /**
+     * Optional. If specified, Vertex AI will use Parallel.ai to search for information to answer user queries. The search results will be grounded on Parallel.ai and presented to the model for response generation
+     */
+    parallelAiSearch?: Schema$GoogleCloudAiplatformV1beta1ToolParallelAiSearch;
+    /**
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1beta1Retrieval;
@@ -1827,6 +1831,19 @@ export namespace firebaseml_v2beta {
      * Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: ["amazon.com", "facebook.com"].
      */
     excludeDomains?: string[] | null;
+  }
+  /**
+   * ParallelAiSearch tool type. A tool that uses the Parallel.ai search engine for grounding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolParallelAiSearch {
+    /**
+     * Optional. The API key for ParallelAiSearch. If an API key is not provided, the system will attempt to verify access by checking for an active Parallel.ai subscription through the Google Cloud Marketplace. See https://docs.parallel.ai/search/search-quickstart for more details.
+     */
+    apiKey?: string | null;
+    /**
+     * Optional. Custom configs for ParallelAiSearch. This field can be used to pass any parameter from the Parallel.ai Search API. See the Parallel.ai documentation for the full list of available parameters and their usage: https://docs.parallel.ai/api-reference/search-beta/search Currently only `source_policy`, `excerpts`, `max_results`, `mode`, `fetch_policy` can be set via this field. For example: { "source_policy": { "include_domains": ["google.com", "wikipedia.org"], "exclude_domains": ["example.com"] \}, "fetch_policy": { "max_age_seconds": 3600 \} \}
+     */
+    customConfigs?: {[key: string]: any} | null;
   }
   /**
    * Tool to support URL context.

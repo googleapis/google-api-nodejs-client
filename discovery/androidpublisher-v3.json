@@ -5555,7 +5555,7 @@
       }
     }
   },
-  "revision": "20251211",
+  "revision": "20251215",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -10388,10 +10388,6 @@
       "description": "Details of a proration period. A proration period can be a period calculated during a plan change to cover existing entitlements (For more information, see [Allow users to upgrade, downgrade, or change their subscription](https://developer.android.com/google/play/billing/subscriptions#allow-users-change), or a prorated period to align add-on renewal dates with the base (For more information, see [Rules applicable for items in the purchase](https://developer.android.com/google/play/billing/subscription-with-addons#rules-base-addons)).",
       "id": "ProrationPeriodDetails",
       "properties": {
-        "linkedOrderId": {
-          "description": "The last order id of the original subscription purchase prior to the plan change. This is only populated if this proration period is from an ugrade/downgrade from a previous subscription and carries the remaining offer phase from the linked order of the previous subscription.",
-          "type": "string"
-        },
         "originalOfferPhase": {
           "description": "Represent the original offer phase from the purchased the line item if the proration period contains any of them. For example, a proration period from CHARGE_FULL_PRICE plan change may merge the 1st offer phase of the subscription offer of the new product user purchased. In this case, the original offer phase will be set here.",
           "enum": [
