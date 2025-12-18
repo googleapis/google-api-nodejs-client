@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251212",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -4909,12 +4909,14 @@
           "enum": [
             "NONE",
             "SHA256",
-            "GO_MODULE_H1"
+            "GO_MODULE_H1",
+            "DIRSUM_SHA256"
           ],
           "enumDescriptions": [
             "No hash requested.",
             "A sha256 hash.",
-            "Dirhash of a Go module's source code which is then hex-encoded."
+            "Dirhash of a Go module's source code which is then hex-encoded.",
+            "Dirsum hash of the downloaded artifact files."
           ],
           "type": "string"
         },

@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20251207",
+  "revision": "20251215",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -5293,9 +5293,9 @@
           ],
           "enumDescriptions": [
             "Reserved.",
-            "Named spaces that support message threads. When users respond to a message, they can reply in-thread, which keeps their response in the context of the original message.",
+            "Spaces that support message threads. When users respond to a message, they can reply in-thread, which keeps their response in the context of the original message.",
             "Named spaces where the conversation is organized by topic. Topics and their replies are grouped together.",
-            "Direct messages (DMs) between two people and group conversations between 3 or more people."
+            "Spaces that don't support message threading. This space threading state is only used for special cases including: * Continuous meeting chat where threading is intentionally turned off. * Legacy group conversations that were created prior to 2022."
           ],
           "readOnly": true,
           "type": "string"
