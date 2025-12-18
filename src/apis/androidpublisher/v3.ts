@@ -3528,10 +3528,6 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ProrationPeriodDetails {
     /**
-     * The last order id of the original subscription purchase prior to the plan change. This is only populated if this proration period is from an ugrade/downgrade from a previous subscription and carries the remaining offer phase from the linked order of the previous subscription.
-     */
-    linkedOrderId?: string | null;
-    /**
      * Represent the original offer phase from the purchased the line item if the proration period contains any of them. For example, a proration period from CHARGE_FULL_PRICE plan change may merge the 1st offer phase of the subscription offer of the new product user purchased. In this case, the original offer phase will be set here.
      */
     originalOfferPhase?: string | null;
