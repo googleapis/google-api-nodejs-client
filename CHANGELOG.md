@@ -4,6 +4,29 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [170.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v169.0.0...googleapis-v170.0.0) (2025-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **observability:** This release has breaking changes.
+* **androidpublisher:** This release has breaking changes.
+
+### Features
+
+* **androidpublisher:** update the API ([830b7c9](https://github.com/googleapis/google-api-nodejs-client/commit/830b7c9758673cdfea89132d095b2deb819d0be7))
+* **discoveryengine:** update the API ([8a919a4](https://github.com/googleapis/google-api-nodejs-client/commit/8a919a40c91e51f564d6ee3eb899fe93d8bf42db))
+* **docs:** update the API ([a9f3c0c](https://github.com/googleapis/google-api-nodejs-client/commit/a9f3c0cf9cae3e75504c3305bf6ce429c78bb0b1))
+* **firebaseml:** update the API ([ca7829e](https://github.com/googleapis/google-api-nodejs-client/commit/ca7829e4a5f56424c76ca2429ccfe44d804a4915))
+* **managedkafka:** update the API ([e063dee](https://github.com/googleapis/google-api-nodejs-client/commit/e063deefd078e8ea46611cd60c6552a8414c49f5))
+* **observability:** update the API ([ca98051](https://github.com/googleapis/google-api-nodejs-client/commit/ca98051ee9866202cff318c78d40d7b8b10bb012))
+* regenerate index files ([14f5d93](https://github.com/googleapis/google-api-nodejs-client/commit/14f5d934b48f5e6c459e7bcb5d9e19c5729b185c))
+
+
+### Bug Fixes
+
+* **bigtableadmin:** update the API ([640119e](https://github.com/googleapis/google-api-nodejs-client/commit/640119e42e8cd8cf5ee9b17da170f786f23a2660))
+
 ## [169.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v168.0.0...googleapis-v169.0.0) (2025-12-15)
 
 
