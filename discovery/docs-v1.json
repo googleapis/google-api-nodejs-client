@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20251124",
+  "revision": "20251215",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -673,6 +673,54 @@
       },
       "type": "object"
     },
+    "DateElement": {
+      "description": "A date instance mentioned in a document.",
+      "id": "DateElement",
+      "properties": {
+        "dateElementProperties": {
+          "$ref": "DateElementProperties",
+          "description": "The properties of this DateElement."
+        },
+        "dateId": {
+          "description": "Output only. The unique ID of this date.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "suggestedDateElementPropertiesChanges": {
+          "additionalProperties": {
+            "$ref": "SuggestedDateElementProperties"
+          },
+          "description": "The suggested changes to the date element properties, keyed by suggestion ID.",
+          "type": "object"
+        },
+        "suggestedDeletionIds": {
+          "description": "IDs for suggestions that remove this date from the document. A DateElement might have multiple deletion IDs if, for example, multiple users suggest deleting it. If empty, then this date isn't suggested for deletion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestedInsertionIds": {
+          "description": "IDs for suggestions that insert this date into the document. A DateElement might have multiple insertion IDs if it's a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this date isn't a suggested insertion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestedTextStyleChanges": {
+          "additionalProperties": {
+            "$ref": "SuggestedTextStyle"
+          },
+          "description": "The suggested text style changes to this DateElement, keyed by suggestion ID.",
+          "type": "object"
+        },
+        "textStyle": {
+          "$ref": "TextStyle",
+          "description": "The text style of this DateElement."
+        }
+      },
+      "type": "object"
+    },
     "DateElementProperties": {
       "description": "Properties of a DateElement.",
       "id": "DateElementProperties",
@@ -729,6 +777,33 @@
           "description": "The point in time to represent, in seconds and nanoseconds since Unix epoch: January 1, 1970 at midnight UTC. Timestamp is expected to be in UTC. If time_zone_id is set, the timestamp is adjusted according to the time zone. For example, a timestamp of `18000` with a date format of `DATE_FORMAT_ISO8601` and time format of `TIME_FORMAT_HOUR_MINUTE` would be displayed as `1970-01-01 5:00 AM`. A timestamp of `18000` with date format of `DATE_FORMAT_8SO8601`, time format of `TIME_FORMAT_HOUR_MINUTE`, and time zone set to `America/New_York` will instead be `1970-01-01 12:00 AM`.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DateElementPropertiesSuggestionState": {
+      "description": "A mask that indicates which of the fields on the base DateElementProperties have been changed in this suggestion. For any field set to true, there's a new suggested value.",
+      "id": "DateElementPropertiesSuggestionState",
+      "properties": {
+        "dateFormatSuggested": {
+          "description": "Indicates if there was a suggested change to date_format.",
+          "type": "boolean"
+        },
+        "localeSuggested": {
+          "description": "Indicates if there was a suggested change to locale.",
+          "type": "boolean"
+        },
+        "timeFormatSuggested": {
+          "description": "Indicates if there was a suggested change to time_format.",
+          "type": "boolean"
+        },
+        "timeZoneIdSuggested": {
+          "description": "Indicates if there was a suggested change to time_zone_id.",
+          "type": "boolean"
+        },
+        "timestampSuggested": {
+          "description": "Indicates if there was a suggested change to timestamp.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2539,6 +2614,10 @@
           "$ref": "ColumnBreak",
           "description": "A column break paragraph element."
         },
+        "dateElement": {
+          "$ref": "DateElement",
+          "description": "A paragraph element that represents a date."
+        },
         "endIndex": {
           "description": "The zero-base end index of this paragraph element, exclusive, in UTF-16 code units.",
           "format": "int32",
@@ -3702,6 +3781,21 @@
         "bulletSuggestionState": {
           "$ref": "BulletSuggestionState",
           "description": "A mask that indicates which of the fields on the base Bullet have been changed in this suggestion."
+        }
+      },
+      "type": "object"
+    },
+    "SuggestedDateElementProperties": {
+      "description": "A suggested change to a DateElementProperties.",
+      "id": "SuggestedDateElementProperties",
+      "properties": {
+        "dateElementProperties": {
+          "$ref": "DateElementProperties",
+          "description": "DateElementProperties that only includes the changes made in this suggestion. This can be used along with the date_element_properties_suggestion_state to see which fields have changed and their new values."
+        },
+        "dateElementPropertiesSuggestionState": {
+          "$ref": "DateElementPropertiesSuggestionState",
+          "description": "A mask that indicates which of the fields on the base DateElementProperties have been changed in this suggestion."
         }
       },
       "type": "object"
