@@ -480,6 +480,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies the view of the Cluster resource to be returned. Defaults to CLUSTER_VIEW_BASIC. See the ClusterView enum for possible values.",
+                      "enum": [
+                        "CLUSTER_VIEW_UNSPECIFIED",
+                        "CLUSTER_VIEW_BASIC",
+                        "CLUSTER_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to the BASIC view.",
+                        "Include the basic metadata of the Cluster. This is the default value (for both ListClusters and GetCluster).",
+                        "Include everything, including data fetched from the Kafka cluster source of truth."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+name}",
@@ -3166,7 +3181,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20251212",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3254,6 +3269,30 @@
         "aclCreated": {
           "description": "Whether the acl was created as a result of adding the acl entry.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BrokerDetails": {
+      "description": "Details of a broker in the Kafka cluster.",
+      "id": "BrokerDetails",
+      "properties": {
+        "brokerIndex": {
+          "description": "Output only. The index of the broker.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nodeId": {
+          "description": "Output only. The node id of the broker.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rack": {
+          "description": "Output only. The rack of the broker.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3352,6 +3391,14 @@
       "description": "An Apache Kafka cluster deployed in a location.",
       "id": "Cluster",
       "properties": {
+        "brokerDetails": {
+          "description": "Output only. Only populated when FULL view is requested. Details of each broker in the cluster.",
+          "items": {
+            "$ref": "BrokerDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "capacityConfig": {
           "$ref": "CapacityConfig",
           "description": "Required. Capacity configuration for the Kafka cluster."
@@ -3365,6 +3412,11 @@
         "gcpConfig": {
           "$ref": "GcpConfig",
           "description": "Required. Configuration properties for a Kafka cluster deployed to Google Cloud Platform."
+        },
+        "kafkaVersion": {
+          "description": "Output only. Only populated when FULL view is requested. The Kafka version of the cluster.",
+          "readOnly": true,
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {
