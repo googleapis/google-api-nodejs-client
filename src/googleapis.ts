@@ -11,7 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {GeneratedAPIs, APIS} from './apis';
+
+import { GeneratedAPIs, APIS } from './apis';
 
 import {
   AuthPlus,
@@ -21,10 +22,10 @@ import {
   GlobalOptions,
 } from 'googleapis-common';
 
-export {AuthPlus};
+export { AuthPlus };
 
 export class GoogleApis extends GeneratedAPIs {
-  private _discovery = new Discovery({debug: false, includePrivate: false});
+  private _discovery = new Discovery({ debug: false, includePrivate: false });
   auth = new AuthPlus();
   _options: GlobalOptions = {};
   [index: string]: APIEndpoint;
@@ -49,7 +50,7 @@ export class GoogleApis extends GeneratedAPIs {
    * Obtain a Map of supported APIs, along with included API versions.
    */
   getSupportedAPIs() {
-    const apiMap = {} as {[index: string]: string[]};
+    const apiMap = {} as { [index: string]: string[] };
     Object.keys(APIS).forEach(a => {
       apiMap[a] = Object.keys(APIS[a]);
     });

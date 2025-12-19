@@ -2,7 +2,7 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 {% for apiName, api in apis %}
-  import { 
+  import type { 
     VERSIONS as {{apiName}}Versions,
     {{apiName}}
   } from './{{ apiName }}';
@@ -15,12 +15,18 @@ export interface APIList {
 
 export const APIS: APIList = {
   {% for apiName, api in apis %}
-    {{ apiName }}: {{ apiName }}Versions,
+    get {{ apiName }}() {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      return require('./{{ apiName }}').VERSIONS;
+    },
   {% endfor %}
 };
 
 export class GeneratedAPIs {
   {% for apiName, api in apis %}
-    {{ apiName }} = {{ apiName }};
+    get {{ apiName }}(): typeof {{ apiName }} {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      return require('./{{ apiName }}').{{ apiName }};
+    }
   {% endfor %}
 }
