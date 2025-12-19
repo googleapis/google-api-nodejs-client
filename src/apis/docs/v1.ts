@@ -439,6 +439,43 @@ export namespace docs_v1 {
     offsetTopSuggested?: boolean | null;
   }
   /**
+   * A date instance mentioned in a document.
+   */
+  export interface Schema$DateElement {
+    /**
+     * The properties of this DateElement.
+     */
+    dateElementProperties?: Schema$DateElementProperties;
+    /**
+     * Output only. The unique ID of this date.
+     */
+    dateId?: string | null;
+    /**
+     * The suggested changes to the date element properties, keyed by suggestion ID.
+     */
+    suggestedDateElementPropertiesChanges?: {
+      [key: string]: Schema$SuggestedDateElementProperties;
+    } | null;
+    /**
+     * IDs for suggestions that remove this date from the document. A DateElement might have multiple deletion IDs if, for example, multiple users suggest deleting it. If empty, then this date isn't suggested for deletion.
+     */
+    suggestedDeletionIds?: string[] | null;
+    /**
+     * IDs for suggestions that insert this date into the document. A DateElement might have multiple insertion IDs if it's a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this date isn't a suggested insertion.
+     */
+    suggestedInsertionIds?: string[] | null;
+    /**
+     * The suggested text style changes to this DateElement, keyed by suggestion ID.
+     */
+    suggestedTextStyleChanges?: {
+      [key: string]: Schema$SuggestedTextStyle;
+    } | null;
+    /**
+     * The text style of this DateElement.
+     */
+    textStyle?: Schema$TextStyle;
+  }
+  /**
    * Properties of a DateElement.
    */
   export interface Schema$DateElementProperties {
@@ -466,6 +503,31 @@ export namespace docs_v1 {
      * The time zone of the DateElement, as defined by the Unicode Common Locale Data Repository (CLDR) project. For example, `America/New York`. If unset, the default time zone is `etc/UTC`.
      */
     timeZoneId?: string | null;
+  }
+  /**
+   * A mask that indicates which of the fields on the base DateElementProperties have been changed in this suggestion. For any field set to true, there's a new suggested value.
+   */
+  export interface Schema$DateElementPropertiesSuggestionState {
+    /**
+     * Indicates if there was a suggested change to date_format.
+     */
+    dateFormatSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to locale.
+     */
+    localeSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to time_format.
+     */
+    timeFormatSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to timestamp.
+     */
+    timestampSuggested?: boolean | null;
+    /**
+     * Indicates if there was a suggested change to time_zone_id.
+     */
+    timeZoneIdSuggested?: boolean | null;
   }
   /**
    * Deletes content from the document.
@@ -1848,6 +1910,10 @@ export namespace docs_v1 {
      */
     columnBreak?: Schema$ColumnBreak;
     /**
+     * A paragraph element that represents a date.
+     */
+    dateElement?: Schema$DateElement;
+    /**
      * The zero-base end index of this paragraph element, exclusive, in UTF-16 code units.
      */
     endIndex?: number | null;
@@ -2785,6 +2851,19 @@ export namespace docs_v1 {
      * A mask that indicates which of the fields on the base Bullet have been changed in this suggestion.
      */
     bulletSuggestionState?: Schema$BulletSuggestionState;
+  }
+  /**
+   * A suggested change to a DateElementProperties.
+   */
+  export interface Schema$SuggestedDateElementProperties {
+    /**
+     * DateElementProperties that only includes the changes made in this suggestion. This can be used along with the date_element_properties_suggestion_state to see which fields have changed and their new values.
+     */
+    dateElementProperties?: Schema$DateElementProperties;
+    /**
+     * A mask that indicates which of the fields on the base DateElementProperties have been changed in this suggestion.
+     */
+    dateElementPropertiesSuggestionState?: Schema$DateElementPropertiesSuggestionState;
   }
   /**
    * A suggested change to the DocumentStyle.
