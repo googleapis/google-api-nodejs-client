@@ -429,7 +429,7 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. Identifier. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string | null;
     /**
@@ -1008,7 +1008,7 @@ export namespace pubsub_v1 {
      */
     messageTransforms?: Schema$MessageTransform[];
     /**
-     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
     /**
@@ -1032,7 +1032,7 @@ export namespace pubsub_v1 {
      */
     tags?: {[key: string]: string} | null;
     /**
-     * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
+     * Required. Identifier. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string | null;
     /**
@@ -1100,7 +1100,7 @@ export namespace pubsub_v1 {
      */
     messageTransforms?: Schema$MessageTransform[];
     /**
-     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
     /**
@@ -3344,7 +3344,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
-     *     // Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
      *     name: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -3494,7 +3494,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
-     *     // Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. Identifier. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3629,7 +3629,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
-     *     // Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. Identifier. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3917,7 +3917,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
+     *     // Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4480,7 +4480,7 @@ export namespace pubsub_v1 {
 
   export interface Params$Resource$Projects$Snapshots$Create extends StandardParameters {
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
      */
     name?: string;
 
@@ -4491,13 +4491,13 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Snapshots$Delete extends StandardParameters {
     /**
-     * Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. Identifier. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
   export interface Params$Resource$Projects$Snapshots$Get extends StandardParameters {
     /**
-     * Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. Identifier. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
@@ -4521,7 +4521,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
+     * Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -4745,7 +4745,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.create({
-     *     // Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. Identifier. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -4930,7 +4930,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
-     *     // Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
+     *     // Required. Identifier. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -5210,7 +5210,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
-     *     // Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
+     *     // Required. Identifier. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -5518,7 +5518,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
+     *     // Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -5956,7 +5956,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.patch({
-     *     // Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. Identifier. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -6701,7 +6701,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Create extends StandardParameters {
     /**
-     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -6712,7 +6712,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Delete extends StandardParameters {
     /**
-     * Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. Identifier. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
@@ -6724,7 +6724,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Get extends StandardParameters {
     /**
-     * Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. Identifier. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
@@ -6748,7 +6748,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
+     * Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -6776,7 +6776,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Patch extends StandardParameters {
     /**
-     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -6876,7 +6876,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.create({
-     *     // Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. Identifier. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -7041,7 +7041,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
-     *     // Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. Identifier. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -7176,7 +7176,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
-     *     // Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. Identifier. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -7471,7 +7471,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
+     *     // Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -7612,7 +7612,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.patch({
-     *     // Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. Identifier. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -7768,7 +7768,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
-     *     // Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -8187,7 +8187,7 @@ export namespace pubsub_v1 {
 
   export interface Params$Resource$Projects$Topics$Create extends StandardParameters {
     /**
-     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -8198,13 +8198,13 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Delete extends StandardParameters {
     /**
-     * Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. Identifier. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Get extends StandardParameters {
     /**
-     * Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. Identifier. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
@@ -8228,13 +8228,13 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
+     * Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
   export interface Params$Resource$Projects$Topics$Patch extends StandardParameters {
     /**
-     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. Identifier. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -8245,7 +8245,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Publish extends StandardParameters {
     /**
-     * Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
 
