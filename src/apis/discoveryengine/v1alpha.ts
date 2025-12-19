@@ -522,9 +522,26 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaA2AAgentDefinition {
     /**
+     * Optional. Configuration specific to agents that are deployed from Cloud Marketplace.
+     */
+    cloudMarketplaceConfig?: Schema$GoogleCloudDiscoveryengineV1alphaA2AAgentDefinitionCloudMarketplaceConfig;
+    /**
      * Optional. The agent card is a JSON string.
      */
     jsonAgentCard?: string | null;
+  }
+  /**
+   * Configuration specific to agents that are deployed from Cloud Marketplace.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaA2AAgentDefinitionCloudMarketplaceConfig {
+    /**
+     * Required. The Marketplace Entitlement this agent is associated with. Format: `projects/{project\}/entitlements/{entitlement\}`.
+     */
+    entitlement?: string | null;
+    /**
+     * Output only. The Marketplace Order this agent belongs to. Format: `billingAccounts/{billing_account\}/orders/{order\}`
+     */
+    order?: string | null;
   }
   /**
    * Access Control Configuration.
@@ -8217,11 +8234,15 @@ export namespace discoveryengine_v1alpha {
      */
     regionCode?: string | null;
     /**
+     * Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search.
+     */
+    relevanceFilterSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec;
+    /**
      * Optional. The specification for returning the relevance score.
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec;
     /**
-     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.
+     * The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.
      */
     relevanceThreshold?: string | null;
     /**
@@ -8659,6 +8680,32 @@ export namespace discoveryengine_v1alpha {
      * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
      */
     pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Relevance filtering specification.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec {
+    /**
+     * Optional. Relevance filtering threshold specification for keyword search.
+     */
+    keywordSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+    /**
+     * Optional. Relevance filtering threshold specification for semantic search.
+     */
+    semanticSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+  }
+  /**
+   * Specification for relevance filtering on a specific sub-search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
+    /**
+     * Pre-defined relevance threshold for the sub-search.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].
+     */
+    semanticRelevanceThreshold?: number | null;
   }
   /**
    * The specification for returning the document relevance score.
@@ -12926,11 +12973,15 @@ export namespace discoveryengine_v1alpha {
      */
     regionCode?: string | null;
     /**
+     * Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search.
+     */
+    relevanceFilterSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec;
+    /**
      * Optional. The specification for returning the relevance score.
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec;
     /**
-     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.
+     * The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.
      */
     relevanceThreshold?: string | null;
     /**
@@ -13364,6 +13415,32 @@ export namespace discoveryengine_v1alpha {
      * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
      */
     pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Relevance filtering specification.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec {
+    /**
+     * Optional. Relevance filtering threshold specification for keyword search.
+     */
+    keywordSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+    /**
+     * Optional. Relevance filtering threshold specification for semantic search.
+     */
+    semanticSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+  }
+  /**
+   * Specification for relevance filtering on a specific sub-search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
+    /**
+     * Pre-defined relevance threshold for the sub-search.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].
+     */
+    semanticRelevanceThreshold?: number | null;
   }
   /**
    * The specification for returning the document relevance score.
@@ -33694,6 +33771,218 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.create(
+     *       {
+     *         // Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     *         servingConfigId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "boostControlIds": [],
+     *           //   "createTime": "my_createTime",
+     *           //   "customFineTuningSpec": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "dissociateControlIds": [],
+     *           //   "diversityLevel": "my_diversityLevel",
+     *           //   "embeddingConfig": {},
+     *           //   "filterControlIds": [],
+     *           //   "genericConfig": {},
+     *           //   "guidedSearchSpec": {},
+     *           //   "ignoreControlIds": [],
+     *           //   "mediaConfig": {},
+     *           //   "modelId": "my_modelId",
+     *           //   "name": "my_name",
+     *           //   "onewaySynonymsControlIds": [],
+     *           //   "personalizationSpec": {},
+     *           //   "promoteControlIds": [],
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "redirectControlIds": [],
+     *           //   "replacementControlIds": [],
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsControlIds": [],
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
      * @example
      * ```js
@@ -34621,6 +34910,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -34842,6 +35132,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -35180,6 +35471,21 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerQueryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Create extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     */
+    servingConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Servingconfigs$Delete extends StandardParameters {
     /**
@@ -50665,6 +50971,218 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.create(
+     *       {
+     *         // Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *         // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     *         servingConfigId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "boostControlIds": [],
+     *           //   "createTime": "my_createTime",
+     *           //   "customFineTuningSpec": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "dissociateControlIds": [],
+     *           //   "diversityLevel": "my_diversityLevel",
+     *           //   "embeddingConfig": {},
+     *           //   "filterControlIds": [],
+     *           //   "genericConfig": {},
+     *           //   "guidedSearchSpec": {},
+     *           //   "ignoreControlIds": [],
+     *           //   "mediaConfig": {},
+     *           //   "modelId": "my_modelId",
+     *           //   "name": "my_name",
+     *           //   "onewaySynonymsControlIds": [],
+     *           //   "personalizationSpec": {},
+     *           //   "promoteControlIds": [],
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "redirectControlIds": [],
+     *           //   "replacementControlIds": [],
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsControlIds": [],
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
      * @example
      * ```js
@@ -51592,6 +52110,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -51813,6 +52332,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -52151,6 +52671,21 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerQueryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Create extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     */
+    servingConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Servingconfigs$Delete extends StandardParameters {
     /**
@@ -63442,6 +63977,216 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.create({
+     *       // Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     *       servingConfigId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "answerGenerationSpec": {},
+     *         //   "boostControlIds": [],
+     *         //   "createTime": "my_createTime",
+     *         //   "customFineTuningSpec": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "dissociateControlIds": [],
+     *         //   "diversityLevel": "my_diversityLevel",
+     *         //   "embeddingConfig": {},
+     *         //   "filterControlIds": [],
+     *         //   "genericConfig": {},
+     *         //   "guidedSearchSpec": {},
+     *         //   "ignoreControlIds": [],
+     *         //   "mediaConfig": {},
+     *         //   "modelId": "my_modelId",
+     *         //   "name": "my_name",
+     *         //   "onewaySynonymsControlIds": [],
+     *         //   "personalizationSpec": {},
+     *         //   "promoteControlIds": [],
+     *         //   "rankingExpression": "my_rankingExpression",
+     *         //   "redirectControlIds": [],
+     *         //   "replacementControlIds": [],
+     *         //   "solutionType": "my_solutionType",
+     *         //   "synonymsControlIds": [],
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
      * @example
      * ```js
@@ -64360,6 +65105,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "rankingExpression": "my_rankingExpression",
      *         //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *         //   "regionCode": "my_regionCode",
+     *         //   "relevanceFilterSpec": {},
      *         //   "relevanceScoreSpec": {},
      *         //   "relevanceThreshold": "my_relevanceThreshold",
      *         //   "safeSearch": false,
@@ -64580,6 +65326,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "rankingExpression": "my_rankingExpression",
      *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
      *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceFilterSpec": {},
      *           //   "relevanceScoreSpec": {},
      *           //   "relevanceThreshold": "my_relevanceThreshold",
      *           //   "safeSearch": false,
@@ -64918,6 +65665,21 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerQueryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Create extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.
+     */
+    servingConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfig;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Servingconfigs$Delete extends StandardParameters {
     /**

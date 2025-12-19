@@ -2164,6 +2164,40 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "create": {
+                          "description": "Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Full resource name of parent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "servingConfigId": {
+                              "description": "Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/servingConfigs",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "delete": {
                           "description": "Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}",
@@ -4434,6 +4468,40 @@
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
                         },
+                        "create": {
+                          "description": "Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Full resource name of parent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "servingConfigId": {
+                              "description": "Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/servingConfigs",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
                         "delete": {
                           "description": "Deletes a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}",
@@ -6409,6 +6477,40 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaAnswerQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a ServingConfig. Note: The Google Cloud console works only with the default serving config. Additional ServingConfigs can be created and managed only via the API. A maximum of 100 ServingConfigs are allowed in an Engine, otherwise a RESOURCE_EXHAUSTED error is returned.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Full resource name of parent. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "servingConfigId": {
+                          "description": "Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-zA-Z0-9+/.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/servingConfigs",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1betaServingConfig"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -9004,7 +9106,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20251217",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -10469,7 +10571,8 @@
             "NATIVE_CLOUD_IDENTITY",
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
-            "GCNV"
+            "GCNV",
+            "GOOGLE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -10483,7 +10586,8 @@
             "Native Cloud Identity connector for people search powered by People API.",
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
-            "Google Cloud NetApp Volumes connector."
+            "Google Cloud NetApp Volumes connector.",
+            "Google Chat connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -15516,7 +15620,8 @@
             "NATIVE_CLOUD_IDENTITY",
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
-            "GCNV"
+            "GCNV",
+            "GOOGLE_CHAT"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -15530,7 +15635,8 @@
             "Native Cloud Identity connector for people search powered by People API.",
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
-            "Google Cloud NetApp Volumes connector."
+            "Google Cloud NetApp Volumes connector.",
+            "Google Chat connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -18822,12 +18928,16 @@
           "description": "The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.",
           "type": "string"
         },
+        "relevanceFilterSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec",
+          "description": "Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search."
+        },
         "relevanceScoreSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec",
           "description": "Optional. The specification for returning the relevance score."
         },
         "relevanceThreshold": {
-          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.",
+          "description": "The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.",
           "enum": [
             "RELEVANCE_THRESHOLD_UNSPECIFIED",
             "LOWEST",
@@ -19475,6 +19585,51 @@
         "pinUnexpandedResults": {
           "description": "Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec": {
+      "description": "Relevance filtering specification.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec",
+      "properties": {
+        "keywordSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for keyword search."
+        },
+        "semanticSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for semantic search."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec": {
+      "description": "Specification for relevance filtering on a specific sub-search.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+      "properties": {
+        "relevanceThreshold": {
+          "description": "Pre-defined relevance threshold for the sub-search.",
+          "enum": [
+            "RELEVANCE_THRESHOLD_UNSPECIFIED",
+            "LOWEST",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case, server behavior defaults to Google defined threshold.",
+            "Lowest relevance threshold.",
+            "Low relevance threshold.",
+            "Medium relevance threshold.",
+            "High relevance threshold."
+          ],
+          "type": "string"
+        },
+        "semanticRelevanceThreshold": {
+          "description": "Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -27958,12 +28113,16 @@
           "description": "The Unicode country/region code (CLDR) of a location, such as \"US\" and \"419\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.",
           "type": "string"
         },
+        "relevanceFilterSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec",
+          "description": "Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search."
+        },
         "relevanceScoreSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec",
           "description": "Optional. The specification for returning the relevance score."
         },
         "relevanceThreshold": {
-          "description": "The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.",
+          "description": "The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.",
           "enum": [
             "RELEVANCE_THRESHOLD_UNSPECIFIED",
             "LOWEST",
@@ -28607,6 +28766,51 @@
         "pinUnexpandedResults": {
           "description": "Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec": {
+      "description": "Relevance filtering specification.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec",
+      "properties": {
+        "keywordSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for keyword search."
+        },
+        "semanticSearchThreshold": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+          "description": "Optional. Relevance filtering threshold specification for semantic search."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec": {
+      "description": "Specification for relevance filtering on a specific sub-search.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec",
+      "properties": {
+        "relevanceThreshold": {
+          "description": "Pre-defined relevance threshold for the sub-search.",
+          "enum": [
+            "RELEVANCE_THRESHOLD_UNSPECIFIED",
+            "LOWEST",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case, server behavior defaults to Google defined threshold.",
+            "Lowest relevance threshold.",
+            "Low relevance threshold.",
+            "Medium relevance threshold.",
+            "High relevance threshold."
+          ],
+          "type": "string"
+        },
+        "semanticRelevanceThreshold": {
+          "description": "Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
