@@ -2375,7 +2375,7 @@
       }
     }
   },
-  "revision": "20251030",
+  "revision": "20251214",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -5945,6 +5945,11 @@
       "description": "Additional job parameters that can only be updated during runtime using the projects.jobs.update method. These fields have no effect when specified during job creation.",
       "id": "RuntimeUpdatableParams",
       "properties": {
+        "acceptableBacklogDuration": {
+          "description": "Optional. The backlog threshold duration in seconds for autoscaling. Value must be non-negative.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "maxNumWorkers": {
           "description": "The maximum number of workers to cap autoscaling at. This field is currently only supported for Streaming Engine jobs.",
           "format": "int32",
