@@ -686,6 +686,10 @@ export namespace developerconnect_v1 {
      * Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection.
      */
     enabled?: boolean | null;
+    /**
+     * Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID\}-c-h-{shortRegion\}.developerconnect.dev` Populated only when enabled is set to true. This endpoint is used by other Google services that integrate with Developer Connect.
+     */
+    httpProxyBaseUri?: string | null;
   }
   /**
    * Message describing the GitRepositoryLink object
