@@ -107,6 +107,194 @@
   "resources": {
     "curators": {
       "resources": {
+        "curatedPackages": {
+          "methods": {
+            "activate": {
+              "description": "Activates an existing curated package.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages/{curatedPackagesId}:activate",
+              "httpMethod": "POST",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.activate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the curated package to activate. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+/curatedPackages/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:activate",
+              "request": {
+                "$ref": "ActivateCuratedPackageRequest"
+              },
+              "response": {
+                "$ref": "CuratedPackage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            },
+            "create": {
+              "description": "Creates a new curated package.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages",
+              "httpMethod": "POST",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent curator account where this curated package will be created. Format: `curators/{accountId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/curatedPackages",
+              "request": {
+                "$ref": "CuratedPackage"
+              },
+              "response": {
+                "$ref": "CuratedPackage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            },
+            "deactivate": {
+              "description": "Deactivates an existing curated package.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages/{curatedPackagesId}:deactivate",
+              "httpMethod": "POST",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.deactivate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the curated package to deactivate. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+/curatedPackages/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:deactivate",
+              "request": {
+                "$ref": "DeactivateCuratedPackageRequest"
+              },
+              "response": {
+                "$ref": "CuratedPackage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            },
+            "get": {
+              "description": "Gets a curated package given its resource name.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages/{curatedPackagesId}",
+              "httpMethod": "GET",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the curated package to retrieve. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+/curatedPackages/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "CuratedPackage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            },
+            "list": {
+              "description": "Lists curated packages owned by the specified curator.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages",
+              "httpMethod": "GET",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * displayName * createTime * updateTime * state * feeCpm.currencyCode * feeCpm.units * feeCpm.nanos * floorPriceCpm.currencyCode * floorPriceCpm.units * floorPriceCpm.nanos",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListCuratedPackages` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent curator account which owns this collection of curated packages. Format: `curators/{accountId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/curatedPackages",
+              "response": {
+                "$ref": "ListCuratedPackagesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing curated package.",
+              "flatPath": "v1beta/curators/{curatorsId}/curatedPackages/{curatedPackagesId}",
+              "httpMethod": "PATCH",
+              "id": "authorizedbuyersmarketplace.curators.curatedPackages.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The unique resource name for the curated package. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+                  "location": "path",
+                  "pattern": "^curators/[^/]+/curatedPackages/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path \"*\" can be used to indicate full replacement (the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "CuratedPackage"
+              },
+              "response": {
+                "$ref": "CuratedPackage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+              ]
+            }
+          }
+        },
         "dataSegments": {
           "methods": {
             "activate": {
@@ -291,15 +479,191 @@
           }
         }
       }
+    },
+    "mediaPlanners": {
+      "methods": {
+        "list": {
+          "description": "Lists all media planner accounts that the caller has access to. For curators, this will return all media planners that have accepted curator terms. For other accounts, attempting to list media planners will return an error.",
+          "flatPath": "v1beta/mediaPlanners",
+          "httpMethod": "GET",
+          "id": "authorizedbuyersmarketplace.mediaPlanners.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * `name` * `displayName` * `ancestorNames`",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta/mediaPlanners",
+          "response": {
+            "$ref": "ListMediaPlannersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/authorized-buyers-marketplace"
+          ]
+        }
+      }
     }
   },
-  "revision": "20250910",
+  "revision": "20251211",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
+    "AccessControlSettings": {
+      "description": "Settings for controlling access to a curated package.",
+      "id": "AccessControlSettings",
+      "properties": {
+        "allowlistedMediaPlanners": {
+          "description": "Required. Immutable. The list of media planners that are explicitly granted access to the curated package. Eligible media planners can be found in the mediaPlanners.list method. Only a single media planner may be allowlisted at this time. Format: `mediaPlanners/{mediaPlannerAccountId}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ActivateCuratedPackageRequest": {
+      "description": "Request message for ActivateCuratedPackage.",
+      "id": "ActivateCuratedPackageRequest",
+      "properties": {},
+      "type": "object"
+    },
     "ActivateDataSegmentRequest": {
       "description": "Request message for activating a data segment",
       "id": "ActivateDataSegmentRequest",
       "properties": {},
+      "type": "object"
+    },
+    "AdSize": {
+      "description": "Represents size of a single ad slot, or a creative.",
+      "id": "AdSize",
+      "properties": {
+        "height": {
+          "description": "The height of the ad slot in pixels. This field will be present only when size type is `PIXEL`.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the ad slot size.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "PIXEL",
+            "INTERSTITIAL",
+            "NATIVE",
+            "FLUID"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an undefined size type.",
+            "Ad slot with size specified by height and width in pixels.",
+            "Special size to describe an interstitial ad slot.",
+            "Native (mobile) ads rendered by the publisher.",
+            "Fluid size (responsive size) can be resized automatically with the change of outside environment."
+          ],
+          "type": "string"
+        },
+        "width": {
+          "description": "The width of the ad slot in pixels. This field will be present only when size type is `PIXEL`.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CriteriaTargeting": {
+      "description": "Generic targeting used for targeting dimensions that contains a list of included and excluded numeric IDs. This cannot be filtered using list filter syntax.",
+      "id": "CriteriaTargeting",
+      "properties": {
+        "excludedCriteriaIds": {
+          "description": "A list of numeric IDs to be excluded.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetedCriteriaIds": {
+          "description": "A list of numeric IDs to be included.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CuratedPackage": {
+      "description": "Represents a curated package of inventory created and managed by a Curator.",
+      "id": "CuratedPackage",
+      "properties": {
+        "accessSettings": {
+          "$ref": "AccessControlSettings",
+          "description": "Required. Settings for controlling access to the curated package. Access to this curated package is limited to the allowlisted media planners and the creator. Buyers and bidders can not be allowlisted for or have direct access to this resource."
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the curated package was created. Can be used to filter the response of the curatedPackages.list method.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the curated package, provided by the curator.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name assigned to the curated package by the curator. Can be used to filter the response of the curatedPackages.list method.",
+          "type": "string"
+        },
+        "feeCpm": {
+          "$ref": "Money",
+          "description": "Optional. The CPM fee charged by the curator to buyers using this curated package. Can be used to filter the response of the curatedPackages.list method."
+        },
+        "floorPriceCpm": {
+          "$ref": "Money",
+          "description": "Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method."
+        },
+        "name": {
+          "description": "Identifier. The unique resource name for the curated package. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the curated package. Can be used to filter the response of the curatedPackages.list method.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The curated package is active.",
+            "The curated package is inactive."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targeting": {
+          "$ref": "PackageTargeting",
+          "description": "Optional. Targeting criteria for the curated package."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the curated package was last updated. Can be used to filter the response of the curatedPackages.list method.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DataSegment": {
@@ -344,10 +708,34 @@
       },
       "type": "object"
     },
+    "DeactivateCuratedPackageRequest": {
+      "description": "Request message for DeactivateCuratedPackage.",
+      "id": "DeactivateCuratedPackageRequest",
+      "properties": {},
+      "type": "object"
+    },
     "DeactivateDataSegmentRequest": {
       "description": "Request message for deactivating a data segment",
       "id": "DeactivateDataSegmentRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ListCuratedPackagesResponse": {
+      "description": "Response message for ListCuratedPackages.",
+      "id": "ListCuratedPackagesResponse",
+      "properties": {
+        "curatedPackages": {
+          "description": "The list of curated packages.",
+          "items": {
+            "$ref": "CuratedPackage"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the ListCuratedPackagesRequest.pageToken field in the subsequent call to `ListCuratedPackages` method to retrieve the next page of results. If empty, then there are no more results.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ListDataSegmentsResponse": {
@@ -363,6 +751,54 @@
         },
         "nextPageToken": {
           "description": "Continuation token for fetching the next page of results. Pass this value in the ListDataSegmentsRequest.pageToken field in the subsequent call to the `ListDataSegments` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMediaPlannersResponse": {
+      "description": "A response containing media planner account information.",
+      "id": "ListMediaPlannersResponse",
+      "properties": {
+        "mediaPlanners": {
+          "description": "List of media planners.",
+          "items": {
+            "$ref": "MediaPlanner"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the `ListMediaPlanners` method to retrieve the next page of results in ListMediaPlannersRequest.pageToken.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediaPlanner": {
+      "description": "Represents a media planner account.",
+      "id": "MediaPlanner",
+      "properties": {
+        "accountId": {
+          "deprecated": true,
+          "description": "Output only. Account ID of the media planner.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ancestorNames": {
+          "description": "Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId}` Can be used to filter the response of the mediaPlanners.list method.",
           "type": "string"
         }
       },
@@ -385,6 +821,481 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PackagePlacementTargeting": {
+      "description": "Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed.",
+      "id": "PackagePlacementTargeting",
+      "properties": {
+        "includedMobileAppCategoryTargeting": {
+          "description": "Optional. The list of targeted mobile app categories.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mobileAppTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Optional. The list of targeted or excluded mobile application IDs that publishers own. Currently, only Android and Apple apps are supported. Android App ID, for example, com.google.android.apps.maps, can be found in Google Play Store URL. iOS App ID (which is a number) can be found at the end of iTunes store URL. First party mobile applications is either included or excluded."
+        },
+        "uriTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Optional. The list of targeted or excluded URLs. The domains should have the http/https stripped (for example, google.com), and can contain a max of 5 paths per url."
+        }
+      },
+      "type": "object"
+    },
+    "PackagePublisherProvidedSignalsTargeting": {
+      "description": "Represents targeting about publisher provided signals. Different publisher provided signals types will be logically OR'ed.",
+      "id": "PackagePublisherProvidedSignalsTargeting",
+      "properties": {
+        "audienceTargeting": {
+          "$ref": "TaxonomyTargeting",
+          "description": "Optional. The list of targeted or excluded audience IDs. Based off of IAB Audience Taxonomy version 1.1 (https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Audience%20Taxonomies/Audience%20Taxonomy%201.1.tsv)"
+        },
+        "contentTargeting": {
+          "$ref": "TaxonomyTargeting",
+          "description": "Optional. The list of targeted or excluded content IDs. Based off of IAB Content Taxonomy version 2.2 (https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv)"
+        },
+        "videoAndAudioSignalsTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Optional. The list of targeted and excluded video and audio signals IDs. These are additional signals supported by publisher provided signals."
+        }
+      },
+      "type": "object"
+    },
+    "PackageTargeting": {
+      "description": "Targeting criteria for curated and auction packages.",
+      "id": "PackageTargeting",
+      "properties": {
+        "geoTargeting": {
+          "$ref": "CriteriaTargeting",
+          "description": "Optional. The geo criteria IDs to be included or excluded as defined in https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv. If unset, inventory will be targeted regardless of geo."
+        },
+        "includedAcceleratedMobilePageType": {
+          "description": "Optional. The targeted accelerated mobile page type. If unset, inventory will be targeted regardless of AMP status.",
+          "enum": [
+            "ACCELERATED_MOBILE_PAGE_TYPE_UNSPECIFIED",
+            "ACCELERATED_MOBILE_PAGE_TYPE_NON_AMP",
+            "ACCELERATED_MOBILE_PAGE_TYPE_AMP",
+            "ACCELERATED_MOBILE_PAGE_TYPE_AMP_STORY"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Targets inventory on standard web pages not using any AMP framework.",
+            "Targets inventory on pages built using the core AMP HTML framework.",
+            "Targets inventory on pages using the AMP Story (STAMP) format, which is optimized for visual storytelling (e.g., tappable full-screen experiences)."
+          ],
+          "type": "string"
+        },
+        "includedAdSizes": {
+          "description": "Optional. The list of ad sizes to target. If unset, inventory will be targeted regardless of ad size. Curated packages supports `PIXEL` and `INTERSTITIAL` ad sizes.",
+          "items": {
+            "$ref": "AdSize"
+          },
+          "type": "array"
+        },
+        "includedAuthorizedSellerStatuses": {
+          "description": "Optional. The included list of targeted authorized seller statuses. If empty, inventory will be targeted regardless of seller status.",
+          "items": {
+            "enum": [
+              "AUTHORIZED_SELLER_STATUS_UNSPECIFIED",
+              "AUTHORIZED_SELLER_STATUS_DIRECT",
+              "AUTHORIZED_SELLER_STATUS_RESELLER"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Targets inventory where the seller is declared as 'DIRECT'. This indicates the publisher (content owner) directly controls the seller account and has a direct business contract with the advertising system for this account.",
+              "Targets inventory where the seller is declared as 'RESELLER'. This indicates the publisher has authorized another entity to operate the listed seller account and resell their ad space."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedCreativeFormat": {
+          "description": "Optional. The creative format to target. If unset, all creative markup types are targeted.",
+          "enum": [
+            "CREATIVE_FORMAT_UNSPECIFIED",
+            "CREATIVE_FORMAT_DISPLAY",
+            "CREATIVE_FORMAT_VIDEO",
+            "CREATIVE_FORMAT_AUDIO"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Targets ad slots intended for HTML display creatives.",
+            "Targets ad slots intended for video creatives.",
+            "Targets ad slots intended for audio creatives."
+          ],
+          "type": "string"
+        },
+        "includedDataSegments": {
+          "description": "Optional. The active data segments to be targeted. If unset, inventory will be targeted regardless of data segments. Format: `curators/{account_id}/dataSegments/{data_segment_id}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedDeviceTypes": {
+          "description": "Optional. The list of included device types to target. If empty, all device types are targeted.",
+          "items": {
+            "enum": [
+              "DEVICE_TYPE_UNSPECIFIED",
+              "DEVICE_TYPE_PERSONAL_COMPUTER",
+              "DEVICE_TYPE_CONNECTED_TV",
+              "DEVICE_TYPE_PHONE",
+              "DEVICE_TYPE_TABLET"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Targets desktop or laptop computers.",
+              "Targets connected TVs: devices that stream TV content, including smart TVs, gaming consoles, and streaming boxes/sticks.",
+              "Targets high-end mobile devices.",
+              "Targets tablet devices."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedEnvironment": {
+          "description": "Optional. The environment to target. If unspecified, all environments are targeted.",
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "ENVIRONMENT_SITE",
+            "ENVIRONMENT_APP"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Targets inventory rendered within an ad-supported website.",
+            "Targets inventory within a mobile application."
+          ],
+          "type": "string"
+        },
+        "includedNativeInventoryTypes": {
+          "description": "Optional. The targeted native inventory types. If empty, inventory will be targeted regardless of native inventory type.",
+          "items": {
+            "enum": [
+              "NATIVE_INVENTORY_TYPE_UNSPECIFIED",
+              "NATIVE_INVENTORY_TYPE_NATIVE_ONLY",
+              "NATIVE_INVENTORY_TYPE_NATIVE_OR_BANNER"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Targets ad slots that *only* accept and render native ads.",
+              "Targets ad slots that accept and render either native or banner ads."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedOpenMeasurementTypes": {
+          "description": "Optional. The list of targeted open measurement types. If empty, inventory will be targeted regardless of Open Measurement support.",
+          "items": {
+            "enum": [
+              "OPEN_MEASUREMENT_TYPE_UNSPECIFIED",
+              "OPEN_MEASUREMENT_TYPE_OMID_V1"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Targets inventory that supports the v1 Open Measurement Interface Definition (OMID)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedRestrictedCategories": {
+          "description": "Optional. The list of targeted restricted categories. If empty, inventory will be targeted regardless of restricted categories.",
+          "items": {
+            "enum": [
+              "RESTRICTED_CATEGORY_UNSPECIFIED",
+              "RESTRICTED_CATEGORY_ALCOHOL",
+              "RESTRICTED_CATEGORY_GAMBLING"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Targets inventory where alcohol ads are allowed by the publisher.",
+              "Targets inventory where gambling ads are allowed by the publisher."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedRewardedType": {
+          "description": "Optional. The targeted rewarded type. If unset, inventory will be targeted regardless of rewarded type.",
+          "enum": [
+            "REWARDED_TYPE_UNSPECIFIED",
+            "REWARDED_TYPE_NON_REWARDED",
+            "REWARDED_TYPE_REWARDED"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Targets inventory that does NOT offer an explicit reward to the user for watching or interacting with the ad.",
+            "Targets inventory that offers a reward to the user in exchange for watching or engaging with the ad."
+          ],
+          "type": "string"
+        },
+        "languageTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Optional. The languages to target. If unset, inventory will be targeted regardless of language. See https://developers.google.com/google-ads/api/data/codes-formats#languages for the list of supported language codes."
+        },
+        "minimumPredictedClickThroughRatePercentageMillis": {
+          "description": "Optional. The targeted minimum predicted click through rate, ranging in values [10, 10000] (0.01% - 10%). A value of 50 means that the configuration will only match adslots for which we predict at least 0.05% click through rate. An unset value indicates inventory will be targeted regardless of predicted click through rate.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimumPredictedViewabilityPercentage": {
+          "description": "Optional. The targeted minimum predicted viewability percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% viewability. An unset value indicates inventory will be targeted regardless of predicted viewability.",
+          "format": "int64",
+          "type": "string"
+        },
+        "placementTargeting": {
+          "$ref": "PackagePlacementTargeting",
+          "description": "Optional. Placement targeting information, for example, URL, mobile applications."
+        },
+        "publisherProvidedSignalsTargeting": {
+          "$ref": "PackagePublisherProvidedSignalsTargeting",
+          "description": "Optional. The publisher provided signals to target. If unset, inventory will be targeted regardless of publisher provided signals."
+        },
+        "publisherTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Optional. The targeted publishers. If unset, inventory will be targeted regardless of publisher. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details."
+        },
+        "verticalTargeting": {
+          "$ref": "CriteriaTargeting",
+          "description": "Optional. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals. If unset, inventory will be targeted regardless of vertical."
+        },
+        "videoTargeting": {
+          "$ref": "PackageVideoTargeting",
+          "description": "Optional. Video specific targeting criteria."
+        }
+      },
+      "type": "object"
+    },
+    "PackageVideoTargeting": {
+      "description": "Video specific targeting criteria.",
+      "id": "PackageVideoTargeting",
+      "properties": {
+        "includedContentDeliveryMethod": {
+          "description": "Optional. The targeted video delivery method. If unset, inventory will be targeted regardless of video delivery method.",
+          "enum": [
+            "CONTENT_DELIVERY_METHOD_UNSPECIFIED",
+            "CONTENT_DELIVERY_METHOD_STREAMING",
+            "CONTENT_DELIVERY_METHOD_PROGRESSIVE"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Targets video content that is being broadcast live.",
+            "Targets video content that is transferred incrementally as client's playback requires."
+          ],
+          "type": "string"
+        },
+        "includedMaximumAdDurationTargeting": {
+          "description": "Optional. The targeted maximum video ad duration. If unset, inventory will be targeted regardless of maximum video ad duration.",
+          "enum": [
+            "MAXIMUM_VIDEO_AD_DURATION_UNSPECIFIED",
+            "MAXIMUM_VIDEO_AD_DURATION_FIFTEEN_SECONDS",
+            "MAXIMUM_VIDEO_AD_DURATION_TWENTY_SECONDS",
+            "MAXIMUM_VIDEO_AD_DURATION_THIRTY_SECONDS",
+            "MAXIMUM_VIDEO_AD_DURATION_SIXTY_SECONDS",
+            "MAXIMUM_VIDEO_AD_DURATION_NINETY_SECONDS",
+            "MAXIMUM_VIDEO_AD_DURATION_ONE_HUNDRED_TWENTY_SECONDS"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used in targeting specifications.",
+            "Applies to video ads with a duration up to 15 seconds (0 < duration <= 15s).",
+            "Applies to video ads with a duration up to 20 seconds (0 < duration <= 20s).",
+            "Applies to video ads with a duration up to 30 seconds (0 < duration <= 30s).",
+            "Applies to video ads with a duration up to 60 seconds (0 < duration <= 60s).",
+            "Applies to video ads with a duration up to 90 seconds (0 < duration <= 90s).",
+            "Applies to video ads with a duration up to 120 seconds (0 < duration <= 120s)."
+          ],
+          "type": "string"
+        },
+        "includedMimeTypes": {
+          "description": "Optional. The list of targeted video mime types using the IANA published MIME type strings (https://www.iana.org/assignments/media-types/media-types.xhtml). If empty, inventory will be targeted regardless of video mime type.",
+          "items": {
+            "enum": [
+              "VIDEO_MIME_TYPE_UNSPECIFIED",
+              "VIDEO_MIME_TYPE_THREEGPP",
+              "VIDEO_MIME_TYPE_APPLICATION_MPEGURL",
+              "VIDEO_MIME_TYPE_MP4",
+              "VIDEO_MIME_TYPE_APPLICATION_MPEGDASH",
+              "VIDEO_MIME_TYPE_APPLICATION_JAVASCRIPT",
+              "VIDEO_MIME_TYPE_WEBM"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "3GPP container format used on 3G phones.",
+              "HLS/M3U8",
+              "MPEG-4 container typically with H.264 codec.",
+              "DASH.",
+              "JavaScript (used for VPAID ads).",
+              "WebM container assuming VP9 codec."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedPlaybackMethods": {
+          "description": "Optional. The list of targeted video playback methods. If empty, inventory will be targeted regardless of video playback method.",
+          "items": {
+            "enum": [
+              "PLAYBACK_METHOD_UNSPECIFIED",
+              "PLAYBACK_METHOD_AUTO_PLAY_SOUND_ON",
+              "PLAYBACK_METHOD_AUTO_PLAY_SOUND_OFF",
+              "PLAYBACK_METHOD_CLICK_TO_PLAY"
+            ],
+            "enumDescriptions": [
+              "Unspecified video playback method. Should not be used.",
+              "Playback starts automatically when the page/content loads.",
+              "Playback starts automatically when the page/content loads, but with sound off.",
+              "Playback is initiated by a user action (e.g., clicking a play button)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedPlayerSizeTargeting": {
+          "$ref": "VideoPlayerSizeTargeting",
+          "description": "Optional. The targeted video player size. If unset, inventory will be targeted regardless of video player size."
+        },
+        "includedPositionTypes": {
+          "description": "Optional. The targeted video ad position types. If empty, inventory will be targeted regardless of video ad position type.",
+          "items": {
+            "enum": [
+              "POSITION_TYPE_UNSPECIFIED",
+              "POSITION_TYPE_MIDROLL",
+              "POSITION_TYPE_POSTROLL",
+              "POSITION_TYPE_PREROLL"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "The ad is played in the middle of the video content.",
+              "The ad is played after the video content.",
+              "The ad is played before the video content."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimumPredictedCompletionRatePercentage": {
+          "description": "Optional. The targeted minimum predicted completion rate percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% completion rate. An unset value indicates inventory will be targeted regardless of predicted completion rate.",
+          "format": "int64",
+          "type": "string"
+        },
+        "plcmtTargeting": {
+          "$ref": "VideoPlcmtTargeting",
+          "description": "Optional. The targeted video plcmt types. If unset, inventory will be targeted regardless of video plcmt type."
+        }
+      },
+      "type": "object"
+    },
+    "StringTargetingDimension": {
+      "description": "Generic targeting with string values.",
+      "id": "StringTargetingDimension",
+      "properties": {
+        "selectionType": {
+          "description": "Required. How the items in this list should be targeted.",
+          "enum": [
+            "SELECTION_TYPE_UNSPECIFIED",
+            "SELECTION_TYPE_INCLUDE",
+            "SELECTION_TYPE_EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "Unspecified selection type. Should not be used.",
+            "The values in the targeting dimension are included.",
+            "The values in the targeting dimension are excluded."
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "Required. The values specified.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TaxonomyTargeting": {
+      "description": "Defines targeting criteria for handling the IAB audience and content Taxonomy ID space.",
+      "id": "TaxonomyTargeting",
+      "properties": {
+        "excludedTaxonomyIds": {
+          "description": "Optional. The list of excluded content taxonomy IDs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetedTaxonomyIds": {
+          "description": "Optional. The list of targeted content taxonomy IDs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VideoPlayerSizeTargeting": {
+      "description": "Represents the size of the video player that can be targeted. Both width and height are required to be set to non-zero values.",
+      "id": "VideoPlayerSizeTargeting",
+      "properties": {
+        "minimumHeight": {
+          "description": "Required. The minimum height of the video player in pixels.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimumWidth": {
+          "description": "Required. The minimum width of the video player in pixels.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VideoPlcmtTargeting": {
+      "description": "Defines targeting criteria based on the video placement type, often corresponding to the IAB OpenRTB 'plcmt' field.",
+      "id": "VideoPlcmtTargeting",
+      "properties": {
+        "selectionType": {
+          "description": "Required. The selection type for the list of video plcmts.",
+          "enum": [
+            "SELECTION_TYPE_UNSPECIFIED",
+            "SELECTION_TYPE_INCLUDE",
+            "SELECTION_TYPE_EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "Unspecified selection type. Should not be used.",
+            "The values in the targeting dimension are included.",
+            "The values in the targeting dimension are excluded."
+          ],
+          "type": "string"
+        },
+        "videoPlcmtTypes": {
+          "description": "Required. The list of targeted video plcmts types. If empty, inventory will be targeted regardless of video plcmt type.",
+          "items": {
+            "enum": [
+              "VIDEO_PLCMT_TYPE_UNSPECIFIED",
+              "INSTREAM",
+              "ACCOMPANYING_CONTENT",
+              "INTERSTITIAL",
+              "NO_CONTENT"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used in targeting specifications.",
+              "Pre-roll, mid-roll, and post-roll ads that are played before, during or after the streaming video content that the consumer has requested. Instream video must be set to “sound on” by default at player start, or have explicitly clear user intent to watch the video content. While there may be other content surrounding the player, the video content must be the focus of the user’s visit. It should remain the primary content on the page and the only video player in-view capable of audio when playing. If the player converts to floating/sticky, subsequent ad calls should accurately convey the updated player size.",
+              "Pre-roll, mid-roll, and post-roll ads that are played before, during, or after streaming video content. The video player loads and plays before, between, or after paragraphs of text or graphical content, and starts playing only when it enters the viewport. Accompanying content should only start playback upon entering the viewport. It may convert to a floating/sticky player as it scrolls off the page.",
+              "Video ads that are played without video content. During playback, it must be the primary focus of the page and take up the majority of the viewport and cannot be scrolled out of view. This can be in placements like in-app video or slideshows.",
+              "Video ads that are played without streaming video content. This can be in placements like slideshows, native feeds, in-content or sticky/floating."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
