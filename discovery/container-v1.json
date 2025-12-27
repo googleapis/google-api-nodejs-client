@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20251216",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3325,7 +3325,7 @@
         },
         "gcpSecretManagerCertificateConfig": {
           "$ref": "GCPSecretManagerCertificateConfig",
-          "description": "Google Secret Manager (GCP) certificate configuration."
+          "description": "Secret Manager certificate configuration."
         }
       },
       "type": "object"

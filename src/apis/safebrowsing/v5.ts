@@ -115,6 +115,7 @@ export namespace safebrowsing_v5 {
     hashes: Resource$Hashes;
     hashList: Resource$Hashlist;
     hashLists: Resource$Hashlists;
+    urls: Resource$Urls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,6 +126,7 @@ export namespace safebrowsing_v5 {
       this.hashes = new Resource$Hashes(this.context);
       this.hashList = new Resource$Hashlist(this.context);
       this.hashLists = new Resource$Hashlists(this.context);
+      this.urls = new Resource$Urls(this.context);
     }
   }
 
@@ -359,6 +361,32 @@ export namespace safebrowsing_v5 {
      */
     fullHashes?: Schema$GoogleSecuritySafebrowsingV5FullHash[];
   }
+  /**
+   * The response returned after searching threats matching the specified URLs. If nothing is found, the server will return an OK status (HTTP status code 200) with the `threats` field empty, rather than returning a NOT_FOUND status (HTTP status code 404).
+   */
+  export interface Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse {
+    /**
+     * The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every URL queried by the client in the request, regardless of how many URLs are returned in the response. Even if the server returns no matches for a particular URL, this fact MUST also be cached by the client. If and only if the field `threats` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation.
+     */
+    cacheDuration?: string | null;
+    /**
+     * Unordered list. The unordered list of threat matches found. Each entry contains a URL and the threat types that were found matching that URL. The list size can be greater than the number of URLs in the request as the all expressions of the URL would've been considered.
+     */
+    threats?: Schema$GoogleSecuritySafebrowsingV5ThreatUrl[];
+  }
+  /**
+   * A URL matching one or more threats.
+   */
+  export interface Schema$GoogleSecuritySafebrowsingV5ThreatUrl {
+    /**
+     * Unordered list. The unordered list of threat that the URL is classified as.
+     */
+    threatTypes?: string[] | null;
+    /**
+     * The requested URL that was matched by one or more threats.
+     */
+    url?: string | null;
+  }
 
   export class Resource$Hashes {
     context: APIRequestContext;
@@ -367,7 +395,7 @@ export namespace safebrowsing_v5 {
     }
 
     /**
-     * Search for full hashes matching the specified prefixes. This is a custom method as defined by https://google.aip.dev/136 (the custom method refers to this method having a custom name within Google's general API development nomenclature; it does not refer to using a custom HTTP method).
+     * Searches for full hashes matching the specified prefixes. This is a custom method as defined by https://google.aip.dev/136 (the custom method refers to this method having a custom name within Google's general API development nomenclature; it does not refer to using a custom HTTP method).
      * @example
      * ```js
      * // Before running the sample:
@@ -525,7 +553,7 @@ export namespace safebrowsing_v5 {
     }
 
     /**
-     * Get the latest contents of a hash list. A hash list may either by a threat list or a non-threat list such as the Global Cache. This is a standard Get method as defined by https://google.aip.dev/131 and the HTTP method is also GET.
+     * Gets the latest contents of a hash list. A hash list may either by a threat list or a non-threat list such as the Global Cache. This is a standard Get method as defined by https://google.aip.dev/131 and the HTTP method is also GET.
      * @example
      * ```js
      * // Before running the sample:
@@ -713,7 +741,7 @@ export namespace safebrowsing_v5 {
     }
 
     /**
-     * Get multiple hash lists at once. It is very common for a client to need to get multiple hash lists. Using this method is preferred over using the regular Get method multiple times. This is a standard batch Get method as defined by https://google.aip.dev/231 and the HTTP method is also GET.
+     * Gets multiple hash lists at once. It is very common for a client to need to get multiple hash lists. Using this method is preferred over using the regular Get method multiple times. This is a standard batch Get method as defined by https://google.aip.dev/231 and the HTTP method is also GET.
      * @example
      * ```js
      * // Before running the sample:
@@ -866,7 +894,7 @@ export namespace safebrowsing_v5 {
     }
 
     /**
-     * List hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.
+     * Lists hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.
      * @example
      * ```js
      * // Before running the sample:
@@ -1039,5 +1067,163 @@ export namespace safebrowsing_v5 {
      * A page token, received from a previous `ListHashLists` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Urls {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Searches for URLs matching known threats. Each URL and it's host-suffix and path-prefix expressions (up to a limited depth) are checked. This means that the response may contain URLs that were not included in the request, but are expressions of the requested URLs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/safebrowsing.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const safebrowsing = google.safebrowsing('v5');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await safebrowsing.urls.search({
+     *     // Required. The URLs to be looked up. Clients MUST NOT send more than 50 URLs.
+     *     urls: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheDuration": "my_cacheDuration",
+     *   //   "threats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Urls$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Urls$Search,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+    >;
+    search(
+      params: Params$Resource$Urls$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Urls$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Urls$Search,
+      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Urls$Search
+        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Urls$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urls$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://safebrowsing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v5/urls:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleSecuritySafebrowsingV5SearchUrlsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Urls$Search extends StandardParameters {
+    /**
+     * Required. The URLs to be looked up. Clients MUST NOT send more than 50 URLs.
+     */
+    urls?: string[];
   }
 }

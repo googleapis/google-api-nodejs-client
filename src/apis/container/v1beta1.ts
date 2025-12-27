@@ -2817,7 +2817,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Master {
     /**
-     * Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version. For details, see go/user-initiated-rollbackable-upgrade-design.
+     * Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version.
      */
     compatibilityStatus?: Schema$CompatibilityStatus;
   }

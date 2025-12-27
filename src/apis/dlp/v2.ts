@@ -1219,7 +1219,7 @@ export namespace dlp_v2 {
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
     /**
-     * Load an existing `StoredInfoType` resource for use in `InspectDataSource`. Not currently supported in `InspectContent`.
+     * Loads an existing `StoredInfoType` resource.
      */
     storedType?: Schema$GooglePrivacyDlpV2StoredType;
     /**

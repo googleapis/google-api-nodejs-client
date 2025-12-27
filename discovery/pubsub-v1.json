@@ -86,6 +86,31 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -93,6 +118,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west3.rep.googleapis.com/",
       "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
     },
     {
       "description": "Regional Endpoint",
@@ -108,6 +138,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
     },
     {
       "description": "Regional Endpoint",
@@ -176,6 +216,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -198,6 +243,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.us-west4.rep.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "icons": {
@@ -750,7 +800,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -779,7 +829,7 @@
               ],
               "parameters": {
                 "snapshot": {
-                  "description": "Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. Identifier. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -805,7 +855,7 @@
               ],
               "parameters": {
                 "snapshot": {
-                  "description": "Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. Identifier. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -874,7 +924,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.",
+                  "description": "Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1020,7 +1070,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+                  "description": "Required. Identifier. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1049,7 +1099,7 @@
               ],
               "parameters": {
                 "subscription": {
-                  "description": "Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.",
+                  "description": "Required. Identifier. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1101,7 +1151,7 @@
               ],
               "parameters": {
                 "subscription": {
-                  "description": "Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.",
+                  "description": "Required. Identifier. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1170,7 +1220,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.",
+                  "description": "Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1254,7 +1304,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+                  "description": "Required. Identifier. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1403,7 +1453,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+                  "description": "Required. Identifier. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1432,7 +1482,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. Identifier. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1458,7 +1508,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. Identifier. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1527,7 +1577,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. The name of the project in which to list topics. Format is `projects/{project-id}`.",
+                  "description": "Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1553,7 +1603,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+                  "description": "Required. Identifier. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1582,7 +1632,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1748,7 +1798,7 @@
       }
     }
   },
-  "revision": "20251104",
+  "revision": "20251212",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -2220,7 +2270,7 @@
           "type": "object"
         },
         "subscription": {
-          "description": "Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.",
+          "description": "Required. Identifier. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.",
           "type": "string"
         },
         "tags": {
@@ -2993,7 +3043,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+          "description": "Required. Identifier. The name of the subscription. It must have the format `\"projects/{project}/subscriptions/{subscription}\"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
           "type": "string"
         },
         "pushConfig": {
@@ -3031,7 +3081,7 @@
           "type": "object"
         },
         "topic": {
-          "description": "Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.",
+          "description": "Required. Identifier. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.",
           "type": "string"
         },
         "topicMessageRetentionDuration": {
@@ -3124,7 +3174,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
+          "description": "Required. Identifier. The name of the topic. It must have the format `\"projects/{project}/topics/{topic}\"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `\"goog\"`.",
           "type": "string"
         },
         "satisfiesPzs": {

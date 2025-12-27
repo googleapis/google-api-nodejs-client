@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251210",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -5444,7 +5444,7 @@
         },
         "toolVersions": {
           "$ref": "ToolVersions",
-          "description": "Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, then it will freeze the tool versions at the time of release creation."
+          "description": "Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, tool versions are frozen when the release is created."
         },
         "uid": {
           "description": "Output only. Unique identifier of the `Release`.",
@@ -5470,7 +5470,7 @@
         },
         "kptVersionSupportedCondition": {
           "$ref": "ToolVersionSupportedCondition",
-          "description": "Output only. Details around the support state of the release's Kpt version.",
+          "description": "Output only. Details around the support state of the release's kpt version.",
           "readOnly": true
         },
         "kubectlVersionSupportedCondition": {
@@ -7277,11 +7277,11 @@
       "type": "object"
     },
     "ToolVersionSupportedCondition": {
-      "description": "ToolVersionSupportedCondition contains information about when support for the release's version of a Tool ends.",
+      "description": "ToolVersionSupportedCondition contains information about when support for the release's version of a tool ends.",
       "id": "ToolVersionSupportedCondition",
       "properties": {
         "maintenanceModeTime": {
-          "description": "Output only. The time at which this release's version of the Tool will enter maintenance mode.",
+          "description": "Output only. The time at which this release's version of the tool will enter maintenance mode.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -7292,13 +7292,13 @@
           "type": "boolean"
         },
         "supportExpirationTime": {
-          "description": "Output only. The time at which this release's version of the Tool will no longer be supported.",
+          "description": "Output only. The time at which this release's version of the tool will no longer be supported.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "toolVersionSupportState": {
-          "description": "Output only. The Tool support state for this release's version of the Tool.",
+          "description": "Output only. The tool support state for this release's version of the tool.",
           "enum": [
             "TOOL_VERSION_SUPPORT_STATE_UNSPECIFIED",
             "TOOL_VERSION_SUPPORT_STATE_SUPPORTED",
@@ -7307,9 +7307,9 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "This Tool version is currently supported.",
-            "This Tool version is in maintenance mode.",
-            "This Tool version is no longer supported."
+            "This tool version is currently supported.",
+            "This tool version is in maintenance mode.",
+            "This tool version is no longer supported."
           ],
           "readOnly": true,
           "type": "string"
@@ -7322,11 +7322,11 @@
       "id": "ToolVersions",
       "properties": {
         "docker": {
-          "description": "Optional. The docker version to use for Cloud Deploy operations.",
+          "description": "Optional. The Docker version to use for Cloud Deploy operations.",
           "type": "string"
         },
         "helm": {
-          "description": "Optional. The helm version to use for Cloud Deploy operations.",
+          "description": "Optional. The Helm version to use for Cloud Deploy operations.",
           "type": "string"
         },
         "kpt": {
@@ -7334,15 +7334,15 @@
           "type": "string"
         },
         "kubectl": {
-          "description": "Optional. The kubectl version to use for Cloud Deploy operations.",
+          "description": "Optional. The Kubectl version to use for Cloud Deploy operations.",
           "type": "string"
         },
         "kustomize": {
-          "description": "Optional. The kustomize version to use for Cloud Deploy operations.",
+          "description": "Optional. The Kustomize version to use for Cloud Deploy operations.",
           "type": "string"
         },
         "skaffold": {
-          "description": "Optional. The skaffold version to use for Cloud Deploy operations.",
+          "description": "Optional. The Skaffold version to use for Cloud Deploy operations.",
           "type": "string"
         }
       },
