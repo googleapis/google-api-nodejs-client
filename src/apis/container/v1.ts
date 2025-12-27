@@ -606,7 +606,7 @@ export namespace container_v1 {
      */
     fqdns?: string[] | null;
     /**
-     * Google Secret Manager (GCP) certificate configuration.
+     * Secret Manager certificate configuration.
      */
     gcpSecretManagerCertificateConfig?: Schema$GCPSecretManagerCertificateConfig;
   }
