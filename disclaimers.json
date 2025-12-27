@@ -672,6 +672,10 @@
     "package": "@google-cloud/chronicle"
   },
   {
+    "api": "hypercomputecluster",
+    "package": "@google-cloud/hypercomputecluster"
+  },
+  {
     "api": "configdelivery",
     "package": "@google-cloud/configdelivery"
   },

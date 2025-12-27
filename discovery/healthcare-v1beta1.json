@@ -5689,7 +5689,7 @@
       }
     }
   },
-  "revision": "20251117",
+  "revision": "20251211",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -10086,6 +10086,10 @@
         },
         "disableRequiredFieldValidation": {
           "description": "Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "type": "boolean"
+        },
+        "enableFhirpathProfileValidation": {
+          "description": "Optional. Whether to enable FHIRPath validation for incoming resource types that have profiles configured for them in the `enabled_implementation_guides` list. Set this to true to enable checking incoming resources for conformance against FHIRPath requirements defined in the configured profiles.",
           "type": "boolean"
         },
         "enabledImplementationGuides": {

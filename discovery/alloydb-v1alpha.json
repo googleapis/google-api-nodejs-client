@@ -1879,7 +1879,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20251211",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2561,7 +2561,8 @@
             "FAILED",
             "BOOTSTRAPPING",
             "MAINTENANCE",
-            "PROMOTING"
+            "PROMOTING",
+            "SWITCHOVER"
           ],
           "enumDescriptions": [
             "The state of the cluster is unknown.",
@@ -2573,7 +2574,8 @@
             "The creation of the cluster failed.",
             "The cluster is bootstrapping with data from some other source. Direct mutations to the cluster (e.g. adding read pool) are not allowed.",
             "The cluster is under maintenance. AlloyDB regularly performs maintenance and upgrades on customer clusters. Updates on the cluster are not allowed while the cluster is in this state.",
-            "The cluster is being promoted."
+            "The cluster is being promoted.",
+            "The cluster has entered switchover state. All updates on cluster and its associated instances are restricted while the cluster is in this state."
           ],
           "readOnly": true,
           "type": "string"
@@ -3519,7 +3521,8 @@
             "MAINTENANCE",
             "FAILED",
             "BOOTSTRAPPING",
-            "PROMOTING"
+            "PROMOTING",
+            "SWITCHOVER"
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
@@ -3530,7 +3533,8 @@
             "The instance is down for maintenance.",
             "The creation of the instance failed or a fatal error occurred during an operation on the instance. Note: Instances in this state would tried to be auto-repaired. And Customers should be able to restart, update or delete these instances.",
             "The instance has been configured to sync data from some other source.",
-            "The instance is being promoted."
+            "The instance is being promoted.",
+            "The instance has entered switchover state. All updates on instance are restricted while the instance is in this state."
           ],
           "readOnly": true,
           "type": "string"
