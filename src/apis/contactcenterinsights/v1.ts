@@ -2080,11 +2080,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswer {
     /**
-     * List of all individual answers given to the question.
+     * Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.
      */
     answerSources?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerSource[];
     /**
-     * The main answer value, incorporating any manual edits if they exist.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue;
     /**
@@ -2109,7 +2109,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerSource {
     /**
-     * The answer value from this source.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue;
     /**
@@ -2644,6 +2644,10 @@ export namespace contactcenterinsights_v1 {
    * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig {
+    /**
+     * Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.
+     */
+    disableWordTimeOffsets?: boolean | null;
     /**
      * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
      */
@@ -3703,6 +3707,19 @@ export namespace contactcenterinsights_v1 {
     metadataUri?: string | null;
   }
   /**
+   * A wrapper for holding the audio for any given turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio {
+    /**
+     * The duration of the audio.
+     */
+    audioDuration?: string | null;
+    /**
+     * The Cloud Storage URI of the audio for any given turn.
+     */
+    audioGcsUri?: string | null;
+  }
+  /**
    * One channel of conversation-level sentiment data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ConversationLevelSentiment {
@@ -4651,6 +4668,15 @@ export namespace contactcenterinsights_v1 {
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
     transcriptUri?: string | null;
+  }
+  /**
+   * The response from a GenerateConversationSignedAudio request.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse {
+    /**
+     * The signed uris for the audio.
+     */
+    signedAudioUris?: Schema$GoogleCloudContactcenterinsightsV1SignedAudioUris;
   }
   /**
    * The data for a hold annotation.
@@ -7398,11 +7424,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1mainQaAnswer {
     /**
-     * List of all individual answers given to the question.
+     * Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.
      */
     answerSources?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource[];
     /**
-     * The main answer value, incorporating any manual edits if they exist.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
     /**
@@ -7427,7 +7453,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource {
     /**
-     * The answer value from this source.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue;
     /**
@@ -7963,6 +7989,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1mainSpeechConfig {
     /**
+     * Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.
+     */
+    disableWordTimeOffsets?: boolean | null;
+    /**
      * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
      */
     speechRecognizer?: string | null;
@@ -8250,11 +8280,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1QaAnswer {
     /**
-     * List of all individual answers given to the question.
+     * Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.
      */
     answerSources?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerSource[];
     /**
-     * The main answer value, incorporating any manual edits if they exist.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue;
     /**
@@ -8279,7 +8309,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerSource {
     /**
-     * The answer value from this source.
+     * The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead.
      */
     answerValue?: Schema$GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue;
     /**
@@ -9108,6 +9138,23 @@ export namespace contactcenterinsights_v1 {
     uploadConversationAnalysisPercentage?: number | null;
   }
   /**
+   * Signed audio URIs for a conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SignedAudioUris {
+    /**
+     * The signed URI for the audio from the Dialogflow conversation source.
+     */
+    signedDialogflowAudioUri?: string | null;
+    /**
+     * The signed URI for the audio from the Cloud Storage conversation source.
+     */
+    signedGcsAudioUri?: string | null;
+    /**
+     * The signed URI for the audio corresponding to each turn in the conversation.
+     */
+    signedTurnLevelAudios?: Schema$GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio[];
+  }
+  /**
    * The data for a silence annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SilenceData {}
@@ -9157,6 +9204,10 @@ export namespace contactcenterinsights_v1 {
    * Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1SpeechConfig {
+    /**
+     * Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.
+     */
+    disableWordTimeOffsets?: boolean | null;
     /**
      * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
      */
@@ -15865,6 +15916,158 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Gets the signed URI for the audio for the given conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.generateSignedAudio(
+     *       {
+     *         // Required. The name of the conversation to sign.
+     *         name: 'projects/my-project/locations/my-location/authorizedViewSets/my-authorizedViewSet/authorizedViews/my-authorizedView/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedAudioUris": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateSignedAudio(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    >;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateSignedAudio').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a conversation.
      * @example
      * ```js
@@ -16218,6 +16421,12 @@ export namespace contactcenterinsights_v1 {
     force?: boolean;
     /**
      * Required. The name of the conversation to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Conversations$Generatesignedaudio extends StandardParameters {
+    /**
+     * Required. The name of the conversation to sign.
      */
     name?: string;
   }
@@ -20337,6 +20546,158 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Gets the signed URI for the audio for the given conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.conversations.generateSignedAudio(
+     *       {
+     *         // Required. The name of the conversation to sign.
+     *         name: 'projects/my-project/locations/my-location/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedAudioUris": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateSignedAudio(
+      params?: Params$Resource$Projects$Locations$Conversations$Generatesignedaudio,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    >;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Conversations$Generatesignedaudio,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Conversations$Generatesignedaudio,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Generatesignedaudio
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Generatesignedaudio;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Generatesignedaudio;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateSignedAudio').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a conversation.
      * @example
      * ```js
@@ -21397,6 +21758,12 @@ export namespace contactcenterinsights_v1 {
     force?: boolean;
     /**
      * Required. The name of the conversation to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Generatesignedaudio extends StandardParameters {
+    /**
+     * Required. The name of the conversation to sign.
      */
     name?: string;
   }
@@ -27115,6 +27482,158 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Gets the signed URI for the audio for the given conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.datasets.conversations.generateSignedAudio(
+     *       {
+     *         // Required. The name of the conversation to sign.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "signedAudioUris": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateSignedAudio(
+      params?: Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    >;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      params: Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+    ): void;
+    generateSignedAudio(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateSignedAudio').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a conversation.
      * @example
      * ```js
@@ -27799,6 +28318,12 @@ export namespace contactcenterinsights_v1 {
     force?: boolean;
     /**
      * Required. The name of the conversation to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Conversations$Generatesignedaudio extends StandardParameters {
+    /**
+     * Required. The name of the conversation to sign.
      */
     name?: string;
   }
