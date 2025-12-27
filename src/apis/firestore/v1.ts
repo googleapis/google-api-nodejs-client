@@ -470,6 +470,48 @@ export namespace firestore_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * The request for Firestore.ExecutePipeline.
+   */
+  export interface Schema$ExecutePipelineRequest {
+    /**
+     * Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction.
+     */
+    newTransaction?: Schema$TransactionOptions;
+    /**
+     * Execute the pipeline in a snapshot transaction at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.
+     */
+    readTime?: string | null;
+    /**
+     * A pipelined operation.
+     */
+    structuredPipeline?: Schema$StructuredPipeline;
+    /**
+     * Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in.
+     */
+    transaction?: string | null;
+  }
+  /**
+   * The response for Firestore.Execute.
+   */
+  export interface Schema$ExecutePipelineResponse {
+    /**
+     * The time at which the results are valid. This is a (not strictly) monotonically increasing value across multiple responses in the same stream. The API guarantees that all previously returned results are still valid at the latest `execution_time`. This allows the API consumer to treat the query if it ran at the latest `execution_time` returned. If the query returns no results, a response with `execution_time` and no `results` will be sent, and this represents the time at which the operation was run.
+     */
+    executionTime?: string | null;
+    /**
+     * Query explain stats. This is present on the **last** response if the request configured explain to run in 'analyze' or 'explain' mode in the pipeline options. If the query does not return any results, a response with `explain_stats` and no `results` will still be sent.
+     */
+    explainStats?: Schema$ExplainStats;
+    /**
+     * An ordered batch of results returned executing a pipeline. The batch size is variable, and can even be zero for when only a partial progress message is returned. The fields present in the returned documents are only those that were explicitly requested in the pipeline, this includes those like `__name__` and `__update_time__`. This is explicitly a divergence from `Firestore.RunQuery` / `Firestore.GetDocument` RPCs which always return such fields even when they are not specified in the `mask`.
+     */
+    results?: Schema$Document[];
+    /**
+     * Newly created transaction identifier. This field is only specified as part of the first response from the server, alongside the `results` field when the original request specified ExecuteRequest.new_transaction.
+     */
+    transaction?: string | null;
+  }
+  /**
    * Execution statistics for the query.
    */
   export interface Schema$ExecutionStats {
@@ -528,6 +570,15 @@ export namespace firestore_v1 {
      * Optional. Whether to execute this query. When false (the default), the query will be planned, returning only metrics from the planning stages. When true, the query will be planned and executed, returning the full query results along with both planning and execution stage metrics.
      */
     analyze?: boolean | null;
+  }
+  /**
+   * Pipeline explain stats. Depending on the explain options in the original request, this can contain the optimized plan and / or execution stats.
+   */
+  export interface Schema$ExplainStats {
+    /**
+     * The format depends on the `output_format` options in the request. Currently there are two supported options: `TEXT` and `JSON`. Both supply a `google.protobuf.StringValue`.
+     */
+    data?: {[key: string]: any} | null;
   }
   /**
    * A filter on a specific field.
@@ -633,6 +684,23 @@ export namespace firestore_v1 {
      * Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned.
      */
     vectorField?: Schema$FieldReference;
+  }
+  /**
+   * Represents an unevaluated scalar expression. For example, the expression `like(user_name, "%alice%")` is represented as: ``` name: "like" args { field_reference: "user_name" \} args { string_value: "%alice%" \} ```
+   */
+  export interface Schema$Function {
+    /**
+     * Optional. Ordered list of arguments the given function expects.
+     */
+    args?: Schema$Value[];
+    /**
+     * Required. The name of the function to evaluate. **Requires:** * must be in snake case (lower case with underscore separator).
+     */
+    name?: string | null;
+    /**
+     * Optional. Optional named arguments that certain functions may support.
+     */
+    options?: {[key: string]: Schema$Value} | null;
   }
   /**
    * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time.
@@ -848,7 +916,7 @@ export namespace firestore_v1 {
      */
     cmekConfig?: Schema$GoogleFirestoreAdminV1CmekConfig;
     /**
-     * The concurrency control mode to use for this database.
+     * The concurrency control mode to use for this database. If unspecified in a CreateDatabase request, this will default based on the database edition: Optimistic for Enterprise and Pessimistic for all other databases.
      */
     concurrencyMode?: string | null;
     /**
@@ -1794,6 +1862,15 @@ export namespace firestore_v1 {
     partitions?: Schema$Cursor[];
   }
   /**
+   * A Firestore query represented as an ordered list of operations / stages.
+   */
+  export interface Schema$Pipeline {
+    /**
+     * Required. Ordered list of stages to evaluate.
+     */
+    stages?: Schema$Stage[];
+  }
+  /**
    * Planning phase information for the query.
    */
   export interface Schema$PlanSummary {
@@ -1965,6 +2042,23 @@ export namespace firestore_v1 {
     transaction?: string | null;
   }
   /**
+   * A single operation within a pipeline. A stage is made up of a unique name, and a list of arguments. The exact number of arguments & types is dependent on the stage type. To give an example, the stage `filter(state = "MD")` would be encoded as: ``` name: "filter" args { function_value { name: "eq" args { field_reference_value: "state" \} args { string_value: "MD" \} \} \} ``` See public documentation for the full list.
+   */
+  export interface Schema$Stage {
+    /**
+     * Optional. Ordered list of arguments the given stage expects.
+     */
+    args?: Schema$Value[];
+    /**
+     * Required. The name of the stage to evaluate. **Requires:** * must be in snake case (lower case with underscore separator).
+     */
+    name?: string | null;
+    /**
+     * Optional. Optional named arguments that certain functions may support.
+     */
+    options?: {[key: string]: Schema$Value} | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1993,6 +2087,19 @@ export namespace firestore_v1 {
      * Nested structured query.
      */
     structuredQuery?: Schema$StructuredQuery;
+  }
+  /**
+   * A Firestore query represented as an ordered list of operations / stages. This is considered the top-level function which plans and executes a query. It is logically equivalent to `query(stages, options)`, but prevents the client from having to build a function wrapper.
+   */
+  export interface Schema$StructuredPipeline {
+    /**
+     * Optional. Optional query-level arguments.
+     */
+    options?: {[key: string]: Schema$Value} | null;
+    /**
+     * Required. The pipeline query to execute.
+     */
+    pipeline?: Schema$Pipeline;
   }
   /**
    * A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit 7. find_nearest
@@ -2149,6 +2256,14 @@ export namespace firestore_v1 {
      */
     doubleValue?: number | null;
     /**
+     * Value which references a field. This is considered relative (vs absolute) since it only refers to a field and not a field within a particular document. **Requires:** * Must follow field reference limitations. * Not allowed to be used when writing documents.
+     */
+    fieldReferenceValue?: string | null;
+    /**
+     * A value that represents an unevaluated expression. **Requires:** * Not allowed to be used when writing documents.
+     */
+    functionValue?: Schema$Function;
+    /**
      * A geo point value representing a point on the surface of Earth.
      */
     geoPointValue?: Schema$LatLng;
@@ -2164,6 +2279,10 @@ export namespace firestore_v1 {
      * A null value.
      */
     nullValue?: string | null;
+    /**
+     * A value that represents an unevaluated pipeline. **Requires:** * Not allowed to be used when writing documents.
+     */
+    pipelineValue?: Schema$Pipeline;
     /**
      * A reference to a document. For example: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
@@ -6954,6 +7073,164 @@ export namespace firestore_v1 {
     }
 
     /**
+     * Executes a pipeline query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.executePipeline({
+     *     // Required. Database identifier, in the form `projects/{project\}/databases/{database\}`.
+     *     database: 'projects/my-project/databases/my-database',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newTransaction": {},
+     *       //   "readTime": "my_readTime",
+     *       //   "structuredPipeline": {},
+     *       //   "transaction": "my_transaction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionTime": "my_executionTime",
+     *   //   "explainStats": {},
+     *   //   "results": [],
+     *   //   "transaction": "my_transaction"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    executePipeline(
+      params: Params$Resource$Projects$Databases$Documents$Executepipeline,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    executePipeline(
+      params?: Params$Resource$Projects$Databases$Documents$Executepipeline,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExecutePipelineResponse>>;
+    executePipeline(
+      params: Params$Resource$Projects$Databases$Documents$Executepipeline,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    executePipeline(
+      params: Params$Resource$Projects$Databases$Documents$Executepipeline,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExecutePipelineResponse>,
+      callback: BodyResponseCallback<Schema$ExecutePipelineResponse>
+    ): void;
+    executePipeline(
+      params: Params$Resource$Projects$Databases$Documents$Executepipeline,
+      callback: BodyResponseCallback<Schema$ExecutePipelineResponse>
+    ): void;
+    executePipeline(
+      callback: BodyResponseCallback<Schema$ExecutePipelineResponse>
+    ): void;
+    executePipeline(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Executepipeline
+        | BodyResponseCallback<Schema$ExecutePipelineResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExecutePipelineResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExecutePipelineResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExecutePipelineResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Executepipeline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Executepipeline;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+database}/documents:executePipeline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['database'],
+        pathParams: ['database'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExecutePipelineResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExecutePipelineResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets a single document.
      * @example
      * ```js
@@ -8750,6 +9027,17 @@ export namespace firestore_v1 {
      * Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Executepipeline extends StandardParameters {
+    /**
+     * Required. Database identifier, in the form `projects/{project\}/databases/{database\}`.
+     */
+    database?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecutePipelineRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Get extends StandardParameters {
     /**
