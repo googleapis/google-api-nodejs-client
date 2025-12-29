@@ -2179,7 +2179,7 @@ export namespace clouddeploy_v1 {
      */
     targetSnapshots?: Schema$Target[];
     /**
-     * Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, then it will freeze the tool versions at the time of release creation.
+     * Optional. The tool versions to use for this release and all subsequent operations involving this release. If unset, tool versions are frozen when the release is created.
      */
     toolVersions?: Schema$ToolVersions;
     /**
@@ -2200,7 +2200,7 @@ export namespace clouddeploy_v1 {
      */
     helmVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
     /**
-     * Output only. Details around the support state of the release's Kpt version.
+     * Output only. Details around the support state of the release's kpt version.
      */
     kptVersionSupportedCondition?: Schema$ToolVersionSupportedCondition;
     /**
@@ -3309,11 +3309,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ToolVersions {
     /**
-     * Optional. The docker version to use for Cloud Deploy operations.
+     * Optional. The Docker version to use for Cloud Deploy operations.
      */
     docker?: string | null;
     /**
-     * Optional. The helm version to use for Cloud Deploy operations.
+     * Optional. The Helm version to use for Cloud Deploy operations.
      */
     helm?: string | null;
     /**
@@ -3321,24 +3321,24 @@ export namespace clouddeploy_v1 {
      */
     kpt?: string | null;
     /**
-     * Optional. The kubectl version to use for Cloud Deploy operations.
+     * Optional. The Kubectl version to use for Cloud Deploy operations.
      */
     kubectl?: string | null;
     /**
-     * Optional. The kustomize version to use for Cloud Deploy operations.
+     * Optional. The Kustomize version to use for Cloud Deploy operations.
      */
     kustomize?: string | null;
     /**
-     * Optional. The skaffold version to use for Cloud Deploy operations.
+     * Optional. The Skaffold version to use for Cloud Deploy operations.
      */
     skaffold?: string | null;
   }
   /**
-   * ToolVersionSupportedCondition contains information about when support for the release's version of a Tool ends.
+   * ToolVersionSupportedCondition contains information about when support for the release's version of a tool ends.
    */
   export interface Schema$ToolVersionSupportedCondition {
     /**
-     * Output only. The time at which this release's version of the Tool will enter maintenance mode.
+     * Output only. The time at which this release's version of the tool will enter maintenance mode.
      */
     maintenanceModeTime?: string | null;
     /**
@@ -3346,11 +3346,11 @@ export namespace clouddeploy_v1 {
      */
     status?: boolean | null;
     /**
-     * Output only. The time at which this release's version of the Tool will no longer be supported.
+     * Output only. The time at which this release's version of the tool will no longer be supported.
      */
     supportExpirationTime?: string | null;
     /**
-     * Output only. The Tool support state for this release's version of the Tool.
+     * Output only. The tool support state for this release's version of the tool.
      */
     toolVersionSupportState?: string | null;
   }
