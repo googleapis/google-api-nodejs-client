@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20251216",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6539,7 +6539,7 @@
       "properties": {
         "compatibilityStatus": {
           "$ref": "CompatibilityStatus",
-          "description": "Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version. For details, see go/user-initiated-rollbackable-upgrade-design.",
+          "description": "Output only. The compatibility status of the control plane. It should be empty if the cluster does not have emulated version.",
           "readOnly": true
         }
       },
