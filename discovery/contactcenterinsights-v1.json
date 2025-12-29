@@ -1275,6 +1275,31 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "generateSignedAudio": {
+                          "description": "Gets the signed URI for the audio for the given conversation.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}:generateSignedAudio",
+                          "httpMethod": "GET",
+                          "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.conversations.generateSignedAudio",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the conversation to sign.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+/conversations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:generateSignedAudio",
+                          "response": {
+                            "$ref": "GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "get": {
                           "description": "Gets a conversation.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}/conversations/{conversationsId}",
@@ -2133,6 +2158,31 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateSignedAudio": {
+                  "description": "Gets the signed URI for the audio for the given conversation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}:generateSignedAudio",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.conversations.generateSignedAudio",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the conversation to sign.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateSignedAudio",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3394,6 +3444,31 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "generateSignedAudio": {
+                      "description": "Gets the signed URI for the audio for the given conversation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations/{conversationsId}:generateSignedAudio",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.generateSignedAudio",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the conversation to sign.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/conversations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:generateSignedAudio",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -5378,7 +5453,7 @@
       }
     }
   },
-  "revision": "20251208",
+  "revision": "20251219",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -6638,6 +6713,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio": {
+      "description": "A wrapper for holding the audio for any given turn.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio",
+      "properties": {
+        "audioDuration": {
+          "description": "The duration of the audio.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "audioGcsUri": {
+          "description": "The Cloud Storage URI of the audio for any given turn.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ConversationLevelSentiment": {
       "description": "One channel of conversation-level sentiment data.",
       "id": "GoogleCloudContactcenterinsightsV1ConversationLevelSentiment",
@@ -7751,6 +7842,8 @@
             "EXPORT_V12",
             "EXPORT_V13",
             "EXPORT_V14",
+            "EXPORT_V15",
+            "EXPORT_V16",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -7769,6 +7862,8 @@
             "Export schema version 12.",
             "Export schema version 13.",
             "Export schema version 14.",
+            "Export schema version 15.",
+            "Export schema version 16.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -7967,6 +8062,17 @@
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse": {
+      "description": "The response from a GenerateConversationSignedAudio request.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerateConversationSignedAudioResponse",
+      "properties": {
+        "signedAudioUris": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SignedAudioUris",
+          "description": "The signed uris for the audio."
         }
       },
       "type": "object"
@@ -9148,7 +9254,7 @@
       "id": "GoogleCloudContactcenterinsightsV1QaAnswer",
       "properties": {
         "answerSources": {
-          "description": "List of all individual answers given to the question.",
+          "description": "Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1QaAnswerAnswerSource"
           },
@@ -9156,7 +9262,7 @@
         },
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue",
-          "description": "The main answer value, incorporating any manual edits if they exist."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "conversation": {
           "description": "The conversation the answer applies to.",
@@ -9186,7 +9292,7 @@
       "properties": {
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue",
-          "description": "The answer value from this source."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "sourceType": {
           "description": "What created the answer.",
@@ -10335,6 +10441,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1SignedAudioUris": {
+      "description": "Signed audio URIs for a conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1SignedAudioUris",
+      "properties": {
+        "signedDialogflowAudioUri": {
+          "description": "The signed URI for the audio from the Dialogflow conversation source.",
+          "type": "string"
+        },
+        "signedGcsAudioUri": {
+          "description": "The signed URI for the audio from the Cloud Storage conversation source.",
+          "type": "string"
+        },
+        "signedTurnLevelAudios": {
+          "description": "The signed URI for the audio corresponding to each turn in the conversation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1SilenceData": {
       "description": "The data for a silence annotation.",
       "id": "GoogleCloudContactcenterinsightsV1SilenceData",
@@ -10399,6 +10527,10 @@
       "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1SpeechConfig",
       "properties": {
+        "disableWordTimeOffsets": {
+          "description": "Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.",
+          "type": "boolean"
+        },
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
@@ -12419,6 +12551,8 @@
             "EXPORT_V12",
             "EXPORT_V13",
             "EXPORT_V14",
+            "EXPORT_V15",
+            "EXPORT_V16",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -12437,6 +12571,8 @@
             "Export schema version 12.",
             "Export schema version 13.",
             "Export schema version 14.",
+            "Export schema version 15.",
+            "Export schema version 16.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -13286,7 +13422,7 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1QaAnswer",
       "properties": {
         "answerSources": {
-          "description": "List of all individual answers given to the question.",
+          "description": "Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerSource"
           },
@@ -13294,7 +13430,7 @@
         },
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue",
-          "description": "The main answer value, incorporating any manual edits if they exist."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "conversation": {
           "description": "The conversation the answer applies to.",
@@ -13324,7 +13460,7 @@
       "properties": {
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue",
-          "description": "The answer value from this source."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "sourceType": {
           "description": "What created the answer.",
@@ -14030,6 +14166,10 @@
       "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
       "properties": {
+        "disableWordTimeOffsets": {
+          "description": "Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.",
+          "type": "boolean"
+        },
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
@@ -16167,6 +16307,8 @@
             "EXPORT_V12",
             "EXPORT_V13",
             "EXPORT_V14",
+            "EXPORT_V15",
+            "EXPORT_V16",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -16185,6 +16327,8 @@
             "Export schema version 12.",
             "Export schema version 13.",
             "Export schema version 14.",
+            "Export schema version 15.",
+            "Export schema version 16.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -17034,7 +17178,7 @@
       "id": "GoogleCloudContactcenterinsightsV1mainQaAnswer",
       "properties": {
         "answerSources": {
-          "description": "List of all individual answers given to the question.",
+          "description": "Lists all answer sources containing one or more answer values of a specific source type, e.g., all system-generated answer sources, or all manual edit answer sources.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerSource"
           },
@@ -17042,7 +17186,7 @@
         },
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
-          "description": "The main answer value, incorporating any manual edits if they exist."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "conversation": {
           "description": "The conversation the answer applies to.",
@@ -17072,7 +17216,7 @@
       "properties": {
         "answerValue": {
           "$ref": "GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue",
-          "description": "The answer value from this source."
+          "description": "The answer value from this source. This field is populated by default, unless the question has a selection strategy configured to return multiple answer values, in which case `answer_values` will be populated instead."
         },
         "sourceType": {
           "description": "What created the answer.",
@@ -17778,6 +17922,10 @@
       "description": "Speech-to-Text configuration. Speech-to-Text settings are applied to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversation coming from CCAI Platform. They are not applied to conversations ingested from the `CreateConversation` endpoint.",
       "id": "GoogleCloudContactcenterinsightsV1mainSpeechConfig",
       "properties": {
+        "disableWordTimeOffsets": {
+          "description": "Whether to disable word time offsets. If true, the `enable_word_time_offsets` field in the recognition config will be set to false.",
+          "type": "boolean"
+        },
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
