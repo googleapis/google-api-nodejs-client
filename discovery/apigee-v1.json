@@ -763,6 +763,168 @@
             }
           }
         },
+        "apimServiceExtensions": {
+          "methods": {
+            "create": {
+              "description": "Creates an APIM ServiceExtension in an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/apimServiceExtensions",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.apimServiceExtensions.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "apimServiceExtensionId": {
+                  "description": "Optional. ID used to uniquely identify of the service extension. It must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization in which the service extension will be created. Use the following structure in your request: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/apimServiceExtensions",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1ApimServiceExtension"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes APIM service extension from an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/apimServiceExtensions/{apimServiceExtensionsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.apimServiceExtensions.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the service extension. Use the following structure in your request: `organizations/{org}/apimServiceExtensions/{extension_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apimServiceExtensions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets APIM service extension details.",
+              "flatPath": "v1/organizations/{organizationsId}/apimServiceExtensions/{apimServiceExtensionsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.apimServiceExtensions.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the service extension. Use the following structure in your request: `organizations/{org}/apimServiceExtensions/{extension_id}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apimServiceExtensions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ApimServiceExtension"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all APIM service extensions in an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/apimServiceExtensions",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.apimServiceExtensions.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Maximum number of items to return. If unspecified, at most 25 service extension will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token, returned from a previous `ListApimServiceExtensions` call, that you can use to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization for which to list the service extension. Use the following structure in your request: `organizations/{org}/apimServiceExtensions`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/apimServiceExtensions",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListApimServiceExtensionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an APIM service extension in an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/apimServiceExtensions/{apimServiceExtensionsId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.apimServiceExtensions.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "allowMissing": {
+                  "description": "Optional. If set to true, and the service extension is not found, a new service extension will be created. In this situation, `update_mask` is ignored.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Identifier. unique name of the APIM service extension. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apimServiceExtensions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1ApimServiceExtension"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "apiproducts": {
           "methods": {
             "attributes": {
@@ -2001,6 +2163,56 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getBalance": {
+              "description": "Gets the account balance for the AppGroup.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/balance",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.appgroups.getBalance",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Account balance for the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group}/balance`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+/balance$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroupBalance"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getMonetizationConfig": {
+              "description": "Gets the monetization configuration for the AppGroup.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/monetizationConfig",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.appgroups.getMonetizationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Monetization configuration for the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group}/monetizationConfig`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+/monetizationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroupMonetizationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists all AppGroups in an organization. A maximum of 1000 AppGroups are returned in the response if PageSize is not specified, or if the PageSize is greater than 1000.",
               "flatPath": "v1/organizations/{organizationsId}/appgroups",
@@ -2070,6 +2282,34 @@
               },
               "response": {
                 "$ref": "GoogleCloudApigeeV1AppGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateMonetizationConfig": {
+              "description": "Updates the monetization configuration for the AppGroup.",
+              "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/monetizationConfig",
+              "httpMethod": "PUT",
+              "id": "apigee.organizations.appgroups.updateMonetizationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Monetization configuration for the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group}/monetizationConfig`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/appgroups/[^/]+/monetizationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1AppGroupMonetizationConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AppGroupMonetizationConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -2398,6 +2638,187 @@
                       }
                     }
                   }
+                }
+              }
+            },
+            "balance": {
+              "methods": {
+                "adjust": {
+                  "description": "Adjust the prepaid balance for the AppGroup. This API will be used in scenarios where the AppGroup has been under-charged or over-charged.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/balance:adjust",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.appgroups.balance.adjust",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Account balance for the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group}/balance`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/balance$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:adjust",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1AdjustAppGroupBalanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupBalance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "credit": {
+                  "description": "Credits the account balance for the AppGroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/balance:credit",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.appgroups.balance.credit",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Account balance for the AppGroup. Use the following structure in your request: `organizations/{org}/appgroups/{app_group}/balance`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/balance$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:credit",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1CreditAppGroupBalanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupBalance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "subscriptions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a subscription to an API product. ",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/subscriptions",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.appgroups.subscriptions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the appgroup that is purchasing a subscription to the API product. Use the following structure in your request: `organizations/{org}/appgroups/{appgroup}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/subscriptions",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupSubscription"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "expire": {
+                  "description": "Expires an API product subscription immediately.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/subscriptions/{subscriptionsId}:expire",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.appgroups.subscriptions.expire",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the API product subscription. Use the following structure in your request: `organizations/{org}/appgroups/{appgroup}/subscriptions/{subscription}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:expire",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get an api product subscription for an appgroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.appgroups.subscriptions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the AppGroupSubscription to retrieve. Format: `organizations/{org}/appgroups/{appgroup}/subscriptions/{subscription}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1AppGroupSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List all api product subscriptions for an appgroup.",
+                  "flatPath": "v1/organizations/{organizationsId}/appgroups/{appgroupsId}/subscriptions",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.appgroups.subscriptions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 100 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListAppGroupSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAppGroupSubscriptions` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the appgroup. Use the following structure in your request: `organizations/{org}/appgroups/{appgroup}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/appgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/subscriptions",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -11493,7 +11914,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20251216",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11672,6 +12093,17 @@
         "monetizationConfig": {
           "$ref": "GoogleCloudApigeeV1MonetizationConfig",
           "description": "Configuration for the Monetization add-on."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AdjustAppGroupBalanceRequest": {
+      "description": "Request for AdjustAppGroupBalance.",
+      "id": "GoogleCloudApigeeV1AdjustAppGroupBalanceRequest",
+      "properties": {
+        "adjustment": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Required. * A positive value of `adjustment` means that that the API provider wants to adjust the balance for an under-charged AppGroup i.e. the balance of the AppGroup will decrease. * A negative value of `adjustment` is not supported. Use credit balance API instead."
         }
       },
       "type": "object"
@@ -11962,6 +12394,10 @@
       "description": "The documentation for a catalog item.",
       "id": "GoogleCloudApigeeV1ApiDocDocumentation",
       "properties": {
+        "asyncApiDocumentation": {
+          "$ref": "GoogleCloudApigeeV1AsyncApiDocumentation",
+          "description": "Optional. AsyncAPI Specification documentation."
+        },
         "graphqlDocumentation": {
           "$ref": "GoogleCloudApigeeV1GraphqlDocumentation",
           "description": "Optional. GraphQL documentation."
@@ -12430,6 +12866,137 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ApimServiceExtension": {
+      "description": "APIM Service Extension is a resource under an Apigee Organization that is used to create APIM Service Extension to route traffic to existing X instances.",
+      "id": "GoogleCloudApigeeV1ApimServiceExtension",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time that this resource was created on the server.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "extensionProcessor": {
+          "description": "Required. Name of the proxy deployed in the Apigee X instance.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Optional. List of extensions that are part of the service extension. Refer to https://cloud.google.com/service-extensions/docs/quotas#limits for any limits.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ApimServiceExtensionExtension"
+          },
+          "type": "array"
+        },
+        "lbForwardingRule": {
+          "description": "Required. Name of the Google Cloud LB forwarding rule. Format: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule} projects/{project}/global/forwardingRules/{forwarding_rule}",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. unique name of the APIM service extension. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. The network where the forwarding rule is created. Format: projects/{project}/global/networks/{network}",
+          "type": "string"
+        },
+        "networkConfigs": {
+          "description": "Required. List of network configurations for the APIM service extension.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ApimServiceExtensionNetworkConfig"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of the APIM service extension. Values other than `ACTIVE` mean the resource is not ready to use.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Resource is in an unspecified state.",
+            "Resource is being created.",
+            "Resource is provisioned and ready to use.",
+            "The resource is being deleted.",
+            "The resource is being updated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time that this resource was updated on the server.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApimServiceExtensionExtension": {
+      "description": "Extension configuration for Apigee extension processor service extension.",
+      "id": "GoogleCloudApigeeV1ApimServiceExtensionExtension",
+      "properties": {
+        "failOpen": {
+          "description": "Optional. Whether this request should fail open.",
+          "type": "boolean"
+        },
+        "hostname": {
+          "description": "Required. One of the hostnames of Apigee EnvGroup where the proxy is deployed. This hostname (i.e FDQN) will be used to route traffic from the specified forwarding rule to the environment in Apigee X instance where the proxy is deployed for handling extension traffic. Format: ^([a-zA-Z0-9. _-])+$",
+          "type": "string"
+        },
+        "matchCondition": {
+          "description": "Optional. Match Condition for CEL expression. Refer to https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference for more details.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the `LbTrafficExtension` resource. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+          "type": "string"
+        },
+        "supportedEvents": {
+          "description": "Optional. Supported events for the Service Extension. If not specified, all events are supported.",
+          "items": {
+            "enum": [
+              "SUPPORTED_EVENT_UNSPECIFIED",
+              "REQUEST_HEADERS",
+              "REQUEST_BODY",
+              "RESPONSE_HEADERS",
+              "RESPONSE_BODY",
+              "REQUEST_TRAILERS",
+              "RESPONSE_TRAILERS"
+            ],
+            "enumDescriptions": [
+              "Unspecified event.",
+              "Request headers event.",
+              "Request body event.",
+              "Response headers event.",
+              "Response body event.",
+              "Request trailers event.",
+              "Response trailers event."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ApimServiceExtensionNetworkConfig": {
+      "description": "Network configuration for the APIM service extension.",
+      "id": "GoogleCloudApigeeV1ApimServiceExtensionNetworkConfig",
+      "properties": {
+        "region": {
+          "description": "Required. The region for the PSC NEG.",
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Required. The subnet for the PSC NEG. Format: projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1App": {
       "id": "GoogleCloudApigeeV1App",
       "properties": {
@@ -12546,6 +13113,10 @@
         },
         "displayName": {
           "description": "app group name displayed in the UI",
+          "type": "string"
+        },
+        "email": {
+          "description": "Optional. Email of the AppGroup.",
           "type": "string"
         },
         "lastModifiedAt": {
@@ -12700,6 +13271,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1AppGroupBalance": {
+      "description": "AppGroupBalance for the AppGroup.",
+      "id": "GoogleCloudApigeeV1AppGroupBalance",
+      "properties": {
+        "wallets": {
+          "description": "Output only. List of all wallets. Each individual wallet stores the account balance for a particular currency.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1AppGroupBalanceWallet"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroupBalanceWallet": {
+      "description": "Wallet used to manage an account balance for a particular currency.",
+      "id": "GoogleCloudApigeeV1AppGroupBalanceWallet",
+      "properties": {
+        "balance": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Current remaining balance of the AppGroup for a particular currency."
+        },
+        "lastCreditTime": {
+          "description": "Output only. Time at which the AppGroup last added credit to the account in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroupMonetizationConfig": {
+      "description": "Monetization configuration for the AppGroup.",
+      "id": "GoogleCloudApigeeV1AppGroupMonetizationConfig",
+      "properties": {
+        "billingType": {
+          "description": "Required. Billing type.",
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "PREPAID",
+            "POSTPAID"
+          ],
+          "enumDescriptions": [
+            "The default/unset value.",
+            "AppGroup pays in advance for the use of APIs and the charged amount is deducted from their account balance.",
+            "AppGroup does not maintain an account balance. The API provider bills the AppGroup for API usage."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AppGroupSubscription": {
+      "description": "AppGroup Subscription details.",
+      "id": "GoogleCloudApigeeV1AppGroupSubscription",
+      "properties": {
+        "apiproduct": {
+          "description": "Required. Name of the API product for which the appgroup is purchasing a subscription.",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Output only. Time when the API product subscription was created in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. Time when the API product subscription ends in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Time when the API product subscription was last modified in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the API product subscription.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. Time when the API product subscription starts in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ArchiveDeployment": {
       "description": "Archive Deployment information.",
       "id": "GoogleCloudApigeeV1ArchiveDeployment",
@@ -12735,6 +13399,17 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AsyncApiDocumentation": {
+      "description": "AsyncAPI Specification documentation for a catalog item.",
+      "id": "GoogleCloudApigeeV1AsyncApiDocumentation",
+      "properties": {
+        "spec": {
+          "$ref": "GoogleCloudApigeeV1DocumentationFile",
+          "description": "Required. The documentation file contents for the AsyncAPI Specification. JSON and YAML file formats are supported."
         }
       },
       "type": "object"
@@ -13367,6 +14042,21 @@
         },
         "status": {
           "description": "Status of the credential. Valid values include `approved` or `revoked`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1CreditAppGroupBalanceRequest": {
+      "description": "Request for CreditAppGroupBalance.",
+      "id": "GoogleCloudApigeeV1CreditAppGroupBalanceRequest",
+      "properties": {
+        "transactionAmount": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Required. The amount of money to be credited. The wallet corresponding to the currency specified within `transaction_amount` will be updated. For example, if you specified `currency_code` within `transaction_amount` as \"USD\", then the amount would be added to the wallet which has the \"USD\" currency or if no such wallet exists, a new wallet will be created with the \"USD\" currency."
+        },
+        "transactionId": {
+          "description": "Required. Each transaction_id uniquely identifies a credit balance request. If multiple requests are received with the same transaction_id, only one of them will be considered.",
           "type": "string"
         }
       },
@@ -14546,7 +15236,8 @@
             "REJECTED",
             "CLOSED",
             "FROZEN",
-            "NEEDS_ATTENTION"
+            "NEEDS_ATTENTION",
+            "ACCEPTED_LIMITED_CAPACITY"
           ],
           "enumDescriptions": [
             "The connection state has not been set.",
@@ -14556,7 +15247,8 @@
             "The connection has been rejected by the PSC producer.",
             "The connection has been closed by the PSC producer and will not serve traffic going forward.",
             "The connection has been frozen by the PSC producer and will not serve traffic.",
-            "The connection has been accepted by the PSC producer, but it is not ready to serve the traffic due to producer side issues."
+            "The connection has been accepted by the PSC producer, but it is not ready to serve the traffic due to producer side issues.",
+            "The connection has been accepted by the PSC producer, but it will only serve capacity limited traffic. The producer needs to take further actions to increase capacity for this connection."
           ],
           "readOnly": true,
           "type": "string"
@@ -15056,6 +15748,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest": {
+      "description": "Request for ExpireAppGroupSubscription.",
+      "id": "GoogleCloudApigeeV1ExpireAppGroupSubscriptionRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest": {
@@ -15837,6 +16535,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListApimServiceExtensionsResponse": {
+      "description": "Response for list service extensions.",
+      "id": "GoogleCloudApigeeV1ListApimServiceExtensionsResponse",
+      "properties": {
+        "apimServiceExtensions": {
+          "description": "service extension in a given organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ApimServiceExtension"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in an `ListApimServiceExtensions` request to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListAppGroupAppsResponse": {
       "description": "Response for ListAppGroupApps",
       "id": "GoogleCloudApigeeV1ListAppGroupAppsResponse",
@@ -15850,6 +16566,24 @@
         },
         "nextPageToken": {
           "description": "Token that can be sent as `next_page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse": {
+      "description": "Response for ListAppGroupSubscriptions.",
+      "id": "GoogleCloudApigeeV1ListAppGroupSubscriptionsResponse",
+      "properties": {
+        "appGroupSubscriptions": {
+          "description": "The list of subscriptions for an AppGroup.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1AppGroupSubscription"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Value that can be sent as `pageToken` to retrieve the next page of content. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
