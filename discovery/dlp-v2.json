@@ -5123,7 +5123,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20251213",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6735,7 +6735,7 @@
         },
         "storedType": {
           "$ref": "GooglePrivacyDlpV2StoredType",
-          "description": "Load an existing `StoredInfoType` resource for use in `InspectDataSource`. Not currently supported in `InspectContent`."
+          "description": "Loads an existing `StoredInfoType` resource."
         },
         "surrogateType": {
           "$ref": "GooglePrivacyDlpV2SurrogateType",
