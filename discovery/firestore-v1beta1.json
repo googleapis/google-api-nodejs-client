@@ -836,6 +836,35 @@
                     "https://www.googleapis.com/auth/datastore"
                   ]
                 },
+                "executePipeline": {
+                  "description": "Executes a pipeline query.",
+                  "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:executePipeline",
+                  "httpMethod": "POST",
+                  "id": "firestore.projects.databases.documents.executePipeline",
+                  "parameterOrder": [
+                    "database"
+                  ],
+                  "parameters": {
+                    "database": {
+                      "description": "Required. Database identifier, in the form `projects/{project}/databases/{database}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+database}/documents:executePipeline",
+                  "request": {
+                    "$ref": "ExecutePipelineRequest"
+                  },
+                  "response": {
+                    "$ref": "ExecutePipelineResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/datastore"
+                  ]
+                },
                 "get": {
                   "description": "Gets a single document.",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents/{documentsId}/{documentsId1}",
@@ -1412,7 +1441,7 @@
       }
     }
   },
-  "revision": "20251014",
+  "revision": "20251216",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1898,6 +1927,59 @@
       "properties": {},
       "type": "object"
     },
+    "ExecutePipelineRequest": {
+      "description": "The request for Firestore.ExecutePipeline.",
+      "id": "ExecutePipelineRequest",
+      "properties": {
+        "newTransaction": {
+          "$ref": "TransactionOptions",
+          "description": "Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction."
+        },
+        "readTime": {
+          "description": "Execute the pipeline in a snapshot transaction at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "structuredPipeline": {
+          "$ref": "StructuredPipeline",
+          "description": "A pipelined operation."
+        },
+        "transaction": {
+          "description": "Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecutePipelineResponse": {
+      "description": "The response for Firestore.Execute.",
+      "id": "ExecutePipelineResponse",
+      "properties": {
+        "executionTime": {
+          "description": "The time at which the results are valid. This is a (not strictly) monotonically increasing value across multiple responses in the same stream. The API guarantees that all previously returned results are still valid at the latest `execution_time`. This allows the API consumer to treat the query if it ran at the latest `execution_time` returned. If the query returns no results, a response with `execution_time` and no `results` will be sent, and this represents the time at which the operation was run.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "explainStats": {
+          "$ref": "ExplainStats",
+          "description": "Query explain stats. This is present on the **last** response if the request configured explain to run in 'analyze' or 'explain' mode in the pipeline options. If the query does not return any results, a response with `explain_stats` and no `results` will still be sent."
+        },
+        "results": {
+          "description": "An ordered batch of results returned executing a pipeline. The batch size is variable, and can even be zero for when only a partial progress message is returned. The fields present in the returned documents are only those that were explicitly requested in the pipeline, this includes those like `__name__` and `__update_time__`. This is explicitly a divergence from `Firestore.RunQuery` / `Firestore.GetDocument` RPCs which always return such fields even when they are not specified in the `mask`.",
+          "items": {
+            "$ref": "Document"
+          },
+          "type": "array"
+        },
+        "transaction": {
+          "description": "Newly created transaction identifier. This field is only specified as part of the first response from the server, alongside the `results` field when the original request specified ExecuteRequest.new_transaction.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExecutionStats": {
       "description": "Execution statistics for the query.",
       "id": "ExecutionStats",
@@ -1971,6 +2053,21 @@
         "analyze": {
           "description": "Optional. Whether to execute this query. When false (the default), the query will be planned, returning only metrics from the planning stages. When true, the query will be planned and executed, returning the full query results along with both planning and execution stage metrics.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainStats": {
+      "description": "Pipeline explain stats. Depending on the explain options in the original request, this can contain the optimized plan and / or execution stats.",
+      "id": "ExplainStats",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The format depends on the `output_format` options in the request. Currently there are two supported options: `TEXT` and `JSON`. Both supply a `google.protobuf.StringValue`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2134,6 +2231,31 @@
         "vectorField": {
           "$ref": "FieldReference",
           "description": "Required. An indexed vector field to search upon. Only documents which contain vectors whose dimensionality match the query_vector can be returned."
+        }
+      },
+      "type": "object"
+    },
+    "Function": {
+      "description": "Represents an unevaluated scalar expression. For example, the expression `like(user_name, \"%alice%\")` is represented as: ``` name: \"like\" args { field_reference: \"user_name\" } args { string_value: \"%alice%\" } ```",
+      "id": "Function",
+      "properties": {
+        "args": {
+          "description": "Optional. Ordered list of arguments the given function expects.",
+          "items": {
+            "$ref": "Value"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name of the function to evaluate. **Requires:** * must be in snake case (lower case with underscore separator).",
+          "type": "string"
+        },
+        "options": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "Optional. Optional named arguments that certain functions may support.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2929,6 +3051,20 @@
       },
       "type": "object"
     },
+    "Pipeline": {
+      "description": "A Firestore query represented as an ordered list of operations / stages.",
+      "id": "Pipeline",
+      "properties": {
+        "stages": {
+          "description": "Required. Ordered list of stages to evaluate.",
+          "items": {
+            "$ref": "Stage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PlanSummary": {
       "description": "Planning phase information for the query.",
       "id": "PlanSummary",
@@ -3145,6 +3281,31 @@
       },
       "type": "object"
     },
+    "Stage": {
+      "description": "A single operation within a pipeline. A stage is made up of a unique name, and a list of arguments. The exact number of arguments & types is dependent on the stage type. To give an example, the stage `filter(state = \"MD\")` would be encoded as: ``` name: \"filter\" args { function_value { name: \"eq\" args { field_reference_value: \"state\" } args { string_value: \"MD\" } } } ``` See public documentation for the full list.",
+      "id": "Stage",
+      "properties": {
+        "args": {
+          "description": "Optional. Ordered list of arguments the given stage expects.",
+          "items": {
+            "$ref": "Value"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name of the stage to evaluate. **Requires:** * must be in snake case (lower case with underscore separator).",
+          "type": "string"
+        },
+        "options": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "Optional. Optional named arguments that certain functions may support.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3186,6 +3347,24 @@
         "structuredQuery": {
           "$ref": "StructuredQuery",
           "description": "Nested structured query."
+        }
+      },
+      "type": "object"
+    },
+    "StructuredPipeline": {
+      "description": "A Firestore query represented as an ordered list of operations / stages. This is considered the top-level function which plans and executes a query. It is logically equivalent to `query(stages, options)`, but prevents the client from having to build a function wrapper.",
+      "id": "StructuredPipeline",
+      "properties": {
+        "options": {
+          "additionalProperties": {
+            "$ref": "Value"
+          },
+          "description": "Optional. Optional query-level arguments. ",
+          "type": "object"
+        },
+        "pipeline": {
+          "$ref": "Pipeline",
+          "description": "Required. The pipeline query to execute."
         }
       },
       "type": "object"
@@ -3404,6 +3583,14 @@
           "format": "double",
           "type": "number"
         },
+        "fieldReferenceValue": {
+          "description": "Value which references a field. This is considered relative (vs absolute) since it only refers to a field and not a field within a particular document. **Requires:** * Must follow field reference limitations. * Not allowed to be used when writing documents.",
+          "type": "string"
+        },
+        "functionValue": {
+          "$ref": "Function",
+          "description": "A value that represents an unevaluated expression. **Requires:** * Not allowed to be used when writing documents."
+        },
         "geoPointValue": {
           "$ref": "LatLng",
           "description": "A geo point value representing a point on the surface of Earth."
@@ -3426,6 +3613,10 @@
             "Null value."
           ],
           "type": "string"
+        },
+        "pipelineValue": {
+          "$ref": "Pipeline",
+          "description": "A value that represents an unevaluated pipeline. **Requires:** * Not allowed to be used when writing documents."
         },
         "referenceValue": {
           "description": "A reference to a document. For example: `projects/{project_id}/databases/{database_id}/documents/{document_path}`.",
