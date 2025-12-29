@@ -2610,6 +2610,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$RuntimeUpdatableParams {
     /**
+     * Optional. The backlog threshold duration in seconds for autoscaling. Value must be non-negative.
+     */
+    acceptableBacklogDuration?: string | null;
+    /**
      * The maximum number of workers to cap autoscaling at. This field is currently only supported for Streaming Engine jobs.
      */
     maxNumWorkers?: number | null;
