@@ -99,7 +99,7 @@
     "hashList": {
       "methods": {
         "get": {
-          "description": "Get the latest contents of a hash list. A hash list may either by a threat list or a non-threat list such as the Global Cache. This is a standard Get method as defined by https://google.aip.dev/131 and the HTTP method is also GET.",
+          "description": "Gets the latest contents of a hash list. A hash list may either by a threat list or a non-threat list such as the Global Cache. This is a standard Get method as defined by https://google.aip.dev/131 and the HTTP method is also GET.",
           "flatPath": "v5/hashList/{name}",
           "httpMethod": "GET",
           "id": "safebrowsing.hashList.get",
@@ -142,7 +142,7 @@
     "hashLists": {
       "methods": {
         "batchGet": {
-          "description": "Get multiple hash lists at once. It is very common for a client to need to get multiple hash lists. Using this method is preferred over using the regular Get method multiple times. This is a standard batch Get method as defined by https://google.aip.dev/231 and the HTTP method is also GET.",
+          "description": "Gets multiple hash lists at once. It is very common for a client to need to get multiple hash lists. Using this method is preferred over using the regular Get method multiple times. This is a standard batch Get method as defined by https://google.aip.dev/231 and the HTTP method is also GET.",
           "flatPath": "v5/hashLists:batchGet",
           "httpMethod": "GET",
           "id": "safebrowsing.hashLists.batchGet",
@@ -180,7 +180,7 @@
           }
         },
         "list": {
-          "description": "List hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.",
+          "description": "Lists hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.",
           "flatPath": "v5/hashLists",
           "httpMethod": "GET",
           "id": "safebrowsing.hashLists.list",
@@ -208,7 +208,7 @@
     "hashes": {
       "methods": {
         "search": {
-          "description": "Search for full hashes matching the specified prefixes. This is a custom method as defined by https://google.aip.dev/136 (the custom method refers to this method having a custom name within Google's general API development nomenclature; it does not refer to using a custom HTTP method).",
+          "description": "Searches for full hashes matching the specified prefixes. This is a custom method as defined by https://google.aip.dev/136 (the custom method refers to this method having a custom name within Google's general API development nomenclature; it does not refer to using a custom HTTP method).",
           "flatPath": "v5/hashes:search",
           "httpMethod": "GET",
           "id": "safebrowsing.hashes.search",
@@ -228,9 +228,32 @@
           }
         }
       }
+    },
+    "urls": {
+      "methods": {
+        "search": {
+          "description": "Searches for URLs matching known threats. Each URL and it's host-suffix and path-prefix expressions (up to a limited depth) are checked. This means that the response may contain URLs that were not included in the request, but are expressions of the requested URLs.",
+          "flatPath": "v5/urls:search",
+          "httpMethod": "GET",
+          "id": "safebrowsing.urls.search",
+          "parameterOrder": [],
+          "parameters": {
+            "urls": {
+              "description": "Required. The URLs to be looked up. Clients MUST NOT send more than 50 URLs.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "v5/urls:search",
+          "response": {
+            "$ref": "GoogleSecuritySafebrowsingV5SearchUrlsResponse"
+          }
+        }
+      }
     }
   },
-  "revision": "20250518",
+  "revision": "20251214",
   "rootUrl": "https://safebrowsing.googleapis.com/",
   "schemas": {
     "GoogleSecuritySafebrowsingV5BatchGetHashListsResponse": {
@@ -592,6 +615,57 @@
             "$ref": "GoogleSecuritySafebrowsingV5FullHash"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleSecuritySafebrowsingV5SearchUrlsResponse": {
+      "description": "The response returned after searching threats matching the specified URLs. If nothing is found, the server will return an OK status (HTTP status code 200) with the `threats` field empty, rather than returning a NOT_FOUND status (HTTP status code 404).",
+      "id": "GoogleSecuritySafebrowsingV5SearchUrlsResponse",
+      "properties": {
+        "cacheDuration": {
+          "description": "The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every URL queried by the client in the request, regardless of how many URLs are returned in the response. Even if the server returns no matches for a particular URL, this fact MUST also be cached by the client. If and only if the field `threats` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "threats": {
+          "description": "Unordered list. The unordered list of threat matches found. Each entry contains a URL and the threat types that were found matching that URL. The list size can be greater than the number of URLs in the request as the all expressions of the URL would've been considered.",
+          "items": {
+            "$ref": "GoogleSecuritySafebrowsingV5ThreatUrl"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleSecuritySafebrowsingV5ThreatUrl": {
+      "description": "A URL matching one or more threats.",
+      "id": "GoogleSecuritySafebrowsingV5ThreatUrl",
+      "properties": {
+        "threatTypes": {
+          "description": "Unordered list. The unordered list of threat that the URL is classified as.",
+          "items": {
+            "enum": [
+              "THREAT_TYPE_UNSPECIFIED",
+              "MALWARE",
+              "SOCIAL_ENGINEERING",
+              "UNWANTED_SOFTWARE",
+              "POTENTIALLY_HARMFUL_APPLICATION"
+            ],
+            "enumDescriptions": [
+              "Unknown threat type. If this is returned by the server, the client shall disregard the enclosing `FullHashDetail` altogether.",
+              "Malware threat type. Malware is any software or mobile application specifically designed to harm a computer, a mobile device, the software it's running, or its users. Malware exhibits malicious behavior that can include installing software without user consent and installing harmful software such as viruses. More information can be found [here](https://developers.google.com/search/docs/monitor-debug/security/malware).",
+              "Social engineering threat type. Social engineering pages falsely purport to act on behalf of a third party with the intention of confusing viewers into performing an action with which the viewer would only trust a true agent of that third party. Phishing is a type of social engineering that tricks the viewer into performing the specific action of providing information, such as login credentials. More information can be found [here](https://developers.google.com/search/docs/monitor-debug/security/social-engineering).",
+              "Unwanted software threat type. Unwanted software is any software that does not adhere to [Google's Software Principles](https://www.google.com/about/software-principles.html) but isn't malware.",
+              "Potentially harmful application threat type [as used by Google Play Protect for the Play Store](https://developers.google.com/android/play-protect/potentially-harmful-applications)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "The requested URL that was matched by one or more threats.",
+          "type": "string"
         }
       },
       "type": "object"
