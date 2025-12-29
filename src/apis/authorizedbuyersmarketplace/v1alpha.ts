@@ -114,6 +114,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     context: APIRequestContext;
     bidders: Resource$Bidders;
     buyers: Resource$Buyers;
+    curators: Resource$Curators;
+    mediaPlanners: Resource$Mediaplanners;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -123,6 +125,8 @@ export namespace authorizedbuyersmarketplace_v1alpha {
 
       this.bidders = new Resource$Bidders(this.context);
       this.buyers = new Resource$Buyers(this.context);
+      this.curators = new Resource$Curators(this.context);
+      this.mediaPlanners = new Resource$Mediaplanners(this.context);
     }
   }
 
@@ -136,6 +140,15 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     proposalRevision?: string | null;
   }
   /**
+   * Settings for controlling access to a curated package.
+   */
+  export interface Schema$AccessControlSettings {
+    /**
+     * Required. Immutable. The list of media planners that are explicitly granted access to the curated package. Eligible media planners can be found in the mediaPlanners.list method. Only a single media planner may be allowlisted at this time. Format: `mediaPlanners/{mediaPlannerAccountId\}`
+     */
+    allowlistedMediaPlanners?: string[] | null;
+  }
+  /**
    * Request message for activating a client.
    */
   export interface Schema$ActivateClientRequest {}
@@ -143,6 +156,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
    * Request message for activating a client user.
    */
   export interface Schema$ActivateClientUserRequest {}
+  /**
+   * Request message for ActivateCuratedPackage.
+   */
+  export interface Schema$ActivateCuratedPackageRequest {}
   /**
    * Request message for activating a data segment
    */
@@ -359,6 +376,51 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     targetedCriteriaIds?: string[] | null;
   }
   /**
+   * Represents a curated package of inventory created and managed by a Curator.
+   */
+  export interface Schema$CuratedPackage {
+    /**
+     * Required. Settings for controlling access to the curated package. Access to this curated package is limited to the allowlisted media planners and the creator. Buyers and bidders can not be allowlisted for or have direct access to this resource.
+     */
+    accessSettings?: Schema$AccessControlSettings;
+    /**
+     * Output only. The timestamp when the curated package was created. Can be used to filter the response of the curatedPackages.list method.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A description of the curated package, provided by the curator.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name assigned to the curated package by the curator. Can be used to filter the response of the curatedPackages.list method.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The CPM fee charged by the curator to buyers using this curated package. Can be used to filter the response of the curatedPackages.list method.
+     */
+    feeCpm?: Schema$Money;
+    /**
+     * Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method.
+     */
+    floorPriceCpm?: Schema$Money;
+    /**
+     * Identifier. The unique resource name for the curated package. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the curated package. Can be used to filter the response of the curatedPackages.list method.
+     */
+    state?: string | null;
+    /**
+     * Optional. Targeting criteria for the curated package.
+     */
+    targeting?: Schema$PackageTargeting;
+    /**
+     * Output only. The timestamp when the curated package was last updated. Can be used to filter the response of the curatedPackages.list method.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms.
    */
   export interface Schema$DataSegment {
@@ -421,6 +483,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
    * Request message for deactivating a client user.
    */
   export interface Schema$DeactivateClientUserRequest {}
+  /**
+   * Request message for DeactivateCuratedPackage.
+   */
+  export interface Schema$DeactivateCuratedPackageRequest {}
   /**
    * Request message for deactivating a data segment
    */
@@ -693,6 +759,19 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListCuratedPackages.
+   */
+  export interface Schema$ListCuratedPackagesResponse {
+    /**
+     * The list of curated packages.
+     */
+    curatedPackages?: Schema$CuratedPackage[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the ListCuratedPackagesRequest.pageToken field in the subsequent call to `ListCuratedPackages` method to retrieve the next page of results. If empty, then there are no more results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing data segments.
    */
   export interface Schema$ListDataSegmentsResponse {
@@ -728,6 +807,19 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     finalizedDeals?: Schema$FinalizedDeal[];
     /**
      * Token to fetch the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A response containing media planner account information.
+   */
+  export interface Schema$ListMediaPlannersResponse {
+    /**
+     * List of media planners.
+     */
+    mediaPlanners?: Schema$MediaPlanner[];
+    /**
+     * A token which can be passed to a subsequent call to the `ListMediaPlanners` method to retrieve the next page of results in ListMediaPlannersRequest.pageToken.
      */
     nextPageToken?: string | null;
   }
@@ -810,6 +902,18 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Output only. Account ID of the media planner.
      */
     accountId?: string | null;
+    /**
+     * Output only. The ancestor names of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId\}` Can be used to filter the response of the mediaPlanners.list method.
+     */
+    ancestorNames?: string[] | null;
+    /**
+     * Output only. The display name of the media planner. Can be used to filter the response of the mediaPlanners.list method.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The unique resource name of the media planner. Format: `mediaPlanners/{mediaPlannerAccountId\}` Can be used to filter the response of the mediaPlanners.list method.
+     */
+    name?: string | null;
   }
   /**
    * Mobile application targeting settings.
@@ -866,6 +970,162 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * IDs of operating system versions to be included/excluded.
      */
     operatingSystemVersionCriteria?: Schema$CriteriaTargeting;
+  }
+  /**
+   * Represents targeting about where the ads can appear, for example, certain sites or mobile applications. Different placement targeting types will be logically OR'ed.
+   */
+  export interface Schema$PackagePlacementTargeting {
+    /**
+     * Optional. The list of targeted mobile app categories.
+     */
+    includedMobileAppCategoryTargeting?: string[] | null;
+    /**
+     * Optional. The list of targeted or excluded mobile application IDs that publishers own. Currently, only Android and Apple apps are supported. Android App ID, for example, com.google.android.apps.maps, can be found in Google Play Store URL. iOS App ID (which is a number) can be found at the end of iTunes store URL. First party mobile applications is either included or excluded.
+     */
+    mobileAppTargeting?: Schema$StringTargetingDimension;
+    /**
+     * Optional. The list of targeted or excluded URLs. The domains should have the http/https stripped (for example, google.com), and can contain a max of 5 paths per url.
+     */
+    uriTargeting?: Schema$StringTargetingDimension;
+  }
+  /**
+   * Represents targeting about publisher provided signals. Different publisher provided signals types will be logically OR'ed.
+   */
+  export interface Schema$PackagePublisherProvidedSignalsTargeting {
+    /**
+     * Optional. The list of targeted or excluded audience IDs. Based off of IAB Audience Taxonomy version 1.1 (https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Audience%20Taxonomies/Audience%20Taxonomy%201.1.tsv)
+     */
+    audienceTargeting?: Schema$TaxonomyTargeting;
+    /**
+     * Optional. The list of targeted or excluded content IDs. Based off of IAB Content Taxonomy version 2.2 (https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%202.2.tsv)
+     */
+    contentTargeting?: Schema$TaxonomyTargeting;
+    /**
+     * Optional. The list of targeted and excluded video and audio signals IDs. These are additional signals supported by publisher provided signals.
+     */
+    videoAndAudioSignalsTargeting?: Schema$StringTargetingDimension;
+  }
+  /**
+   * Targeting criteria for curated and auction packages.
+   */
+  export interface Schema$PackageTargeting {
+    /**
+     * Optional. The geo criteria IDs to be included or excluded as defined in https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv. If unset, inventory will be targeted regardless of geo.
+     */
+    geoTargeting?: Schema$CriteriaTargeting;
+    /**
+     * Optional. The targeted accelerated mobile page type. If unset, inventory will be targeted regardless of AMP status.
+     */
+    includedAcceleratedMobilePageType?: string | null;
+    /**
+     * Optional. The list of ad sizes to target. If unset, inventory will be targeted regardless of ad size. Curated packages supports `PIXEL` and `INTERSTITIAL` ad sizes.
+     */
+    includedAdSizes?: Schema$AdSize[];
+    /**
+     * Optional. The included list of targeted authorized seller statuses. If empty, inventory will be targeted regardless of seller status.
+     */
+    includedAuthorizedSellerStatuses?: string[] | null;
+    /**
+     * Optional. The creative format to target. If unset, all creative markup types are targeted.
+     */
+    includedCreativeFormat?: string | null;
+    /**
+     * Optional. The active data segments to be targeted. If unset, inventory will be targeted regardless of data segments. Format: `curators/{account_id\}/dataSegments/{data_segment_id\}`
+     */
+    includedDataSegments?: string[] | null;
+    /**
+     * Optional. The list of included device types to target. If empty, all device types are targeted.
+     */
+    includedDeviceTypes?: string[] | null;
+    /**
+     * Optional. The environment to target. If unspecified, all environments are targeted.
+     */
+    includedEnvironment?: string | null;
+    /**
+     * Optional. The targeted native inventory types. If empty, inventory will be targeted regardless of native inventory type.
+     */
+    includedNativeInventoryTypes?: string[] | null;
+    /**
+     * Optional. The list of targeted open measurement types. If empty, inventory will be targeted regardless of Open Measurement support.
+     */
+    includedOpenMeasurementTypes?: string[] | null;
+    /**
+     * Optional. The list of targeted restricted categories. If empty, inventory will be targeted regardless of restricted categories.
+     */
+    includedRestrictedCategories?: string[] | null;
+    /**
+     * Optional. The targeted rewarded type. If unset, inventory will be targeted regardless of rewarded type.
+     */
+    includedRewardedType?: string | null;
+    /**
+     * Optional. The languages to target. If unset, inventory will be targeted regardless of language. See https://developers.google.com/google-ads/api/data/codes-formats#languages for the list of supported language codes.
+     */
+    languageTargeting?: Schema$StringTargetingDimension;
+    /**
+     * Optional. The targeted minimum predicted click through rate, ranging in values [10, 10000] (0.01% - 10%). A value of 50 means that the configuration will only match adslots for which we predict at least 0.05% click through rate. An unset value indicates inventory will be targeted regardless of predicted click through rate.
+     */
+    minimumPredictedClickThroughRatePercentageMillis?: string | null;
+    /**
+     * Optional. The targeted minimum predicted viewability percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% viewability. An unset value indicates inventory will be targeted regardless of predicted viewability.
+     */
+    minimumPredictedViewabilityPercentage?: string | null;
+    /**
+     * Optional. Placement targeting information, for example, URL, mobile applications.
+     */
+    placementTargeting?: Schema$PackagePlacementTargeting;
+    /**
+     * Optional. The publisher provided signals to target. If unset, inventory will be targeted regardless of publisher provided signals.
+     */
+    publisherProvidedSignalsTargeting?: Schema$PackagePublisherProvidedSignalsTargeting;
+    /**
+     * Optional. The targeted publishers. If unset, inventory will be targeted regardless of publisher. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details.
+     */
+    publisherTargeting?: Schema$StringTargetingDimension;
+    /**
+     * Optional. The verticals included or excluded as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals. If unset, inventory will be targeted regardless of vertical.
+     */
+    verticalTargeting?: Schema$CriteriaTargeting;
+    /**
+     * Optional. Video specific targeting criteria.
+     */
+    videoTargeting?: Schema$PackageVideoTargeting;
+  }
+  /**
+   * Video specific targeting criteria.
+   */
+  export interface Schema$PackageVideoTargeting {
+    /**
+     * Optional. The targeted video delivery method. If unset, inventory will be targeted regardless of video delivery method.
+     */
+    includedContentDeliveryMethod?: string | null;
+    /**
+     * Optional. The targeted maximum video ad duration. If unset, inventory will be targeted regardless of maximum video ad duration.
+     */
+    includedMaximumAdDurationTargeting?: string | null;
+    /**
+     * Optional. The list of targeted video mime types using the IANA published MIME type strings (https://www.iana.org/assignments/media-types/media-types.xhtml). If empty, inventory will be targeted regardless of video mime type.
+     */
+    includedMimeTypes?: string[] | null;
+    /**
+     * Optional. The list of targeted video playback methods. If empty, inventory will be targeted regardless of video playback method.
+     */
+    includedPlaybackMethods?: string[] | null;
+    /**
+     * Optional. The targeted video player size. If unset, inventory will be targeted regardless of video player size.
+     */
+    includedPlayerSizeTargeting?: Schema$VideoPlayerSizeTargeting;
+    /**
+     * Optional. The targeted video ad position types. If empty, inventory will be targeted regardless of video ad position type.
+     */
+    includedPositionTypes?: string[] | null;
+    /**
+     * Optional. The targeted minimum predicted completion rate percentage. This value must be a multiple of 10 between 10 and 90 (inclusive). For example, 10 is valid, but 0, 15, and 100 are not. A value of 10 means that the configuration will only match adslots for which we predict at least 10% completion rate. An unset value indicates inventory will be targeted regardless of predicted completion rate.
+     */
+    minimumPredictedCompletionRatePercentage?: string | null;
+    /**
+     * Optional. The targeted video plcmt types. If unset, inventory will be targeted regardless of video plcmt type.
+     */
+    plcmtTargeting?: Schema$VideoPlcmtTargeting;
   }
   /**
    * Request message for pausing a finalized deal.
@@ -1216,6 +1476,19 @@ export namespace authorizedbuyersmarketplace_v1alpha {
    */
   export interface Schema$SetReadyToServeRequest {}
   /**
+   * Generic targeting with string values.
+   */
+  export interface Schema$StringTargetingDimension {
+    /**
+     * Required. How the items in this list should be targeted.
+     */
+    selectionType?: string | null;
+    /**
+     * Required. The values specified.
+     */
+    values?: string[] | null;
+  }
+  /**
    * Request message for SubscribeAuctionPackage.
    */
   export interface Schema$SubscribeAuctionPackageRequest {}
@@ -1227,6 +1500,19 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Optional. A list of client buyers to subscribe to the auction package, with client buyer in the format `buyers/{accountId\}/clients/{clientAccountId\}`. The current buyer will be subscribed to the auction package regardless of the list contents if not already.
      */
     clients?: string[] | null;
+  }
+  /**
+   * Defines targeting criteria for handling the IAB audience and content Taxonomy ID space.
+   */
+  export interface Schema$TaxonomyTargeting {
+    /**
+     * Optional. The list of excluded content taxonomy IDs.
+     */
+    excludedTaxonomyIds?: string[] | null;
+    /**
+     * Optional. The list of targeted content taxonomy IDs.
+     */
+    targetedTaxonomyIds?: string[] | null;
   }
   /**
    * Represents targeting about various types of technology.
@@ -1317,6 +1603,32 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * A list of URLs to be included.
      */
     targetedUris?: string[] | null;
+  }
+  /**
+   * Represents the size of the video player that can be targeted. Both width and height are required to be set to non-zero values.
+   */
+  export interface Schema$VideoPlayerSizeTargeting {
+    /**
+     * Required. The minimum height of the video player in pixels.
+     */
+    minimumHeight?: string | null;
+    /**
+     * Required. The minimum width of the video player in pixels.
+     */
+    minimumWidth?: string | null;
+  }
+  /**
+   * Defines targeting criteria based on the video placement type, often corresponding to the IAB OpenRTB 'plcmt' field.
+   */
+  export interface Schema$VideoPlcmtTargeting {
+    /**
+     * Required. The selection type for the list of video plcmts.
+     */
+    selectionType?: string | null;
+    /**
+     * Required. The list of targeted video plcmts types. If empty, inventory will be targeted regardless of video plcmt type.
+     */
+    videoPlcmtTypes?: string[] | null;
   }
   /**
    * Represents targeting information about video.
@@ -9094,5 +9406,1209 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Required. Parent that owns the collection of publisher profiles Format: `buyers/{buyerId\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Curators {
+    context: APIRequestContext;
+    curatedPackages: Resource$Curators$Curatedpackages;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.curatedPackages = new Resource$Curators$Curatedpackages(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Curators$Curatedpackages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Activates an existing curated package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.curators.curatedPackages.activate({
+     *       // Required. The name of the curated package to activate. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     *       name: 'curators/my-curator/curatedPackages/my-curatedPackage',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "feeCpm": {},
+     *   //   "floorPriceCpm": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Curators$Curatedpackages$Activate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    activate(
+      params?: Params$Resource$Curators$Curatedpackages$Activate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>;
+    activate(
+      params: Params$Resource$Curators$Curatedpackages$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Curators$Curatedpackages$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$CuratedPackage>,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    activate(
+      params: Params$Resource$Curators$Curatedpackages$Activate,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$CuratedPackage>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$Activate
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:activate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CuratedPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CuratedPackage>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new curated package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.curators.curatedPackages.create(
+     *     {
+     *       // Required. The parent curator account where this curated package will be created. Format: `curators/{accountId\}`
+     *       parent: 'curators/my-curator',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "accessSettings": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "feeCpm": {},
+     *         //   "floorPriceCpm": {},
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "targeting": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "feeCpm": {},
+     *   //   "floorPriceCpm": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Curators$Curatedpackages$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Curators$Curatedpackages$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>;
+    create(
+      params: Params$Resource$Curators$Curatedpackages$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Curators$Curatedpackages$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CuratedPackage>,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    create(
+      params: Params$Resource$Curators$Curatedpackages$Create,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CuratedPackage>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$Create
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/curatedPackages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CuratedPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CuratedPackage>(parameters);
+      }
+    }
+
+    /**
+     * Deactivates an existing curated package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await authorizedbuyersmarketplace.curators.curatedPackages.deactivate({
+     *       // Required. The name of the curated package to deactivate. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     *       name: 'curators/my-curator/curatedPackages/my-curatedPackage',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "feeCpm": {},
+     *   //   "floorPriceCpm": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivate(
+      params: Params$Resource$Curators$Curatedpackages$Deactivate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deactivate(
+      params?: Params$Resource$Curators$Curatedpackages$Deactivate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>;
+    deactivate(
+      params: Params$Resource$Curators$Curatedpackages$Deactivate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivate(
+      params: Params$Resource$Curators$Curatedpackages$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$CuratedPackage>,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    deactivate(
+      params: Params$Resource$Curators$Curatedpackages$Deactivate,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    deactivate(callback: BodyResponseCallback<Schema$CuratedPackage>): void;
+    deactivate(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$Deactivate
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$Deactivate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:deactivate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CuratedPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CuratedPackage>(parameters);
+      }
+    }
+
+    /**
+     * Gets a curated package given its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.curators.curatedPackages.get({
+     *     // Required. The name of the curated package to retrieve. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     *     name: 'curators/my-curator/curatedPackages/my-curatedPackage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "feeCpm": {},
+     *   //   "floorPriceCpm": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Curators$Curatedpackages$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Curators$Curatedpackages$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>;
+    get(
+      params: Params$Resource$Curators$Curatedpackages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Curators$Curatedpackages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CuratedPackage>,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    get(
+      params: Params$Resource$Curators$Curatedpackages$Get,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CuratedPackage>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$Get
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CuratedPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CuratedPackage>(parameters);
+      }
+    }
+
+    /**
+     * Lists curated packages owned by the specified curator.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.curators.curatedPackages.list({
+     *     // Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * displayName * createTime * updateTime * state * feeCpm.currencyCode * feeCpm.units * feeCpm.nanos * floorPriceCpm.currencyCode * floorPriceCpm.units * floorPriceCpm.nanos
+     *     filter: 'placeholder-value',
+     *     // Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListCuratedPackages` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent curator account which owns this collection of curated packages. Format: `curators/{accountId\}`
+     *     parent: 'curators/my-curator',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "curatedPackages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Curators$Curatedpackages$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Curators$Curatedpackages$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListCuratedPackagesResponse>>;
+    list(
+      params: Params$Resource$Curators$Curatedpackages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Curators$Curatedpackages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCuratedPackagesResponse>,
+      callback: BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Curators$Curatedpackages$List,
+      callback: BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$List
+        | BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCuratedPackagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListCuratedPackagesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/curatedPackages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCuratedPackagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCuratedPackagesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing curated package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.curators.curatedPackages.patch({
+     *     // Identifier. The unique resource name for the curated package. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     *     name: 'curators/my-curator/curatedPackages/my-curatedPackage',
+     *     // Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement (the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessSettings": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "feeCpm": {},
+     *       //   "floorPriceCpm": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "targeting": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "feeCpm": {},
+     *   //   "floorPriceCpm": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targeting": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Curators$Curatedpackages$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Curators$Curatedpackages$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>;
+    patch(
+      params: Params$Resource$Curators$Curatedpackages$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Curators$Curatedpackages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CuratedPackage>,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    patch(
+      params: Params$Resource$Curators$Curatedpackages$Patch,
+      callback: BodyResponseCallback<Schema$CuratedPackage>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CuratedPackage>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Curators$Curatedpackages$Patch
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CuratedPackage>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CuratedPackage>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Curators$Curatedpackages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Curators$Curatedpackages$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CuratedPackage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CuratedPackage>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Curators$Curatedpackages$Activate extends StandardParameters {
+    /**
+     * Required. The name of the curated package to activate. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateCuratedPackageRequest;
+  }
+  export interface Params$Resource$Curators$Curatedpackages$Create extends StandardParameters {
+    /**
+     * Required. The parent curator account where this curated package will be created. Format: `curators/{accountId\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CuratedPackage;
+  }
+  export interface Params$Resource$Curators$Curatedpackages$Deactivate extends StandardParameters {
+    /**
+     * Required. The name of the curated package to deactivate. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateCuratedPackageRequest;
+  }
+  export interface Params$Resource$Curators$Curatedpackages$Get extends StandardParameters {
+    /**
+     * Required. The name of the curated package to retrieve. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Curators$Curatedpackages$List extends StandardParameters {
+    /**
+     * Optional. Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * displayName * createTime * updateTime * state * feeCpm.currencyCode * feeCpm.units * feeCpm.nanos * floorPriceCpm.currencyCode * floorPriceCpm.units * floorPriceCpm.nanos
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. The server may return fewer results than requested. Max allowed page size is 500. If unspecified, the server will default to 500.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListCuratedPackages` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent curator account which owns this collection of curated packages. Format: `curators/{accountId\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Curators$Curatedpackages$Patch extends StandardParameters {
+    /**
+     * Identifier. The unique resource name for the curated package. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to be updated. If empty or unspecified, the service will update all fields populated in the update request excluding the output only fields and primitive fields with default value. Note that explicit field mask is required in order to reset a primitive field back to its default value, for example, false for boolean fields, 0 for integer fields. A special field mask consisting of a single path "*" can be used to indicate full replacement (the equivalent of PUT method), updatable fields unset or unspecified in the input will be cleared or set to default value. Output only fields will be ignored regardless of the value of updateMask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CuratedPackage;
+  }
+
+  export class Resource$Mediaplanners {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all media planner accounts that the caller has access to. For curators, this will return all media planners that have accepted curator terms. For other accounts, attempting to list media planners will return an error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/authorizedbuyersmarketplace.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const authorizedbuyersmarketplace =
+     *   google.authorizedbuyersmarketplace('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/authorized-buyers-marketplace'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await authorizedbuyersmarketplace.mediaPlanners.list({
+     *     // Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * `name` * `displayName` * `ancestorNames`
+     *     filter: 'placeholder-value',
+     *     // The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mediaPlanners": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Mediaplanners$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Mediaplanners$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMediaPlannersResponse>>;
+    list(
+      params: Params$Resource$Mediaplanners$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Mediaplanners$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMediaPlannersResponse>,
+      callback: BodyResponseCallback<Schema$ListMediaPlannersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Mediaplanners$List,
+      callback: BodyResponseCallback<Schema$ListMediaPlannersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMediaPlannersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Mediaplanners$List
+        | BodyResponseCallback<Schema$ListMediaPlannersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMediaPlannersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMediaPlannersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMediaPlannersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Mediaplanners$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mediaplanners$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://authorizedbuyersmarketplace.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/mediaPlanners').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMediaPlannersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMediaPlannersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Mediaplanners$List extends StandardParameters {
+    /**
+     * Optional query string using the [Cloud API list filtering syntax](/authorized-buyers/apis/guides/list-filters). Supported columns for filtering are: * `name` * `displayName` * `ancestorNames`
+     */
+    filter?: string;
+    /**
+     * The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     */
+    pageToken?: string;
   }
 }
