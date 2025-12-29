@@ -558,6 +558,11 @@
               "pattern": "^tasks/[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "tenant": {
+              "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v1/{+name}",
@@ -579,6 +584,11 @@
               "location": "path",
               "pattern": "^tasks/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "tenant": {
+              "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+              "location": "query",
               "type": "string"
             }
           },
@@ -611,6 +621,11 @@
                   "pattern": "^tasks/[^/]+/pushNotificationConfigs$",
                   "required": true,
                   "type": "string"
+                },
+                "tenant": {
+                  "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+parent}",
@@ -636,6 +651,11 @@
                   "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "tenant": {
+                  "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+name}",
@@ -657,6 +677,11 @@
                   "location": "path",
                   "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "tenant": {
+                  "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -691,6 +716,11 @@
                   "pattern": "^tasks/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "tenant": {
+                  "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+parent}/pushNotificationConfigs",
@@ -703,7 +733,7 @@
       }
     }
   },
-  "revision": "20251118",
+  "revision": "20251216",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -767,7 +797,12 @@
     },
     "CancelTaskRequest": {
       "id": "CancelTaskRequest",
-      "properties": {},
+      "properties": {
+        "tenant": {
+          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DataPart": {
@@ -1061,6 +1096,10 @@
           },
           "description": "Optional metadata for the request.",
           "type": "object"
+        },
+        "tenant": {
+          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+          "type": "string"
         }
       },
       "type": "object"

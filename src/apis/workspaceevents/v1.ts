@@ -172,7 +172,12 @@ export namespace workspaceevents_v1 {
      */
     schemes?: string[] | null;
   }
-  export interface Schema$CancelTaskRequest {}
+  export interface Schema$CancelTaskRequest {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
+  }
   /**
    * DataPart represents a structured blob. This is most commonly a JSON payload.
    */
@@ -369,6 +374,10 @@ export namespace workspaceevents_v1 {
      * Optional metadata for the request.
      */
     metadata?: {[key: string]: any} | null;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -615,7 +624,8 @@ export namespace workspaceevents_v1 {
      *       // {
      *       //   "configuration": {},
      *       //   "message": {},
-     *       //   "metadata": {}
+     *       //   "metadata": {},
+     *       //   "tenant": "my_tenant"
      *       // }
      *     },
      *   });
@@ -2053,7 +2063,9 @@ export namespace workspaceevents_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "tenant": "my_tenant"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2196,6 +2208,8 @@ export namespace workspaceevents_v1 {
      *     historyLength: 'placeholder-value',
      *     // Required. The resource name of the task. Format: tasks/{task_id\}
      *     name: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2335,6 +2349,8 @@ export namespace workspaceevents_v1 {
      *   const res = await workspaceevents.tasks.subscribe({
      *     // The resource name of the task to subscribe to. Format: tasks/{task_id\}
      *     name: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2463,12 +2479,20 @@ export namespace workspaceevents_v1 {
      * Required. The resource name of the task. Format: tasks/{task_id\}
      */
     name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
   export interface Params$Resource$Tasks$Subscribe extends StandardParameters {
     /**
      * The resource name of the task to subscribe to. Format: tasks/{task_id\}
      */
     name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
 
   export class Resource$Tasks$Pushnotificationconfigs {
@@ -2512,6 +2536,8 @@ export namespace workspaceevents_v1 {
      *     configId: 'placeholder-value',
      *     // Required. The parent task resource for this config. Format: tasks/{task_id\}
      *     parent: 'tasks/my-task/pushNotificationConfigs',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2661,6 +2687,8 @@ export namespace workspaceevents_v1 {
      *   const res = await workspaceevents.tasks.pushNotificationConfigs.delete({
      *     // The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      *     name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2794,6 +2822,8 @@ export namespace workspaceevents_v1 {
      *   const res = await workspaceevents.tasks.pushNotificationConfigs.get({
      *     // The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      *     name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2938,6 +2968,8 @@ export namespace workspaceevents_v1 {
      *     pageToken: 'placeholder-value',
      *     // The parent task resource. Format: tasks/{task_id\}
      *     parent: 'tasks/my-task',
+     *     // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *     tenant: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3064,6 +3096,10 @@ export namespace workspaceevents_v1 {
      * Required. The parent task resource for this config. Format: tasks/{task_id\}
      */
     parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
 
     /**
      * Request body metadata
@@ -3075,12 +3111,20 @@ export namespace workspaceevents_v1 {
      * The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      */
     name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
   export interface Params$Resource$Tasks$Pushnotificationconfigs$Get extends StandardParameters {
     /**
      * The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
      */
     name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
   export interface Params$Resource$Tasks$Pushnotificationconfigs$List extends StandardParameters {
     /**
@@ -3095,5 +3139,9 @@ export namespace workspaceevents_v1 {
      * The parent task resource. Format: tasks/{task_id\}
      */
     parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
 }
