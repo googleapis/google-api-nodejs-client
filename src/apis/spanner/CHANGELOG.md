@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v12.2.0...spanner-v12.3.0) (2025-12-29)
+
+
+### Features
+
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [12.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v12.1.1...spanner-v12.2.0) (2025-12-15)
 
 

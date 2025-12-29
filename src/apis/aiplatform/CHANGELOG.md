@@ -1,5 +1,12 @@
 # Changelog
 
+## [28.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v28.0.0...aiplatform-v28.1.0) (2025-12-29)
+
+
+### Features
+
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v27.1.0...aiplatform-v28.0.0) (2025-12-15)
 
 

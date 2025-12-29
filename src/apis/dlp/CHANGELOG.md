@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v19.1.0...dlp-v19.2.0) (2025-12-29)
+
+
+### Features
+
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v19.0.1...dlp-v19.1.0) (2025-12-15)
 
 

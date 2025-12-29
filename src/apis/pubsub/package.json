@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/pubsub",
-  "version": "10.1.1",
+  "version": "10.2.0",
   "description": "pubsub",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,13 @@
 # Changelog
 
+## [28.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.1.0...discoveryengine-v28.2.0) (2025-12-29)
+
+
+### Features
+
+* **discoveryengine:** update the API ([8a919a4](https://github.com/googleapis/google-api-nodejs-client/commit/8a919a40c91e51f564d6ee3eb899fe93d8bf42db))
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [28.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.0.0...discoveryengine-v28.1.0) (2025-12-15)
 
 

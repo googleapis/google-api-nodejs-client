@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v6.0.2...apigateway-v6.1.0) (2025-12-29)
+
+
+### Features
+
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v6.0.1...apigateway-v6.0.2) (2025-12-05)
 
 

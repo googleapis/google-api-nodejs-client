@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.0.3...firestore-v18.1.0) (2025-12-29)
+
+
+### Features
+
+* run the generator ([#3860](https://github.com/googleapis/google-api-nodejs-client/issues/3860)) ([d6d823e](https://github.com/googleapis/google-api-nodejs-client/commit/d6d823ed663849c24e4f0fe678f7e67b1608d668))
+
 ## [18.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.0.2...firestore-v18.0.3) (2025-12-15)
 
 
