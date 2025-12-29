@@ -1754,7 +1754,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20251211",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -2493,6 +2493,11 @@
         "enabled": {
           "description": "Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection.",
           "type": "boolean"
+        },
+        "httpProxyBaseUri": {
+          "description": "Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev` Populated only when enabled is set to true. This endpoint is used by other Google services that integrate with Developer Connect.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3196,16 +3201,27 @@
             "DATASTAX",
             "DYNATRACE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
             "No system provider specified.",
             "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
             "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
-            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
-            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
-            "Rovo provider. Must select the \"rovo\" scope.",
-            "New Relic provider. No scopes are allowed.",
-            "Datastax provider. No scopes are allowed.",
-            "Dynatrace provider."
+            "Deprecated: This provider is no longer supported. Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Deprecated: This provider is no longer supported. Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Deprecated: This provider is no longer supported. Rovo provider. Must select the \"rovo\" scope.",
+            "Deprecated: This provider is no longer supported. New Relic provider. No scopes are allowed.",
+            "Deprecated: This provider is no longer supported. Datastax provider. No scopes are allowed.",
+            "Deprecated: This provider is no longer supported. Dynatrace provider."
           ],
           "type": "string"
         }
@@ -3309,16 +3325,27 @@
             "DATASTAX",
             "DYNATRACE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
           "enumDescriptions": [
             "No system provider specified.",
             "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
             "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
-            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
-            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
-            "Rovo provider. Must select the \"rovo\" scope.",
-            "New Relic provider. No scopes are allowed.",
-            "Datastax provider. No scopes are allowed.",
-            "Dynatrace provider."
+            "Deprecated: This provider is no longer supported. Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Deprecated: This provider is no longer supported. Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Deprecated: This provider is no longer supported. Rovo provider. Must select the \"rovo\" scope.",
+            "Deprecated: This provider is no longer supported. New Relic provider. No scopes are allowed.",
+            "Deprecated: This provider is no longer supported. Datastax provider. No scopes are allowed.",
+            "Deprecated: This provider is no longer supported. Dynatrace provider."
           ],
           "type": "string"
         },
