@@ -4321,11 +4321,15 @@ export namespace discoveryengine_v1 {
      */
     regionCode?: string | null;
     /**
+     * Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search.
+     */
+    relevanceFilterSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec;
+    /**
      * Optional. The specification for returning the relevance score.
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceScoreSpec;
     /**
-     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.
+     * The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.
      */
     relevanceThreshold?: string | null;
     /**
@@ -4763,6 +4767,32 @@ export namespace discoveryengine_v1 {
      * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
      */
     pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Relevance filtering specification.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpec {
+    /**
+     * Optional. Relevance filtering threshold specification for keyword search.
+     */
+    keywordSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+    /**
+     * Optional. Relevance filtering threshold specification for semantic search.
+     */
+    semanticSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+  }
+  /**
+   * Specification for relevance filtering on a specific sub-search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
+    /**
+     * Pre-defined relevance threshold for the sub-search.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].
+     */
+    semanticRelevanceThreshold?: number | null;
   }
   /**
    * The specification for returning the document relevance score.
@@ -8480,11 +8510,15 @@ export namespace discoveryengine_v1 {
      */
     regionCode?: string | null;
     /**
+     * Optional. The granular relevance filtering specification. If not specified, the global `relevance_threshold` will be used for all sub-searches. If specified, this overrides the global `relevance_threshold` to use thresholds on a per sub-search basis. This feature is currently supported only for custom and site search.
+     */
+    relevanceFilterSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec;
+    /**
      * Optional. The specification for returning the relevance score.
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceScoreSpec;
     /**
-     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.
+     * The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.
      */
     relevanceThreshold?: string | null;
     /**
@@ -8918,6 +8952,32 @@ export namespace discoveryengine_v1 {
      * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
      */
     pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Relevance filtering specification.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpec {
+    /**
+     * Optional. Relevance filtering threshold specification for keyword search.
+     */
+    keywordSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+    /**
+     * Optional. Relevance filtering threshold specification for semantic search.
+     */
+    semanticSearchThreshold?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec;
+  }
+  /**
+   * Specification for relevance filtering on a specific sub-search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestRelevanceFilterSpecRelevanceThresholdSpec {
+    /**
+     * Pre-defined relevance threshold for the sub-search.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Custom relevance threshold for the sub-search. The value must be in [0.0, 1.0].
+     */
+    semanticRelevanceThreshold?: number | null;
   }
   /**
    * The specification for returning the document relevance score.
@@ -12902,7 +12962,7 @@ export namespace discoveryengine_v1 {
      */
     relevanceScoreSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestRelevanceScoreSpec;
     /**
-     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. This feature is not supported for healthcare search.
+     * The global relevance threshold of the search results. Defaults to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information. If more granular relevance filtering is required, use the `relevance_filter_spec` instead. This feature is not supported for healthcare search.
      */
     relevanceThreshold?: string | null;
     /**
@@ -17509,7 +17569,7 @@ export namespace discoveryengine_v1 {
      *     await discoveryengine.projects.locations.collections.updateDataConnector({
      *       // Output only. The full resource name of the Data Connector. Format: `projects/x/locations/x/collections/x/dataConnector`.
      *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
-     *       // Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode - incremental_sync_disabled - incremental_refresh_interval Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
+     *       // Indicates which fields in the provided DataConnector to update. Supported field paths include: - `refresh_interval` - `params` - `auto_run_disabled` - `action_config` - `action_config.action_params` - `action_config.service_name` - `destination_configs` - `blocking_reasons` - `sync_mode` - `incremental_sync_disabled` - `incremental_refresh_interval` - `data_protection_policy` Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -17727,7 +17787,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode - incremental_sync_disabled - incremental_refresh_interval Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
+     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - `refresh_interval` - `params` - `auto_run_disabled` - `action_config` - `action_config.action_params` - `action_config.service_name` - `destination_configs` - `blocking_reasons` - `sync_mode` - `incremental_sync_disabled` - `incremental_refresh_interval` - `data_protection_policy` Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
      */
     updateMask?: string;
 
