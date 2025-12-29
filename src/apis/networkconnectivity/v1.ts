@@ -329,7 +329,7 @@ export namespace networkconnectivity_v1 {
      */
     project?: string | null;
     /**
-     * Output only. A map to store mapping between customer vip and target service attachment. Only service attachment with producer specified ip addresses are stored here.
+     * Optional. A map to store mapping between customer vip and target service attachment. This field can be used to specify a static IP address for a PSC connection.
      */
     serviceAttachmentIpAddressMap?: {[key: string]: string} | null;
     /**
