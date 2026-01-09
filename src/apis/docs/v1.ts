@@ -125,6 +125,24 @@ export namespace docs_v1 {
   }
 
   /**
+   * Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.
+   */
+  export interface Schema$AddDocumentTabRequest {
+    /**
+     * The properties of the tab to add. All properties are optional.
+     */
+    tabProperties?: Schema$TabProperties;
+  }
+  /**
+   * The result of adding a document tab.
+   */
+  export interface Schema$AddDocumentTabResponse {
+    /**
+     * The properties of the newly added tab.
+     */
+    tabProperties?: Schema$TabProperties;
+  }
+  /**
    * A ParagraphElement representing a spot in the text that's dynamically replaced with content that can change over time, like a page number.
    */
   export interface Schema$AutoText {
@@ -620,6 +638,15 @@ export namespace docs_v1 {
      * The reference table cell location from which the row will be deleted. The row this cell spans will be deleted. If this is a merged cell that spans multiple rows, all rows that the cell spans will be deleted. If no rows remain in the table after this deletion, the whole table is deleted.
      */
     tableCellLocation?: Schema$TableCellLocation;
+  }
+  /**
+   * Deletes a tab. If the tab has child tabs, they are deleted as well.
+   */
+  export interface Schema$DeleteTabRequest {
+    /**
+     * The ID of the tab to delete.
+     */
+    tabId?: string | null;
   }
   /**
    * A magnitude in a single direction in the specified units.
@@ -2374,6 +2401,10 @@ export namespace docs_v1 {
    */
   export interface Schema$Request {
     /**
+     * Adds a document tab.
+     */
+    addDocumentTab?: Schema$AddDocumentTabRequest;
+    /**
      * Creates a footer.
      */
     createFooter?: Schema$CreateFooterRequest;
@@ -2417,6 +2448,10 @@ export namespace docs_v1 {
      * Deletes a positioned object from the document.
      */
     deletePositionedObject?: Schema$DeletePositionedObjectRequest;
+    /**
+     * Deletes a document tab.
+     */
+    deleteTab?: Schema$DeleteTabRequest;
     /**
      * Deletes a column from a table.
      */
@@ -2490,6 +2525,10 @@ export namespace docs_v1 {
      */
     updateDocumentStyle?: Schema$UpdateDocumentStyleRequest;
     /**
+     * Updates the properties of a document tab.
+     */
+    updateDocumentTabProperties?: Schema$UpdateDocumentTabPropertiesRequest;
+    /**
      * Updates the paragraph style at the specified range.
      */
     updateParagraphStyle?: Schema$UpdateParagraphStyleRequest;
@@ -2518,6 +2557,10 @@ export namespace docs_v1 {
    * A single response from an update.
    */
   export interface Schema$Response {
+    /**
+     * The result of adding a document tab.
+     */
+    addDocumentTab?: Schema$AddDocumentTabResponse;
     /**
      * The result of creating a footer.
      */
@@ -3341,7 +3384,7 @@ export namespace docs_v1 {
      */
     parentTabId?: string | null;
     /**
-     * Output only. The ID of the tab. This field can't be changed.
+     * The immutable ID of the tab.
      */
     tabId?: string | null;
     /**
@@ -3521,6 +3564,19 @@ export namespace docs_v1 {
      * The tab that contains the style to update. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If not provided, the request applies to the first tab in the document.
      */
     tabId?: string | null;
+  }
+  /**
+   * Update the properties of a document tab.
+   */
+  export interface Schema$UpdateDocumentTabPropertiesRequest {
+    /**
+     * The fields that should be updated. At least one field must be specified. The root `tab_properties` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * The tab properties to update.
+     */
+    tabProperties?: Schema$TabProperties;
   }
   /**
    * Update the styling of all paragraphs that overlap with the given range.
