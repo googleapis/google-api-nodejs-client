@@ -1062,6 +1062,52 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.autoscalers.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "update": {
           "description": "Updates an autoscaler in the specified project using the data\nincluded in the request.",
           "flatPath": "projects/{project}/zones/{zone}/autoscalers",
@@ -7306,6 +7352,44 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/healthChecks/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.healthChecks.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/healthChecks/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "update": {
           "description": "Updates a HealthCheck resource in the specified project using the data\nincluded in the request.",
           "flatPath": "projects/{project}/global/healthChecks/{healthCheck}",
@@ -7557,6 +7641,44 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.httpHealthChecks.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "update": {
           "description": "Updates a HttpHealthCheck resource in the specified project using the data\nincluded in the request.",
           "flatPath": "projects/{project}/global/httpHealthChecks/{httpHealthCheck}",
@@ -7806,6 +7928,44 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.httpsHealthChecks.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
         "update": {
@@ -23103,6 +23263,52 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.regionAutoscalers.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "update": {
           "description": "Updates an autoscaler in the specified project using\nthe data included in the request.",
           "flatPath": "projects/{project}/regions/{region}/autoscalers",
@@ -25464,6 +25670,52 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/regions/{region}/healthChecks/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.regionHealthChecks.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthChecks/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
         "update": {
@@ -28995,6 +29247,52 @@
           "path": "projects/{project}/regions/{region}/notificationEndpoints",
           "response": {
             "$ref": "NotificationEndpointList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/regions/{region}/notificationEndpoints/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.regionNotificationEndpoints.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/notificationEndpoints/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -34429,6 +34727,44 @@
           "path": "projects/{project}/global/routes",
           "response": {
             "$ref": "RouteList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/routes/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.routes.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/routes/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -40175,6 +40511,44 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
           ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/targetSslProxies/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.targetSslProxies.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/targetSslProxies/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
         }
       }
     },
@@ -40491,6 +40865,44 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.targetTcpProxies.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         }
       }
@@ -41123,6 +41535,44 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/global/urlMaps/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.urlMaps.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/urlMaps/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
         "update": {
@@ -42464,7 +42914,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20251230",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -45981,6 +46431,10 @@
           "description": "The URL of the network to which this backend service belongs.\n\nThis field must be set for Internal Passthrough Network Load Balancers when\nthe haPolicy is enabled, and for External Passthrough Network Load\nBalancers when the haPolicy fastIpMove is enabled.\n\nThis field can only be specified when the load balancing scheme is set toINTERNAL, or when the load balancing scheme is set toEXTERNAL and haPolicy fastIpMove is enabled.",
           "type": "string"
         },
+        "networkPassThroughLbTrafficPolicy": {
+          "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy",
+          "description": "Configures traffic steering properties of internal passthrough Network\nLoad Balancers.\n\nnetworkPassThroughLbTrafficPolicy cannot be specified with haPolicy."
+        },
         "outlierDetection": {
           "$ref": "OutlierDetection",
           "description": "Settings controlling the ejection of unhealthy backend endpoints from the\nload balancing pool of each individual proxy instance that processes the\ntraffic for the given backend service. If not set, this feature is\nconsidered disabled.\n\nResults of the outlier detection algorithm (ejection of endpoints from the\nload balancing pool and returning them back to the pool) are executed\nindependently by each proxy instance of the load balancer. In most cases,\nmore than one proxy instance handles the traffic received by a backend\nservice. Thus, it is possible that an unhealthy endpoint is detected and\nejected by only some of the proxies, and while this happens, other proxies\nmay continue to send requests to the same unhealthy endpoint until they\ndetect and eject the unhealthy endpoint.\n\nApplicable backend endpoints can be:\n   \n   - VM instances in an Instance Group\n   - Endpoints in a Zonal NEG (GCE_VM_IP, GCE_VM_IP_PORT)\n   - Endpoints in a Hybrid Connectivity NEG (NON_GCP_PRIVATE_IP_PORT)\n   - Serverless NEGs, that resolve to Cloud Run, App Engine, or Cloud\n   Functions Services \n   - Private Service Connect NEGs, that resolve to\n   Google-managed regional API endpoints or managed services published using\n   Private Service Connect\n\n\n\nApplicable backend service types can be:\n   \n   - A global backend service with the loadBalancingScheme set to\n   INTERNAL_SELF_MANAGED or EXTERNAL_MANAGED. \n   - A regional backend\n   service with the serviceProtocol set to HTTP, HTTPS, HTTP2 or H2C, and\n   loadBalancingScheme set to INTERNAL_MANAGED or EXTERNAL_MANAGED. Not\n   supported for Serverless NEGs.\n\n\n\nNot supported when the backend service is referenced by a URL map that is\nbound to target gRPC proxy that has validateForProxyless field set to true."
@@ -46984,6 +47438,41 @@
         },
         "sampleRate": {
           "description": "This field can only be specified if logging is enabled for this backend\nservice. The value of the field must be in [0, 1]. This configures the\nsampling rate of requests to the load balancer where 1.0 means all logged\nrequests are reported and 0.0 means no logged requests are reported. The\ndefault value is 1.0.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceNetworkPassThroughLbTrafficPolicy": {
+      "id": "BackendServiceNetworkPassThroughLbTrafficPolicy",
+      "properties": {
+        "zonalAffinity": {
+          "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity",
+          "description": "When configured, new connections are load balanced across healthy backend\nendpoints in the local zone."
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity": {
+      "id": "BackendServiceNetworkPassThroughLbTrafficPolicyZonalAffinity",
+      "properties": {
+        "spillover": {
+          "description": "This field indicates whether zonal affinity is enabled or not. The\npossible values are:\n   \n   - ZONAL_AFFINITY_DISABLED: Default Value. Zonal Affinity\n   is disabled. The load balancer distributes new connections to all\n   healthy backend endpoints across all zones.\n   - ZONAL_AFFINITY_STAY_WITHIN_ZONE: Zonal Affinity is\n   enabled. The load balancer distributes new connections to all healthy\n   backend endpoints in the local zone only. If there are no healthy\n   backend endpoints in the local zone, the load balancer distributes\n   new connections to all backend endpoints in the local zone.\n   - ZONAL_AFFINITY_SPILL_CROSS_ZONE: Zonal Affinity is\n   enabled. The load balancer distributes new connections to all healthy\n   backend endpoints in the local zone only. If there aren't enough\n   healthy backend endpoints in the local zone, the load balancer\n   distributes new connections to all healthy backend endpoints across all\n   zones.",
+          "enum": [
+            "ZONAL_AFFINITY_DISABLED",
+            "ZONAL_AFFINITY_SPILL_CROSS_ZONE",
+            "ZONAL_AFFINITY_STAY_WITHIN_ZONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "spilloverRatio": {
+          "description": "The value of the field must be in [0, 1]. When the ratio of the count\nof healthy backend endpoints in a zone to the count of backend\nendpoints in that same zone is equal to or above this threshold, the\nload balancer distributes new connections to all healthy endpoints in\nthe local zone only. When the ratio of the count of healthy backend\nendpoints in a zone to the count of backend endpoints in that same\nzone is below this threshold, the load balancer distributes all new\nconnections to all healthy endpoints across all zones.",
           "format": "float",
           "type": "number"
         }
@@ -48023,9 +48512,15 @@
             "MEMORY_OPTIMIZED_M3",
             "MEMORY_OPTIMIZED_M4",
             "MEMORY_OPTIMIZED_M4_6TB",
+            "MEMORY_OPTIMIZED_X4_1440_24T",
             "MEMORY_OPTIMIZED_X4_16TB",
+            "MEMORY_OPTIMIZED_X4_1920_32T",
             "MEMORY_OPTIMIZED_X4_24TB",
             "MEMORY_OPTIMIZED_X4_32TB",
+            "MEMORY_OPTIMIZED_X4_480_6T",
+            "MEMORY_OPTIMIZED_X4_480_8T",
+            "MEMORY_OPTIMIZED_X4_960_12T",
+            "MEMORY_OPTIMIZED_X4_960_16T",
             "STORAGE_OPTIMIZED_Z3",
             "TYPE_UNSPECIFIED"
           ],
@@ -48057,9 +48552,15 @@
             "",
             "",
             "",
+            "CUD bucket for X4 machine with 1440 vCPUs and 24TB of memory.",
+            "",
+            "CUD bucket for X4 machine with 1920 vCPUs and 32TB of memory.",
             "",
             "",
-            "",
+            "CUD bucket for X4 machine with 480 vCPUs and 6TB of memory.",
+            "CUD bucket for X4 machine with 480 vCPUs and 8TB of memory.",
+            "CUD bucket for X4 machine with 960 vCPUs and 12TB of memory.",
+            "CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.",
             "",
             "Note for internal users: When adding a new enum Type for v1, make sure\nto also add it in the comment for the `optional Type type` definition.\nThis ensures that the public documentation displays the new enum Type."
           ],
@@ -51994,6 +52495,24 @@
           },
           "type": "array"
         },
+        "destNetworkContext": {
+          "description": "Network context of the traffic destination. Allowed values are:\n   \n   \n     - UNSPECIFIED\n     - INTERNET\n     - NON_INTERNET",
+          "enum": [
+            "INTERNET",
+            "INTRA_VPC",
+            "NON_INTERNET",
+            "UNSPECIFIED",
+            "VPC_NETWORKS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "destNetworkType": {
           "description": "Network type of the traffic destination. Allowed values are:\n   \n   \n     - UNSPECIFIED\n     - INTERNET\n     - NON_INTERNET",
           "enum": [
@@ -52053,6 +52572,24 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "srcNetworkContext": {
+          "description": "Network context of the traffic source. Allowed values are:\n   \n   \n     - UNSPECIFIED\n     - INTERNET\n     - INTRA_VPC\n     - NON_INTERNET\n     - VPC_NETWORKS",
+          "enum": [
+            "INTERNET",
+            "INTRA_VPC",
+            "NON_INTERNET",
+            "UNSPECIFIED",
+            "VPC_NETWORKS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "srcNetworkType": {
           "description": "Network type of the traffic source. Allowed values are:\n   \n   \n     - UNSPECIFIED\n     - INTERNET\n     - INTRA_VPC\n     - NON_INTERNET\n     - VPC_NETWORKS",
@@ -66130,6 +66667,10 @@
           "description": "If true, indicates this is an OS license. Only one OS license can be\nattached to a disk or image at a time.",
           "type": "boolean"
         },
+        "params": {
+          "$ref": "LicenseParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "removableFromDisk": {
           "description": "If true, this license can be removed from a disk's set of licenses, with no\nreplacement license needed.",
           "type": "boolean"
@@ -66259,6 +66800,20 @@
           "description": "Output only. [Output Only] URL of license corresponding to this License Code.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LicenseParams": {
+      "description": "Additional license params.",
+      "id": "LicenseParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the license. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -70630,6 +71185,18 @@
           },
           "type": "array"
         },
+        "allowAddressCreation": {
+          "description": "Specifies whether address creation is allowed.",
+          "enum": [
+            "ADDRESS_CREATION_ALLOWED",
+            "ADDRESS_CREATION_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowAliasIpRanges": {
           "description": "Specifies whether alias IP ranges (and secondary address ranges) are\nallowed.",
           "enum": [
@@ -70714,6 +71281,18 @@
           ],
           "type": "string"
         },
+        "allowFirewallPolicy": {
+          "description": "Specifies whether firewall policy can be attached to the network.",
+          "enum": [
+            "FIREWALL_POLICY_ALLOWED",
+            "FIREWALL_POLICY_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowInterconnect": {
           "description": "Specifies whether Cloud Interconnect creation is allowed.",
           "enum": [
@@ -70755,6 +71334,18 @@
           "enum": [
             "MULTI_NIC_IN_SAME_NETWORK_ALLOWED",
             "MULTI_NIC_IN_SAME_NETWORK_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "allowMultiNicInSameSubnetwork": {
+          "description": "Specifies whether multi-nic in the same subnetwork is allowed.",
+          "enum": [
+            "MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED",
+            "MULTI_NIC_IN_SAME_SUBNETWORK_BLOCKED"
           ],
           "enumDescriptions": [
             "",
@@ -70870,6 +71461,30 @@
           ],
           "type": "string"
         },
+        "allowSubnetworkCreation": {
+          "description": "Specifies whether subnetwork creation is allowed.",
+          "enum": [
+            "SUBNETWORK_CREATION_ALLOWED",
+            "SUBNETWORK_CREATION_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "allowVpcFirewallRules": {
+          "description": "Specifies whether VPC firewall rules can be created under the network.",
+          "enum": [
+            "VPC_FIREWALL_RULES_ALLOWED",
+            "VPC_FIREWALL_RULES_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowVpcPeering": {
           "description": "Specifies whether VPC peering is allowed.",
           "enum": [
@@ -70893,6 +71508,20 @@
             ""
           ],
           "type": "string"
+        },
+        "firewallPolicyTypes": {
+          "items": {
+            "enum": [
+              "RDMA_ROCE_POLICY",
+              "VPC_POLICY"
+            ],
+            "enumDescriptions": [
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
         },
         "interfaceTypes": {
           "description": "If set, limits the interface types that the network supports. If\nempty, all interface types are supported.",
@@ -70928,6 +71557,17 @@
             ""
           ],
           "type": "string"
+        },
+        "predefinedNetworkInternalIpv6Range": {
+          "description": "Specifies a predefined internal IPv6 range for the network.",
+          "type": "string"
+        },
+        "predefinedSubnetworkRanges": {
+          "description": "Predefined subnetwork ranges for the network.",
+          "items": {
+            "$ref": "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange"
+          },
+          "type": "array"
         },
         "subnetPurposes": {
           "description": "Specifies which subnetwork purposes are supported.",
@@ -71022,6 +71662,20 @@
       },
       "type": "object"
     },
+    "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange": {
+      "id": "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange",
+      "properties": {
+        "ipv6Range": {
+          "description": "The IPv6 range of the predefined subnetwork.",
+          "type": "string"
+        },
+        "namePrefix": {
+          "description": "The naming prefix of the predefined subnetwork.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkProfileProfileType": {
       "id": "NetworkProfileProfileType",
       "properties": {
@@ -71041,11 +71695,13 @@
         "rdmaSubtype": {
           "enum": [
             "FALCON",
-            "ROCE"
+            "ROCE",
+            "ROCE_METAL"
           ],
           "enumDescriptions": [
             "RDMA over Falcon.",
-            "RDMA over Converged Ethernet (RoCE)."
+            "RDMA over Converged Ethernet (RoCE).",
+            "RDMA over Converged Ethernet (RoCE) for Bare Metal."
           ],
           "type": "string"
         },
@@ -79775,6 +80431,12 @@
           "readOnly": true,
           "type": "integer"
         },
+        "inUseHostCount": {
+          "description": "Output only. Number of hosts currently in use. If there is one or more Instances running\non the host, it is considered in use.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "kind": {
           "default": "compute#reservationBlock",
           "description": "Output only. [Output Only] Type of the resource. Alwayscompute#reservationBlock for reservation blocks.",
@@ -80286,6 +80948,12 @@
         },
         "inUseCount": {
           "description": "Output only. [Output Only] The number of instances that are currently in use on this\nreservation subBlock.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "inUseHostCount": {
+          "description": "Output only. Number of hosts currently in use. If there is one or more Instances running\non the host, it is considered in use.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -87605,6 +88273,20 @@
           },
           "type": "array"
         },
+        "postKeyRevocationActionType": {
+          "description": "PostKeyRevocationActionType of the instance.",
+          "enum": [
+            "NOOP",
+            "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
+            "SHUTDOWN"
+          ],
+          "enumDescriptions": [
+            "Indicates user chose no operation.",
+            "Default value. This value is unused.",
+            "Indicates user chose to opt for VM shutdown on key revocation."
+          ],
+          "type": "string"
+        },
         "scheduling": {
           "$ref": "Scheduling",
           "description": "Specifies the scheduling options for the instances that are created from\nthis machine image."
@@ -89119,6 +89801,10 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
+        "params": {
+          "$ref": "StoragePoolParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "performanceProvisioningType": {
           "description": "Provisioning type of the performance-related parameters of the pool,\nsuch as throughput and IOPS.",
           "enum": [
@@ -89815,6 +90501,20 @@
             }
           },
           "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "StoragePoolParams": {
+      "description": "Additional storage pool params.",
+      "id": "StoragePoolParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the storage pool. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },

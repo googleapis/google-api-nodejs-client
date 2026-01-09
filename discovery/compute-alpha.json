@@ -28456,6 +28456,49 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getHealth": {
+          "description": "Gets the most recent health check results for this\nregional CompositeHealthCheck.",
+          "flatPath": "projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth",
+          "httpMethod": "GET",
+          "id": "compute.regionCompositeHealthChecks.getHealth",
+          "parameterOrder": [
+            "project",
+            "region",
+            "compositeHealthCheck"
+          ],
+          "parameters": {
+            "compositeHealthCheck": {
+              "description": "Name of the CompositeHealthCheck resource to get health for.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Name of the project scoping this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth",
+          "response": {
+            "$ref": "CompositeHealthChecksGetHealthResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Create a CompositeHealthCheck in the specified project in the given region\nusing the parameters that are included in the request.",
           "flatPath": "projects/{project}/regions/{region}/compositeHealthChecks",
@@ -53698,7 +53741,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20251230",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -61595,6 +61638,58 @@
       },
       "type": "object"
     },
+    "CompositeHealthChecksGetHealthResponse": {
+      "description": "Response message for RegionCompositeHealthChecks.GetHealth",
+      "id": "CompositeHealthChecksGetHealthResponse",
+      "properties": {
+        "healthSources": {
+          "description": "Health sources and their corresponding health states.",
+          "items": {
+            "$ref": "CompositeHealthChecksGetHealthResponseHealthSourceHealth"
+          },
+          "type": "array"
+        },
+        "healthState": {
+          "description": "Health state of the CompositeHealthCheck.",
+          "enum": [
+            "HEALTHY",
+            "UNHEALTHY",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CompositeHealthChecksGetHealthResponseHealthSourceHealth": {
+      "id": "CompositeHealthChecksGetHealthResponseHealthSourceHealth",
+      "properties": {
+        "healthState": {
+          "description": "Health state of the associated HealthSource resource.",
+          "enum": [
+            "HEALTHY",
+            "UNHEALTHY",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "source": {
+          "description": "URL of the associated HealthSource resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompositeHealthChecksScopedList": {
       "id": "CompositeHealthChecksScopedList",
       "properties": {
@@ -65144,6 +65239,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "rolloutOperation": {
+          "$ref": "FirewallPolicyRolloutOperation",
+          "description": "Configuration and status of the progressive rollout of this resource."
+        },
         "ruleTupleCount": {
           "description": "Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall\npolicy can not exceed a set number of tuples.",
           "format": "int32",
@@ -65367,6 +65466,121 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRolloutOperation": {
+      "description": "Represents progressive rollout input parameters and current status.",
+      "id": "FirewallPolicyRolloutOperation",
+      "properties": {
+        "rolloutInput": {
+          "$ref": "FirewallPolicyRolloutOperationRolloutInput",
+          "description": "Input parameters to be used by the next not yet scheduled rollout."
+        },
+        "rolloutStatus": {
+          "$ref": "FirewallPolicyRolloutOperationRolloutStatus",
+          "description": "[Output only] Current status of the rollout."
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRolloutOperationRolloutInput": {
+      "description": "Represents progressive rollout input parameters.",
+      "id": "FirewallPolicyRolloutOperationRolloutInput",
+      "properties": {
+        "name": {
+          "description": "The name of the rollout plan. Ex.\norganizations//locations/global/rolloutPlans/.",
+          "type": "string"
+        },
+        "predefinedRolloutPlan": {
+          "description": "Predefined rollout plan.",
+          "enum": [
+            "DEFAULT_ROLLOUT_PLAN"
+          ],
+          "enumDescriptions": [
+            "A default predefined rollout plan."
+          ],
+          "type": "string"
+        },
+        "retryUuid": {
+          "description": "The UUID of the retry action. Only needed if this is a retry for an\nexisting rollout. This can be used after the user canceled a rollout\nand want to retry it with no changes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRolloutOperationRolloutStatus": {
+      "description": "Represents progressive rollout current status.",
+      "id": "FirewallPolicyRolloutOperationRolloutStatus",
+      "properties": {
+        "nextRollout": {
+          "$ref": "FirewallPolicyRolloutOperationRolloutStatusNextRollout",
+          "description": "[Output only] The next rollout."
+        },
+        "ongoingRollouts": {
+          "description": "[Output only] The ongoing rollout.",
+          "items": {
+            "$ref": "FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata"
+          },
+          "type": "array"
+        },
+        "previousRollout": {
+          "$ref": "FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata",
+          "description": "[Output only] The last previously executed rollout."
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRolloutOperationRolloutStatusNextRollout": {
+      "id": "FirewallPolicyRolloutOperationRolloutStatusNextRollout",
+      "properties": {
+        "rolloutId": {
+          "description": "Output only. [Output only] The id of the next rollout.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolloutPlan": {
+          "description": "The name of the rollout plan to be used by the next not yet started\nrollout. This field is auto populated based on RolloutInput when a\nnew rollout is scheduled. This can be manually changed before the\nscheduled rollout starts.\nEx.\norganizations//locations/global/rolloutPlans/",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata": {
+      "description": "Represents the status of the progressive rollout instance, either\ncompleted or ongoing.",
+      "id": "FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata",
+      "properties": {
+        "rollout": {
+          "description": "Output only. [Output only] The name of the rollout\norganizations//locations/global/rollouts/",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolloutPlan": {
+          "description": "Output only. [Output only] The name of the rollout plan used by this rollout\norganizations//locations/global/rolloutPlans/",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output only] The state of the rollout.",
+          "enum": [
+            "CANCELLED",
+            "COMPLETED",
+            "FAILED",
+            "PAUSED",
+            "PROCESSING",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "The current Hierarchical Firewall Policy state was propagated to\nsome regions before being canceled. Use Rollout.Get API to see\nwhich regions get the current state. Use GetEffectiveFirewalls API\non the RB VPC in the regions that didn't get the current state to\nsee the effective state there.",
+            "The current Hierarchical Firewall Policy state is propagated\neverywhere.",
+            "The current Hierarchical Firewall Policy state is propagated\npartially, due to failures in some regions. Use Rollout.Get API to\nsee which regions were skipped.",
+            "The rollout is paused.",
+            "Rollout is in progress.",
+            "It is impossible to determine the current state of the iteration."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -75787,6 +76001,14 @@
           "description": "Output only. [Output only] Status of all-instances configuration on the group.",
           "readOnly": true
         },
+        "appliedAcceleratorTopologies": {
+          "description": "Output only. [Output Only] The accelerator topology applied to this MIG.\nCurrently only one accelerator topology is supported.",
+          "items": {
+            "$ref": "InstanceGroupManagerStatusAcceleratorTopology"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "autoscaler": {
           "description": "Output only. [Output Only] The URL of theAutoscaler\nthat targets this instance group manager.",
           "readOnly": true,
@@ -75795,6 +76017,11 @@
         "bulkInstanceOperation": {
           "$ref": "InstanceGroupManagerStatusBulkInstanceOperation",
           "description": "Output only. [Output Only] The status of bulk instance operation.",
+          "readOnly": true
+        },
+        "currentInstanceStatuses": {
+          "$ref": "InstanceGroupManagerStatusInstanceStatusSummary",
+          "description": "Output only. [Output Only] The list of instance statuses and the number of instances\nin this managed instance group that have the status. Currently only shown\nfor TPU MIGs",
           "readOnly": true
         },
         "isStable": {
@@ -75811,6 +76038,106 @@
           "$ref": "InstanceGroupManagerStatusVersionTarget",
           "description": "Output only. [Output Only] A status of consistency of Instances' versions with their\ntarget version specified by version field on Instance Group\nManager.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStatusAcceleratorTopology": {
+      "id": "InstanceGroupManagerStatusAcceleratorTopology",
+      "properties": {
+        "acceleratorTopology": {
+          "description": "Output only. [Output Only] Topology in the format of: \"16x16\", \"4x4x4\", etc.\nThe value is the same as configured in the WorkloadPolicy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output Only] The state of the accelerator topology.",
+          "enum": [
+            "ACTIVATING",
+            "ACTIVE",
+            "ACTIVE_DEGRADED",
+            "DEACTIVATING",
+            "FAILED",
+            "INCOMPLETE",
+            "REACTIVATING"
+          ],
+          "enumDescriptions": [
+            "The accelerator topology is being activated.",
+            "The accelerator topology is active.",
+            "The accelerator topology is active but operating in degraded mode.",
+            "The accelerator topology is being deactivated.",
+            "The accelerator topology failed.",
+            "The configuration is incomplete and the accelerator topology cannot\nbe activated due to insufficient number of running VMs.",
+            "The accelerator topology is being reactivated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDetails": {
+          "$ref": "InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails",
+          "description": "Output only. [Output Only] The result of the latest accelerator topology state\ncheck.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails": {
+      "id": "InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails",
+      "properties": {
+        "error": {
+          "description": "Output only. [Output Only] Encountered errors.",
+          "properties": {
+            "errors": {
+              "description": "[Output Only] The array of errors encountered while processing this\noperation.",
+              "items": {
+                "properties": {
+                  "code": {
+                    "description": "[Output Only] The error type identifier for this error.",
+                    "type": "string"
+                  },
+                  "errorDetails": {
+                    "description": "[Output Only] An optional list of messages that contain the error\ndetails. There is a set of defined message types to use for providing\ndetails.The syntax depends on the error code. For example,\nQuotaExceededInfo will have details when the error code is\nQUOTA_EXCEEDED.",
+                    "items": {
+                      "properties": {
+                        "errorInfo": {
+                          "$ref": "ErrorInfo"
+                        },
+                        "help": {
+                          "$ref": "Help"
+                        },
+                        "localizedMessage": {
+                          "$ref": "LocalizedMessage"
+                        },
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "location": {
+                    "description": "[Output Only] Indicates the field in the request that caused the error.\nThis property is optional.",
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "[Output Only] An optional, human-readable error message.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "readOnly": true,
+          "type": "object"
+        },
+        "timestamp": {
+          "description": "Output only. [Output Only] Timestamp is shown only if there is an error. The field\nhas // RFC3339 //\ntext format.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -75905,6 +76232,91 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStatusInstanceStatusSummary": {
+      "description": "The list of instance statuses and the number of instances in this managed\ninstance group that have the status. For more information about how to\ninterpret each status check the instance lifecycle documentation.\nCurrently only shown for TPU MIGs.",
+      "id": "InstanceGroupManagerStatusInstanceStatusSummary",
+      "properties": {
+        "deprovisioning": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have DEPROVISIONING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "nonExistent": {
+          "description": "Output only. [Output Only] The number of instances that have not been created yet or\nhave been deleted. Includes only instances that would be shown in the\nlistManagedInstances method and not all instances that have been\ndeleted in the lifetime of the MIG.\nDoes not include FlexStart instances that are waiting for the resources\navailability, they are considered as 'pending'.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "pending": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have PENDING status, that is FlexStart instances that are waiting\nfor resources. Instances that do not exist because of the other reasons\nare counted as 'non_existent'.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "pendingStop": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have PENDING_STOP status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "provisioning": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have PROVISIONING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "repairing": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have REPAIRING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "running": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have RUNNING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "staging": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have STAGING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "stopped": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have STOPPED status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "stopping": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have STOPPING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "suspended": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have SUSPENDED status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "suspending": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have SUSPENDING status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "terminated": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group\nthat have TERMINATED status.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -84426,7 +84838,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Input only. Resource manager tags to be bound to the license. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/{tag_value_id}`. The field is ignored\n(both PUT & PATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the license. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -85393,6 +85805,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the machine image. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -86607,7 +87026,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. [Output Only] The name of this multi-MIG member generated by\nGoogle Compute Engine.",
+          "description": "Output only. [Output Only] Server-defined name for the multi-MIG member.",
           "readOnly": true,
           "type": "string"
         },
@@ -91465,7 +91884,7 @@
           "enumDescriptions": [
             "RDMA over Falcon.",
             "RDMA over Converged Ethernet (RoCE).",
-            "RDMA over RoCE for Bare Metal."
+            "RDMA over Converged Ethernet (RoCE) for Bare Metal."
           ],
           "type": "string"
         },
@@ -103420,6 +103839,10 @@
           "description": "Output only. [Output Only] Server-defined URL for this resource with the resource id.",
           "readOnly": true,
           "type": "string"
+        },
+        "shareSettings": {
+          "$ref": "ShareSettings",
+          "description": "Specify share-settings to create a shared slot. Set to empty\nto inherit share settings from a parent resource."
         },
         "state": {
           "description": "Output only. [Output Only] State of the reservation slot.",
@@ -115913,7 +116336,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Input only. Resource manager tags to be bound to the storage pool. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/{tag_value_id}`. The field is ignored\n(both PUT & PATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the storage pool. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -124778,7 +125201,7 @@
             "HIGH"
           ],
           "enumDescriptions": [
-            "DEFAULT: A VPN tunnel which can support up to 1 Gbps.",
+            "DEFAULT: A VPN tunnel which can support up to 3 Gbps.",
             "HIGH: A VPN tunnel which can support up to 6 Gbps."
           ],
           "type": "string"

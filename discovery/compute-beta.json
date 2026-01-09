@@ -31631,6 +31631,130 @@
         }
       }
     },
+    "regionMultiMigMembers": {
+      "methods": {
+        "get": {
+          "description": "Retrieves information about the specified multi-MIG member.",
+          "flatPath": "projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers/{multiMigMember}",
+          "httpMethod": "GET",
+          "id": "compute.regionMultiMigMembers.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "multiMig",
+            "multiMigMember"
+          ],
+          "parameters": {
+            "multiMig": {
+              "description": "The name of the multi-MIG.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "multiMigMember": {
+              "description": "The name of the multi-MIG member.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request. Region name should conform to RFC1035.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers/{multiMigMember}",
+          "response": {
+            "$ref": "MultiMigMember"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "list": {
+          "description": "Retrieves a list of members of a specific multi-MIG.",
+          "flatPath": "projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers",
+          "httpMethod": "GET",
+          "id": "compute.regionMultiMigMembers.list",
+          "parameterOrder": [
+            "project",
+            "region",
+            "multiMig"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "multiMig": {
+              "description": "The name of the multi-MIG.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request. Region name should conform to RFC1035.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers",
+          "response": {
+            "$ref": "MultiMigMemberList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "regionMultiMigs": {
       "methods": {
         "delete": {
@@ -49456,7 +49580,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20251230",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55688,9 +55812,15 @@
             "MEMORY_OPTIMIZED_M3",
             "MEMORY_OPTIMIZED_M4",
             "MEMORY_OPTIMIZED_M4_6TB",
+            "MEMORY_OPTIMIZED_X4_1440_24T",
             "MEMORY_OPTIMIZED_X4_16TB",
+            "MEMORY_OPTIMIZED_X4_1920_32T",
             "MEMORY_OPTIMIZED_X4_24TB",
             "MEMORY_OPTIMIZED_X4_32TB",
+            "MEMORY_OPTIMIZED_X4_480_6T",
+            "MEMORY_OPTIMIZED_X4_480_8T",
+            "MEMORY_OPTIMIZED_X4_960_12T",
+            "MEMORY_OPTIMIZED_X4_960_16T",
             "STORAGE_OPTIMIZED_Z3",
             "TYPE_UNSPECIFIED"
           ],
@@ -55722,9 +55852,15 @@
             "",
             "",
             "",
+            "CUD bucket for X4 machine with 1440 vCPUs and 24TB of memory.",
+            "",
+            "CUD bucket for X4 machine with 1920 vCPUs and 32TB of memory.",
             "",
             "",
-            "",
+            "CUD bucket for X4 machine with 480 vCPUs and 6TB of memory.",
+            "CUD bucket for X4 machine with 480 vCPUs and 8TB of memory.",
+            "CUD bucket for X4 machine with 960 vCPUs and 12TB of memory.",
+            "CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.",
             "",
             "Note for internal users: When adding a new enum Type for v1, make sure\nto also add it in the comment for the `optional Type type` definition.\nThis ensures that the public documentation displays the new enum Type."
           ],
@@ -76525,6 +76661,10 @@
           "description": "If true, indicates this is an OS license. Only one OS license can be\nattached to a disk or image at a time.",
           "type": "boolean"
         },
+        "params": {
+          "$ref": "LicenseParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "removableFromDisk": {
           "description": "If true, this license can be removed from a disk's set of licenses, with no\nreplacement license needed.",
           "type": "boolean"
@@ -76654,6 +76794,20 @@
           "description": "Output only. [Output Only] URL of license corresponding to this License Code.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LicenseParams": {
+      "description": "Additional license params.",
+      "id": "LicenseParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the license. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -78256,6 +78410,216 @@
       },
       "type": "object"
     },
+    "MultiMigMember": {
+      "description": "Represents a Multi-MIG member resource.",
+      "id": "MultiMigMember",
+      "properties": {
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp of this multi-MIG member inRFC3339 text format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. [Output only] The unique identifier for this resource type. The server\ngenerates this identifier.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#multiMigMember",
+          "description": "Output only. Type of the resource. Alwayscompute#multiMigMember for a list of multi-MIG members.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. [Output Only] Server-defined name for the multi-MIG member.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. [Output Only] The URL of the region where the multi-MIG resides.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined fully-qualified URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "MultiMigMemberStatus",
+          "description": "Output only. [Output Only] The status of this multi-MIG member",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "MultiMigMemberList": {
+      "id": "MultiMigMemberList",
+      "properties": {
+        "id": {
+          "description": "Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of multi-MIG member resources.",
+          "items": {
+            "$ref": "MultiMigMember"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#multiMigMemberList",
+          "description": "Output only. Type of the resource. Alwayscompute#multiMigMember for a list of multi-MIG members.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output only] Server-defined URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "warning": {
+          "description": "Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "MultiMigMemberStatus": {
+      "id": "MultiMigMemberStatus",
+      "properties": {
+        "instanceGroupManager": {
+          "description": "[Output Only] URL of member instance group manager",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MultiMigResourcePolicies": {
       "description": "Resource policies message for a multi-MIG. Specifies the workload policy\nconfiguration of the multi-MIG.",
       "id": "MultiMigResourcePolicies",
@@ -78277,6 +78641,12 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "membersCount": {
+          "description": "Output only. [Output Only] The number of instance group manager members in this\nmulti-MIG.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -80950,6 +81320,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "macAddress": {
+          "description": "Output only. [Output Only] MAC address assigned to this network interface.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "[Output Only] The name of the network interface, which is generated by the\nserver. For a VM, the network interface uses the nicN naming\nformat. Where N is a value between 0 and7. The default interface value is nic0.",
           "type": "string"
@@ -82230,6 +82605,18 @@
           },
           "type": "array"
         },
+        "allowAddressCreation": {
+          "description": "Specifies whether address creation is allowed.",
+          "enum": [
+            "ADDRESS_CREATION_ALLOWED",
+            "ADDRESS_CREATION_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowAliasIpRanges": {
           "description": "Specifies whether alias IP ranges (and secondary address ranges) are\nallowed.",
           "enum": [
@@ -82374,6 +82761,18 @@
           ],
           "type": "string"
         },
+        "allowMultiNicInSameSubnetwork": {
+          "description": "Specifies whether multi-nic in the same subnetwork is allowed.",
+          "enum": [
+            "MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED",
+            "MULTI_NIC_IN_SAME_SUBNETWORK_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowMulticast": {
           "description": "Specifies whether multicast is allowed.",
           "enum": [
@@ -82482,6 +82881,30 @@
           ],
           "type": "string"
         },
+        "allowSubnetworkCreation": {
+          "description": "Specifies whether subnetwork creation is allowed.",
+          "enum": [
+            "SUBNETWORK_CREATION_ALLOWED",
+            "SUBNETWORK_CREATION_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "allowVpcFirewallRules": {
+          "description": "Specifies whether VPC firewall rules can be created under the network.",
+          "enum": [
+            "VPC_FIREWALL_RULES_ALLOWED",
+            "VPC_FIREWALL_RULES_BLOCKED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "allowVpcPeering": {
           "description": "Specifies whether VPC peering is allowed.",
           "enum": [
@@ -82554,6 +82977,17 @@
             ""
           ],
           "type": "string"
+        },
+        "predefinedNetworkInternalIpv6Range": {
+          "description": "Specifies a predefined internal IPv6 range for the network.",
+          "type": "string"
+        },
+        "predefinedSubnetworkRanges": {
+          "description": "Predefined subnetwork ranges for the network.",
+          "items": {
+            "$ref": "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange"
+          },
+          "type": "array"
         },
         "subnetPurposes": {
           "description": "Specifies which subnetwork purposes are supported.",
@@ -82648,6 +83082,20 @@
       },
       "type": "object"
     },
+    "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange": {
+      "id": "NetworkProfileNetworkFeaturesPredefinedSubnetworkRange",
+      "properties": {
+        "ipv6Range": {
+          "description": "The IPv6 range of the predefined subnetwork.",
+          "type": "string"
+        },
+        "namePrefix": {
+          "description": "The naming prefix of the predefined subnetwork.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkProfileProfileType": {
       "id": "NetworkProfileProfileType",
       "properties": {
@@ -82667,11 +83115,13 @@
         "rdmaSubtype": {
           "enum": [
             "FALCON",
-            "ROCE"
+            "ROCE",
+            "ROCE_METAL"
           ],
           "enumDescriptions": [
             "RDMA over Falcon.",
-            "RDMA over Converged Ethernet (RoCE)."
+            "RDMA over Converged Ethernet (RoCE).",
+            "RDMA over Converged Ethernet (RoCE) for Bare Metal."
           ],
           "type": "string"
         },
@@ -102716,6 +103166,10 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
+        "params": {
+          "$ref": "StoragePoolParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "performanceProvisioningType": {
           "description": "Provisioning type of the performance-related parameters of the pool,\nsuch as throughput and IOPS.",
           "enum": [
@@ -103412,6 +103866,20 @@
             }
           },
           "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "StoragePoolParams": {
+      "description": "Additional storage pool params.",
+      "id": "StoragePoolParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the storage pool. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -111964,6 +112432,18 @@
       "description": "Represents a Cloud VPN Tunnel resource.\n\nFor more information about VPN, read the\nthe Cloud VPN Overview.",
       "id": "VpnTunnel",
       "properties": {
+        "capacityTier": {
+          "description": "Capacity tier of the VPN tunnel. This is used for IPsec over Interconnect\ntunnels to indicate different bandwidth limits.",
+          "enum": [
+            "DEFAULT",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "DEFAULT: A VPN tunnel which can support up to 3 Gbps.",
+            "HIGH: A VPN tunnel which can support up to 6 Gbps."
+          ],
+          "type": "string"
+        },
         "cipherSuite": {
           "$ref": "VpnTunnelCipherSuite",
           "description": "User specified list of ciphers to use for the phase 1 and phase 2 of the\nIKE protocol."

@@ -193,6 +193,7 @@ export namespace compute_beta {
     regionInstances: Resource$Regioninstances;
     regionInstanceTemplates: Resource$Regioninstancetemplates;
     regionInstantSnapshots: Resource$Regioninstantsnapshots;
+    regionMultiMigMembers: Resource$Regionmultimigmembers;
     regionMultiMigs: Resource$Regionmultimigs;
     regionNetworkEndpointGroups: Resource$Regionnetworkendpointgroups;
     regionNetworkFirewallPolicies: Resource$Regionnetworkfirewallpolicies;
@@ -366,6 +367,9 @@ export namespace compute_beta {
         this.context
       );
       this.regionInstantSnapshots = new Resource$Regioninstantsnapshots(
+        this.context
+      );
+      this.regionMultiMigMembers = new Resource$Regionmultimigmembers(
         this.context
       );
       this.regionMultiMigs = new Resource$Regionmultimigs(this.context);
@@ -17595,6 +17599,11 @@ export namespace compute_beta {
      */
     osLicense?: boolean | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$LicenseParams;
+    /**
      * If true, this license can be removed from a disk's set of licenses, with no
      * replacement license needed.
      */
@@ -17694,6 +17703,21 @@ export namespace compute_beta {
      * Output only. [Output Only] URL of license corresponding to this License Code.
      */
     selfLink?: string | null;
+  }
+  /**
+   * Additional license params.
+   */
+  export interface Schema$LicenseParams {
+    /**
+     * Input only. Resource manager tags to be bound to the license. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
+     * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * Commitment for a particular license resource.
@@ -18475,6 +18499,80 @@ export namespace compute_beta {
     status?: Schema$MultiMigStatus;
   }
   /**
+   * Represents a Multi-MIG member resource.
+   */
+  export interface Schema$MultiMigMember {
+    /**
+     * Output only. [Output Only] Creation timestamp of this multi-MIG member inRFC3339 text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Output only. [Output only] The unique identifier for this resource type. The server
+     * generates this identifier.
+     */
+    id?: string | null;
+    /**
+     * Output only. Type of the resource. Alwayscompute#multiMigMember for a list of multi-MIG members.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined name for the multi-MIG member.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] The URL of the region where the multi-MIG resides.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] The status of this multi-MIG member
+     */
+    status?: Schema$MultiMigMemberStatus;
+  }
+  export interface Schema$MultiMigMemberList {
+    /**
+     * Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of multi-MIG member resources.
+     */
+    items?: Schema$MultiMigMember[];
+    /**
+     * Output only. Type of the resource. Alwayscompute#multiMigMember for a list of multi-MIG members.
+     */
+    kind?: string | null;
+    /**
+     * This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$MultiMigMemberStatus {
+    /**
+     * [Output Only] URL of member instance group manager
+     */
+    instanceGroupManager?: string | null;
+  }
+  /**
    * Resource policies message for a multi-MIG. Specifies the workload policy
    * configuration of the multi-MIG.
    */
@@ -18530,6 +18628,11 @@ export namespace compute_beta {
      * Currently only one accelerator topology is supported.
      */
     appliedAcceleratorTopologies?: Schema$MultiMigStatusAcceleratorTopology[];
+    /**
+     * Output only. [Output Only] The number of instance group manager members in this
+     * multi-MIG.
+     */
+    membersCount?: number | null;
   }
   export interface Schema$MultiMigStatusAcceleratorTopology {
     /**
@@ -19752,6 +19855,10 @@ export namespace compute_beta {
      */
     kind?: string | null;
     /**
+     * Output only. [Output Only] MAC address assigned to this network interface.
+     */
+    macAddress?: string | null;
+    /**
      * [Output Only] The name of the network interface, which is generated by the
      * server. For a VM, the network interface uses the nicN naming
      * format. Where N is a value between 0 and7. The default interface value is nic0.
@@ -20391,6 +20498,10 @@ export namespace compute_beta {
      */
     addressPurposes?: string[] | null;
     /**
+     * Specifies whether address creation is allowed.
+     */
+    allowAddressCreation?: string | null;
+    /**
      * Specifies whether alias IP ranges (and secondary address ranges) are
      * allowed.
      */
@@ -20445,6 +20556,10 @@ export namespace compute_beta {
      */
     allowMultiNicInSameNetwork?: string | null;
     /**
+     * Specifies whether multi-nic in the same subnetwork is allowed.
+     */
+    allowMultiNicInSameSubnetwork?: string | null;
+    /**
      * Specifies whether NCC is allowed.
      */
     allowNcc?: string | null;
@@ -20477,6 +20592,14 @@ export namespace compute_beta {
      */
     allowSubInterfaces?: string | null;
     /**
+     * Specifies whether subnetwork creation is allowed.
+     */
+    allowSubnetworkCreation?: string | null;
+    /**
+     * Specifies whether VPC firewall rules can be created under the network.
+     */
+    allowVpcFirewallRules?: string | null;
+    /**
      * Specifies whether VPC peering is allowed.
      */
     allowVpcPeering?: string | null;
@@ -20494,6 +20617,14 @@ export namespace compute_beta {
      * Specifies which type of multicast is supported.
      */
     multicast?: string | null;
+    /**
+     * Specifies a predefined internal IPv6 range for the network.
+     */
+    predefinedNetworkInternalIpv6Range?: string | null;
+    /**
+     * Predefined subnetwork ranges for the network.
+     */
+    predefinedSubnetworkRanges?: Schema$NetworkProfileNetworkFeaturesPredefinedSubnetworkRange[];
     /**
      * Specifies which subnetwork purposes are supported.
      */
@@ -20514,6 +20645,16 @@ export namespace compute_beta {
      * Specifies which type of unicast is supported.
      */
     unicast?: string | null;
+  }
+  export interface Schema$NetworkProfileNetworkFeaturesPredefinedSubnetworkRange {
+    /**
+     * The IPv6 range of the predefined subnetwork.
+     */
+    ipv6Range?: string | null;
+    /**
+     * The naming prefix of the predefined subnetwork.
+     */
+    namePrefix?: string | null;
   }
   export interface Schema$NetworkProfileProfileType {
     networkType?: string | null;
@@ -30717,6 +30858,11 @@ export namespace compute_beta {
      */
     name?: string | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$StoragePoolParams;
+    /**
      * Provisioning type of the performance-related parameters of the pool,
      * such as throughput and IOPS.
      */
@@ -30963,6 +31109,21 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional storage pool params.
+   */
+  export interface Schema$StoragePoolParams {
+    /**
+     * Input only. Resource manager tags to be bound to the storage pool. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
+     * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * [Output Only] Contains output only fields.
@@ -34752,6 +34913,11 @@ export namespace compute_beta {
    * the Cloud VPN Overview.
    */
   export interface Schema$VpnTunnel {
+    /**
+     * Capacity tier of the VPN tunnel. This is used for IPsec over Interconnect
+     * tunnels to indicate different bandwidth limits.
+     */
+    capacityTier?: string | null;
     /**
      * User specified list of ciphers to use for the phase 1 and phase 2 of the
      * IKE protocol.
@@ -96050,6 +96216,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6Address": "my_ipv6Address",
      *       //   "kind": "my_kind",
+     *       //   "macAddress": "my_macAddress",
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkAttachment": "my_networkAttachment",
@@ -106035,6 +106202,7 @@ export namespace compute_beta {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6Address": "my_ipv6Address",
      *       //   "kind": "my_kind",
+     *       //   "macAddress": "my_macAddress",
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkAttachment": "my_networkAttachment",
@@ -122683,6 +122851,7 @@ export namespace compute_beta {
      *   //   "multiTenantOnly": false,
      *   //   "name": "my_name",
      *   //   "osLicense": false,
+     *   //   "params": {},
      *   //   "removableFromDisk": false,
      *   //   "requiredCoattachedLicenses": [],
      *   //   "resourceRequirements": {},
@@ -123016,6 +123185,7 @@ export namespace compute_beta {
      *       //   "multiTenantOnly": false,
      *       //   "name": "my_name",
      *       //   "osLicense": false,
+     *       //   "params": {},
      *       //   "removableFromDisk": false,
      *       //   "requiredCoattachedLicenses": [],
      *       //   "resourceRequirements": {},
@@ -123790,6 +123960,7 @@ export namespace compute_beta {
      *       //   "multiTenantOnly": false,
      *       //   "name": "my_name",
      *       //   "osLicense": false,
+     *       //   "params": {},
      *       //   "removableFromDisk": false,
      *       //   "requiredCoattachedLicenses": [],
      *       //   "resourceRequirements": {},
@@ -195048,6 +195219,542 @@ export namespace compute_beta {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Regionmultimigmembers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves information about the specified multi-MIG member.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionMultiMigMembers.get({
+     *     // The name of the multi-MIG.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     multiMig: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // The name of the multi-MIG member.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     multiMigMember: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request. Region name should conform to RFC1035.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regionmultimigmembers$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regionmultimigmembers$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MultiMigMember>>;
+    get(
+      params: Params$Resource$Regionmultimigmembers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regionmultimigmembers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MultiMigMember>,
+      callback: BodyResponseCallback<Schema$MultiMigMember>
+    ): void;
+    get(
+      params: Params$Resource$Regionmultimigmembers$Get,
+      callback: BodyResponseCallback<Schema$MultiMigMember>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MultiMigMember>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionmultimigmembers$Get
+        | BodyResponseCallback<Schema$MultiMigMember>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MultiMigMember>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MultiMigMember>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MultiMigMember>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionmultimigmembers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionmultimigmembers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers/{multiMigMember}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'multiMig', 'multiMigMember'],
+        pathParams: ['multiMig', 'multiMigMember', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MultiMigMember>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MultiMigMember>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of members of a specific multi-MIG.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionMultiMigMembers.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // The name of the multi-MIG.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     multiMig: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // Name of the region for this request. Region name should conform to RFC1035.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regionmultimigmembers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regionmultimigmembers$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MultiMigMemberList>>;
+    list(
+      params: Params$Resource$Regionmultimigmembers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regionmultimigmembers$List,
+      options: MethodOptions | BodyResponseCallback<Schema$MultiMigMemberList>,
+      callback: BodyResponseCallback<Schema$MultiMigMemberList>
+    ): void;
+    list(
+      params: Params$Resource$Regionmultimigmembers$List,
+      callback: BodyResponseCallback<Schema$MultiMigMemberList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$MultiMigMemberList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionmultimigmembers$List
+        | BodyResponseCallback<Schema$MultiMigMemberList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MultiMigMemberList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MultiMigMemberList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MultiMigMemberList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionmultimigmembers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionmultimigmembers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/multiMigs/{multiMig}/multiMigMembers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'multiMig'],
+        pathParams: ['multiMig', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MultiMigMemberList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MultiMigMemberList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionmultimigmembers$Get extends StandardParameters {
+    /**
+     * The name of the multi-MIG.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    multiMig?: string;
+    /**
+     * The name of the multi-MIG member.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    multiMigMember?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request. Region name should conform to RFC1035.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionmultimigmembers$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * The name of the multi-MIG.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    multiMig?: string;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request. Region name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
   export class Resource$Regionmultimigs {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -248567,6 +249274,7 @@ export namespace compute_beta {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "performanceProvisioningType": "my_performanceProvisioningType",
      *   //   "poolProvisionedCapacityGb": "my_poolProvisionedCapacityGb",
      *   //   "poolProvisionedIops": "my_poolProvisionedIops",
@@ -248895,6 +249603,7 @@ export namespace compute_beta {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "performanceProvisioningType": "my_performanceProvisioningType",
      *       //   "poolProvisionedCapacityGb": "my_poolProvisionedCapacityGb",
      *       //   "poolProvisionedIops": "my_poolProvisionedIops",
@@ -249914,6 +250623,7 @@ export namespace compute_beta {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "performanceProvisioningType": "my_performanceProvisioningType",
      *       //   "poolProvisionedCapacityGb": "my_poolProvisionedCapacityGb",
      *       //   "poolProvisionedIops": "my_poolProvisionedIops",
@@ -276224,6 +276934,7 @@ export namespace compute_beta {
      *
      *   // Example response
      *   // {
+     *   //   "capacityTier": "my_capacityTier",
      *   //   "cipherSuite": {},
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "description": "my_description",
@@ -276405,6 +277116,7 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "capacityTier": "my_capacityTier",
      *       //   "cipherSuite": {},
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "description": "my_description",

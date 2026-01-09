@@ -6128,6 +6128,29 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
+  /**
+   * Response message for RegionCompositeHealthChecks.GetHealth
+   */
+  export interface Schema$CompositeHealthChecksGetHealthResponse {
+    /**
+     * Health sources and their corresponding health states.
+     */
+    healthSources?: Schema$CompositeHealthChecksGetHealthResponseHealthSourceHealth[];
+    /**
+     * Health state of the CompositeHealthCheck.
+     */
+    healthState?: string | null;
+  }
+  export interface Schema$CompositeHealthChecksGetHealthResponseHealthSourceHealth {
+    /**
+     * Health state of the associated HealthSource resource.
+     */
+    healthState?: string | null;
+    /**
+     * URL of the associated HealthSource resource.
+     */
+    source?: string | null;
+  }
   export interface Schema$CompositeHealthChecksScopedList {
     /**
      * A list of CompositeHealthChecks contained in this scope.
@@ -8475,6 +8498,10 @@ export namespace compute_alpha {
      */
     region?: string | null;
     /**
+     * Configuration and status of the progressive rollout of this resource.
+     */
+    rolloutOperation?: Schema$FirewallPolicyRolloutOperation;
+    /**
      * A list of rules that belong to this policy.
      * There must always be a default rule (rule with priority 2147483647 and
      * match "*"). If no rules are provided when creating a firewall policy, a
@@ -8583,6 +8610,91 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Represents progressive rollout input parameters and current status.
+   */
+  export interface Schema$FirewallPolicyRolloutOperation {
+    /**
+     * Input parameters to be used by the next not yet scheduled rollout.
+     */
+    rolloutInput?: Schema$FirewallPolicyRolloutOperationRolloutInput;
+    /**
+     * [Output only] Current status of the rollout.
+     */
+    rolloutStatus?: Schema$FirewallPolicyRolloutOperationRolloutStatus;
+  }
+  /**
+   * Represents progressive rollout input parameters.
+   */
+  export interface Schema$FirewallPolicyRolloutOperationRolloutInput {
+    /**
+     * The name of the rollout plan. Ex.
+     * organizations//locations/global/rolloutPlans/.
+     */
+    name?: string | null;
+    /**
+     * Predefined rollout plan.
+     */
+    predefinedRolloutPlan?: string | null;
+    /**
+     * The UUID of the retry action. Only needed if this is a retry for an
+     * existing rollout. This can be used after the user canceled a rollout
+     * and want to retry it with no changes.
+     */
+    retryUuid?: string | null;
+  }
+  /**
+   * Represents progressive rollout current status.
+   */
+  export interface Schema$FirewallPolicyRolloutOperationRolloutStatus {
+    /**
+     * [Output only] The next rollout.
+     */
+    nextRollout?: Schema$FirewallPolicyRolloutOperationRolloutStatusNextRollout;
+    /**
+     * [Output only] The ongoing rollout.
+     */
+    ongoingRollouts?: Schema$FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata[];
+    /**
+     * [Output only] The last previously executed rollout.
+     */
+    previousRollout?: Schema$FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata;
+  }
+  export interface Schema$FirewallPolicyRolloutOperationRolloutStatusNextRollout {
+    /**
+     * Output only. [Output only] The id of the next rollout.
+     */
+    rolloutId?: string | null;
+    /**
+     * The name of the rollout plan to be used by the next not yet started
+     * rollout. This field is auto populated based on RolloutInput when a
+     * new rollout is scheduled. This can be manually changed before the
+     * scheduled rollout starts.
+     * Ex.
+     * organizations//locations/global/rolloutPlans/
+     */
+    rolloutPlan?: string | null;
+  }
+  /**
+   * Represents the status of the progressive rollout instance, either
+   * completed or ongoing.
+   */
+  export interface Schema$FirewallPolicyRolloutOperationRolloutStatusRolloutMetadata {
+    /**
+     * Output only. [Output only] The name of the rollout
+     * organizations//locations/global/rollouts/
+     */
+    rollout?: string | null;
+    /**
+     * Output only. [Output only] The name of the rollout plan used by this rollout
+     * organizations//locations/global/rolloutPlans/
+     */
+    rolloutPlan?: string | null;
+    /**
+     * Output only. [Output only] The state of the rollout.
+     */
+    state?: string | null;
   }
   /**
    * Represents a rule that describes one or more match conditions along with
@@ -15366,6 +15478,11 @@ export namespace compute_alpha {
      */
     allInstancesConfig?: Schema$InstanceGroupManagerStatusAllInstancesConfig;
     /**
+     * Output only. [Output Only] The accelerator topology applied to this MIG.
+     * Currently only one accelerator topology is supported.
+     */
+    appliedAcceleratorTopologies?: Schema$InstanceGroupManagerStatusAcceleratorTopology[];
+    /**
      * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      */
@@ -15374,6 +15491,12 @@ export namespace compute_alpha {
      * Output only. [Output Only] The status of bulk instance operation.
      */
     bulkInstanceOperation?: Schema$InstanceGroupManagerStatusBulkInstanceOperation;
+    /**
+     * Output only. [Output Only] The list of instance statuses and the number of instances
+     * in this managed instance group that have the status. Currently only shown
+     * for TPU MIGs
+     */
+    currentInstanceStatuses?: Schema$InstanceGroupManagerStatusInstanceStatusSummary;
     /**
      * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
@@ -15393,6 +15516,46 @@ export namespace compute_alpha {
      * Manager.
      */
     versionTarget?: Schema$InstanceGroupManagerStatusVersionTarget;
+  }
+  export interface Schema$InstanceGroupManagerStatusAcceleratorTopology {
+    /**
+     * Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     * The value is the same as configured in the WorkloadPolicy.
+     */
+    acceleratorTopology?: string | null;
+    /**
+     * Output only. [Output Only] The state of the accelerator topology.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output Only] The result of the latest accelerator topology state
+     * check.
+     */
+    stateDetails?: Schema$InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails;
+  }
+  export interface Schema$InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails {
+    /**
+     * Output only. [Output Only] Encountered errors.
+     */
+    error?: {
+      errors?: Array<{
+        code?: string;
+        errorDetails?: Array<{
+          errorInfo?: Schema$ErrorInfo;
+          help?: Schema$Help;
+          localizedMessage?: Schema$LocalizedMessage;
+          quotaInfo?: Schema$QuotaExceededInfo;
+        }>;
+        location?: string;
+        message?: string;
+      }>;
+    } | null;
+    /**
+     * Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     * has // RFC3339 //
+     * text format.
+     */
+    timestamp?: string | null;
   }
   export interface Schema$InstanceGroupManagerStatusAllInstancesConfig {
     /**
@@ -15443,6 +15606,85 @@ export namespace compute_alpha {
      * operation. Timestamp is in RFC3339 text format.
      */
     timestamp?: string | null;
+  }
+  /**
+   * The list of instance statuses and the number of instances in this managed
+   * instance group that have the status. For more information about how to
+   * interpret each status check the instance lifecycle documentation.
+   * Currently only shown for TPU MIGs.
+   */
+  export interface Schema$InstanceGroupManagerStatusInstanceStatusSummary {
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have DEPROVISIONING status.
+     */
+    deprovisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances that have not been created yet or
+     * have been deleted. Includes only instances that would be shown in the
+     * listManagedInstances method and not all instances that have been
+     * deleted in the lifetime of the MIG.
+     * Does not include FlexStart instances that are waiting for the resources
+     * availability, they are considered as 'pending'.
+     */
+    nonExistent?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING status, that is FlexStart instances that are waiting
+     * for resources. Instances that do not exist because of the other reasons
+     * are counted as 'non_existent'.
+     */
+    pending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING_STOP status.
+     */
+    pendingStop?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PROVISIONING status.
+     */
+    provisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have REPAIRING status.
+     */
+    repairing?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have RUNNING status.
+     */
+    running?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STAGING status.
+     */
+    staging?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPED status.
+     */
+    stopped?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPING status.
+     */
+    stopping?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDED status.
+     */
+    suspended?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDING status.
+     */
+    suspending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have TERMINATED status.
+     */
+    terminated?: number | null;
   }
   export interface Schema$InstanceGroupManagerStatusStateful {
     /**
@@ -20036,9 +20278,11 @@ export namespace compute_alpha {
     /**
      * Input only. Resource manager tags to be bound to the license. Tag keys and values
      * have the same definition as resource
-     * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
-     * values are in the format `tagValues/{tag_value_id\}`. The field is ignored
-     * (both PUT & PATCH) when empty.
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
+     * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
      */
     resourceManagerTags?: {[key: string]: string} | null;
   }
@@ -20468,6 +20712,16 @@ export namespace compute_alpha {
      * included with the new machine image.
      */
     includedDisks?: string[] | null;
+    /**
+     * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
+     * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * Represents a Machine Type resource.
@@ -21089,8 +21343,7 @@ export namespace compute_alpha {
      */
     kind?: string | null;
     /**
-     * Output only. [Output Only] The name of this multi-MIG member generated by
-     * Google Compute Engine.
+     * Output only. [Output Only] Server-defined name for the multi-MIG member.
      */
     name?: string | null;
     /**
@@ -28656,6 +28909,11 @@ export namespace compute_alpha {
      */
     selfLinkWithId?: string | null;
     /**
+     * Specify share-settings to create a shared slot. Set to empty
+     * to inherit share settings from a parent resource.
+     */
+    shareSettings?: Schema$ShareSettings;
+    /**
      * Output only. [Output Only] State of the reservation slot.
      */
     state?: string | null;
@@ -35617,9 +35875,11 @@ export namespace compute_alpha {
     /**
      * Input only. Resource manager tags to be bound to the storage pool. Tag keys and values
      * have the same definition as resource
-     * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
-     * values are in the format `tagValues/{tag_value_id\}`. The field is ignored
-     * (both PUT & PATCH) when empty.
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
+     * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
      */
     resourceManagerTags?: {[key: string]: string} | null;
   }
@@ -63509,6 +63769,7 @@ export namespace compute_alpha {
      *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
+     *   //   "rolloutOperation": {},
      *   //   "ruleTupleCount": 0,
      *   //   "rules": [],
      *   //   "selfLink": "my_selfLink",
@@ -64303,6 +64564,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
@@ -65084,6 +65346,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
@@ -145487,6 +145750,7 @@ export namespace compute_alpha {
      *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
+     *   //   "rolloutOperation": {},
      *   //   "ruleTupleCount": 0,
      *   //   "rules": [],
      *   //   "selfLink": "my_selfLink",
@@ -146293,6 +146557,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
@@ -146736,6 +147001,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
@@ -184916,6 +185182,164 @@ export namespace compute_alpha {
     }
 
     /**
+     * Gets the most recent health check results for this
+     * regional CompositeHealthCheck.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.getHealth({
+     *     // Name of the CompositeHealthCheck resource to get health for.
+     *     compositeHealthCheck: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "healthSources": [],
+     *   //   "healthState": "my_healthState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getHealth(
+      params: Params$Resource$Regioncompositehealthchecks$Gethealth,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getHealth(
+      params?: Params$Resource$Regioncompositehealthchecks$Gethealth,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CompositeHealthChecksGetHealthResponse>
+    >;
+    getHealth(
+      params: Params$Resource$Regioncompositehealthchecks$Gethealth,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getHealth(
+      params: Params$Resource$Regioncompositehealthchecks$Gethealth,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>,
+      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+    ): void;
+    getHealth(
+      params: Params$Resource$Regioncompositehealthchecks$Gethealth,
+      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+    ): void;
+    getHealth(
+      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+    ): void;
+    getHealth(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Gethealth
+        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CompositeHealthChecksGetHealthResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Gethealth;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$Gethealth;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'compositeHealthCheck'],
+        pathParams: ['compositeHealthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CompositeHealthChecksGetHealthResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CompositeHealthChecksGetHealthResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Create a CompositeHealthCheck in the specified project in the given region
      * using the parameters that are included in the request.
      * @example
@@ -185879,6 +186303,20 @@ export namespace compute_alpha {
     compositeHealthCheck?: string;
     /**
      * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Gethealth extends StandardParameters {
+    /**
+     * Name of the CompositeHealthCheck resource to get health for.
+     */
+    compositeHealthCheck?: string;
+    /**
+     * Name of the project scoping this request.
      */
     project?: string;
     /**
@@ -217112,6 +217550,7 @@ export namespace compute_alpha {
      *   //   "policySource": "my_policySource",
      *   //   "policyType": "my_policyType",
      *   //   "region": "my_region",
+     *   //   "rolloutOperation": {},
      *   //   "ruleTupleCount": 0,
      *   //   "rules": [],
      *   //   "selfLink": "my_selfLink",
@@ -217922,6 +218361,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
@@ -218370,6 +218810,7 @@ export namespace compute_alpha {
      *       //   "policySource": "my_policySource",
      *       //   "policyType": "my_policyType",
      *       //   "region": "my_region",
+     *       //   "rolloutOperation": {},
      *       //   "ruleTupleCount": 0,
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
