@@ -870,7 +870,7 @@ export namespace merchantapi_reports_v1beta {
      */
     clickPotential?: string | null;
     /**
-     * Rank of the product based on its click potential. A product with `click_potential_rank` 1 has the highest click potential among the merchant's products that fulfill the search query conditions.
+     * Normalized click potential of the product. Values range from 1 to 1000, where 1 is the highest click potential and 1000 is the theoretical lowest.
      */
     clickPotentialRank?: string | null;
     /**
