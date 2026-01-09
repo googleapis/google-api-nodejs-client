@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250318",
+  "revision": "20251230",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Antivirus": {
@@ -565,7 +565,8 @@
             "CHROME_OS_DEVELOPER_MODE",
             "CHROME_BROWSER_HW_KEY",
             "CHROME_BROWSER_OS_KEY",
-            "CHROME_BROWSER_NO_KEY"
+            "CHROME_BROWSER_NO_KEY",
+            "CHROME_OS_NO_KEY"
           ],
           "enumDescriptions": [
             "UNSPECIFIED.",
@@ -573,7 +574,8 @@
             "ChromeOS device in developer mode.",
             "Chrome Browser with the key stored in the device hardware.",
             "Chrome Browser with the key stored at OS level.",
-            "Chrome Browser without an attestation key."
+            "Chrome Browser without an attestation key.",
+            "ChromeOS device without a signing key (e.g., Flex without TPM). Applies to both device and user contexts on ChromeOS."
           ],
           "readOnly": true,
           "type": "string"
@@ -591,7 +593,8 @@
             "CHROME_OS_DEVELOPER_MODE",
             "CHROME_BROWSER_HW_KEY",
             "CHROME_BROWSER_OS_KEY",
-            "CHROME_BROWSER_NO_KEY"
+            "CHROME_BROWSER_NO_KEY",
+            "CHROME_OS_NO_KEY"
           ],
           "enumDescriptions": [
             "UNSPECIFIED.",
@@ -599,7 +602,8 @@
             "ChromeOS device in developer mode.",
             "Chrome Browser with the key stored in the device hardware.",
             "Chrome Browser with the key stored at OS level.",
-            "Chrome Browser without an attestation key."
+            "Chrome Browser without an attestation key.",
+            "ChromeOS device without a signing key (e.g., Flex without TPM). Applies to both device and user contexts on ChromeOS."
           ],
           "readOnly": true,
           "type": "string"

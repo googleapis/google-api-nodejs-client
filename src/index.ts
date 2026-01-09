@@ -76,6 +76,7 @@ export {appengine_v1beta} from './apis/appengine/v1beta';
 export {apphub_v1} from './apis/apphub/v1';
 export {apphub_v1alpha} from './apis/apphub/v1alpha';
 export {appsactivity_v1} from './apis/appsactivity/v1';
+export {appsmarket_v2} from './apis/appsmarket/v2';
 export {area120tables_v1alpha1} from './apis/area120tables/v1alpha1';
 export {areainsights_v1} from './apis/areainsights/v1';
 export {artifactregistry_v1} from './apis/artifactregistry/v1';

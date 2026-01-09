@@ -676,6 +676,21 @@
       "version": "v1"
     },
     {
+      "description": "Lets your Google Workspace Marketplace applications integrate with Google's installtion and licensing services.",
+      "discoveryRestUrl": "https://appsmarket.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://developers.google.com/workspace/marketplace",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "appsmarket:v2",
+      "kind": "discovery#directoryItem",
+      "name": "appsmarket",
+      "preferred": true,
+      "title": "Google Workspace Marketplace API",
+      "version": "v2"
+    },
+    {
       "description": "",
       "discoveryRestUrl": "https://area120tables.googleapis.com/$discovery/rest?version=v1alpha1",
       "documentationLink": "https://support.google.com/area120-tables/answer/10011390",
