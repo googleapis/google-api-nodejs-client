@@ -235,6 +235,10 @@ export namespace backupdr_v1 {
     values?: string[] | null;
   }
   /**
+   * Properties for an AlloyDB cluster backup plan association.
+   */
+  export interface Schema$AlloyDBClusterBackupPlanAssociationProperties {}
+  /**
    * AlloyDbClusterBackupProperties represents AlloyDB cluster backup properties. .
    */
   export interface Schema$AlloyDbClusterBackupProperties {
@@ -568,11 +572,11 @@ export namespace backupdr_v1 {
      */
     backupConfigSourceDisplayName?: string | null;
     /**
-     * Backup and DR's Backup Plan specific data.
+     * Google Cloud Backup and DR's Backup Plan specific data.
      */
     backupDrPlanConfig?: Schema$BackupDrPlanConfig;
     /**
-     * Backup and DR's Template specific data.
+     * Google Cloud Backup and DR's Template specific data.
      */
     backupDrTemplateConfig?: Schema$BackupDrTemplateConfig;
     /**
@@ -626,7 +630,7 @@ export namespace backupdr_v1 {
     lastSuccessfulBackupConsistencyTime?: string | null;
   }
   /**
-   * BackupDrPlanConfig has additional information about Backup and DR's Plan backup configuration.
+   * BackupDrPlanConfig has additional information about Google Cloud Backup and DR's Plan backup configuration.
    */
   export interface Schema$BackupDrPlanConfig {
     /**
@@ -648,7 +652,7 @@ export namespace backupdr_v1 {
     ruleId?: string | null;
   }
   /**
-   * BackupDrTemplateConfig has additional information about Backup and DR's Template backup configuration.
+   * Provides additional information about Google Cloud Backup and DR's Template backup configuration.
    */
   export interface Schema$BackupDrTemplateConfig {
     /**
@@ -720,7 +724,7 @@ export namespace backupdr_v1 {
      */
     backupVault?: string | null;
     /**
-     * Output only. The Google Cloud Platform Service Account to be used by the BackupVault for taking backups. Specify the email address of the Backup Vault Service Account.
+     * Output only. The Google Cloud service account to be used by the BackupVault for taking backups. Specify the email address of the Backup Vault Service Account.
      */
     backupVaultServiceAccount?: string | null;
     /**
@@ -740,7 +744,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Applicable only for CloudSQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
+     * Optional. Applicable only for Cloud SQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
      */
     logRetentionDays?: string | null;
     /**
@@ -781,6 +785,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupPlanAssociation {
     /**
+     * Output only. AlloyDB cluster's backup plan association properties.
+     */
+    alloydbClusterBackupPlanAssociationProperties?: Schema$AlloyDBClusterBackupPlanAssociationProperties;
+    /**
      * Required. Resource name of backup plan which needs to be applied on workload. Format: projects/{project\}/locations/{location\}/backupPlans/{backupPlanId\}
      */
     backupPlan?: string | null;
@@ -804,6 +812,10 @@ export namespace backupdr_v1 {
      * Output only. Resource name of data source which will be used as storage location for backups taken. Format : projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}
      */
     dataSource?: string | null;
+    /**
+     * Output only. Filestore instance's backup plan association properties.
+     */
+    filestoreInstanceBackupPlanAssociationProperties?: Schema$FilestoreInstanceBackupPlanAssociationProperties;
     /**
      * Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project\}/locations/{location\}/backupPlanAssociations/{backupPlanAssociationId\}
      */
@@ -953,11 +965,11 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupWindow {
     /**
-     * Required. The hour of day (1-24) when the window end for e.g. if value of end hour of day is 10 that mean backup window end time is 10:00. End hour of day should be greater than start hour of day. 0 <= start_hour_of_day < end_hour_of_day <= 24 End hour of day is not include in backup window that mean if end_hour_of_day= 10 jobs should start before 10:00.
+     * Required. The hour of day (1-24) when the window end for example if value of end hour of day is 10 that mean backup window end time is 10:00. End hour of day should be greater than start hour of day. 0 <= start_hour_of_day < end_hour_of_day <= 24 End hour of day is not include in backup window that mean if end_hour_of_day= 10 jobs should start before 10:00.
      */
     endHourOfDay?: number | null;
     /**
-     * Required. The hour of day (0-23) when the window starts for e.g. if value of start hour of day is 6 that mean backup window start at 6:00.
+     * Required. The hour of day (0-23) when the window starts for example if value of start hour of day is 6 that mean backup window start at 6:00.
      */
     startHourOfDay?: number | null;
   }
@@ -1442,7 +1454,7 @@ export namespace backupdr_v1 {
     type?: string | null;
   }
   /**
-   * The GCP resource that the DataSource is associated with.
+   * The Google Cloud resource that the DataSource is associated with.
    */
   export interface Schema$DataSourceGcpResourceInfo {
     /**
@@ -1450,15 +1462,15 @@ export namespace backupdr_v1 {
      */
     cloudSqlInstanceProperties?: Schema$CloudSqlInstanceDataSourceReferenceProperties;
     /**
-     * Output only. The resource name of the GCP resource. Ex: projects/{project\}/zones/{zone\}/instances/{instance\}
+     * Output only. The resource name of the Google Cloud resource. Ex: projects/{project\}/zones/{zone\}/instances/{instance\}
      */
     gcpResourcename?: string | null;
     /**
-     * Output only. The location of the GCP resource. Ex: //"global"/"unspecified"
+     * Output only. The location of the Google Cloud resource. Ex: //"global"/"unspecified"
      */
     location?: string | null;
     /**
-     * Output only. The type of the GCP resource. Ex: compute.googleapis.com/Instance
+     * Output only. The type of the Google Cloud resource. Ex: compute.googleapis.com/Instance
      */
     type?: string | null;
   }
@@ -1487,7 +1499,7 @@ export namespace backupdr_v1 {
      */
     dataSourceBackupCount?: string | null;
     /**
-     * Output only. The GCP resource that the DataSource is associated with.
+     * Output only. The Google Cloud resource that the DataSource is associated with.
      */
     dataSourceGcpResourceInfo?: Schema$DataSourceGcpResourceInfo;
     /**
@@ -1827,7 +1839,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$FetchMsComplianceMetadataResponse {
     /**
-     * The ms compliance metadata of the target project, if the project is an assured workloads project, values will be true, otherwise false.
+     * The ms compliance metadata of the target project, if the project is an Assured Workloads project, values will be true, otherwise false.
      */
     isAssuredWorkload?: boolean | null;
   }
@@ -1847,6 +1859,15 @@ export namespace backupdr_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Filestore instance's BPA properties.
+   */
+  export interface Schema$FilestoreInstanceBackupPlanAssociationProperties {
+    /**
+     * Output only. The time when the instance was created.
+     */
+    instanceCreateTime?: string | null;
   }
   /**
    * Message for finalizing a Backup.
@@ -1979,7 +2000,7 @@ export namespace backupdr_v1 {
      */
     cloudSqlInstanceInitializationConfig?: Schema$CloudSqlInstanceInitializationConfig;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
@@ -2270,7 +2291,7 @@ export namespace backupdr_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
-     * Output only. The OAuth 2.0 client id is required to make API calls to the BackupDR instance API of this ManagementServer. This is the value that should be provided in the 'aud' field of the OIDC ID Token (see openid specification https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
+     * Output only. The OAuth 2.0 client id is required to make API calls to the Backup and DR instance API of this ManagementServer. This is the value that should be provided in the 'aud' field of the OIDC ID Token (see openid specification https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      */
     oauth2ClientId?: string | null;
     /**
@@ -2781,7 +2802,7 @@ export namespace backupdr_v1 {
      */
     recurrenceType?: string | null;
     /**
-     * Required. The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the IANA tz database. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the list of valid timezone names. For e.g., Europe/Paris.
+     * Required. The time zone to be used when interpreting the schedule. The value of this field must be a time zone name from the IANA tz database. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the list of valid timezone names. For example, Europe/Paris.
      */
     timeZone?: string | null;
     /**
@@ -3476,7 +3497,7 @@ export namespace backupdr_v1 {
      *   const res = await backupdr.projects.locations.backupPlanAssociations.create({
      *     // Required. The name of the backup plan association to create. The name must be unique for the specified project and location.
      *     backupPlanAssociationId: 'placeholder-value',
-     *     // Required. The backup plan association project and location in the format `projects/{project_id\}/locations/{location\}`. In Cloud BackupDR locations map to GCP regions, for example **us-central1**.
+     *     // Required. The backup plan association project and location in the format `projects/{project_id\}/locations/{location\}`. In Backup and DR locations map to Google Cloud regions, for example **us-central1**.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -3485,12 +3506,14 @@ export namespace backupdr_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alloydbClusterBackupPlanAssociationProperties": {},
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
      *       //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *       //   "createTime": "my_createTime",
      *       //   "dataSource": "my_dataSource",
+     *       //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *       //   "name": "my_name",
      *       //   "resource": "my_resource",
      *       //   "resourceType": "my_resourceType",
@@ -3792,7 +3815,7 @@ export namespace backupdr_v1 {
      *         pageToken: 'placeholder-value',
      *         // Required. The parent resource name. Format: projects/{project\}/locations/{location\}
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     *         // Required. The type of the Google Cloud resource. Ex: sql.googleapis.com/Instance
      *         resourceType: 'placeholder-value',
      *       },
      *     );
@@ -3949,12 +3972,14 @@ export namespace backupdr_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "alloydbClusterBackupPlanAssociationProperties": {},
      *   //   "backupPlan": "my_backupPlan",
      *   //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *   //   "backupPlanRevisionName": "my_backupPlanRevisionName",
      *   //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataSource": "my_dataSource",
+     *   //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *   //   "name": "my_name",
      *   //   "resource": "my_resource",
      *   //   "resourceType": "my_resourceType",
@@ -4096,7 +4121,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve backup Plan Associations information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud BackupDR, locations map to GCP regions, for example **us-central1**. To retrieve backup plan associations for all locations, use "-" for the `{location\}` value.
+     *     // Required. The project and location for which to retrieve backup Plan Associations information, in the format `projects/{project_id\}/locations/{location\}`. In Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve backup plan associations for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -4257,12 +4282,14 @@ export namespace backupdr_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alloydbClusterBackupPlanAssociationProperties": {},
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
      *       //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *       //   "createTime": "my_createTime",
      *       //   "dataSource": "my_dataSource",
+     *       //   "filestoreInstanceBackupPlanAssociationProperties": {},
      *       //   "name": "my_name",
      *       //   "resource": "my_resource",
      *       //   "resourceType": "my_resourceType",
@@ -4538,7 +4565,7 @@ export namespace backupdr_v1 {
      */
     backupPlanAssociationId?: string;
     /**
-     * Required. The backup plan association project and location in the format `projects/{project_id\}/locations/{location\}`. In Cloud BackupDR locations map to GCP regions, for example **us-central1**.
+     * Required. The backup plan association project and location in the format `projects/{project_id\}/locations/{location\}`. In Backup and DR locations map to Google Cloud regions, for example **us-central1**.
      */
     parent?: string;
     /**
@@ -4583,7 +4610,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
     /**
-     * Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     * Required. The type of the Google Cloud resource. Ex: sql.googleapis.com/Instance
      */
     resourceType?: string;
   }
@@ -4607,7 +4634,7 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve backup Plan Associations information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud BackupDR, locations map to GCP regions, for example **us-central1**. To retrieve backup plan associations for all locations, use "-" for the `{location\}` value.
+     * Required. The project and location for which to retrieve backup Plan Associations information, in the format `projects/{project_id\}/locations/{location\}`. In Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve backup plan associations for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
@@ -4685,7 +4712,7 @@ export namespace backupdr_v1 {
      *   const res = await backupdr.projects.locations.backupPlans.create({
      *     // Required. The name of the `BackupPlan` to create. The name must be unique for the specified project and location.The name must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens. Pattern, /a-z{,62\}/.
      *     backupPlanId: 'placeholder-value',
-     *     // Required. The `BackupPlan` project and location in the format `projects/{project\}/locations/{location\}`. In Cloud BackupDR locations map to GCP regions, for example **us-central1**.
+     *     // Required. The `BackupPlan` project and location in the format `projects/{project\}/locations/{location\}`. In Google Cloud Backup and DR locations map to Google Cloud regions, for example **us-central1**.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -5148,7 +5175,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve `BackupPlans` information. Format: `projects/{project\}/locations/{location\}`. In Cloud BackupDR, locations map to GCP regions, for e.g. **us-central1**. To retrieve backup plans for all locations, use "-" for the `{location\}` value.
+     *     // Required. The project and location for which to retrieve `BackupPlans` information. Format: `projects/{project\}/locations/{location\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve backup plans for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5430,7 +5457,7 @@ export namespace backupdr_v1 {
      */
     backupPlanId?: string;
     /**
-     * Required. The `BackupPlan` project and location in the format `projects/{project\}/locations/{location\}`. In Cloud BackupDR locations map to GCP regions, for example **us-central1**.
+     * Required. The `BackupPlan` project and location in the format `projects/{project\}/locations/{location\}`. In Google Cloud Backup and DR locations map to Google Cloud regions, for example **us-central1**.
      */
     parent?: string;
     /**
@@ -5477,7 +5504,7 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve `BackupPlans` information. Format: `projects/{project\}/locations/{location\}`. In Cloud BackupDR, locations map to GCP regions, for e.g. **us-central1**. To retrieve backup plans for all locations, use "-" for the `{location\}` value.
+     * Required. The project and location for which to retrieve `BackupPlans` information. Format: `projects/{project\}/locations/{location\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve backup plans for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
@@ -5681,7 +5708,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve `BackupPlanRevisions` information. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`. In Cloud BackupDR, locations map to GCP regions, for e.g. **us-central1**.
+     *     // Required. The project and location for which to retrieve `BackupPlanRevisions` information. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      *     parent:
      *       'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
      *   });
@@ -5814,7 +5841,7 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve `BackupPlanRevisions` information. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`. In Cloud BackupDR, locations map to GCP regions, for e.g. **us-central1**.
+     * Required. The project and location for which to retrieve `BackupPlanRevisions` information. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      */
     parent?: string;
   }
@@ -8800,7 +8827,7 @@ export namespace backupdr_v1 {
      *         // Required. Datasources are the parent resource for the backups. Format: projects/{project\}/locations/{location\}/backupVaults/{backupVaultId\}/dataSources/{datasourceId\}
      *         parent:
      *           'projects/my-project/locations/my-location/backupVaults/my-backupVault/dataSources/my-dataSource',
-     *         // Required. The type of the GCP resource. Ex: sqladmin.googleapis.com/Instance
+     *         // Required. The type of the Google Cloud resource. Ex: sqladmin.googleapis.com/Instance
      *         resourceType: 'placeholder-value',
      *         // Optional. This parameter is used to specify the view of the backup. If not specified, the default view is BASIC.
      *         view: 'placeholder-value',
@@ -9600,7 +9627,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
     /**
-     * Required. The type of the GCP resource. Ex: sqladmin.googleapis.com/Instance
+     * Required. The type of the Google Cloud resource. Ex: sqladmin.googleapis.com/Instance
      */
     resourceType?: string;
     /**
@@ -9724,7 +9751,7 @@ export namespace backupdr_v1 {
      *         pageToken: 'placeholder-value',
      *         // Required. The parent resource name. Format: projects/{project\}/locations/{location\}
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     *         // Required. The type of the Google Cloud resource. Ex: sql.googleapis.com/Instance
      *         resourceType: 'placeholder-value',
      *       },
      *     );
@@ -10166,7 +10193,7 @@ export namespace backupdr_v1 {
      */
     parent?: string;
     /**
-     * Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     * Required. The type of the Google Cloud resource. Ex: sql.googleapis.com/Instance
      */
     resourceType?: string;
   }
@@ -10847,7 +10874,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
+     *     // Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -10994,7 +11021,7 @@ export namespace backupdr_v1 {
      *   // Do the magic
      *   const res =
      *     await backupdr.projects.locations.managementServers.msComplianceMetadata({
-     *       // Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     *       // Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      *       parent: 'projects/my-project/locations/my-location/managementServers',
      *
      *       // Request body metadata
@@ -11486,13 +11513,13 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
+     * Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata extends StandardParameters {
     /**
-     * Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     * Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      */
     parent?: string;
 
@@ -12179,7 +12206,7 @@ export namespace backupdr_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id\}/locations/{location\}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
+     *     // Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -12316,7 +12343,7 @@ export namespace backupdr_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id\}/locations/{location\}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
+     * Required. The project and location for which to retrieve resource backup configs. Format: 'projects/{project_id\}/locations/{location\}'. In Google Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**.
      */
     parent?: string;
   }
