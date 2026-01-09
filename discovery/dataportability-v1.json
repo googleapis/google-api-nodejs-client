@@ -89,6 +89,21 @@
         "https://www.googleapis.com/auth/dataportability.mymaps.maps": {
           "description": "Move a copy of the maps you created in My Maps"
         },
+        "https://www.googleapis.com/auth/dataportability.nest.camera_event": {
+          "description": "Copy Nest camera event data"
+        },
+        "https://www.googleapis.com/auth/dataportability.nest.camera_feature": {
+          "description": "Copy Nest camera feature data"
+        },
+        "https://www.googleapis.com/auth/dataportability.nest.camera_video": {
+          "description": "Copy Nest camera footage"
+        },
+        "https://www.googleapis.com/auth/dataportability.nest.store": {
+          "description": "Copy your Nest Store and Nest Renew billing and payment information"
+        },
+        "https://www.googleapis.com/auth/dataportability.nest.user": {
+          "description": "Copy your Nest user information"
+        },
         "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations": {
           "description": "Move a copy of your food purchase and reservation activity"
         },
@@ -349,6 +364,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -447,6 +467,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -538,6 +563,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -632,6 +662,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -720,6 +755,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -808,6 +848,11 @@
             "https://www.googleapis.com/auth/dataportability.myactivity.shopping",
             "https://www.googleapis.com/auth/dataportability.myactivity.youtube",
             "https://www.googleapis.com/auth/dataportability.mymaps.maps",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_event",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_feature",
+            "https://www.googleapis.com/auth/dataportability.nest.camera_video",
+            "https://www.googleapis.com/auth/dataportability.nest.store",
+            "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
@@ -851,7 +896,7 @@
       }
     }
   },
-  "revision": "20251123",
+  "revision": "20260105",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "CancelPortabilityArchiveRequest": {
