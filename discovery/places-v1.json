@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20260104",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -698,14 +698,14 @@
           "type": "array"
         },
         "photos": {
-          "description": "Information (including references) about photos of this place, contexual to the place query.",
+          "description": "Information (including references) about photos of this place, contextual to the place query.",
           "items": {
             "$ref": "GoogleMapsPlacesV1Photo"
           },
           "type": "array"
         },
         "reviews": {
-          "description": "List of reviews about this place, contexual to the place query.",
+          "description": "List of reviews about this place, contextual to the place query.",
           "items": {
             "$ref": "GoogleMapsPlacesV1Review"
           },
