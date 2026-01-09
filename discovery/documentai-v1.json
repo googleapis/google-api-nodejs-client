@@ -1394,7 +1394,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260104",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -4073,6 +4073,10 @@
         "entityValidationOutput": {
           "$ref": "GoogleCloudDocumentaiV1DocumentEntityValidationOutput",
           "description": "The entity validation output for this revision."
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentProvenance",
+          "description": "Optional. The history of this revision."
         },
         "revisionId": {
           "description": "The revision id.",
