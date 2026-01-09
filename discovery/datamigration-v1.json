@@ -126,13 +126,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Maximum number of IPs to return.",
+                  "description": "Optional. Maximum number of IPs to return.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A page token, received from a previous `FetchStaticIps` call.",
+                  "description": "Optional. A page token, received from a previous `FetchStaticIps` call.",
                   "location": "query",
                   "type": "string"
                 }
@@ -370,12 +370,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.",
+                      "description": "Optional. A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "A comma-separated list of fields to order results according to.",
+                      "description": "Optional. A comma-separated list of fields to order results according to.",
                       "location": "query",
                       "type": "string"
                     },
@@ -386,7 +386,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.",
+                      "description": "Optional. A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -621,7 +621,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -647,7 +647,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Force delete the conversion workspace, even if there's a running migration that is using the workspace.",
+                      "description": "Optional. Force delete the conversion workspace, even if there's a running migration that is using the workspace.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -659,7 +659,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -855,18 +855,18 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = \"12.c.1\"** to select all conversion workspaces with source database version equal to 12.c.1.",
+                      "description": "Optional. A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = \"12.c.1\"** to select all conversion workspaces with source database version equal to 12.c.1.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.",
+                      "description": "Optional. The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.",
+                      "description": "Optional. The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -903,7 +903,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1105,7 +1105,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                          "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1214,13 +1214,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of rules to return. The service may return fewer than this value.",
+                          "description": "Optional. The maximum number of rules to return. The service may return fewer than this value.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.",
+                          "description": "Optional. The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1294,7 +1294,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.",
+                      "description": "Optional. The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1306,7 +1306,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1329,7 +1329,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Name of the migration job resource to demote its destination.",
+                      "description": "Required. Name of the migration job resource to demote its destination.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
                       "required": true,
@@ -1494,23 +1494,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = \"1.2.3.4\"** to select all migration jobs connecting through the specific SSH tunnel bastion.",
+                      "description": "Optional. A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = \"1.2.3.4\"** to select all migration jobs connecting through the specific SSH tunnel bastion.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Sort the results based on the migration job name. Valid values are: \"name\", \"name asc\", and \"name desc\".",
+                      "description": "Optional. Sort the results based on the migration job name. Valid values are: \"name\", \"name asc\", and \"name desc\".",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                      "description": "Optional. The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.",
+                      "description": "Optional. The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1547,7 +1547,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1863,13 +1863,13 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "Optional. Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2251,23 +2251,23 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.",
+                      "description": "Optional. A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, >, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Order by fields for the result.",
+                      "description": "Optional. Order by fields for the result.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+                      "description": "Optional. Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2350,7 +2350,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251222",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2435,7 +2435,7 @@
           "type": "boolean"
         },
         "filter": {
-          "description": "Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.",
+          "description": "Optional. Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.",
           "type": "string"
         }
       },
@@ -4970,6 +4970,10 @@
           "$ref": "OracleToPostgresConfig",
           "description": "Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations."
         },
+        "originalMigrationName": {
+          "description": "Optional. A failback replication pointer to the resource name (URI) of the original migration job.",
+          "type": "string"
+        },
         "performanceConfig": {
           "$ref": "PerformanceConfig",
           "description": "Optional. Data dump parallelism settings used by the migration."
@@ -4993,6 +4997,25 @@
             "Only RDS flow - waiting for source writes to stop",
             "Only RDS flow - the sources writes stopped, waiting for dump to begin",
             "The migration job is ready to be promoted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "postgresToSqlserverConfig": {
+          "$ref": "PostgresToSqlServerConfig",
+          "description": "Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**."
+        },
+        "purpose": {
+          "description": "Output only. Migration job mode. Migration jobs can be standard forward jobs or failback migration jobs.",
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "MIGRATE",
+            "FAILBACK"
+          ],
+          "enumDescriptions": [
+            "Unknown purpose. Will be defaulted to MIGRATE.",
+            "Standard migration job.",
+            "Failback replication job."
           ],
           "readOnly": true,
           "type": "string"
@@ -5700,6 +5723,10 @@
           "description": "Optional. The name of the specific database within the host.",
           "type": "string"
         },
+        "forwardSshConnectivity": {
+          "$ref": "ForwardSshTunnelConnectivity",
+          "description": "Forward SSH tunnel connectivity."
+        },
         "host": {
           "description": "Required. The IP or hostname of the source PostgreSQL database.",
           "type": "string"
@@ -5733,6 +5760,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "privateConnectivity": {
+          "$ref": "PrivateConnectivity",
+          "description": "Private connectivity."
+        },
         "privateServiceConnectConnectivity": {
           "$ref": "PrivateServiceConnectConnectivity",
           "description": "Private service connect connectivity."
@@ -5765,6 +5796,32 @@
           "description": "Optional. Timeout for data migration transactions.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostgresSourceConfig": {
+      "description": "Configuration for Postgres as a source in a migration.",
+      "id": "PostgresSourceConfig",
+      "properties": {
+        "skipFullDump": {
+          "description": "Optional. Whether to skip full dump or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PostgresToSqlServerConfig": {
+      "description": "Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.",
+      "id": "PostgresToSqlServerConfig",
+      "properties": {
+        "postgresSourceConfig": {
+          "$ref": "PostgresSourceConfig",
+          "description": "Optional. Configuration for PostgreSQL source."
+        },
+        "sqlserverDestinationConfig": {
+          "$ref": "SqlServerDestinationConfig",
+          "description": "Optional. Configuration for SQL Server destination."
         }
       },
       "type": "object"
@@ -6580,6 +6637,23 @@
         "encryptionOptions": {
           "$ref": "SqlServerEncryptionOptions",
           "description": "Optional. Encryption settings for the database. Required if provided database backups are encrypted. Encryption settings include path to certificate, path to certificate private key, and key password."
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerDestinationConfig": {
+      "description": "Configuration for SQL Server as a destination in a migration.",
+      "id": "SqlServerDestinationConfig",
+      "properties": {
+        "maxConcurrentConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the destination for data migration.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionTimeout": {
+          "description": "Optional. Timeout for data migration transactions.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"

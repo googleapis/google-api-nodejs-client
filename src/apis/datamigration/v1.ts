@@ -183,7 +183,7 @@ export namespace datamigration_v1 {
      */
     dryRun?: boolean | null;
     /**
-     * Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.
+     * Optional. Filter which entities to apply. Leaving this field empty will apply all of the entities. Supports Google AIP 160 based filtering.
      */
     filter?: string | null;
   }
@@ -1738,6 +1738,10 @@ export namespace datamigration_v1 {
      */
     oracleToPostgresConfig?: Schema$OracleToPostgresConfig;
     /**
+     * Optional. A failback replication pointer to the resource name (URI) of the original migration job.
+     */
+    originalMigrationName?: string | null;
+    /**
      * Optional. Data dump parallelism settings used by the migration.
      */
     performanceConfig?: Schema$PerformanceConfig;
@@ -1745,6 +1749,14 @@ export namespace datamigration_v1 {
      * Output only. The current migration job phase.
      */
     phase?: string | null;
+    /**
+     * Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
+     */
+    postgresToSqlserverConfig?: Schema$PostgresToSqlServerConfig;
+    /**
+     * Output only. Migration job mode. Migration jobs can be standard forward jobs or failback migration jobs.
+     */
+    purpose?: string | null;
     /**
      * The details needed to communicate to the source over Reverse SSH tunnel connectivity.
      */
@@ -2195,6 +2207,10 @@ export namespace datamigration_v1 {
      */
     database?: string | null;
     /**
+     * Forward SSH tunnel connectivity.
+     */
+    forwardSshConnectivity?: Schema$ForwardSshTunnelConnectivity;
+    /**
      * Required. The IP or hostname of the source PostgreSQL database.
      */
     host?: string | null;
@@ -2215,6 +2231,10 @@ export namespace datamigration_v1 {
      */
     port?: number | null;
     /**
+     * Private connectivity.
+     */
+    privateConnectivity?: Schema$PrivateConnectivity;
+    /**
      * Private service connect connectivity.
      */
     privateServiceConnectConnectivity?: Schema$PrivateServiceConnectConnectivity;
@@ -2230,6 +2250,28 @@ export namespace datamigration_v1 {
      * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
      */
     username?: string | null;
+  }
+  /**
+   * Configuration for Postgres as a source in a migration.
+   */
+  export interface Schema$PostgresSourceConfig {
+    /**
+     * Optional. Whether to skip full dump or not.
+     */
+    skipFullDump?: boolean | null;
+  }
+  /**
+   * Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
+   */
+  export interface Schema$PostgresToSqlServerConfig {
+    /**
+     * Optional. Configuration for PostgreSQL source.
+     */
+    postgresSourceConfig?: Schema$PostgresSourceConfig;
+    /**
+     * Optional. Configuration for SQL Server destination.
+     */
+    sqlserverDestinationConfig?: Schema$SqlServerDestinationConfig;
   }
   /**
    * Settings for the cluster's primary instance
@@ -2853,6 +2895,19 @@ export namespace datamigration_v1 {
     encryptionOptions?: Schema$SqlServerEncryptionOptions;
   }
   /**
+   * Configuration for SQL Server as a destination in a migration.
+   */
+  export interface Schema$SqlServerDestinationConfig {
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the destination for data migration.
+     */
+    maxConcurrentConnections?: number | null;
+    /**
+     * Optional. Timeout for data migration transactions.
+     */
+    transactionTimeout?: string | null;
+  }
+  /**
    * Encryption settings for the SQL Server database.
    */
   export interface Schema$SqlServerEncryptionOptions {
@@ -3351,9 +3406,9 @@ export namespace datamigration_v1 {
      *   const res = await datamigration.projects.locations.fetchStaticIps({
      *     // Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
-     *     // Maximum number of IPs to return.
+     *     // Optional. Maximum number of IPs to return.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `FetchStaticIps` call.
+     *     // Optional. A page token, received from a previous `FetchStaticIps` call.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3760,11 +3815,11 @@ export namespace datamigration_v1 {
      */
     name?: string;
     /**
-     * Maximum number of IPs to return.
+     * Optional. Maximum number of IPs to return.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `FetchStaticIps` call.
+     * Optional. A page token, received from a previous `FetchStaticIps` call.
      */
     pageToken?: string;
   }
@@ -4451,13 +4506,13 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.connectionProfiles.list({
-     *     // A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
+     *     // Optional. A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
      *     filter: 'placeholder-value',
-     *     // A comma-separated list of fields to order results according to.
+     *     // Optional. A comma-separated list of fields to order results according to.
      *     orderBy: 'placeholder-value',
      *     // The maximum number of connection profiles to return. The service may return fewer than this value. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
+     *     // Optional. A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent which owns this collection of connection profiles.
      *     parent: 'projects/my-project/locations/my-location',
@@ -5115,11 +5170,11 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connectionprofiles$List extends StandardParameters {
     /**
-     * A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
+     * Optional. A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order results according to.
+     * Optional. A comma-separated list of fields to order results according to.
      */
     orderBy?: string;
     /**
@@ -5127,7 +5182,7 @@ export namespace datamigration_v1 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5688,7 +5743,7 @@ export namespace datamigration_v1 {
      *       conversionWorkspaceId: 'placeholder-value',
      *       // Required. The parent which owns this collection of conversion workspaces.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *       requestId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -5851,11 +5906,11 @@ export namespace datamigration_v1 {
      *   // Do the magic
      *   const res =
      *     await datamigration.projects.locations.conversionWorkspaces.delete({
-     *       // Force delete the conversion workspace, even if there's a running migration that is using the workspace.
+     *       // Optional. Force delete the conversion workspace, even if there's a running migration that is using the workspace.
      *       force: 'placeholder-value',
      *       // Required. Name of the conversion workspace resource to delete.
      *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *       // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *       requestId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -6610,11 +6665,11 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.conversionWorkspaces.list({
-     *     // A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1.
+     *     // Optional. A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1.
      *     filter: 'placeholder-value',
-     *     // The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.
+     *     // Optional. The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.
      *     pageSize: 'placeholder-value',
-     *     // The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
+     *     // Optional. The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent which owns this collection of conversion workspaces.
      *     parent: 'projects/my-project/locations/my-location',
@@ -6770,7 +6825,7 @@ export namespace datamigration_v1 {
      *     {
      *       // Full name of the workspace resource, in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
      *       name: 'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *       // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *       // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *       requestId: 'placeholder-value',
      *       // Required. Field mask is used to specify the fields to be overwritten by the update in the conversion workspace resource.
      *       updateMask: 'placeholder-value',
@@ -7707,7 +7762,7 @@ export namespace datamigration_v1 {
      */
     parent?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
 
@@ -7718,7 +7773,7 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Delete extends StandardParameters {
     /**
-     * Force delete the conversion workspace, even if there's a running migration that is using the workspace.
+     * Optional. Force delete the conversion workspace, even if there's a running migration that is using the workspace.
      */
     force?: boolean;
     /**
@@ -7726,7 +7781,7 @@ export namespace datamigration_v1 {
      */
     name?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
   }
@@ -7792,15 +7847,15 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$List extends StandardParameters {
     /**
-     * A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1.
+     * Optional. A filter expression that filters conversion workspaces listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list conversion workspaces created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **source.version = "12.c.1"** to select all conversion workspaces with source database version equal to 12.c.1.
      */
     filter?: string;
     /**
-     * The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.
+     * Optional. The maximum number of conversion workspaces to return. The service may return fewer than this value. If unspecified, at most 50 sets are returned.
      */
     pageSize?: number;
     /**
-     * The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
+     * Optional. The nextPageToken value received in the previous call to conversionWorkspaces.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to conversionWorkspaces.list must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -7814,7 +7869,7 @@ export namespace datamigration_v1 {
      */
     name?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
     /**
@@ -7934,7 +7989,7 @@ export namespace datamigration_v1 {
      *         // Required. The parent which owns this collection of mapping rules.
      *         parent:
      *           'projects/my-project/locations/my-location/conversionWorkspaces/my-conversionWorkspace',
-     *         // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *         // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *         requestId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -8573,9 +8628,9 @@ export namespace datamigration_v1 {
      *   const res =
      *     await datamigration.projects.locations.conversionWorkspaces.mappingRules.list(
      *       {
-     *         // The maximum number of rules to return. The service may return fewer than this value.
+     *         // Optional. The maximum number of rules to return. The service may return fewer than this value.
      *         pageSize: 'placeholder-value',
-     *         // The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
+     *         // Optional. The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
      *         // Required. Name of the conversion workspace resource whose mapping rules are listed in the form of: projects/{project\}/locations/{location\}/conversionWorkspaces/{conversion_workspace\}.
      *         parent:
@@ -8701,7 +8756,7 @@ export namespace datamigration_v1 {
      */
     parent?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
 
@@ -8739,11 +8794,11 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Conversionworkspaces$Mappingrules$List extends StandardParameters {
     /**
-     * The maximum number of rules to return. The service may return fewer than this value.
+     * Optional. The maximum number of rules to return. The service may return fewer than this value.
      */
     pageSize?: number;
     /**
-     * The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
+     * Optional. The nextPageToken value received in the previous call to mappingRules.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to mappingRules.list must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8821,8 +8876,11 @@ export namespace datamigration_v1 {
      *       //   "name": "my_name",
      *       //   "objectsConfig": {},
      *       //   "oracleToPostgresConfig": {},
+     *       //   "originalMigrationName": "my_originalMigrationName",
      *       //   "performanceConfig": {},
      *       //   "phase": "my_phase",
+     *       //   "postgresToSqlserverConfig": {},
+     *       //   "purpose": "my_purpose",
      *       //   "reverseSshConnectivity": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -8977,11 +9035,11 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.delete({
-     *     // The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
+     *     // Optional. The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
      *     force: 'placeholder-value',
      *     // Required. Name of the migration job resource to delete.
      *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
-     *     // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9121,7 +9179,7 @@ export namespace datamigration_v1 {
      *   // Do the magic
      *   const res =
      *     await datamigration.projects.locations.migrationJobs.demoteDestination({
-     *       // Name of the migration job resource to demote its destination.
+     *       // Required. Name of the migration job resource to demote its destination.
      *       name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *       // Request body metadata
@@ -9745,8 +9803,11 @@ export namespace datamigration_v1 {
      *   //   "name": "my_name",
      *   //   "objectsConfig": {},
      *   //   "oracleToPostgresConfig": {},
+     *   //   "originalMigrationName": "my_originalMigrationName",
      *   //   "performanceConfig": {},
      *   //   "phase": "my_phase",
+     *   //   "postgresToSqlserverConfig": {},
+     *   //   "purpose": "my_purpose",
      *   //   "reverseSshConnectivity": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -10033,13 +10094,13 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.list({
-     *     // A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration jobs connecting through the specific SSH tunnel bastion.
+     *     // Optional. A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration jobs connecting through the specific SSH tunnel bastion.
      *     filter: 'placeholder-value',
-     *     // Sort the results based on the migration job name. Valid values are: "name", "name asc", and "name desc".
+     *     // Optional. Sort the results based on the migration job name. Valid values are: "name", "name asc", and "name desc".
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *     // Optional. The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.
+     *     // Optional. The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent which owns this collection of migrationJobs.
      *     parent: 'projects/my-project/locations/my-location',
@@ -10187,7 +10248,7 @@ export namespace datamigration_v1 {
      *   const res = await datamigration.projects.locations.migrationJobs.patch({
      *     // The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
-     *     // A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     // Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten by the update in the conversion workspace resource.
      *     updateMask: 'placeholder-value',
@@ -10213,8 +10274,11 @@ export namespace datamigration_v1 {
      *       //   "name": "my_name",
      *       //   "objectsConfig": {},
      *       //   "oracleToPostgresConfig": {},
+     *       //   "originalMigrationName": "my_originalMigrationName",
      *       //   "performanceConfig": {},
      *       //   "phase": "my_phase",
+     *       //   "postgresToSqlserverConfig": {},
+     *       //   "purpose": "my_purpose",
      *       //   "reverseSshConnectivity": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -11553,7 +11617,7 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Delete extends StandardParameters {
     /**
-     * The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
+     * Optional. The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
      */
     force?: boolean;
     /**
@@ -11561,13 +11625,13 @@ export namespace datamigration_v1 {
      */
     name?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Demotedestination extends StandardParameters {
     /**
-     * Name of the migration job resource to demote its destination.
+     * Required. Name of the migration job resource to demote its destination.
      */
     name?: string;
 
@@ -11622,19 +11686,19 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$List extends StandardParameters {
     /**
-     * A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration jobs connecting through the specific SSH tunnel bastion.
+     * Optional. A filter expression that filters migration jobs listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list migration jobs created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z.** You can also filter nested fields. For example, you could specify **reverseSshConnectivity.vmIp = "1.2.3.4"** to select all migration jobs connecting through the specific SSH tunnel bastion.
      */
     filter?: string;
     /**
-     * Sort the results based on the migration job name. Valid values are: "name", "name asc", and "name desc".
+     * Optional. Sort the results based on the migration job name. Valid values are: "name", "name asc", and "name desc".
      */
     orderBy?: string;
     /**
-     * The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     * Optional. The maximum number of migration jobs to return. The service may return fewer than this value. If unspecified, at most 50 migration jobs will be returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
-     * The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.
+     * Optional. The nextPageToken value received in the previous call to migrationJobs.list, used in the subsequent request to retrieve the next page of results. On first call this should be left blank. When paginating, all other parameters provided to migrationJobs.list must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -11648,7 +11712,7 @@ export namespace datamigration_v1 {
      */
     name?: string;
     /**
-     * A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     * Optional. A unique ID used to identify the request. If the server receives two requests with the same ID, then the second request is ignored. It is recommended to always set this value to a UUID. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string;
     /**
@@ -12077,9 +12141,9 @@ export namespace datamigration_v1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.objects.list(
      *     {
-     *       // Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       // Optional. Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
-     *       // Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.
+     *       // Optional. Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. The parent migration job that owns the collection of objects.
      *       parent:
@@ -12681,11 +12745,11 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$List extends StandardParameters {
     /**
-     * Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -13981,13 +14045,13 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.privateConnections.list({
-     *     // A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
+     *     // Optional. A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
      *     filter: 'placeholder-value',
-     *     // Order by fields for the result.
+     *     // Optional. Order by fields for the result.
      *     orderBy: 'placeholder-value',
-     *     // Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     *     // Optional. Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     *     // Optional. Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent that owns the collection of private connections.
      *     parent: 'projects/my-project/locations/my-location',
@@ -14469,19 +14533,19 @@ export namespace datamigration_v1 {
   }
   export interface Params$Resource$Projects$Locations$Privateconnections$List extends StandardParameters {
     /**
-     * A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
+     * Optional. A filter expression that filters private connections listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list private connections created this year by specifying **createTime %gt; 2021-01-01T00:00:00.000000000Z**.
      */
     filter?: string;
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      */
     orderBy?: string;
     /**
-     * Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     * Optional. Maximum number of private connections to return. If unspecified, at most 50 private connections that are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
