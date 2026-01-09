@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20251020",
+  "revision": "20251208",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "ApproveQueryTemplateRequest": {
@@ -1823,7 +1823,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. Name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.",
+          "description": "Required. Identifier. Name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.",
           "type": "string"
         },
         "pushConfig": {
