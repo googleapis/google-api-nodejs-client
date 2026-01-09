@@ -221,9 +221,31 @@
       }
     }
   },
-  "revision": "20251215",
+  "revision": "20251222",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
+    "AddDocumentTabRequest": {
+      "description": "Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.",
+      "id": "AddDocumentTabRequest",
+      "properties": {
+        "tabProperties": {
+          "$ref": "TabProperties",
+          "description": "The properties of the tab to add. All properties are optional."
+        }
+      },
+      "type": "object"
+    },
+    "AddDocumentTabResponse": {
+      "description": "The result of adding a document tab.",
+      "id": "AddDocumentTabResponse",
+      "properties": {
+        "tabProperties": {
+          "$ref": "TabProperties",
+          "description": "The properties of the newly added tab."
+        }
+      },
+      "type": "object"
+    },
     "AutoText": {
       "description": "A ParagraphElement representing a spot in the text that's dynamically replaced with content that can change over time, like a page number.",
       "id": "AutoText",
@@ -889,6 +911,17 @@
         },
         "tabId": {
           "description": "The tab that the positioned object to delete is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteTabRequest": {
+      "description": "Deletes a tab. If the tab has child tabs, they are deleted as well.",
+      "id": "DeleteTabRequest",
+      "properties": {
+        "tabId": {
+          "description": "The ID of the tab to delete.",
           "type": "string"
         }
       },
@@ -3217,6 +3250,10 @@
       "description": "A single update to apply to a document.",
       "id": "Request",
       "properties": {
+        "addDocumentTab": {
+          "$ref": "AddDocumentTabRequest",
+          "description": "Adds a document tab."
+        },
         "createFooter": {
           "$ref": "CreateFooterRequest",
           "description": "Creates a footer."
@@ -3260,6 +3297,10 @@
         "deletePositionedObject": {
           "$ref": "DeletePositionedObjectRequest",
           "description": "Deletes a positioned object from the document."
+        },
+        "deleteTab": {
+          "$ref": "DeleteTabRequest",
+          "description": "Deletes a document tab."
         },
         "deleteTableColumn": {
           "$ref": "DeleteTableColumnRequest",
@@ -3333,6 +3374,10 @@
           "$ref": "UpdateDocumentStyleRequest",
           "description": "Updates the style of the document."
         },
+        "updateDocumentTabProperties": {
+          "$ref": "UpdateDocumentTabPropertiesRequest",
+          "description": "Updates the properties of a document tab."
+        },
         "updateParagraphStyle": {
           "$ref": "UpdateParagraphStyleRequest",
           "description": "Updates the paragraph style at the specified range."
@@ -3364,6 +3409,10 @@
       "description": "A single response from an update.",
       "id": "Response",
       "properties": {
+        "addDocumentTab": {
+          "$ref": "AddDocumentTabResponse",
+          "description": "The result of adding a document tab."
+        },
         "createFooter": {
           "$ref": "CreateFooterResponse",
           "description": "The result of creating a footer."
@@ -3980,7 +4029,7 @@
           "type": "string"
         },
         "tabId": {
-          "description": "Output only. The ID of the tab. This field can't be changed.",
+          "description": "The immutable ID of the tab.",
           "type": "string"
         },
         "title": {
@@ -4644,6 +4693,22 @@
         "tabId": {
           "description": "The tab that contains the style to update. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If not provided, the request applies to the first tab in the document.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateDocumentTabPropertiesRequest": {
+      "description": "Update the properties of a document tab.",
+      "id": "UpdateDocumentTabPropertiesRequest",
+      "properties": {
+        "fields": {
+          "description": "The fields that should be updated. At least one field must be specified. The root `tab_properties` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "tabProperties": {
+          "$ref": "TabProperties",
+          "description": "The tab properties to update."
         }
       },
       "type": "object"

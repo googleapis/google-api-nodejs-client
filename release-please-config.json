@@ -319,6 +319,7 @@
     "src/apis/apigateway": {},
     "src/apis/cloudcommerceprocurement": {},
     "src/apis/datamanager": {},
-    "src/apis/chromewebstore": {}
+    "src/apis/chromewebstore": {},
+    "src/apis/appsmarket": {}
   }
 }

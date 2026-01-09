@@ -2924,6 +2924,10 @@ export namespace documentai_v1 {
      */
     entityValidationOutput?: Schema$GoogleCloudDocumentaiV1DocumentEntityValidationOutput;
     /**
+     * Optional. The history of this revision.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
+    /**
      * The revision id.
      */
     revisionId?: string | null;

@@ -4177,7 +4177,7 @@
                   "parameterOrder": [],
                   "parameters": {
                     "id": {
-                      "description": "Required. Return videos with the given ids.",
+                      "description": "Required. Return videos with the given ids. The number of IDs specified cannot exceed 50.",
                       "location": "query",
                       "repeated": true,
                       "type": "string"
@@ -4206,7 +4206,7 @@
       }
     }
   },
-  "revision": "20251217",
+  "revision": "20260105",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {

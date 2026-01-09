@@ -566,7 +566,7 @@ export namespace analyticshub_v1 {
      */
     messageTransforms?: Schema$MessageTransform[];
     /**
-     * Required. Name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. Identifier. Name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     name?: string | null;
     /**

@@ -284,6 +284,36 @@ export namespace securitycenter_v1beta1 {
     fullUri?: string | null;
   }
   /**
+   * Represents the result of evaluating artifact guard policies.
+   */
+  export interface Schema$ArtifactGuardPolicies {
+    /**
+     * A list of failing policies.
+     */
+    failingPolicies?: Schema$ArtifactGuardPolicy[];
+    /**
+     * The ID of the resource that has policies configured for it.
+     */
+    resourceId?: string | null;
+  }
+  /**
+   * Represents an artifact guard policy.
+   */
+  export interface Schema$ArtifactGuardPolicy {
+    /**
+     * The reason for the policy failure, for example, "severity=HIGH AND max_vuln_count=2".
+     */
+    failureReason?: string | null;
+    /**
+     * The ID of the failing policy, for example, "organizations/3392779/locations/global/policies/prod-policy".
+     */
+    policyId?: string | null;
+    /**
+     * The type of the policy evaluation.
+     */
+    type?: string | null;
+  }
+  /**
    * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.
    */
   export interface Schema$Asset {
@@ -1209,6 +1239,10 @@ export namespace securitycenter_v1beta1 {
      */
     diskPath?: Schema$DiskPath;
     /**
+     * The load state of the file.
+     */
+    fileLoadState?: string | null;
+    /**
      * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
      */
     hashedSize?: string | null;
@@ -1262,6 +1296,10 @@ export namespace securitycenter_v1beta1 {
      * Represents an application associated with the finding.
      */
     application?: Schema$Application;
+    /**
+     * ArtifactGuardPolicies associated with the finding.
+     */
+    artifactGuardPolicies?: Schema$ArtifactGuardPolicies;
     /**
      * The results of an attack path simulation relevant to this finding.
      */
@@ -1464,6 +1502,10 @@ export namespace securitycenter_v1beta1 {
      * For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.
      */
     resourceName?: string | null;
+    /**
+     * Secret associated with the finding.
+     */
+    secret?: Schema$Secret;
     /**
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
@@ -2468,6 +2510,36 @@ export namespace securitycenter_v1beta1 {
     fullUri?: string | null;
   }
   /**
+   * Represents the result of evaluating artifact guard policies.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ArtifactGuardPolicies {
+    /**
+     * A list of failing policies.
+     */
+    failingPolicies?: Schema$GoogleCloudSecuritycenterV2ArtifactGuardPolicy[];
+    /**
+     * The ID of the resource that has policies configured for it.
+     */
+    resourceId?: string | null;
+  }
+  /**
+   * Represents an artifact guard policy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ArtifactGuardPolicy {
+    /**
+     * The reason for the policy failure, for example, "severity=HIGH AND max_vuln_count=2".
+     */
+    failureReason?: string | null;
+    /**
+     * The ID of the failing policy, for example, "organizations/3392779/locations/global/policies/prod-policy".
+     */
+    policyId?: string | null;
+    /**
+     * The type of the policy evaluation.
+     */
+    type?: string | null;
+  }
+  /**
    * Information about DDoS attack volume and classification.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Attack {
@@ -3368,6 +3440,10 @@ export namespace securitycenter_v1beta1 {
      */
     diskPath?: Schema$GoogleCloudSecuritycenterV2DiskPath;
     /**
+     * The load state of the file.
+     */
+    fileLoadState?: string | null;
+    /**
      * The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.
      */
     hashedSize?: string | null;
@@ -3421,6 +3497,10 @@ export namespace securitycenter_v1beta1 {
      * Represents an application associated with the finding.
      */
     application?: Schema$GoogleCloudSecuritycenterV2Application;
+    /**
+     * ArtifactGuardPolicies associated with the finding.
+     */
+    artifactGuardPolicies?: Schema$GoogleCloudSecuritycenterV2ArtifactGuardPolicies;
     /**
      * The results of an attack path simulation relevant to this finding.
      */
@@ -3629,6 +3709,10 @@ export namespace securitycenter_v1beta1 {
      * Immutable. For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string.
      */
     resourceName?: string | null;
+    /**
+     * Secret associated with the finding.
+     */
+    secret?: Schema$GoogleCloudSecuritycenterV2Secret;
     /**
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
@@ -4868,6 +4952,58 @@ export namespace securitycenter_v1beta1 {
     ns?: string | null;
   }
   /**
+   * Details about a secret or credential associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Secret {
+    /**
+     * The environment variable containing the secret.
+     */
+    environmentVariable?: Schema$GoogleCloudSecuritycenterV2SecretEnvironmentVariable;
+    /**
+     * The file containing the secret.
+     */
+    filePath?: Schema$GoogleCloudSecuritycenterV2SecretFilePath;
+    /**
+     * The status of the secret.
+     */
+    status?: Schema$GoogleCloudSecuritycenterV2SecretStatus;
+    /**
+     * The type of secret, for example, GCP_API_KEY.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment variable containing the secret.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecretEnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string. Note that value is not included since the value contains the secret data, which is sensitive core content.
+     */
+    key?: string | null;
+  }
+  /**
+   * File path containing the secret.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecretFilePath {
+    /**
+     * Path to the file.
+     */
+    path?: string | null;
+  }
+  /**
+   * The status of the secret.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2SecretStatus {
+    /**
+     * Time that the secret was found.
+     */
+    lastUpdatedTime?: string | null;
+    /**
+     * The validity of the secret.
+     */
+    validity?: string | null;
+  }
+  /**
    * SecurityBulletin are notifications of vulnerabilities of Google products.
    */
   export interface Schema$GoogleCloudSecuritycenterV2SecurityBulletin {
@@ -5971,6 +6107,58 @@ export namespace securitycenter_v1beta1 {
    * Request message for running asset discovery for an organization.
    */
   export interface Schema$RunAssetDiscoveryRequest {}
+  /**
+   * Details about a secret or credential associated with the finding.
+   */
+  export interface Schema$Secret {
+    /**
+     * The environment variable containing the secret.
+     */
+    environmentVariable?: Schema$SecretEnvironmentVariable;
+    /**
+     * The file containing the secret.
+     */
+    filePath?: Schema$SecretFilePath;
+    /**
+     * The status of the secret.
+     */
+    status?: Schema$SecretStatus;
+    /**
+     * The type of secret, for example, GCP_API_KEY.
+     */
+    type?: string | null;
+  }
+  /**
+   * Environment variable containing the secret.
+   */
+  export interface Schema$SecretEnvironmentVariable {
+    /**
+     * Environment variable name as a JSON encoded string. Note that value is not included since the value contains the secret data, which is sensitive core content.
+     */
+    key?: string | null;
+  }
+  /**
+   * File path containing the secret.
+   */
+  export interface Schema$SecretFilePath {
+    /**
+     * Path to the file.
+     */
+    path?: string | null;
+  }
+  /**
+   * The status of the secret.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Time that the secret was found.
+     */
+    lastUpdatedTime?: string | null;
+    /**
+     * The validity of the secret.
+     */
+    validity?: string | null;
+  }
   /**
    * SecurityBulletin are notifications of vulnerabilities of Google products.
    */

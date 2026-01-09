@@ -919,7 +919,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260105",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1112,6 +1112,51 @@
         },
         "fullUri": {
           "description": "The full URI with payload that can be used to reproduce the vulnerability. For example, `http://example.com?p=aMmYgI6H`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ArtifactGuardPolicies": {
+      "description": "Represents the result of evaluating artifact guard policies.",
+      "id": "ArtifactGuardPolicies",
+      "properties": {
+        "failingPolicies": {
+          "description": "A list of failing policies.",
+          "items": {
+            "$ref": "ArtifactGuardPolicy"
+          },
+          "type": "array"
+        },
+        "resourceId": {
+          "description": "The ID of the resource that has policies configured for it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ArtifactGuardPolicy": {
+      "description": "Represents an artifact guard policy.",
+      "id": "ArtifactGuardPolicy",
+      "properties": {
+        "failureReason": {
+          "description": "The reason for the policy failure, for example, \"severity=HIGH AND max_vuln_count=2\".",
+          "type": "string"
+        },
+        "policyId": {
+          "description": "The ID of the failing policy, for example, \"organizations/3392779/locations/global/policies/prod-policy\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the policy evaluation.",
+          "enum": [
+            "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED",
+            "VULNERABILITY"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Vulnerability type."
+          ],
           "type": "string"
         }
       },
@@ -2477,6 +2522,20 @@
           "$ref": "DiskPath",
           "description": "Path of the file in terms of underlying disk/partition identifiers."
         },
+        "fileLoadState": {
+          "description": "The load state of the file.",
+          "enum": [
+            "FILE_LOAD_STATE_UNSPECIFIED",
+            "LOADED_BY_PROCESS",
+            "NOT_LOADED_BY_PROCESS"
+          ],
+          "enumDescriptions": [
+            "The file state is unspecified.",
+            "The file is being used by an active process at the time of scanning.",
+            "The file is not being used by any active process at the time of scanning."
+          ],
+          "type": "string"
+        },
         "hashedSize": {
           "description": "The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.",
           "format": "int64",
@@ -2555,6 +2614,10 @@
         "application": {
           "$ref": "Application",
           "description": "Represents an application associated with the finding."
+        },
+        "artifactGuardPolicies": {
+          "$ref": "ArtifactGuardPolicies",
+          "description": "ArtifactGuardPolicies associated with the finding."
         },
         "attackExposure": {
           "$ref": "AttackExposure",
@@ -2847,6 +2910,10 @@
         "resourceName": {
           "description": "For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string. This field is immutable after creation time.",
           "type": "string"
+        },
+        "secret": {
+          "$ref": "Secret",
+          "description": "Secret associated with the finding."
         },
         "securityMarks": {
           "$ref": "SecurityMarks",
@@ -4345,6 +4412,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2ArtifactGuardPolicies": {
+      "description": "Represents the result of evaluating artifact guard policies.",
+      "id": "GoogleCloudSecuritycenterV2ArtifactGuardPolicies",
+      "properties": {
+        "failingPolicies": {
+          "description": "A list of failing policies.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2ArtifactGuardPolicy"
+          },
+          "type": "array"
+        },
+        "resourceId": {
+          "description": "The ID of the resource that has policies configured for it.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ArtifactGuardPolicy": {
+      "description": "Represents an artifact guard policy.",
+      "id": "GoogleCloudSecuritycenterV2ArtifactGuardPolicy",
+      "properties": {
+        "failureReason": {
+          "description": "The reason for the policy failure, for example, \"severity=HIGH AND max_vuln_count=2\".",
+          "type": "string"
+        },
+        "policyId": {
+          "description": "The ID of the failing policy, for example, \"organizations/3392779/locations/global/policies/prod-policy\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the policy evaluation.",
+          "enum": [
+            "ARTIFACT_GUARD_POLICY_TYPE_UNSPECIFIED",
+            "VULNERABILITY"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Vulnerability type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Attack": {
       "description": "Information about DDoS attack volume and classification.",
       "id": "GoogleCloudSecuritycenterV2Attack",
@@ -5644,6 +5756,20 @@
           "$ref": "GoogleCloudSecuritycenterV2DiskPath",
           "description": "Path of the file in terms of underlying disk/partition identifiers."
         },
+        "fileLoadState": {
+          "description": "The load state of the file.",
+          "enum": [
+            "FILE_LOAD_STATE_UNSPECIFIED",
+            "LOADED_BY_PROCESS",
+            "NOT_LOADED_BY_PROCESS"
+          ],
+          "enumDescriptions": [
+            "The file state is unspecified.",
+            "The file is being used by an active process at the time of scanning.",
+            "The file is not being used by any active process at the time of scanning."
+          ],
+          "type": "string"
+        },
         "hashedSize": {
           "description": "The length in bytes of the file prefix that was hashed. If hashed_size == size, any hashes reported represent the entire file.",
           "format": "int64",
@@ -5722,6 +5848,10 @@
         "application": {
           "$ref": "GoogleCloudSecuritycenterV2Application",
           "description": "Represents an application associated with the finding."
+        },
+        "artifactGuardPolicies": {
+          "$ref": "GoogleCloudSecuritycenterV2ArtifactGuardPolicies",
+          "description": "ArtifactGuardPolicies associated with the finding."
         },
         "attackExposure": {
           "$ref": "GoogleCloudSecuritycenterV2AttackExposure",
@@ -6021,6 +6151,10 @@
         "resourceName": {
           "description": "Immutable. For findings on Google Cloud resources, the full resource name of the Google Cloud resource this finding is for. See: https://cloud.google.com/apis/design/resource_names#full_resource_name When the finding is for a non-Google Cloud resource, the resourceName can be a customer or partner defined string.",
           "type": "string"
+        },
+        "secret": {
+          "$ref": "GoogleCloudSecuritycenterV2Secret",
+          "description": "Secret associated with the finding."
         },
         "securityMarks": {
           "$ref": "GoogleCloudSecuritycenterV2SecurityMarks",
@@ -8514,6 +8648,81 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Secret": {
+      "description": "Details about a secret or credential associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Secret",
+      "properties": {
+        "environmentVariable": {
+          "$ref": "GoogleCloudSecuritycenterV2SecretEnvironmentVariable",
+          "description": "The environment variable containing the secret."
+        },
+        "filePath": {
+          "$ref": "GoogleCloudSecuritycenterV2SecretFilePath",
+          "description": "The file containing the secret."
+        },
+        "status": {
+          "$ref": "GoogleCloudSecuritycenterV2SecretStatus",
+          "description": "The status of the secret."
+        },
+        "type": {
+          "description": "The type of secret, for example, GCP_API_KEY.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2SecretEnvironmentVariable": {
+      "description": "Environment variable containing the secret.",
+      "id": "GoogleCloudSecuritycenterV2SecretEnvironmentVariable",
+      "properties": {
+        "key": {
+          "description": "Environment variable name as a JSON encoded string. Note that value is not included since the value contains the secret data, which is sensitive core content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2SecretFilePath": {
+      "description": "File path containing the secret.",
+      "id": "GoogleCloudSecuritycenterV2SecretFilePath",
+      "properties": {
+        "path": {
+          "description": "Path to the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2SecretStatus": {
+      "description": "The status of the secret.",
+      "id": "GoogleCloudSecuritycenterV2SecretStatus",
+      "properties": {
+        "lastUpdatedTime": {
+          "description": "Time that the secret was found.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "validity": {
+          "description": "The validity of the secret.",
+          "enum": [
+            "SECRET_VALIDITY_UNSPECIFIED",
+            "SECRET_VALIDITY_UNSUPPORTED",
+            "SECRET_VALIDITY_FAILED",
+            "SECRET_VALIDITY_INVALID",
+            "SECRET_VALIDITY_VALID"
+          ],
+          "enumDescriptions": [
+            "Default value; no validation was attempted.",
+            "There is no mechanism to validate the secret.",
+            "Validation is supported but the validation failed.",
+            "The secret is confirmed to be invalid.",
+            "The secret is confirmed to be valid."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2SecurityBulletin": {
       "description": "SecurityBulletin are notifications of vulnerabilities of Google products.",
       "id": "GoogleCloudSecuritycenterV2SecurityBulletin",
@@ -10709,6 +10918,81 @@
       "description": "Request message for running asset discovery for an organization.",
       "id": "RunAssetDiscoveryRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Secret": {
+      "description": "Details about a secret or credential associated with the finding.",
+      "id": "Secret",
+      "properties": {
+        "environmentVariable": {
+          "$ref": "SecretEnvironmentVariable",
+          "description": "The environment variable containing the secret."
+        },
+        "filePath": {
+          "$ref": "SecretFilePath",
+          "description": "The file containing the secret."
+        },
+        "status": {
+          "$ref": "SecretStatus",
+          "description": "The status of the secret."
+        },
+        "type": {
+          "description": "The type of secret, for example, GCP_API_KEY.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretEnvironmentVariable": {
+      "description": "Environment variable containing the secret.",
+      "id": "SecretEnvironmentVariable",
+      "properties": {
+        "key": {
+          "description": "Environment variable name as a JSON encoded string. Note that value is not included since the value contains the secret data, which is sensitive core content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretFilePath": {
+      "description": "File path containing the secret.",
+      "id": "SecretFilePath",
+      "properties": {
+        "path": {
+          "description": "Path to the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretStatus": {
+      "description": "The status of the secret.",
+      "id": "SecretStatus",
+      "properties": {
+        "lastUpdatedTime": {
+          "description": "Time that the secret was found.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "validity": {
+          "description": "The validity of the secret.",
+          "enum": [
+            "SECRET_VALIDITY_UNSPECIFIED",
+            "SECRET_VALIDITY_UNSUPPORTED",
+            "SECRET_VALIDITY_FAILED",
+            "SECRET_VALIDITY_INVALID",
+            "SECRET_VALIDITY_VALID"
+          ],
+          "enumDescriptions": [
+            "Default value; no validation was attempted.",
+            "There is no mechanism to validate the secret.",
+            "Validation is supported but the validation failed.",
+            "The secret is confirmed to be invalid.",
+            "The secret is confirmed to be valid."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SecurityBulletin": {

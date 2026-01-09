@@ -502,7 +502,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$BigtableColumn {
     /**
-     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. 'encoding' can also be set at the column family level. However, the setting at this level takes precedence if 'encoding' is set at both levels.
+     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. PROTO_BINARY - indicates values are encoded using serialized proto messages. This can only be used in combination with JSON type. 'encoding' can also be set at the column family level. However, the setting at this level takes precedence if 'encoding' is set at both levels.
      */
     encoding?: string | null;
     /**
@@ -513,6 +513,10 @@ export namespace bigquery_v2 {
      * Optional. If this is set, only the latest version of value in this column are exposed. 'onlyReadLatest' can also be set at the column family level. However, the setting at this level takes precedence if 'onlyReadLatest' is set at both levels.
      */
     onlyReadLatest?: boolean | null;
+    /**
+     * Optional. Protobuf-specific configurations, only takes effect when the encoding is PROTO_BINARY.
+     */
+    protoConfig?: Schema$BigtableProtoConfig;
     /**
      * [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as `.` field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.
      */
@@ -535,7 +539,7 @@ export namespace bigquery_v2 {
      */
     columns?: Schema$BigtableColumn[];
     /**
-     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. This can be overridden for a specific column by listing that column in 'columns' and specifying an encoding for it.
+     * Optional. The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. PROTO_BINARY - indicates values are encoded using serialized proto messages. This can only be used in combination with JSON type. This can be overridden for a specific column by listing that column in 'columns' and specifying an encoding for it.
      */
     encoding?: string | null;
     /**
@@ -546,6 +550,10 @@ export namespace bigquery_v2 {
      * Optional. If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in 'columns' and specifying a different setting for that column.
      */
     onlyReadLatest?: boolean | null;
+    /**
+     * Optional. Protobuf-specific configurations, only takes effect when the encoding is PROTO_BINARY.
+     */
+    protoConfig?: Schema$BigtableProtoConfig;
     /**
      * Optional. The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive): * BYTES * STRING * INTEGER * FLOAT * BOOLEAN * JSON Default type is BYTES. This can be overridden for a specific column by listing that column in 'columns' and specifying a type for it.
      */
@@ -571,6 +579,19 @@ export namespace bigquery_v2 {
      * Optional. If field is true, then the rowkey column families will be read and converted to string. Otherwise they are read with BYTES type values and users need to manually cast them with CAST if necessary. The default value is false.
      */
     readRowkeyAsString?: boolean | null;
+  }
+  /**
+   * Information related to a Bigtable protobuf column.
+   */
+  export interface Schema$BigtableProtoConfig {
+    /**
+     * Optional. The fully qualified proto message name of the protobuf. In the format of "foo.bar.Message".
+     */
+    protoMessageName?: string | null;
+    /**
+     * Optional. The ID of the Bigtable SchemaBundle resource associated with this protobuf. The ID should be referred to within the parent table, e.g., `foo` rather than `projects/{project\}/instances/{instance\}/tables/{table\}/schemaBundles/foo`. See [more details on Bigtable SchemaBundles](https://docs.cloud.google.com/bigtable/docs/create-manage-protobuf-schemas).
+     */
+    schemaBundleId?: string | null;
   }
   /**
    * Evaluation metrics for binary classification/classifier models.

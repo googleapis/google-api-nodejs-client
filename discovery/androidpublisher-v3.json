@@ -5555,7 +5555,7 @@
       }
     }
   },
-  "revision": "20251215",
+  "revision": "20260105",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8990,6 +8990,13 @@
           "description": "Product tax category code to assign to the in-app product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
           "type": "string"
         },
+        "regionalProductAgeRatingInfos": {
+          "description": "Regional age rating information. Currently this field is only supported for region code `US`.",
+          "items": {
+            "$ref": "RegionalProductAgeRatingInfo"
+          },
+          "type": "array"
+        },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {
             "$ref": "RegionalTaxRateInfo"
@@ -9653,6 +9660,13 @@
         "productTaxCategoryCode": {
           "description": "Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
           "type": "string"
+        },
+        "regionalProductAgeRatingInfos": {
+          "description": "Regional age rating information. Currently this field is only supported for region code `US`.",
+          "items": {
+            "$ref": "RegionalProductAgeRatingInfo"
+          },
+          "type": "array"
         },
         "regionalTaxConfigs": {
           "description": "Regional tax configuration.",
@@ -10598,6 +10612,35 @@
         },
         "regionCode": {
           "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalProductAgeRatingInfo": {
+      "description": "Details about the age rating for a specific geographic region.",
+      "id": "RegionalProductAgeRatingInfo",
+      "properties": {
+        "productAgeRatingTier": {
+          "description": "The age rating tier of a product for the given region.",
+          "enum": [
+            "PRODUCT_AGE_RATING_TIER_UNKNOWN",
+            "PRODUCT_AGE_RATING_TIER_EVERYONE",
+            "PRODUCT_AGE_RATING_TIER_THIRTEEN_AND_ABOVE",
+            "PRODUCT_AGE_RATING_TIER_SIXTEEN_AND_ABOVE",
+            "PRODUCT_AGE_RATING_TIER_EIGHTEEN_AND_ABOVE"
+          ],
+          "enumDescriptions": [
+            "Unknown age rating tier.",
+            "Age rating tier for products that are appropriate for all ages.",
+            "Age rating tier for products that are appropriate for 13 years and above.",
+            "Age rating tier for products that are appropriate for 16 years and above.",
+            "Age rating tier for products that are appropriate for 18 years and above."
+          ],
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
           "type": "string"
         }
       },
@@ -11877,6 +11920,13 @@
         "productTaxCategoryCode": {
           "description": "Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
           "type": "string"
+        },
+        "regionalProductAgeRatingInfos": {
+          "description": "Regional age rating information. Currently this field is only supported for region code `US`.",
+          "items": {
+            "$ref": "RegionalProductAgeRatingInfo"
+          },
+          "type": "array"
         },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {

@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20250808",
+  "revision": "20260106",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
@@ -1367,7 +1367,7 @@
           "type": "string"
         },
         "clickPotentialRank": {
-          "description": "Rank of the product based on its click potential. A product with `click_potential_rank` 1 has the highest click potential among the merchant's products that fulfill the search query conditions.",
+          "description": "Normalized click potential of the product. Values range from 1 to 1000, where 1 is the highest click potential and 1000 is the theoretical lowest.",
           "format": "int64",
           "type": "string"
         },

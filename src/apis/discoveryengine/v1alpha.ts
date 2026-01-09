@@ -2158,6 +2158,10 @@ export namespace discoveryengine_v1alpha {
      */
     customerPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy;
     /**
+     * Optional. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
+    /**
      * Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.
      */
     description?: string | null;
@@ -2524,6 +2528,10 @@ export namespace discoveryengine_v1alpha {
      * Required. The OAuth2 client secret. Encrypted at rest.
      */
     clientSecret?: string | null;
+    /**
+     * Optional. Whether to enable PKCE verification. https://datatracker.ietf.org/doc/html/rfc7636#section-3.1/
+     */
+    pkceVerificationEnabled?: boolean | null;
     /**
      * Required. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events`
      */
@@ -10937,6 +10945,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. Customer policy for the assistant.
      */
     customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
     /**
      * Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.
      */
@@ -43627,6 +43639,7 @@ export namespace discoveryengine_v1alpha {
      *           // request body parameters
      *           // {
      *           //   "customerPolicy": {},
+     *           //   "defaultWebGroundingToggleOff": false,
      *           //   "description": "my_description",
      *           //   "disableLocationContext": false,
      *           //   "displayName": "my_displayName",
@@ -43643,6 +43656,7 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "disableLocationContext": false,
      *   //   "displayName": "my_displayName",
@@ -43947,6 +43961,7 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "disableLocationContext": false,
      *   //   "displayName": "my_displayName",
@@ -44443,6 +44458,7 @@ export namespace discoveryengine_v1alpha {
      *           // request body parameters
      *           // {
      *           //   "customerPolicy": {},
+     *           //   "defaultWebGroundingToggleOff": false,
      *           //   "description": "my_description",
      *           //   "disableLocationContext": false,
      *           //   "displayName": "my_displayName",
@@ -44459,6 +44475,7 @@ export namespace discoveryengine_v1alpha {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "disableLocationContext": false,
      *   //   "displayName": "my_displayName",

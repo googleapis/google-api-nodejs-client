@@ -102,6 +102,7 @@ import {VERSIONS as apimVersions, apim} from './apim';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as apphubVersions, apphub} from './apphub';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
+import {VERSIONS as appsmarketVersions, appsmarket} from './appsmarket';
 import {
   VERSIONS as area120tablesVersions,
   area120tables,
@@ -811,6 +812,7 @@ export const APIS: APIList = {
   appengine: appengineVersions,
   apphub: apphubVersions,
   appsactivity: appsactivityVersions,
+  appsmarket: appsmarketVersions,
   area120tables: area120tablesVersions,
   areainsights: areainsightsVersions,
   artifactregistry: artifactregistryVersions,
@@ -1132,6 +1134,7 @@ export class GeneratedAPIs {
   appengine = appengine;
   apphub = apphub;
   appsactivity = appsactivity;
+  appsmarket = appsmarket;
   area120tables = area120tables;
   areainsights = areainsights;
   artifactregistry = artifactregistry;

@@ -438,11 +438,11 @@ export namespace places_v1 {
      */
     justifications?: Schema$GoogleMapsPlacesV1ContextualContentJustification[];
     /**
-     * Information (including references) about photos of this place, contexual to the place query.
+     * Information (including references) about photos of this place, contextual to the place query.
      */
     photos?: Schema$GoogleMapsPlacesV1Photo[];
     /**
-     * List of reviews about this place, contexual to the place query.
+     * List of reviews about this place, contextual to the place query.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
   }

@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20251120",
+  "revision": "20260105",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2461,8 +2461,8 @@
           ],
           "enumDescriptions": [
             "No value is set",
-            "Backup service is enabled",
-            "Backup service is disabled"
+            "Backup service is disabled",
+            "Backup service is enabled"
           ],
           "type": "string"
         }
