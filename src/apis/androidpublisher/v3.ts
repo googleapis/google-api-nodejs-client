@@ -2530,6 +2530,10 @@ export namespace androidpublisher_v3 {
      */
     productTaxCategoryCode?: string | null;
     /**
+     * Regional age rating information. Currently this field is only supported for region code `US`.
+     */
+    regionalProductAgeRatingInfos?: Schema$RegionalProductAgeRatingInfo[];
+    /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
     taxRateInfoByRegionCode?: {
@@ -2985,6 +2989,10 @@ export namespace androidpublisher_v3 {
      * Product tax category code to assign to the one-time product. Product tax category determines the transaction tax rates applied to the product. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
      */
     productTaxCategoryCode?: string | null;
+    /**
+     * Regional age rating information. Currently this field is only supported for region code `US`.
+     */
+    regionalProductAgeRatingInfos?: Schema$RegionalProductAgeRatingInfo[];
     /**
      * Regional tax configuration.
      */
@@ -3653,6 +3661,19 @@ export namespace androidpublisher_v3 {
     priceIncreaseType?: string | null;
     /**
      * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Details about the age rating for a specific geographic region.
+   */
+  export interface Schema$RegionalProductAgeRatingInfo {
+    /**
+     * The age rating tier of a product for the given region.
+     */
+    productAgeRatingTier?: string | null;
+    /**
+     * Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
      */
     regionCode?: string | null;
   }
@@ -4556,6 +4577,10 @@ export namespace androidpublisher_v3 {
      * Product tax category code to assign to the subscription. Product tax category determines the transaction tax rates applied to the subscription. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
      */
     productTaxCategoryCode?: string | null;
+    /**
+     * Regional age rating information. Currently this field is only supported for region code `US`.
+     */
+    regionalProductAgeRatingInfos?: Schema$RegionalProductAgeRatingInfo[];
     /**
      * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
      */
