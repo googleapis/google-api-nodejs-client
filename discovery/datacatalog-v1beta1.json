@@ -1855,7 +1855,7 @@
       }
     }
   },
-  "revision": "20251205",
+  "revision": "20251226",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2643,6 +2643,10 @@
           "$ref": "GoogleCloudDatacatalogV1SystemTimestamps",
           "description": "Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp."
         },
+        "spannerTableSpec": {
+          "$ref": "GoogleCloudDatacatalogV1SpannerTableSpec",
+          "description": "Specification of a Spanner table."
+        },
         "sqlDatabaseSystemSpec": {
           "$ref": "GoogleCloudDatacatalogV1SqlDatabaseSystemSpec",
           "description": "Specification that applies to a relational database system. Only settable when `user_specified_system` is equal to `SQL_DATABASE`"
@@ -3292,6 +3296,83 @@
         "cloudBigtableInstanceSpec": {
           "$ref": "GoogleCloudDatacatalogV1CloudBigtableInstanceSpec",
           "description": "Specification that applies to Instance entries of `CLOUD_BIGTABLE` system."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1SpannerTableSpec": {
+      "description": "Specification of a Spanner table.",
+      "id": "GoogleCloudDatacatalogV1SpannerTableSpec",
+      "properties": {
+        "foreignKeys": {
+          "description": "Output only. The foreign keys of the table.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "primaryKey": {
+          "$ref": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey",
+          "description": "Output only. The primary key of the table.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey": {
+      "description": "Specification of a Spanner foreign key.",
+      "id": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey",
+      "properties": {
+        "columnMappings": {
+          "description": "Output only. The ordered list of column mappings for this foreign key.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "entry": {
+          "description": "Output only. The table name this foreign key referenced to. Format: `projects/{PROJECT_ID}/locations/{LOCATION}/entryGroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The constraint_name of the foreign key, for example, FK_CustomerOrder.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping": {
+      "description": "Column mapping for a Spanner foreign key.",
+      "id": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping",
+      "properties": {
+        "column": {
+          "description": "Output only. The column in the current table that is part of the foreign key.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "referenceColumn": {
+          "description": "Output only. The column in the referenced table that is part of the foreign key.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey": {
+      "description": "Specification of a Spanner primary key.",
+      "id": "GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey",
+      "properties": {
+        "columns": {
+          "description": "Output only. Column names of the primary key.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"

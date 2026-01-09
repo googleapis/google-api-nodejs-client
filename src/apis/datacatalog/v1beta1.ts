@@ -1393,6 +1393,10 @@ export namespace datacatalog_v1beta1 {
      */
     sourceSystemTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
     /**
+     * Specification of a Spanner table.
+     */
+    spannerTableSpec?: Schema$GoogleCloudDatacatalogV1SpannerTableSpec;
+    /**
      * Specification that applies to a relational database system. Only settable when `user_specified_system` is equal to `SQL_DATABASE`
      */
     sqlDatabaseSystemSpec?: Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec;
@@ -1813,6 +1817,58 @@ export namespace datacatalog_v1beta1 {
      * Specification that applies to Instance entries of `CLOUD_BIGTABLE` system.
      */
     cloudBigtableInstanceSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec;
+  }
+  /**
+   * Specification of a Spanner table.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SpannerTableSpec {
+    /**
+     * Output only. The foreign keys of the table.
+     */
+    foreignKeys?: Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey[];
+    /**
+     * Output only. The primary key of the table.
+     */
+    primaryKey?: Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey;
+  }
+  /**
+   * Specification of a Spanner foreign key.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKey {
+    /**
+     * Output only. The ordered list of column mappings for this foreign key.
+     */
+    columnMappings?: Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping[];
+    /**
+     * Output only. The table name this foreign key referenced to. Format: `projects/{PROJECT_ID\}/locations/{LOCATION\}/entryGroups/{ENTRY_GROUP_ID\}/entries/{ENTRY_ID\}`
+     */
+    entry?: string | null;
+    /**
+     * Output only. The constraint_name of the foreign key, for example, FK_CustomerOrder.
+     */
+    name?: string | null;
+  }
+  /**
+   * Column mapping for a Spanner foreign key.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerForeignKeyForeignKeyColumnMapping {
+    /**
+     * Output only. The column in the current table that is part of the foreign key.
+     */
+    column?: string | null;
+    /**
+     * Output only. The column in the referenced table that is part of the foreign key.
+     */
+    referenceColumn?: string | null;
+  }
+  /**
+   * Specification of a Spanner primary key.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SpannerTableSpecSpannerPrimaryKey {
+    /**
+     * Output only. Column names of the primary key.
+     */
+    columns?: string[] | null;
   }
   /**
    * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
