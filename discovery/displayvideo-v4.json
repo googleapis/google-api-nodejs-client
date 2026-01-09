@@ -9925,7 +9925,7 @@
       }
     }
   },
-  "revision": "20251118",
+  "revision": "20260107",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -19425,7 +19425,7 @@
       "type": "object"
     },
     "InventorySource": {
-      "description": "An inventory source.",
+      "description": "An inventory source. Next ID: 22",
       "id": "InventorySource",
       "properties": {
         "commitment": {
@@ -22563,6 +22563,7 @@
             "INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED",
             "INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR",
             "INVENTORY_SOURCE_RATE_TYPE_CPD",
+            "INVENTORY_SOURCE_RATE_TYPE_CPH",
             "INVENTORY_SOURCE_RATE_TYPE_FLAT"
           ],
           "enumDescriptions": [
@@ -22570,6 +22571,7 @@
             "The rate type is CPM (Fixed).",
             "The rate type is CPM (Floor).",
             "The rate type is Cost per Day.",
+            "The rate type is Cost per Hour.",
             "The rate type is Flat."
           ],
           "type": "string"
