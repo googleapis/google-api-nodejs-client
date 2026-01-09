@@ -227,6 +227,15 @@ export namespace cloudfunctions_v2alpha {
     workerPool?: string | null;
   }
   /**
+   * Contains overrides related to the function's build configuration.
+   */
+  export interface Schema$BuildConfigOverrides {
+    /**
+     * Optional. Specifies the desired runtime for the new Cloud Run function. (e.g., `"nodejs20"`, `"python312"`). Constraints: 1. This field CANNOT be used to change the runtime language (e.g., from `NODEJS` to `PYTHON`). The backend will enforce this. 2. This field can ONLY be used to upgrade the runtime version (e.g., `nodejs18` to `nodejs20`). Downgrading the version is not permitted. The backend will validate the version change. If provided and valid, this overrides the runtime of the Gen1 function.
+     */
+    runtime?: string | null;
+  }
+  /**
    * Request for the `CommitFunctionUpgradeAsGen2` method.
    */
   export interface Schema$CommitFunctionUpgradeAsGen2Request {}
@@ -959,6 +968,15 @@ export namespace cloudfunctions_v2alpha {
     vpcConnectorEgressSettings?: string | null;
   }
   /**
+   * Contains overrides related to the function's service configuration.
+   */
+  export interface Schema$ServiceConfigOverrides {
+    /**
+     * Optional. Specifies the maximum number of instances for the new Cloud Run function. If provided, this overrides the max_instance_count setting of the Gen1 function.
+     */
+    maxInstanceCount?: number | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -975,6 +993,14 @@ export namespace cloudfunctions_v2alpha {
    * Request for the `SetupFunctionUpgradeConfig` method.
    */
   export interface Schema$SetupFunctionUpgradeConfigRequest {
+    /**
+     * Optional. Specifies overrides for the build process.
+     */
+    buildConfigOverrides?: Schema$BuildConfigOverrides;
+    /**
+     * Optional. Specifies overrides for the service configuration.
+     */
+    serviceConfigOverrides?: Schema$ServiceConfigOverrides;
     /**
      * Optional. The trigger's service account. The service account must have permission to invoke Cloud Run services, the permission is `run.routes.invoke`. If empty, defaults to the Compute Engine default service account: `{project_number\}-compute@developer.gserviceaccount.com`.
      */
@@ -3616,6 +3642,8 @@ export namespace cloudfunctions_v2alpha {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "buildConfigOverrides": {},
+     *           //   "serviceConfigOverrides": {},
      *           //   "triggerServiceAccount": "my_triggerServiceAccount"
      *           // }
      *         },
