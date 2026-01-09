@@ -6202,6 +6202,10 @@ export namespace discoveryengine_v1 {
      */
     customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
     /**
+     * Optional. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
+    /**
      * Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.
      */
     description?: string | null;
@@ -35037,6 +35041,7 @@ export namespace discoveryengine_v1 {
      *           // request body parameters
      *           // {
      *           //   "customerPolicy": {},
+     *           //   "defaultWebGroundingToggleOff": false,
      *           //   "description": "my_description",
      *           //   "displayName": "my_displayName",
      *           //   "enabledTools": {},
@@ -35052,6 +35057,7 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
@@ -35355,6 +35361,7 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},
@@ -35677,6 +35684,7 @@ export namespace discoveryengine_v1 {
      *           // request body parameters
      *           // {
      *           //   "customerPolicy": {},
+     *           //   "defaultWebGroundingToggleOff": false,
      *           //   "description": "my_description",
      *           //   "displayName": "my_displayName",
      *           //   "enabledTools": {},
@@ -35692,6 +35700,7 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "customerPolicy": {},
+     *   //   "defaultWebGroundingToggleOff": false,
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabledTools": {},

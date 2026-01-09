@@ -12111,7 +12111,7 @@
       }
     }
   },
-  "revision": "20251221",
+  "revision": "20260107",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -12693,6 +12693,10 @@
         "customerPolicy": {
           "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
           "description": "Optional. Customer policy for the assistant."
+        },
+        "defaultWebGroundingToggleOff": {
+          "description": "Optional. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.",
+          "type": "boolean"
         },
         "description": {
           "description": "Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.",
@@ -18865,6 +18869,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
           "description": "Optional. Customer policy for the assistant."
         },
+        "defaultWebGroundingToggleOff": {
+          "description": "Optional. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.",
+          "type": "boolean"
+        },
         "description": {
           "description": "Optional. Description for additional information. Expected to be shown on the configuration UI, not to the users of the assistant.",
           "type": "string"
@@ -19329,6 +19337,10 @@
         "clientSecret": {
           "description": "Required. The OAuth2 client secret. Encrypted at rest.",
           "type": "string"
+        },
+        "pkceVerificationEnabled": {
+          "description": "Optional. Whether to enable PKCE verification. https://datatracker.ietf.org/doc/html/rfc7636#section-3.1/",
+          "type": "boolean"
         },
         "scopes": {
           "description": "Required. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events`",
