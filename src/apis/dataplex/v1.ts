@@ -827,50 +827,50 @@ export namespace dataplex_v1 {
     readers?: string[] | null;
   }
   /**
-   * Represents a Data Asset resource that can be packaged and shared via a Data Product.
+   * Represents a data asset resource that can be packaged and shared via a data product.
    */
   export interface Schema$GoogleCloudDataplexV1DataAsset {
     /**
-     * Optional. Access groups configurations for this Data Asset. The key is DataProduct.AccessGroup.id and the value is AccessGroupConfig. Example: key: "analyst" value: { AccessGroupConfig : { iam_roles : "roles/bigquery.dataViewer" \} \} Currently, at most one IAM role is allowed per access group. For providing multiple predefined IAM roles, wrap them in a custom IAM role as per https://cloud.google.com/iam/docs/creating-custom-roles.
+     * Optional. Access groups configurations for this data asset.The key is DataProduct.AccessGroup.id and the value is AccessGroupConfig.Example: { "analyst": { "iamRoles": ["roles/bigquery.dataViewer"] \} \} Currently, at most one IAM role is allowed per access group. For providing multiple predefined IAM roles, wrap them in a custom IAM role as per https://cloud.google.com/iam/docs/creating-custom-roles.
      */
     accessGroupConfigs?: {
       [key: string]: Schema$GoogleCloudDataplexV1DataAssetAccessGroupConfig;
     } | null;
     /**
-     * Output only. The time at which the Data Asset was created.
+     * Output only. The time at which the data asset was created.
      */
     createTime?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Optional. User-defined labels for the Data Asset.
+     * Optional. User-defined labels for the data asset.Example: { "environment": "production", "billing": "marketing-department" \}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Resource name of the Data Asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     * Identifier. Resource name of the data asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      */
     name?: string | null;
     /**
-     * Required. Immutable. Full resource name of the cloud resource represented by the Data Asset. This must follow https://cloud.google.com/iam/docs/full-resource-names. Example: //bigquery.googleapis.com/projects/my_project_123/datasets/dataset_456/tables/table_789 Only BigQuery tables and datasets are currently supported. Data Asset creator must have getIamPolicy and setIamPolicy permissions on the resource. Data Asset creator must also have resource specific get permission, for instance, bigquery.tables.get for BigQuery tables.
+     * Required. Immutable. Full resource name of the cloud resource represented by the data asset. This must follow https://cloud.google.com/iam/docs/full-resource-names. Example: //bigquery.googleapis.com/projects/my_project_123/datasets/dataset_456/tables/table_789 Only BigQuery tables and datasets are currently supported. Data asset creator must have getIamPolicy and setIamPolicy permissions on the resource. Data asset creator must also have resource specific get permission, for instance, bigquery.tables.get for BigQuery tables.
      */
     resource?: string | null;
     /**
-     * Output only. System generated globally unique ID for the Data Asset. This ID will be different if the Data Asset is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the data asset. This ID will be different if the data asset is deleted and re-created with the same name.
      */
     uid?: string | null;
     /**
-     * Output only. The time at which the Data Asset was last updated.
+     * Output only. The time at which the data asset was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Configuration for access group inherited from the parent Data Product.
+   * Configuration for access group inherited from the parent data product.
    */
   export interface Schema$GoogleCloudDataplexV1DataAssetAccessGroupConfig {
     /**
-     * Optional. IAM roles granted on the resource to this access group. Role name follows https://cloud.google.com/iam/docs/reference/rest/v1/roles. Example: "roles/bigquery.dataViewer"
+     * Optional. IAM roles granted on the resource to this access group. Role name follows https://cloud.google.com/iam/docs/reference/rest/v1/roles.Example: [ "roles/bigquery.dataViewer" ]
      */
     iamRoles?: string[] | null;
   }
@@ -1228,62 +1228,62 @@ export namespace dataplex_v1 {
     catalogPublishingEnabled?: boolean | null;
   }
   /**
-   * A Data Product is a curated collection of Data Assets, packaged to address specific use cases. It's a way to manage and share data in a more organized, product-like manner.
+   * A data product is a curated collection of data assets, packaged to address specific use cases. It's a way to manage and share data in a more organized, product-like manner.
    */
   export interface Schema$GoogleCloudDataplexV1DataProduct {
     /**
-     * Optional. Data Product access groups by access group id as key. If Data Product is used only for packaging Data Assets, then access groups may be empty. However, if a Data Product is used for sharing Data Assets, then at least one access group must be specified.
+     * Optional. Data product access groups by access group id as key. If data product is used only for packaging data assets, then access groups may be empty. However, if a data product is used for sharing data assets, then at least one access group must be specified.Example: { "analyst": { "id": "analyst", "displayName": "Analyst", "description": "Access group for analysts", "principal": { "googleGroup": "analysts@example.com" \} \} \}
      */
     accessGroups?: {
       [key: string]: Schema$GoogleCloudDataplexV1DataProductAccessGroup;
     } | null;
     /**
-     * Output only. Number of Data Assets associated with this Data Product.
+     * Output only. Number of data assets associated with this data product.
      */
     assetCount?: number | null;
     /**
-     * Output only. The time at which the Data Product was created.
+     * Output only. The time at which the data product was created.
      */
     createTime?: string | null;
     /**
-     * Optional. Description of the Data Product.
+     * Optional. Description of the data product.
      */
     description?: string | null;
     /**
-     * Required. User-friendly display name of the Data Product.
+     * Required. User-friendly display name of the data product.
      */
     displayName?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Optional. Base64 encoded image representing the Data Product. Max Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API only performs validation on size of the encoded data. Note: For byte fields, the content of the fields are base64-encoded (which increases the size of the data by 33-36%) when using JSON on the wire.
+     * Optional. Base64 encoded image representing the data product. Max Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API only performs validation on size of the encoded data. Note: For byte fields, the content of the fields are base64-encoded (which increases the size of the data by 33-36%) when using JSON on the wire.
      */
     icon?: string | null;
     /**
-     * Optional. User-defined labels for the Data Product.
+     * Optional. User-defined labels for the data product.Example: { "environment": "production", "billing": "marketing-department" \}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Resource name of the Data Product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
+     * Identifier. Resource name of the data product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
      */
     name?: string | null;
     /**
-     * Required. Emails of the Data Product owners.
+     * Required. Emails of the data product owners.
      */
     ownerEmails?: string[] | null;
     /**
-     * Output only. System generated unique ID for the Data Product. This ID will be different if the Data Product is deleted and re-created with the same name.
+     * Output only. System generated unique ID for the data product. This ID will be different if the data product is deleted and re-created with the same name.
      */
     uid?: string | null;
     /**
-     * Output only. The time at which the Data Product was last updated.
+     * Output only. The time at which the data product was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Custom user defined access groups at the Data Product level. These are used for granting different levels of access (IAM roles) on the individual Data Product's Data Assets.
+   * Custom user defined access groups at the data product level. These are used for granting different levels of access (IAM roles) on the individual data product's data assets.
    */
   export interface Schema$GoogleCloudDataplexV1DataProductAccessGroup {
     /**
@@ -1295,7 +1295,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Unique identifier of the access group within the Data Product. User defined. Eg. "analyst", "developer", etc.
+     * Required. Unique identifier of the access group within the data product. User defined. Eg. "analyst", "developer", etc.
      */
     id?: string | null;
     /**
@@ -1308,7 +1308,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProductPrincipal {
     /**
-     * Email of the Google Group, as per https://cloud.google.com/iam/docs/principals-overview#google-group.
+     * Optional. Email of the Google Group, as per https://cloud.google.com/iam/docs/principals-overview#google-group.
      */
     googleGroup?: string | null;
   }
@@ -3565,11 +3565,11 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for listing Data Assets.
+   * Response message for listing data assets.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataAssetsResponse {
     /**
-     * The Data Assets for the requested filter criteria.
+     * The data assets for the requested filter criteria.
      */
     dataAssets?: Schema$GoogleCloudDataplexV1DataAsset[];
     /**
@@ -3612,11 +3612,11 @@ export namespace dataplex_v1 {
     unreachableLocations?: string[] | null;
   }
   /**
-   * Response message for listing Data Products.
+   * Response message for listing data products.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataProductsResponse {
     /**
-     * The Data Products for the requested filter criteria.
+     * The data products for the requested filter criteria.
      */
     dataProducts?: Schema$GoogleCloudDataplexV1DataProduct[];
     /**
@@ -11146,7 +11146,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates a Data Product.
+     * Creates a data product.
      * @example
      * ```js
      * // Before running the sample:
@@ -11176,11 +11176,11 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.create({
-     *     // Optional. The ID of the Data Product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.
+     *     // Optional. The ID of the data product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$ If not provided, a system generated ID will be used.
      *     dataProductId: 'placeholder-value',
-     *     // Required. The parent resource where this Data Product will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}
+     *     // Required. The parent resource where this data product will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. Validates the request without actually creating the Data Product. Default: false.
+     *     // Optional. Validates the request without actually creating the data product. Default: false.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11314,7 +11314,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a Data Product. The deletion will fail if the Data Product is not empty (i.e. contains at least one Data Asset).
+     * Deletes a data product. The deletion will fail if the data product is not empty (i.e. contains at least one data asset).
      * @example
      * ```js
      * // Before running the sample:
@@ -11344,11 +11344,11 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.delete({
-     *     // Optional. The etag of the Data Product.If an etag is provided and does not match the current etag of the Data Product, then the deletion will be blocked and an ABORTED error will be returned.
+     *     // Optional. The etag of the data product.If an etag is provided and does not match the current etag of the data product, then the deletion will be blocked and an ABORTED error will be returned.
      *     etag: 'placeholder-value',
-     *     // Required. The name of the Data Product to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     *     // Required. The name of the data product to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
-     *     // Optional. Validates the request without actually deleting the Data Product. Default: false.
+     *     // Optional. Validates the request without actually deleting the data product. Default: false.
      *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11460,7 +11460,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets a Data Product.
+     * Gets a data product.
      * @example
      * ```js
      * // Before running the sample:
@@ -11490,7 +11490,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.get({
-     *     // Required. The name of the Data Product to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     *     // Required. The name of the data product to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
      *   });
      *   console.log(res.data);
@@ -11761,7 +11761,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists Data Products for a given project.
+     * Lists data products for a given project.
      * @example
      * ```js
      * // Before running the sample:
@@ -11791,15 +11791,15 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.list({
-     *     // Optional. Filter expression that filters Data Products listed in the response.Example of using this filter is: display_name="my-data-product"
+     *     // Optional. Filter expression that filters data products listed in the response.Example of using this filter is: display_name="my-data-product"
      *     filter: 'placeholder-value',
-     *     // Optional. Order by expression that orders Data Products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).
+     *     // Optional. Order by expression that orders data products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of Data Products to return. The service may return fewer than this value. If unspecified, at most 50 Data Products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of data products to return. The service may return fewer than this value. If unspecified, at most 50 data products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous ListDataProducts call. Provide this to retrieve the subsequent page.When paginating, all other parameters provided to ListDataProducts must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which has this collection of Data Products.Format: projects/{project_id_or_number\}/locations/{location_id\}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number\}/locations/-
+     *     // Required. The parent, which has this collection of data products.Format: projects/{project_id_or_number\}/locations/{location_id\}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number\}/locations/-
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -11918,7 +11918,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates a Data Product.
+     * Updates a data product.
      * @example
      * ```js
      * // Before running the sample:
@@ -11948,11 +11948,11 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.patch({
-     *     // Identifier. Resource name of the Data Product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
+     *     // Identifier. Resource name of the data product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
      *     // Optional. The list of fields to update. If this is empty or not set, then all the fields will be updated.
      *     updateMask: 'placeholder-value',
-     *     // Optional. Validates the request without actually updating the Data Product. Default: false.
+     *     // Optional. Validates the request without actually updating the data product. Default: false.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12397,15 +12397,15 @@ export namespace dataplex_v1 {
 
   export interface Params$Resource$Projects$Locations$Dataproducts$Create extends StandardParameters {
     /**
-     * Optional. The ID of the Data Product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.
+     * Optional. The ID of the data product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$ If not provided, a system generated ID will be used.
      */
     dataProductId?: string;
     /**
-     * Required. The parent resource where this Data Product will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}
+     * Required. The parent resource where this data product will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}
      */
     parent?: string;
     /**
-     * Optional. Validates the request without actually creating the Data Product. Default: false.
+     * Optional. Validates the request without actually creating the data product. Default: false.
      */
     validateOnly?: boolean;
 
@@ -12416,21 +12416,21 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Delete extends StandardParameters {
     /**
-     * Optional. The etag of the Data Product.If an etag is provided and does not match the current etag of the Data Product, then the deletion will be blocked and an ABORTED error will be returned.
+     * Optional. The etag of the data product.If an etag is provided and does not match the current etag of the data product, then the deletion will be blocked and an ABORTED error will be returned.
      */
     etag?: string;
     /**
-     * Required. The name of the Data Product to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     * Required. The name of the data product to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      */
     name?: string;
     /**
-     * Optional. Validates the request without actually deleting the Data Product. Default: false.
+     * Optional. Validates the request without actually deleting the data product. Default: false.
      */
     validateOnly?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Get extends StandardParameters {
     /**
-     * Required. The name of the Data Product to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     * Required. The name of the data product to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      */
     name?: string;
   }
@@ -12446,15 +12446,15 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$List extends StandardParameters {
     /**
-     * Optional. Filter expression that filters Data Products listed in the response.Example of using this filter is: display_name="my-data-product"
+     * Optional. Filter expression that filters data products listed in the response.Example of using this filter is: display_name="my-data-product"
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders Data Products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).
+     * Optional. Order by expression that orders data products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of Data Products to return. The service may return fewer than this value. If unspecified, at most 50 Data Products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of data products to return. The service may return fewer than this value. If unspecified, at most 50 data products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -12462,13 +12462,13 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of Data Products.Format: projects/{project_id_or_number\}/locations/{location_id\}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number\}/locations/-
+     * Required. The parent, which has this collection of data products.Format: projects/{project_id_or_number\}/locations/{location_id\}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number\}/locations/-
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Patch extends StandardParameters {
     /**
-     * Identifier. Resource name of the Data Product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
+     * Identifier. Resource name of the data product. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}.
      */
     name?: string;
     /**
@@ -12476,7 +12476,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. Validates the request without actually updating the Data Product. Default: false.
+     * Optional. Validates the request without actually updating the data product. Default: false.
      */
     validateOnly?: boolean;
 
@@ -12515,7 +12515,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates a Data Asset.
+     * Creates a data asset.
      * @example
      * ```js
      * // Before running the sample:
@@ -12545,12 +12545,12 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.dataAssets.create({
-     *     // Optional. The ID of the Data Asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.
+     *     // Optional. The ID of the data asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$ If not provided, a system generated ID will be used.
      *     dataAssetId: 'placeholder-value',
-     *     // Required. The parent resource where this Data Asset will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     *     // Required. The parent resource where this data asset will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      *     parent:
      *       'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
-     *     // Optional. Validates the request without actually creating the Data Asset. Defaults to false.
+     *     // Optional. Validates the request without actually creating the data asset. Defaults to false.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12681,7 +12681,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a Data Asset.
+     * Deletes a data asset.
      * @example
      * ```js
      * // Before running the sample:
@@ -12711,11 +12711,11 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.dataAssets.delete({
-     *     // Optional. The etag of the Data Asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
+     *     // Optional. The etag of the data asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
      *     etag: 'placeholder-value',
-     *     // Required. The name of the Data Asset to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     *     // Required. The name of the data asset to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct/dataAssets/my-dataAsset',
-     *     // Optional. Validates the request without actually deleting the Data Asset. Defaults to false.
+     *     // Optional. Validates the request without actually deleting the data asset. Defaults to false.
      *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -12828,7 +12828,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets a Data Asset.
+     * Gets a data asset.
      * @example
      * ```js
      * // Before running the sample:
@@ -12858,7 +12858,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.dataAssets.get({
-     *     // Required. The name of the Data Asset to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     *     // Required. The name of the data asset to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct/dataAssets/my-dataAsset',
      *   });
      *   console.log(res.data);
@@ -12976,7 +12976,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists Data Assets for a given Data Product.
+     * Lists data assets for a given data product.
      * @example
      * ```js
      * // Before running the sample:
@@ -13006,15 +13006,15 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.dataAssets.list({
-     *     // Optional. Filter expression that filters DataAssets listed in the response.
+     *     // Optional. Filter expression that filters data assets listed in the response.
      *     filter: 'placeholder-value',
-     *     // Optional. Order by expression that orders DataAssets listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.
+     *     // Optional. Order by expression that orders data assets listed in the response.Supported order_by fields are: name or create_time.If not specified, the ordering is undefined.
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of Data Assets to return. The service may return fewer than this value. If unspecified, at most 50 Data Assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of data assets to return. The service may return fewer than this value. If unspecified, at most 50 data assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous ListDataAssets call. Provide this to retrieve the subsequent page.When paginating, all other parameters provided to ListDataAssets must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which has this collection of Data Assets. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     *     // Required. The parent, which has this collection of data assets. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      *     parent:
      *       'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
      *   });
@@ -13134,7 +13134,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates a Data Asset.
+     * Updates a data asset.
      * @example
      * ```js
      * // Before running the sample:
@@ -13164,11 +13164,11 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataProducts.dataAssets.patch({
-     *     // Identifier. Resource name of the Data Asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     *     // Identifier. Resource name of the data asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      *     name: 'projects/my-project/locations/my-location/dataProducts/my-dataProduct/dataAssets/my-dataAsset',
-     *     // Optional. The list of fields to update. If this is empty or not set, then all fields that are populated (have a non-empty value) in data_asset above will be updated.
+     *     // Optional. The list of fields to update. If this is empty or not set, then all the fields will be updated.
      *     updateMask: 'placeholder-value',
-     *     // Optional. Validates the request without actually updating the Data Asset. Defaults to false.
+     *     // Optional. Validates the request without actually updating the data asset. Defaults to false.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13298,15 +13298,15 @@ export namespace dataplex_v1 {
 
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Create extends StandardParameters {
     /**
-     * Optional. The ID of the Data Asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.
+     * Optional. The ID of the data asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$ If not provided, a system generated ID will be used.
      */
     dataAssetId?: string;
     /**
-     * Required. The parent resource where this Data Asset will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     * Required. The parent resource where this data asset will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      */
     parent?: string;
     /**
-     * Optional. Validates the request without actually creating the Data Asset. Defaults to false.
+     * Optional. Validates the request without actually creating the data asset. Defaults to false.
      */
     validateOnly?: boolean;
 
@@ -13317,35 +13317,35 @@ export namespace dataplex_v1 {
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Delete extends StandardParameters {
     /**
-     * Optional. The etag of the Data Asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
+     * Optional. The etag of the data asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
      */
     etag?: string;
     /**
-     * Required. The name of the Data Asset to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     * Required. The name of the data asset to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      */
     name?: string;
     /**
-     * Optional. Validates the request without actually deleting the Data Asset. Defaults to false.
+     * Optional. Validates the request without actually deleting the data asset. Defaults to false.
      */
     validateOnly?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Get extends StandardParameters {
     /**
-     * Required. The name of the Data Asset to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     * Required. The name of the data asset to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$List extends StandardParameters {
     /**
-     * Optional. Filter expression that filters DataAssets listed in the response.
+     * Optional. Filter expression that filters data assets listed in the response.
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders DataAssets listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders data assets listed in the response.Supported order_by fields are: name or create_time.If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of Data Assets to return. The service may return fewer than this value. If unspecified, at most 50 Data Assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of data assets to return. The service may return fewer than this value. If unspecified, at most 50 data assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -13353,21 +13353,21 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of Data Assets. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     * Required. The parent, which has this collection of data assets. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Dataassets$Patch extends StandardParameters {
     /**
-     * Identifier. Resource name of the Data Asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
+     * Identifier. Resource name of the data asset. Format: projects/{project_id_or_number\}/locations/{location_id\}/dataProducts/{data_product_id\}/dataAssets/{data_asset_id\}
      */
     name?: string;
     /**
-     * Optional. The list of fields to update. If this is empty or not set, then all fields that are populated (have a non-empty value) in data_asset above will be updated.
+     * Optional. The list of fields to update. If this is empty or not set, then all the fields will be updated.
      */
     updateMask?: string;
     /**
-     * Optional. Validates the request without actually updating the Data Asset. Defaults to false.
+     * Optional. Validates the request without actually updating the data asset. Defaults to false.
      */
     validateOnly?: boolean;
 

@@ -1579,7 +1579,7 @@
             "dataProducts": {
               "methods": {
                 "create": {
-                  "description": "Creates a Data Product.",
+                  "description": "Creates a data product.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.dataProducts.create",
@@ -1588,19 +1588,19 @@
                   ],
                   "parameters": {
                     "dataProductId": {
-                      "description": "Optional. The ID of the Data Product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.",
+                      "description": "Optional. The ID of the data product to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$ If not provided, a system generated ID will be used.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource where this Data Product will be created. Format: projects/{project_id_or_number}/locations/{location_id}",
+                      "description": "Required. The parent resource where this data product will be created. Format: projects/{project_id_or_number}/locations/{location_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Validates the request without actually creating the Data Product. Default: false.",
+                      "description": "Optional. Validates the request without actually creating the data product. Default: false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1617,7 +1617,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a Data Product. The deletion will fail if the Data Product is not empty (i.e. contains at least one Data Asset).",
+                  "description": "Deletes a data product. The deletion will fail if the data product is not empty (i.e. contains at least one data asset).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.dataProducts.delete",
@@ -1626,19 +1626,19 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag of the Data Product.If an etag is provided and does not match the current etag of the Data Product, then the deletion will be blocked and an ABORTED error will be returned.",
+                      "description": "Optional. The etag of the data product.If an etag is provided and does not match the current etag of the data product, then the deletion will be blocked and an ABORTED error will be returned.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the Data Product to delete. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
+                      "description": "Required. The name of the data product to delete. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Validates the request without actually deleting the Data Product. Default: false.",
+                      "description": "Optional. Validates the request without actually deleting the data product. Default: false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1652,7 +1652,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a Data Product.",
+                  "description": "Gets a data product.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.dataProducts.get",
@@ -1661,7 +1661,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the Data Product to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
+                      "description": "Required. The name of the data product to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
                       "required": true,
@@ -1708,7 +1708,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Data Products for a given project.",
+                  "description": "Lists data products for a given project.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.dataProducts.list",
@@ -1717,17 +1717,17 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter expression that filters Data Products listed in the response.Example of using this filter is: display_name=\"my-data-product\"",
+                      "description": "Optional. Filter expression that filters data products listed in the response.Example of using this filter is: display_name=\"my-data-product\"",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Order by expression that orders Data Products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).",
+                      "description": "Optional. Order by expression that orders data products listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.Ordering by create_time is not supported when listing resources across locations (i.e. when request contains /locations/-).",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of Data Products to return. The service may return fewer than this value. If unspecified, at most 50 Data Products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. The maximum number of data products to return. The service may return fewer than this value. If unspecified, at most 50 data products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1738,7 +1738,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which has this collection of Data Products.Format: projects/{project_id_or_number}/locations/{location_id}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number}/locations/-",
+                      "description": "Required. The parent, which has this collection of data products.Format: projects/{project_id_or_number}/locations/{location_id}.Supports listing across all locations with the wildcard - (hyphen) character. Example: projects/{project_id_or_number}/locations/-",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1754,7 +1754,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a Data Product.",
+                  "description": "Updates a data product.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}",
                   "httpMethod": "PATCH",
                   "id": "dataplex.projects.locations.dataProducts.patch",
@@ -1763,7 +1763,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. Resource name of the Data Product. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}.",
+                      "description": "Identifier. Resource name of the data product. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
                       "required": true,
@@ -1776,7 +1776,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Validates the request without actually updating the Data Product. Default: false.",
+                      "description": "Optional. Validates the request without actually updating the data product. Default: false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1853,7 +1853,7 @@
                 "dataAssets": {
                   "methods": {
                     "create": {
-                      "description": "Creates a Data Asset.",
+                      "description": "Creates a data asset.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets",
                       "httpMethod": "POST",
                       "id": "dataplex.projects.locations.dataProducts.dataAssets.create",
@@ -1862,19 +1862,19 @@
                       ],
                       "parameters": {
                         "dataAssetId": {
-                          "description": "Optional. The ID of the Data Asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: (^a-z?$) If not provided, a system generated ID will be used.",
+                          "description": "Optional. The ID of the data asset to create.The ID must conform to RFC-1034 and contain only lower-case letters (a-z), numbers (0-9), or hyphens, with the first character a letter, the last a letter or a number, and a 63 character maximum. Characters outside of ASCII are not permitted. Valid format regex: ^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$ If not provided, a system generated ID will be used.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource where this Data Asset will be created. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
+                          "description": "Required. The parent resource where this data asset will be created. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. Validates the request without actually creating the Data Asset. Defaults to false.",
+                          "description": "Optional. Validates the request without actually creating the data asset. Defaults to false.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1891,7 +1891,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a Data Asset.",
+                      "description": "Deletes a data asset.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}",
                       "httpMethod": "DELETE",
                       "id": "dataplex.projects.locations.dataProducts.dataAssets.delete",
@@ -1900,19 +1900,19 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "Optional. The etag of the Data Asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.",
+                          "description": "Optional. The etag of the data asset. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.",
                           "location": "query",
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The name of the Data Asset to delete. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
+                          "description": "Required. The name of the data asset to delete. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+/dataAssets/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. Validates the request without actually deleting the Data Asset. Defaults to false.",
+                          "description": "Optional. Validates the request without actually deleting the data asset. Defaults to false.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1926,7 +1926,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a Data Asset.",
+                      "description": "Gets a data asset.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.dataProducts.dataAssets.get",
@@ -1935,7 +1935,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the Data Asset to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
+                          "description": "Required. The name of the data asset to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+/dataAssets/[^/]+$",
                           "required": true,
@@ -1951,7 +1951,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Data Assets for a given Data Product.",
+                      "description": "Lists data assets for a given data product.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.dataProducts.dataAssets.list",
@@ -1960,17 +1960,17 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression that filters DataAssets listed in the response.",
+                          "description": "Optional. Filter expression that filters data assets listed in the response.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Order by expression that orders DataAssets listed in the response.Supported Order by fields are: name or create_time.If not specified, the ordering is undefined.",
+                          "description": "Optional. Order by expression that orders data assets listed in the response.Supported order_by fields are: name or create_time.If not specified, the ordering is undefined.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of Data Assets to return. The service may return fewer than this value. If unspecified, at most 50 Data Assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "Optional. The maximum number of data assets to return. The service may return fewer than this value. If unspecified, at most 50 data assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1981,7 +1981,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent, which has this collection of Data Assets. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
+                          "description": "Required. The parent, which has this collection of data assets. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
                           "required": true,
@@ -1997,7 +1997,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a Data Asset.",
+                      "description": "Updates a data asset.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}",
                       "httpMethod": "PATCH",
                       "id": "dataplex.projects.locations.dataProducts.dataAssets.patch",
@@ -2006,20 +2006,20 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. Resource name of the Data Asset. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
+                          "description": "Identifier. Resource name of the data asset. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+/dataAssets/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. The list of fields to update. If this is empty or not set, then all fields that are populated (have a non-empty value) in data_asset above will be updated.",
+                          "description": "Optional. The list of fields to update. If this is empty or not set, then all the fields will be updated.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. Validates the request without actually updating the Data Asset. Defaults to false.",
+                          "description": "Optional. Validates the request without actually updating the data asset. Defaults to false.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -7601,7 +7601,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20251223",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8628,48 +8628,48 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAsset": {
-      "description": "Represents a Data Asset resource that can be packaged and shared via a Data Product.",
+      "description": "Represents a data asset resource that can be packaged and shared via a data product.",
       "id": "GoogleCloudDataplexV1DataAsset",
       "properties": {
         "accessGroupConfigs": {
           "additionalProperties": {
             "$ref": "GoogleCloudDataplexV1DataAssetAccessGroupConfig"
           },
-          "description": "Optional. Access groups configurations for this Data Asset. The key is DataProduct.AccessGroup.id and the value is AccessGroupConfig. Example: key: \"analyst\" value: { AccessGroupConfig : { iam_roles : \"roles/bigquery.dataViewer\" } } Currently, at most one IAM role is allowed per access group. For providing multiple predefined IAM roles, wrap them in a custom IAM role as per https://cloud.google.com/iam/docs/creating-custom-roles.",
+          "description": "Optional. Access groups configurations for this data asset.The key is DataProduct.AccessGroup.id and the value is AccessGroupConfig.Example: { \"analyst\": { \"iamRoles\": [\"roles/bigquery.dataViewer\"] } } Currently, at most one IAM role is allowed per access group. For providing multiple predefined IAM roles, wrap them in a custom IAM role as per https://cloud.google.com/iam/docs/creating-custom-roles.",
           "type": "object"
         },
         "createTime": {
-          "description": "Output only. The time at which the Data Asset was created.",
+          "description": "Output only. The time at which the data asset was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "etag": {
-          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. User-defined labels for the Data Asset.",
+          "description": "Optional. User-defined labels for the data asset.Example: { \"environment\": \"production\", \"billing\": \"marketing-department\" } ",
           "type": "object"
         },
         "name": {
-          "description": "Identifier. Resource name of the Data Asset. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
+          "description": "Identifier. Resource name of the data asset. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}/dataAssets/{data_asset_id}",
           "type": "string"
         },
         "resource": {
-          "description": "Required. Immutable. Full resource name of the cloud resource represented by the Data Asset. This must follow https://cloud.google.com/iam/docs/full-resource-names. Example: //bigquery.googleapis.com/projects/my_project_123/datasets/dataset_456/tables/table_789 Only BigQuery tables and datasets are currently supported. Data Asset creator must have getIamPolicy and setIamPolicy permissions on the resource. Data Asset creator must also have resource specific get permission, for instance, bigquery.tables.get for BigQuery tables.",
+          "description": "Required. Immutable. Full resource name of the cloud resource represented by the data asset. This must follow https://cloud.google.com/iam/docs/full-resource-names. Example: //bigquery.googleapis.com/projects/my_project_123/datasets/dataset_456/tables/table_789 Only BigQuery tables and datasets are currently supported. Data asset creator must have getIamPolicy and setIamPolicy permissions on the resource. Data asset creator must also have resource specific get permission, for instance, bigquery.tables.get for BigQuery tables.",
           "type": "string"
         },
         "uid": {
-          "description": "Output only. System generated globally unique ID for the Data Asset. This ID will be different if the Data Asset is deleted and re-created with the same name.",
+          "description": "Output only. System generated globally unique ID for the data asset. This ID will be different if the data asset is deleted and re-created with the same name.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The time at which the Data Asset was last updated.",
+          "description": "Output only. The time at which the data asset was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -8678,11 +8678,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataAssetAccessGroupConfig": {
-      "description": "Configuration for access group inherited from the parent Data Product.",
+      "description": "Configuration for access group inherited from the parent data product.",
       "id": "GoogleCloudDataplexV1DataAssetAccessGroupConfig",
       "properties": {
         "iamRoles": {
-          "description": "Optional. IAM roles granted on the resource to this access group. Role name follows https://cloud.google.com/iam/docs/reference/rest/v1/roles. Example: \"roles/bigquery.dataViewer\" ",
+          "description": "Optional. IAM roles granted on the resource to this access group. Role name follows https://cloud.google.com/iam/docs/reference/rest/v1/roles.Example: [ \"roles/bigquery.dataViewer\" ]",
           "items": {
             "type": "string"
           },
@@ -9160,42 +9160,42 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProduct": {
-      "description": "A Data Product is a curated collection of Data Assets, packaged to address specific use cases. It's a way to manage and share data in a more organized, product-like manner.",
+      "description": "A data product is a curated collection of data assets, packaged to address specific use cases. It's a way to manage and share data in a more organized, product-like manner.",
       "id": "GoogleCloudDataplexV1DataProduct",
       "properties": {
         "accessGroups": {
           "additionalProperties": {
             "$ref": "GoogleCloudDataplexV1DataProductAccessGroup"
           },
-          "description": "Optional. Data Product access groups by access group id as key. If Data Product is used only for packaging Data Assets, then access groups may be empty. However, if a Data Product is used for sharing Data Assets, then at least one access group must be specified.",
+          "description": "Optional. Data product access groups by access group id as key. If data product is used only for packaging data assets, then access groups may be empty. However, if a data product is used for sharing data assets, then at least one access group must be specified.Example: { \"analyst\": { \"id\": \"analyst\", \"displayName\": \"Analyst\", \"description\": \"Access group for analysts\", \"principal\": { \"googleGroup\": \"analysts@example.com\" } } } ",
           "type": "object"
         },
         "assetCount": {
-          "description": "Output only. Number of Data Assets associated with this Data Product.",
+          "description": "Output only. Number of data assets associated with this data product.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "createTime": {
-          "description": "Output only. The time at which the Data Product was created.",
+          "description": "Output only. The time at which the data product was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Optional. Description of the Data Product.",
+          "description": "Optional. Description of the data product.",
           "type": "string"
         },
         "displayName": {
-          "description": "Required. User-friendly display name of the Data Product.",
+          "description": "Required. User-friendly display name of the data product.",
           "type": "string"
         },
         "etag": {
-          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "icon": {
-          "description": "Optional. Base64 encoded image representing the Data Product. Max Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API only performs validation on size of the encoded data. Note: For byte fields, the content of the fields are base64-encoded (which increases the size of the data by 33-36%) when using JSON on the wire.",
+          "description": "Optional. Base64 encoded image representing the data product. Max Size: 3.0MiB Expected image dimensions are 512x512 pixels, however the API only performs validation on size of the encoded data. Note: For byte fields, the content of the fields are base64-encoded (which increases the size of the data by 33-36%) when using JSON on the wire.",
           "format": "byte",
           "type": "string"
         },
@@ -9203,27 +9203,27 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. User-defined labels for the Data Product.",
+          "description": "Optional. User-defined labels for the data product.Example: { \"environment\": \"production\", \"billing\": \"marketing-department\" } ",
           "type": "object"
         },
         "name": {
-          "description": "Identifier. Resource name of the Data Product. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}.",
+          "description": "Identifier. Resource name of the data product. Format: projects/{project_id_or_number}/locations/{location_id}/dataProducts/{data_product_id}.",
           "type": "string"
         },
         "ownerEmails": {
-          "description": "Required. Emails of the Data Product owners.",
+          "description": "Required. Emails of the data product owners.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uid": {
-          "description": "Output only. System generated unique ID for the Data Product. This ID will be different if the Data Product is deleted and re-created with the same name.",
+          "description": "Output only. System generated unique ID for the data product. This ID will be different if the data product is deleted and re-created with the same name.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The time at which the Data Product was last updated.",
+          "description": "Output only. The time at which the data product was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -9232,7 +9232,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataProductAccessGroup": {
-      "description": "Custom user defined access groups at the Data Product level. These are used for granting different levels of access (IAM roles) on the individual Data Product's Data Assets.",
+      "description": "Custom user defined access groups at the data product level. These are used for granting different levels of access (IAM roles) on the individual data product's data assets.",
       "id": "GoogleCloudDataplexV1DataProductAccessGroup",
       "properties": {
         "description": {
@@ -9244,7 +9244,7 @@
           "type": "string"
         },
         "id": {
-          "description": "Required. Unique identifier of the access group within the Data Product. User defined. Eg. \"analyst\", \"developer\", etc.",
+          "description": "Required. Unique identifier of the access group within the data product. User defined. Eg. \"analyst\", \"developer\", etc.",
           "type": "string"
         },
         "principal": {
@@ -9259,7 +9259,7 @@
       "id": "GoogleCloudDataplexV1DataProductPrincipal",
       "properties": {
         "googleGroup": {
-          "description": "Email of the Google Group, as per https://cloud.google.com/iam/docs/principals-overview#google-group.",
+          "description": "Optional. Email of the Google Group, as per https://cloud.google.com/iam/docs/principals-overview#google-group.",
           "type": "string"
         }
       },
@@ -12635,11 +12635,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1ListDataAssetsResponse": {
-      "description": "Response message for listing Data Assets.",
+      "description": "Response message for listing data assets.",
       "id": "GoogleCloudDataplexV1ListDataAssetsResponse",
       "properties": {
         "dataAssets": {
-          "description": "The Data Assets for the requested filter criteria.",
+          "description": "The data assets for the requested filter criteria.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataAsset"
           },
@@ -12703,11 +12703,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1ListDataProductsResponse": {
-      "description": "Response message for listing Data Products.",
+      "description": "Response message for listing data products.",
       "id": "GoogleCloudDataplexV1ListDataProductsResponse",
       "properties": {
         "dataProducts": {
-          "description": "The Data Products for the requested filter criteria.",
+          "description": "The data products for the requested filter criteria.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProduct"
           },
