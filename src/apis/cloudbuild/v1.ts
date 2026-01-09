@@ -1038,7 +1038,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$DefaultServiceAccount {
     /**
-     * Identifier. Format: `projects/{project\}/locations/{location\}/defaultServiceAccount
+     * Identifier. Format: `projects/{project\}/locations/{location\}/defaultServiceAccount`.
      */
     name?: string | null;
     /**
