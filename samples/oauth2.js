@@ -17,8 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const url = require('url');
-const opn = require('open');
-const destroyer = require('server-destroy');
+const open = require('open');
 
 const {google} = require('googleapis');
 const people = google.people('v1');
@@ -63,9 +62,10 @@ async function authenticate(scopes) {
             const qs = new url.URL(req.url, 'http://localhost:3000')
               .searchParams;
             res.end('Authentication successful! Please return to the console.');
-            server.destroy();
+            server.closeAllConnections();
+            server.close();
             const {tokens} = await oauth2Client.getToken(qs.get('code'));
-            oauth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
+            oauth2Client.credentials = tokens;
             resolve(oauth2Client);
           }
         } catch (e) {
@@ -74,9 +74,9 @@ async function authenticate(scopes) {
       })
       .listen(3000, () => {
         // open the browser to the authorize url to start the workflow
-        opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
+        open(authorizeUrl, {wait: false}).then(cp => cp.unref());
       });
-    destroyer(server);
+
   });
 }
 
