@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v16.2.0...cloudbuild-v16.3.0) (2026-01-09)
+
+
+### Features
+
+* run the generator ([#3861](https://github.com/googleapis/google-api-nodejs-client/issues/3861)) ([d3bd984](https://github.com/googleapis/google-api-nodejs-client/commit/d3bd984b59162b430bba749fab7657d25c40b75b))
+
 ## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v16.1.0...cloudbuild-v16.2.0) (2025-12-05)
 
 
