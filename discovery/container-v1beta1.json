@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20251216",
+  "revision": "20260113",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2788,6 +2788,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "status": {
+          "description": "Draining status of the additional subnet.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "DRAINING"
+          ],
+          "enumDescriptions": [
+            "Not set, same as ACTIVE.",
+            "ACTIVE status indicates that the subnet is available for new node pool creation.",
+            "DRAINING status indicates that the subnet is not used for new node pool creation."
+          ],
+          "type": "string"
         },
         "subnetwork": {
           "description": "Name of the subnetwork. This can be the full path of the subnetwork or just the name. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet",
@@ -3633,7 +3647,7 @@
           "description": "Configuration for Binary Authorization."
         },
         "clusterIpv4Cidr": {
-          "description": "The IP address range of the container pods in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.",
+          "description": "The IP address range of the container pods in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.",
           "type": "string"
         },
         "clusterTelemetry": {
@@ -3964,7 +3978,7 @@
           "type": "string"
         },
         "servicesIpv4Cidr": {
-          "description": "Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.",
+          "description": "Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.",
           "readOnly": true,
           "type": "string"
         },
@@ -4012,7 +4026,7 @@
         },
         "tpuIpv4CidrBlock": {
           "deprecated": true,
-          "description": "Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.",
+          "description": "Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.",
           "readOnly": true,
           "type": "string"
         },
@@ -4049,6 +4063,18 @@
       "description": "ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.",
       "id": "ClusterAutoscaling",
       "properties": {
+        "autopilotGeneralProfile": {
+          "description": "Autopilot general profile for the cluster, which defines the configuration for the cluster.",
+          "enum": [
+            "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED",
+            "NO_PERFORMANCE"
+          ],
+          "enumDescriptions": [
+            "Use default configuration.",
+            "Avoid extra IP consumption."
+          ],
+          "type": "string"
+        },
         "autoprovisioningLocations": {
           "description": "The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.",
           "items": {
@@ -5854,7 +5880,7 @@
           "type": "string"
         },
         "clusterIpv4CidrBlock": {
-          "description": "The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
+          "description": "The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
           "type": "string"
         },
         "clusterSecondaryRangeName": {
@@ -5895,7 +5921,7 @@
           "type": "string"
         },
         "nodeIpv4CidrBlock": {
-          "description": "The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
+          "description": "The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
           "type": "string"
         },
         "podCidrOverprovisionConfig": {
@@ -5908,7 +5934,7 @@
           "type": "string"
         },
         "servicesIpv4CidrBlock": {
-          "description": "The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
+          "description": "The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.",
           "type": "string"
         },
         "servicesIpv6CidrBlock": {
@@ -5945,7 +5971,7 @@
         },
         "tpuIpv4CidrBlock": {
           "deprecated": true,
-          "description": "The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.",
+          "description": "The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.",
           "type": "string"
         },
         "useIpAliases": {
@@ -7023,6 +7049,11 @@
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
         },
+        "consolidationDelay": {
+          "description": "Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "containerdConfig": {
           "$ref": "ContainerdConfig",
           "description": "Parameters for containerd customization."
@@ -7488,7 +7519,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "The subnetwork path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.",
+          "description": "Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: 1. A user supplied subnetwork name/full path during node pool creation. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet 2. A subnetwork path picked based on the IP utilization during node pool creation and is immutable.",
           "type": "string"
         }
       },
@@ -9827,6 +9858,11 @@
         "confidentialNodes": {
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
+        },
+        "consolidationDelay": {
+          "description": "Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.",
+          "format": "google-duration",
+          "type": "string"
         },
         "containerdConfig": {
           "$ref": "ContainerdConfig",
