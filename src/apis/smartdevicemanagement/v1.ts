@@ -129,6 +129,10 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Device {
     /**
+     * Output only. The GHP device ID of the device.
+     */
+    ghpName?: string | null;
+    /**
      * Required. The resource name of the device. For example: "enterprises/XYZ/devices/123".
      */
     name?: string | null;
@@ -203,6 +207,10 @@ export namespace smartdevicemanagement_v1 {
      */
     displayName?: string | null;
     /**
+     * Output only. The GHP name of the relation -- e.g., structure/room where the device is assigned to. For example: "homegraph.googleapis.com/Structure/ABC" or "homegraph.googleapis.com/Room/ABC"
+     */
+    ghpParent?: string | null;
+    /**
      * Output only. The name of the relation -- e.g., structure/room where the device is assigned to. For example: "enterprises/XYZ/structures/ABC" or "enterprises/XYZ/structures/ABC/rooms/123"
      */
     parent?: string | null;
@@ -224,6 +232,10 @@ export namespace smartdevicemanagement_v1 {
    * Structure resource represents an instance of enterprise managed home or hotel room.
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Structure {
+    /**
+     * Output only. The unique identifier for the structure in Google Home Platform. Format: homegraph.googleapis.com/Structure/{structure_id\}
+     */
+    ghpName?: string | null;
     /**
      * Output only. The resource name of the structure. For example: "enterprises/XYZ/structures/ABC".
      */
@@ -446,6 +458,7 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "ghpName": "my_ghpName",
      *   //   "name": "my_name",
      *   //   "parentRelations": [],
      *   //   "traits": {},
@@ -777,6 +790,7 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "ghpName": "my_ghpName",
      *   //   "name": "my_name",
      *   //   "traits": {}
      *   // }
