@@ -203,7 +203,7 @@
     "folders": {
       "methods": {
         "getAutokeyConfig": {
-          "description": "Returns the AutokeyConfig for a folder.",
+          "description": "Returns the AutokeyConfig for a folder or project.",
           "flatPath": "v1/folders/{foldersId}/autokeyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.folders.getAutokeyConfig",
@@ -212,7 +212,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -255,7 +255,7 @@
           ]
         },
         "updateAutokeyConfig": {
-          "description": "Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
+          "description": "Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
           "flatPath": "v1/folders/{foldersId}/autokeyConfig",
           "httpMethod": "PATCH",
           "id": "cloudkms.folders.updateAutokeyConfig",
@@ -393,6 +393,32 @@
     },
     "projects": {
       "methods": {
+        "getAutokeyConfig": {
+          "description": "Returns the AutokeyConfig for a folder or project.",
+          "flatPath": "v1/projects/{projectsId}/autokeyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.projects.getAutokeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/autokeyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AutokeyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
         "getKajPolicyConfig": {
           "description": "Gets the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.",
           "flatPath": "v1/projects/{projectsId}/kajPolicyConfig",
@@ -491,6 +517,41 @@
           "path": "v1/{+project}:showEffectiveKeyAccessJustificationsPolicyConfig",
           "response": {
             "$ref": "ShowEffectiveKeyAccessJustificationsPolicyConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
+        "updateAutokeyConfig": {
+          "description": "Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
+          "flatPath": "v1/projects/{projectsId}/autokeyConfig",
+          "httpMethod": "PATCH",
+          "id": "cloudkms.projects.updateAutokeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/autokeyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "AutokeyConfig"
+          },
+          "response": {
+            "$ref": "AutokeyConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -2429,15 +2490,365 @@
                   ]
                 }
               }
+            },
+            "singleTenantHsmInstances": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SingleTenantHsmInstance in a given Project and Location. User must create a RegisterTwoFactorAuthKeys proposal with this single-tenant HSM instance to finish setup of the instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances",
+                  "httpMethod": "POST",
+                  "id": "cloudkms.projects.locations.singleTenantHsmInstances.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the location associated with the SingleTenantHsmInstance, in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "singleTenantHsmInstanceId": {
+                      "description": "Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/singleTenantHsmInstances",
+                  "request": {
+                    "$ref": "SingleTenantHsmInstance"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "get": {
+                  "description": "Returns metadata for a given SingleTenantHsmInstance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.singleTenantHsmInstances.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SingleTenantHsmInstance to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SingleTenantHsmInstance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SingleTenantHsmInstances.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.singleTenantHsmInstances.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Optional limit on the number of SingleTenantHsmInstances to include in the response. Further SingleTenantHsmInstances can subsequently be obtained by including the ListSingleTenantHsmInstancesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstancesResponse.next_page_token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location associated with the SingleTenantHsmInstances to list, in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Optional. If set to true, HsmManagement.ListSingleTenantHsmInstances will also return SingleTenantHsmInstances in DELETED state.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/singleTenantHsmInstances",
+                  "response": {
+                    "$ref": "ListSingleTenantHsmInstancesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                }
+              },
+              "resources": {
+                "proposals": {
+                  "methods": {
+                    "approve": {
+                      "description": "Approves a SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance. The proposal must be in the PENDING state.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals/{proposalsId}:approve",
+                      "httpMethod": "POST",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.approve",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SingleTenantHsmInstanceProposal to approve.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+/proposals/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:approve",
+                      "request": {
+                        "$ref": "ApproveSingleTenantHsmInstanceProposalRequest"
+                      },
+                      "response": {
+                        "$ref": "ApproveSingleTenantHsmInstanceProposalResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a new SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals",
+                      "httpMethod": "POST",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the SingleTenantHsmInstance associated with the SingleTenantHsmInstanceProposals.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "singleTenantHsmInstanceProposalId": {
+                          "description": "Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/proposals",
+                      "request": {
+                        "$ref": "SingleTenantHsmInstanceProposal"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a SingleTenantHsmInstanceProposal.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals/{proposalsId}",
+                      "httpMethod": "DELETE",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SingleTenantHsmInstanceProposal to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+/proposals/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
+                    "execute": {
+                      "description": "Executes a SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance. The proposal must be in the APPROVED state.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals/{proposalsId}:execute",
+                      "httpMethod": "POST",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.execute",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SingleTenantHsmInstanceProposal to execute.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+/proposals/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:execute",
+                      "request": {
+                        "$ref": "ExecuteSingleTenantHsmInstanceProposalRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns metadata for a given SingleTenantHsmInstanceProposal.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals/{proposalsId}",
+                      "httpMethod": "GET",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the SingleTenantHsmInstanceProposal to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+/proposals/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "SingleTenantHsmInstanceProposal"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists SingleTenantHsmInstanceProposals.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/singleTenantHsmInstances/{singleTenantHsmInstancesId}/proposals",
+                      "httpMethod": "GET",
+                      "id": "cloudkms.projects.locations.singleTenantHsmInstances.proposals.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Optional limit on the number of SingleTenantHsmInstanceProposals to include in the response. Further SingleTenantHsmInstanceProposals can subsequently be obtained by including the ListSingleTenantHsmInstanceProposalsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstanceProposalsResponse.next_page_token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the single tenant HSM instance associated with the SingleTenantHsmInstanceProposals to list, in the format `projects/*/locations/*/singleTenantHsmInstances/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/singleTenantHsmInstances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "showDeleted": {
+                          "description": "Optional. If set to true, HsmManagement.ListSingleTenantHsmInstanceProposals will also return SingleTenantHsmInstanceProposals in DELETED state.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+parent}/proposals",
+                      "response": {
+                        "$ref": "ListSingleTenantHsmInstanceProposalsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260116",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
+    "AddQuorumMember": {
+      "description": "Add a quorum member to the SingleTenantHsmInstance. This will increase the total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.",
+      "id": "AddQuorumMember",
+      "properties": {
+        "twoFactorPublicKeyPem": {
+          "description": "Required. The public key associated with the 2FA key for the new quorum member to add. Public keys must be associated with RSA 2048 keys.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApproveSingleTenantHsmInstanceProposalRequest": {
+      "description": "Request message for HsmManagement.ApproveSingleTenantHsmInstanceProposal.",
+      "id": "ApproveSingleTenantHsmInstanceProposalRequest",
+      "properties": {
+        "quorumReply": {
+          "$ref": "QuorumReply",
+          "description": "Required. The reply to QuorumParameters for approving the proposal."
+        },
+        "requiredActionQuorumReply": {
+          "$ref": "RequiredActionQuorumReply",
+          "description": "Required. The reply to RequiredActionQuorumParameters for approving the proposal."
+        }
+      },
+      "type": "object"
+    },
+    "ApproveSingleTenantHsmInstanceProposalResponse": {
+      "description": "Response message for HsmManagement.ApproveSingleTenantHsmInstanceProposal.",
+      "id": "ApproveSingleTenantHsmInstanceProposalResponse",
+      "properties": {},
+      "type": "object"
+    },
     "AsymmetricDecryptRequest": {
       "description": "Request message for KeyManagementService.AsymmetricDecrypt.",
       "id": "AsymmetricDecryptRequest",
@@ -2758,6 +3169,40 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Challenge": {
+      "description": "A challenge to be signed by a 2FA key.",
+      "id": "Challenge",
+      "properties": {
+        "challenge": {
+          "description": "Output only. The challenge to be signed by the 2FA key indicated by the public key.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicKeyPem": {
+          "description": "Output only. The public key associated with the 2FA key that should sign the challenge.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChallengeReply": {
+      "description": "A reply to a challenge signed by a 2FA key.",
+      "id": "ChallengeReply",
+      "properties": {
+        "publicKeyPem": {
+          "description": "Required. The public key associated with the 2FA key.",
+          "type": "string"
+        },
+        "signedChallenge": {
+          "description": "Required. The signed challenge associated with the 2FA key. The signature must be RSASSA-PKCS1 v1.5 with a SHA256 digest.",
+          "format": "byte",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3351,6 +3796,12 @@
       },
       "type": "object"
     },
+    "DeleteSingleTenantHsmInstance": {
+      "description": "Delete the SingleTenantHsmInstance. Deleting a SingleTenantHsmInstance will make all CryptoKeys attached to the SingleTenantHsmInstance unusable. The SingleTenantHsmInstance must not be in the DELETING or DELETED state to perform this operation.",
+      "id": "DeleteSingleTenantHsmInstance",
+      "properties": {},
+      "type": "object"
+    },
     "DestroyCryptoKeyVersionRequest": {
       "description": "Request message for KeyManagementService.DestroyCryptoKeyVersion.",
       "id": "DestroyCryptoKeyVersionRequest",
@@ -3377,6 +3828,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DisableSingleTenantHsmInstance": {
+      "description": "Disable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.",
+      "id": "DisableSingleTenantHsmInstance",
+      "properties": {},
       "type": "object"
     },
     "EkmConfig": {
@@ -3440,6 +3897,18 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableSingleTenantHsmInstance": {
+      "description": "Enable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the DISABLED state to perform this operation.",
+      "id": "EnableSingleTenantHsmInstance",
+      "properties": {},
       "type": "object"
     },
     "EncryptRequest": {
@@ -3516,6 +3985,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "ExecuteSingleTenantHsmInstanceProposalRequest": {
+      "description": "Request message for HsmManagement.ExecuteSingleTenantHsmInstanceProposal.",
+      "id": "ExecuteSingleTenantHsmInstanceProposalRequest",
+      "properties": {},
       "type": "object"
     },
     "Expr": {
@@ -3877,6 +4352,20 @@
               "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
               "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              true,
+              false,
+              false
+            ],
             "enumDescriptions": [
               "Unspecified access reason.",
               "Customer-initiated support.",
@@ -3886,8 +4375,8 @@
               "Customer uses their account to perform any access to their own data which their IAM policy authorizes.",
               "Google systems access customer data to help optimize the structure of the data or quality for future uses by the customer.",
               "No reason is expected for this key request.",
-              "Customer uses their account to perform any access to their own data which their IAM policy authorizes, and one of the following is true: * A Google administrator has reset the root-access account associated with the user's organization within the past 7 days. * A Google-initiated emergency access operation has interacted with a resource in the same project or folder as the currently accessed resource within the past 7 days.",
-              "Google systems access customer data to help optimize the structure of the data or quality for future uses by the customer, and one of the following is true: * A Google administrator has reset the root-access account associated with the user's organization within the past 7 days. * A Google-initiated emergency access operation has interacted with a resource in the same project or folder as the currently accessed resource within the past 7 days.",
+              "Deprecated: This code is no longer generated by Google Cloud. The GOOGLE_RESPONSE_TO_PRODUCTION_ALERT justification codes available in both Key Access Justifications and Access Transparency logs provide customer-visible signals of emergency access in more precise contexts. Customer uses their account to perform any access to their own data which their IAM policy authorizes, and one of the following is true: * A Google administrator has reset the root-access account associated with the user's organization within the past 7 days. * A Google-initiated emergency access operation has interacted with a resource in the same project or folder as the currently accessed resource within the past 7 days.",
+              "Deprecated: This code is no longer generated by Google Cloud. The GOOGLE_RESPONSE_TO_PRODUCTION_ALERT justification codes available in both Key Access Justifications and Access Transparency logs provide customer-visible signals of emergency access in more precise contexts. Google systems access customer data to help optimize the structure of the data or quality for future uses by the customer, and one of the following is true: * A Google administrator has reset the root-access account associated with the user's organization within the past 7 days. * A Google-initiated emergency access operation has interacted with a resource in the same project or folder as the currently accessed resource within the past 7 days.",
               "Google-initiated access to maintain system reliability.",
               "One of the following operations is being executed while simultaneously encountering an internal technical issue which prevented a more precise justification code from being generated: * Your account has been used to perform any access to your own data which your IAM policy authorizes. * An automated Google system operates on encrypted customer data which your IAM policy authorizes. * Customer-initiated Google support access. * Google-initiated support access to protect system reliability."
             ],
@@ -4131,6 +4620,52 @@
         "nextPageToken": {
           "description": "The standard List next-page token.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListSingleTenantHsmInstanceProposalsResponse": {
+      "description": "Response message for HsmManagement.ListSingleTenantHsmInstanceProposals.",
+      "id": "ListSingleTenantHsmInstanceProposalsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in ListSingleTenantHsmInstanceProposalsRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "singleTenantHsmInstanceProposals": {
+          "description": "The list of SingleTenantHsmInstanceProposals.",
+          "items": {
+            "$ref": "SingleTenantHsmInstanceProposal"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of SingleTenantHsmInstanceProposals that matched the query. This field is not populated if ListSingleTenantHsmInstanceProposalsRequest.filter is applied.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListSingleTenantHsmInstancesResponse": {
+      "description": "Response message for HsmManagement.ListSingleTenantHsmInstances.",
+      "id": "ListSingleTenantHsmInstancesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in ListSingleTenantHsmInstancesRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "singleTenantHsmInstances": {
+          "description": "The list of SingleTenantHsmInstances.",
+          "items": {
+            "$ref": "SingleTenantHsmInstance"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of SingleTenantHsmInstances that matched the query. This field is not populated if ListSingleTenantHsmInstancesRequest.filter is applied.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4554,6 +5089,75 @@
       },
       "type": "object"
     },
+    "QuorumAuth": {
+      "description": "Configuration for M of N quorum auth.",
+      "id": "QuorumAuth",
+      "properties": {
+        "requiredApproverCount": {
+          "description": "Output only. The required numbers of approvers. The M value used for M of N quorum auth. Must be greater than or equal to 2 and less than or equal to total_approver_count - 1.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalApproverCount": {
+          "description": "Required. The total number of approvers. This is the N value used for M of N quorum auth. Must be greater than or equal to 3 and less than or equal to 16.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "twoFactorPublicKeyPems": {
+          "description": "Output only. The public keys associated with the 2FA keys for M of N quorum auth.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "QuorumParameters": {
+      "description": "Parameters of quorum approval for the SingleTenantHsmInstanceProposal.",
+      "id": "QuorumParameters",
+      "properties": {
+        "approvedTwoFactorPublicKeyPems": {
+          "description": "Output only. The public keys associated with the 2FA keys that have already approved the SingleTenantHsmInstanceProposal by signing the challenge.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "challenges": {
+          "description": "Output only. The challenges to be signed by 2FA keys for quorum auth. M of N of these challenges are required to be signed to approve the operation.",
+          "items": {
+            "$ref": "Challenge"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "requiredApproverCount": {
+          "description": "Output only. The required numbers of approvers. This is the M value used for M of N quorum auth. It is less than the number of public keys.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "QuorumReply": {
+      "description": "The reply to QuorumParameters for approving the proposal.",
+      "id": "QuorumReply",
+      "properties": {
+        "challengeReplies": {
+          "description": "Required. The challenge replies to approve the proposal. Challenge replies can be sent across multiple requests. The proposal will be approved when required_approver_count challenge replies are provided.",
+          "items": {
+            "$ref": "ChallengeReply"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RawDecryptRequest": {
       "description": "Request message for KeyManagementService.RawDecrypt.",
       "id": "RawDecryptRequest",
@@ -4750,6 +5354,100 @@
       },
       "type": "object"
     },
+    "RefreshSingleTenantHsmInstance": {
+      "description": "Refreshes the SingleTenantHsmInstance. This operation must be performed periodically to keep the SingleTenantHsmInstance active. This operation must be performed before unrefreshed_duration_until_disable has passed. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.",
+      "id": "RefreshSingleTenantHsmInstance",
+      "properties": {},
+      "type": "object"
+    },
+    "RegisterTwoFactorAuthKeys": {
+      "description": "Register 2FA keys for the SingleTenantHsmInstance. This operation requires all Challenges to be signed by 2FA keys. The SingleTenantHsmInstance must be in the PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation.",
+      "id": "RegisterTwoFactorAuthKeys",
+      "properties": {
+        "requiredApproverCount": {
+          "description": "Required. The required numbers of approvers to set for the SingleTenantHsmInstance. This is the M value used for M of N quorum auth. Must be greater than or equal to 2 and less than or equal to total_approver_count - 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "twoFactorPublicKeyPems": {
+          "description": "Required. The public keys associated with the 2FA keys for M of N quorum auth. Public keys must be associated with RSA 2048 keys.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveQuorumMember": {
+      "description": "Remove a quorum member from the SingleTenantHsmInstance. This will reduce total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.",
+      "id": "RemoveQuorumMember",
+      "properties": {
+        "twoFactorPublicKeyPem": {
+          "description": "Required. The public key associated with the 2FA key for the quorum member to remove. Public keys must be associated with RSA 2048 keys.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequiredActionQuorumParameters": {
+      "description": "Parameters for an approval that has both required challenges and a quorum.",
+      "id": "RequiredActionQuorumParameters",
+      "properties": {
+        "approvedTwoFactorPublicKeyPems": {
+          "description": "Output only. The public keys associated with the 2FA keys that have already approved the SingleTenantHsmInstanceProposal by signing the challenge.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "quorumChallenges": {
+          "description": "Output only. The challenges to be signed by 2FA keys for quorum auth. M of N of these challenges are required to be signed to approve the operation.",
+          "items": {
+            "$ref": "Challenge"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "requiredApproverCount": {
+          "description": "Output only. The required number of quorum approvers. This is the M value used for M of N quorum auth. It is less than the number of public keys.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "requiredChallenges": {
+          "description": "Output only. A list of specific challenges that must be signed. For some operations, this will contain a single challenge.",
+          "items": {
+            "$ref": "Challenge"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RequiredActionQuorumReply": {
+      "description": "The reply to RequiredActionQuorumParameters for approving the proposal.",
+      "id": "RequiredActionQuorumReply",
+      "properties": {
+        "quorumChallengeReplies": {
+          "description": "Required. Quorum members' signed challenge replies. These can be provided across multiple requests. The proposal will be approved when required_approver_count quorum_challenge_replies are provided and when all required_challenge_replies are provided.",
+          "items": {
+            "$ref": "ChallengeReply"
+          },
+          "type": "array"
+        },
+        "requiredChallengeReplies": {
+          "description": "Required. All required challenges must be signed for the proposal to be approved. These can be sent across multiple requests.",
+          "items": {
+            "$ref": "ChallengeReply"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RestoreCryptoKeyVersionRequest": {
       "description": "Request message for KeyManagementService.RestoreCryptoKeyVersion.",
       "id": "RestoreCryptoKeyVersionRequest",
@@ -4835,6 +5533,179 @@
         "effectiveKajPolicy": {
           "$ref": "KeyAccessJustificationsPolicyConfig",
           "description": "The effective KeyAccessJustificationsPolicyConfig."
+        }
+      },
+      "type": "object"
+    },
+    "SingleTenantHsmInstance": {
+      "description": "A SingleTenantHsmInstance represents a single-tenant HSM instance. It can be used for creating CryptoKeys with a ProtectionLevel of HSM_SINGLE_TENANT, as well as performing cryptographic operations using keys created within the SingleTenantHsmInstance.",
+      "id": "SingleTenantHsmInstance",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the SingleTenantHsmInstance was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The time at which the SingleTenantHsmInstance was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "disableTime": {
+          "description": "Output only. The time at which the instance will be automatically disabled if not refreshed. This field is updated upon creation and after each successful refresh operation and enable. A RefreshSingleTenantHsmInstance operation must be made via a SingleTenantHsmInstanceProposal before this time otherwise the SingleTenantHsmInstance will become disabled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name for this SingleTenantHsmInstance in the format `projects/*/locations/*/singleTenantHsmInstances/*`.",
+          "type": "string"
+        },
+        "quorumAuth": {
+          "$ref": "QuorumAuth",
+          "description": "Required. The quorum auth configuration for the SingleTenantHsmInstance."
+        },
+        "state": {
+          "description": "Output only. The state of the SingleTenantHsmInstance.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "PENDING_TWO_FACTOR_AUTH_REGISTRATION",
+            "ACTIVE",
+            "DISABLING",
+            "DISABLED",
+            "DELETING",
+            "DELETED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The SingleTenantHsmInstance is being created.",
+            "The SingleTenantHsmInstance is waiting for 2FA keys to be registered. This can be done by calling CreateSingleTenantHsmInstanceProposal with the RegisterTwoFactorAuthKeys operation.",
+            "The SingleTenantHsmInstance is ready to use. A SingleTenantHsmInstance must be in the ACTIVE state for all CryptoKeys created within the SingleTenantHsmInstance to be usable.",
+            "The SingleTenantHsmInstance is being disabled.",
+            "The SingleTenantHsmInstance is disabled.",
+            "The SingleTenantHsmInstance is being deleted. Requests to the instance will be rejected in this state.",
+            "The SingleTenantHsmInstance has been deleted.",
+            "The SingleTenantHsmInstance has failed and can not be recovered or used."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "unrefreshedDurationUntilDisable": {
+          "description": "Output only. The system-defined duration that an instance can remain unrefreshed until it is automatically disabled. This will have a value of 120 days.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SingleTenantHsmInstanceProposal": {
+      "description": "A SingleTenantHsmInstanceProposal represents a proposal to perform an operation on a SingleTenantHsmInstance.",
+      "id": "SingleTenantHsmInstanceProposal",
+      "properties": {
+        "addQuorumMember": {
+          "$ref": "AddQuorumMember",
+          "description": "Add a quorum member to the SingleTenantHsmInstance. This will increase the total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation."
+        },
+        "createTime": {
+          "description": "Output only. The time at which the SingleTenantHsmInstanceProposal was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteSingleTenantHsmInstance": {
+          "$ref": "DeleteSingleTenantHsmInstance",
+          "description": "Delete the SingleTenantHsmInstance. Deleting a SingleTenantHsmInstance will make all CryptoKeys attached to the SingleTenantHsmInstance unusable. The SingleTenantHsmInstance must be in the DISABLED or PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation."
+        },
+        "deleteTime": {
+          "description": "Output only. The time at which the SingleTenantHsmInstanceProposal was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "disableSingleTenantHsmInstance": {
+          "$ref": "DisableSingleTenantHsmInstance",
+          "description": "Disable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation."
+        },
+        "enableSingleTenantHsmInstance": {
+          "$ref": "EnableSingleTenantHsmInstance",
+          "description": "Enable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the DISABLED state to perform this operation."
+        },
+        "expireTime": {
+          "description": "The time at which the SingleTenantHsmInstanceProposal will expire if not approved and executed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failureReason": {
+          "description": "Output only. The root cause of the most recent failure. Only present if state is FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name for this SingleTenantHsmInstance in the format `projects/*/locations/*/singleTenantHsmInstances/*/proposals/*`.",
+          "type": "string"
+        },
+        "purgeTime": {
+          "description": "Output only. The time at which the soft-deleted SingleTenantHsmInstanceProposal will be permanently purged. This field is only populated when the state is DELETED and will be set a time after expiration of the proposal, i.e. >= expire_time or (create_time + ttl).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "quorumParameters": {
+          "$ref": "QuorumParameters",
+          "description": "Output only. The quorum approval parameters for the SingleTenantHsmInstanceProposal.",
+          "readOnly": true
+        },
+        "refreshSingleTenantHsmInstance": {
+          "$ref": "RefreshSingleTenantHsmInstance",
+          "description": "Refreshes the SingleTenantHsmInstance. This operation must be performed periodically to keep the SingleTenantHsmInstance active. This operation must be performed before unrefreshed_duration_until_disable has passed. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation."
+        },
+        "registerTwoFactorAuthKeys": {
+          "$ref": "RegisterTwoFactorAuthKeys",
+          "description": "Register 2FA keys for the SingleTenantHsmInstance. This operation requires all N Challenges to be signed by 2FA keys. The SingleTenantHsmInstance must be in the PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation."
+        },
+        "removeQuorumMember": {
+          "$ref": "RemoveQuorumMember",
+          "description": "Remove a quorum member from the SingleTenantHsmInstance. This will reduce total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation."
+        },
+        "requiredActionQuorumParameters": {
+          "$ref": "RequiredActionQuorumParameters",
+          "description": "Output only. Parameters for an approval of a SingleTenantHsmInstanceProposal that has both required challenges and a quorum.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of the SingleTenantHsmInstanceProposal.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "PENDING",
+            "APPROVED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The SingleTenantHsmInstanceProposal is being created.",
+            "The SingleTenantHsmInstanceProposal is pending approval.",
+            "The SingleTenantHsmInstanceProposal has been approved.",
+            "The SingleTenantHsmInstanceProposal is being executed.",
+            "The SingleTenantHsmInstanceProposal has been executed successfully.",
+            "The SingleTenantHsmInstanceProposal has failed.",
+            "The SingleTenantHsmInstanceProposal has been deleted and will be purged after the purge_time."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Input only. The TTL for the SingleTenantHsmInstanceProposal. Proposals will expire after this duration.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
