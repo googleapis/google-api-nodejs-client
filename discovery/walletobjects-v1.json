@@ -2711,7 +2711,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260113",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3038,6 +3038,11 @@
         },
         "readToken": {
           "description": "The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.",
+          "type": "string"
+        },
+        "uploadFragmentListCreationInfo": {
+          "description": "A serialized Object Fragment List Creation Info passed from Bigstore -> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.",
+          "format": "byte",
           "type": "string"
         },
         "uploadMetadataContainer": {
