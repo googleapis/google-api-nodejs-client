@@ -317,6 +317,28 @@ export namespace travelimpactmodel_v1 {
     origin?: string | null;
   }
   /**
+   * Profile describing the data handling characteristics of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: "google.com/tool.profiles/data_handling"
+   */
+  export interface Schema$McpToolDataHandlingProfile {
+    /**
+     * // The data access level of the tool's inputs.
+     */
+    inputDataAccessLevel?: string | null;
+    /**
+     * The data access level of the tool's outputs.
+     */
+    outputDataAccessLevel?: string | null;
+  }
+  /**
+   * Profile describing the lifecycle stage of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: "google.com/tool.profiles/lifecycle"
+   */
+  export interface Schema$McpToolLifecycleProfile {
+    /**
+     * Output only. The current launch state of the MCP tool.
+     */
+    launchState?: string | null;
+  }
+  /**
    * Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning).
    */
   export interface Schema$ModelVersion {
