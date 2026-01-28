@@ -683,7 +683,7 @@ export namespace solar_v1 {
      *   const res = await solar.buildingInsights.findClosest({
      *     // Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
      *     exactQualityRequired: 'placeholder-value',
-     *     // Optional. Specifies the pre-GA features to enable.
+     *     // Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions](https://cloud.google.com/maps-platform/terms/launch-stages) for more details.
      *     experiments: 'placeholder-value',
      *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
      *     'location.latitude': 'placeholder-value',
@@ -812,7 +812,7 @@ export namespace solar_v1 {
      */
     exactQualityRequired?: boolean;
     /**
-     * Optional. Specifies the pre-GA features to enable.
+     * Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions](https://cloud.google.com/maps-platform/terms/launch-stages) for more details.
      */
     experiments?: string[];
     /**
@@ -868,7 +868,7 @@ export namespace solar_v1 {
      *   const res = await solar.dataLayers.get({
      *     // Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
      *     exactQualityRequired: 'placeholder-value',
-     *     // Optional. Specifies the pre-GA experiments to enable.
+     *     // Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions]( https://cloud.google.com/maps-platform/terms/launch-stages) for more details.
      *     experiments: 'placeholder-value',
      *     // The latitude in degrees. It must be in the range [-90.0, +90.0].
      *     'location.latitude': 'placeholder-value',
@@ -997,7 +997,7 @@ export namespace solar_v1 {
      */
     exactQualityRequired?: boolean;
     /**
-     * Optional. Specifies the pre-GA experiments to enable.
+     * Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions]( https://cloud.google.com/maps-platform/terms/launch-stages) for more details.
      */
     experiments?: string[];
     /**

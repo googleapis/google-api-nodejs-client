@@ -120,7 +120,7 @@
               "type": "boolean"
             },
             "experiments": {
-              "description": "Optional. Specifies the pre-GA features to enable.",
+              "description": "Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions](https://cloud.google.com/maps-platform/terms/launch-stages) for more details.",
               "enum": [
                 "EXPERIMENT_UNSPECIFIED",
                 "EXPANDED_COVERAGE"
@@ -190,7 +190,7 @@
               "type": "boolean"
             },
             "experiments": {
-              "description": "Optional. Specifies the pre-GA experiments to enable.",
+              "description": "Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions]( https://cloud.google.com/maps-platform/terms/launch-stages) for more details.",
               "enum": [
                 "EXPERIMENT_UNSPECIFIED",
                 "EXPANDED_COVERAGE"
@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20251027",
+  "revision": "20260125",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
