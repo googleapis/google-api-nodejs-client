@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260109",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2890,6 +2890,11 @@
           "$ref": "TimedPromoteReleaseOperation",
           "description": "Output only. Promotes a release to a specified 'Target' as defined in a Timed Promote Release rule.",
           "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Unique identifier of the `AutomationRun`.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. Time at which the automationRun was updated.",

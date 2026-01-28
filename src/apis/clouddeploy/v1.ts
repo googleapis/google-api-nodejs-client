@@ -476,6 +476,10 @@ export namespace clouddeploy_v1 {
      */
     timedPromoteReleaseOperation?: Schema$TimedPromoteReleaseOperation;
     /**
+     * Output only. Unique identifier of the `AutomationRun`.
+     */
+    uid?: string | null;
+    /**
      * Output only. Time at which the automationRun was updated.
      */
     updateTime?: string | null;
@@ -6851,6 +6855,7 @@ export namespace clouddeploy_v1 {
      *   //   "stateDescription": "my_stateDescription",
      *   //   "targetId": "my_targetId",
      *   //   "timedPromoteReleaseOperation": {},
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "waitUntilTime": "my_waitUntilTime"
      *   // }
