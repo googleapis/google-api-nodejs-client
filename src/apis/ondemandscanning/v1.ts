@@ -565,6 +565,10 @@ export namespace ondemandscanning_v1 {
      */
     lastScanTime?: string | null;
     /**
+     * The last time vulnerability scan results changed.
+     */
+    lastVulnerabilityUpdateTime?: string | null;
+    /**
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
