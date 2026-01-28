@@ -425,7 +425,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -457,6 +457,35 @@
               "path": "v3/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
+              ]
+            },
+            "refineText": {
+              "description": "Refines the input translated text to improve the quality.",
+              "flatPath": "v3/projects/{projectsId}/locations/{locationsId}:refineText",
+              "httpMethod": "POST",
+              "id": "translate.projects.locations.refineText",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+parent}:refineText",
+              "request": {
+                "$ref": "RefineTextRequest"
+              },
+              "response": {
+                "$ref": "RefineTextResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1248,14 +1277,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.",
+                      "description": "Identifier. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to be updated. Currently only `display_name` and 'input_config'",
+                      "description": "The list of fields to be updated. Currently, only `display_name` and `input_config` are supported.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1669,6 +1698,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v3/{+name}/operations",
@@ -1716,7 +1750,7 @@
       }
     }
   },
-  "revision": "20250424",
+  "revision": "20260108",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {
@@ -1739,7 +1773,7 @@
           "type": "integer"
         },
         "name": {
-          "description": "Required. The resource name of the dataset, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset_id}`",
+          "description": "Identifier. The resource name of the dataset, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset_id}`",
           "type": "string"
         },
         "sourceLanguageCode": {
@@ -1779,7 +1813,7 @@
           "type": "integer"
         },
         "name": {
-          "description": "Required. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`",
+          "description": "Identifier. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`",
           "type": "string"
         },
         "updateTime": {
@@ -1802,7 +1836,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}/adaptiveMtSentences/{sentence}`",
+          "description": "Identifier. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}/adaptiveMtSentences/{sentence}`",
           "type": "string"
         },
         "sourceSentence": {
@@ -1957,12 +1991,16 @@
           "$ref": "BatchDocumentOutputConfig",
           "description": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
         },
+        "pdfNativeOnly": {
+          "description": "Optional. If true, only native pdf pages will be translated.",
+          "type": "boolean"
+        },
         "sourceLanguageCode": {
           "description": "Required. The ISO-639 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "type": "string"
         },
         "targetLanguageCodes": {
-          "description": "Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here.",
+          "description": "Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "items": {
             "type": "string"
           },
@@ -2008,11 +2046,11 @@
           "description": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
         },
         "sourceLanguageCode": {
-          "description": "Required. Source language code.",
+          "description": "Required. Source language code. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "type": "string"
         },
         "targetLanguageCodes": {
-          "description": "Required. Specify up to 10 language codes here.",
+          "description": "Required. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "items": {
             "type": "string"
           },
@@ -2118,6 +2156,10 @@
         "content": {
           "description": "The content of the input stored as a string.",
           "type": "string"
+        },
+        "documentInputConfig": {
+          "$ref": "DocumentInputConfig",
+          "description": "Optional. The document configuration of the input."
         },
         "labels": {
           "additionalProperties": {
@@ -2364,7 +2406,7 @@
           "description": "Used with unidirectional glossaries."
         },
         "name": {
-          "description": "Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.",
+          "description": "Identifier. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.",
           "type": "string"
         },
         "submitTime": {
@@ -2561,7 +2603,7 @@
       "id": "LanguageCodesSet",
       "properties": {
         "languageCodes": {
-          "description": "The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.",
+          "description": "Optional. The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.",
           "items": {
             "type": "string"
           },
@@ -2749,6 +2791,13 @@
             "$ref": "Operation"
           },
           "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2798,7 +2847,7 @@
           "type": "string"
         },
         "dataset": {
-          "description": "The dataset from which the model is trained, in form of `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}`",
+          "description": "Required. The dataset from which the model is trained, in form of `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}`",
           "type": "string"
         },
         "displayName": {
@@ -2943,6 +2992,57 @@
       },
       "type": "object"
     },
+    "RefineTextRequest": {
+      "description": "Request message for RefineText.",
+      "id": "RefineTextRequest",
+      "properties": {
+        "refinementEntries": {
+          "description": "Required. The source texts and original translations in the source and target languages.",
+          "items": {
+            "$ref": "RefinementEntry"
+          },
+          "type": "array"
+        },
+        "sourceLanguageCode": {
+          "description": "Required. The BCP-47 language code of the source text in the request, for example, \"en-US\".",
+          "type": "string"
+        },
+        "targetLanguageCode": {
+          "description": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RefineTextResponse": {
+      "description": "Response message for RefineText.",
+      "id": "RefineTextResponse",
+      "properties": {
+        "refinedTranslations": {
+          "description": "The refined translations obtained from the original translations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RefinementEntry": {
+      "description": "A single refinement entry for RefineTextRequest.",
+      "id": "RefinementEntry",
+      "properties": {
+        "originalTranslation": {
+          "description": "Required. The original translation of the source text.",
+          "type": "string"
+        },
+        "sourceText": {
+          "description": "Required. The source text to be refined.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Romanization": {
       "description": "A single romanization response.",
       "id": "Romanization",
@@ -2970,7 +3070,7 @@
           "type": "array"
         },
         "sourceLanguageCode": {
-          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"hi\" or \"zh\". If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.",
+          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"hi\" or \"zh\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages#roman). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.",
           "type": "string"
         }
       },
@@ -3098,11 +3198,11 @@
           "type": "string"
         },
         "sourceLanguageCode": {
-          "description": "Optional. The ISO-639 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.",
+          "description": "Optional. The ISO-639 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.",
           "type": "string"
         },
         "targetLanguageCode": {
-          "description": "Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in Language Support.",
+          "description": "Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "type": "string"
         }
       },
@@ -3181,11 +3281,11 @@
           "type": "string"
         },
         "sourceLanguageCode": {
-          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.",
+          "description": "Optional. The ISO-639 language code of the input text if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.",
           "type": "string"
         },
         "targetLanguageCode": {
-          "description": "Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.",
+          "description": "Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages).",
           "type": "string"
         },
         "transliterationConfig": {

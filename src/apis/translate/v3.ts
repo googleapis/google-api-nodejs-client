@@ -141,7 +141,7 @@ export namespace translate_v3 {
      */
     exampleCount?: number | null;
     /**
-     * Required. The resource name of the dataset, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset_id\}`
+     * Identifier. The resource name of the dataset, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset_id\}`
      */
     name?: string | null;
     /**
@@ -174,7 +174,7 @@ export namespace translate_v3 {
      */
     entryCount?: number | null;
     /**
-     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
+     * Identifier. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}`
      */
     name?: string | null;
     /**
@@ -191,7 +191,7 @@ export namespace translate_v3 {
      */
     createTime?: string | null;
     /**
-     * Required. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}/adaptiveMtSentences/{sentence\}`
+     * Identifier. The resource name of the file, in form of `projects/{project-number-or-id\}/locations/{location_id\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}/adaptiveMtSentences/{sentence\}`
      */
     name?: string | null;
     /**
@@ -309,11 +309,15 @@ export namespace translate_v3 {
      */
     outputConfig?: Schema$BatchDocumentOutputConfig;
     /**
+     * Optional. If true, only native pdf pages will be translated.
+     */
+    pdfNativeOnly?: boolean | null;
+    /**
      * Required. The ISO-639 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here.
+     * Required. The ISO-639 language code to use for translation of the input document. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     targetLanguageCodes?: string[] | null;
   }
@@ -342,11 +346,11 @@ export namespace translate_v3 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Required. Source language code.
+     * Required. Source language code. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. Specify up to 10 language codes here.
+     * Required. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     targetLanguageCodes?: string[] | null;
   }
@@ -438,6 +442,10 @@ export namespace translate_v3 {
      * The content of the input stored as a string.
      */
     content?: string | null;
+    /**
+     * Optional. The document configuration of the input.
+     */
+    documentInputConfig?: Schema$DocumentInputConfig;
     /**
      * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
      */
@@ -623,7 +631,7 @@ export namespace translate_v3 {
      */
     languagePair?: Schema$LanguageCodePair;
     /**
-     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
+     * Identifier. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
      */
     name?: string | null;
     /**
@@ -788,7 +796,7 @@ export namespace translate_v3 {
    */
   export interface Schema$LanguageCodesSet {
     /**
-     * The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
+     * Optional. The ISO-639 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code.
      */
     languageCodes?: string[] | null;
   }
@@ -921,6 +929,10 @@ export namespace translate_v3 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -956,7 +968,7 @@ export namespace translate_v3 {
      */
     createTime?: string | null;
     /**
-     * The dataset from which the model is trained, in form of `projects/{project-number-or-id\}/locations/{location_id\}/datasets/{dataset_id\}`
+     * Required. The dataset from which the model is trained, in form of `projects/{project-number-or-id\}/locations/{location_id\}/datasets/{dataset_id\}`
      */
     dataset?: string | null;
     /**
@@ -1066,6 +1078,45 @@ export namespace translate_v3 {
     referenceSentencePairs?: Schema$ReferenceSentencePair[];
   }
   /**
+   * A single refinement entry for RefineTextRequest.
+   */
+  export interface Schema$RefinementEntry {
+    /**
+     * Required. The original translation of the source text.
+     */
+    originalTranslation?: string | null;
+    /**
+     * Required. The source text to be refined.
+     */
+    sourceText?: string | null;
+  }
+  /**
+   * Request message for RefineText.
+   */
+  export interface Schema$RefineTextRequest {
+    /**
+     * Required. The source texts and original translations in the source and target languages.
+     */
+    refinementEntries?: Schema$RefinementEntry[];
+    /**
+     * Required. The BCP-47 language code of the source text in the request, for example, "en-US".
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * Required. The BCP-47 language code for translation output, for example, "zh-CN".
+     */
+    targetLanguageCode?: string | null;
+  }
+  /**
+   * Response message for RefineText.
+   */
+  export interface Schema$RefineTextResponse {
+    /**
+     * The refined translations obtained from the original translations.
+     */
+    refinedTranslations?: string[] | null;
+  }
+  /**
    * A single romanization response.
    */
   export interface Schema$Romanization {
@@ -1087,7 +1138,7 @@ export namespace translate_v3 {
      */
     contents?: string[] | null;
     /**
-     * Optional. The ISO-639 language code of the input text if known, for example, "hi" or "zh". If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.
+     * Optional. The ISO-639 language code of the input text if known, for example, "hi" or "zh". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages#roman). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language for each content in the response.
      */
     sourceLanguageCode?: string | null;
   }
@@ -1188,11 +1239,11 @@ export namespace translate_v3 {
      */
     model?: string | null;
     /**
-     * Optional. The ISO-639 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.
+     * Optional. The ISO-639 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in Language Support.
+     * Required. The ISO-639 language code to use for translation of the input document, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     targetLanguageCode?: string | null;
   }
@@ -1259,11 +1310,11 @@ export namespace translate_v3 {
      */
     model?: string | null;
     /**
-     * Optional. The ISO-639 language code of the input text if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.
+     * Optional. The ISO-639 language code of the input text if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response.
      */
     sourceLanguageCode?: string | null;
     /**
-     * Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in Language Support.
+     * Required. The ISO-639 language code to use for translation of the input text, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages).
      */
     targetLanguageCode?: string | null;
     /**
@@ -1371,6 +1422,7 @@ export namespace translate_v3 {
      *       // request body parameters
      *       // {
      *       //   "content": "my_content",
+     *       //   "documentInputConfig": {},
      *       //   "labels": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "model": "my_model"
@@ -2219,6 +2271,7 @@ export namespace translate_v3 {
      *       //   "inputConfigs": [],
      *       //   "models": {},
      *       //   "outputConfig": {},
+     *       //   "pdfNativeOnly": false,
      *       //   "sourceLanguageCode": "my_sourceLanguageCode",
      *       //   "targetLanguageCodes": []
      *       // }
@@ -2534,6 +2587,7 @@ export namespace translate_v3 {
      *       // request body parameters
      *       // {
      *       //   "content": "my_content",
+     *       //   "documentInputConfig": {},
      *       //   "labels": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "model": "my_model"
@@ -2968,7 +3022,7 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3082,6 +3136,156 @@ export namespace translate_v3 {
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Refines the input translated text to improve the quality.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.refineText({
+     *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "refinementEntries": [],
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "refinedTranslations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refineText(
+      params: Params$Resource$Projects$Locations$Refinetext,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    refineText(
+      params?: Params$Resource$Projects$Locations$Refinetext,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RefineTextResponse>>;
+    refineText(
+      params: Params$Resource$Projects$Locations$Refinetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refineText(
+      params: Params$Resource$Projects$Locations$Refinetext,
+      options: MethodOptions | BodyResponseCallback<Schema$RefineTextResponse>,
+      callback: BodyResponseCallback<Schema$RefineTextResponse>
+    ): void;
+    refineText(
+      params: Params$Resource$Projects$Locations$Refinetext,
+      callback: BodyResponseCallback<Schema$RefineTextResponse>
+    ): void;
+    refineText(callback: BodyResponseCallback<Schema$RefineTextResponse>): void;
+    refineText(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Refinetext
+        | BodyResponseCallback<Schema$RefineTextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RefineTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RefineTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RefineTextResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Refinetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Refinetext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}:refineText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RefineTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RefineTextResponse>(parameters);
       }
     }
 
@@ -3630,7 +3834,7 @@ export namespace translate_v3 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3649,6 +3853,17 @@ export namespace translate_v3 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Refinetext extends StandardParameters {
+    /**
+     * Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefineTextRequest;
   }
   export interface Params$Resource$Projects$Locations$Romanizetext extends StandardParameters {
     /**
@@ -7118,9 +7333,9 @@ export namespace translate_v3 {
      *
      *   // Do the magic
      *   const res = await translate.projects.locations.glossaries.patch({
-     *     // Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
+     *     // Identifier. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
      *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
-     *     // The list of fields to be updated. Currently only `display_name` and 'input_config'
+     *     // The list of fields to be updated. Currently, only `display_name` and `input_config` are supported.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7286,11 +7501,11 @@ export namespace translate_v3 {
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Patch extends StandardParameters {
     /**
-     * Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
+     * Identifier. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`.
      */
     name?: string;
     /**
-     * The list of fields to be updated. Currently only `display_name` and 'input_config'
+     * The list of fields to be updated. Currently, only `display_name` and `input_config` are supported.
      */
     updateMask?: string;
 
@@ -9207,13 +9422,16 @@ export namespace translate_v3 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -9504,6 +9722,10 @@ export namespace translate_v3 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Operations$Wait extends StandardParameters {
     /**
