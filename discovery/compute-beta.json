@@ -14882,6 +14882,350 @@
         }
       }
     },
+    "instantSnapshotGroups": {
+      "methods": {
+        "delete": {
+          "description": "deletes a Zonal InstantSnapshotGroup resource",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "httpMethod": "DELETE",
+          "id": "compute.instantSnapshotGroups.delete",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshotGroup"
+          ],
+          "parameters": {
+            "instantSnapshotGroup": {
+              "description": "Name of the InstantSnapshot resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "returns the specified InstantSnapshotGroup resource in the specified zone.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshotGroups.get",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshotGroup"
+          ],
+          "parameters": {
+            "instantSnapshotGroup": {
+              "description": "Name of the InstantSnapshotGroup resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "response": {
+            "$ref": "InstantSnapshotGroup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshotGroups.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "inserts a Zonal InstantSnapshotGroup resource",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshotGroups.insert",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "sourceConsistencyGroup": {
+              "description": "begin_interface: MixerMutationRequestBuilder",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups",
+          "request": {
+            "$ref": "InstantSnapshotGroup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "retrieves the list of InstantSnapshotGroup resources contained within\nthe specified zone.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshotGroups.list",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups",
+          "response": {
+            "$ref": "ListInstantSnapshotGroups"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshotGroups.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "ZoneSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshotGroups.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "instantSnapshots": {
       "methods": {
         "aggregatedList": {
@@ -31242,6 +31586,350 @@
         }
       }
     },
+    "regionInstantSnapshotGroups": {
+      "methods": {
+        "delete": {
+          "description": "deletes a Regional InstantSnapshotGroup resource",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "httpMethod": "DELETE",
+          "id": "compute.regionInstantSnapshotGroups.delete",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instantSnapshotGroup"
+          ],
+          "parameters": {
+            "instantSnapshotGroup": {
+              "description": "Name of the InstantSnapshotGroup resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "returns the specified InstantSnapshotGroup resource in the specified\nregion.",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshotGroups.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "instantSnapshotGroup"
+          ],
+          "parameters": {
+            "instantSnapshotGroup": {
+              "description": "Name of the InstantSnapshotGroup resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}",
+          "response": {
+            "$ref": "InstantSnapshotGroup"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshotGroups.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "creates a Regional InstantSnapshotGroup resource",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshotGroups.insert",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "sourceConsistencyGroup": {
+              "description": "begin_interface: MixerMutationRequestBuilder",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups",
+          "request": {
+            "$ref": "InstantSnapshotGroup"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "retrieves the list of InstantSnapshotGroup resources contained within\nthe specified region.",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups",
+          "httpMethod": "GET",
+          "id": "compute.regionInstantSnapshotGroups.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups",
+          "response": {
+            "$ref": "ListInstantSnapshotGroups"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshotGroups.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "RegionSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.regionInstantSnapshotGroups.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "regionInstantSnapshots": {
       "methods": {
         "delete": {
@@ -37814,6 +38502,183 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
+    "reservationSlots": {
+      "methods": {
+        "get": {
+          "description": "Retrieves information about the specified reservation slot.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}",
+          "httpMethod": "GET",
+          "id": "compute.reservationSlots.get",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSlot"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the parent reservation and parent block, formatted as\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "The project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reservationSlot": {
+              "description": "The name of the reservation slot, formatted as RFC1035 or a resource ID\nnumber.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request, formatted as RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}",
+          "response": {
+            "$ref": "ReservationSlotsGetResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "list": {
+          "description": "Retrieves a list of reservation slots under a single reservation.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots",
+          "httpMethod": "GET",
+          "id": "compute.reservationSlots.list",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "parentName": {
+              "description": "The name of the parent reservation and parent block, formatted as\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "The project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "zone": {
+              "description": "The name of the zone for this request, formatted as RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots",
+          "response": {
+            "$ref": "ReservationSlotsListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "update": {
+          "description": "Update a reservation slot in the specified sub-block.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}",
+          "httpMethod": "POST",
+          "id": "compute.reservationSlots.update",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSlot"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the sub-block resource.",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "The project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reservationSlot": {
+              "description": "The name of the slot resource.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The fields to be updated as part of this request.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request, formatted as RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}",
+          "request": {
+            "$ref": "ReservationSlot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
           ]
         }
       }
@@ -49580,7 +50445,7 @@
       }
     }
   },
-  "revision": "20251230",
+  "revision": "20260122",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55337,6 +56202,10 @@
       "description": "A transient resource used in compute.disks.bulkInsert and\ncompute.regionDisks.bulkInsert. It is only used to process\nrequests and is not persisted.",
       "id": "BulkInsertDiskResource",
       "properties": {
+        "instantSnapshotGroupParameters": {
+          "$ref": "InstantSnapshotGroupParameters",
+          "description": "The parameters for the instant snapshot group."
+        },
         "sourceConsistencyGroupPolicy": {
           "description": "The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.\nThis may be a full or partial URL, such as:\n   \n   \n     - \n       https://www.googleapis.com/compute/v1/projects/project/regions/region/resourcePolicies/resourcePolicy\n     \n     - \n       projects/project/regions/region/resourcePolicies/resourcePolicy\n     \n     - \n       regions/region/resourcePolicies/resourcePolicy",
           "type": "string"
@@ -55352,6 +56221,10 @@
           "description": "The maximum number of instances to create.",
           "format": "int64",
           "type": "string"
+        },
+        "instanceFlexibilityPolicy": {
+          "$ref": "InstanceFlexibilityPolicy",
+          "description": "A flexible specification of machine type of instances to create."
         },
         "instanceProperties": {
           "$ref": "InstanceProperties",
@@ -55804,6 +56677,7 @@
             "GENERAL_PURPOSE_N2",
             "GENERAL_PURPOSE_N2D",
             "GENERAL_PURPOSE_N4",
+            "GENERAL_PURPOSE_N4A",
             "GENERAL_PURPOSE_N4D",
             "GENERAL_PURPOSE_T2D",
             "GRAPHICS_OPTIMIZED",
@@ -55825,6 +56699,7 @@
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -59284,6 +60159,10 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
+        "params": {
+          "$ref": "ExternalVpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "redundancyType": {
           "description": "Indicates the user-supplied redundancy type of this external VPN gateway.",
           "enum": [
@@ -59481,6 +60360,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalVpnGatewayParams": {
+      "id": "ExternalVpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
@@ -60097,10 +60989,14 @@
         "policyType": {
           "description": "The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.\n\nNote: if not specified then VPC_POLICY will be used.",
           "enum": [
+            "RDMA_FALCON_POLICY",
             "RDMA_ROCE_POLICY",
+            "ULL_POLICY",
             "VPC_POLICY"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             ""
           ],
@@ -60705,7 +61601,7 @@
       "type": "object"
     },
     "FlexibleTimeRange": {
-      "description": "A flexible specification of a time range that has 3 points of\nflexibility: (1) a flexible start time, (2) a flexible end time, (3) a\nflexible duration.\n\nIt is possible to specify a contradictory time range that cannot be matched\nby any Interval. This causes a validation error.",
+      "description": "Specifies a flexible time range with flexible start time and duration.\n\nIt is possible to specify a contradictory time range that cannot be matched\nby any Interval. This causes a validation error.",
       "id": "FlexibleTimeRange",
       "properties": {
         "endTimeNotEarlierThan": {
@@ -60775,11 +61671,6 @@
         },
         "allowPscGlobalAccess": {
           "description": "This is used in PSC consumer ForwardingRule to control whether the PSC\nendpoint can be accessed from another region.",
-          "type": "boolean"
-        },
-        "allowPscPacketInjection": {
-          "deprecated": true,
-          "description": "This is used in PSC consumer ForwardingRule to control whether the producer\nis allowed to inject packets into the consumer's network. If set to true,\nthe target service attachment must have tunneling enabled and\nTunnelingConfig.RoutingMode set to PACKET_INJECTION\nNon-PSC forwarding rules should not use this field.\n\nThis field was never released to any customers and is deprecated and\nwill be removed in the future.",
           "type": "boolean"
         },
         "backendService": {
@@ -67503,6 +68394,46 @@
       },
       "type": "object"
     },
+    "InstanceFlexibilityPolicy": {
+      "description": "A flexible specification of machine types for instances to create.",
+      "id": "InstanceFlexibilityPolicy",
+      "properties": {
+        "instanceSelections": {
+          "additionalProperties": {
+            "$ref": "InstanceFlexibilityPolicyInstanceSelection"
+          },
+          "description": "Specification of alternative, flexible instance subsets.\nOne of them will be selected to create the instances\nbased on various criteria, like:\n- ranks,\n- location policy,\n- current capacity,\n- available reservations (you can specify affinity in\nInstanceProperties),\n- SWAN/GOOSE limitations.\nKey is an arbitrary, unique RFC1035 string that identifies the instance\nselection.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceFlexibilityPolicyInstanceSelection": {
+      "description": "Specification of machine type to use. Every position inside this message\nis an alternative.\nThe count specified in the shape flexibility must not exceed the number\nof entries in per_instance_properties or the capacity of the\nname_pattern, if used.",
+      "id": "InstanceFlexibilityPolicyInstanceSelection",
+      "properties": {
+        "disks": {
+          "description": "Disks to be attached to the instances created from in this selection.\nThey override the disks specified in the instance properties.",
+          "items": {
+            "$ref": "AttachedDisk"
+          },
+          "type": "array"
+        },
+        "machineTypes": {
+          "description": "Alternative machine types to use for instances that are created from\nthese properties. This field only accepts a machine type names, for\nexample `n2-standard-4` and not URLs or partial URLs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rank": {
+          "description": "Rank when prioritizing the shape flexibilities.\nThe instance selections with rank are considered\nfirst, in the ascending order of the rank.\nIf not set, defaults to 0.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InstanceGroup": {
       "description": "Represents an Instance Group resource.\n\nInstance Groups can be used to configure a target forload\nbalancing.\n\nInstance groups can either be managed or unmanaged.\n\nTo create \nmanaged instance groups, use the instanceGroupManager orregionInstanceGroupManager resource instead.\n\nUse zonal unmanaged instance groups if you need to applyload\nbalancing to groups of heterogeneous instances or if you need to manage\nthe instances yourself. You cannot create regional unmanaged instance groups.\n\nFor more information, readInstance\ngroups.",
       "id": "InstanceGroup",
@@ -71841,15 +72772,17 @@
         "behavior": {
           "enum": [
             "BEHAVIOR_UNSPECIFIED",
+            "CHIP_ERROR",
             "PERFORMANCE",
             "SILENT_DATA_CORRUPTION",
             "UNRECOVERABLE_GPU_ERROR"
           ],
           "enumDescriptions": [
             "Public reportable behaviors",
+            "Any GPU or TPU errors or faults where the accelerator becomes unusable",
             "",
             "",
-            ""
+            "Unrecoverable GPU error identified by an XID"
           ],
           "type": "string"
         },
@@ -72226,6 +73159,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "sourceInstantSnapshotGroup": {
+          "description": "Output only. [Output Only] URL of the source instant snapshot this instant snapshot is\npart of. Note that the source instant snapshot group must be in the same\nzone/region as the instant snapshot to be created. This can be a full or\nvalid partial URL.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceInstantSnapshotGroupId": {
+          "description": "Output only. [Output Only] The ID value of the source instant snapshot group this\nInstantSnapshot is part of. This value may be used to determine whether the\nInstantSnapshot was created as part of an InstantSnapshotGroup creation.",
+          "readOnly": true,
+          "type": "string"
+        },
         "status": {
           "description": "Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.",
           "enum": [
@@ -72414,6 +73357,128 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotGroup": {
+      "description": "Represents an InstantSnapshotGroup resource.\n\nAn instant snapshot group is a set of instant snapshots that represents a\npoint in time state of a consistency group.",
+      "id": "InstantSnapshotGroup",
+      "properties": {
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp inRFC3339\ntext format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of this resource. Provide this property when you\ncreate the resource.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#instantSnapshotGroup",
+          "description": "Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshotGroup for InstantSnapshotGroup\nresources.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of the resource; provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must be\na dash, lowercase letter, or digit, except the last character, which cannot\nbe a dash.",
+          "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. [Output Only] URL of the region where the instant snapshot group resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceStatus": {
+          "$ref": "InstantSnapshotGroupResourceStatus",
+          "readOnly": true
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLinkWithId": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource's resource id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceConsistencyGroup": {
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. [Output Only]",
+          "enum": [
+            "CREATING",
+            "DELETING",
+            "FAILED",
+            "INVALID",
+            "READY",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "zone": {
+          "description": "Output only. [Output Only] URL of the zone where the instant snapshot group resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotGroupParameters": {
+      "id": "InstantSnapshotGroupParameters",
+      "properties": {
+        "sourceInstantSnapshotGroup": {
+          "description": "The source instant snapshot group used to create disks. You can provide\nthis as a partial or full URL to the resource. For example, the following\nare valid values:\n   \n   \n     - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instantSnapshotGroups/instantSnapshotGroup\n     - projects/project/zones/zone/instantSnapshotGroups/instantSnapshotGroup\n     - zones/zone/instantSnapshotGroups/instantSnapshotGroup",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotGroupResourceStatus": {
+      "id": "InstantSnapshotGroupResourceStatus",
+      "properties": {
+        "consistencyMembershipResolutionTime": {
+          "description": "Output only. [Output Only]",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceInfo": {
+          "$ref": "InstantSnapshotGroupSourceInfo",
+          "description": "Output only. [Output Only]",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotGroupSourceInfo": {
+      "id": "InstantSnapshotGroupSourceInfo",
+      "properties": {
+        "consistencyGroup": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "consistencyGroupId": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -73095,7 +74160,7 @@
           "type": "string"
         },
         "bandwidth": {
-          "description": "Provisioned bandwidth capacity for the interconnect attachment. For\nattachments of type DEDICATED, the user can set the bandwidth.\nFor attachments of type PARTNER, the Google Partner that is operating\nthe interconnect must set the bandwidth.\nOutput only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED,\nand can take one of the following values:\n   \n   - BPS_50M: 50 Mbit/s\n   - BPS_100M: 100 Mbit/s\n   - BPS_200M: 200 Mbit/s\n   - BPS_300M: 300 Mbit/s\n   - BPS_400M: 400 Mbit/s\n   - BPS_500M: 500 Mbit/s\n   - BPS_1G: 1 Gbit/s\n   - BPS_2G: 2 Gbit/s\n   - BPS_5G: 5 Gbit/s\n   - BPS_10G: 10 Gbit/s\n   - BPS_20G: 20 Gbit/s\n   - BPS_50G: 50 Gbit/s\n   - BPS_100G: 100 Gbit/s",
+          "description": "Provisioned bandwidth capacity for the interconnect attachment. For\nattachments of type DEDICATED, the user can set the bandwidth.\nFor attachments of type PARTNER, the Google Partner that is operating\nthe interconnect must set the bandwidth.\nOutput only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED,\nand can take one of the following values:\n   \n   - BPS_50M: 50 Mbit/s\n   - BPS_100M: 100 Mbit/s\n   - BPS_200M: 200 Mbit/s\n   - BPS_300M: 300 Mbit/s\n   - BPS_400M: 400 Mbit/s\n   - BPS_500M: 500 Mbit/s\n   - BPS_1G: 1 Gbit/s\n   - BPS_2G: 2 Gbit/s\n   - BPS_5G: 5 Gbit/s\n   - BPS_10G: 10 Gbit/s\n   - BPS_20G: 20 Gbit/s\n   - BPS_50G: 50 Gbit/s\n   - BPS_100G: 100 Gbit/s\n   - BPS_400G: 400 Gbit/s",
           "enum": [
             "BPS_100G",
             "BPS_100M",
@@ -76998,6 +78063,174 @@
       },
       "type": "object"
     },
+    "ListInstantSnapshotGroups": {
+      "description": "Contains a list of InstantSnapshotGroup resources.",
+      "id": "ListInstantSnapshotGroups",
+      "properties": {
+        "etag": {
+          "type": "string"
+        },
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of InstantSnapshotGroup resources.",
+          "items": {
+            "$ref": "InstantSnapshotGroup"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#instantSnapshotGroupsList",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.\nend_interface: MixerListResponseWithEtagBuilder",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "LocalDisk": {
       "id": "LocalDisk",
       "properties": {
@@ -77155,6 +78388,10 @@
           "description": "Name of the resource; provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must be\na dash, lowercase letter, or digit, except the last character, which cannot\nbe a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "params": {
+          "$ref": "MachineImageParams",
+          "description": "Input only. [Input Only] Additional parameters that are passed in the request, but are\nnot persisted in the resource."
         },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
@@ -77382,6 +78619,20 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "MachineImageParams": {
+      "description": "Machine Image parameters",
+      "id": "MachineImageParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the machine image. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in\nnamespaced format such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -81627,7 +82878,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The\npeering is `ACTIVE` when there's a matching configuration in the peer\nnetwork.",
+          "description": "Output only. [Output Only] State for the peering.",
           "enum": [
             "ACTIVE",
             "INACTIVE"
@@ -82932,10 +84183,14 @@
         "firewallPolicyTypes": {
           "items": {
             "enum": [
+              "RDMA_FALCON_POLICY",
               "RDMA_ROCE_POLICY",
+              "ULL_POLICY",
               "VPC_POLICY"
             ],
             "enumDescriptions": [
+              "",
+              "",
               "",
               ""
             ],
@@ -92549,6 +93804,295 @@
         },
         "warning": {
           "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSlot": {
+      "description": "Represents a reservation slot resource.",
+      "id": "ReservationSlot",
+      "properties": {
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] The creation timestamp, formatted asRFC3339 text.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for this resource. This identifier is\ndefined by the server.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#reservationSlot",
+          "description": "Output only. [Output Only] The type of resource. Alwayscompute#reservationSlot for reservation slots.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. [Output Only] The name of the reservation slot.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "physicalTopology": {
+          "$ref": "ReservationSlotPhysicalTopology",
+          "deprecated": true,
+          "description": "Output only. [Output Only] The physical topology of the reservation slot.",
+          "readOnly": true
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] A server-defined fully-qualified URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLinkWithId": {
+          "description": "Output only. [Output Only] A server-defined URL for this resource with the resource ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "shareSettings": {
+          "$ref": "ShareSettings",
+          "description": "Specify share settings to create a shared slot. Set to empty\nto inherit the share settings from a parent resource."
+        },
+        "state": {
+          "description": "Output only. [Output Only] The state of the reservation slot.",
+          "enum": [
+            "ACTIVE",
+            "CREATING",
+            "DELETING",
+            "STATE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "The reservation slot has allocated all its resources.",
+            "The resources are being allocated for the reservation slot.",
+            "The reservation slot is currently being deleted.",
+            ""
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "ReservationSlotStatus",
+          "description": "Output only. [Output Only] The status of the reservation slot.",
+          "readOnly": true
+        },
+        "zone": {
+          "description": "Output only. [Output Only] The zone in which the reservation slot resides.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSlotPhysicalTopology": {
+      "id": "ReservationSlotPhysicalTopology",
+      "properties": {
+        "block": {
+          "description": "The unique identifier of the capacity block within the cluster.",
+          "type": "string"
+        },
+        "cluster": {
+          "description": "The cluster name of the reservation sub-block.",
+          "type": "string"
+        },
+        "host": {
+          "description": "The unique identifier of the capacity host within the capacity sub-block.",
+          "type": "string"
+        },
+        "subBlock": {
+          "description": "The unique identifier of the capacity sub-block within the capacity\nblock.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSlotStatus": {
+      "id": "ReservationSlotStatus",
+      "properties": {
+        "physicalTopology": {
+          "$ref": "ReservationSlotPhysicalTopology",
+          "description": "Output only. [Output Only] The physical topology of the reservation sub-block.",
+          "readOnly": true
+        },
+        "rdmaIpAddresses": {
+          "description": "Output only. The RDMA IP address of the physical host.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "runningInstances": {
+          "description": "Output only. The URIs of the instances currently running on this slot.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSlotsGetResponse": {
+      "id": "ReservationSlotsGetResponse",
+      "properties": {
+        "resource": {
+          "$ref": "ReservationSlot"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSlotsListResponse": {
+      "description": "A list of reservation slots within a single reservation.",
+      "id": "ReservationSlotsListResponse",
+      "properties": {
+        "id": {
+          "description": "The unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of reservation slot resources.",
+          "items": {
+            "$ref": "ReservationSlot"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#reservationSlot",
+          "description": "The type of resource. Alwayscompute#reservationSlot for a list of reservation\nslots.",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "The server-defined URL for this resource.",
+          "type": "string"
+        },
+        "warning": {
+          "description": "An informational warning message.",
           "properties": {
             "code": {
               "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
@@ -103513,21 +105057,18 @@
       "id": "StoragePoolExapoolProvisionedCapacityGb",
       "properties": {
         "capacityOptimized": {
-          "description": "Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool",
+          "description": "Size, in GiB, of provisioned capacity-optimized capacity for this Exapool",
           "format": "int64",
-          "readOnly": true,
           "type": "string"
         },
         "readOptimized": {
-          "description": "Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool",
+          "description": "Size, in GiB, of provisioned read-optimized capacity for this Exapool",
           "format": "int64",
-          "readOnly": true,
           "type": "string"
         },
         "writeOptimized": {
-          "description": "Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool",
+          "description": "Size, in GiB, of provisioned write-optimized capacity for this Exapool",
           "format": "int64",
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -104662,7 +106203,7 @@
       "id": "Subnetwork",
       "properties": {
         "allowSubnetCidrRoutesOverlap": {
-          "description": "Whether this subnetwork's ranges can conflict with existing static routes.\nSetting this to true allows this subnetwork's primary and secondary ranges\nto overlap with (and contain) static routes that have already been\nconfigured on the corresponding network.\n\nFor example if a static route has range 10.1.0.0/16, a subnet\nrange 10.0.0.0/8 could only be created if allow_conflicting_routes=true.\n\nOverlapping is only allowed on subnetwork operations; routes\nwhose ranges conflict with this subnetwork's ranges won't be allowed unless\nroute.allow_conflicting_subnetworks is set to true.\n\nTypically packets destined to IPs within the subnetwork (which may contain\nprivate/sensitive data) are prevented from leaving the virtual network.\nSetting this field to true will disable this feature.\n\nThe default value is false and applies to all existing subnetworks and\nautomatically created subnetworks.\n\nThis field cannot be set to true at resource creation time.",
+          "description": "Whether this subnetwork's ranges can conflict with existing custom routes.\nSetting this to true allows this subnetwork's primary and secondary ranges\nto overlap with (and contain) custom routes that have already been\nconfigured on the corresponding network.\n\nFor example if a static route has range 10.1.0.0/16, a subnet\nrange 10.0.0.0/8 could only be created if allow_conflicting_routes=true.\n\nOverlapping is only allowed on subnetwork operations; routes\nwhose ranges conflict with this subnetwork's ranges won't be allowed unless\nroute.allow_conflicting_subnetworks is set to true.\n\nTypically packets destined to IPs within the subnetwork (which may contain\nprivate/sensitive data) are prevented from leaving the virtual network.\nSetting this field to true will disable this feature.\n\nThe default value is false and applies to all existing subnetworks and\nautomatically created subnetworks.",
           "type": "boolean"
         },
         "creationTimestamp": {
@@ -104837,7 +106378,7 @@
           "type": "string"
         },
         "secondaryIpRanges": {
-          "description": "An array of configurations for secondary IP ranges for VM instances\ncontained in this subnetwork. The primary IP of such VM must belong to the\nprimary ipCidrRange of the subnetwork. The alias IPs may belong to either\nprimary or secondary ranges. This field can be updated with apatch request.",
+          "description": "An array of configurations for secondary IP ranges for VM instances\ncontained in this subnetwork. The primary IP of such VM must belong to the\nprimary ipCidrRange of the subnetwork. The alias IPs may belong to either\nprimary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.",
           "items": {
             "$ref": "SubnetworkSecondaryRange"
           },
@@ -105300,15 +106841,15 @@
       "id": "SubnetworkSecondaryRange",
       "properties": {
         "ipCidrRange": {
-          "description": "The range of IP addresses belonging to this subnetwork secondary range.\nProvide this property when you create the subnetwork. Ranges must be\nunique and non-overlapping with all primary and secondary IP ranges\nwithin a network. Only IPv4 is supported. The range can be any range\nlisted in theValid\nranges list.",
+          "description": "The range of IP addresses belonging to this subnetwork secondary range.\nProvide this property when you create the subnetwork. Ranges must be\nunique and non-overlapping with all primary and secondary IP ranges\nwithin a network. Both IPv4 and IPv6 ranges are supported. For IPv4,\nthe range can be any range listed in theValid\nranges list.\n\nFor IPv6:\nThe range must have a /64 prefix length.\nThe range must be omitted, for auto-allocation from Google-defined ULA\nIPv6 range.\nFor BYOGUA internal IPv6 secondary range, the range may be specified\nalong with the `ipCollection` field.\nIf an `ipCollection` is specified, the requested ip_cidr_range must lie\nwithin the range of the PDP referenced by the `ipCollection` field for\nallocation.\nIf `ipCollection` field is specified, but ip_cidr_range is not,\nthe range is auto-allocated from the PDP referenced by the `ipCollection`\nfield.",
           "type": "string"
         },
         "rangeName": {
-          "description": "The name associated with this subnetwork secondary range, used when adding\nan alias IP range to a VM instance.\nThe name must be 1-63 characters long, and comply withRFC1035.\nThe name must be unique within the subnetwork.",
+          "description": "The name associated with this subnetwork secondary range, used when adding\nan alias IP/IPv6 range to a VM instance.\nThe name must be 1-63 characters long, and comply withRFC1035.\nThe name must be unique within the subnetwork.",
           "type": "string"
         },
         "reservedInternalRange": {
-          "description": "The URL of the reserved internal range.",
+          "description": "The URL of the reserved internal range. Only IPv4 is supported.",
           "type": "string"
         }
       },
@@ -109179,6 +110720,10 @@
           "description": "URL of the network to which this VPN gateway is attached. Provided by the\nclient when the VPN gateway is created.",
           "type": "string"
         },
+        "params": {
+          "$ref": "TargetVpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "region": {
           "description": "[Output Only] URL of the region where the target VPN gateway resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
           "type": "string"
@@ -109530,6 +111075,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "TargetVpnGatewayParams": {
+      "id": "TargetVpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
@@ -110653,7 +112211,7 @@
       "id": "UsableSubnetworkSecondaryRange",
       "properties": {
         "ipCidrRange": {
-          "description": "The range of IP addresses belonging to this subnetwork secondary range.",
+          "description": "The range of IP addresses belonging to this subnetwork secondary range.\nCan be Ipv4 or Ipv6 range.",
           "type": "string"
         },
         "rangeName": {
@@ -111804,6 +113362,10 @@
           "description": "URL of the network to which this VPN gateway is attached. Provided by the\nclient when the VPN gateway is created.",
           "type": "string"
         },
+        "params": {
+          "$ref": "VpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "region": {
           "description": "Output only. [Output Only] URL of the region where the VPN gateway resides.",
           "readOnly": true,
@@ -112160,6 +113722,19 @@
       },
       "type": "object"
     },
+    "VpnGatewayParams": {
+      "id": "VpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "VpnGatewayStatus": {
       "id": "VpnGatewayStatus",
       "properties": {
@@ -112505,6 +114080,10 @@
           "description": "Name of the resource. Provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "params": {
+          "$ref": "VpnTunnelParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
         },
         "peerExternalGateway": {
           "description": "URL of the peer side external VPN gateway to which this VPN tunnel is\nconnected.\nProvided by the client when the VPN tunnel is created.\nThis field is exclusive with the field peerGcpGateway.",
@@ -112929,6 +114508,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "VpnTunnelParams": {
+      "id": "VpnTunnelParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
