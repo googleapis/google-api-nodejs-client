@@ -1418,7 +1418,12 @@ export namespace firestore_v1 {
   /**
    * The metadata message for google.cloud.location.Location.metadata.
    */
-  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {}
+  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {
+    /**
+     * The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like "us", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as "nam5" or "eur3".
+     */
+    availableStoragePlacements?: string[] | null;
+  }
   /**
    * A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.
    */
