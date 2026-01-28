@@ -545,6 +545,198 @@ export namespace gkebackup_v1 {
      */
     state?: string | null;
   }
+  export interface Schema$BackupRuleDetail {
+    /**
+     * Backup Window For Eg. “00:00 to 06:00”
+     */
+    backupWindow?: string | null;
+    /**
+     * Backup Window Timezone in IANA format. For Eg. “America/Los_Angeles”
+     */
+    backupWindowTimezone?: string | null;
+    /**
+     * Recurrence Type. For Eg. “Weekly”,” Monthly” or “Daily”.
+     */
+    recurrence?: string | null;
+    /**
+     * Recurrence Repeat Schedule. For Eg. “1st and 25th day of the month.”
+     */
+    recurrenceSchedule?: string | null;
+    /**
+     * Backup Retention in Days.
+     */
+    retentionDays?: number | null;
+    /**
+     * Backup Rule Name.
+     */
+    ruleName?: string | null;
+  }
+  /**
+   * Log entry for BDRBackupPlanJobLog for resources using BackupPlan based protection.
+   */
+  export interface Schema$BDRBackupPlanJobLog {
+    /**
+     * Canonical resource name for Backup Plan Plan of the job.
+     */
+    backupPlanName?: string | null;
+    /**
+     * End time of the job.
+     */
+    endTime?: string | null;
+    /**
+     * The error code. Only populated in error scenarios.
+     */
+    errorCode?: number | null;
+    /**
+     * The user readable error message. Only populated in error scenarios.
+     */
+    errorMessage?: string | null;
+    /**
+     * The name of the error type eg. PERMISSION_DENIED. Only populated in error scenarios.
+     */
+    errorType?: string | null;
+    /**
+     * The category field displays the category of the job. Can be one of [UPDATE_BACKUP_PLAN].
+     */
+    jobCategory?: string | null;
+    /**
+     * The job_id field displays the identifier of the job being reported.
+     */
+    jobId?: string | null;
+    /**
+     * The status field displays the status of the job. Can be one of [RUNNING,SUCCESSFUL, FAILED].
+     */
+    jobStatus?: string | null;
+    /**
+     * User friendly revision id e.g. v0, v1 etc.
+     */
+    newBackupPlanRevisionId?: string | null;
+    /**
+     * Full resource name for new backup plan revision
+     */
+    newBackupPlanRevisionName?: string | null;
+    /**
+     * User friendly revision id e.g. v0, v1 etc.
+     */
+    previousBackupPlanRevisionId?: string | null;
+    /**
+     * Full resource name for previous backup plan revision
+     */
+    previousBackupPlanRevisionName?: string | null;
+    /**
+     * Previous Backup Plan rules.
+     */
+    previousBackupRules?: Schema$BackupRuleDetail[];
+    /**
+     * The resource_type field displays the type of the protected resource.
+     */
+    resourceType?: string | null;
+    /**
+     * Revised Backup Plan rules.
+     */
+    revisedBackupRules?: Schema$BackupRuleDetail[];
+    /**
+     * Start time of the job.
+     */
+    startTime?: string | null;
+    /**
+     * The total number of workloads affected by the job.
+     */
+    workloadsAffectedCount?: number | null;
+  }
+  /**
+   * Log entry for Backup and Restore Job for resources using BackupPlan based protection. Next Id: 23
+   */
+  export interface Schema$BDRBackupRestoreJobLog {
+    /**
+     * Backup consistency time.
+     */
+    backupConsistencyTime?: string | null;
+    /**
+     * Full resource name of the backup created in backup jobs and used in restore jobs.
+     */
+    backupName?: string | null;
+    /**
+     * Full resource name for Backup Plan of the job. Only populated for Scheduled Backup and Adhoc Backup.
+     */
+    backupPlanName?: string | null;
+    /**
+     * Backup retention in days.
+     */
+    backupRetentionDays?: number | null;
+    /**
+     * Name of the backup rule. Only populated for Scheduled Backup and Adhoc Backup.
+     */
+    backupRule?: string | null;
+    /**
+     * Full resource name backup vault name
+     */
+    backupVaultName?: string | null;
+    /**
+     * End time of the job.
+     */
+    endTime?: string | null;
+    /**
+     * The error code. Only populated in error scenarios.
+     */
+    errorCode?: number | null;
+    /**
+     * The user readable error message. Only populated in error scenarios.
+     */
+    errorMessage?: string | null;
+    /**
+     * The name of the error type eg. PERMISSION_DENIED. Only populated in error scenarios.
+     */
+    errorType?: string | null;
+    /**
+     * The amount of incremental backup data copied.
+     */
+    incrementalBackupSizeGib?: number | null;
+    /**
+     * The category field displays the category of the job.
+     */
+    jobCategory?: string | null;
+    /**
+     * The job_id field displays the identifier of the job being logged.
+     */
+    jobId?: string | null;
+    /**
+     * The status field displays the status of the job.
+     */
+    jobStatus?: string | null;
+    /**
+     * Recovery point time.
+     */
+    recoveryPointTime?: string | null;
+    /**
+     * The resource_type field displays the type of the protected resource.
+     */
+    resourceType?: string | null;
+    /**
+     * Restore resource location.
+     */
+    restoreResourceLocation?: string | null;
+    /**
+     * Full resource name of the restore resource. Only populated in restore jobs.
+     */
+    restoreResourceName?: string | null;
+    /**
+     * The source resource ID.
+     */
+    sourceResourceId?: string | null;
+    /**
+     * Source resource location.
+     */
+    sourceResourceLocation?: string | null;
+    /**
+     * Full resource name of the protected resource.
+     */
+    sourceResourceName?: string | null;
+    /**
+     * Start time of the job.
+     */
+    startTime?: string | null;
+  }
   /**
    * Associates `members`, or principals, with a `role`.
    */
@@ -714,6 +906,23 @@ export namespace gkebackup_v1 {
      * Required. The signed URL for downloading the backup index.
      */
     signedUrl?: string | null;
+  }
+  /**
+   * Response message for GetTags.
+   */
+  export interface Schema$GetTagsResponse {
+    /**
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+    /**
+     * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1507,6 +1716,40 @@ export namespace gkebackup_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  /**
+   * Request message for SetTags.
+   */
+  export interface Schema$SetTagsRequest {
+    /**
+     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
+     */
+    etag?: string | null;
+    /**
+     * Optional. A unique identifier for this request. Must be a valid UUID. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string | null;
+    /**
+     * Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
+   * Response message for SetTags.
+   */
+  export interface Schema$SetTagsResponse {
+    /**
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+    /**
+     * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * A transformation rule to be applied against Kubernetes resources as they are selected for restoration from a Backup. A rule contains both filtering logic (which resources are subject to substitution) and substitution logic.
@@ -3925,6 +4168,145 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Returns tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.backupPlans.getTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getTags(
+      params?: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTagsResponse>,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Gettags,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(callback: BodyResponseCallback<Schema$GetTagsResponse>): void;
+    getTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplans$Gettags
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplans$Gettags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupplans$Gettags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists BackupPlans in a given location.
      * @example
      * ```js
@@ -4395,6 +4777,155 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Updates tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.backupPlans.setTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/backupPlans/my-backupPlan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "requestId": "my_requestId",
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setTags(
+      params?: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      options: MethodOptions | BodyResponseCallback<Schema$SetTagsResponse>,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Backupplans$Settags,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(callback: BodyResponseCallback<Schema$SetTagsResponse>): void;
+    setTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplans$Settags
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplans$Settags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupplans$Settags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -4589,6 +5120,12 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
+  export interface Params$Resource$Projects$Locations$Backupplans$Gettags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Backupplans$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
@@ -4636,6 +5173,17 @@ export namespace gkebackup_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupplans$Settags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetTagsRequest;
   }
   export interface Params$Resource$Projects$Locations$Backupplans$Testiampermissions extends StandardParameters {
     /**
@@ -9454,6 +10002,145 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Returns tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.restorePlans.getTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getTags(
+      params?: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTagsResponse>,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Gettags,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(callback: BodyResponseCallback<Schema$GetTagsResponse>): void;
+    getTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restoreplans$Gettags
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restoreplans$Gettags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restoreplans$Gettags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists RestorePlans in a given location.
      * @example
      * ```js
@@ -9918,6 +10605,155 @@ export namespace gkebackup_v1 {
     }
 
     /**
+     * Updates tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkebackup.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gkebackup = google.gkebackup('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkebackup.projects.locations.restorePlans.setTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/restorePlans/my-restorePlan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "requestId": "my_requestId",
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setTags(
+      params?: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      options: MethodOptions | BodyResponseCallback<Schema$SetTagsResponse>,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Restoreplans$Settags,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(callback: BodyResponseCallback<Schema$SetTagsResponse>): void;
+    setTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Restoreplans$Settags
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Restoreplans$Settags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Restoreplans$Settags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkebackup.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -10115,6 +10951,12 @@ export namespace gkebackup_v1 {
      */
     resource?: string;
   }
+  export interface Params$Resource$Projects$Locations$Restoreplans$Gettags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Restoreplans$List extends StandardParameters {
     /**
      * Optional. Field match expression used to filter the results.
@@ -10162,6 +11004,17 @@ export namespace gkebackup_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Restoreplans$Settags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetTagsRequest;
   }
   export interface Params$Resource$Projects$Locations$Restoreplans$Testiampermissions extends StandardParameters {
     /**
