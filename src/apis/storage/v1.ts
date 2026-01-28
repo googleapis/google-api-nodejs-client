@@ -1319,6 +1319,10 @@ export namespace storage_v1 {
      */
     destinationCustomPlacementConfig?: {dataLocations?: string[]} | null;
     /**
+     * Resource name of a Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key. If set, is used to encrypt all objects in the destination bucket.
+     */
+    destinationKmsKeyName?: string | null;
+    /**
      * The new location the bucket will be relocated to.
      */
     destinationLocation?: string | null;
@@ -5127,6 +5131,7 @@ export namespace storage_v1 {
      *       // request body parameters
      *       // {
      *       //   "destinationCustomPlacementConfig": {},
+     *       //   "destinationKmsKeyName": "my_destinationKmsKeyName",
      *       //   "destinationLocation": "my_destinationLocation",
      *       //   "validateOnly": false
      *       // }
