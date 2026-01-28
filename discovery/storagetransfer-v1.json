@@ -637,7 +637,7 @@
       }
     }
   },
-  "revision": "20251128",
+  "revision": "20260109",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -1704,6 +1704,16 @@
         },
         "objectsFromSourceSkippedBySync": {
           "description": "Objects in the data source that are not transferred because they already exist in the data sink.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unrestoredDeepArchiveObjectsSkippedCount": {
+          "description": "Number of unrestored deep archive objects skipped.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unsupportedS3GlacierObjectsSkippedCount": {
+          "description": "Number of glacier objects skipped, glacier objects are unsupported by default regardless of the restore status. Allowlist the project to copy glacier objects if needed.",
           "format": "int64",
           "type": "string"
         }
