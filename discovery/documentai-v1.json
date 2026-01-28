@@ -1394,7 +1394,7 @@
       }
     }
   },
-  "revision": "20260104",
+  "revision": "20260118",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -5189,6 +5189,10 @@
           "description": "Display name to show to users.",
           "type": "string"
         },
+        "documentPrompt": {
+          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
+          "type": "string"
+        },
         "entityTypes": {
           "description": "Entity types of the schema.",
           "items": {
@@ -7401,6 +7405,10 @@
         },
         "displayName": {
           "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "documentPrompt": {
+          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
           "type": "string"
         },
         "entityTypes": {

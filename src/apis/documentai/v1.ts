@@ -1856,6 +1856,10 @@ export namespace documentai_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     */
+    documentPrompt?: string | null;
+    /**
      * Entity types of the schema.
      */
     entityTypes?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityType[];
@@ -3736,6 +3740,10 @@ export namespace documentai_v1 {
      * Display name to show to users.
      */
     displayName?: string | null;
+    /**
+     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     */
+    documentPrompt?: string | null;
     /**
      * Entity types of the schema.
      */
