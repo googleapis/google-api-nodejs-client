@@ -370,7 +370,7 @@
                     "This value is ignored.",
                     "Preserve the factory reset protection data on the device.",
                     "Additionally wipe the device's external storage (such as SD cards).",
-                    "For company-owned devices, this removes all eSIMs from the device when the device is wiped. In personally-owned devices, this will remove managed eSIMs (eSIMs which are added via the ADD_ESIM command) on the devices and no personally owned eSIMs will be removed."
+                    "For company-owned devices, this removes all eSIMs from the device when the device is wiped. In personally-owned devices, this will remove managed eSIMs (eSIMs which are added via the ADD_ESIM command) on the devices and no personally owned eSIMs will be removed. For devices running on Android 16 or higher, managed eSIMs are always wiped when work profile is removed for personally-owned devices, whether this flag is provided or not."
                   ],
                   "location": "query",
                   "repeated": true,
@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260105",
+  "revision": "20260127",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2211,7 +2211,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: *type* *JSON value* BOOL true or false STRING string INTEGER number CHOICE string MULTISELECT array of strings HIDDEN string BUNDLE_ARRAY array of objects ",
+          "description": "Managed configuration applied to the app. The format for the configuration is dictated by the ManagedProperty values supported by the app. Each field name in the managed configuration must match the key field of the ManagedProperty. The field value must be compatible with the type of the ManagedProperty: *type* *JSON value* BOOL true or false STRING string INTEGER number CHOICE string MULTISELECT array of strings HIDDEN string BUNDLE_ARRAY array of objects Note: string values cannot be longer than 65535 characters.",
           "type": "object"
         },
         "managedConfigurationTemplate": {
@@ -3641,6 +3641,20 @@
             "Unspecified. Defaults to ULTRA_WIDEBAND_USER_CHOICE.",
             "The user is allowed to toggle ultra wideband on or off.",
             "Ultra wideband is disabled. The user is not allowed to toggle ultra wideband on via settings. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
+          ],
+          "type": "string"
+        },
+        "userInitiatedAddEsimSettings": {
+          "description": "Optional. Controls whether the user is allowed to add eSIM profiles.",
+          "enum": [
+            "USER_INITIATED_ADD_ESIM_SETTINGS_UNSPECIFIED",
+            "USER_INITIATED_ADD_ESIM_ALLOWED",
+            "USER_INITIATED_ADD_ESIM_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to USER_INITIATED_ADD_ESIM_ALLOWED.",
+            "The user is allowed to add eSIM profiles.",
+            "Supported only on company-owned devices. A NonComplianceDetail with MANAGEMENT_MODE is reported for personally-owned devices."
           ],
           "type": "string"
         },
@@ -6671,7 +6685,7 @@
             ],
             "enumDescriptions": [
               "This value must not be used.",
-              "For company-owned devices, setting this in wipeDataFlags will remove all eSIMs on the device when wipe is triggered due to any reason. On personally-owned devices, this will remove only managed eSIMs on the device. (eSIMs which are added via the ADD_ESIM command). This is supported on devices running Android 15 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 15."
+              "For company-owned devices, setting this in wipeDataFlags will remove all eSIMs on the device when wipe is triggered due to any reason. On personally-owned devices, this will remove only managed eSIMs on the device (eSIMs which are added via the ADD_ESIM command). This is supported on devices running Android 15 and above. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 15. For devices running on Android 16 or higher, managed eSIMs are always wiped when work profile is removed for personally-owned devices, whether this flag is provided or not."
             ],
             "type": "string"
           },
@@ -7527,6 +7541,11 @@
       "description": "Configuration for managing system updatesNote: Google Play system updates (https://source.android.com/docs/core/ota/modular-system) (also called Mainline updates) are automatically downloaded but require a device reboot to be installed. Refer to the mainline section in Manage system updates (https://developer.android.com/work/dpc/system-updates#mainline) for further details.",
       "id": "SystemUpdate",
       "properties": {
+        "allowedDaysWithoutUpdate": {
+          "description": "If this is greater than zero, then this is the number of days after a pending update becoming available that a device can remain compliant, without taking the update. Has no effect otherwise.",
+          "format": "int32",
+          "type": "integer"
+        },
         "endMinutes": {
           "description": "If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device's local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.",
           "format": "int32",
@@ -8184,7 +8203,7 @@
               "This value is ignored.",
               "Preserve the factory reset protection data on the device.",
               "Additionally wipe the device's external storage (such as SD cards).",
-              "For company-owned devices, this removes all eSIMs from the device when the device is wiped. In personally-owned devices, this will remove managed eSIMs (eSIMs which are added via the ADD_ESIM command) on the devices and no personally owned eSIMs will be removed."
+              "For company-owned devices, this removes all eSIMs from the device when the device is wiped. In personally-owned devices, this will remove managed eSIMs (eSIMs which are added via the ADD_ESIM command) on the devices and no personally owned eSIMs will be removed. For devices running on Android 16 or higher, managed eSIMs are always wiped when work profile is removed for personally-owned devices, whether this flag is provided or not."
             ],
             "type": "string"
           },
