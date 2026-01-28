@@ -109,119 +109,6 @@
       "resources": {
         "locations": {
           "resources": {
-            "global": {
-              "resources": {
-                "partnerTenants": {
-                  "deprecated": true,
-                  "methods": {
-                    "delete": {
-                      "deprecated": true,
-                      "description": "Deletes a single PartnerTenant.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
-                      "httpMethod": "DELETE",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. Name of the resource.",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "deprecated": true,
-                      "description": "Gets details of a single PartnerTenant.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants/{partnerTenantsId}",
-                      "httpMethod": "GET",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name of the PartnerTenant using the form: `organizations/{organization_id}/locations/global/partnerTenants/{partner_tenant_id}`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global/partnerTenants/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+name}",
-                      "response": {
-                        "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "deprecated": true,
-                      "description": "Lists PartnerTenants in a given organization.",
-                      "flatPath": "v1alpha/organizations/{organizationsId}/locations/global/partnerTenants",
-                      "httpMethod": "GET",
-                      "id": "beyondcorp.organizations.locations.global.partnerTenants.list",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "filter": {
-                          "description": "Optional. A filter specifying constraints of a list operation. All fields in the PartnerTenant message are supported. For example, the following query will return the PartnerTenants with displayName \"test-tenant\" organizations/${ORG_ID}/locations/${LOCATION}/partnerTenants?filter=displayName=\"test-tenant\" Nested fields are also supported. The follow query will return PartnerTenants with internal_tenant_id \"1234\" organizations/${ORG_ID}/locations/${LOCATION}/partnerTenants?filter=partnerMetadata.internalTenantId=\"1234\" For more information, please refer to https://google.aip.dev/160.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "orderBy": {
-                          "description": "Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "Optional. The next_page_token value returned from a previous ListPartnerTenantsResponse, if any.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "parent": {
-                          "description": "Required. The parent organization to which the PartnerTenants belong. Format: `organizations/{organization_id}/locations/global`",
-                          "location": "path",
-                          "pattern": "^organizations/[^/]+/locations/global$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha/{+parent}/partnerTenants",
-                      "response": {
-                        "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
             "insights": {
               "methods": {
                 "configuredInsight": {
@@ -3445,7 +3332,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260107",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -4840,57 +4727,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudBeyondcorpPartnerservicesV1alphaGroup": {
-      "deprecated": true,
-      "description": "Message to capture group information",
-      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaGroup",
-      "properties": {
-        "email": {
-          "description": "The group email id",
-          "type": "string"
-        },
-        "id": {
-          "description": "Google group id",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse": {
-      "deprecated": true,
-      "description": "Message for response to listing PartnerTenants.",
-      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token to retrieve the next page of results, or empty if there are no more results in the list.",
-          "type": "string"
-        },
-        "partnerTenants": {
-          "description": "The list of PartnerTenant objects.",
-          "items": {
-            "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata": {
-      "deprecated": true,
-      "description": "Metadata associated with PartnerTenant and is provided by the Partner.",
-      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata",
-      "properties": {
-        "internalTenantId": {
-          "description": "Optional. UUID used by the Partner to refer to the PartnerTenant in their internal systems.",
-          "type": "string"
-        },
-        "partnerTenantId": {
-          "description": "Optional. UUID used by the Partner to refer to the PartnerTenant in their internal systems.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerServiceOperationMetadata": {
       "deprecated": true,
       "description": "Represents the metadata of the long-running operation.",
@@ -4930,43 +4766,6 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant": {
-      "deprecated": true,
-      "description": "Information about a BeyoncCorp Enterprise PartnerTenant.",
-      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant",
-      "properties": {
-        "createTime": {
-          "description": "Output only. Timestamp when the resource was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Optional. An arbitrary caller-provided name for the PartnerTenant. Cannot exceed 64 characters.",
-          "type": "string"
-        },
-        "group": {
-          "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaGroup",
-          "description": "Optional. Group information for the users enabled to use the partnerTenant. If the group information is not provided then the partnerTenant will be enabled for all users."
-        },
-        "name": {
-          "description": "Output only. Unique resource name of the PartnerTenant. The name is ignored when creating PartnerTenant.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "partnerMetadata": {
-          "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata",
-          "description": "Optional. Metadata provided by the Partner associated with PartnerTenant."
-        },
-        "updateTime": {
-          "description": "Output only. Timestamp when the resource was last modified.",
-          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
