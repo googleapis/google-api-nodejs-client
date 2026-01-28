@@ -854,7 +854,7 @@ export namespace file_v1beta1 {
      */
     ipAddresses?: string[] | null;
     /**
-     * Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported.
+     * Internet protocol versions for which the instance has IP addresses assigned.
      */
     modes?: string[] | null;
     /**
