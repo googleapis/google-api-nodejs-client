@@ -151,6 +151,10 @@ export namespace firebaseappdistribution_v1 {
      */
     readToken?: string | null;
     /**
+     * A serialized Object Fragment List Creation Info passed from Bigstore -\> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
+     */
+    uploadFragmentListCreationInfo?: string | null;
+    /**
      * Metadata passed from Blobstore -\> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
      */
     uploadMetadataContainer?: string | null;
