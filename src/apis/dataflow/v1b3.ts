@@ -3415,6 +3415,10 @@ export namespace dataflow_v1b3 {
      */
     streamingComputationConfigs?: Schema$StreamingComputationConfig[];
     /**
+     * Optional. The state tag encoding format version for streaming engine jobs.
+     */
+    streamingEngineStateTagEncodingVersion?: number | null;
+    /**
      * Map from user step names to state families.
      */
     userStepToStateFamilyNameMap?: {[key: string]: string} | null;

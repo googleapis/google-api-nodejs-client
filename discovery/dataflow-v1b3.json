@@ -2375,7 +2375,7 @@
       }
     }
   },
-  "revision": "20251214",
+  "revision": "20260118",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -7138,6 +7138,11 @@
             "$ref": "StreamingComputationConfig"
           },
           "type": "array"
+        },
+        "streamingEngineStateTagEncodingVersion": {
+          "description": "Optional. The state tag encoding format version for streaming engine jobs.",
+          "format": "int32",
+          "type": "integer"
         },
         "userStepToStateFamilyNameMap": {
           "additionalProperties": {
