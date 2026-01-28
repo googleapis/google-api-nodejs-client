@@ -159,6 +159,10 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
+    uploadFragmentListCreationInfo?: string | null;
+    /**
+     * gdata
+     */
     uploadMetadataContainer?: string | null;
   }
   /**
