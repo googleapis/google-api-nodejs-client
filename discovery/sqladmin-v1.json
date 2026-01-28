@@ -2790,7 +2790,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260106",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2965,6 +2965,7 @@
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -3038,6 +3039,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3069,6 +3071,7 @@
             "The database major version is MySQL 8.0 and the minor version is 45.",
             "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
+            "The database version is MySQL 9.7.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
             "The database version is SQL Server 2017 Express.",
@@ -3427,6 +3430,7 @@
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -3500,6 +3504,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3531,6 +3536,7 @@
             "The database major version is MySQL 8.0 and the minor version is 45.",
             "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
+            "The database version is MySQL 9.7.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
             "The database version is SQL Server 2017 Express.",
@@ -3876,6 +3882,7 @@
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -3949,6 +3956,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3980,6 +3988,7 @@
             "The database major version is MySQL 8.0 and the minor version is 45.",
             "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
+            "The database version is MySQL 9.7.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
             "The database version is SQL Server 2017 Express.",
@@ -4281,6 +4290,7 @@
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -4354,6 +4364,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4385,6 +4396,7 @@
             "The database major version is MySQL 8.0 and the minor version is 45.",
             "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
+            "The database version is MySQL 9.7.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
             "The database version is SQL Server 2017 Express.",
@@ -4883,17 +4895,35 @@
           "description": "Output only. The scope that the DNS name applies to.",
           "enum": [
             "DNS_SCOPE_UNSPECIFIED",
-            "INSTANCE"
+            "INSTANCE",
+            "CLUSTER"
           ],
           "enumDescriptions": [
-            "Unknown DNS scope.",
-            "Indicates a instance-level DNS name."
+            "DNS scope not set. This value should not be used.",
+            "Indicates an instance-level DNS name.",
+            "Indicates a cluster-level DNS name."
           ],
           "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "The DNS name.",
+          "description": "Output only. The DNS name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "recordManager": {
+          "description": "Output only. The manager for this DNS record.",
+          "enum": [
+            "RECORD_MANAGER_UNSPECIFIED",
+            "CUSTOMER",
+            "CLOUD_SQL_AUTOMATION"
+          ],
+          "enumDescriptions": [
+            "Record manager not set. This value should not be used.",
+            "The record may be managed by the customer. It is not automatically managed by Cloud SQL automation.",
+            "The record is managed by Cloud SQL, which will create, update, and delete the DNS records for the zone automatically when the Cloud SQL database instance is created or updated."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4909,6 +4939,10 @@
       "description": "The request payload used to execute SQL statements.",
       "id": "ExecuteSqlPayload",
       "properties": {
+        "application": {
+          "description": "Optional. Specifies the name of the application that is making the request. This field is used for telemetry. Only alphanumeric characters, dashes, and underscores are allowed. The maximum length is 32 characters.",
+          "type": "string"
+        },
         "autoIamAuthn": {
           "description": "Optional. When set to true, the API caller identity associated with the request is used for database authentication. The API caller must be an IAM user in the database.",
           "type": "boolean"
@@ -5234,6 +5268,7 @@
               "MYSQL_8_0_45",
               "MYSQL_8_0_46",
               "MYSQL_8_4",
+              "MYSQL_9_7",
               "SQLSERVER_2017_STANDARD",
               "SQLSERVER_2017_ENTERPRISE",
               "SQLSERVER_2017_EXPRESS",
@@ -5307,6 +5342,7 @@
               false,
               false,
               false,
+              false,
               false
             ],
             "enumDescriptions": [
@@ -5338,6 +5374,7 @@
               "The database major version is MySQL 8.0 and the minor version is 45.",
               "The database major version is MySQL 8.0 and the minor version is 46.",
               "The database version is MySQL 8.4.",
+              "The database version is MySQL 9.7.",
               "The database version is SQL Server 2017 Standard.",
               "The database version is SQL Server 2017 Enterprise.",
               "The database version is SQL Server 2017 Express.",
@@ -5725,6 +5762,10 @@
       "description": "Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration.",
       "id": "InsightsConfig",
       "properties": {
+        "enhancedQueryInsightsEnabled": {
+          "description": "Optional. Whether enhanced query insights feature is enabled.",
+          "type": "boolean"
+        },
         "queryInsightsEnabled": {
           "description": "Whether Query Insights feature is enabled.",
           "type": "boolean"
@@ -6612,7 +6653,7 @@
             "Creates a Cloud SQL replica instance.",
             "Creates a new user in a Cloud SQL instance.",
             "Deletes a user from a Cloud SQL instance.",
-            "Updates an existing user in a Cloud SQL instance.",
+            "Updates an existing user in a Cloud SQL instance. If a user with the specified username doesn't exist, a new user is created.",
             "Creates a database in the Cloud SQL instance.",
             "Deletes a database in the Cloud SQL instance.",
             "Updates a database in the Cloud SQL instance.",
@@ -7084,6 +7125,7 @@
             "MYSQL_8_0_45",
             "MYSQL_8_0_46",
             "MYSQL_8_4",
+            "MYSQL_9_7",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
             "SQLSERVER_2017_EXPRESS",
@@ -7157,6 +7199,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -7188,6 +7231,7 @@
             "The database major version is MySQL 8.0 and the minor version is 45.",
             "The database major version is MySQL 8.0 and the minor version is 46.",
             "The database version is MySQL 8.4.",
+            "The database version is MySQL 9.7.",
             "The database version is SQL Server 2017 Standard.",
             "The database version is SQL Server 2017 Enterprise.",
             "The database version is SQL Server 2017 Express.",

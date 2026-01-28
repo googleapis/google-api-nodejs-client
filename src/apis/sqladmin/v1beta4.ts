@@ -1121,9 +1121,13 @@ export namespace sqladmin_v1beta4 {
      */
     dnsScope?: string | null;
     /**
-     * The DNS name.
+     * Output only. The DNS name.
      */
     name?: string | null;
+    /**
+     * Output only. The manager for this DNS record.
+     */
+    recordManager?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1133,6 +1137,10 @@ export namespace sqladmin_v1beta4 {
    * The request payload used to execute SQL statements.
    */
   export interface Schema$ExecuteSqlPayload {
+    /**
+     * Optional. Specifies the name of the application that is making the request. This field is used for telemetry. Only alphanumeric characters, dashes, and underscores are allowed. The maximum length is 32 characters.
+     */
+    application?: string | null;
     /**
      * Optional. When set to true, the API caller identity associated with the request is used for database authentication. The API caller must be an IAM user in the database.
      */
@@ -1463,6 +1471,10 @@ export namespace sqladmin_v1beta4 {
    * Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration.
    */
   export interface Schema$InsightsConfig {
+    /**
+     * Optional. Whether enhanced query insights feature is enabled.
+     */
+    enhancedQueryInsightsEnabled?: boolean | null;
     /**
      * Whether Query Insights feature is enabled.
      */
@@ -7988,6 +8000,7 @@ export namespace sqladmin_v1beta4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "application": "my_application",
      *       //   "autoIamAuthn": false,
      *       //   "database": "my_database",
      *       //   "partialResultMode": "my_partialResultMode",
