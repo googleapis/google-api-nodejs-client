@@ -1,5 +1,12 @@
 # Changelog
 
+## [31.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v31.0.0...workloadmanager-v31.1.0) (2026-01-28)
+
+
+### Features
+
+* **workloadmanager:** update the API ([342064d](https://github.com/googleapis/google-api-nodejs-client/commit/342064d9d1c3dbf29ddb36bbd7b5dc387f2a01c4))
+
 ## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v30.0.2...workloadmanager-v31.0.0) (2025-12-15)
 
 

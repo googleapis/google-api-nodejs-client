@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.1.0...androidpublisher-v35.1.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **androidpublisher:** update the API ([065f19e](https://github.com/googleapis/google-api-nodejs-client/commit/065f19e8e73eb42a46e6c6ab9ae9c833ef29a2fe))
+
 ## [35.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.0.0...androidpublisher-v35.1.0) (2026-01-09)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v11.0.1...classroom-v11.1.0) (2026-01-28)
+
+
+### Features
+
+* **classroom:** update the API ([696dbe9](https://github.com/googleapis/google-api-nodejs-client/commit/696dbe9dfc100630bb2fe75d85f10669e05146db))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v11.0.0...classroom-v11.0.1) (2025-12-05)
 
 

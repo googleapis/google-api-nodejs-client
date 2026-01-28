@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v6.2.0...netapp-v6.3.0) (2026-01-28)
+
+
+### Features
+
+* **netapp:** update the API ([7652bdc](https://github.com/googleapis/google-api-nodejs-client/commit/7652bdc1bafa198b0971cec5df73d5fccd63f1bb))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v6.1.0...netapp-v6.2.0) (2025-12-15)
 
 

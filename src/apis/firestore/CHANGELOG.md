@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.1.0...firestore-v18.2.0) (2026-01-28)
+
+
+### Features
+
+* **firestore:** update the API ([c3f6049](https://github.com/googleapis/google-api-nodejs-client/commit/c3f6049fab4acb48a1e6cc29527339611979905c))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.0.3...firestore-v18.1.0) (2025-12-29)
 
 

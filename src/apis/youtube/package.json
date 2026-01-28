@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/youtube",
-  "version": "30.3.0",
+  "version": "31.0.0",
   "description": "youtube",
   "main": "build/index.js",
   "types": "build/index.d.ts",
