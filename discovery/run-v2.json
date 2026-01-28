@@ -708,6 +708,202 @@
                 }
               }
             },
+            "instances": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.instances.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "instanceId": {
+                      "description": "Required. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent}/instances/{instance_id}.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+parent}/instances",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2Instance"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Instance",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "httpMethod": "DELETE",
+                  "id": "run.projects.locations.instances.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Indicates that the request should be validated without actually deleting any resources.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a Instance",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.instances.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRunV2Instance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Instances. Results are sorted by creation time, descending.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "httpMethod": "GET",
+                  "id": "run.projects.locations.instances.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of Instances to return in this call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token received from a previous call to ListInstances. All other parameters must match.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location and project to list resources on. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Optional. If true, returns deleted (but unexpired) resources along with active ones.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v2/{+parent}/instances",
+                  "response": {
+                    "$ref": "GoogleCloudRunV2ListInstancesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "start": {
+                  "description": "Starts an Instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:start",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.instances.start",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Instance to stop. Format: `projects/{project}/locations/{location}/instances/{instance}`, where `{project}` can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:start",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2StartInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "stop": {
+                  "description": "Stops an Instance.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:stop",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.instances.stop",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Instance to stop. Format: `projects/{project}/locations/{location}/instances/{instance}`, where `{project}` can be project id or number.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:stop",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2StopInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "jobs": {
               "methods": {
                 "create": {
@@ -2177,7 +2373,7 @@
       }
     }
   },
-  "revision": "20251205",
+  "revision": "20260117",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2564,6 +2760,10 @@
           },
           "type": "array"
         },
+        "readinessProbe": {
+          "$ref": "GoogleCloudRunV2Probe",
+          "description": "Readiness probe to be used for health checks."
+        },
         "resources": {
           "$ref": "GoogleCloudRunV2ResourceRequirements",
           "description": "Compute Resource requirements by this container."
@@ -2630,6 +2830,21 @@
         },
         "name": {
           "description": "If specified, used to specify which protocol to use. Allowed values are \"http1\" and \"h2c\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ContainerStatus": {
+      "description": "ContainerStatus holds the information of container name and image digest value.",
+      "id": "GoogleCloudRunV2ContainerStatus",
+      "properties": {
+        "imageDigest": {
+          "description": "ImageDigest holds the resolved digest for the image specified and resolved during the creation of Revision. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the container, if specified.",
           "type": "string"
         }
       },
@@ -3130,6 +3345,246 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2Instance": {
+      "description": "A Cloud Run Instance represents a single group of containers running in a region.",
+      "id": "GoogleCloudRunV2Instance",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "binaryAuthorization": {
+          "$ref": "GoogleCloudRunV2BinaryAuthorization",
+          "description": "Settings for the Binary Authorization feature."
+        },
+        "client": {
+          "description": "Arbitrary identifier for the API client.",
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Arbitrary version identifier for the API client.",
+          "type": "string"
+        },
+        "conditions": {
+          "description": "Output only. The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the Instance does not reach its Serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Condition"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "containerStatuses": {
+          "description": "Output only. Status information for each of the specified containers. The status includes the resolved digest for specified images.",
+          "items": {
+            "$ref": "GoogleCloudRunV2ContainerStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "containers": {
+          "description": "Required. Holds the single container that defines the unit of execution for this Instance.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Container"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. Email address of the authenticated creator.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The deletion time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-provided description of the Instance. This field currently has a 512-character limit.",
+          "type": "string"
+        },
+        "encryptionKey": {
+          "description": "A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek",
+          "type": "string"
+        },
+        "encryptionKeyRevocationAction": {
+          "description": "The action to take if the encryption key is revoked.",
+          "enum": [
+            "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
+            "PREVENT_NEW",
+            "SHUTDOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Prevents the creation of new instances.",
+            "Shuts down existing instances, and prevents creation of new ones."
+          ],
+          "type": "string"
+        },
+        "encryptionKeyShutdownDuration": {
+          "description": "If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. For a deleted resource, the time after which it will be permamently deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generation": {
+          "description": "Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. True if GPU zonal redundancy is disabled on this instance.",
+          "type": "boolean"
+        },
+        "iapEnabled": {
+          "description": "Optional. IAP settings on the Instance.",
+          "type": "boolean"
+        },
+        "ingress": {
+          "description": "Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.",
+          "enum": [
+            "INGRESS_TRAFFIC_UNSPECIFIED",
+            "INGRESS_TRAFFIC_ALL",
+            "INGRESS_TRAFFIC_INTERNAL_ONLY",
+            "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+            "INGRESS_TRAFFIC_NONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "All inbound traffic is allowed.",
+            "Only internal traffic is allowed.",
+            "Both internal and Google Cloud Load Balancer traffic is allowed.",
+            "No ingress traffic is allowed."
+          ],
+          "type": "string"
+        },
+        "invokerIamDisabled": {
+          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "lastModifier": {
+          "description": "Output only. Email address of the last authenticated modifier.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "launchStage": {
+          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "Do not use this default value.",
+            "The feature is not yet implemented. Users can not use it.",
+            "Prelaunch features are hidden from users and are only visible internally.",
+            "Early Access features are limited to a closed group of testers. To use these features, you must sign up in advance and sign a Trusted Tester agreement (which includes confidentiality provisions). These features may be unstable, changed in backward-incompatible ways, and are not guaranteed to be released.",
+            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don't have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
+            "Beta is the point at which we are ready to open a release for any customer to use. There are no SLA or technical support obligations in a Beta release. Products will be complete from a feature perspective, but may have some open outstanding issues. Beta releases are suitable for limited production use cases.",
+            "GA features are open to all developers and are considered stable and fully qualified for production use.",
+            "Deprecated features are scheduled to be shut down and removed. For more information, see the \"Deprecation Policy\" section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
+          ],
+          "type": "string"
+        },
+        "logUri": {
+          "description": "Output only. The Google Console URI to obtain logs for the Instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project}/locations/{location}/instances/{instance_id}",
+          "type": "string"
+        },
+        "nodeSelector": {
+          "$ref": "GoogleCloudRunV2NodeSelector",
+          "description": "Optional. The node selector for the instance."
+        },
+        "observedGeneration": {
+          "description": "Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Returns true if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "serviceAccount": {
+          "type": "string"
+        },
+        "terminalCondition": {
+          "$ref": "GoogleCloudRunV2Condition",
+          "description": "Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
+          "readOnly": true
+        },
+        "uid": {
+          "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The last-modified time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "urls": {
+          "description": "Output only. All URLs serving traffic for this Instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "volumes": {
+          "description": "A list of Volumes to make available to containers.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Volume"
+          },
+          "type": "array"
+        },
+        "vpcAccess": {
+          "$ref": "GoogleCloudRunV2VpcAccess",
+          "description": "Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2InstanceSplit": {
       "description": "Holds a single instance split entry for the Worker. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.",
       "id": "GoogleCloudRunV2InstanceSplit",
@@ -3365,6 +3820,24 @@
         },
         "nextPageToken": {
           "description": "A token indicating there are more items than page_size. Use it in the next ListExecutions request to continue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ListInstancesResponse": {
+      "description": "Response message containing a list of Instances.",
+      "id": "GoogleCloudRunV2ListInstancesResponse",
+      "properties": {
+        "instances": {
+          "description": "The resulting list of Instances.",
+          "items": {
+            "$ref": "GoogleCloudRunV2Instance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token indicating there are more items than page_size. Use it in the next ListInstances request to continue.",
           "type": "string"
         }
       },
@@ -4357,6 +4830,36 @@
         "cloudStorageSource": {
           "$ref": "GoogleCloudRunV2CloudStorageSource",
           "description": "The source is a Cloud Storage bucket."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2StartInstanceRequest": {
+      "description": "Request message for starting an Instance.",
+      "id": "GoogleCloudRunV2StartInstanceRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. Indicates that the request should be validated without actually stopping any resources.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2StopInstanceRequest": {
+      "description": "Request message for deleting an Instance.",
+      "id": "GoogleCloudRunV2StopInstanceRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. Indicates that the request should be validated without actually stopping any resources.",
+          "type": "boolean"
         }
       },
       "type": "object"

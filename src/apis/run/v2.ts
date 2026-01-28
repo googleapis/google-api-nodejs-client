@@ -349,6 +349,10 @@ export namespace run_v2 {
      */
     ports?: Schema$GoogleCloudRunV2ContainerPort[];
     /**
+     * Readiness probe to be used for health checks.
+     */
+    readinessProbe?: Schema$GoogleCloudRunV2Probe;
+    /**
      * Compute Resource requirements by this container.
      */
     resources?: Schema$GoogleCloudRunV2ResourceRequirements;
@@ -400,6 +404,19 @@ export namespace run_v2 {
     containerPort?: number | null;
     /**
      * If specified, used to specify which protocol to use. Allowed values are "http1" and "h2c".
+     */
+    name?: string | null;
+  }
+  /**
+   * ContainerStatus holds the information of container name and image digest value.
+   */
+  export interface Schema$GoogleCloudRunV2ContainerStatus {
+    /**
+     * ImageDigest holds the resolved digest for the image specified and resolved during the creation of Revision. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.
+     */
+    imageDigest?: string | null;
+    /**
+     * The name of the container, if specified.
      */
     name?: string | null;
   }
@@ -730,6 +747,150 @@ export namespace run_v2 {
     tag?: string | null;
   }
   /**
+   * A Cloud Run Instance represents a single group of containers running in a region.
+   */
+  export interface Schema$GoogleCloudRunV2Instance {
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Settings for the Binary Authorization feature.
+     */
+    binaryAuthorization?: Schema$GoogleCloudRunV2BinaryAuthorization;
+    /**
+     * Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
+    /**
+     * Output only. The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the Instance does not reach its Serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
+     */
+    conditions?: Schema$GoogleCloudRunV2Condition[];
+    /**
+     * Required. Holds the single container that defines the unit of execution for this Instance.
+     */
+    containers?: Schema$GoogleCloudRunV2Container[];
+    /**
+     * Output only. Status information for each of the specified containers. The status includes the resolved digest for specified images.
+     */
+    containerStatuses?: Schema$GoogleCloudRunV2ContainerStatus[];
+    /**
+     * Output only. The creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Email address of the authenticated creator.
+     */
+    creator?: string | null;
+    /**
+     * Output only. The deletion time.
+     */
+    deleteTime?: string | null;
+    /**
+     * User-provided description of the Instance. This field currently has a 512-character limit.
+     */
+    description?: string | null;
+    /**
+     * A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek
+     */
+    encryptionKey?: string | null;
+    /**
+     * The action to take if the encryption key is revoked.
+     */
+    encryptionKeyRevocationAction?: string | null;
+    /**
+     * If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.
+     */
+    encryptionKeyShutdownDuration?: string | null;
+    /**
+     * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     */
+    etag?: string | null;
+    /**
+     * Output only. For a deleted resource, the time after which it will be permamently deleted.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
+     */
+    generation?: string | null;
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this instance.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
+    /**
+     * Optional. IAP settings on the Instance.
+     */
+    iapEnabled?: boolean | null;
+    /**
+     * Optional. Provides the ingress settings for this Instance. On output, returns the currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
+     */
+    ingress?: string | null;
+    /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers of this Instance. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     */
+    invokerIamDisabled?: boolean | null;
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Email address of the last authenticated modifier.
+     */
+    lastModifier?: string | null;
+    /**
+     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.
+     */
+    launchStage?: string | null;
+    /**
+     * Output only. The Google Console URI to obtain logs for the Instance.
+     */
+    logUri?: string | null;
+    /**
+     * The fully qualified name of this Instance. In CreateInstanceRequest, this field is ignored, and instead composed from CreateInstanceRequest.parent and CreateInstanceRequest.instance_id. Format: projects/{project\}/locations/{location\}/instances/{instance_id\}
+     */
+    name?: string | null;
+    /**
+     * Optional. The node selector for the instance.
+     */
+    nodeSelector?: Schema$GoogleCloudRunV2NodeSelector;
+    /**
+     * Output only. The generation of this Instance currently serving traffic. See comments in `reconciling` for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a `string` instead of an `integer`.
+     */
+    observedGeneration?: string | null;
+    /**
+     * Output only. Returns true if the Instance is currently being acted upon by the system to bring it into the desired state. When a new Instance is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Instance to the desired serving state. This process is called reconciliation. While reconciliation is in process, `observed_generation` will have a transient value that might mismatch the intended state. Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the Instance, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    serviceAccount?: string | null;
+    /**
+     * Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
+     */
+    terminalCondition?: Schema$GoogleCloudRunV2Condition;
+    /**
+     * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The last-modified time.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. All URLs serving traffic for this Instance.
+     */
+    urls?: string[] | null;
+    /**
+     * A list of Volumes to make available to containers.
+     */
+    volumes?: Schema$GoogleCloudRunV2Volume[];
+    /**
+     * Optional. VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     */
+    vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
+  }
+  /**
    * Holds a single instance split entry for the Worker. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.
    */
   export interface Schema$GoogleCloudRunV2InstanceSplit {
@@ -882,6 +1043,19 @@ export namespace run_v2 {
     executions?: Schema$GoogleCloudRunV2Execution[];
     /**
      * A token indicating there are more items than page_size. Use it in the next ListExecutions request to continue.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message containing a list of Instances.
+   */
+  export interface Schema$GoogleCloudRunV2ListInstancesResponse {
+    /**
+     * The resulting list of Instances.
+     */
+    instances?: Schema$GoogleCloudRunV2Instance[];
+    /**
+     * A token indicating there are more items than page_size. Use it in the next ListInstances request to continue.
      */
     nextPageToken?: string | null;
   }
@@ -1572,6 +1746,32 @@ export namespace run_v2 {
      * The source is a Cloud Storage bucket.
      */
     cloudStorageSource?: Schema$GoogleCloudRunV2CloudStorageSource;
+  }
+  /**
+   * Request message for starting an Instance.
+   */
+  export interface Schema$GoogleCloudRunV2StartInstanceRequest {
+    /**
+     * Optional. A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Indicates that the request should be validated without actually stopping any resources.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Request message for deleting an Instance.
+   */
+  export interface Schema$GoogleCloudRunV2StopInstanceRequest {
+    /**
+     * Optional. A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Indicates that the request should be validated without actually stopping any resources.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Location of the source in an archive file in Google Cloud Storage.
@@ -3416,6 +3616,7 @@ export namespace run_v2 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     builds: Resource$Projects$Locations$Builds;
+    instances: Resource$Projects$Locations$Instances;
     jobs: Resource$Projects$Locations$Jobs;
     operations: Resource$Projects$Locations$Operations;
     services: Resource$Projects$Locations$Services;
@@ -3423,6 +3624,7 @@ export namespace run_v2 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Locations$Builds(this.context);
+      this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
@@ -4225,6 +4427,1059 @@ export namespace run_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRunV2SubmitBuildRequest;
+  }
+
+  export class Resource$Projects$Locations$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.create({
+     *     // Required. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent\}/instances/{instance_id\}.
+     *     instanceId: 'placeholder-value',
+     *
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "binaryAuthorization": {},
+     *       //   "client": "my_client",
+     *       //   "clientVersion": "my_clientVersion",
+     *       //   "conditions": [],
+     *       //   "containerStatuses": [],
+     *       //   "containers": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "creator": "my_creator",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "description": "my_description",
+     *       //   "encryptionKey": "my_encryptionKey",
+     *       //   "encryptionKeyRevocationAction": "my_encryptionKeyRevocationAction",
+     *       //   "encryptionKeyShutdownDuration": "my_encryptionKeyShutdownDuration",
+     *       //   "etag": "my_etag",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "generation": "my_generation",
+     *       //   "gpuZonalRedundancyDisabled": false,
+     *       //   "iapEnabled": false,
+     *       //   "ingress": "my_ingress",
+     *       //   "invokerIamDisabled": false,
+     *       //   "labels": {},
+     *       //   "lastModifier": "my_lastModifier",
+     *       //   "launchStage": "my_launchStage",
+     *       //   "logUri": "my_logUri",
+     *       //   "name": "my_name",
+     *       //   "nodeSelector": {},
+     *       //   "observedGeneration": "my_observedGeneration",
+     *       //   "reconciling": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "terminalCondition": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "urls": [],
+     *       //   "volumes": [],
+     *       //   "vpcAccess": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Instances$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Instance
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.delete({
+     *     // Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     *     etag: 'placeholder-value',
+     *
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Optional. Indicates that the request should be validated without actually deleting any resources.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Instances$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Instance
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.get({
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "client": "my_client",
+     *   //   "clientVersion": "my_clientVersion",
+     *   //   "conditions": [],
+     *   //   "containerStatuses": [],
+     *   //   "containers": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "description": "my_description",
+     *   //   "encryptionKey": "my_encryptionKey",
+     *   //   "encryptionKeyRevocationAction": "my_encryptionKeyRevocationAction",
+     *   //   "encryptionKeyShutdownDuration": "my_encryptionKeyShutdownDuration",
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "generation": "my_generation",
+     *   //   "gpuZonalRedundancyDisabled": false,
+     *   //   "iapEnabled": false,
+     *   //   "ingress": "my_ingress",
+     *   //   "invokerIamDisabled": false,
+     *   //   "labels": {},
+     *   //   "lastModifier": "my_lastModifier",
+     *   //   "launchStage": "my_launchStage",
+     *   //   "logUri": "my_logUri",
+     *   //   "name": "my_name",
+     *   //   "nodeSelector": {},
+     *   //   "observedGeneration": "my_observedGeneration",
+     *   //   "reconciling": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "terminalCondition": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urls": [],
+     *   //   "volumes": [],
+     *   //   "vpcAccess": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2Instance>>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudRunV2Instance>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Get
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Instance>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2Instance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2Instance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2Instance>(parameters);
+      }
+    }
+
+    /**
+     * Lists Instances. Results are sorted by creation time, descending.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.list({
+     *     // Optional. Maximum number of Instances to return in this call.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token received from a previous call to ListInstances. All other parameters must match.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. If true, returns deleted (but unexpired) resources along with active ones.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instances": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2ListInstancesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$List
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListInstancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRunV2ListInstancesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/instances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2ListInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2ListInstancesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Starts an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.start({
+     *     // Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    start(
+      params?: Params$Resource$Projects$Locations$Instances$Start,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Instances$Start,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Start
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Stops an Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.projects.locations.instances.stop({
+     *     // Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Instances$Stop,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Instances$Stop,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Stop
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
+    /**
+     * Required. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent\}/instances/{instance_id\}.
+     */
+    instanceId?: string;
+    /**
+     *
+     */
+    parent?: string;
+    /**
+     * Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Delete extends StandardParameters {
+    /**
+     * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     */
+    etag?: string;
+    /**
+     *
+     */
+    name?: string;
+    /**
+     * Optional. Indicates that the request should be validated without actually deleting any resources.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Get extends StandardParameters {
+    /**
+     *
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of Instances to return in this call.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous call to ListInstances. All other parameters must match.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location and project to list resources on. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     */
+    parent?: string;
+    /**
+     * Optional. If true, returns deleted (but unexpired) resources along with active ones.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Start extends StandardParameters {
+    /**
+     * Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2StartInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Stop extends StandardParameters {
+    /**
+     * Required. The name of the Instance to stop. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`, where `{project\}` can be project id or number.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2StopInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Jobs {
