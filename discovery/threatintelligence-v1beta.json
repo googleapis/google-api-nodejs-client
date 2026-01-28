@@ -1,0 +1,3143 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://threatintelligence.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Threat Intelligence Service",
+  "description": "threatintelligence.googleapis.com API.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/threatintelligence/docs/reference/rest",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "threatintelligence:v1beta",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://threatintelligence.mtls.googleapis.com/",
+  "name": "threatintelligence",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "alerts": {
+          "methods": {
+            "benign": {
+              "description": "Marks an alert as benign - BENIGN.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:benign",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.benign",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as a benign. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:benign",
+              "request": {
+                "$ref": "MarkAlertAsBenignRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "duplicate": {
+              "description": "Marks an alert as a duplicate of another alert. - DUPLICATE.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:duplicate",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.duplicate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as a duplicate. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:duplicate",
+              "request": {
+                "$ref": "MarkAlertAsDuplicateRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "enumerateFacets": {
+              "description": "EnumerateAlertFacets returns the facets and the number of alerts that meet the filter criteria and have that value for each facet.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts:enumerateFacets",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.alerts.enumerateFacets",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter on what alerts will be enumerated.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Parent of the alerts.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/alerts:enumerateFacets",
+              "response": {
+                "$ref": "EnumerateAlertFacetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "escalate": {
+              "description": "Marks an alert as escalated - ESCALATED.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:escalate",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.escalate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as escalated. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:escalate",
+              "request": {
+                "$ref": "MarkAlertAsEscalatedRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "falsePositive": {
+              "description": "Marks an alert as a false positive - FALSE_POSITIVE.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:falsePositive",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.falsePositive",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as a false positive. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:falsePositive",
+              "request": {
+                "$ref": "MarkAlertAsFalsePositiveRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get an alert by name.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.alerts.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to get. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Get a list of alerts that meet the filter criteria.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.alerts.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter criteria.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Parent of the alerts. Format: projects/{project}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/alerts",
+              "response": {
+                "$ref": "ListAlertsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "notActionable": {
+              "description": "Marks an alert as not actionable - NOT_ACTIONABLE.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:notActionable",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.notActionable",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as a not actionable. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:notActionable",
+              "request": {
+                "$ref": "MarkAlertAsNotActionableRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "read": {
+              "description": "Marks an alert as read - READ.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:read",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.read",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as read. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:read",
+              "request": {
+                "$ref": "MarkAlertAsReadRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "refreshUriStatus": {
+              "description": "Return the status of a URI submitted to Google WebRisk.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:refreshUriStatus",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.refreshUriStatus",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of alert to refresh status from WebRisk",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:refreshUriStatus",
+              "request": {
+                "$ref": "RefreshAlertUriStatusRequest"
+              },
+              "response": {
+                "$ref": "RefreshAlertUriStatusResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "reportAlertUri": {
+              "description": "Report the URI associated with an alert to Google WebRisk.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:reportAlertUri",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.reportAlertUri",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of alert to submit to WebRisk.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:reportAlertUri",
+              "request": {
+                "$ref": "ReportAlertUriRequest"
+              },
+              "response": {
+                "$ref": "ReportAlertUriResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "resolve": {
+              "description": "Marks an alert to closed state - RESOLVED.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:resolve",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.resolve",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as resolved. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:resolve",
+              "request": {
+                "$ref": "MarkAlertAsResolvedRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "trackExternally": {
+              "description": "Marks an alert as tracked externally - TRACKED_EXTERNALLY.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:trackExternally",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.trackExternally",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as tracked externally. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:trackExternally",
+              "request": {
+                "$ref": "MarkAlertAsTrackedExternallyRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "triage": {
+              "description": "Marks an alert as triaged - TRIAGED.",
+              "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}:triage",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.alerts.triage",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the alert to mark as a triaged. Format: projects/{project}/alerts/{alert}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/alerts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}:triage",
+              "request": {
+                "$ref": "MarkAlertAsTriagedRequest"
+              },
+              "response": {
+                "$ref": "Alert"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "documents": {
+              "methods": {
+                "get": {
+                  "description": "Gets a specific document associated with an alert.",
+                  "flatPath": "v1beta/projects/{projectsId}/alerts/{alertsId}/documents/{documentsId}",
+                  "httpMethod": "GET",
+                  "id": "threatintelligence.projects.alerts.documents.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the alert document to get. Format: projects/{project}/alerts/{alert}/documents/{document}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/alerts/[^/]+/documents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "AlertDocument"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "configurations": {
+          "methods": {
+            "get": {
+              "description": "Get a configuration by name.",
+              "flatPath": "v1beta/projects/{projectsId}/configurations/{configurationsId}",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.configurations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the configuration to get. Format: vaults/{vault}/configurations/{configuration}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/configurations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "Configuration"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Get a list of configurations that meet the filter criteria.",
+              "flatPath": "v1beta/projects/{projectsId}/configurations",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.configurations.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter criteria.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Parent of the configuration. Format: vaults/{vault}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/configurations",
+              "response": {
+                "$ref": "ListConfigurationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "upsert": {
+              "description": "Creates or updates a configuration.",
+              "flatPath": "v1beta/projects/{projectsId}/configurations:upsert",
+              "httpMethod": "POST",
+              "id": "threatintelligence.projects.configurations.upsert",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Parent of the configuration.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "publishTime": {
+                  "description": "Optional. Time that the configuration should be considered to have been published. This is an advanced feature used when onboarding and bulk loading data from other systems. Do not set this field without consulting with the API team.",
+                  "format": "google-datetime",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/configurations:upsert",
+              "request": {
+                "$ref": "Configuration"
+              },
+              "response": {
+                "$ref": "UpsertConfigurationResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "revisions": {
+              "methods": {
+                "list": {
+                  "description": "List configuration revisions that meet the filter criteria.",
+                  "flatPath": "v1beta/projects/{projectsId}/configurations/{configurationsId}/revisions",
+                  "httpMethod": "GET",
+                  "id": "threatintelligence.projects.configurations.revisions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An AIP-160 filter string",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Specify ordering of response",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Page Size",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token provided by the API",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the Configuration to retrieve Revisions for",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/configurations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/revisions",
+                  "response": {
+                    "$ref": "ListConfigurationRevisionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "findings": {
+          "methods": {
+            "get": {
+              "description": "Get a finding by name.",
+              "flatPath": "v1beta/projects/{projectsId}/findings/{findingsId}",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.findings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the finding to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/findings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "Finding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Get a list of findings that meet the filter criteria.",
+              "flatPath": "v1beta/projects/{projectsId}/findings",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.findings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Filter criteria.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Parent of the findings.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/findings",
+              "response": {
+                "$ref": "ListFindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "search": {
+              "description": "SearchFindings is a more powerful version of ListFindings that supports complex queries like \"findings for issues\" using functions such as `has_issue` and `has_asset` in the query string. Example to search for findings for a specific issue: `has_issue(\"name=\\\"vaults/vault-12345/issues/issue-12345\\\"\")`)",
+              "flatPath": "v1beta/projects/{projectsId}/findings:search",
+              "httpMethod": "GET",
+              "id": "threatintelligence.projects.findings.search",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "orderBy": {
+                  "description": "Optional. Order by criteria in the csv format: \"field1,field2 desc\" or \"field1,field2\" or \"field1 asc, field2\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Parent of the findings. Format: vaults/{vault}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "query": {
+                  "description": "Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship queries `has_issue` and `has_asset`. Examples: - has_issue(\"name=\\\"vaults/vault-12345/issues/issue-12345\\\"\") - has_asset(\"name=\\\"vaults/vault-12345/assets/asset-12345\\\"\")",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/findings:search",
+              "response": {
+                "$ref": "SearchFindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20260122",
+  "rootUrl": "https://threatintelligence.googleapis.com/",
+  "schemas": {
+    "AffectedSoftware": {
+      "description": "The software that is affected by the vulnerability.",
+      "id": "AffectedSoftware",
+      "properties": {
+        "product": {
+          "description": "Optional. The product of the software.",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Optional. The vendor of the software.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Alert": {
+      "description": "Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user's intent towards the findings of that group, even those that haven't occurred yet.",
+      "id": "Alert",
+      "properties": {
+        "aiSummary": {
+          "description": "Optional. AI summary of the finding.",
+          "type": "string"
+        },
+        "assets": {
+          "description": "Output only. Assets that are impacted by this alert.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "audit": {
+          "$ref": "Audit",
+          "description": "Output only. Audit information for the alert.",
+          "readOnly": true
+        },
+        "configurations": {
+          "description": "Output only. The resource names of the Configurations bound to this alert. Format: projects/{project}/configurations/{configuration}",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "detail": {
+          "$ref": "AlertDetail",
+          "description": "Output only. Details object for the alert, not all alerts will have a details object.",
+          "readOnly": true
+        },
+        "displayName": {
+          "description": "Output only. A short title for the alert.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "duplicateOf": {
+          "description": "Output only. alert name of the alert this alert is a duplicate of. Format: projects/{project}/alerts/{alert}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "duplicatedBy": {
+          "description": "Output only. alert names of the alerts that are duplicates of this alert. Format: projects/{project}/alerts/{alert}",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "etag": {
+          "description": "Optional. If included when updating an alert, this should be set to the current etag of the alert. If the etags do not match, the update will be rejected and an ABORTED error will be returned.",
+          "type": "string"
+        },
+        "externalId": {
+          "description": "Output only. External ID for the alert. This is used internally to provide protection against out of order updates.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "findings": {
+          "description": "Output only. Findings that are covered by this alert.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Server generated name for the alert. format is projects/{project}/alerts/{alert}",
+          "type": "string"
+        },
+        "priorityAnalysis": {
+          "$ref": "PriorityAnalysis",
+          "description": "Output only. High-Precision Priority Analysis for the alert.",
+          "readOnly": true
+        },
+        "relevanceAnalysis": {
+          "$ref": "RelevanceAnalysis",
+          "description": "Output only. High-Precision Relevance Analysis verdict for the alert.",
+          "readOnly": true
+        },
+        "severityAnalysis": {
+          "$ref": "SeverityAnalysis",
+          "description": "Output only. High-Precision Severity Analysis for the alert.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. State of the alert.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NEW",
+            "READ",
+            "TRIAGED",
+            "ESCALATED",
+            "RESOLVED",
+            "DUPLICATE",
+            "FALSE_POSITIVE",
+            "NOT_ACTIONABLE",
+            "BENIGN",
+            "TRACKED_EXTERNALLY"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "alert is new.",
+            "alert was read by a human.",
+            "alert has been triaged.",
+            "alert has been escalated.",
+            "alert has been resolved.",
+            "alert is a duplicate of another alert.",
+            "alert is a false positive and should be ignored.",
+            "alert is not actionable.",
+            "alert is benign.",
+            "alert is tracked externally."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlertDetail": {
+      "description": "Container for different types of alert details.",
+      "id": "AlertDetail",
+      "properties": {
+        "dataLeak": {
+          "$ref": "DataLeakAlertDetail",
+          "description": "Data Leak alert detail type."
+        },
+        "detailType": {
+          "description": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "initialAccessBroker": {
+          "$ref": "InitialAccessBrokerAlertDetail",
+          "description": "Initial Access Broker alert detail type."
+        },
+        "insiderThreat": {
+          "$ref": "InsiderThreatAlertDetail",
+          "description": "Insider Threat alert detail type."
+        },
+        "suspiciousDomain": {
+          "$ref": "SuspiciousDomainAlertDetail",
+          "description": "Domain Monitoring alert detail type."
+        },
+        "targetTechnology": {
+          "$ref": "TargetTechnologyAlertDetail",
+          "description": "Technology Watchlist alert detail type."
+        }
+      },
+      "type": "object"
+    },
+    "AlertDocument": {
+      "description": "A document that is associated with an alert.",
+      "id": "AlertDocument",
+      "properties": {
+        "aiSummary": {
+          "description": "Output only. AI summary of the finding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "author": {
+          "description": "Output only. The author of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "collectionTime": {
+          "description": "Output only. Time when the origin source collected the intel.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "content": {
+          "description": "Output only. The content of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the document was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ingestTime": {
+          "description": "Output only. Time when GTI received the intel.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Output only. The language code of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Server generated name for the alert document. format is projects/{project}/alerts/{alert}/documents/{document}",
+          "type": "string"
+        },
+        "source": {
+          "description": "Output only. Source of the intel item, e.g. DarkMarket.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceUpdateTime": {
+          "description": "Output only. Time when the intel was last updated by the source.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceUri": {
+          "description": "Output only. URI of the intel item from the source.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Output only. The title of the document, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "translation": {
+          "$ref": "AlertDocumentTranslation",
+          "description": "Output only. The translation of the document, if available.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "AlertDocumentTranslation": {
+      "description": "The translation of an alert document.",
+      "id": "AlertDocumentTranslation",
+      "properties": {
+        "translatedContent": {
+          "description": "Output only. The translated content of the document.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "translatedTitle": {
+          "description": "Output only. The translated title of the document.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetDiscoveryConfig": {
+      "description": "Customer defined Configuration for asset discovery.",
+      "id": "AssetDiscoveryConfig",
+      "properties": {
+        "lastScanCompleteTime": {
+          "description": "Output only. Timestamp of the last scan completed. This field is set by the system and cannot be modified by the user.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastScanStartTime": {
+          "description": "Output only. Timestamp of the last scan started - used for scheduling the next scan. This field is set by the system and cannot be modified by the user.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scanFrequency": {
+          "description": "Required. Frequency at which the scheduled discovery scan should be run. If not specified, the default frequency is DAILY.",
+          "enum": [
+            "ASSET_DISCOVERY_SCAN_FREQUENCY_UNSPECIFIED",
+            "ON_DEMAND",
+            "WEEKLY",
+            "DAILY",
+            "MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Scan is triggered on demand.",
+            "Scan is triggered weekly.",
+            "Scan is triggered daily.",
+            "Scan is triggered monthly."
+          ],
+          "type": "string"
+        },
+        "scopeExclusionAssets": {
+          "description": "Optional. Seed assets that are out of scope for the scheduled discovery scan.",
+          "items": {
+            "$ref": "AssetDiscoverySeed"
+          },
+          "type": "array"
+        },
+        "seedAssets": {
+          "description": "Required. Seed assets for the scheduled discovery scan. At least one seed asset is required.",
+          "items": {
+            "$ref": "AssetDiscoverySeed"
+          },
+          "type": "array"
+        },
+        "workflow": {
+          "description": "Required. Workflow to be used for the scheduled discovery scan. If not specified, the default workflow is EXTERNAL_DISCOVERY.",
+          "enum": [
+            "ASSET_DISCOVERY_WORKFLOW_UNSPECIFIED",
+            "EXTERNAL_DISCOVERY",
+            "EXTERNAL_DISCOVERY_AND_ASSESSMENT",
+            "MOBILE_APP_DISCOVERY"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Discovery workflow that only discovers external facing assets.",
+            "Discovery workflow that discovers external facing assets and generates relevant alerts on them.",
+            "Discovery workflow that discovers mobile app assets."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetDiscoverySeed": {
+      "description": "Seed assets for asset discovery.",
+      "id": "AssetDiscoverySeed",
+      "properties": {
+        "seedType": {
+          "description": "Required. Type of the seed asset.",
+          "enum": [
+            "ASSET_DISCOVERY_SEED_TYPE_UNSPECIFIED",
+            "IP_ADDRESS",
+            "NETWORK_SERVICE"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Seed asset is an IP address.",
+            "Seed asset is a network service."
+          ],
+          "type": "string"
+        },
+        "seedValue": {
+          "description": "Required. Value for the seed asset. Could be an IP address, network service, email addresses, etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Association": {
+      "description": "Represents an association with a vulnerability.",
+      "id": "Association",
+      "properties": {
+        "id": {
+          "description": "Required. The ID of the association.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of the association.",
+          "enum": [
+            "THREAT_INTEL_OBJECT_TYPE_UNSPECIFIED",
+            "THREAT_INTEL_OBJECT_TYPE_THREAT_ACTOR",
+            "THREAT_INTEL_OBJECT_TYPE_MALWARE",
+            "THREAT_INTEL_OBJECT_TYPE_REPORT",
+            "THREAT_INTEL_OBJECT_TYPE_CAMPAIGN",
+            "THREAT_INTEL_OBJECT_TYPE_IOC_COLLECTION",
+            "THREAT_INTEL_OBJECT_TYPE_SOFTWARE_AND_TOOLKITS",
+            "THREAT_INTEL_OBJECT_TYPE_VULNERABILITY"
+          ],
+          "enumDescriptions": [
+            "Unspecified object type.",
+            "Threat actor object type.",
+            "Malware object type.",
+            "Report object type.",
+            "Campaign object type.",
+            "IoC Collection object type.",
+            "Software and toolkits object type.",
+            "Vulnerability object type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Audit": {
+      "description": "Tracks basic CRUD facts.",
+      "id": "Audit",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time of creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. Agent that created or updated the record, could be a UserId or a JobId.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time of creation or last update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updater": {
+          "description": "Output only. Agent that last updated the record, could be a UserId or a JobId.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CompromisedCredentialsFindingDetail": {
+      "description": "Sample compromised credential detail.",
+      "id": "CompromisedCredentialsFindingDetail",
+      "properties": {
+        "author": {
+          "deprecated": true,
+          "description": "Optional. Reference to the author this detail was extracted from. This is deprecated and will be removed.",
+          "type": "string"
+        },
+        "credentialService": {
+          "description": "Optional. Claimed site the credential is intended for.",
+          "type": "string"
+        },
+        "darkWebDoc": {
+          "deprecated": true,
+          "description": "Optional. Reference to the dark web document. This is deprecated and will be removed.",
+          "type": "string"
+        },
+        "externalReferenceUri": {
+          "description": "Optional. This will contain a link to the external reference for this credential. If set, this is a link back to the DTM product to allow customers to get additional context about this finding.",
+          "type": "string"
+        },
+        "fileDump": {
+          "description": "Optional. If the source of the credential was from a file dump this will contain the name of the file the credential was found in. This can be used by customers for context on where the credential was found and to try to find other references to the file in the wild.",
+          "type": "string"
+        },
+        "fileDumpHashes": {
+          "description": "Optional. A list of hashes of the file dump. These will be prefixed with the algorithm. Example: \"sha256:\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileDumpSizeBytes": {
+          "description": "Optional. If file_dump is set this will contain the size of the dump file in bytes. File dumps can be very large.",
+          "format": "int64",
+          "type": "string"
+        },
+        "forum": {
+          "deprecated": true,
+          "description": "Optional. Reference to the forum this detail was extracted from. This is deprecated and will be removed.",
+          "type": "string"
+        },
+        "malwareFamily": {
+          "description": "Optional. This will indicate the malware family that leaked this credential, if known.",
+          "type": "string"
+        },
+        "postedTime": {
+          "description": "Optional. This indicates our best guess as to when the credential was leaked to the particular venue that triggered this finding. This is not necessarily the time the credential was actually leaked and it may not always be be accurate.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceUri": {
+          "description": "Optional. If the source of a credential is publicly addressable this will contain a uri to the where the credential was found.",
+          "type": "string"
+        },
+        "userKey": {
+          "description": "Required. This field will always be set and will be used to identify the user named in the credential leak. In cases where customers are authorized to see the actual user key this will be set to the actual user key. In cases where the customer is not authorized to see the actual user key this will be set to a hash of the user key. The hashed value is an intentionally opaque value that is not intended to be used for any other purpose than to uniquely identify the user in the context of this specific customer, service domain, and user name. Example: \"user@example.com\" or \"redacted:\".",
+          "type": "string"
+        },
+        "userSecretEvidence": {
+          "description": "Optional. Claimed evidence of the password/secret. This will always be hashed. In the event where the plaintext password is known it will be set to \"redacted:\" where the same hash will be presented when the same password is found for the same organization for the same service. Redaction is done by hashing the password with a salt that is unique to the customer organization and service. In the event where the plaintext password is not known it will be set to \":\" where the algorithm is the hash algorithm used and the hash is the hash of the password using that algorithm. In the event we don't know the exact algorithm used we will set it to \"hashed:\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Configuration": {
+      "description": "A configuration represents a behavior an engine should follow when producing new findings.",
+      "id": "Configuration",
+      "properties": {
+        "audit": {
+          "$ref": "Audit",
+          "description": "Output only. Audit information for the configuration.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Optional. A description of the configuration.",
+          "type": "string"
+        },
+        "detail": {
+          "$ref": "ConfigurationDetail",
+          "description": "Required. Domain specific details for the configuration."
+        },
+        "displayName": {
+          "description": "Output only. Human readable name for the configuration.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Server generated name for the configuration. format is vaults/{vault}/configurations/{configuration}",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Required. Name of the service that provides the configuration.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. State of the configuration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "Configuration state is unspecified. This is not expected to occur.",
+            "Configuration is enabled for the customer.",
+            "Configuration is disabled for the customer.",
+            "Configuration is deprecated, no new configs are allowed to be created."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. A user-manipulatable version. Does not adhere to a specific format",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigurationDetail": {
+      "description": "Wrapper class that contains the union struct for all the various configuration detail specific classes.",
+      "id": "ConfigurationDetail",
+      "properties": {
+        "assetDiscovery": {
+          "$ref": "AssetDiscoveryConfig",
+          "description": "Asset Discovery detail config."
+        },
+        "customerProfile": {
+          "$ref": "CustomerProfileConfig",
+          "description": "Customer Profile detail config."
+        },
+        "detailType": {
+          "description": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "domainMonitoring": {
+          "$ref": "DomainMonitoringConfig",
+          "description": "Domain Monitoring detail config."
+        },
+        "initialAccessBroker": {
+          "$ref": "InitialAccessBrokerConfig",
+          "description": "Initial Access Broker (IAB) detail config."
+        },
+        "technologyWatchlist": {
+          "$ref": "TechnologyWatchListConfig",
+          "description": "Technology Watchlist detail config."
+        }
+      },
+      "type": "object"
+    },
+    "ConfigurationRevision": {
+      "description": "A ConfigurationRevision is a snapshot of a Configuration at a point in time. It is immutable.",
+      "id": "ConfigurationRevision",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the Revision was created",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the ConfigurationRevision Format: vaults//configurations//revisions/ OR projects//configurations//revisions/",
+          "type": "string"
+        },
+        "snapshot": {
+          "$ref": "Configuration",
+          "description": "The snapshot of the configuration"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileCitation": {
+      "description": "Citation information for the customer profile.",
+      "id": "CustomerProfileCitation",
+      "properties": {
+        "citationId": {
+          "description": "Required. The citation id for the citation. Should be unique within the profile.",
+          "type": "string"
+        },
+        "document": {
+          "description": "Required. The name of the document the citation is from.",
+          "type": "string"
+        },
+        "retrievalTime": {
+          "description": "The time the citation was retrieved.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. The source of the citation.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. The url of the citation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileCitedString": {
+      "description": "A string with citation ids.",
+      "id": "CustomerProfileCitedString",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the string.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Required. The value of the string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileCompany": {
+      "description": "Company information for the customer profile.",
+      "id": "CustomerProfileCompany",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the company.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "company": {
+          "description": "Required. The name of the company.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileConfig": {
+      "description": "CustomerProfileConfig is the configuration for the customer profile.",
+      "id": "CustomerProfileConfig",
+      "properties": {
+        "citations": {
+          "description": "Optional. Citations for the organization profile.",
+          "items": {
+            "$ref": "CustomerProfileCitation"
+          },
+          "type": "array"
+        },
+        "contactInfo": {
+          "description": "Optional. Contact information for the organization.",
+          "items": {
+            "$ref": "CustomerProfileContactInfo"
+          },
+          "type": "array"
+        },
+        "executives": {
+          "description": "Optional. Executives of the organization.",
+          "items": {
+            "$ref": "CustomerProfilePerson"
+          },
+          "type": "array"
+        },
+        "industries": {
+          "description": "Optional. The industries the organization is involved in.",
+          "items": {
+            "$ref": "CustomerProfileIndustry"
+          },
+          "type": "array"
+        },
+        "locations": {
+          "description": "Optional. Locations the organization is present or conducts business in.",
+          "items": {
+            "$ref": "CustomerProfileLocation"
+          },
+          "type": "array"
+        },
+        "org": {
+          "description": "Required. The name of the organization.",
+          "type": "string"
+        },
+        "orgSummary": {
+          "description": "Optional. A summary of the organization.",
+          "type": "string"
+        },
+        "parentCompanies": {
+          "description": "Optional. The parent companies of the organization.",
+          "items": {
+            "$ref": "CustomerProfileCompany"
+          },
+          "type": "array"
+        },
+        "products": {
+          "description": "Optional. Product information for the organization.",
+          "items": {
+            "$ref": "CustomerProfileProduct"
+          },
+          "type": "array"
+        },
+        "securityConsiderations": {
+          "$ref": "CustomerProfileSecurityConsiderations",
+          "description": "Optional. Security considerations for the organization."
+        },
+        "summary": {
+          "$ref": "CustomerProfileSummary",
+          "description": "Optional. A summarized version of the customer profile."
+        },
+        "technologyPresence": {
+          "description": "Optional. Technology presence of the organization.",
+          "type": "string"
+        },
+        "webPresences": {
+          "description": "Optional. Web presence of the organization.",
+          "items": {
+            "$ref": "CustomerProfileWebPresence"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileContactInfo": {
+      "description": "Contact information for the customer profile.",
+      "id": "CustomerProfileContactInfo",
+      "properties": {
+        "address": {
+          "description": "The address of the contact.",
+          "type": "string"
+        },
+        "citationIds": {
+          "description": "Optional. The citation ids for the contact information.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "email": {
+          "description": "The email address of the contact.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Optional. The name of the contact.",
+          "type": "string"
+        },
+        "other": {
+          "description": "The other contact information.",
+          "type": "string"
+        },
+        "phone": {
+          "description": "The phone number of the contact.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileIndustry": {
+      "description": "Industry information for the customer profile.",
+      "id": "CustomerProfileIndustry",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the industry.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "industry": {
+          "description": "Required. The name of the industry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileLocation": {
+      "description": "Location information for the customer profile.",
+      "id": "CustomerProfileLocation",
+      "properties": {
+        "address": {
+          "description": "Required. The address of the location.",
+          "type": "string"
+        },
+        "brand": {
+          "description": "Required. The brand of the location.",
+          "type": "string"
+        },
+        "citationIds": {
+          "description": "Optional. The citation ids for the location.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "facilityType": {
+          "description": "Optional. The type of location.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfilePerson": {
+      "description": "Person information for the customer profile.",
+      "id": "CustomerProfilePerson",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the person.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name of the person.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. The title of the person.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileProduct": {
+      "description": "Product information for the customer profile.",
+      "id": "CustomerProfileProduct",
+      "properties": {
+        "brand": {
+          "description": "Required. The brand of the product.",
+          "type": "string"
+        },
+        "citationIds": {
+          "description": "Optional. The citation ids for the product.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product": {
+          "description": "Required. The name of the product.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileSecurityConsiderations": {
+      "description": "Security considerations for the customer profile.",
+      "id": "CustomerProfileSecurityConsiderations",
+      "properties": {
+        "considerations": {
+          "description": "Optional. A series of considerations for the security of the organization, such as \"high risk of compromise\" or \"vulnerable to cyberbullying\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "note": {
+          "description": "Optional. A note about the security considerations.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileSummary": {
+      "description": "A summarized version of the customer profile. Generated by the backend.",
+      "id": "CustomerProfileSummary",
+      "properties": {
+        "areaServed": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The area the customer serves."
+        },
+        "brands": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. A narrative summary of brands."
+        },
+        "entityType": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The entity type of the customer."
+        },
+        "founded": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The date the customer was founded."
+        },
+        "headquarters": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The headquarters of the customer."
+        },
+        "industry": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The industry the customer is in."
+        },
+        "keyPeopleSummary": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. A narrative summary of key people."
+        },
+        "parentCompany": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The parent company of the customer."
+        },
+        "primaryWebsite": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The primary website of the customer."
+        },
+        "productsSummary": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. A narrative summary of products."
+        },
+        "servicesSummary": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. A narrative summary of services."
+        },
+        "title": {
+          "$ref": "CustomerProfileCitedString",
+          "description": "Optional. The official name of the customer."
+        }
+      },
+      "type": "object"
+    },
+    "CustomerProfileWebPresence": {
+      "description": "Web presence information for the customer profile.",
+      "id": "CustomerProfileWebPresence",
+      "properties": {
+        "citationIds": {
+          "description": "Optional. The citation ids for the web presence.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domain": {
+          "description": "Required. The domain name of the web presence.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataLeakAlertDetail": {
+      "description": "Captures the specific details of Data Leak alert.",
+      "id": "DataLeakAlertDetail",
+      "properties": {
+        "discoveryDocumentIds": {
+          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "description": "Required. Data Leak specific severity This will be the string representation of the DataLeakFindingDetail.Severityenum. (e.g., \"LOW\", \"MEDIUM\", \"HIGH\", \"CRITICAL\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataLeakFindingDetail": {
+      "description": "A detail object for a Data Leak finding.",
+      "id": "DataLeakFindingDetail",
+      "properties": {
+        "documentId": {
+          "description": "Required. The unique identifier of the document that triggered the Data Leak finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "type": "string"
+        },
+        "matchScore": {
+          "description": "Required. Reference to the match score of the Data Leak finding. This is a float value greater than 0 and less than or equal to 1 calculated by the matching engine based on the similarity of the document and the user provided configurations.",
+          "format": "float",
+          "type": "number"
+        },
+        "severity": {
+          "description": "Required. The severity of the Data Leak finding. This indicates the potential impact of the threat.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringConfig": {
+      "description": "Any account-level configuration options will go here.",
+      "id": "DomainMonitoringConfig",
+      "properties": {
+        "domains": {
+          "description": "The domains to use as \"seeds\" for Suspicious Domain Monitoring.",
+          "items": {
+            "$ref": "DomainMonitoringDomain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DomainMonitoringDomain": {
+      "description": "A Domain Monitoring \"domain\"",
+      "id": "DomainMonitoringDomain",
+      "properties": {
+        "domain": {
+          "description": "The domain name to match against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EntityProfile": {
+      "description": "EntityProfile represents the structured profile of a customer entity, containing key identifiers and descriptive attributes optimized for contextual matching against threat intelligence, particularly Initial Access Broker (IAB) offerings.",
+      "id": "EntityProfile",
+      "properties": {
+        "countries": {
+          "description": "Optional. List of specific countries of operation. Purpose: Essential for matching geographically targeted threats (e.g., actor specifies victims in 'DE'). Use ISO 3166-1 alpha-2 codes (e.g., \"US\", \"GB\", \"JP\", \"DE\").",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "domains": {
+          "description": "Required. List of primary internet domain names associated with the entity. Purpose: Crucial for explicit matching against domains mentioned in threat intel and can inform semantic matching. Must contain at least one domain. Example: [\"acme.com\", \"acme.co.uk\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "industries": {
+          "description": "Optional. List of primary industry sectors the entity operates within. Purpose: Crucial for matching industry-specific threats and understanding attacker motivation. Use standardized GTI Industry Classification values. Example: [\"Technology\", \"Financial Services\", \"Healthcare\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Canonical name of the entity (e.g., the legal company name). Purpose: Primary identifier for the customer.",
+          "type": "string"
+        },
+        "operationalAreas": {
+          "description": "Optional. Specific geographic areas of *significant* operational concentration or strategic importance below the country level, if clearly identifiable and relevant. Purpose: Useful for highly localized threats, less commonly populated than `countries`. Example: [\"Silicon Valley\", \"Frankfurt am Main Metropolitan Region\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "profileSummary": {
+          "description": "Required. A concise, machine-generated (e.g., LLM) or human-curated summary of the entity. Purpose: Captures the semantic essence for embedding generation and similarity matching. Should synthesize key aspects like core business, scale, and market. Example: \"Acme Corporation is a large, US-based multinational conglomerate operating...\"",
+          "type": "string"
+        },
+        "regions": {
+          "description": "Optional. List of primary geopolitical regions where the entity has significant operations. Purpose: Filters geographically relevant threats. Use standardized names or codes where possible (e.g., \"North America\", \"EMEA\", \"APAC\", UN M49 codes).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subIndustries": {
+          "description": "Optional. List of more granular sub-industries, if applicable and known. Purpose: Provides finer-grained context for more specific threat matching. Should align with GTI classifications if possible. Example: [\"Semiconductors\", \"Cloud Computing Services\", \"Investment Banking\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnumerateAlertFacetsResponse": {
+      "description": "Response message for EnumerateAlertFacets.",
+      "id": "EnumerateAlertFacetsResponse",
+      "properties": {
+        "facets": {
+          "description": "List of facets and the counts.",
+          "items": {
+            "$ref": "Facet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Evidence": {
+      "description": "Details the evidence used to determine the relevance verdict.",
+      "id": "Evidence",
+      "properties": {
+        "commonThemes": {
+          "description": "A list of semantic themes or concepts found to be common, related, or aligned between the sources, supporting the verdict.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "distinctThemes": {
+          "description": "A list of semantic themes or descriptions unique to one source or semantically distant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Facet": {
+      "description": "Facet represents a sub element of a resource for filtering. The results from this method are used to populate the filterable facets in the UI.",
+      "id": "Facet",
+      "properties": {
+        "facet": {
+          "description": "Name of the facet. This is also the string that needs to be used in the filtering expression.",
+          "type": "string"
+        },
+        "facetCounts": {
+          "description": "List of counts for the facet (if categorical).",
+          "items": {
+            "$ref": "FacetCount"
+          },
+          "type": "array"
+        },
+        "facetType": {
+          "description": "The type of the facet. Options include \"string\", \"int\", \"float\", \"bool\", \"enum\", \"timestamp\", \"user\" and are useful to show the right sort of UI controls when building a AIP-160 style filtering string.",
+          "type": "string"
+        },
+        "maxValue": {
+          "description": "Max value of the facet stringified based on type. Will be populated and formatted the same as min_value.",
+          "type": "string"
+        },
+        "minValue": {
+          "description": "Min value of the facet stringified based on type. This is only populated for facets that have a clear ordering, for types like enum it will be left empty. Timestamps will be formatted using RFC3339.",
+          "type": "string"
+        },
+        "totalCount": {
+          "description": "Total number of records that contain this facet with ANY value.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FacetCount": {
+      "description": "FacetCount represents a count of records with each facet value.",
+      "id": "FacetCount",
+      "properties": {
+        "count": {
+          "description": "Count of records with the value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the facet stringified. Timestamps will be formatted using RFC3339.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Finding": {
+      "description": "A ‘stateless’ and a point in time event that a check produced a result of interest.",
+      "id": "Finding",
+      "properties": {
+        "aiSummary": {
+          "description": "Optional. AI summary of the finding.",
+          "type": "string"
+        },
+        "alert": {
+          "description": "Optional. Name of the alert that this finding is bound to.",
+          "type": "string"
+        },
+        "asset": {
+          "description": "Optional. Optional - asset name if known. Format: vaults/{vault}/assets/{asset}",
+          "type": "string"
+        },
+        "audit": {
+          "$ref": "Audit",
+          "description": "Output only. Audit data about the finding.",
+          "readOnly": true
+        },
+        "configurations": {
+          "description": "Optional. Configuration names that are bound to this finding.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "detail": {
+          "$ref": "FindingDetail",
+          "description": "Required. Holder of the domain specific details of the finding."
+        },
+        "displayName": {
+          "description": "Required. A short descriptive title for the finding <= 250 chars. EX: \"Actor 'baddy' offering $1000 for credentials of 'goodguy'\".",
+          "type": "string"
+        },
+        "issue": {
+          "description": "Optional. Optional - name of the issue that this finding is bound to. Format: vaults/{vault}/issues/{issue}",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Server generated name for the finding (leave clear during creation). Format: vaults/{vault}/findings/{finding}",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Required. Logical source of this finding (name of the sub-engine).",
+          "type": "string"
+        },
+        "relevanceAnalysis": {
+          "$ref": "RelevanceAnalysis",
+          "description": "Output only. High-Precision Relevance Analysis verdict for the finding.",
+          "readOnly": true
+        },
+        "reoccurrenceTimes": {
+          "description": "Output only. When identical finding (same labels and same details) has re-occurred.",
+          "items": {
+            "format": "google-datetime",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "severity": {
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use the `severity_analysis` field instead. Base severity score from the finding source.",
+          "format": "float",
+          "type": "number"
+        },
+        "severityAnalysis": {
+          "$ref": "SeverityAnalysis",
+          "description": "Output only. High-Precision Severity Analysis verdict for the finding.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "FindingDetail": {
+      "description": "Wrapper class that contains the union struct for all the various findings detail specific classes.",
+      "id": "FindingDetail",
+      "properties": {
+        "compromisedCredentials": {
+          "$ref": "CompromisedCredentialsFindingDetail",
+          "description": "Compromised Credentials detail type."
+        },
+        "dataLeak": {
+          "$ref": "DataLeakFindingDetail",
+          "description": "Data Leak finding detail type."
+        },
+        "detailType": {
+          "description": "Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inbandVulnerability": {
+          "$ref": "InbandVulnerabilityFindingDetail",
+          "description": "Inband vulnerability detail type."
+        },
+        "initialAccessBroker": {
+          "$ref": "InitialAccessBrokerFindingDetail",
+          "description": "Initial Access Broker finding detail type."
+        },
+        "insiderThreat": {
+          "$ref": "InsiderThreatFindingDetail",
+          "description": "Insider Threat finding detail type."
+        },
+        "misconfiguration": {
+          "$ref": "MisconfigurationFindingDetail",
+          "description": "Misconfiguration finding detail type."
+        },
+        "suspiciousDomain": {
+          "$ref": "SuspiciousDomainFindingDetail",
+          "description": "Domain Monitoring finding detail type."
+        },
+        "targetTechnology": {
+          "$ref": "TargetTechnologyFindingDetail",
+          "description": "Technology Watchlist finding detail type."
+        }
+      },
+      "type": "object"
+    },
+    "InbandVulnerability": {
+      "description": "Fleshed out vulnerability object that includes enough details to fill out a vulnerability specific view for an issue.",
+      "id": "InbandVulnerability",
+      "properties": {
+        "affectedSoftware": {
+          "description": "Optional. The software that is affected by the vulnerability.",
+          "items": {
+            "$ref": "AffectedSoftware"
+          },
+          "type": "array"
+        },
+        "authors": {
+          "description": "Optional. The authors of the vulnerability detection.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cveId": {
+          "description": "Required. The CVE ID of the vulnerability.",
+          "type": "string"
+        },
+        "cvssV31Score": {
+          "description": "Required. The CVSS V3.1 score (Base score)for the vulnerability. ( )",
+          "format": "float",
+          "type": "number"
+        },
+        "cvssV31ScoreTemporal": {
+          "description": "Optional. Temporal CVSS V3.1 score for the vulnerability.",
+          "format": "float",
+          "type": "number"
+        },
+        "description": {
+          "description": "Optional. The human readable description. This can be basic HTML formatted text.",
+          "type": "string"
+        },
+        "disclosureTime": {
+          "description": "Optional. The date the vulnerability was first disclosed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "exploitationState": {
+          "description": "Optional. Exploitation state of the vulnerability, for example \"Available\".",
+          "type": "string"
+        },
+        "externalVulnerabilityId": {
+          "description": "Required. The external ID of the vulnerability.",
+          "type": "string"
+        },
+        "isExploitedWild": {
+          "description": "Optional. Whether this is exploited in the wild.",
+          "type": "boolean"
+        },
+        "referenceUrls": {
+          "description": "Optional. Reference URLs to the vulnerability.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "remediation": {
+          "description": "Optional. The human readable remediation recommendation. This can be basic HTML formatted text.",
+          "type": "string"
+        },
+        "riskRating": {
+          "description": "Optional. Risk rating for the vulnerability, for example \"High\".",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Human readable name for the vulnerability.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InbandVulnerabilityFindingDetail": {
+      "description": "This is a temporary detail type that will be used to support vulnerabilities until the engines start using the full vulnerability objects. The \"Inband\" refers to the fact that all vulnerability details are included with every finding.",
+      "id": "InbandVulnerabilityFindingDetail",
+      "properties": {
+        "formattedProofDetails": {
+          "description": "Optional. A short description of the proof of the vulnerability.",
+          "type": "string"
+        },
+        "requestUri": {
+          "description": "Optional. The URI that lead to this detection, if appropriate.",
+          "type": "string"
+        },
+        "vulnerability": {
+          "$ref": "InbandVulnerability",
+          "description": "Required. Vulnerability metadata."
+        }
+      },
+      "type": "object"
+    },
+    "InitialAccessBrokerAlertDetail": {
+      "description": "Captures the specific details of InitialAccessBroker (IAB) alert.",
+      "id": "InitialAccessBrokerAlertDetail",
+      "properties": {
+        "discoveryDocumentIds": {
+          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "description": "Required. IAB specific severity",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InitialAccessBrokerConfig": {
+      "description": "InitialAccessBrokerConfig is specific to Initial Access Broker (IAB) matching scenarios.",
+      "id": "InitialAccessBrokerConfig",
+      "properties": {
+        "entityProfile": {
+          "$ref": "EntityProfile",
+          "description": "Represents the comprehensive profile of the customer entity used for matching."
+        }
+      },
+      "type": "object"
+    },
+    "InitialAccessBrokerFindingDetail": {
+      "description": "A detail object for an Initial Access Broker (IAB) finding.",
+      "id": "InitialAccessBrokerFindingDetail",
+      "properties": {
+        "documentId": {
+          "description": "Required. The unique identifier of the document that triggered the IAB finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "type": "string"
+        },
+        "matchScore": {
+          "description": "Required. Reference to the match score of the IAB finding. This is a float value between 0 and 1 calculated by the matching engine based on the similarity of the document and the user provided configurations.",
+          "format": "float",
+          "type": "number"
+        },
+        "severity": {
+          "description": "Required. The severity of the IAB finding. This indicates the potential impact of the threat.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsiderThreatAlertDetail": {
+      "description": "Captures the specific details of InsiderThreat alert.",
+      "id": "InsiderThreatAlertDetail",
+      "properties": {
+        "discoveryDocumentIds": {
+          "description": "Required. Array of ids to accommodate multiple discovery documents",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "description": "Required. InsiderThreat specific severity This will be the string representation of the InsiderThreatFindingDetail.Severityenum. (e.g., \"LOW\", \"MEDIUM\", \"HIGH\", \"CRITICAL\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsiderThreatFindingDetail": {
+      "description": "A detail object for a InsiderThreat finding.",
+      "id": "InsiderThreatFindingDetail",
+      "properties": {
+        "documentId": {
+          "description": "Required. The unique identifier of the document that triggered the InsiderThreat finding. This ID can be used to retrieve the content of the document for further analysis.",
+          "type": "string"
+        },
+        "matchScore": {
+          "description": "Required. Reference to the match score of the InsiderThreat finding. This is a float value greater than 0 and less than or equal to 1 calculated by the matching engine based on the similarity of the document and the user provided configurations.",
+          "format": "float",
+          "type": "number"
+        },
+        "severity": {
+          "description": "Required. The severity of the InsiderThreat finding. This indicates the potential impact of the threat.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAlertsResponse": {
+      "description": "Response message for ListAlerts.",
+      "id": "ListAlertsResponse",
+      "properties": {
+        "alerts": {
+          "description": "List of alerts.",
+          "items": {
+            "$ref": "Alert"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListConfigurationRevisionsResponse": {
+      "description": "Response message for ListConfigurationRevisions.",
+      "id": "ListConfigurationRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "revisions": {
+          "description": "The Configuration Revisions associated with the specified Configuration",
+          "items": {
+            "$ref": "ConfigurationRevision"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListConfigurationsResponse": {
+      "description": "Response message for ListConfigurations.",
+      "id": "ListConfigurationsResponse",
+      "properties": {
+        "configurations": {
+          "description": "List of configurations.",
+          "items": {
+            "$ref": "Configuration"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListFindingsResponse": {
+      "description": "Response message for ListFindings.",
+      "id": "ListFindingsResponse",
+      "properties": {
+        "findings": {
+          "description": "List of findings.",
+          "items": {
+            "$ref": "Finding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MarkAlertAsBenignRequest": {
+      "description": "Request message for MarkAlertAsBenign.",
+      "id": "MarkAlertAsBenignRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsDuplicateRequest": {
+      "description": "Request message for MarkAlertAsDuplicate.",
+      "id": "MarkAlertAsDuplicateRequest",
+      "properties": {
+        "duplicateOf": {
+          "description": "Optional. Name of the alert to mark as a duplicate of. Format: projects/{project}/alerts/{alert}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MarkAlertAsEscalatedRequest": {
+      "description": "Request message for MarkAlertAsEscalated.",
+      "id": "MarkAlertAsEscalatedRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsFalsePositiveRequest": {
+      "description": "Request message for MarkAlertAsFalsePositive.",
+      "id": "MarkAlertAsFalsePositiveRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsNotActionableRequest": {
+      "description": "Request message for MarkAlertAsNotActionable.",
+      "id": "MarkAlertAsNotActionableRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsReadRequest": {
+      "description": "Request message for MarkAlertAsRead.",
+      "id": "MarkAlertAsReadRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsResolvedRequest": {
+      "description": "Request message for MarkAlertAsResolved.",
+      "id": "MarkAlertAsResolvedRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsTrackedExternallyRequest": {
+      "description": "Request message for MarkAlertAsTrackedExternally.",
+      "id": "MarkAlertAsTrackedExternallyRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MarkAlertAsTriagedRequest": {
+      "description": "Request message for MarkAlertAsTriaged.",
+      "id": "MarkAlertAsTriagedRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "MisconfigurationFindingDetail": {
+      "description": "Misconfiguration finding detail.",
+      "id": "MisconfigurationFindingDetail",
+      "properties": {
+        "misconfigurationMetadata": {
+          "$ref": "MisconfigurationMetadata",
+          "description": "Required. The misconfiguration metadata."
+        }
+      },
+      "type": "object"
+    },
+    "MisconfigurationMetadata": {
+      "description": "Misconfiguration metadata.",
+      "id": "MisconfigurationMetadata",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the misconfiguration.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. A user-friendly name for the misconfiguration.",
+          "type": "string"
+        },
+        "misconfigurationId": {
+          "description": "Required. The identifier for the misconfiguration. This is an internal name generated by the finding provider.",
+          "type": "string"
+        },
+        "references": {
+          "description": "Optional. References to external resources that provide more information about the misconfiguration.",
+          "items": {
+            "$ref": "MisconfigurationReference"
+          },
+          "type": "array"
+        },
+        "remediation": {
+          "description": "Optional. Recommended remediation steps for the misconfiguration.",
+          "type": "string"
+        },
+        "vulnerableUri": {
+          "description": "Optional. The endpoint which was found to have the vulnerability.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MisconfigurationReference": {
+      "description": "A reference to an external resource that provides more information about a misconfiguration.",
+      "id": "MisconfigurationReference",
+      "properties": {
+        "type": {
+          "description": "Required. The type of the reference (e.g., \"description\", \"remediation\").",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The URI of the reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PriorityAnalysis": {
+      "description": "Structured priority analysis for a threat.",
+      "id": "PriorityAnalysis",
+      "properties": {
+        "confidence": {
+          "description": "The level of confidence in the given verdict.",
+          "enum": [
+            "CONFIDENCE_LEVEL_UNSPECIFIED",
+            "CONFIDENCE_LEVEL_LOW",
+            "CONFIDENCE_LEVEL_MEDIUM",
+            "CONFIDENCE_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Confidence level is not specified.",
+            "Low confidence in the verdict.",
+            "Medium confidence in the verdict.",
+            "High confidence in the verdict."
+          ],
+          "type": "string"
+        },
+        "priorityLevel": {
+          "description": "The level of Priority.",
+          "enum": [
+            "PRIORITY_LEVEL_UNSPECIFIED",
+            "PRIORITY_LEVEL_LOW",
+            "PRIORITY_LEVEL_MEDIUM",
+            "PRIORITY_LEVEL_HIGH",
+            "PRIORITY_LEVEL_CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low Priority.",
+            "Medium Priority.",
+            "High Priority.",
+            "Critical Priority."
+          ],
+          "type": "string"
+        },
+        "reasoning": {
+          "description": "Human-readable explanation from the model, detailing why a particular result is considered to have a certain priority.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RefreshAlertUriStatusRequest": {
+      "description": "Request message for FetchAlertUriStatus.",
+      "id": "RefreshAlertUriStatusRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RefreshAlertUriStatusResponse": {
+      "description": "Response message for FetchAlertUriStatus.",
+      "id": "RefreshAlertUriStatusResponse",
+      "properties": {
+        "state": {
+          "description": "Output only. Status of the alert in WebRisk.",
+          "enum": [
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_UNSPECIFIED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_NOT_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_PROCESSING",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_ADDED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_REJECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Issue has not been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk and is being processed.",
+            "Issue has been processed by WebRisk and the domain was added to the blocklist.",
+            "Issue has been processed by WebRisk and was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelevanceAnalysis": {
+      "description": "Structured relevance analysis for a threat.",
+      "id": "RelevanceAnalysis",
+      "properties": {
+        "confidence": {
+          "description": "The level of confidence in the given verdict.",
+          "enum": [
+            "CONFIDENCE_LEVEL_UNSPECIFIED",
+            "CONFIDENCE_LEVEL_LOW",
+            "CONFIDENCE_LEVEL_MEDIUM",
+            "CONFIDENCE_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Confidence level is not specified.",
+            "Low confidence in the verdict.",
+            "Medium confidence in the verdict.",
+            "High confidence in the verdict."
+          ],
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "Evidence",
+          "description": "Evidence supporting the verdict, including matched and unmatched items."
+        },
+        "reasoning": {
+          "description": "Human-readable explanation from the matcher, detailing why a particular result is considered relevant or not relevant.",
+          "type": "string"
+        },
+        "relevanceLevel": {
+          "description": "The level of relevance.",
+          "enum": [
+            "RELEVANCE_LEVEL_UNSPECIFIED",
+            "RELEVANCE_LEVEL_LOW",
+            "RELEVANCE_LEVEL_MEDIUM",
+            "RELEVANCE_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low Relevance.",
+            "Medium Relevance.",
+            "High Relevance."
+          ],
+          "type": "string"
+        },
+        "relevant": {
+          "description": "Indicates whether the threat is considered relevant.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ReportAlertUriRequest": {
+      "description": "Request message for ReportAlertUri.",
+      "id": "ReportAlertUriRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ReportAlertUriResponse": {
+      "description": "Response message for ReportAlertUri.",
+      "id": "ReportAlertUriResponse",
+      "properties": {
+        "state": {
+          "description": "Output only. Status of the alert in WebRisk.",
+          "enum": [
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_UNSPECIFIED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_NOT_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_PROCESSING",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_ADDED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_REJECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Issue has not been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk and is being processed.",
+            "Issue has been processed by WebRisk and the domain was added to the blocklist.",
+            "Issue has been processed by WebRisk and was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchFindingsResponse": {
+      "description": "Response message for SearchFindings.",
+      "id": "SearchFindingsResponse",
+      "properties": {
+        "findings": {
+          "description": "List of findings.",
+          "items": {
+            "$ref": "Finding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SeverityAnalysis": {
+      "description": "Structured severity analysis for a threat.",
+      "id": "SeverityAnalysis",
+      "properties": {
+        "confidence": {
+          "description": "The level of confidence in the given verdict.",
+          "enum": [
+            "CONFIDENCE_LEVEL_UNSPECIFIED",
+            "CONFIDENCE_LEVEL_LOW",
+            "CONFIDENCE_LEVEL_MEDIUM",
+            "CONFIDENCE_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. Confidence level is not specified.",
+            "Low confidence in the verdict.",
+            "Medium confidence in the verdict.",
+            "High confidence in the verdict."
+          ],
+          "type": "string"
+        },
+        "reasoning": {
+          "description": "Human-readable explanation from the model, detailing why a particular result is considered to have a certain severity.",
+          "type": "string"
+        },
+        "severityLevel": {
+          "description": "The level of severity.",
+          "enum": [
+            "SEVERITY_LEVEL_UNSPECIFIED",
+            "SEVERITY_LEVEL_LOW",
+            "SEVERITY_LEVEL_MEDIUM",
+            "SEVERITY_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low Severity.",
+            "Medium Severity.",
+            "High Severity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainAlertDetail": {
+      "description": "The alert detail for a suspicious domain finding.",
+      "id": "SuspiciousDomainAlertDetail",
+      "properties": {
+        "dns": {
+          "$ref": "SuspiciousDomainDnsDetails",
+          "description": "The DNS details of the suspicious domain."
+        },
+        "domain": {
+          "description": "Required. The suspicious domain name.",
+          "type": "string"
+        },
+        "gtiDetails": {
+          "$ref": "SuspiciousDomainGtiDetails",
+          "description": "The GTI details of the suspicious domain."
+        },
+        "webRiskOperation": {
+          "description": "Output only. Name of Web Risk submission operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "webRiskState": {
+          "description": "Output only. Status of the Web Risk submission.",
+          "enum": [
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_UNSPECIFIED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_NOT_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_SUBMITTED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_PROCESSING",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_ADDED",
+            "SUSPICIOUS_DOMAIN_WEB_RISK_STATE_REJECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Issue has not been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk.",
+            "Issue has been submitted to WebRisk and is being processed.",
+            "Issue has been processed by WebRisk and the domain was added to the blocklist.",
+            "Issue has been processed by WebRisk and was rejected."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "whois": {
+          "$ref": "SuspiciousDomainWhoIsDetails",
+          "description": "The whois details of the suspicious domain."
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainDnsDetails": {
+      "description": "The DNS details of the suspicious domain.",
+      "id": "SuspiciousDomainDnsDetails",
+      "properties": {
+        "dnsRecords": {
+          "description": "The DNS records of the suspicious domain.",
+          "items": {
+            "$ref": "SuspiciousDomainDnsRecord"
+          },
+          "type": "array"
+        },
+        "retrievalTime": {
+          "description": "The time the DNS details were retrieved.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainDnsRecord": {
+      "description": "The DNS record of the suspicious domain.",
+      "id": "SuspiciousDomainDnsRecord",
+      "properties": {
+        "record": {
+          "description": "The name of the DNS record.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "The TTL of the DNS record.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "The type of the DNS record.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the DNS record.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainFindingDetail": {
+      "description": "A detailed object for a suspicious Domain finding.",
+      "id": "SuspiciousDomainFindingDetail",
+      "properties": {
+        "dns": {
+          "$ref": "SuspiciousDomainDnsDetails",
+          "description": "The DNS details of the suspicious domain."
+        },
+        "domain": {
+          "description": "Required. The suspicious domain name.",
+          "type": "string"
+        },
+        "gtiDetails": {
+          "$ref": "SuspiciousDomainGtiDetails",
+          "description": "The GTI details of the suspicious domain."
+        },
+        "matchScore": {
+          "description": "Required. Reference to the match score of the finding. This is a float value between 0 and 1 calculated by the matching engine.",
+          "format": "float",
+          "type": "number"
+        },
+        "severity": {
+          "description": "Required. The severity of the finding. This indicates the potential impact of the threat.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity."
+          ],
+          "type": "string"
+        },
+        "whois": {
+          "$ref": "SuspiciousDomainWhoIsDetails",
+          "description": "The whois details of the suspicious domain."
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainGtiDetails": {
+      "description": "The GTI details of the suspicious domain.",
+      "id": "SuspiciousDomainGtiDetails",
+      "properties": {
+        "threatScore": {
+          "description": "The threat score of the suspicious domain. The threat score is a number between 0 and 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "verdict": {
+          "description": "Output only. The verdict of the suspicious domain.",
+          "enum": [
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_UNSPECIFIED",
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_BENIGN",
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_UNDETECTED",
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_SUSPICIOUS",
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_MALICIOUS",
+            "SUSPICIOUS_DOMAIN_GTI_VERDICT_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified verdict.",
+            "Verdict is clean; the entity is considered harmless.",
+            "Verdict is undetected; no immediate evidence of malicious intent.",
+            "Verdict is suspicious; possible malicious activity detected.",
+            "Verdict is malicious; high confidence that the entity poses a threat.",
+            "Verdict is not applicable; not able to generate a verdict for this entity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "virustotalUri": {
+          "description": "VirusTotal link for the domain",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuspiciousDomainWhoIsDetails": {
+      "description": "The whois details of the suspicious domain.",
+      "id": "SuspiciousDomainWhoIsDetails",
+      "properties": {
+        "retrievalTime": {
+          "description": "The time the whois details were retrieved.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "whois": {
+          "description": "The whois details of the suspicious domain.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetTechnologyAlertDetail": {
+      "description": "Contains details for a technology watchlist alert.",
+      "id": "TargetTechnologyAlertDetail",
+      "properties": {
+        "vulnerabilityMatch": {
+          "$ref": "VulnerabilityMatch",
+          "description": "Optional. The vulnerability match details."
+        }
+      },
+      "type": "object"
+    },
+    "TargetTechnologyFindingDetail": {
+      "description": "Contains details for a technology watchlist finding.",
+      "id": "TargetTechnologyFindingDetail",
+      "properties": {
+        "vulnerabilityMatch": {
+          "$ref": "VulnerabilityMatch",
+          "description": "Optional. The vulnerability match details."
+        }
+      },
+      "type": "object"
+    },
+    "TechnologyWatchListAlertThreshold": {
+      "description": "TechnologyWatchListAlertThreshold contains the thresholds for alerting.",
+      "id": "TechnologyWatchListAlertThreshold",
+      "properties": {
+        "cvssScoreMinimum": {
+          "description": "Optional. The minimum cvss V3 score for the alert. Ex: 7.0. Valid range is [0.0, 10.0].",
+          "format": "float",
+          "type": "number"
+        },
+        "epssScoreMinimum": {
+          "description": "Optional. The minimum epss score for the alert. Ex: 0.8. Valid range is [0.0, 1.0].",
+          "format": "float",
+          "type": "number"
+        },
+        "exploitationStates": {
+          "description": "Optional. The exploitation states of the alert.",
+          "items": {
+            "enum": [
+              "EXPLOITATION_STATE_UNSPECIFIED",
+              "EXPLOITATION_STATE_NO_KNOWN",
+              "EXPLOITATION_STATE_REPORTED",
+              "EXPLOITATION_STATE_SUSPECTED",
+              "EXPLOITATION_STATE_CONFIRMED",
+              "EXPLOITATION_STATE_WIDESPREAD"
+            ],
+            "enumDescriptions": [
+              "Unspecified exploitation state.",
+              "No known exploitation.",
+              "Exploitation has been reported.",
+              "Exploitation is suspected.",
+              "Exploitation is confirmed.",
+              "Widespread exploitation."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "priorityMinimum": {
+          "description": "Optional. The minimum priority for the alert.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P0",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "enumDescriptions": [
+            "Unspecified priority.",
+            "Priority level 0.",
+            "Priority level 1.",
+            "Priority level 2.",
+            "Priority level 3.",
+            "Priority level 4."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TechnologyWatchListConfig": {
+      "description": "TechnologyWatchListConfig is the configuration for the technology watchlist.",
+      "id": "TechnologyWatchListConfig",
+      "properties": {
+        "alertThreshold": {
+          "$ref": "TechnologyWatchListAlertThreshold",
+          "description": "Optional. Alert thresholds to effectively reduce noise."
+        },
+        "technologies": {
+          "description": "Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpsertConfigurationResponse": {
+      "description": "Response message for UpsertConfiguration.",
+      "id": "UpsertConfigurationResponse",
+      "properties": {
+        "configuration": {
+          "description": "Output only. Created configuration ID with server assigned id.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityMatch": {
+      "description": "Contains details about a vulnerability match.",
+      "id": "VulnerabilityMatch",
+      "properties": {
+        "associations": {
+          "description": "Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.",
+          "items": {
+            "$ref": "Association"
+          },
+          "type": "array"
+        },
+        "collectionId": {
+          "description": "Required. The collection ID of the vulnerability. Ex: \"vulnerability--cve-2025-9876\".",
+          "type": "string"
+        },
+        "cveId": {
+          "description": "Required. The CVE ID of the vulnerability. Ex: \"CVE-2025-9876\". See https://www.cve.org/ for more information.",
+          "type": "string"
+        },
+        "cvss3Score": {
+          "description": "Required. The CVSS v3 score of the vulnerability. Example: 6.4.",
+          "format": "float",
+          "type": "number"
+        },
+        "description": {
+          "description": "Required. A description of the vulnerability.",
+          "type": "string"
+        },
+        "exploitationState": {
+          "description": "Required. The exploitation state of the vulnerability.",
+          "enum": [
+            "EXPLOITATION_STATE_UNSPECIFIED",
+            "EXPLOITATION_STATE_NO_KNOWN",
+            "EXPLOITATION_STATE_REPORTED",
+            "EXPLOITATION_STATE_SUSPECTED",
+            "EXPLOITATION_STATE_CONFIRMED",
+            "EXPLOITATION_STATE_WIDESPREAD"
+          ],
+          "enumDescriptions": [
+            "Unspecified exploitation state.",
+            "No known exploitation.",
+            "Exploitation has been reported.",
+            "Exploitation is suspected.",
+            "Exploitation is confirmed.",
+            "Widespread exploitation."
+          ],
+          "type": "string"
+        },
+        "riskRating": {
+          "description": "Required. The risk rating of the vulnerability.",
+          "enum": [
+            "RISK_RATING_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL",
+            "UNRATED"
+          ],
+          "enumDescriptions": [
+            "Unspecified risk rating. This is the default value when the risk rating is not set.",
+            "Low risk rating.",
+            "Medium risk rating.",
+            "High risk rating.",
+            "Critical risk rating.",
+            "The vulnerability has been assessed, but a specific risk rating could not be determined or assigned."
+          ],
+          "type": "string"
+        },
+        "technologies": {
+          "description": "Required. The affected technologies. Ex: \"Apache Struts\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Threat Intelligence API",
+  "version": "v1beta",
+  "version_module": true
+}
