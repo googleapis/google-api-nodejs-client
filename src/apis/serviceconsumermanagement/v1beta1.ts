@@ -504,7 +504,7 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$Control {
     /**
-     * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
+     * The service controller environment to use. If empty, no control plane features (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com.
      */
     environment?: string | null;
     /**
@@ -1486,7 +1486,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     documentation?: Schema$Documentation;
     /**
-     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
+     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. WARNING: Defining any entries in the `endpoints` list disables the automatic generation of default endpoint variations (e.g., `{service\}.clients6.google.com`, `content-{service\}.googleapis.com`, and mTLS variants like `{service\}.mtls.googleapis.com`). To retain these default variations, you are required to explicitly include your main service endpoint (e.g., `myservice.googleapis.com`) in this list alongside any other custom endpoints (like REP, GFE, etc.).
      */
     endpoints?: Schema$Endpoint[];
     /**
@@ -1514,7 +1514,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     metrics?: Schema$MetricDescriptor[];
     /**
-     * Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.
+     * Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations.
      */
     monitoredResources?: Schema$MonitoredResourceDescriptor[];
     /**

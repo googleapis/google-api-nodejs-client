@@ -560,7 +560,7 @@ export namespace serviceconsumermanagement_v1 {
    */
   export interface Schema$Control {
     /**
-     * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
+     * The service controller environment to use. If empty, no control plane features (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com.
      */
     environment?: string | null;
     /**
@@ -1010,7 +1010,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -1625,7 +1625,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     documentation?: Schema$Documentation;
     /**
-     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
+     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. WARNING: Defining any entries in the `endpoints` list disables the automatic generation of default endpoint variations (e.g., `{service\}.clients6.google.com`, `content-{service\}.googleapis.com`, and mTLS variants like `{service\}.mtls.googleapis.com`). To retain these default variations, you are required to explicitly include your main service endpoint (e.g., `myservice.googleapis.com`) in this list alongside any other custom endpoints (like REP, GFE, etc.).
      */
     endpoints?: Schema$Endpoint[];
     /**
@@ -1653,7 +1653,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     metrics?: Schema$MetricDescriptor[];
     /**
-     * Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.
+     * Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations.
      */
     monitoredResources?: Schema$MonitoredResourceDescriptor[];
     /**
@@ -1855,6 +1855,10 @@ export namespace serviceconsumermanagement_v1 {
    * Resource constituting the TenancyUnit.
    */
   export interface Schema$TenantResource {
+    /**
+     * Output only. The newly created regional resource name of the tenant project that has been migrated from a global service. This field is only set for migrated tenant projects. Format: `services//{collection_id\}/{RESOURCE_ID\}/locations/{LOCATION\}/tenantProjects/{TENANT_ID\}`.
+     */
+    migratedTenantProject?: string | null;
     /**
      * Output only. @OutputOnly Identifier of the tenant resource. For cloud projects, it is in the form 'projects/{number\}'. For example 'projects/123456'.
      */
@@ -2633,7 +2637,7 @@ export namespace serviceconsumermanagement_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2782,7 +2786,7 @@ export namespace serviceconsumermanagement_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
