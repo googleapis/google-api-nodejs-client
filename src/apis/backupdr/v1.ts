@@ -237,7 +237,12 @@ export namespace backupdr_v1 {
   /**
    * Properties for an AlloyDB cluster backup plan association.
    */
-  export interface Schema$AlloyDBClusterBackupPlanAssociationProperties {}
+  export interface Schema$AlloyDBClusterBackupPlanAssociationProperties {
+    /**
+     * Output only. The cluster UID of the AlloyDB cluster.
+     */
+    clusterUid?: string | null;
+  }
   /**
    * AlloyDbClusterBackupProperties represents AlloyDB cluster backup properties. .
    */
@@ -264,9 +269,43 @@ export namespace backupdr_v1 {
    */
   export interface Schema$AlloyDBClusterDataSourceProperties {
     /**
+     * Output only. The cluster UID of the AlloyDB cluster backed up by the datasource.
+     */
+    clusterUid?: string | null;
+    /**
      * Output only. Name of the AlloyDB cluster backed up by the datasource.
      */
     name?: string | null;
+    /**
+     * Output only. Point in time recovery windows. The order is guaranteed to be ascending by start time.
+     */
+    pitrWindows?: Schema$AlloyDbPitrWindow[];
+  }
+  /**
+   * AlloyDBClusterDataSourceReferenceProperties represents the properties of an AlloyDB cluster that are stored in the DataSourceReference.
+   */
+  export interface Schema$AlloyDBClusterDataSourceReferenceProperties {
+    /**
+     * Output only. Name of the AlloyDB cluster backed up by the datasource. Format: projects/{project\}/locations/{location\}/clusters/{cluster\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Point in time recovery window for an AlloyDB cluster.
+   */
+  export interface Schema$AlloyDbPitrWindow {
+    /**
+     * Output only. The end time of the PITR window. It is not set if the corresponding Backup Plan Association is active.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Log retention days for the PITR window.
+     */
+    logRetentionDays?: string | null;
+    /**
+     * Output only. The start time of the PITR window.
+     */
+    startTime?: string | null;
   }
   /**
    * An instance-attached disk resource.
@@ -1457,6 +1496,10 @@ export namespace backupdr_v1 {
    * The Google Cloud resource that the DataSource is associated with.
    */
   export interface Schema$DataSourceGcpResourceInfo {
+    /**
+     * Output only. The properties of the AlloyDB cluster.
+     */
+    alloyDbClusterProperties?: Schema$AlloyDBClusterDataSourceReferenceProperties;
     /**
      * Output only. The properties of the Cloud SQL instance.
      */
