@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "oracledatabase.projects.locations.list",
@@ -2472,7 +2472,7 @@
       }
     }
   },
-  "revision": "20251117",
+  "revision": "20260127",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -2502,11 +2502,11 @@
       "id": "AutonomousDatabase",
       "properties": {
         "adminPassword": {
-          "description": "Optional. The password for the default ADMIN user.",
+          "description": "Optional. Immutable. The password for the default ADMIN user.",
           "type": "string"
         },
         "cidr": {
-          "description": "Optional. The subnet CIDR range for the Autonomous Database.",
+          "description": "Optional. Immutable. The subnet CIDR range for the Autonomous Database.",
           "type": "string"
         },
         "createTime": {
@@ -2516,7 +2516,7 @@
           "type": "string"
         },
         "database": {
-          "description": "Optional. The name of the Autonomous Database. The database name must be unique in the project. The name must begin with a letter and can contain a maximum of 30 alphanumeric characters.",
+          "description": "Optional. Immutable. The name of the Autonomous Database. The database name must be unique in the project. The name must begin with a letter and can contain a maximum of 30 alphanumeric characters.",
           "type": "string"
         },
         "disasterRecoverySupportedLocations": {
@@ -2528,7 +2528,7 @@
           "type": "array"
         },
         "displayName": {
-          "description": "Optional. The display name for the Autonomous Database. The name does not have to be unique within your project.",
+          "description": "Optional. Immutable. The display name for the Autonomous Database. The name does not have to be unique within your project.",
           "type": "string"
         },
         "entitlementId": {
@@ -2548,15 +2548,15 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
+          "description": "Optional. Immutable. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
           "type": "string"
         },
         "odbNetwork": {
-          "description": "Optional. The name of the OdbNetwork associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "description": "Optional. Immutable. The name of the OdbNetwork associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
           "type": "string"
         },
         "odbSubnet": {
-          "description": "Optional. The name of the OdbSubnet associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "description": "Optional. Immutable. The name of the OdbSubnet associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "peerAutonomousDatabases": {
@@ -2573,7 +2573,7 @@
         },
         "sourceConfig": {
           "$ref": "SourceConfig",
-          "description": "Optional. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation."
+          "description": "Optional. Immutable. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation."
         }
       },
       "type": "object"
@@ -2897,7 +2897,7 @@
           "type": "number"
         },
         "allowlistedIps": {
-          "description": "Optional. The list of allowlisted IP addresses for the Autonomous Database.",
+          "description": "Optional. Immutable. The list of allowlisted IP addresses for the Autonomous Database.",
           "items": {
             "type": "string"
           },
@@ -2927,16 +2927,16 @@
           "type": "array"
         },
         "backupRetentionPeriodDays": {
-          "description": "Optional. The retention period for the Autonomous Database. This field is specified in days, can range from 1 day to 60 days, and has a default value of 60 days.",
+          "description": "Optional. Immutable. The retention period for the Autonomous Database. This field is specified in days, can range from 1 day to 60 days, and has a default value of 60 days.",
           "format": "int32",
           "type": "integer"
         },
         "characterSet": {
-          "description": "Optional. The character set for the Autonomous Database. The default is AL32UTF8.",
+          "description": "Optional. Immutable. The character set for the Autonomous Database. The default is AL32UTF8.",
           "type": "string"
         },
         "computeCount": {
-          "description": "Optional. The number of compute servers for the Autonomous Database.",
+          "description": "Optional. Immutable. The number of compute servers for the Autonomous Database.",
           "format": "float",
           "type": "number"
         },
@@ -2951,12 +2951,12 @@
           "readOnly": true
         },
         "cpuCoreCount": {
-          "description": "Optional. The number of CPU cores to be made available to the database.",
+          "description": "Optional. Immutable. The number of CPU cores to be made available to the database.",
           "format": "int32",
           "type": "integer"
         },
         "customerContacts": {
-          "description": "Optional. The list of customer contacts.",
+          "description": "Optional. Immutable. The list of customer contacts.",
           "items": {
             "$ref": "CustomerContact"
           },
@@ -2990,12 +2990,12 @@
           "type": "string"
         },
         "dataStorageSizeGb": {
-          "description": "Optional. The size of the data stored in the database, in gigabytes.",
+          "description": "Optional. Immutable. The size of the data stored in the database, in gigabytes.",
           "format": "int32",
           "type": "integer"
         },
         "dataStorageSizeTb": {
-          "description": "Optional. The size of the data stored in the database, in terabytes.",
+          "description": "Optional. Immutable. The size of the data stored in the database, in terabytes.",
           "format": "int32",
           "type": "integer"
         },
@@ -3023,7 +3023,7 @@
           "type": "string"
         },
         "dbEdition": {
-          "description": "Optional. The edition of the Autonomous Databases.",
+          "description": "Optional. Immutable. The edition of the Autonomous Databases.",
           "enum": [
             "DATABASE_EDITION_UNSPECIFIED",
             "STANDARD_EDITION",
@@ -3037,11 +3037,11 @@
           "type": "string"
         },
         "dbVersion": {
-          "description": "Optional. The Oracle Database version for the Autonomous Database.",
+          "description": "Optional. Immutable. The Oracle Database version for the Autonomous Database.",
           "type": "string"
         },
         "dbWorkload": {
-          "description": "Required. The workload type of the Autonomous Database.",
+          "description": "Required. Immutable. The workload type of the Autonomous Database.",
           "enum": [
             "DB_WORKLOAD_UNSPECIFIED",
             "OLTP",
@@ -3083,7 +3083,7 @@
           "type": "string"
         },
         "isAutoScalingEnabled": {
-          "description": "Optional. This field indicates if auto scaling is enabled for the Autonomous Database CPU core count.",
+          "description": "Optional. Immutable. This field indicates if auto scaling is enabled for the Autonomous Database CPU core count.",
           "type": "boolean"
         },
         "isLocalDataGuardEnabled": {
@@ -3092,11 +3092,11 @@
           "type": "boolean"
         },
         "isStorageAutoScalingEnabled": {
-          "description": "Optional. This field indicates if auto scaling is enabled for the Autonomous Database storage.",
+          "description": "Optional. Immutable. This field indicates if auto scaling is enabled for the Autonomous Database storage.",
           "type": "boolean"
         },
         "licenseType": {
-          "description": "Required. The license type used for the Autonomous Database.",
+          "description": "Required. Immutable. The license type used for the Autonomous Database.",
           "enum": [
             "LICENSE_TYPE_UNSPECIFIED",
             "LICENSE_INCLUDED",
@@ -3153,7 +3153,7 @@
           "type": "string"
         },
         "maintenanceScheduleType": {
-          "description": "Optional. The maintenance schedule of the Autonomous Database.",
+          "description": "Optional. Immutable. The maintenance schedule of the Autonomous Database.",
           "enum": [
             "MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED",
             "EARLY",
@@ -3179,11 +3179,11 @@
           "type": "integer"
         },
         "mtlsConnectionRequired": {
-          "description": "Optional. This field specifies if the Autonomous Database requires mTLS connections.",
+          "description": "Optional. Immutable. This field specifies if the Autonomous Database requires mTLS connections.",
           "type": "boolean"
         },
         "nCharacterSet": {
-          "description": "Optional. The national character set for the Autonomous Database. The default is AL16UTF16.",
+          "description": "Optional. Immutable. The national character set for the Autonomous Database. The default is AL16UTF16.",
           "type": "string"
         },
         "nextLongTermBackupTime": {
@@ -3269,11 +3269,11 @@
           "type": "string"
         },
         "privateEndpointIp": {
-          "description": "Optional. The private endpoint IP address for the Autonomous Database.",
+          "description": "Optional. Immutable. The private endpoint IP address for the Autonomous Database.",
           "type": "string"
         },
         "privateEndpointLabel": {
-          "description": "Optional. The private endpoint label for the Autonomous Database.",
+          "description": "Optional. Immutable. The private endpoint label for the Autonomous Database.",
           "type": "string"
         },
         "refreshableMode": {
@@ -3336,7 +3336,7 @@
           "type": "array"
         },
         "secretId": {
-          "description": "Optional. The ID of the Oracle Cloud Infrastructure vault secret.",
+          "description": "Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault secret.",
           "type": "string"
         },
         "serviceAgentEmail": {
@@ -3423,7 +3423,7 @@
           "type": "integer"
         },
         "vaultId": {
-          "description": "Optional. The ID of the Oracle Cloud Infrastructure vault.",
+          "description": "Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.",
           "type": "string"
         }
       },
@@ -5779,7 +5779,7 @@
       "id": "FailoverAutonomousDatabaseRequest",
       "properties": {
         "peerAutonomousDatabase": {
-          "description": "Required. The peer database name to fail over to.",
+          "description": "Optional. The peer database name to fail over to. Required for cross-region standby, and must be omitted for in-region Data Guard.",
           "type": "string"
         }
       },
@@ -7085,7 +7085,7 @@
       "id": "SwitchoverAutonomousDatabaseRequest",
       "properties": {
         "peerAutonomousDatabase": {
-          "description": "Required. The peer database name to switch over to.",
+          "description": "Optional. The peer database name to switch over to. Required for cross-region standby, and must be omitted for in-region Data Guard.",
           "type": "string"
         }
       },
