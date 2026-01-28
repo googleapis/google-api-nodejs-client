@@ -194,7 +194,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2313,7 +2313,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2762,7 +2762,7 @@
       }
     }
   },
-  "revision": "20250930",
+  "revision": "20251216",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3753,6 +3753,10 @@
           "format": "int64",
           "type": "string"
         },
+        "connectionServiceAccountEnabled": {
+          "description": "Indicate whether connection service account is enabled. If false, the common runtime service agent is used.",
+          "type": "boolean"
+        },
         "connectorVersioningEnabled": {
           "description": "Indicate whether connector versioning is enabled.",
           "type": "boolean"
@@ -3803,6 +3807,10 @@
         },
         "provisionMemstore": {
           "description": "Indicate whether memstore is required for connector job.",
+          "type": "boolean"
+        },
+        "publicNetworkIngressEnabled": {
+          "description": "Indicate whether public network ingress should be enabled.",
           "type": "boolean"
         },
         "ratelimitThreshold": {
@@ -4535,13 +4543,55 @@
       "description": "Egress control config for connector runtime. These configurations define the rules to identify which outbound domains/hosts needs to be whitelisted. It may be a static information for a particular connector version or it is derived from the configurations provided by the customer in Connection resource.",
       "id": "EgressControlConfig",
       "properties": {
+        "accessMode": {
+          "description": "Optional. Access mode for egress control.",
+          "enum": [
+            "ACCESS_MODE_UNSPECIFIED",
+            "RESTRICTED",
+            "ALLOW_ALL"
+          ],
+          "enumDescriptions": [
+            "The default value. Per best practices (go/protodosdonts#unspecified-enum), the first value should be UNSPECIFIED and have a tag of 0. Application logic should treat this the same as RESTRICTED.",
+            "Enforce the allowlist. Only projects in 'allowlisted_project_numbers' are permitted.",
+            "Allow all projects. 'allowlisted_project_numbers' is ignored."
+          ],
+          "type": "string"
+        },
+        "additionalExtractionRules": {
+          "$ref": "ExtractionRules",
+          "description": "Additional extraction rules to identity the backends from customer provided configuration in Connection resource. These rules are applied in addition to the ones specified in `oneof_backends`."
+        },
+        "allowlistedProjectNumbers": {
+          "description": "Optional. Used when access_mode is RESTRICTED or ACCESS_MODE_UNSPECIFIED.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "backends": {
           "description": "Static Comma separated backends which are common for all Connection resources. Supported formats for each backend are host:port or just host (host can be ip address or domain name).",
           "type": "string"
         },
         "extractionRules": {
           "$ref": "ExtractionRules",
+          "deprecated": true,
           "description": "Extractions Rules to extract the backends from customer provided configuration."
+        },
+        "launchEnvironment": {
+          "description": "Launch environment for egress control.",
+          "enum": [
+            "LAUNCH_ENVIRONMENT_UNSPECIFIED",
+            "AUTOPUSH",
+            "STAGING",
+            "PROD"
+          ],
+          "enumDescriptions": [
+            "Default value. If not specified, the launch environment will default to AUTOPUSH.",
+            "Autopush environment.",
+            "Staging environment.",
+            "Prod environment."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5615,6 +5665,10 @@
       "properties": {
         "extractionRegex": {
           "description": "Regex used to extract backend details from source. If empty, whole source value will be used.",
+          "type": "string"
+        },
+        "formatString": {
+          "description": "Format string used to format the extracted backend details. If empty, extracted backend details will be returned as it is.",
           "type": "string"
         },
         "source": {
@@ -6794,7 +6848,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -8511,11 +8565,13 @@
           "description": "Type of the source.",
           "enum": [
             "SOURCE_TYPE_UNSPECIFIED",
-            "CONFIG_VARIABLE"
+            "CONFIG_VARIABLE",
+            "AUTH_CONFIG_VARIABLE"
           ],
           "enumDescriptions": [
             "Default SOURCE.",
-            "Config Variable source type."
+            "Config Variable source type.",
+            "Auth Config Variable source type."
           ],
           "type": "string"
         }

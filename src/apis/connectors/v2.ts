@@ -321,6 +321,14 @@ export namespace connectors_v2 {
      * Optional. AuthCodeData contains the data the runtime requires to exchange for access and refresh tokens. If the data is not provided, the runtime will read the data from the secret manager.
      */
     authCodeData?: Schema$AuthCodeData;
+    /**
+     * ExecutionConfig contains the configuration for the execution of the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
+     * OAuth2Config contains the OAuth2 config for the connection.
+     */
+    oauth2Config?: Schema$OAuth2Config;
   }
   /**
    * ExchangeAuthCodeResponse includes the returned access token and its associated credentials.
@@ -336,6 +344,10 @@ export namespace connectors_v2 {
    * Request message for ActionService.ExecuteAction
    */
   export interface Schema$ExecuteActionRequest {
+    /**
+     * Execution config for the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
     /**
      * Parameters for executing the action. The parameters can be key/value pairs or nested structs.
      */
@@ -377,9 +389,17 @@ export namespace connectors_v2 {
    */
   export interface Schema$ExecuteToolRequest {
     /**
+     * execution config for the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
      * Input parameters for the tool.
      */
     parameters?: {[key: string]: any} | null;
+    /**
+     * Tool definition for the tool to be executed.
+     */
+    toolDefinition?: {[key: string]: any} | null;
   }
   /**
    * Response message for ConnectorAgentService.ExecuteTool
@@ -393,6 +413,12 @@ export namespace connectors_v2 {
      * Output from the tool execution.
      */
     result?: {[key: string]: any} | null;
+  }
+  export interface Schema$ExecutionConfig {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    headers?: string | null;
   }
   /**
    * Message contains EntityType's Field metadata.
@@ -434,6 +460,19 @@ export namespace connectors_v2 {
      * Reference captures the association between two different entity types. Value links to the reference of another entity type.
      */
     reference?: Schema$Reference;
+  }
+  /**
+   * Request message for ConnectorAgentService.GetResourcePost
+   */
+  export interface Schema$GetResourcePostRequest {
+    /**
+     * execution config for the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
+     * List of tool specifications.
+     */
+    toolSpec?: Schema$ToolSpec;
   }
   export interface Schema$GetResourceResponse {
     /**
@@ -680,6 +719,27 @@ export namespace connectors_v2 {
     resources?: Schema$Resource[];
   }
   /**
+   * Request message for ConnectorAgentService.ListToolsPost
+   */
+  export interface Schema$ListToolsPostRequest {
+    /**
+     * execution config for the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
+     * Page size.
+     */
+    pageSize?: number | null;
+    /**
+     * Page token.
+     */
+    pageToken?: string | null;
+    /**
+     * List of tool specifications.
+     */
+    toolSpec?: Schema$ToolSpec;
+  }
+  /**
    * Response message for ConnectorAgentService.ListTools
    */
   export interface Schema$ListToolsResponse {
@@ -810,6 +870,20 @@ export namespace connectors_v2 {
      */
     values?: string[] | null;
   }
+  export interface Schema$OAuth2Config {
+    /**
+     * Authorization Server URL/Token Endpoint for Authorization Code Flow
+     */
+    authUri?: string | null;
+    /**
+     * Client ID for the OAuth2 flow.
+     */
+    clientId?: string | null;
+    /**
+     * Client secret for the OAuth2 flow.
+     */
+    clientSecret?: string | null;
+  }
   /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
    */
@@ -874,6 +948,14 @@ export namespace connectors_v2 {
    * RefreshAccessTokenRequest includes the refresh token.
    */
   export interface Schema$RefreshAccessTokenRequest {
+    /**
+     * ExecutionConfig contains the configuration for the execution of the request.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
+     * OAuth2Config contains the OAuth2 config for the connection.
+     */
+    oauth2Config?: Schema$OAuth2Config;
     /**
      * Optional. Refresh Token String. If the Refresh Token is not provided, the runtime will read the data from the secret manager.
      */
@@ -1061,6 +1143,16 @@ export namespace connectors_v2 {
      * A human-readable title for the tool.
      */
     title?: string | null;
+  }
+  export interface Schema$ToolSpec {
+    /**
+     * List of tool definitions.
+     */
+    toolDefinitions?: Array<{[key: string]: any}> | null;
+    /**
+     * Version of the tool spec. Format: providerId/connectorId/versionId/toolSpecId
+     */
+    toolSpecVersion?: string | null;
   }
   /**
    * Response message for EntityService.UpdateEntitiesWithConditions
@@ -1315,6 +1407,9 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.checkStatus({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
+     *
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
      *   });
      *   console.log(res.data);
@@ -1462,7 +1557,9 @@ export namespace connectors_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "authCodeData": {}
+     *       //   "authCodeData": {},
+     *       //   "executionConfig": {},
+     *       //   "oauth2Config": {}
      *       // }
      *     },
      *   });
@@ -1764,6 +1861,8 @@ export namespace connectors_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "executionConfig": {},
+     *         //   "oauth2Config": {},
      *         //   "refreshToken": "my_refreshToken"
      *         // }
      *       },
@@ -1876,6 +1975,157 @@ export namespace connectors_v2 {
         return createAPIRequest<Schema$RefreshAccessTokenResponse>(parameters);
       }
     }
+
+    /**
+     * Lists all available tools with POST.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.tools({
+     *     // Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "executionConfig": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "toolSpec": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    tools(
+      params: Params$Resource$Projects$Locations$Connections$Tools,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    tools(
+      params?: Params$Resource$Projects$Locations$Connections$Tools,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListToolsResponse>>;
+    tools(
+      params: Params$Resource$Projects$Locations$Connections$Tools,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    tools(
+      params: Params$Resource$Projects$Locations$Connections$Tools,
+      options: MethodOptions | BodyResponseCallback<Schema$ListToolsResponse>,
+      callback: BodyResponseCallback<Schema$ListToolsResponse>
+    ): void;
+    tools(
+      params: Params$Resource$Projects$Locations$Connections$Tools,
+      callback: BodyResponseCallback<Schema$ListToolsResponse>
+    ): void;
+    tools(callback: BodyResponseCallback<Schema$ListToolsResponse>): void;
+    tools(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Tools
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListToolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Tools;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Connections$Tools;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/tools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListToolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListToolsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Connections$Checkreadiness extends StandardParameters {
@@ -1885,6 +2135,10 @@ export namespace connectors_v2 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Checkstatus extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      *
      */
@@ -1922,6 +2176,17 @@ export namespace connectors_v2 {
      * Request body metadata
      */
     requestBody?: Schema$RefreshAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Tools extends StandardParameters {
+    /**
+     * Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ListToolsPostRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Actions {
@@ -1968,6 +2233,7 @@ export namespace connectors_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "executionConfig": {},
      *       //   "parameters": {}
      *       // }
      *     },
@@ -2110,6 +2376,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.actions.get({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection/actions/my-action',
      *     // Specified view of the action schema.
@@ -2254,6 +2522,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.actions.list({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Number of Actions to return. Defaults to 25.
      *     pageSize: 'placeholder-value',
      *     // Page token, return from a previous ListActions call, that can be used retrieve the next page of content. If unspecified, the request returns the first page of actions.
@@ -2385,6 +2655,10 @@ export namespace connectors_v2 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Actions$Get extends StandardParameters {
     /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
+    /**
      * Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
      */
     name?: string;
@@ -2394,6 +2668,10 @@ export namespace connectors_v2 {
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Actions$List extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Number of Actions to return. Defaults to 25.
      */
@@ -2456,6 +2734,8 @@ export namespace connectors_v2 {
      *   const res = await connectors.projects.locations.connections.entityTypes.get({
      *     // Context metadata for request could be used to fetch customization of entity type schema.
      *     contextMetadata: 'placeholder-value',
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
      *     // Specifies view for entity type schema.
@@ -2598,6 +2878,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.entityTypes.list({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Number of entity types to return. Defaults to 25.
      *     pageSize: 'placeholder-value',
      *     // Page token, return from a previous ListEntityTypes call, that can be used retrieve the next page of content. If unspecified, the request returns the first page of entity types.
@@ -2724,6 +3006,10 @@ export namespace connectors_v2 {
      */
     contextMetadata?: string;
     /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
+    /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      */
     name?: string;
@@ -2733,6 +3019,10 @@ export namespace connectors_v2 {
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$List extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Number of entity types to return. Defaults to 25.
      */
@@ -2790,6 +3080,8 @@ export namespace connectors_v2 {
      *   const res =
      *     await connectors.projects.locations.connections.entityTypes.entities.create(
      *       {
+     *         // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *         'executionConfig.headers': 'placeholder-value',
      *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      *         parent:
      *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
@@ -2944,6 +3236,8 @@ export namespace connectors_v2 {
      *   const res =
      *     await connectors.projects.locations.connections.entityTypes.entities.delete(
      *       {
+     *         // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *         'executionConfig.headers': 'placeholder-value',
      *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      *         name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
      *       },
@@ -3085,6 +3379,8 @@ export namespace connectors_v2 {
      *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      *         entityType:
      *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *         // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *         'executionConfig.headers': 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -3223,6 +3519,8 @@ export namespace connectors_v2 {
      *   // Do the magic
      *   const res =
      *     await connectors.projects.locations.connections.entityTypes.entities.get({
+     *       // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *       'executionConfig.headers': 'placeholder-value',
      *       // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      *       name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
      *     });
@@ -3363,6 +3661,8 @@ export namespace connectors_v2 {
      *     await connectors.projects.locations.connections.entityTypes.entities.list({
      *       // Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.
      *       conditions: 'placeholder-value',
+     *       // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *       'executionConfig.headers': 'placeholder-value',
      *       // Number of entity rows to return. Defaults page size = 25. Max page size = 200.
      *       pageSize: 'placeholder-value',
      *       // Page token value if available from a previous request.
@@ -3515,6 +3815,8 @@ export namespace connectors_v2 {
      *   // Do the magic
      *   const res =
      *     await connectors.projects.locations.connections.entityTypes.entities.patch({
+     *       // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *       'executionConfig.headers': 'placeholder-value',
      *       // Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      *       name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType/entities/my-entitie',
      *
@@ -3669,6 +3971,8 @@ export namespace connectors_v2 {
      *         // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      *         entityType:
      *           'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
+     *         // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *         'executionConfig.headers': 'placeholder-value',
      *
      *         // Request body metadata
      *         requestBody: {
@@ -3799,6 +4103,10 @@ export namespace connectors_v2 {
 
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Create extends StandardParameters {
     /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
+    /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      */
     parent?: string;
@@ -3809,6 +4117,10 @@ export namespace connectors_v2 {
     requestBody?: Schema$Entity;
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Delete extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
@@ -3823,8 +4135,16 @@ export namespace connectors_v2 {
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      */
     entityType?: string;
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Get extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
@@ -3835,6 +4155,10 @@ export namespace connectors_v2 {
      * Conditions to be used when listing entities. From a proto standpoint, There are no restrictions on what can be passed using this field. The connector documentation should have information about what format of filters/conditions are supported.
      */
     conditions?: string;
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Number of entity rows to return. Defaults page size = 25. Max page size = 200.
      */
@@ -3858,6 +4182,10 @@ export namespace connectors_v2 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Entities$Patch extends StandardParameters {
     /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
+    /**
      * Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
     name?: string;
@@ -3876,6 +4204,10 @@ export namespace connectors_v2 {
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}
      */
     entityType?: string;
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
 
     /**
      * Request body metadata
@@ -3920,6 +4252,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.resources.get({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection/resources/my-resource',
      *   });
@@ -4027,6 +4361,155 @@ export namespace connectors_v2 {
     }
 
     /**
+     * Gets a specific resource with POST.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.resources.getResourcePost({
+     *       // Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/resources/my-resource',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "executionConfig": {},
+     *         //   "toolSpec": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": "my_data",
+     *   //   "metadata": {},
+     *   //   "mimeType": "my_mimeType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getResourcePost(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getResourcePost(
+      params?: Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetResourceResponse>>;
+    getResourcePost(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getResourcePost(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost,
+      options: MethodOptions | BodyResponseCallback<Schema$GetResourceResponse>,
+      callback: BodyResponseCallback<Schema$GetResourceResponse>
+    ): void;
+    getResourcePost(
+      params: Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost,
+      callback: BodyResponseCallback<Schema$GetResourceResponse>
+    ): void;
+    getResourcePost(
+      callback: BodyResponseCallback<Schema$GetResourceResponse>
+    ): void;
+    getResourcePost(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetResourceResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetResourceResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetResourceResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetResourceResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists all available resources.
      * @example
      * ```js
@@ -4057,6 +4540,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.resources.list({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Optional. Page size for the request.
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token for the request.
@@ -4176,11 +4661,30 @@ export namespace connectors_v2 {
 
   export interface Params$Resource$Projects$Locations$Connections$Resources$Get extends StandardParameters {
     /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
+    /**
      * Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Resources$Getresourcepost extends StandardParameters {
+    /**
+     * Required. Resource name of the Resource. Format: projects/{project\}/locations/{location\}/connections/{connection\}/resources/{resource\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetResourcePostRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Resources$List extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Optional. Page size for the request.
      */
@@ -4239,7 +4743,9 @@ export namespace connectors_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "parameters": {}
+     *       //   "executionConfig": {},
+     *       //   "parameters": {},
+     *       //   "toolDefinition": {}
      *       // }
      *     },
      *   });
@@ -4379,6 +4885,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.tools.list({
+     *     // headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     *     'executionConfig.headers': 'placeholder-value',
      *     // Page size.
      *     pageSize: 'placeholder-value',
      *     // Page token.
@@ -4506,6 +5014,10 @@ export namespace connectors_v2 {
     requestBody?: Schema$ExecuteToolRequest;
   }
   export interface Params$Resource$Projects$Locations$Connections$Tools$List extends StandardParameters {
+    /**
+     * headers to be used for the request. For example: headers:'{"x-integration-connectors-managed-connection-id":"conn-id","x-integration-connectors-runtime-config":"runtime-cfg"\}'
+     */
+    'executionConfig.headers'?: string;
     /**
      * Page size.
      */
