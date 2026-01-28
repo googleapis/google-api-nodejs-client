@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/hypercomputecluster",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "hypercomputecluster",
   "main": "build/index.js",
   "types": "build/index.d.ts",
