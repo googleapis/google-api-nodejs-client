@@ -1282,7 +1282,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20260109",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1294,7 +1294,8 @@
           "type": "string"
         },
         "enableGeminiInBigquery": {
-          "description": "Optional. This field controls if \"Gemini in BigQuery\" (https://cloud.google.com/gemini/docs/bigquery/overview) features should be enabled for this reservation assignment, which is not on by default. \"Gemini in BigQuery\" has a distinct compliance posture from BigQuery. If this field is set to true, the assignment job type is QUERY, and the parent reservation edition is ENTERPRISE_PLUS, then the assignment will give the grantee project/organization access to \"Gemini in BigQuery\" features.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: \"Gemini in BigQuery\" is now available by default for all BigQuery editions and should not be explicitly set. Controls if \"Gemini in BigQuery\" (https://cloud.google.com/gemini/docs/bigquery/overview) features should be enabled for this reservation assignment.",
           "type": "boolean"
         },
         "jobType": {
