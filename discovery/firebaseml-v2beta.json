@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20251214",
+  "revision": "20260111",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1956,7 +1956,7 @@
           "description": "per part media resolution. Media resolution for the input media."
         },
         "text": {
-          "description": "Optional. The text content of the part.",
+          "description": "Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.",
           "type": "string"
         },
         "thought": {
