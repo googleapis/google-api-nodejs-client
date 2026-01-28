@@ -1106,7 +1106,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20260122",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -1337,7 +1337,8 @@
             "BUILT",
             "DEPLOYING",
             "READY",
-            "FAILED"
+            "FAILED",
+            "SKIPPED"
           ],
           "enumDescriptions": [
             "The build is in an unknown state.",
@@ -1345,7 +1346,8 @@
             "The build has completed and is awaiting the next step. This may move to DEPLOYING once App Hosting starts to set up infrastructure.",
             "The infrastructure for this build is being set up.",
             "The infrastructure for this build is ready. The build may or may not be serving traffic - see `Backend.traffic` for the current state, or `Backend.traffic_statuses` for the desired state.",
-            "The build has failed."
+            "The build has failed.",
+            "The build was skipped."
           ],
           "readOnly": true,
           "type": "string"
@@ -1454,6 +1456,14 @@
       "description": "Additional configuration of the backend for this build.",
       "id": "Config",
       "properties": {
+        "effectiveEnv": {
+          "description": "Output only. [OUTPUT_ONLY] This field represents all environment variables employed during both the build and runtime. This list reflects the result of merging variables from all sources (Backend.override_env, Build.Config.env, YAML, defaults, system). Each variable includes its `origin`",
+          "items": {
+            "$ref": "EnvironmentVariable"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "env": {
           "description": "Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_build_source) Attempts to set this for other build types will result in an error",
           "items": {
@@ -1969,6 +1979,30 @@
           },
           "type": "array"
         },
+        "origin": {
+          "description": "Output only. The high-level origin category of the environment variable.",
+          "enum": [
+            "ORIGIN_UNSPECIFIED",
+            "BACKEND_OVERRIDES",
+            "BUILD_CONFIG",
+            "APPHOSTING_YAML",
+            "FIREBASE_SYSTEM"
+          ],
+          "enumDescriptions": [
+            "Source is unspecified.",
+            "Variable was set on the backend resource (e.g. via API or Console). Represents variables from `Backend.override_env`",
+            "Variable was provided specifically for the build upon creation via the `Build.Config.env` field. Only used for pre-built images.",
+            "Variable is defined in apphosting.yaml file.",
+            "Variable is defined provided by the firebase platform."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "originFileName": {
+          "description": "Output only. Specific detail about the source. For APPHOSTING_YAML origins, this will contain the exact filename, such as \"apphosting.yaml\" or \"apphosting.staging.yaml\".",
+          "readOnly": true,
+          "type": "string"
+        },
         "secret": {
           "description": "A fully qualified secret version. The value of the secret will be accessed once while building the application and once per cold start of the container at runtime. The service account used by Cloud Build and by Cloud Run must each have the `secretmanager.versions.access` permission on the secret.",
           "type": "string"
@@ -2350,6 +2384,33 @@
       },
       "type": "object"
     },
+    "Path": {
+      "description": "A file path pattern to match against.",
+      "id": "Path",
+      "properties": {
+        "pattern": {
+          "description": "Optional. The pattern to match against.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The type of pattern to match against.",
+          "enum": [
+            "PATTERN_TYPE_UNSPECIFIED",
+            "RE2",
+            "GLOB",
+            "PREFIX"
+          ],
+          "enumDescriptions": [
+            "The pattern type is unspecified - this is an invalid value.",
+            "RE2 - regular expression (https://github.com/google/re2/wiki/Syntax).",
+            "The pattern is a glob.",
+            "The pattern is a prefix."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Redirect": {
       "description": "Specifies redirect behavior for a domain.",
       "id": "Redirect",
@@ -2433,7 +2494,8 @@
             "PAUSED",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "SKIPPED"
           ],
           "enumDescriptions": [
             "The rollout is in an unknown state.",
@@ -2443,7 +2505,8 @@
             "The rollout has been paused due to either being manually paused or a PAUSED stage. This should be set while `paused = true`.",
             "The rollout has completed.",
             "The rollout has failed. See error for more information.",
-            "The rollout has been cancelled."
+            "The rollout has been cancelled.",
+            "The rollout has been skipped."
           ],
           "readOnly": true,
           "type": "string"
@@ -2479,6 +2542,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "ignoredPaths": {
+          "description": "Optional. A list of file paths patterns to exclude from triggering a rollout. Patterns in this list take precedence over required_paths. **Note**: All paths must be in the ignored_paths in order for the rollout to be skipped. Limited to 100 paths. Example: ignored_paths: { pattern: \"foo/bar/excluded/*” type: GLOB }",
+          "items": {
+            "$ref": "Path"
+          },
+          "type": "array"
+        },
+        "requiredPaths": {
+          "description": "Optional. A list of file paths patterns that trigger a build and rollout if at least one of the changed files in the commit are present in this list. This field is optional; the rollout policy will default to triggering on all paths if not populated. Limited to 100 paths. Example: “required_paths: { pattern: \"foo/bar/*” type: GLOB }",
+          "items": {
+            "$ref": "Path"
+          },
+          "type": "array"
         }
       },
       "type": "object"
