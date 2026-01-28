@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the boundary to retrieve. Format: projects/{project}/locations/{location}/boundary",
+                  "description": "Required. The name of the boundary to retrieve. Format: `projects/{project}/locations/{location}/boundary`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+/boundary$",
                   "required": true,
@@ -1157,7 +1157,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be \"apphub.googleapis.com/Name\"",
+                      "description": "Required. Schema resource name. Format: `projects/{project}/locations/{location}/extendedMetadataSchemas/{extended_metadata_schema}`. `{extended_metadata_schema}` has the format `\"apphub.googleapis.com/{SchemaName}\"`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/extendedMetadataSchemas/.*$",
                       "required": true,
@@ -1486,7 +1486,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260119",
   "rootUrl": "https://apphub.googleapis.com/",
   "schemas": {
     "Application": {
@@ -1667,7 +1667,7 @@
           "type": "string"
         },
         "crmNode": {
-          "description": "Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number}`",
+          "description": "Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number}` or `projects/{project-id}`",
           "type": "string"
         },
         "name": {

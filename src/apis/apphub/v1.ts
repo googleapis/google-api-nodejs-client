@@ -242,7 +242,7 @@ export namespace apphub_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number\}`
+     * Optional. The resource name of the CRM node being attached to the boundary. Format: `projects/{project-number\}` or `projects/{project-id\}`
      */
     crmNode?: string | null;
     /**
@@ -1318,7 +1318,7 @@ export namespace apphub_v1 {
      *
      *   // Do the magic
      *   const res = await apphub.projects.locations.getBoundary({
-     *     // Required. The name of the boundary to retrieve. Format: projects/{project\}/locations/{location\}/boundary
+     *     // Required. The name of the boundary to retrieve. Format: `projects/{project\}/locations/{location\}/boundary`.
      *     name: 'projects/my-project/locations/my-location/boundary',
      *   });
      *   console.log(res.data);
@@ -1894,7 +1894,7 @@ export namespace apphub_v1 {
   }
   export interface Params$Resource$Projects$Locations$Getboundary extends StandardParameters {
     /**
-     * Required. The name of the boundary to retrieve. Format: projects/{project\}/locations/{location\}/boundary
+     * Required. The name of the boundary to retrieve. Format: `projects/{project\}/locations/{location\}/boundary`.
      */
     name?: string;
   }
@@ -5967,7 +5967,7 @@ export namespace apphub_v1 {
      *
      *   // Do the magic
      *   const res = await apphub.projects.locations.extendedMetadataSchemas.get({
-     *     // Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be "apphub.googleapis.com/Name"
+     *     // Required. Schema resource name. Format: `projects/{project\}/locations/{location\}/extendedMetadataSchemas/{extended_metadata_schema\}`. `{extended_metadata_schema\}` has the format `"apphub.googleapis.com/{SchemaName\}"`.
      *     name: 'projects/my-project/locations/my-location/extendedMetadataSchemas/.*',
      *   });
      *   console.log(res.data);
@@ -6231,7 +6231,7 @@ export namespace apphub_v1 {
 
   export interface Params$Resource$Projects$Locations$Extendedmetadataschemas$Get extends StandardParameters {
     /**
-     * Required. Schema resource name Format: projects//locations//extendedMetadataSchemas/ could be "apphub.googleapis.com/Name"
+     * Required. Schema resource name. Format: `projects/{project\}/locations/{location\}/extendedMetadataSchemas/{extended_metadata_schema\}`. `{extended_metadata_schema\}` has the format `"apphub.googleapis.com/{SchemaName\}"`.
      */
     name?: string;
   }
