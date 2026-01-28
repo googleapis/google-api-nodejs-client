@@ -474,7 +474,7 @@
                       "type": "string"
                     },
                     "workforcePoolProviderId": {
-                      "description": "Required. The ID for the provider, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters [a-z0-9-]. The prefix `gcp-` is reserved for use by Google, and may not be specified.",
+                      "description": "Required. The ID for the provider, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters `[a-z0-9-]`. The prefix `gcp-` is reserved for use by Google, and may not be specified.",
                       "location": "query",
                       "type": "string"
                     }
@@ -664,7 +664,7 @@
                           "type": "string"
                         },
                         "workforcePoolProviderKeyId": {
-                          "description": "Required. The ID to use for the key, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters [a-z0-9-].",
+                          "description": "Required. The ID to use for the key, which becomes the final component of the resource name. This value must be 4-32 characters, and may contain the characters `[a-z0-9-]`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -880,7 +880,7 @@
                           "type": "string"
                         },
                         "workforcePoolProviderScimTenantId": {
-                          "description": "Required. Gemini Enterprise only. The ID to use for the SCIM tenant, which becomes the final component of the resource name. This value should be 4-32 characters, containing the characters [a-z0-9-].",
+                          "description": "Required. Gemini Enterprise only. The ID to use for the SCIM tenant, which becomes the final component of the resource name. This value should be 4-32 characters, containing the characters `[a-z0-9-]`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1075,7 +1075,7 @@
                               "type": "string"
                             },
                             "workforcePoolProviderScimTokenId": {
-                              "description": "Required. Gemini Enterprise only. The ID to use for the SCIM token, which becomes the final component of the resource name. This value should be 4-32 characters and follow the pattern: \"([a-z]([a-z0-9\\\\-]{2,30}[a-z0-9]))\"",
+                              "description": "Required. Gemini Enterprise only. The ID to use for the SCIM token, which becomes the final component of the resource name. This value should be 4-32 characters and follow the pattern: `([a-z]([a-z0-9\\\\-]{2,30}[a-z0-9]))`",
                               "location": "query",
                               "type": "string"
                             }
@@ -2078,7 +2078,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the pool.",
+                      "description": "Identifier. The resource name of the pool.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
                       "required": true,
@@ -2324,7 +2324,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of the namespace.",
+                          "description": "Identifier. The resource name of the namespace.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+/namespaces/[^/]+$",
                           "required": true,
@@ -2583,7 +2583,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. The resource name of the managed identity.",
+                              "description": "Identifier. The resource name of the managed identity.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+/namespaces/[^/]+/managedIdentities/[^/]+$",
                               "required": true,
@@ -2953,7 +2953,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of the provider.",
+                          "description": "Identifier. The resource name of the provider.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+/providers/[^/]+$",
                           "required": true,
@@ -4160,7 +4160,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20260123",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -4546,12 +4546,14 @@
           "enum": [
             "ATTRIBUTES_TYPE_UNSPECIFIED",
             "AZURE_AD_GROUPS_MAIL",
-            "AZURE_AD_GROUPS_ID"
+            "AZURE_AD_GROUPS_ID",
+            "AZURE_AD_GROUPS_DISPLAY_NAME"
           ],
           "enumDescriptions": [
             "No AttributesType specified.",
             "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group mail addresses of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `displayName` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The display names of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
           ],
           "type": "string"
         },
@@ -6307,7 +6309,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Required. Maps attributes from the authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. This is a required field and the mapped subject cannot exceed 127 bytes. * `google.groups`: Groups the authenticating user belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. * `google.display_name`: The name of the authenticated user. This is an optional field and the mapped display name cannot exceed 100 bytes. If not set, `google.subject` will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.profile_photo`: The URL that specifies the authenticated user's thumbnail photo. This is an optional field. When set, the image will be visible as the user's profile picture. If not set, a generic user icon will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.posix_username`: The Linux username used by OS Login. This is an optional field and the mapped POSIX username cannot exceed 32 characters. The key must match the regex \"^a-zA-Z0-9._{0,31}$\". This attribute cannot be referenced in IAM bindings. You can also provide custom attributes by specifying `attribute.{custom_attribute}`, where {custom_attribute} is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workforce pool to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/locations/global/workforcePools/{pool}/subject/{value}` * `google.groups`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool}/group/{value}` * `attribute.{custom_attribute}`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool}/attribute.{custom_attribute}/{value}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 16 KB. For OIDC providers, you must supply a custom mapping that includes the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {\"google.subject\": \"assertion.sub\"} ```",
+          "description": "Required. Maps attributes from the authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. This is a required field and the mapped subject cannot exceed 127 bytes. * `google.groups`: Groups the authenticating user belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. * `google.display_name`: The name of the authenticated user. This is an optional field and the mapped display name cannot exceed 100 bytes. If not set, `google.subject` will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.profile_photo`: The URL that specifies the authenticated user's thumbnail photo. This is an optional field. When set, the image will be visible as the user's profile picture. If not set, a generic user icon will be displayed instead. This attribute cannot be referenced in IAM bindings. * `google.posix_username`: The Linux username used by OS Login. This is an optional field and the mapped POSIX username cannot exceed 32 characters. The key must match the regex `^a-zA-Z0-9._{0,31}$`. This attribute cannot be referenced in IAM bindings. You can also provide custom attributes by specifying `attribute.{custom_attribute}`, where {custom_attribute} is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters `[a-z0-9_]`. You can reference these attributes in IAM policies to define fine-grained access for a workforce pool to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/locations/global/workforcePools/{pool}/subject/{value}` * `google.groups`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool}/group/{value}` * `attribute.{custom_attribute}`: `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool}/attribute.{custom_attribute}/{value}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 16 KB. For OIDC providers, you must supply a custom mapping that includes the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {\"google.subject\": \"assertion.sub\"} ```",
           "type": "object"
         },
         "description": {
@@ -6567,8 +6569,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the pool.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the pool.",
           "type": "string"
         },
         "state": {
@@ -6608,8 +6609,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the managed identity.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the managed identity.",
           "type": "string"
         },
         "state": {
@@ -6649,8 +6649,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the namespace.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the namespace.",
           "type": "string"
         },
         "ownerService": {
@@ -6720,8 +6719,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the provider.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the provider.",
           "type": "string"
         },
         "oidc": {
@@ -6769,8 +6767,7 @@
           "description": "Immutable. Public half of the asymmetric key."
         },
         "name": {
-          "description": "Output only. The resource name of the key.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the key.",
           "type": "string"
         },
         "state": {
