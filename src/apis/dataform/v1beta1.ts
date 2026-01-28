@@ -764,6 +764,56 @@ export namespace dataform_v1beta1 {
     path?: string | null;
   }
   /**
+   * Represents a Dataform Folder. This is a resource that is used to organize Files and other Folders and provide hierarchical access controls.
+   */
+  export interface Schema$Folder {
+    /**
+     * Optional. The containing Folder resource name. This should take the format: projects/{project\}/locations/{location\}/folders/{folder\}, projects/{project\}/locations/{location\}/teamFolders/{teamFolder\}, or just projects/{project\}/locations/{location\} if this is a root Folder. This field can only be updated through MoveFolder.
+     */
+    containingFolder?: string | null;
+    /**
+     * Output only. The timestamp of when the Folder was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The IAM principal identifier of the creator of the Folder.
+     */
+    creatorIamPrincipal?: string | null;
+    /**
+     * Required. The Folder's user-friendly name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
+     * Identifier. The Folder's name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of the TeamFolder that this Folder is associated with. This should take the format: projects/{project\}/locations/{location\}/teamFolders/{teamFolder\}. If this is not set, the Folder is not associated with a TeamFolder and is a UserFolder.
+     */
+    teamFolderName?: string | null;
+    /**
+     * Output only. The timestamp of when the Folder was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a single content entry.
+   */
+  export interface Schema$FolderContentsEntry {
+    /**
+     * A subfolder.
+     */
+    folder?: Schema$Folder;
+    /**
+     * A repository.
+     */
+    repository?: Schema$Repository;
+  }
+  /**
    * Controls Git remote configuration for a repository.
    */
   export interface Schema$GitRemoteSettings {
@@ -1119,6 +1169,24 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$MoveFileResponse {}
   /**
+   * `MoveFolder` request message.
+   */
+  export interface Schema$MoveFolderRequest {
+    /**
+     * Required. The name of the Folder, TeamFolder, or root location to move the Folder to. Can be in the format of: - "" to move into the root User folder - `projects/x/locations/x/folders/x` - `projects/x/locations/x/teamFolders/x`
+     */
+    destinationContainingFolder?: string | null;
+  }
+  /**
+   * `MoveRepository` request message.
+   */
+  export interface Schema$MoveRepositoryRequest {
+    /**
+     * Required. The name of the Folder, TeamFolder, or root location to move the repository to. Can be in the format of: - "" to move into the root User folder - `projects/x/locations/x/folders/x` - `projects/x/locations/x/teamFolders/x`
+     */
+    destinationContainingFolder?: string | null;
+  }
+  /**
    * Represents a notebook.
    */
   export interface Schema$Notebook {
@@ -1352,6 +1420,19 @@ export namespace dataform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * `QueryFolderContents` response message.
+   */
+  export interface Schema$QueryFolderContentsResponse {
+    /**
+     * List of entries in the folder.
+     */
+    entries?: Schema$FolderContentsEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * `QueryRepositoryDirectoryContents` response message.
    */
   export interface Schema$QueryRepositoryDirectoryContentsResponse {
@@ -1359,6 +1440,32 @@ export namespace dataform_v1beta1 {
      * List of entries in the directory.
      */
     directoryEntries?: Schema$DirectoryEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * `QueryTeamFolderContents` response message.
+   */
+  export interface Schema$QueryTeamFolderContentsResponse {
+    /**
+     * List of entries in the TeamFolder.
+     */
+    entries?: Schema$TeamFolderContentsEntry[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * `QueryUserRootContents` response message.
+   */
+  export interface Schema$QueryUserRootContentsResponse {
+    /**
+     * List of entries in the folder.
+     */
+    entries?: Schema$RootContentsEntry[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1561,6 +1668,10 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Repository {
     /**
+     * Optional. The name of the containing folder of the repository. The field is immutable and it can be modified via a MoveRepository operation. Format: `projects/x/locations/x/folders/x`. or `projects/x/locations/x/teamFolders/x`.
+     */
+    containingFolder?: string | null;
+    /**
      * Output only. The timestamp of when the repository was created.
      */
     createTime?: string | null;
@@ -1605,6 +1716,10 @@ export namespace dataform_v1beta1 {
      */
     setAuthenticatedUserAdmin?: boolean | null;
     /**
+     * Output only. The resource name of the TeamFolder that this Repository is associated with. This should take the format: projects/{project\}/locations/{location\}/teamFolders/{teamFolder\}. If this is not set, the Repository is not associated with a TeamFolder.
+     */
+    teamFolderName?: string | null;
+    /**
      * Optional. If set, fields of `workspace_compilation_overrides` override the default compilation settings that are specified in dataform.json when creating workspace-scoped compilation results. See documentation for `WorkspaceCompilationOverrides` for more information.
      */
     workspaceCompilationOverrides?: Schema$WorkspaceCompilationOverrides;
@@ -1626,6 +1741,19 @@ export namespace dataform_v1beta1 {
    * `ResetWorkspaceChanges` response message.
    */
   export interface Schema$ResetWorkspaceChangesResponse {}
+  /**
+   * Represents a single content entry.
+   */
+  export interface Schema$RootContentsEntry {
+    /**
+     * A subfolder.
+     */
+    folder?: Schema$Folder;
+    /**
+     * A repository.
+     */
+    repository?: Schema$Repository;
+  }
   /**
    * A record of an attempt to create a workflow invocation for this workflow config.
    */
@@ -1685,6 +1813,19 @@ export namespace dataform_v1beta1 {
      * Details when search result is a file.
      */
     file?: Schema$FileSearchResult;
+  }
+  /**
+   * `SearchTeamFolders` response message.
+   */
+  export interface Schema$SearchTeamFoldersResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of TeamFolders that match the search query.
+     */
+    results?: Schema$TeamFolderSearchResult[];
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1762,6 +1903,57 @@ export namespace dataform_v1beta1 {
      * Optional. The action's schema (BigQuery dataset ID), within `database`.
      */
     schema?: string | null;
+  }
+  /**
+   * Represents a Dataform TeamFolder. This is a resource that sits at the project level and is used to organize Repositories and Folders with hierarchical access controls. They provide a team context and stricter access controls.
+   */
+  export interface Schema$TeamFolder {
+    /**
+     * Output only. The timestamp of when the TeamFolder was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The IAM principal identifier of the creator of the TeamFolder.
+     */
+    creatorIamPrincipal?: string | null;
+    /**
+     * Required. The TeamFolder's user-friendly name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
+     * Identifier. The TeamFolder's name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp of when the TeamFolder was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents a single content entry.
+   */
+  export interface Schema$TeamFolderContentsEntry {
+    /**
+     * A subfolder.
+     */
+    folder?: Schema$Folder;
+    /**
+     * A repository.
+     */
+    repository?: Schema$Repository;
+  }
+  /**
+   * Represents a single content entry.
+   */
+  export interface Schema$TeamFolderSearchResult {
+    /**
+     * A TeamFolder resource that is in the project / location.
+     */
+    teamFolder?: Schema$TeamFolder;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1937,6 +2129,10 @@ export namespace dataform_v1beta1 {
      * Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.
      */
     dataEncryptionState?: Schema$DataEncryptionState;
+    /**
+     * Optional. If set to true, workspaces will not be moved if its linked Repository is moved. Instead, it will be deleted.
+     */
+    disableMoves?: boolean | null;
     /**
      * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
      */
@@ -2455,6 +2651,160 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Returns the contents of a caller's root folder in a given location. The root folder contains all resources that are created by the user and not contained in any other folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.queryUserRootContents({
+     *     // Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     *     filter: 'placeholder-value',
+     *     // Required. Location of the user root folder whose contents to list. Format: projects/x/locations/x
+     *     location: 'projects/my-project/locations/my-location',
+     *     // Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), created_at, last_modified_at. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous `QueryUserRootContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUserRootFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryUserRootContents(
+      params: Params$Resource$Projects$Locations$Queryuserrootcontents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryUserRootContents(
+      params?: Params$Resource$Projects$Locations$Queryuserrootcontents,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryUserRootContentsResponse>>;
+    queryUserRootContents(
+      params: Params$Resource$Projects$Locations$Queryuserrootcontents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryUserRootContents(
+      params: Params$Resource$Projects$Locations$Queryuserrootcontents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryUserRootContentsResponse>,
+      callback: BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+    ): void;
+    queryUserRootContents(
+      params: Params$Resource$Projects$Locations$Queryuserrootcontents,
+      callback: BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+    ): void;
+    queryUserRootContents(
+      callback: BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+    ): void;
+    queryUserRootContents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queryuserrootcontents
+        | BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryUserRootContentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryUserRootContentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queryuserrootcontents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queryuserrootcontents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+location}:queryUserRootContents'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryUserRootContentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryUserRootContentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update default config for a given project and location. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      * @example
      * ```js
@@ -2640,6 +2990,28 @@ export namespace dataform_v1beta1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Projects$Locations$Queryuserrootcontents extends StandardParameters {
+    /**
+     * Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     */
+    filter?: string;
+    /**
+     * Required. Location of the user root folder whose contents to list. Format: projects/x/locations/x
+     */
+    location?: string;
+    /**
+     * Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), created_at, last_modified_at. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `QueryUserRootContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUserRootFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Projects$Locations$Updateconfig extends StandardParameters {
     /**
      * Identifier. The config name.
@@ -2660,6 +3032,449 @@ export namespace dataform_v1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a new Folder in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.create({
+     *     // The ID to use for the Folder, which will become the final component of the Folder's resource name.
+     *     folderId: 'placeholder-value',
+     *     // Required. The location in which to create the Folder. Must be in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "containingFolder": "my_containingFolder",
+     *       //   "createTime": "my_createTime",
+     *       //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *       //   "displayName": "my_displayName",
+     *       //   "internalMetadata": "my_internalMetadata",
+     *       //   "name": "my_name",
+     *       //   "teamFolderName": "my_teamFolderName",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "containingFolder": "my_containingFolder",
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "teamFolderName": "my_teamFolderName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Folders$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Folders$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folder>>;
+    create(
+      params: Params$Resource$Projects$Locations$Folders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Folders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Folders$Create,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Folder>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Create
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Folders$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/folders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folder>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.delete({
+     *     // Required. The Folder's name.
+     *     name: 'projects/my-project/locations/my-location/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Folders$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Folders$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Folders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Folders$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Folders$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Folders$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Fetches a single Folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.get({
+     *     // Required. The Folder's name.
+     *     name: 'projects/my-project/locations/my-location/folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "containingFolder": "my_containingFolder",
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "teamFolderName": "my_teamFolderName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Folders$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Folders$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folder>>;
+    get(
+      params: Params$Resource$Projects$Locations$Folders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Folders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Folders$Get,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Folder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Get
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Folders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folder>(parameters);
+      }
     }
 
     /**
@@ -2803,6 +3618,473 @@ export namespace dataform_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Moves a Folder to a new Folder, TeamFolder, or the root location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.move({
+     *     // Required. The full resource name of the Folder to move.
+     *     name: 'projects/my-project/locations/my-location/folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationContainingFolder": "my_destinationContainingFolder"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Projects$Locations$Folders$Move,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    move(
+      params?: Params$Resource$Projects$Locations$Folders$Move,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    move(
+      params: Params$Resource$Projects$Locations$Folders$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Projects$Locations$Folders$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(
+      params: Params$Resource$Projects$Locations$Folders$Move,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$Operation>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Move
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Folders$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:move').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Updates a single Folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.patch({
+     *     // Identifier. The Folder's name.
+     *     name: 'projects/my-project/locations/my-location/folders/my-folder',
+     *     // Optional. Specifies the fields to be updated in the Folder. If left unset, all fields that can be updated, will be updated. A few fields cannot be updated and will be ignored if specified in the update_mask (e.g. parent_name, team_folder_name).
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "containingFolder": "my_containingFolder",
+     *       //   "createTime": "my_createTime",
+     *       //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *       //   "displayName": "my_displayName",
+     *       //   "internalMetadata": "my_internalMetadata",
+     *       //   "name": "my_name",
+     *       //   "teamFolderName": "my_teamFolderName",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "containingFolder": "my_containingFolder",
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "teamFolderName": "my_teamFolderName",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Folders$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Folders$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Folder>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Folders$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Folders$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Folder>,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Folders$Patch,
+      callback: BodyResponseCallback<Schema$Folder>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Folder>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Patch
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Folder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Folders$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Folder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Folder>(parameters);
+      }
+    }
+
+    /**
+     * Returns the contents of a given Folder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.folders.queryFolderContents({
+     *     // Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     *     filter: 'placeholder-value',
+     *     // Required. Name of the folder whose contents to list. Format: projects/x/locations/x/folders/x
+     *     folder: 'projects/my-project/locations/my-location/folders/my-folder',
+     *     // Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), create_time, last_modified_time. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous `QueryFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryFolderContents(
+      params: Params$Resource$Projects$Locations$Folders$Queryfoldercontents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryFolderContents(
+      params?: Params$Resource$Projects$Locations$Folders$Queryfoldercontents,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryFolderContentsResponse>>;
+    queryFolderContents(
+      params: Params$Resource$Projects$Locations$Folders$Queryfoldercontents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryFolderContents(
+      params: Params$Resource$Projects$Locations$Folders$Queryfoldercontents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryFolderContentsResponse>,
+      callback: BodyResponseCallback<Schema$QueryFolderContentsResponse>
+    ): void;
+    queryFolderContents(
+      params: Params$Resource$Projects$Locations$Folders$Queryfoldercontents,
+      callback: BodyResponseCallback<Schema$QueryFolderContentsResponse>
+    ): void;
+    queryFolderContents(
+      callback: BodyResponseCallback<Schema$QueryFolderContentsResponse>
+    ): void;
+    queryFolderContents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Folders$Queryfoldercontents
+        | BodyResponseCallback<Schema$QueryFolderContentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryFolderContentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryFolderContentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryFolderContentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Folders$Queryfoldercontents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Folders$Queryfoldercontents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+folder}:queryFolderContents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['folder'],
+        pathParams: ['folder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryFolderContentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryFolderContentsResponse>(parameters);
       }
     }
 
@@ -3110,6 +4392,33 @@ export namespace dataform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Folders$Create extends StandardParameters {
+    /**
+     * The ID to use for the Folder, which will become the final component of the Folder's resource name.
+     */
+    folderId?: string;
+    /**
+     * Required. The location in which to create the Folder. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Folder;
+  }
+  export interface Params$Resource$Projects$Locations$Folders$Delete extends StandardParameters {
+    /**
+     * Required. The Folder's name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Folders$Get extends StandardParameters {
+    /**
+     * Required. The Folder's name.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Folders$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -3119,6 +4428,54 @@ export namespace dataform_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Folders$Move extends StandardParameters {
+    /**
+     * Required. The full resource name of the Folder to move.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveFolderRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Folders$Patch extends StandardParameters {
+    /**
+     * Identifier. The Folder's name.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies the fields to be updated in the Folder. If left unset, all fields that can be updated, will be updated. A few fields cannot be updated and will be ignored if specified in the update_mask (e.g. parent_name, team_folder_name).
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Folder;
+  }
+  export interface Params$Resource$Projects$Locations$Folders$Queryfoldercontents extends StandardParameters {
+    /**
+     * Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     */
+    filter?: string;
+    /**
+     * Required. Name of the folder whose contents to list. Format: projects/x/locations/x/folders/x
+     */
+    folder?: string;
+    /**
+     * Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), create_time, last_modified_time. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `QueryFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Folders$Setiampolicy extends StandardParameters {
     /**
@@ -4148,6 +5505,7 @@ export namespace dataform_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "containingFolder": "my_containingFolder",
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
      *       //   "displayName": "my_displayName",
@@ -4159,6 +5517,7 @@ export namespace dataform_v1beta1 {
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "setAuthenticatedUserAdmin": false,
+     *       //   "teamFolderName": "my_teamFolderName",
      *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
@@ -4167,6 +5526,7 @@ export namespace dataform_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "containingFolder": "my_containingFolder",
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
@@ -4178,6 +5538,7 @@ export namespace dataform_v1beta1 {
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "setAuthenticatedUserAdmin": false,
+     *   //   "teamFolderName": "my_teamFolderName",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
@@ -4753,6 +6114,7 @@ export namespace dataform_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "containingFolder": "my_containingFolder",
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
@@ -4764,6 +6126,7 @@ export namespace dataform_v1beta1 {
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "setAuthenticatedUserAdmin": false,
+     *   //   "teamFolderName": "my_teamFolderName",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
@@ -5159,6 +6522,158 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Moves a Repository to a new location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.repositories.move({
+     *     // Required. The full resource name of the repository to move.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationContainingFolder": "my_destinationContainingFolder"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Projects$Locations$Repositories$Move,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    move(
+      params?: Params$Resource$Projects$Locations$Repositories$Move,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    move(
+      params: Params$Resource$Projects$Locations$Repositories$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Projects$Locations$Repositories$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(
+      params: Params$Resource$Projects$Locations$Repositories$Move,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$Operation>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Move
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:move').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates a single Repository. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*
      * @example
      * ```js
@@ -5201,6 +6716,7 @@ export namespace dataform_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "containingFolder": "my_containingFolder",
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
      *       //   "displayName": "my_displayName",
@@ -5212,6 +6728,7 @@ export namespace dataform_v1beta1 {
      *       //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "setAuthenticatedUserAdmin": false,
+     *       //   "teamFolderName": "my_teamFolderName",
      *       //   "workspaceCompilationOverrides": {}
      *       // }
      *     },
@@ -5220,6 +6737,7 @@ export namespace dataform_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "containingFolder": "my_containingFolder",
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
      *   //   "displayName": "my_displayName",
@@ -5231,6 +6749,7 @@ export namespace dataform_v1beta1 {
      *   //   "npmrcEnvironmentVariablesSecretVersion": "my_npmrcEnvironmentVariablesSecretVersion",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "setAuthenticatedUserAdmin": false,
+     *   //   "teamFolderName": "my_teamFolderName",
      *   //   "workspaceCompilationOverrides": {}
      *   // }
      * }
@@ -6044,6 +7563,17 @@ export namespace dataform_v1beta1 {
      * Required. The location in which to list repositories. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Move extends StandardParameters {
+    /**
+     * Required. The full resource name of the repository to move.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveRepositoryRequest;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Patch extends StandardParameters {
     /**
@@ -9712,6 +11242,7 @@ export namespace dataform_v1beta1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "dataEncryptionState": {},
+     *       //   "disableMoves": false,
      *       //   "internalMetadata": "my_internalMetadata",
      *       //   "name": "my_name",
      *       //   "privateResourceMetadata": {}
@@ -9724,6 +11255,7 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
+     *   //   "disableMoves": false,
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
      *   //   "privateResourceMetadata": {}
@@ -10455,6 +11987,7 @@ export namespace dataform_v1beta1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "dataEncryptionState": {},
+     *   //   "disableMoves": false,
      *   //   "internalMetadata": "my_internalMetadata",
      *   //   "name": "my_name",
      *   //   "privateResourceMetadata": {}
@@ -13423,6 +14956,443 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Creates a new TeamFolder in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.create({
+     *     // Required. The location in which to create the TeamFolder. Must be in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The ID to use for the TeamFolder, which will become the final component of the TeamFolder's resource name.
+     *     teamFolderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *       //   "displayName": "my_displayName",
+     *       //   "internalMetadata": "my_internalMetadata",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Teamfolders$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>;
+    create(
+      params: Params$Resource$Projects$Locations$Teamfolders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Teamfolders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamFolder>,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Teamfolders$Create,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TeamFolder>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Create
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Teamfolders$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/teamFolders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TeamFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TeamFolder>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single TeamFolder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.delete({
+     *     // Required. The TeamFolder's name.
+     *     name: 'projects/my-project/locations/my-location/teamFolders/my-teamFolder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Teamfolders$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Teamfolders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Teamfolders$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Teamfolders$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Teamfolders$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Fetches a single TeamFolder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.get({
+     *     // Required. The TeamFolder's name.
+     *     name: 'projects/my-project/locations/my-location/teamFolders/my-teamFolder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Teamfolders$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>;
+    get(
+      params: Params$Resource$Projects$Locations$Teamfolders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Teamfolders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamFolder>,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Teamfolders$Get,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TeamFolder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Get
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Teamfolders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TeamFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TeamFolder>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -13565,6 +15535,473 @@ export namespace dataform_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Updates a single TeamFolder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.patch({
+     *     // Identifier. The TeamFolder's name.
+     *     name: 'projects/my-project/locations/my-location/teamFolders/my-teamFolder',
+     *     // Optional. Specifies the fields to be updated in the Folder. If left unset, all fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *       //   "displayName": "my_displayName",
+     *       //   "internalMetadata": "my_internalMetadata",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creatorIamPrincipal": "my_creatorIamPrincipal",
+     *   //   "displayName": "my_displayName",
+     *   //   "internalMetadata": "my_internalMetadata",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Teamfolders$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Teamfolders$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Teamfolders$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TeamFolder>,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Teamfolders$Patch,
+      callback: BodyResponseCallback<Schema$TeamFolder>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$TeamFolder>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Patch
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TeamFolder>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Teamfolders$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TeamFolder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TeamFolder>(parameters);
+      }
+    }
+
+    /**
+     * Returns the contents of a given TeamFolder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.queryContents({
+     *     // Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: `display_name` (default), `create_time`, last_modified_time. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous `QueryTeamFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryTeamFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the team_folder whose contents to list. Format: `projects/x/locations/x/teamFolders/x`.
+     *     teamFolder:
+     *       'projects/my-project/locations/my-location/teamFolders/my-teamFolder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryContents(
+      params: Params$Resource$Projects$Locations$Teamfolders$Querycontents,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryContents(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Querycontents,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTeamFolderContentsResponse>>;
+    queryContents(
+      params: Params$Resource$Projects$Locations$Teamfolders$Querycontents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryContents(
+      params: Params$Resource$Projects$Locations$Teamfolders$Querycontents,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>,
+      callback: BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+    ): void;
+    queryContents(
+      params: Params$Resource$Projects$Locations$Teamfolders$Querycontents,
+      callback: BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+    ): void;
+    queryContents(
+      callback: BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+    ): void;
+    queryContents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Querycontents
+        | BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTeamFolderContentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTeamFolderContentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Querycontents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Teamfolders$Querycontents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+teamFolder}:queryContents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['teamFolder'],
+        pathParams: ['teamFolder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTeamFolderContentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTeamFolderContentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns all TeamFolders in a given location that the caller has access to and match the provided filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.teamFolders.search({
+     *     // Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     *     filter: 'placeholder-value',
+     *     // Required. Location in which to query TeamFolders. Format: `projects/x/locations/x`.
+     *     location: 'projects/my-project/locations/my-location',
+     *     // Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Teamfolders$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Projects$Locations$Teamfolders$Search,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchTeamFoldersResponse>>;
+    search(
+      params: Params$Resource$Projects$Locations$Teamfolders$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Teamfolders$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTeamFoldersResponse>,
+      callback: BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Teamfolders$Search,
+      callback: BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Teamfolders$Search
+        | BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchTeamFoldersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchTeamFoldersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Teamfolders$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Teamfolders$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+location}/teamFolders:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchTeamFoldersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchTeamFoldersResponse>(parameters);
       }
     }
 
@@ -13875,6 +16312,33 @@ export namespace dataform_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Teamfolders$Create extends StandardParameters {
+    /**
+     * Required. The location in which to create the TeamFolder. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * The ID to use for the TeamFolder, which will become the final component of the TeamFolder's resource name.
+     */
+    teamFolderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TeamFolder;
+  }
+  export interface Params$Resource$Projects$Locations$Teamfolders$Delete extends StandardParameters {
+    /**
+     * Required. The TeamFolder's name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Teamfolders$Get extends StandardParameters {
+    /**
+     * Required. The TeamFolder's name.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Teamfolders$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -13884,6 +16348,65 @@ export namespace dataform_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Teamfolders$Patch extends StandardParameters {
+    /**
+     * Identifier. The TeamFolder's name.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies the fields to be updated in the Folder. If left unset, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TeamFolder;
+  }
+  export interface Params$Resource$Projects$Locations$Teamfolders$Querycontents extends StandardParameters {
+    /**
+     * Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     */
+    filter?: string;
+    /**
+     * Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: `display_name` (default), `create_time`, last_modified_time. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `QueryTeamFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryTeamFolderContents`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the team_folder whose contents to list. Format: `projects/x/locations/x/teamFolders/x`.
+     */
+    teamFolder?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Teamfolders$Search extends StandardParameters {
+    /**
+     * Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter="display_name="MyFolder""`
+     */
+    filter?: string;
+    /**
+     * Required. Location in which to query TeamFolders. Format: `projects/x/locations/x`.
+     */
+    location?: string;
+    /**
+     * Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: - `orderBy="display_name"` - `orderBy="display_name desc"`
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Teamfolders$Setiampolicy extends StandardParameters {
     /**
