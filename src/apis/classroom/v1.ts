@@ -416,6 +416,10 @@ export namespace classroom_v1 {
      */
     section?: string | null;
     /**
+     * Optional. The subject of the course.
+     */
+    subject?: string | null;
+    /**
      * Information about a Drive Folder that is shared with all teachers of the course. This field will only be set for teachers of the course and domain administrators. Read-only.
      */
     teacherFolder?: Schema$DriveFolder;
@@ -1146,6 +1150,32 @@ export namespace classroom_v1 {
     rubrics?: Schema$Rubric[];
   }
   /**
+   * Response when listing students in a group.
+   */
+  export interface Schema$ListStudentGroupMembersResponse {
+    /**
+     * Token identifying the next page of results to return. If empty, no further results are available.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The student group members.
+     */
+    studentGroupMembers?: Schema$StudentGroupMember[];
+  }
+  /**
+   * Response when listing student groups.
+   */
+  export interface Schema$ListStudentGroupsResponse {
+    /**
+     * Token identifying the next page of results to return. If empty, no further results are available.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The student groups.
+     */
+    studentGroups?: Schema$StudentGroup[];
+  }
+  /**
    * Response when listing students.
    */
   export interface Schema$ListStudentsResponse {
@@ -1475,6 +1505,40 @@ export namespace classroom_v1 {
     submissionId?: string | null;
   }
   /**
+   * A student group in a course.
+   */
+  export interface Schema$StudentGroup {
+    /**
+     * The identifier of the course.
+     */
+    courseId?: string | null;
+    /**
+     * The identifier of the student group.
+     */
+    id?: string | null;
+    /**
+     * The title of the student group.
+     */
+    title?: string | null;
+  }
+  /**
+   * A student member in a student group.
+   */
+  export interface Schema$StudentGroupMember {
+    /**
+     * The identifier of the course.
+     */
+    courseId?: string | null;
+    /**
+     * The identifier of the student group.
+     */
+    studentGroupId?: string | null;
+    /**
+     * Identifier of the student.
+     */
+    userId?: string | null;
+  }
+  /**
    * Student submission for course work. `StudentSubmission` items are generated when a `CourseWork` item is created. Student submissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time.
    */
   export interface Schema$StudentSubmission {
@@ -1693,6 +1757,7 @@ export namespace classroom_v1 {
     courseWork: Resource$Courses$Coursework;
     courseWorkMaterials: Resource$Courses$Courseworkmaterials;
     posts: Resource$Courses$Posts;
+    studentGroups: Resource$Courses$Studentgroups;
     students: Resource$Courses$Students;
     teachers: Resource$Courses$Teachers;
     topics: Resource$Courses$Topics;
@@ -1705,6 +1770,7 @@ export namespace classroom_v1 {
         this.context
       );
       this.posts = new Resource$Courses$Posts(this.context);
+      this.studentGroups = new Resource$Courses$Studentgroups(this.context);
       this.students = new Resource$Courses$Students(this.context);
       this.teachers = new Resource$Courses$Teachers(this.context);
       this.topics = new Resource$Courses$Topics(this.context);
@@ -1761,6 +1827,7 @@ export namespace classroom_v1 {
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
      *       //   "section": "my_section",
+     *       //   "subject": "my_subject",
      *       //   "teacherFolder": {},
      *       //   "teacherGroupEmail": "my_teacherGroupEmail",
      *       //   "updateTime": "my_updateTime"
@@ -1787,6 +1854,7 @@ export namespace classroom_v1 {
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
      *   //   "section": "my_section",
+     *   //   "subject": "my_subject",
      *   //   "teacherFolder": {},
      *   //   "teacherGroupEmail": "my_teacherGroupEmail",
      *   //   "updateTime": "my_updateTime"
@@ -2072,6 +2140,7 @@ export namespace classroom_v1 {
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
      *   //   "section": "my_section",
+     *   //   "subject": "my_subject",
      *   //   "teacherFolder": {},
      *   //   "teacherGroupEmail": "my_teacherGroupEmail",
      *   //   "updateTime": "my_updateTime"
@@ -2514,6 +2583,7 @@ export namespace classroom_v1 {
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
      *       //   "section": "my_section",
+     *       //   "subject": "my_subject",
      *       //   "teacherFolder": {},
      *       //   "teacherGroupEmail": "my_teacherGroupEmail",
      *       //   "updateTime": "my_updateTime"
@@ -2540,6 +2610,7 @@ export namespace classroom_v1 {
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
      *   //   "section": "my_section",
+     *   //   "subject": "my_subject",
      *   //   "teacherFolder": {},
      *   //   "teacherGroupEmail": "my_teacherGroupEmail",
      *   //   "updateTime": "my_updateTime"
@@ -2691,6 +2762,7 @@ export namespace classroom_v1 {
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
      *       //   "section": "my_section",
+     *       //   "subject": "my_subject",
      *       //   "teacherFolder": {},
      *       //   "teacherGroupEmail": "my_teacherGroupEmail",
      *       //   "updateTime": "my_updateTime"
@@ -2717,6 +2789,7 @@ export namespace classroom_v1 {
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
      *   //   "section": "my_section",
+     *   //   "subject": "my_subject",
      *   //   "teacherFolder": {},
      *   //   "teacherGroupEmail": "my_teacherGroupEmail",
      *   //   "updateTime": "my_updateTime"
@@ -9486,7 +9559,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. `-` may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+     * Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. A hyphen (`-`) may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
      * @example
      * ```js
      * // Before running the sample:
@@ -14079,6 +14152,1158 @@ export namespace classroom_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AddOnAttachmentStudentSubmission;
+  }
+
+  export class Resource$Courses$Studentgroups {
+    context: APIRequestContext;
+    studentGroupMembers: Resource$Courses$Studentgroups$Studentgroupmembers;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.studentGroupMembers =
+        new Resource$Courses$Studentgroups$Studentgroupmembers(this.context);
+    }
+
+    /**
+     * Creates a student group for a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create the student group or for access errors. * `NOT_FOUND` if the course does not exist or the requesting user doesn't have access to the course. * `FAILED_PRECONDITION` if creating the student group would exceed the maximum number of student groups per course.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.create({
+     *     // Required. The identifier of the course.
+     *     courseId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "courseId": "my_courseId",
+     *       //   "id": "my_id",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "courseId": "my_courseId",
+     *   //   "id": "my_id",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Studentgroups$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Courses$Studentgroups$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentGroup>>;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentGroup>,
+      callback: BodyResponseCallback<Schema$StudentGroup>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Create,
+      callback: BodyResponseCallback<Schema$StudentGroup>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$StudentGroup>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Create
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Studentgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId'],
+        pathParams: ['courseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudentGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudentGroup>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested student group or for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.delete({
+     *     // Required. The identifier of the course containing the student group to delete.
+     *     courseId: 'placeholder-value',
+     *     // Required. The identifier of the student group to delete.
+     *     id: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Courses$Studentgroups$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Studentgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/studentGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'id'],
+        pathParams: ['courseId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of groups in a course. This method returns the following error codes: * `NOT_FOUND` if the course does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/classroom.rosters',
+     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.list({
+     *     // Required. The identifier of the course.
+     *     courseId: 'placeholder-value',
+     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum, which is currently set to 75 items. The server may return fewer than the specified number of results.
+     *     pageSize: 'placeholder-value',
+     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "studentGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Studentgroups$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Courses$Studentgroups$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListStudentGroupsResponse>>;
+    list(
+      params: Params$Resource$Courses$Studentgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Studentgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListStudentGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Studentgroups$List,
+      callback: BodyResponseCallback<Schema$ListStudentGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListStudentGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$List
+        | BodyResponseCallback<Schema$ListStudentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListStudentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListStudentGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListStudentGroupsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Studentgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/courses/{courseId}/studentGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId'],
+        pathParams: ['courseId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListStudentGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListStudentGroupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates one or more fields in a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested student group or for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.patch({
+     *     // Required. Identifier of the course.
+     *     courseId: 'placeholder-value',
+     *     // Required. Identifier of the student group.
+     *     id: 'placeholder-value',
+     *     // Required. Mask that identifies which fields on the student group to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields can be specified by teachers: * `title`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "courseId": "my_courseId",
+     *       //   "id": "my_id",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "courseId": "my_courseId",
+     *   //   "id": "my_id",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Courses$Studentgroups$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Courses$Studentgroups$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentGroup>>;
+    patch(
+      params: Params$Resource$Courses$Studentgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Studentgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentGroup>,
+      callback: BodyResponseCallback<Schema$StudentGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Courses$Studentgroups$Patch,
+      callback: BodyResponseCallback<Schema$StudentGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$StudentGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Patch
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudentGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Courses$Studentgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/courses/{courseId}/studentGroups/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'id'],
+        pathParams: ['courseId', 'id'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudentGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudentGroup>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Studentgroups$Create extends StandardParameters {
+    /**
+     * Required. The identifier of the course.
+     */
+    courseId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StudentGroup;
+  }
+  export interface Params$Resource$Courses$Studentgroups$Delete extends StandardParameters {
+    /**
+     * Required. The identifier of the course containing the student group to delete.
+     */
+    courseId?: string;
+    /**
+     * Required. The identifier of the student group to delete.
+     */
+    id?: string;
+  }
+  export interface Params$Resource$Courses$Studentgroups$List extends StandardParameters {
+    /**
+     * Required. The identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum, which is currently set to 75 items. The server may return fewer than the specified number of results.
+     */
+    pageSize?: number;
+    /**
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Courses$Studentgroups$Patch extends StandardParameters {
+    /**
+     * Required. Identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. Identifier of the student group.
+     */
+    id?: string;
+    /**
+     * Required. Mask that identifies which fields on the student group to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields can be specified by teachers: * `title`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StudentGroup;
+  }
+
+  export class Resource$Courses$Studentgroups$Studentgroupmembers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a student group member for a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create the student group or member for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group. * `ALREADY_EXISTS` if the student group member already exists. * `FAILED_PRECONDITION` if attempting to add a member to a student group that has reached its member limit.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.studentGroupMembers.create({
+     *     // Required. The identifier of the course.
+     *     courseId: 'placeholder-value',
+     *     // Required. The identifier of the student group.
+     *     studentGroupId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "courseId": "my_courseId",
+     *       //   "studentGroupId": "my_studentGroupId",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "courseId": "my_courseId",
+     *   //   "studentGroupId": "my_studentGroupId",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$StudentGroupMember>>;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$StudentGroupMember>,
+      callback: BodyResponseCallback<Schema$StudentGroupMember>
+    ): void;
+    create(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create,
+      callback: BodyResponseCallback<Schema$StudentGroupMember>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$StudentGroupMember>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create
+        | BodyResponseCallback<Schema$StudentGroupMember>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudentGroupMember>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudentGroupMember>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$StudentGroupMember>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'studentGroupId'],
+        pathParams: ['courseId', 'studentGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudentGroupMember>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudentGroupMember>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a student group member. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested student group member or for access errors. * `NOT_FOUND` if the student group member does not exist or the user does not have access to the student group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.studentGroupMembers.delete({
+     *     // Required. The identifier of the course containing the relevant student group.
+     *     courseId: 'placeholder-value',
+     *     // Required. The identifier of the student group containing the student group member to delete.
+     *     studentGroupId: 'placeholder-value',
+     *     // Required. The identifier of the student group member to delete.
+     *     userId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers/{userId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'studentGroupId', 'userId'],
+        pathParams: ['courseId', 'studentGroupId', 'userId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of students in a group. This method returns the following error codes: * `NOT_FOUND` if the course or student group does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const classroom = google.classroom('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/classroom.rosters',
+     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await classroom.courses.studentGroups.studentGroupMembers.list({
+     *     // Required. The identifier of the course.
+     *     courseId: 'placeholder-value',
+     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     *     pageSize: 'placeholder-value',
+     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The identifier of the student group.
+     *     studentGroupId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "studentGroupMembers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Courses$Studentgroups$Studentgroupmembers$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListStudentGroupMembersResponse>>;
+    list(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListStudentGroupMembersResponse>,
+      callback: BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Courses$Studentgroups$Studentgroupmembers$List,
+      callback: BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Courses$Studentgroups$Studentgroupmembers$List
+        | BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListStudentGroupMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListStudentGroupMembersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Courses$Studentgroups$Studentgroupmembers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Courses$Studentgroups$Studentgroupmembers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://classroom.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['courseId', 'studentGroupId'],
+        pathParams: ['courseId', 'studentGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListStudentGroupMembersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListStudentGroupMembersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Courses$Studentgroups$Studentgroupmembers$Create extends StandardParameters {
+    /**
+     * Required. The identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Required. The identifier of the student group.
+     */
+    studentGroupId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StudentGroupMember;
+  }
+  export interface Params$Resource$Courses$Studentgroups$Studentgroupmembers$Delete extends StandardParameters {
+    /**
+     * Required. The identifier of the course containing the relevant student group.
+     */
+    courseId?: string;
+    /**
+     * Required. The identifier of the student group containing the student group member to delete.
+     */
+    studentGroupId?: string;
+    /**
+     * Required. The identifier of the student group member to delete.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Courses$Studentgroups$Studentgroupmembers$List extends StandardParameters {
+    /**
+     * Required. The identifier of the course.
+     */
+    courseId?: string;
+    /**
+     * Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+     */
+    pageSize?: number;
+    /**
+     * nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The identifier of the student group.
+     */
+    studentGroupId?: string;
   }
 
   export class Resource$Courses$Students {

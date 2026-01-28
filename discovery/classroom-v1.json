@@ -1973,7 +1973,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. `-` may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.",
+                  "description": "Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. A hyphen (`-`) may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.",
                   "flatPath": "v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions",
                   "httpMethod": "GET",
                   "id": "classroom.courses.courseWork.studentSubmissions.list",
@@ -3175,6 +3175,265 @@
             }
           }
         },
+        "studentGroups": {
+          "methods": {
+            "create": {
+              "description": "Creates a student group for a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create the student group or for access errors. * `NOT_FOUND` if the course does not exist or the requesting user doesn't have access to the course. * `FAILED_PRECONDITION` if creating the student group would exceed the maximum number of student groups per course.",
+              "flatPath": "v1/courses/{courseId}/studentGroups",
+              "httpMethod": "POST",
+              "id": "classroom.courses.studentGroups.create",
+              "parameterOrder": [
+                "courseId"
+              ],
+              "parameters": {
+                "courseId": {
+                  "description": "Required. The identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/studentGroups",
+              "request": {
+                "$ref": "StudentGroup"
+              },
+              "response": {
+                "$ref": "StudentGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/classroom.rosters"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested student group or for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group.",
+              "flatPath": "v1/courses/{courseId}/studentGroups/{id}",
+              "httpMethod": "DELETE",
+              "id": "classroom.courses.studentGroups.delete",
+              "parameterOrder": [
+                "courseId",
+                "id"
+              ],
+              "parameters": {
+                "courseId": {
+                  "description": "Required. The identifier of the course containing the student group to delete.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "id": {
+                  "description": "Required. The identifier of the student group to delete.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/studentGroups/{id}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/classroom.rosters"
+              ]
+            },
+            "list": {
+              "description": "Returns a list of groups in a course. This method returns the following error codes: * `NOT_FOUND` if the course does not exist.",
+              "flatPath": "v1/courses/{courseId}/studentGroups",
+              "httpMethod": "GET",
+              "id": "classroom.courses.studentGroups.list",
+              "parameterOrder": [
+                "courseId"
+              ],
+              "parameters": {
+                "courseId": {
+                  "description": "Required. The identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum, which is currently set to 75 items. The server may return fewer than the specified number of results.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/studentGroups",
+              "response": {
+                "$ref": "ListStudentGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/classroom.rosters",
+                "https://www.googleapis.com/auth/classroom.rosters.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates one or more fields in a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested student group or for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied.",
+              "flatPath": "v1/courses/{courseId}/studentGroups/{id}",
+              "httpMethod": "PATCH",
+              "id": "classroom.courses.studentGroups.patch",
+              "parameterOrder": [
+                "courseId",
+                "id"
+              ],
+              "parameters": {
+                "courseId": {
+                  "description": "Required. Identifier of the course.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "id": {
+                  "description": "Required. Identifier of the student group.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. Mask that identifies which fields on the student group to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields can be specified by teachers: * `title`",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/courses/{courseId}/studentGroups/{id}",
+              "request": {
+                "$ref": "StudentGroup"
+              },
+              "response": {
+                "$ref": "StudentGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/classroom.rosters"
+              ]
+            }
+          },
+          "resources": {
+            "studentGroupMembers": {
+              "methods": {
+                "create": {
+                  "description": "Creates a student group member for a student group. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create the student group or member for access errors. * `NOT_FOUND` if the student group does not exist or the user does not have access to the student group. * `ALREADY_EXISTS` if the student group member already exists. * `FAILED_PRECONDITION` if attempting to add a member to a student group that has reached its member limit.",
+                  "flatPath": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers",
+                  "httpMethod": "POST",
+                  "id": "classroom.courses.studentGroups.studentGroupMembers.create",
+                  "parameterOrder": [
+                    "courseId",
+                    "studentGroupId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. The identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "studentGroupId": {
+                      "description": "Required. The identifier of the student group.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers",
+                  "request": {
+                    "$ref": "StudentGroupMember"
+                  },
+                  "response": {
+                    "$ref": "StudentGroupMember"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/classroom.rosters"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a student group member. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested student group member or for access errors. * `NOT_FOUND` if the student group member does not exist or the user does not have access to the student group.",
+                  "flatPath": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers/{userId}",
+                  "httpMethod": "DELETE",
+                  "id": "classroom.courses.studentGroups.studentGroupMembers.delete",
+                  "parameterOrder": [
+                    "courseId",
+                    "studentGroupId",
+                    "userId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. The identifier of the course containing the relevant student group.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "studentGroupId": {
+                      "description": "Required. The identifier of the student group containing the student group member to delete.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "userId": {
+                      "description": "Required. The identifier of the student group member to delete.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers/{userId}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/classroom.rosters"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of students in a group. This method returns the following error codes: * `NOT_FOUND` if the course or student group does not exist.",
+                  "flatPath": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers",
+                  "httpMethod": "GET",
+                  "id": "classroom.courses.studentGroups.studentGroupMembers.list",
+                  "parameterOrder": [
+                    "courseId",
+                    "studentGroupId"
+                  ],
+                  "parameters": {
+                    "courseId": {
+                      "description": "Required. The identifier of the course.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "studentGroupId": {
+                      "description": "Required. The identifier of the student group.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/courses/{courseId}/studentGroups/{studentGroupId}/studentGroupMembers",
+                  "response": {
+                    "$ref": "ListStudentGroupMembersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/classroom.rosters",
+                    "https://www.googleapis.com/auth/classroom.rosters.readonly"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "students": {
           "methods": {
             "create": {
@@ -4107,7 +4366,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260111",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4488,6 +4747,10 @@
         },
         "section": {
           "description": "Section of the course. For example, \"Period 2\". If set, this field must be a valid UTF-8 string and no longer than 2800 characters.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Optional. The subject of the course.",
           "type": "string"
         },
         "teacherFolder": {
@@ -5510,6 +5773,42 @@
       },
       "type": "object"
     },
+    "ListStudentGroupMembersResponse": {
+      "description": "Response when listing students in a group.",
+      "id": "ListStudentGroupMembersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token identifying the next page of results to return. If empty, no further results are available.",
+          "type": "string"
+        },
+        "studentGroupMembers": {
+          "description": "The student group members.",
+          "items": {
+            "$ref": "StudentGroupMember"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListStudentGroupsResponse": {
+      "description": "Response when listing student groups.",
+      "id": "ListStudentGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token identifying the next page of results to return. If empty, no further results are available.",
+          "type": "string"
+        },
+        "studentGroups": {
+          "description": "The student groups.",
+          "items": {
+            "$ref": "StudentGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListStudentSubmissionsResponse": {
       "description": "Response when listing student submissions.",
       "id": "ListStudentSubmissionsResponse",
@@ -5962,6 +6261,44 @@
       "properties": {
         "submissionId": {
           "description": "Requesting user's submission id to be used for grade passback and to identify the student when showing student work to the teacher. This is set exactly when `supportsStudentWork` is `true`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StudentGroup": {
+      "description": "A student group in a course.",
+      "id": "StudentGroup",
+      "properties": {
+        "courseId": {
+          "description": "The identifier of the course.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The identifier of the student group.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the student group.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StudentGroupMember": {
+      "description": "A student member in a student group.",
+      "id": "StudentGroupMember",
+      "properties": {
+        "courseId": {
+          "description": "The identifier of the course.",
+          "type": "string"
+        },
+        "studentGroupId": {
+          "description": "The identifier of the student group.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Identifier of the student.",
           "type": "string"
         }
       },
