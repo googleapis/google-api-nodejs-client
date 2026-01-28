@@ -539,6 +539,52 @@ export namespace aiplatform_v1 {
     measurement?: Schema$GoogleCloudAiplatformV1Measurement;
   }
   /**
+   * The aggregation result for the entire dataset and all metrics.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AggregationOutput {
+    /**
+     * One AggregationResult per metric.
+     */
+    aggregationResults?: Schema$GoogleCloudAiplatformV1AggregationResult[];
+    /**
+     * The dataset used for evaluation & aggregation.
+     */
+    dataset?: Schema$GoogleCloudAiplatformV1EvaluationDataset;
+  }
+  /**
+   * The aggregation result for a single metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AggregationResult {
+    /**
+     * Aggregation metric.
+     */
+    aggregationMetric?: string | null;
+    /**
+     * Results for bleu metric.
+     */
+    bleuMetricValue?: Schema$GoogleCloudAiplatformV1BleuMetricValue;
+    /**
+     * Result for code execution metric.
+     */
+    customCodeExecutionResult?: Schema$GoogleCloudAiplatformV1CustomCodeExecutionResult;
+    /**
+     * Results for exact match metric.
+     */
+    exactMatchMetricValue?: Schema$GoogleCloudAiplatformV1ExactMatchMetricValue;
+    /**
+     * Result for pairwise metric.
+     */
+    pairwiseMetricResult?: Schema$GoogleCloudAiplatformV1PairwiseMetricResult;
+    /**
+     * Result for pointwise metric.
+     */
+    pointwiseMetricResult?: Schema$GoogleCloudAiplatformV1PointwiseMetricResult;
+    /**
+     * Results for rouge metric.
+     */
+    rougeMetricValue?: Schema$GoogleCloudAiplatformV1RougeMetricValue;
+  }
+  /**
    * Used to assign specific AnnotationSpec to a particular area of a DataItem or the whole part of the DataItem.
    */
   export interface Schema$GoogleCloudAiplatformV1Annotation {
@@ -918,7 +964,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1AutoscalingMetricSpec {
     /**
-     * Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages`
+     * Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages` * `prometheus.googleapis.com/vertex_dcgm_fi_dev_gpu_util` * `prometheus.googleapis.com/vertex_vllm_gpu_cache_usage_perc` * `prometheus.googleapis.com/vertex_vllm_num_requests_waiting`
      */
     metricName?: string | null;
     /**
@@ -1258,6 +1304,10 @@ export namespace aiplatform_v1 {
      * Required. The format in which instances are given, must be one of the Model's supported_input_storage_formats.
      */
     instancesFormat?: string | null;
+    /**
+     * A Vertex Managed Dataset. Currently, only datasets of type Multimodal are supported.
+     */
+    vertexMultimodalDatasetSource?: Schema$GoogleCloudAiplatformV1VertexMultimodalDatasetSource;
   }
   /**
    * Configuration defining how to transform batch prediction input instances to the instances that the Model accepts.
@@ -1296,6 +1346,10 @@ export namespace aiplatform_v1 {
      * Required. The format in which Vertex AI gives the predictions, must be one of the Model's supported_output_storage_formats.
      */
     predictionsFormat?: string | null;
+    /**
+     * The details for a Vertex Multimodal Dataset that will be created for the output.
+     */
+    vertexMultimodalDatasetDestination?: Schema$GoogleCloudAiplatformV1VertexMultimodalDatasetDestination;
   }
   /**
    * Further describes this job's output. Supplements output_config.
@@ -1313,6 +1367,10 @@ export namespace aiplatform_v1 {
      * Output only. The full path of the Cloud Storage directory created, into which the prediction output is written.
      */
     gcsOutputDirectory?: string | null;
+    /**
+     * Output only. The resource name of the Vertex Managed Dataset created, into which the prediction output is written. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    vertexMultimodalDatasetName?: string | null;
   }
   /**
    * Details of operations that batch reads Feature values.
@@ -2644,6 +2702,15 @@ export namespace aiplatform_v1 {
     gcsSource?: Schema$GoogleCloudAiplatformV1GcsSource;
   }
   /**
+   * Result for custom code execution metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CustomCodeExecutionResult {
+    /**
+     * Output only. Custom code execution score.
+     */
+    score?: number | null;
+  }
+  /**
    * Specificies a metric that is populated by evaluating user-defined Python code.
    */
   export interface Schema$GoogleCloudAiplatformV1CustomCodeExecutionSpec {
@@ -3936,7 +4003,7 @@ export namespace aiplatform_v1 {
      */
     modelDeploymentMonitoringJob?: string | null;
     /**
-     * Output only. The resource name of the Endpoint.
+     * Identifier. The resource name of the Endpoint.
      */
     name?: string | null;
     /**
@@ -4156,6 +4223,19 @@ export namespace aiplatform_v1 {
      * Required. Config for evaluation output.
      */
     outputConfig?: Schema$GoogleCloudAiplatformV1OutputConfig;
+  }
+  /**
+   * The results from an evaluation run performed by the EvaluationService.
+   */
+  export interface Schema$GoogleCloudAiplatformV1EvaluateDatasetResponse {
+    /**
+     * Output only. Aggregation statistics derived from results of EvaluationService.
+     */
+    aggregationOutput?: Schema$GoogleCloudAiplatformV1AggregationOutput;
+    /**
+     * Output only. Output info for EvaluationService.
+     */
+    outputInfo?: Schema$GoogleCloudAiplatformV1OutputInfo;
   }
   /**
    * Request message for EvaluationService.EvaluateInstances.
@@ -12406,6 +12486,15 @@ export namespace aiplatform_v1 {
     guidance?: string | null;
   }
   /**
+   * Describes the info for output of EvaluationService.
+   */
+  export interface Schema$GoogleCloudAiplatformV1OutputInfo {
+    /**
+     * Output only. The full path of the Cloud Storage directory created, into which the evaluation results and aggregation results are written.
+     */
+    gcsOutputDirectory?: string | null;
+  }
+  /**
    * Input for pairwise metric.
    */
   export interface Schema$GoogleCloudAiplatformV1PairwiseMetricInput {
@@ -12642,7 +12731,7 @@ export namespace aiplatform_v1 {
      */
     mediaResolution?: Schema$GoogleCloudAiplatformV1PartMediaResolution;
     /**
-     * Optional. The text content of the part.
+     * Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.
      */
     text?: string | null;
     /**
@@ -12831,7 +12920,7 @@ export namespace aiplatform_v1 {
      */
     network?: string | null;
     /**
-     * The spec of the pipeline.
+     * A compiled definition of a pipeline, represented as a `JSON` object. Defines the structure of the pipeline, including its components, tasks, and parameters. This specification is generated by compiling a pipeline function defined in `Python` using the `Kubeflow Pipelines SDK`.
      */
     pipelineSpec?: {[key: string]: any} | null;
     /**
@@ -15253,7 +15342,7 @@ export namespace aiplatform_v1 {
      */
     pickleObjectGcsUri?: string | null;
     /**
-     * Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value is 3.10.
+     * Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
      */
     pythonVersion?: string | null;
     /**
@@ -15330,7 +15419,7 @@ export namespace aiplatform_v1 {
      */
     requirementsFile?: string | null;
     /**
-     * Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, default value is 3.10.
+     * Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
      */
     version?: string | null;
   }
@@ -22496,6 +22585,28 @@ export namespace aiplatform_v1 {
      * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
+  }
+  /**
+   * The details for a Vertex Multimodal Dataset output.
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexMultimodalDatasetDestination {
+    /**
+     * Optional. The destination of the underlying BigQuery table that will be created for the output Multimodal Dataset. If not specified, the BigQuery table will be created in a default BigQuery dataset.
+     */
+    bigqueryDestination?: Schema$GoogleCloudAiplatformV1BigQueryDestination;
+    /**
+     * Optional. Display name of the output dataset.
+     */
+    displayName?: string | null;
+  }
+  /**
+   * The Vertex Multimodal Dataset for the input content.
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexMultimodalDatasetSource {
+    /**
+     * Required. The resource name of the Vertex Dataset. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    datasetName?: string | null;
   }
   /**
    * Retrieve from Vertex RAG Store for grounding.
@@ -71280,7 +71391,7 @@ export namespace aiplatform_v1 {
      *
      *   // Do the magic
      *   const res = await aiplatform.projects.locations.endpoints.patch({
-     *     // Output only. The resource name of the Endpoint.
+     *     // Identifier. The resource name of the Endpoint.
      *     name: 'projects/my-project/locations/my-location/endpoints/my-endpoint',
      *     // Required. The update mask applies to the resource. See google.protobuf.FieldMask.
      *     updateMask: 'placeholder-value',
@@ -72588,7 +72699,7 @@ export namespace aiplatform_v1 {
      *
      *   // Do the magic
      *   const res = await aiplatform.projects.locations.endpoints.update({
-     *     // Output only. The resource name of the Endpoint.
+     *     // Identifier. The resource name of the Endpoint.
      *     name: 'projects/my-project/locations/my-location/endpoints/my-endpoint',
      *
      *     // Request body metadata
@@ -72866,7 +72977,7 @@ export namespace aiplatform_v1 {
   }
   export interface Params$Resource$Projects$Locations$Endpoints$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the Endpoint.
+     * Identifier. The resource name of the Endpoint.
      */
     name?: string;
     /**
@@ -72958,7 +73069,7 @@ export namespace aiplatform_v1 {
   }
   export interface Params$Resource$Projects$Locations$Endpoints$Update extends StandardParameters {
     /**
-     * Output only. The resource name of the Endpoint.
+     * Identifier. The resource name of the Endpoint.
      */
     name?: string;
 
@@ -122323,7 +122434,7 @@ export namespace aiplatform_v1 {
      *     await aiplatform.projects.locations.notebookRuntimeTemplates.patch({
      *       // The resource name of the NotebookRuntimeTemplate.
      *       name: 'projects/my-project/locations/my-location/notebookRuntimeTemplates/my-notebookRuntimeTemplate',
-     *       // Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: "${updated_field\}"\}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name`
+     *       // Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: "${updated_field\}"\}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name` * `software_config.custom_container_config.image_uri`
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -122859,7 +122970,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: "${updated_field\}"\}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name`
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: "${updated_field\}"\}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name` * `software_config.custom_container_config.image_uri`
      */
     updateMask?: string;
 
