@@ -154,6 +154,10 @@ export namespace accessapproval_v1 {
      */
     ancestorHasActiveKeyVersion?: boolean | null;
     /**
+     * Output only. Field to differentiate ancestor enrolled services from locally enrolled services.
+     */
+    ancestorsEnrolledServices?: Schema$EnrolledService[];
+    /**
      * Optional. Policy configuration for Access Approval that sets the operating mode. The available policies are Transparency, Streamlined Support, and Approval Required.
      */
     approvalPolicy?: Schema$CustomerApprovalApprovalPolicy;
@@ -601,6 +605,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
@@ -897,6 +902,7 @@ export namespace accessapproval_v1 {
      *       // {
      *       //   "activeKeyVersion": "my_activeKeyVersion",
      *       //   "ancestorHasActiveKeyVersion": false,
+     *       //   "ancestorsEnrolledServices": [],
      *       //   "approvalPolicy": {},
      *       //   "effectiveApprovalPolicy": {},
      *       //   "enrolledAncestor": false,
@@ -918,6 +924,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
@@ -2076,6 +2083,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
@@ -2372,6 +2380,7 @@ export namespace accessapproval_v1 {
      *       // {
      *       //   "activeKeyVersion": "my_activeKeyVersion",
      *       //   "ancestorHasActiveKeyVersion": false,
+     *       //   "ancestorsEnrolledServices": [],
      *       //   "approvalPolicy": {},
      *       //   "effectiveApprovalPolicy": {},
      *       //   "enrolledAncestor": false,
@@ -2393,6 +2402,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
@@ -3552,6 +3562,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
@@ -3848,6 +3859,7 @@ export namespace accessapproval_v1 {
      *       // {
      *       //   "activeKeyVersion": "my_activeKeyVersion",
      *       //   "ancestorHasActiveKeyVersion": false,
+     *       //   "ancestorsEnrolledServices": [],
      *       //   "approvalPolicy": {},
      *       //   "effectiveApprovalPolicy": {},
      *       //   "enrolledAncestor": false,
@@ -3869,6 +3881,7 @@ export namespace accessapproval_v1 {
      *   // {
      *   //   "activeKeyVersion": "my_activeKeyVersion",
      *   //   "ancestorHasActiveKeyVersion": false,
+     *   //   "ancestorsEnrolledServices": [],
      *   //   "approvalPolicy": {},
      *   //   "effectiveApprovalPolicy": {},
      *   //   "enrolledAncestor": false,
