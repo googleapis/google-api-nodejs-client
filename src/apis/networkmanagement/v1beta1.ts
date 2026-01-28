@@ -600,11 +600,11 @@ export namespace networkmanagement_v1beta1 {
      */
     loadBalancerType?: string | null;
     /**
-     * A VPC network URI.
+     * A VPC network URI. Used according to the `network_type`. Relevant only for the source endpoints.
      */
     network?: string | null;
     /**
-     * Type of the network where the endpoint is located. Applicable only to source endpoint, as destination network type can be inferred from the source.
+     * Type of the network where the endpoint is located. Relevant only for the source endpoints.
      */
     networkType?: string | null;
     /**
@@ -612,7 +612,7 @@ export namespace networkmanagement_v1beta1 {
      */
     port?: number | null;
     /**
-     * Project ID where the endpoint is located. The project ID can be derived from the URI if you provide a endpoint or network URI. The following are two cases where you may need to provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.
+     * Endpoint project ID. Used according to the `network_type`. Relevant only for the source endpoints.
      */
     projectId?: string | null;
     /**
@@ -831,6 +831,44 @@ export namespace networkmanagement_v1beta1 {
     internalIp?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Google Kubernetes Engine (GKE) Pod.
+   */
+  export interface Schema$GkePodInfo {
+    /**
+     * IP address of a GKE Pod. If the Pod is dual-stack, this is the IP address relevant to the trace.
+     */
+    ipAddress?: string | null;
+    /**
+     * URI of the network containing the GKE Pod.
+     */
+    networkUri?: string | null;
+    /**
+     * URI of a GKE Pod. For Pods in regional Clusters, the URI format is: `projects/{project\}/locations/{location\}/clusters/{cluster\}/k8s/namespaces/{namespace\}/pods/{pod\}` For Pods in zonal Clusters, the URI format is: `projects/{project\}/zones/{zone\}/clusters/{cluster\}/k8s/namespaces/{namespace\}/pods/{pod\}`
+     */
+    podUri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with ARRIVE_AT_GOOGLE_MANAGED_SERVICE state.
+   */
+  export interface Schema$GoogleManagedServiceInfo {
+    /**
+     * IP address of the Google-managed service endpoint.
+     */
+    ipAddress?: string | null;
+    /**
+     * URI of the Google-managed service endpoint network, it is empty if the IP address is a public IP address.
+     */
+    networkUri?: string | null;
+    /**
+     * Type of a Google-managed service.
+     */
+    serviceType?: string | null;
+    /**
+     * URI of the Google-managed service.
+     */
+    serviceUri?: string | null;
+  }
+  /**
    * For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths
    */
   export interface Schema$GoogleServiceInfo {
@@ -941,6 +979,19 @@ export namespace networkmanagement_v1beta1 {
      * URI of an Interconnect attachment.
      */
     uri?: string | null;
+  }
+  /**
+   * For display only. Contains information about why IP masquerading was skipped for the packet.
+   */
+  export interface Schema$IpMasqueradingSkippedInfo {
+    /**
+     * The matched non-masquerade IP range. Only set if reason is DESTINATION_IP_IN_CONFIGURED_NON_MASQUERADE_RANGE or DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE.
+     */
+    nonMasqueradeRange?: string | null;
+    /**
+     * Reason why IP masquerading was not applied.
+     */
+    reason?: string | null;
   }
   /**
    * Describes measured latency distribution.
@@ -1771,6 +1822,14 @@ export namespace networkmanagement_v1beta1 {
      */
     gkeMaster?: Schema$GKEMasterInfo;
     /**
+     * Display information of a Google Kubernetes Engine Pod.
+     */
+    gkePod?: Schema$GkePodInfo;
+    /**
+     * Display information of a Google-managed service.
+     */
+    googleManagedService?: Schema$GoogleManagedServiceInfo;
+    /**
      * Display information of a Google service
      */
     googleService?: Schema$GoogleServiceInfo;
@@ -1786,6 +1845,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of an interconnect attachment.
      */
     interconnectAttachment?: Schema$InterconnectAttachmentInfo;
+    /**
+     * Display information of the reason why GKE Pod IP masquerading was skipped.
+     */
+    ipMasqueradingSkipped?: Schema$IpMasqueradingSkippedInfo;
     /**
      * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */
