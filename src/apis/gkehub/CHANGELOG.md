@@ -1,5 +1,12 @@
 # Changelog
 
+## [26.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v26.0.1...gkehub-v26.1.0) (2026-01-28)
+
+
+### Features
+
+* **gkehub:** update the API ([0797023](https://github.com/googleapis/google-api-nodejs-client/commit/0797023c324d1ba47a2ff1c8b87a2350dbed2a87))
+
 ## [26.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v26.0.0...gkehub-v26.0.1) (2025-12-05)
 
 

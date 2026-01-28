@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v7.0.1...translate-v7.1.0) (2026-01-28)
+
+
+### Features
+
+* **translate:** update the API ([228e4bb](https://github.com/googleapis/google-api-nodejs-client/commit/228e4bb731c5cd89e08eb25f88e998f8d4a7cf1f))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v7.0.0...translate-v7.0.1) (2025-12-05)
 
 

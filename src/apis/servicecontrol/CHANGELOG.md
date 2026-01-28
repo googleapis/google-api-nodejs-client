@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v11.1.0...servicecontrol-v11.2.0) (2026-01-28)
+
+
+### Features
+
+* **servicecontrol:** update the API ([e8e57de](https://github.com/googleapis/google-api-nodejs-client/commit/e8e57deec71a34ab108e20cdc8fb3e4a548be703))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v11.0.1...servicecontrol-v11.1.0) (2025-12-15)
 
 

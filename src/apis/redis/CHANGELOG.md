@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v22.0.1...redis-v22.1.0) (2026-01-28)
+
+
+### Features
+
+* **redis:** update the API ([227cc1c](https://github.com/googleapis/google-api-nodejs-client/commit/227cc1c570a1483d0d6ee7c12b8a7fc27a44a488))
+
 ## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v22.0.0...redis-v22.0.1) (2025-12-05)
 
 

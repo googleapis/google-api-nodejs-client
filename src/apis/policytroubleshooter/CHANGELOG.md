@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/policytroubleshooter-v5.0.0...policytroubleshooter-v5.0.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **policytroubleshooter:** update the API ([d2d2857](https://github.com/googleapis/google-api-nodejs-client/commit/d2d2857ada7f283d556e738efd9cb86b8ce00297))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policytroubleshooter-v4.0.0...policytroubleshooter-v5.0.0) (2025-10-15)
 
 

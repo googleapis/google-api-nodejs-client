@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v8.0.2...oracledatabase-v8.0.3) (2026-01-28)
+
+
+### Bug Fixes
+
+* **oracledatabase:** update the API ([bc5b73d](https://github.com/googleapis/google-api-nodejs-client/commit/bc5b73dee1c9cde152034ad39911c868553df406))
+
 ## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v8.0.1...oracledatabase-v8.0.2) (2025-12-05)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v18.0.0...workstations-v18.1.0) (2026-01-28)
+
+
+### Features
+
+* **workstations:** update the API ([f924529](https://github.com/googleapis/google-api-nodejs-client/commit/f924529fd1dc94b425a2e2d7455def235507b24e))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v17.0.1...workstations-v18.0.0) (2025-12-15)
 
 

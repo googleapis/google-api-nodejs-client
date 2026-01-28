@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/solar",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "solar",
   "main": "build/index.js",
   "types": "build/index.d.ts",
