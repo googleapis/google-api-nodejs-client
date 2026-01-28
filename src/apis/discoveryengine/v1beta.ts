@@ -554,6 +554,19 @@ export namespace discoveryengine_v1beta {
     useStaticSecrets?: boolean | null;
   }
   /**
+   * Request for DataStoreService.AddPatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig {
@@ -1118,7 +1131,7 @@ export namespace discoveryengine_v1beta {
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent;
     /**
-     * Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple AssistantService.StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
+     * Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
      */
     replyId?: string | null;
   }
@@ -2372,6 +2385,15 @@ export namespace discoveryengine_v1beta {
     updateTime?: string | null;
   }
   /**
+   * Request for DataStoreService.DeletePatientFilters method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     */
+    dataStore?: string | null;
+  }
+  /**
    * Metadata for DeleteSchema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata {
@@ -2663,13 +2685,17 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -2758,6 +2784,52 @@ export namespace discoveryengine_v1beta {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -3059,6 +3131,10 @@ export namespace discoveryengine_v1beta {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings
@@ -3485,6 +3561,27 @@ export namespace discoveryengine_v1beta {
     vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
   }
   /**
+   * Metadata related to the progress of the various patient filter operations. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * The number of patient IDs added to the patient filter.
+     */
+    filtersAddedCount?: string | null;
+    /**
+     * The number of patient IDs removed from the patient filter.
+     */
+    filtersRemovedCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProject {
@@ -3530,9 +3627,21 @@ export namespace discoveryengine_v1beta {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -3896,6 +4005,32 @@ export namespace discoveryengine_v1beta {
     state?: string | null;
   }
   /**
+   * Request for DataStoreService.RemovePatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the list of patients to remove from the patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the list of IDs to remove will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
+  /**
+   * Request for DataStoreService.ReplacePatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the list of patients for the new patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
+  /**
    * Safety rating corresponding to the generated content.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSafetyRating {
@@ -4047,7 +4182,7 @@ export namespace discoveryengine_v1beta {
      */
     orderBy?: string | null;
     /**
-     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
      */
     pageCategories?: string[] | null;
     /**
@@ -4500,7 +4635,7 @@ export namespace discoveryengine_v1beta {
      */
     allowedFieldNames?: string[] | null;
     /**
-     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
     /**
@@ -5344,7 +5479,7 @@ export namespace discoveryengine_v1beta {
     userPseudoId?: string | null;
   }
   /**
-   * Specification to boost suggestions based on the condtion of the suggestion.
+   * Specification to boost suggestions based on the condition of the suggestion.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec {
     /**
@@ -8542,13 +8677,17 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -8629,6 +8768,52 @@ export namespace discoveryengine_v1beta {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -8923,6 +9108,10 @@ export namespace discoveryengine_v1beta {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * Identity Mapping Entry that maps an external identity to an internal identity.
@@ -9667,7 +9856,7 @@ export namespace discoveryengine_v1beta {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for UserLicenseService.ListLicenseConfigUsageStats method.
+   * Response message for UserLicenseService.ListLicenseConfigsUsageStats method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse {
     /**
@@ -9946,9 +10135,21 @@ export namespace discoveryengine_v1beta {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -10731,7 +10932,7 @@ export namespace discoveryengine_v1beta {
      */
     orderBy?: string | null;
     /**
-     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
      */
     pageCategories?: string[] | null;
     /**
@@ -11180,7 +11381,7 @@ export namespace discoveryengine_v1beta {
      */
     allowedFieldNames?: string[] | null;
     /**
-     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
     /**
@@ -11323,7 +11524,7 @@ export namespace discoveryengine_v1beta {
      */
     guidedSearchResult?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResult;
     /**
-     * Natural language query understanding information for the returned results.
+     * Output only. Natural language query understanding information for the returned results.
      */
     naturalLanguageQueryUnderstandingInfo?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfo;
     /**
@@ -13751,13 +13952,17 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -13838,6 +14043,52 @@ export namespace discoveryengine_v1beta {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -13937,6 +14188,10 @@ export namespace discoveryengine_v1beta {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings
@@ -14250,9 +14505,21 @@ export namespace discoveryengine_v1beta {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -33210,6 +33477,7 @@ export namespace discoveryengine_v1beta {
      *         //   "displayName": "my_displayName",
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
+     *         //   "knowledgeGraphConfig": {},
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
@@ -33533,6 +33801,7 @@ export namespace discoveryengine_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -33864,6 +34133,7 @@ export namespace discoveryengine_v1beta {
      *         //   "displayName": "my_displayName",
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
+     *         //   "knowledgeGraphConfig": {},
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
@@ -33889,6 +34159,7 @@ export namespace discoveryengine_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -34062,6 +34333,7 @@ export namespace discoveryengine_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -34238,6 +34510,7 @@ export namespace discoveryengine_v1beta {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",

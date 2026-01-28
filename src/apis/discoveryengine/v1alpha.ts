@@ -599,6 +599,19 @@ export namespace discoveryengine_v1alpha {
     useStaticSecrets?: boolean | null;
   }
   /**
+   * Request for DataStoreService.AddPatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
+  /**
    * Stores the definition of an agent that uses ADK and is deployed to Agent Engine (formerly known as Reasoning Engine).
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition {
@@ -658,7 +671,7 @@ export namespace discoveryengine_v1alpha {
     userPseudoId?: string | null;
   }
   /**
-   * Specification to boost suggestions based on the condtion of the suggestion.
+   * Specification to boost suggestions based on the condition of the suggestion.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec {
     /**
@@ -1020,6 +1033,10 @@ export namespace discoveryengine_v1alpha {
      */
     suspensionReason?: string | null;
     /**
+     * Output only. The timestamp when the agent was last updated.
+     */
+    updateTime?: string | null;
+    /**
      * Optional. Per-user annotations of the current caller for the agent.
      */
     userAnnotations?: Schema$GoogleCloudDiscoveryengineV1alphaUserAnnotations;
@@ -1162,6 +1179,19 @@ export namespace discoveryengine_v1alpha {
      * Required. The AlloyDB table to copy the data from with a length limit of 256 characters.
      */
     tableId?: string | null;
+  }
+  /**
+   * The customer controllable config for Analytics.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig {
+    /**
+     * Required. The resource name of the analytics customer config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/analytics/config`
+     */
+    name?: string | null;
+    /**
+     * Whether user-level metrics are enabled.
+     */
+    userLevelMetricsEnabled?: boolean | null;
   }
   /**
    * Defines an answer.
@@ -2145,7 +2175,7 @@ export namespace discoveryengine_v1alpha {
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent;
     /**
-     * Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple AssistantService.StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
+     * Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.
      */
     replyId?: string | null;
   }
@@ -2533,7 +2563,7 @@ export namespace discoveryengine_v1alpha {
      */
     pkceVerificationEnabled?: boolean | null;
     /**
-     * Required. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events`
+     * Optional. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events` If omitted, no additional scopes are requested beyond those required by the authorization uri. If set, it will overwrite the scopes in the authorization uri when acquiring user authorization.
      */
     scopes?: string[] | null;
     /**
@@ -2876,7 +2906,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBranch {
     /**
-     * Output only. Stistics describing a branch. This field is not populated in BranchView.BASIC view.
+     * Output only. Statistics describing a branch. This field is not populated in BranchView.BRANCH_VIEW_BASIC view.
      */
     branchStats?: Schema$GoogleCloudDiscoveryengineV1alphaBranchBranchStats;
     /**
@@ -4548,6 +4578,15 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Request for DataStoreService.DeletePatientFilters method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     */
+    dataStore?: string | null;
+  }
+  /**
    * Metadata for DeleteSchema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata {
@@ -5042,13 +5081,17 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -5137,6 +5180,52 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -5791,6 +5880,10 @@ export namespace discoveryengine_v1alpha {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * Identity Mapping Entry that maps an external identity to an internal identity.
@@ -6725,7 +6818,7 @@ export namespace discoveryengine_v1alpha {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for UserLicenseService.ListLicenseConfigUsageStats method.
+   * Response message for UserLicenseService.ListLicenseConfigsUsageStats method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse {
     /**
@@ -6978,6 +7071,27 @@ export namespace discoveryengine_v1alpha {
     totalPanels?: number | null;
   }
   /**
+   * Metadata related to the progress of the various patient filter operations. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * The number of patient IDs added to the patient filter.
+     */
+    filtersAddedCount?: string | null;
+    /**
+     * The number of patient IDs removed from the patient filter.
+     */
+    filtersRemovedCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Request for pausing training of an engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPauseEngineRequest {}
@@ -7057,9 +7171,21 @@ export namespace discoveryengine_v1alpha {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -7743,6 +7869,19 @@ export namespace discoveryengine_v1alpha {
     state?: string | null;
   }
   /**
+   * Request for DataStoreService.RemovePatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the list of patients to remove from the patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the list of IDs to remove will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
+  /**
    * Request message for CompletionService.RemoveSuggestion method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaRemoveSuggestionRequest {
@@ -7771,6 +7910,19 @@ export namespace discoveryengine_v1alpha {
    * Response message for CompletionService.RemoveSuggestion method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaRemoveSuggestionResponse {}
+  /**
+   * Request for DataStoreService.ReplacePatientFilter method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string | null;
+    /**
+     * Required. Names of the Group resources to use as a basis for the list of patients for the new patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    filterGroups?: string[] | null;
+  }
   /**
    * Defines a reply message to user.
    */
@@ -8202,7 +8354,7 @@ export namespace discoveryengine_v1alpha {
      */
     orderBy?: string | null;
     /**
-     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
      */
     pageCategories?: string[] | null;
     /**
@@ -8655,7 +8807,7 @@ export namespace discoveryengine_v1alpha {
      */
     allowedFieldNames?: string[] | null;
     /**
-     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
     /**
@@ -8798,7 +8950,7 @@ export namespace discoveryengine_v1alpha {
      */
     guidedSearchResult?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult;
     /**
-     * Natural language query understanding information for the returned results.
+     * Output only. Natural language query understanding information for the returned results.
      */
     naturalLanguageQueryUnderstandingInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfo;
     /**
@@ -10490,6 +10642,10 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
+     * Output only. The nodes associated with the Widget Config.
+     */
+    nodes?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigNode[];
+    /**
      * The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.
      */
     resultDisplayType?: string | null;
@@ -10585,7 +10741,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the collection. It should be collection resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     * The name of the collection. It should be collection resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
   }
@@ -10623,7 +10779,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
     /**
@@ -10652,7 +10808,7 @@ export namespace discoveryengine_v1alpha {
      */
     id?: string | null;
     /**
-     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.
+     * The name of the data store. It should be data store resource name Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.
      */
     name?: string | null;
   }
@@ -10703,6 +10859,35 @@ export namespace discoveryengine_v1alpha {
      * Image URL.
      */
     url?: string | null;
+  }
+  /**
+   * Represents a single reusable computational or logical unit.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigNode {
+    /**
+     * Output only. A detailed description of what the node does.
+     */
+    description?: string | null;
+    /**
+     * Output only. A human readable name for the node.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. An identifier or URL pointing to an icon representing this node type.
+     */
+    iconUrl?: string | null;
+    /**
+     * Output only. The output schema of the tool. This schema is expected to conform to the OpenAPI Schema standard (see https://spec.openapis.org/oas/v3.0.3.html/ and AIP-146). It describes the structure of the output produced by this node.
+     */
+    outputSchema?: {[key: string]: any} | null;
+    /**
+     * Output only. The parameter schema of the tool. This schema is expected to conform to the OpenAPI Schema standard (see https://spec.openapis.org/oas/v3.0.3.html and AIP-146). It describes the expected structure of the parameters that this node accepts.
+     */
+    parameterSchema?: {[key: string]: any} | null;
+    /**
+     * Output only. The type of the node.
+     */
+    type?: string | null;
   }
   /**
    * Describes widget UI branding settings.
@@ -10775,7 +10960,7 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -11967,13 +12152,17 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -12054,6 +12243,52 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -12212,6 +12447,10 @@ export namespace discoveryengine_v1alpha {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings
@@ -12626,9 +12865,21 @@ export namespace discoveryengine_v1alpha {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -12945,7 +13196,7 @@ export namespace discoveryengine_v1alpha {
      */
     orderBy?: string | null;
     /**
-     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '\>' character to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). For example, `Graphics Cards \> RTX\>4090 \> Founders Edition` where "RTX \> 4090" represents one level, can be rewritten as `Graphics Cards \> RTX_4090 \> Founders Edition`
      */
     pageCategories?: string[] | null;
     /**
@@ -13394,7 +13645,7 @@ export namespace discoveryengine_v1alpha {
      */
     allowedFieldNames?: string[] | null;
     /**
-     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.
      */
     extractedFilterBehavior?: string | null;
     /**
@@ -14854,13 +15105,17 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`
      */
     features?: {[key: string]: string} | null;
     /**
      * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
+    /**
+     * Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
+     */
+    knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig;
     /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
@@ -14941,6 +15196,52 @@ export namespace discoveryengine_v1alpha {
      * The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.
      */
     companyName?: string | null;
+  }
+  /**
+   * Configuration message for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig {
+    /**
+     * Specify entity types to support.
+     */
+    cloudKnowledgeGraphTypes?: string[] | null;
+    /**
+     * Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enableCloudKnowledgeGraph?: boolean | null;
+    /**
+     * Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.
+     */
+    enablePrivateKnowledgeGraph?: boolean | null;
+    /**
+     * Optional. Feature config for the Knowledge Graph.
+     */
+    featureConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig;
+    /**
+     * Specify entity types to support.
+     */
+    privateKnowledgeGraphTypes?: string[] | null;
+  }
+  /**
+   * Feature config for the Knowledge Graph.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig {
+    /**
+     * Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgAutoComplete?: boolean | null;
+    /**
+     * Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgEnrichment?: boolean | null;
+    /**
+     * Whether to disable the private KG for query UI chips. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUiChips?: boolean | null;
+    /**
+     * Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.
+     */
+    disablePrivateKgQueryUnderstanding?: boolean | null;
   }
   /**
    * Additional config specs for a Media Recommendation engine.
@@ -15040,6 +15341,10 @@ export namespace discoveryengine_v1alpha {
      * Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.
      */
     enableStaticIndexingForBatchIngestion?: boolean | null;
+    /**
+     * Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Group/{group_id\}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     */
+    initialFilterGroups?: string[] | null;
   }
   /**
    * IdentityMappingEntry LongRunningOperation metadata for IdentityMappingStoreService.ImportIdentityMappings and IdentityMappingStoreService.PurgeIdentityMappings
@@ -15353,9 +15658,21 @@ export namespace discoveryengine_v1alpha {
      */
     effectiveSearchQpmThreshold?: string | null;
     /**
+     * Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.
+     */
+    indexingCoreThresholdNextUpdateTime?: string | null;
+    /**
+     * Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.
+     */
+    searchQpmThresholdNextUpdateTime?: string | null;
+    /**
      * Optional. The start time of the currently active billing subscription.
      */
     startTime?: string | null;
+    /**
+     * Output only. The latest terminate effective time of search qpm and indexing core subscriptions.
+     */
+    terminateTime?: string | null;
   }
   /**
    * Customer provided configurations.
@@ -16198,7 +16515,7 @@ export namespace discoveryengine_v1alpha {
     names?: string[] | null;
   }
   /**
-   * Request for SourceService.BatchDeleteSourcesRequest method.
+   * Request for BatchDeleteSourcesRequest method.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest {
     /**
@@ -16254,9 +16571,17 @@ export namespace discoveryengine_v1alpha {
      */
     ingestionError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonIngestionError;
     /**
+     * Indicates that the source MIME type is blocked.
+     */
+    mimeTypeBlocked?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked;
+    /**
      * Indicates that the source is paywalled and cannot be ingested.
      */
     paywallError?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonPaywallError;
+    /**
+     * Indicates that the policy check failed.
+     */
+    policyCheckFailed?: Schema$GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed;
     /**
      * Indicates that the source is empty.
      */
@@ -16329,9 +16654,17 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonIngestionError {}
   /**
+   * Indicates that the source MIME type is blocked.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked {}
+  /**
    * Indicates that the source is paywalled and cannot be ingested.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonPaywallError {}
+  /**
+   * Indicates that the policy check failed.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed {}
   /**
    * Indicates that the source is empty.
    */
@@ -17864,7 +18197,7 @@ export namespace discoveryengine_v1alpha {
      *   const res = await discoveryengine.projects.patch({
      *     // Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      *     name: 'projects/my-project',
-     *     // Optional. The list of fields to update. Supported fields: * `customer_provided_config`
+     *     // Optional. The list of fields to update. Supported fields: * `customer_provided_config` * `customer_provided_config.notebooklm_config.observability_config`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -18333,7 +18666,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Optional. The list of fields to update. Supported fields: * `customer_provided_config`
+     * Optional. The list of fields to update. Supported fields: * `customer_provided_config` * `customer_provided_config.notebooklm_config.observability_config`
      */
     updateMask?: string;
 
@@ -24320,6 +24653,169 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Adds a group of patient IDs as a patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.addPatientFilter(
+     *       {
+     *         // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dataStore": "my_dataStore",
+     *           //   "filterGroups": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addPatientFilter(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+dataStore}:addPatientFilter').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Completes the specified user input with keyword suggestions.
      * @example
      * ```js
@@ -24816,6 +25312,167 @@ export namespace discoveryengine_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the entire patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.deletePatientFilter(
+     *       {
+     *         // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dataStore": "my_dataStore"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deletePatientFilter(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:deletePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
         context: this.context,
       };
       if (callback) {
@@ -25677,6 +26334,330 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Removes a group of patient IDs from the patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the list of patient IDs to remove will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.removePatientFilter(
+     *       {
+     *         // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dataStore": "my_dataStore",
+     *           //   "filterGroups": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removePatientFilter(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:removePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Replaces the patient filter for the data store. This method is essentially a combination of DeletePatientFilters and AddPatientFilter. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.replacePatientFilter(
+     *       {
+     *         // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dataStore": "my_dataStore",
+     *           //   "filterGroups": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    replacePatientFilter(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:replacePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Trains a custom model.
      * @example
      * ```js
@@ -26010,6 +26991,17 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Addpatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Completequery extends StandardParameters {
     /**
      * Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
@@ -26069,6 +27061,17 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Deletepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Get extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
@@ -26119,6 +27122,28 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDataStore;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Removepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Replacepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Traincustommodel extends StandardParameters {
     /**
@@ -26360,7 +27385,7 @@ export namespace discoveryengine_v1alpha {
      *       {
      *         // Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
      *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
-     *         // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *         // The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      *         view: 'placeholder-value',
      *       },
      *     );
@@ -26519,7 +27544,7 @@ export namespace discoveryengine_v1alpha {
      *         // Required. The parent data store resource name.
      *         parent:
      *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
-     *         // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *         // The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      *         view: 'placeholder-value',
      *       },
      *     );
@@ -26659,7 +27684,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     * The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      */
     view?: string;
   }
@@ -26669,7 +27694,7 @@ export namespace discoveryengine_v1alpha {
      */
     parent?: string;
     /**
-     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     * The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      */
     view?: string;
   }
@@ -41340,6 +42365,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},
@@ -41529,6 +42555,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "llmEnabled": false,
      *           //   "minimumDataTermAccepted": false,
      *           //   "name": "my_name",
+     *           //   "nodes": [],
      *           //   "resultDisplayType": "my_resultDisplayType",
      *           //   "solutionType": "my_solutionType",
      *           //   "uiBranding": {},
@@ -41573,6 +42600,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},
@@ -41824,6 +42852,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
+     *         //   "knowledgeGraphConfig": {},
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
@@ -42149,6 +43178,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -42637,6 +43667,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
+     *         //   "knowledgeGraphConfig": {},
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
@@ -42664,6 +43695,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -42839,6 +43871,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -43017,6 +44050,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
+     *   //   "knowledgeGraphConfig": {},
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
@@ -43561,6 +44595,323 @@ export namespace discoveryengine_v1alpha {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Gets the AnalyticsConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.analytics.getConfig(
+     *       {
+     *         // Required. The resource name of the analytics customer config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/analytics/config`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/analytics/config',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "userLevelMetricsEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getConfig(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    >;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    getConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the AnalyticsConfig for analytics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.analytics.updateConfig(
+     *       {
+     *         // Required. The resource name of the analytics customer config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/analytics/config`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/analytics/config',
+     *         // The list of fields of AnalyticsConfig to update. If not specified, the method will perform a full replacement.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name",
+     *           //   "userLevelMetricsEnabled": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "userLevelMetricsEnabled": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateConfig(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    >;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    updateConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+    ): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics extends StandardParameters {
@@ -43573,6 +44924,27 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Analytics$Getconfig extends StandardParameters {
+    /**
+     * Required. The resource name of the analytics customer config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/analytics/config`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Analytics$Updateconfig extends StandardParameters {
+    /**
+     * Required. The resource name of the analytics customer config. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/analytics/config`
+     */
+    name?: string;
+    /**
+     * The list of fields of AnalyticsConfig to update. If not specified, the method will perform a full replacement.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAnalyticsConfig;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
@@ -44285,7 +45657,7 @@ export namespace discoveryengine_v1alpha {
      *         languageCode: 'placeholder-value',
      *         // Optional. The maximum number of suggested prompts to return per agent.
      *         maxSuggestedPrompts: 'placeholder-value',
-     *         // Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     *         // Optional. Maximum number of AgentViews to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
      *         pageSize: 'placeholder-value',
      *         // Optional. A page token ListAvailableAgentViewsResponse.next_page_token, received from a previous AgentService.ListAvailableAgentViews call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAvailableAgentViews must match the call that provided the page token.
      *         pageToken: 'placeholder-value',
@@ -44825,7 +46197,7 @@ export namespace discoveryengine_v1alpha {
      */
     maxSuggestedPrompts?: number;
     /**
-     * Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
+     * Optional. Maximum number of AgentViews to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.
      */
     pageSize?: number;
     /**
@@ -45275,6 +46647,8 @@ export namespace discoveryengine_v1alpha {
      *       {
      *         // Required. The name of the Agent to disable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
      *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *         // Optional. The Revision ID of the Agent to disable. If not specified, the latest revision will be disabled.
+     *         revisionId: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -45449,6 +46823,8 @@ export namespace discoveryengine_v1alpha {
      *       {
      *         // Required. The name of the Agent to enable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
      *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *         // Optional. The Revision ID of the Agent to enable. If not specified, the latest revision will be enabled.
+     *         revisionId: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -46791,12 +48167,20 @@ export namespace discoveryengine_v1alpha {
      * Required. The name of the Agent to disable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
      */
     name?: string;
+    /**
+     * Optional. The Revision ID of the Agent to disable. If not specified, the latest revision will be disabled.
+     */
+    revisionId?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Enableagent extends StandardParameters {
     /**
      * Required. The name of the Agent to enable. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}/agents/{agent\}`
      */
     name?: string;
+    /**
+     * Optional. The Revision ID of the Agent to enable. If not specified, the latest revision will be enabled.
+     */
+    revisionId?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Get extends StandardParameters {
     /**
@@ -54511,6 +55895,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},
@@ -54700,6 +56085,7 @@ export namespace discoveryengine_v1alpha {
      *           //   "llmEnabled": false,
      *           //   "minimumDataTermAccepted": false,
      *           //   "name": "my_name",
+     *           //   "nodes": [],
      *           //   "resultDisplayType": "my_resultDisplayType",
      *           //   "solutionType": "my_solutionType",
      *           //   "uiBranding": {},
@@ -54744,6 +56130,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},
@@ -55298,6 +56685,167 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Adds a group of patient IDs as a patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.addPatientFilter({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     *       dataStore:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataStore": "my_dataStore",
+     *         //   "filterGroups": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Addpatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addPatientFilter(
+      params?: Params$Resource$Projects$Locations$Datastores$Addpatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Addpatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Addpatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Addpatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addPatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Addpatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Addpatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Addpatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+dataStore}:addPatientFilter').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Completes the specified user input with keyword suggestions.
      * @example
      * ```js
@@ -55788,6 +57336,165 @@ export namespace discoveryengine_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the entire patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.deletePatientFilter({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     *       dataStore:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataStore": "my_dataStore"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Deletepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deletePatientFilter(
+      params?: Params$Resource$Projects$Locations$Datastores$Deletepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Deletepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Deletepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Deletepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deletePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Deletepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Deletepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Deletepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:deletePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
         context: this.context,
       };
       if (callback) {
@@ -56640,6 +58347,326 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Removes a group of patient IDs from the patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the list of patient IDs to remove will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.removePatientFilter({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     *       dataStore:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataStore": "my_dataStore",
+     *         //   "filterGroups": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Removepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removePatientFilter(
+      params?: Params$Resource$Projects$Locations$Datastores$Removepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Removepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Removepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Removepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Removepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Removepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Removepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:removePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Replaces the patient filter for the data store. This method is essentially a combination of DeletePatientFilters and AddPatientFilter. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.replacePatientFilter({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     *       dataStore:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "dataStore": "my_dataStore",
+     *         //   "filterGroups": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Replacepatientfilter,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    replacePatientFilter(
+      params?: Params$Resource$Projects$Locations$Datastores$Replacepatientfilter,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Replacepatientfilter,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Replacepatientfilter,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      params: Params$Resource$Projects$Locations$Datastores$Replacepatientfilter,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    replacePatientFilter(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Replacepatientfilter
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Replacepatientfilter;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Replacepatientfilter;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+dataStore}:replacePatientFilter'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dataStore'],
+        pathParams: ['dataStore'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.
      * @example
      * ```js
@@ -56808,6 +58835,17 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datastores$Addpatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datastores$Completequery extends StandardParameters {
     /**
      * Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
@@ -56867,6 +58905,17 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datastores$Deletepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datastores$Get extends StandardParameters {
     /**
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
@@ -56917,6 +58966,28 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaDataStore;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Removepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datastores$Replacepatientfilter extends StandardParameters {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.
+     */
+    dataStore?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Updatedocumentprocessingconfig extends StandardParameters {
     /**
@@ -57145,7 +59216,7 @@ export namespace discoveryengine_v1alpha {
      *   const res = await discoveryengine.projects.locations.dataStores.branches.get({
      *     // Required. The name of the branch to retrieve. Format: `projects/x/locations/global/dataStores/default_data_store/branches/some_branch_id`. "default_branch" can be used as a special branch_id, it returns the default branch that has been set for the document.
      *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
-     *     // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *     // The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -57302,7 +59373,7 @@ export namespace discoveryengine_v1alpha {
      *       // Required. The parent data store resource name.
      *       parent:
      *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
-     *       // The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     *       // The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      *       view: 'placeholder-value',
      *     },
      *   );
@@ -57442,7 +59513,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     * The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      */
     view?: string;
   }
@@ -57452,7 +59523,7 @@ export namespace discoveryengine_v1alpha {
      */
     parent?: string;
     /**
-     * The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.
+     * The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.
      */
     view?: string;
   }
@@ -70123,6 +72194,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},
@@ -70311,6 +72383,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "llmEnabled": false,
      *         //   "minimumDataTermAccepted": false,
      *         //   "name": "my_name",
+     *         //   "nodes": [],
      *         //   "resultDisplayType": "my_resultDisplayType",
      *         //   "solutionType": "my_solutionType",
      *         //   "uiBranding": {},
@@ -70354,6 +72427,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "llmEnabled": false,
      *   //   "minimumDataTermAccepted": false,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "resultDisplayType": "my_resultDisplayType",
      *   //   "solutionType": "my_solutionType",
      *   //   "uiBranding": {},

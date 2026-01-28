@@ -9106,7 +9106,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260125",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -10494,7 +10494,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -10721,7 +10721,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -10762,7 +10762,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -11613,7 +11613,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -11631,6 +11631,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
@@ -11748,6 +11752,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11924,6 +11984,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12398,9 +12465,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -13492,6 +13577,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest": {
+      "description": "Request for DataStoreService.AddPatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig": {
       "description": "Configuration data for advance site search.",
       "id": "GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig",
@@ -14373,7 +14476,7 @@
           "description": "Possibly grounded response text or media from the assistant."
         },
         "replyId": {
-          "description": "Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple AssistantService.StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.",
+          "description": "Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.",
           "readOnly": true,
           "type": "string"
         }
@@ -15543,7 +15646,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -15770,7 +15873,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -15811,7 +15914,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -16339,6 +16442,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest": {
+      "description": "Request for DataStoreService.DeletePatientFilters method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata": {
       "description": "Metadata for DeleteSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata",
@@ -16739,7 +16853,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -16757,6 +16871,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
@@ -16883,6 +17001,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -17453,6 +17627,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -18074,6 +18255,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata": {
+      "description": "Metadata related to the progress of the various patient filter operations. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "filtersAddedCount": {
+          "description": "The number of patient IDs added to the patient filter.",
+          "format": "int64",
+          "type": "string"
+        },
+        "filtersRemovedCount": {
+          "description": "The number of patient IDs removed from the patient filter.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaProject": {
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1alphaProject",
@@ -18129,9 +18337,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -18636,6 +18862,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest": {
+      "description": "Request for DataStoreService.RemovePatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the list of patients to remove from the patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the list of IDs to remove will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest": {
+      "description": "Request for DataStoreService.ReplacePatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the list of patients for the new patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSafetyRating": {
       "description": "Safety rating corresponding to the generated content.",
       "id": "GoogleCloudDiscoveryengineV1alphaSafetyRating",
@@ -18865,7 +19127,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -19510,7 +19772,7 @@
           "type": "array"
         },
         "extractedFilterBehavior": {
-          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
             "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
             "HARD_FILTER",
@@ -20437,7 +20699,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec": {
-      "description": "Specification to boost suggestions based on the condtion of the suggestion.",
+      "description": "Specification to boost suggestions based on the condition of the suggestion.",
       "id": "GoogleCloudDiscoveryengineV1betaAdvancedCompleteQueryRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
@@ -25026,7 +25288,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -25044,6 +25306,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
@@ -25161,6 +25427,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -25599,6 +25921,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -26626,7 +26955,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse": {
-      "description": "Response message for UserLicenseService.ListLicenseConfigUsageStats method.",
+      "description": "Response message for UserLicenseService.ListLicenseConfigsUsageStats method.",
       "id": "GoogleCloudDiscoveryengineV1betaListLicenseConfigsUsageStatsResponse",
       "properties": {
         "licenseConfigUsageStats": {
@@ -27003,9 +27332,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -28054,7 +28401,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -28695,7 +29042,7 @@
           "type": "array"
         },
         "extractedFilterBehavior": {
-          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
             "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
             "HARD_FILTER",
@@ -28951,7 +29298,8 @@
         },
         "naturalLanguageQueryUnderstandingInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfo",
-          "description": "Natural language query understanding information for the returned results."
+          "description": "Output only. Natural language query understanding information for the returned results.",
+          "readOnly": true
         },
         "nextPageToken": {
           "description": "A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
