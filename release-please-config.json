@@ -320,6 +320,8 @@
     "src/apis/cloudcommerceprocurement": {},
     "src/apis/datamanager": {},
     "src/apis/chromewebstore": {},
-    "src/apis/appsmarket": {}
+    "src/apis/appsmarket": {},
+    "src/apis/threatintelligence": {},
+    "src/apis/hypercomputecluster": {}
   }
 }
