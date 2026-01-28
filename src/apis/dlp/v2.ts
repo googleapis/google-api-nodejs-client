@@ -181,6 +181,57 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ActivateJobTriggerRequest {}
   /**
+   * AdjustmentRule condition for image findings. This rule is silently ignored if the content being inspected is not an image.
+   */
+  export interface Schema$GooglePrivacyDlpV2AdjustByImageFindings {
+    /**
+     * Specifies the required spatial relationship between the bounding boxes of the target finding and the context infoType findings.
+     */
+    imageContainmentType?: Schema$GooglePrivacyDlpV2ImageContainmentType;
+    /**
+     * A list of image-supported infoTypes—excluding [document infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the adjustment rule. Sensitive Data Protection adjusts the likelihood of an image finding if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, you can create a rule to adjust the likelihood of a `US_PASSPORT` finding if it is enclosed by a finding of `OBJECT_TYPE/PERSON/PASSPORT`. To configure this, set `US_PASSPORT` in `InspectionRuleSet.info_types`. Add an `adjustment_rule` with an `adjust_by_image_findings.info_types` that contains `OBJECT_TYPE/PERSON/PASSPORT` and `image_containment_type` set to `encloses`. In this case, the likelihood of the `US_PASSPORT` finding is adjusted, but the likelihood of the `OBJECT_TYPE/PERSON/PASSPORT` finding is not.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+    /**
+     * Required. Minimum likelihood of the `adjust_by_image_findings.info_types` finding. If the likelihood is lower than this value, Sensitive Data Protection doesn't adjust the likelihood of the `InspectionRuleSet.info_types` finding.
+     */
+    minLikelihood?: string | null;
+  }
+  /**
+   * AdjustmentRule condition for matching infoTypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2AdjustByMatchingInfoTypes {
+    /**
+     * Sensitive Data Protection adjusts the likelihood of a finding if that finding also matches one of these infoTypes. For example, you can create a rule to adjust the likelihood of a `PHONE_NUMBER` finding if the string is found within a document that is classified as `DOCUMENT_TYPE/HR/RESUME`. To configure this, set `PHONE_NUMBER` in `InspectionRuleSet.info_types`. Add an `adjustment_rule` with an `adjust_by_matching_info_types.info_types` that contains `DOCUMENT_TYPE/HR/RESUME`. In this case, the likelihood of the `PHONE_NUMBER` finding is adjusted, but the likelihood of the `DOCUMENT_TYPE/HR/RESUME` finding is not.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+    /**
+     * How the adjustment rule is applied. Only MATCHING_TYPE_PARTIAL_MATCH is supported: - Partial match: adjusts the findings of infoTypes specified in the inspection rule when they have a nonempty intersection with a finding of an infoType specified in this adjustment rule.
+     */
+    matchingType?: string | null;
+    /**
+     * Required. Minimum likelihood of the `adjust_by_matching_info_types.info_types` finding. If the likelihood is lower than this value, Sensitive Data Protection doesn't adjust the likelihood of the `InspectionRuleSet.info_types` finding.
+     */
+    minLikelihood?: string | null;
+  }
+  /**
+   * Rule that specifies conditions when a certain infoType's finding details should be adjusted.
+   */
+  export interface Schema$GooglePrivacyDlpV2AdjustmentRule {
+    /**
+     * AdjustmentRule condition for image findings.
+     */
+    adjustByImageFindings?: Schema$GooglePrivacyDlpV2AdjustByImageFindings;
+    /**
+     * Set of infoTypes for which findings would affect this rule.
+     */
+    adjustByMatchingInfoTypes?: Schema$GooglePrivacyDlpV2AdjustByMatchingInfoTypes;
+    /**
+     * Likelihood adjustment to apply to the infoType.
+     */
+    likelihoodAdjustment?: Schema$GooglePrivacyDlpV2LikelihoodAdjustment;
+  }
+  /**
    * Apply transformation to all findings.
    */
   export interface Schema$GooglePrivacyDlpV2AllInfoTypes {}
@@ -2279,6 +2330,10 @@ export namespace dlp_v2 {
     signals?: string[] | null;
   }
   /**
+   * Defines a condition where one bounding box encloses another.
+   */
+  export interface Schema$GooglePrivacyDlpV2Encloses {}
+  /**
    * An entity in a dataset is a field or set of fields that correspond to a single person. For example, in medical records the `EntityId` might be a patient identifier, or for financial records it might be an account identifier. This message is used when generalizations or analysis must take into account that multiple rows correspond to the same entity.
    */
   export interface Schema$GooglePrivacyDlpV2EntityId {
@@ -2318,6 +2373,19 @@ export namespace dlp_v2 {
     proximity?: Schema$GooglePrivacyDlpV2Proximity;
   }
   /**
+   * The rule to exclude image findings based on spatial relationships with other image findings. For example, exclude an image finding if it overlaps with another image finding. This rule is silently ignored if the content being inspected is not an image.
+   */
+  export interface Schema$GooglePrivacyDlpV2ExcludeByImageFindings {
+    /**
+     * Specifies the required spatial relationship between the bounding boxes of the target finding and the context infoType findings.
+     */
+    imageContainmentType?: Schema$GooglePrivacyDlpV2ImageContainmentType;
+    /**
+     * A list of image-supported infoTypes—excluding [document infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to be used as context for the exclusion rule. A finding is excluded if its bounding box has the specified spatial relationship (defined by `image_containment_type`) with a finding of an infoType in this list. For example, if `InspectionRuleSet.info_types` includes `OBJECT_TYPE/PERSON` and this `exclusion_rule` specifies `info_types` as `OBJECT_TYPE/PERSON/PASSPORT` with `image_containment_type` set to `encloses`, then `OBJECT_TYPE/PERSON` findings will be excluded if they are fully contained within the bounding box of an `OBJECT_TYPE/PERSON/PASSPORT` finding.
+     */
+    infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
+  }
+  /**
    * List of excluded infoTypes.
    */
   export interface Schema$GooglePrivacyDlpV2ExcludeInfoTypes {
@@ -2338,6 +2406,10 @@ export namespace dlp_v2 {
      * Drop if the hotword rule is contained in the proximate context. For tabular data, the context includes the column name.
      */
     excludeByHotword?: Schema$GooglePrivacyDlpV2ExcludeByHotword;
+    /**
+     * Exclude findings based on image containment rules. For example, exclude an image finding if it overlaps with another image finding.
+     */
+    excludeByImageFindings?: Schema$GooglePrivacyDlpV2ExcludeByImageFindings;
     /**
      * Set of infoTypes for which findings would affect this rule.
      */
@@ -2724,6 +2796,10 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
+   * Defines a condition where one bounding box is fully inside another.
+   */
+  export interface Schema$GooglePrivacyDlpV2FullyInside {}
+  /**
    * Processing occurs in the global region.
    */
   export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
@@ -2841,6 +2917,23 @@ export namespace dlp_v2 {
      * If the container is a table, additional information to make findings meaningful such as the columns that are primary keys.
      */
     tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
+  }
+  /**
+   * Specifies the relationship between bounding boxes for image findings.
+   */
+  export interface Schema$GooglePrivacyDlpV2ImageContainmentType {
+    /**
+     * The context finding's bounding box must fully contain the target finding's bounding box.
+     */
+    encloses?: Schema$GooglePrivacyDlpV2Encloses;
+    /**
+     * The context finding's bounding box must be fully inside the target finding's bounding box.
+     */
+    fullyInside?: Schema$GooglePrivacyDlpV2FullyInside;
+    /**
+     * The context finding's bounding box and the target finding's bounding box must have a non-zero intersection.
+     */
+    overlaps?: Schema$GooglePrivacyDlpV2Overlap;
   }
   /**
    * Configure image processing to fall back to any of the following processing options if image processing is unavailable in the original request location.
@@ -2965,6 +3058,10 @@ export namespace dlp_v2 {
      * A sample that is a true positive for this infoType.
      */
     example?: string | null;
+    /**
+     * The launch status of the infoType.
+     */
+    launchStatus?: string | null;
     /**
      * Locations at which this feature can be used. May change over time.
      */
@@ -3152,6 +3249,10 @@ export namespace dlp_v2 {
    * A single inspection rule to be applied to infoTypes, specified in `InspectionRuleSet`.
    */
   export interface Schema$GooglePrivacyDlpV2InspectionRule {
+    /**
+     * Adjustment rule.
+     */
+    adjustmentRule?: Schema$GooglePrivacyDlpV2AdjustmentRule;
     /**
      * Exclusion rule.
      */
@@ -3919,6 +4020,10 @@ export namespace dlp_v2 {
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
+  /**
+   * Defines a condition for overlapping bounding boxes.
+   */
+  export interface Schema$GooglePrivacyDlpV2Overlap {}
   /**
    * Datastore partition ID. A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty. A partition ID contains several dimensions: project ID and namespace ID.
    */
