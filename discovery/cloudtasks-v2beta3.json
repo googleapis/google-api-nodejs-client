@@ -797,7 +797,7 @@
       }
     }
   },
-  "revision": "20251021",
+  "revision": "20260115",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -1453,7 +1453,7 @@
           "readOnly": true
         },
         "taskTtl": {
-          "description": "The maximum amount of time that a task will be retained in this queue. After a task has lived for `task_ttl`, the task will be deleted regardless of whether it was dispatched or not. The minimum value is 10 days. The maximum value is 10 years. The value must be given as a string that indicates the length of time (in seconds) followed by `s` (for \"seconds\"). For more information on the format, see the documentation for [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration). Queues created by Cloud Tasks have a default `task_ttl` of 31 days. . Queues created by queue.yaml/xml have a fixed `task_ttl` of the maximum duration, because there is a [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for these queues.",
+          "description": "The maximum amount of time that a task will be retained in this queue. After a task has lived for `task_ttl`, the task will be deleted regardless of whether it was dispatched or not. The minimum value is 10 days. The maximum value is 10 years. The value must be given as a string that indicates the length of time (in seconds) followed by `s` (for \"seconds\"). For more information on the format, see the documentation for [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration). Queues created by Cloud Tasks have a default `task_ttl` of 31 days. . Queues created by queue.yaml/xml have a fixed `task_ttl` of the maximum duration, because there is a [storage quota](https://docs.cloud.google.com/appengine/docs/standard/quotas#Task_Queue) for these queues.",
           "format": "google-duration",
           "type": "string"
         },
