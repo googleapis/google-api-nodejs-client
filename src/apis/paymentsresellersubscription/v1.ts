@@ -1658,7 +1658,7 @@ export namespace paymentsresellersubscription_v1 {
      *   const res = await paymentsresellersubscription.partners.subscriptions.create({
      *     // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      *     parent: 'partners/my-partner',
-     *     // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *     // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription with the same ID already exists, the creation fails with an `ALREADY_EXISTS` error.
      *     subscriptionId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2309,7 +2309,7 @@ export namespace paymentsresellersubscription_v1 {
      *       'cycleOptions.initialCycleDuration.unit': 'placeholder-value',
      *       // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      *       parent: 'partners/my-partner',
-     *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription with the same ID already exists, the creation fails with an `ALREADY_EXISTS` error.
      *       subscriptionId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2933,7 +2933,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     parent?: string;
     /**
-     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription with the same ID already exists, the creation fails with an `ALREADY_EXISTS` error.
      */
     subscriptionId?: string;
 
@@ -2984,7 +2984,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     parent?: string;
     /**
-     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription with the same ID already exists, the creation fails with an `ALREADY_EXISTS` error.
      */
     subscriptionId?: string;
 
