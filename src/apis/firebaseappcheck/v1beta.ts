@@ -392,6 +392,10 @@ export namespace firebaseappcheck_v1beta {
      */
     customToken?: string | null;
     /**
+     * Optional. When `limited_use` is set to `true`, this field specifies the desired `jti` claim (Section 4.1.7 of RFC 7519) in the returned App Check token. *Limited use* App Check tokens with the same `jti` will be counted as the same token for the purposes of replay protection. An error is returned if this field is specified without setting `limited_use` to `true`. The size of this field is limited to 500 bytes. If specified, its length must be at least 16 bytes. If this field is omitted or is empty and `limited_use` is set to `true`, a randomly generated `jti` claim with length between 16 and 500 bytes (inclusive) will be used in the returned App Check token. Leaving this field empty is only recommended if your custom attestation provider itself is not vulnerable to replay attacks. When `limited_use` is set to `false`, neither the presence nor the contents of the `jti` claim in the returned App Check token is specified. To ensure that the returned App Check token is eligible for limited use functionality, set `limited_use` to `true`.
+     */
+    jti?: string | null;
+    /**
      * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
@@ -2277,6 +2281,7 @@ export namespace firebaseappcheck_v1beta {
      *       // request body parameters
      *       // {
      *       //   "customToken": "my_customToken",
+     *       //   "jti": "my_jti",
      *       //   "limitedUse": false
      *       // }
      *     },
