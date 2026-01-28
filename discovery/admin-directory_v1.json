@@ -4689,7 +4689,7 @@
       }
     }
   },
-  "revision": "20251124",
+  "revision": "20260113",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6376,6 +6376,10 @@
       "description": "Directory users guest creation request message.",
       "id": "DirectoryUsersCreateGuestRequest",
       "properties": {
+        "customer": {
+          "description": "Optional. Immutable ID of the Google Workspace account.",
+          "type": "string"
+        },
         "primaryGuestEmail": {
           "description": "Immutable. External email of the guest user being created.",
           "type": "string"
