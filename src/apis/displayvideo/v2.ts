@@ -3122,7 +3122,7 @@ export namespace displayvideo_v2 {
     integrationCode?: string | null;
   }
   /**
-   * An inventory source.
+   * An inventory source. Next ID: 22
    */
   export interface Schema$InventorySource {
     /**
