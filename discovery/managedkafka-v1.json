@@ -866,6 +866,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression for the result. Only supports filtering by topic name as a key in the `topics` map.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned.",
                           "format": "int32",
@@ -3181,7 +3186,7 @@
       }
     }
   },
-  "revision": "20251212",
+  "revision": "20260122",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -3449,13 +3454,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "A state was not specified.",
             "The cluster is being created.",
             "The cluster is active.",
-            "The cluster is being deleted."
+            "The cluster is being deleted.",
+            "The cluster is being updated."
           ],
           "readOnly": true,
           "type": "string"
