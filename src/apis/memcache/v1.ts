@@ -197,7 +197,7 @@ export namespace memcache_v1 {
    */
   export interface Schema$GetTagsRequest {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
   }
@@ -206,17 +206,17 @@ export namespace memcache_v1 {
    */
   export interface Schema$GetTagsResponse {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
      * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * A checksum based on the current bindings. This field is always set in server responses.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * Metadata for the given google.cloud.location.Location.
@@ -644,7 +644,7 @@ export namespace memcache_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -895,7 +895,11 @@ export namespace memcache_v1 {
    */
   export interface Schema$SetTagsRequest {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
@@ -906,27 +910,23 @@ export namespace memcache_v1 {
      * Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * Response message for SetTags.
    */
   export interface Schema$SetTagsResponse {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
      * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * A checksum based on the current bindings. This field is always set in server responses.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1214,7 +1214,7 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1340,7 +1340,7 @@ export namespace memcache_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1982,6 +1982,145 @@ export namespace memcache_v1 {
     }
 
     /**
+     * Returns tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.getTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getTags(
+      params: Params$Resource$Projects$Locations$Instances$Gettags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getTags(
+      params?: Params$Resource$Projects$Locations$Instances$Gettags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>;
+    getTags(
+      params: Params$Resource$Projects$Locations$Instances$Gettags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Instances$Gettags,
+      options: MethodOptions | BodyResponseCallback<Schema$GetTagsResponse>,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(
+      params: Params$Resource$Projects$Locations$Instances$Gettags,
+      callback: BodyResponseCallback<Schema$GetTagsResponse>
+    ): void;
+    getTags(callback: BodyResponseCallback<Schema$GetTagsResponse>): void;
+    getTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Gettags
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Gettags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Gettags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://memcache.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Instances in a given location.
      * @example
      * ```js
@@ -2455,6 +2594,156 @@ export namespace memcache_v1 {
     }
 
     /**
+     * Updates tags directly bound to a GCP resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.setTags({
+     *     // Required. The full resource name of the service resource.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "requestId": "my_requestId",
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "tags": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setTags(
+      params: Params$Resource$Projects$Locations$Instances$Settags,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setTags(
+      params?: Params$Resource$Projects$Locations$Instances$Settags,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>;
+    setTags(
+      params: Params$Resource$Projects$Locations$Instances$Settags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Instances$Settags,
+      options: MethodOptions | BodyResponseCallback<Schema$SetTagsResponse>,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(
+      params: Params$Resource$Projects$Locations$Instances$Settags,
+      callback: BodyResponseCallback<Schema$SetTagsResponse>
+    ): void;
+    setTags(callback: BodyResponseCallback<Schema$SetTagsResponse>): void;
+    setTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Settags
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SetTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SetTagsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Settags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Settags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://memcache.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setTags').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SetTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SetTagsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates the defined Memcached parameters for an existing instance. This method only stages the parameters, it must be followed by `ApplyParameters` to apply the parameters to nodes of the Memcached instance.
      * @example
      * ```js
@@ -2793,6 +3082,12 @@ export namespace memcache_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Gettags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Instances$List extends StandardParameters {
     /**
      * List filter. For example, exclude all Memcached instances with name as my-instance by specifying `"name != my-instance"`.
@@ -2840,6 +3135,17 @@ export namespace memcache_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RescheduleMaintenanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Settags extends StandardParameters {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetTagsRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Updateparameters extends StandardParameters {
     /**
@@ -3317,7 +3623,7 @@ export namespace memcache_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3469,7 +3775,7 @@ export namespace memcache_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

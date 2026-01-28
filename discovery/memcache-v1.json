@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -296,6 +296,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getTags": {
+                  "description": "Returns tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getTags",
+                  "httpMethod": "GET",
+                  "id": "memcache.projects.locations.instances.getTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:getTags",
+                  "response": {
+                    "$ref": "GetTagsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists Instances in a given location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
@@ -399,6 +424,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setTags": {
+                  "description": "Updates tags directly bound to a GCP resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:setTags",
+                  "httpMethod": "POST",
+                  "id": "memcache.projects.locations.instances.setTags",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the service resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setTags",
+                  "request": {
+                    "$ref": "SetTagsRequest"
+                  },
+                  "response": {
+                    "$ref": "SetTagsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -575,7 +628,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -595,7 +648,7 @@
       }
     }
   },
-  "revision": "20251002",
+  "revision": "20260115",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -690,7 +743,7 @@
       "id": "GetTagsRequest",
       "properties": {
         "name": {
-          "description": "Required. The full One Platform resource name of the service resource.",
+          "description": "Required. The full resource name of the service resource.",
           "type": "string"
         }
       },
@@ -700,8 +753,12 @@
       "description": "Response message for GetTags.",
       "id": "GetTagsResponse",
       "properties": {
+        "etag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
+        },
         "name": {
-          "description": "Required. The full One Platform resource name of the service resource.",
+          "description": "Required. The full resource name of the service resource.",
           "type": "string"
         },
         "tags": {
@@ -710,10 +767,6 @@
           },
           "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
           "type": "object"
-        },
-        "tagsEtag": {
-          "description": "A checksum based on the current bindings. This field is always set in server responses.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -1339,7 +1392,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -1743,8 +1796,12 @@
       "description": "Request message for SetTags.",
       "id": "SetTagsRequest",
       "properties": {
+        "etag": {
+          "description": "Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.",
+          "type": "string"
+        },
         "name": {
-          "description": "Required. The full One Platform resource name of the service resource.",
+          "description": "Required. The full resource name of the service resource.",
           "type": "string"
         },
         "requestId": {
@@ -1757,10 +1814,6 @@
           },
           "description": "Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
           "type": "object"
-        },
-        "tagsEtag": {
-          "description": "Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -1769,8 +1822,12 @@
       "description": "Response message for SetTags.",
       "id": "SetTagsResponse",
       "properties": {
+        "etag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
+        },
         "name": {
-          "description": "Required. The full One Platform resource name of the service resource.",
+          "description": "Required. The full resource name of the service resource.",
           "type": "string"
         },
         "tags": {
@@ -1779,10 +1836,6 @@
           },
           "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
           "type": "object"
-        },
-        "tagsEtag": {
-          "description": "A checksum based on the current bindings. This field is always set in server responses.",
-          "type": "string"
         }
       },
       "type": "object"
