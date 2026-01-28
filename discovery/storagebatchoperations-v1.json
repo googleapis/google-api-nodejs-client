@@ -260,6 +260,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any child bucket operations of the job will also be deleted. Highly recommended to be set to true by all clients. Users cannot mutate bucket operations directly, so only the jobs.delete permission is required to delete a job (and its child bucket operations).",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The `name` of the job to delete. Format: projects/{project_id}/locations/global/jobs/{job_id} .",
                       "location": "path",
@@ -351,6 +356,83 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "bucketOperations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a BucketOperation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/bucketOperations/{bucketOperationsId}",
+                      "httpMethod": "GET",
+                      "id": "storagebatchoperations.projects.locations.jobs.bucketOperations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. `name` of the bucket operation to retrieve. Format: projects/{project_id}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/bucketOperations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "BucketOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists BucketOperations in a given project and job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/bucketOperations",
+                      "httpMethod": "GET",
+                      "id": "storagebatchoperations.projects.locations.jobs.bucketOperations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filters results as defined by https://google.aip.dev/160.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field to sort by. Supported fields are name, create_time.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The list page size. Default page size is 100.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Format: projects/{project_id}/locations/global/jobs/{job_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/bucketOperations",
+                      "response": {
+                        "$ref": "ListBucketOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -487,7 +569,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260119",
   "rootUrl": "https://storagebatchoperations.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -519,6 +601,97 @@
             "$ref": "Bucket"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BucketOperation": {
+      "description": "BucketOperation represents a bucket-level breakdown of a Job.",
+      "id": "BucketOperation",
+      "properties": {
+        "bucketName": {
+          "description": "The bucket name of the objects to be transformed in the BucketOperation.",
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Output only. The time that the BucketOperation was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "counters": {
+          "$ref": "Counters",
+          "description": "Output only. Information about the progress of the bucket operation.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. The time that the BucketOperation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteObject": {
+          "$ref": "DeleteObject",
+          "description": "Delete objects."
+        },
+        "errorSummaries": {
+          "description": "Output only. Summarizes errors encountered with sample error log entries.",
+          "items": {
+            "$ref": "ErrorSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "manifest": {
+          "$ref": "Manifest",
+          "description": "Specifies objects in a manifest file."
+        },
+        "name": {
+          "description": "Identifier. The resource name of the BucketOperation. This is defined by the service. Format: projects/{project}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation}.",
+          "type": "string"
+        },
+        "prefixList": {
+          "$ref": "PrefixList",
+          "description": "Specifies objects matching a prefix set."
+        },
+        "putMetadata": {
+          "$ref": "PutMetadata",
+          "description": "Updates object metadata. Allows updating fixed-key and custom metadata and fixed-key metadata i.e. Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Type, Custom-Time."
+        },
+        "putObjectHold": {
+          "$ref": "PutObjectHold",
+          "description": "Changes object hold status."
+        },
+        "rewriteObject": {
+          "$ref": "RewriteObject",
+          "description": "Rewrite the object and updates metadata like KMS key."
+        },
+        "startTime": {
+          "description": "Output only. The time that the BucketOperation was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the BucketOperation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "QUEUED",
+            "RUNNING",
+            "SUCCEEDED",
+            "CANCELED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Created but not yet started.",
+            "In progress.",
+            "Completed successfully.",
+            "Cancelled by the user.",
+            "Terminated due to an unrecoverable failure."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -764,6 +937,31 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListBucketOperationsResponse": {
+      "description": "Message for response to listing BucketOperations",
+      "id": "ListBucketOperationsResponse",
+      "properties": {
+        "bucketOperations": {
+          "description": "A list of storage batch bucket operations.",
+          "items": {
+            "$ref": "BucketOperation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
