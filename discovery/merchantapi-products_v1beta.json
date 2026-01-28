@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20251207",
+  "revision": "20260113",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1179,7 +1179,7 @@
       "type": "object"
     },
     "LoyaltyProgram": {
-      "description": "LINT.IfChange(LoyaltyProgram) A message that represents loyalty program.",
+      "description": "A message that represents loyalty program.",
       "id": "LoyaltyProgram",
       "properties": {
         "cashbackForFutureUse": {
