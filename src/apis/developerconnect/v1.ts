@@ -153,7 +153,7 @@ export namespace developerconnect_v1 {
      */
     oauthStartUri?: string | null;
     /**
-     * Provider OAuth config.
+     * Optional. Provider OAuth config.
      */
     providerOauthConfig?: Schema$ProviderOAuthConfig;
     /**
@@ -244,6 +244,28 @@ export namespace developerconnect_v1 {
      * Output only. The time at which the deployment was undeployed, all artifacts are considered undeployed once this time is set.
      */
     undeployTime?: string | null;
+  }
+  /**
+   * Basic authentication with username and password.
+   */
+  export interface Schema$BasicAuthentication {
+    /**
+     * The password SecretManager secret version to authenticate as.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Required. The username to authenticate as.
+     */
+    username?: string | null;
+  }
+  /**
+   * Bearer token authentication with a token.
+   */
+  export interface Schema$BearerTokenAuthentication {
+    /**
+     * Optional. The token SecretManager secret version to authenticate as.
+     */
+    tokenSecretVersion?: string | null;
   }
   /**
    * Configuration for connections to an instance of Bitbucket Cloud.
@@ -360,6 +382,10 @@ export namespace developerconnect_v1 {
      */
     gitProxyConfig?: Schema$GitProxyConfig;
     /**
+     * Optional. Configuration for connections to an HTTP service provider.
+     */
+    httpConfig?: Schema$GenericHTTPEndpointConfig;
+    /**
      * Output only. Installation state of the Connection.
      */
     installationState?: Schema$InstallationState;
@@ -375,6 +401,10 @@ export namespace developerconnect_v1 {
      * Output only. Set to true when the connection is being set up or updated in the background.
      */
     reconciling?: boolean | null;
+    /**
+     * Configuration for connections to an instance of Secure Source Manager.
+     */
+    secureSourceManagerInstanceConfig?: Schema$SecureSourceManagerInstanceConfig;
     /**
      * Output only. A system-assigned unique identifier for the Connection.
      */
@@ -410,7 +440,7 @@ export namespace developerconnect_v1 {
      */
     deployTime?: string | null;
     /**
-     * Identifier. The name of the DeploymentEvent. This name is provided by DCI. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}/deploymentEvents/{uuid\}
+     * Identifier. The name of the DeploymentEvent. This name is provided by Developer Connect insights. Format: projects/{project\}/locations/{location\}/insightsConfigs/{insights_config\}/deploymentEvents/{uuid\}
      */
     name?: string | null;
     /**
@@ -563,6 +593,31 @@ export namespace developerconnect_v1 {
     exchangeError?: Schema$ExchangeError;
   }
   /**
+   * Defines the configuration for connections to an HTTP service provider.
+   */
+  export interface Schema$GenericHTTPEndpointConfig {
+    /**
+     * Optional. Basic authentication with username and password.
+     */
+    basicAuthentication?: Schema$BasicAuthentication;
+    /**
+     * Optional. Bearer token authentication with a token.
+     */
+    bearerTokenAuthentication?: Schema$BearerTokenAuthentication;
+    /**
+     * Required. Immutable. The service provider's https endpoint.
+     */
+    hostUri?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to privately connect to a HTTP service provider. This should only be set if the Http service provider is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the HTTP service provider will be made over the public internet.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * Optional. The SSL certificate to use for requests to the HTTP service provider.
+     */
+    sslCaCertificate?: string | null;
+  }
+  /**
    * Configuration for connections to github.com.
    */
   export interface Schema$GitHubConfig {
@@ -607,6 +662,10 @@ export namespace developerconnect_v1 {
      * Output only. The URI to navigate to in order to manage the installation associated with this GitHubEnterpriseConfig.
      */
     installationUri?: string | null;
+    /**
+     * Optional. Immutable. GitHub Enterprise organization in which the GitHub App is created.
+     */
+    organization?: string | null;
     /**
      * Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
@@ -806,7 +865,7 @@ export namespace developerconnect_v1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
-   * The InsightsConfig resource is the core configuration object to capture events from your Software Development Lifecycle. It acts as the central hub for managing how Developer connect understands your application, its runtime environments, and the artifacts deployed within them.
+   * The InsightsConfig resource is the core configuration object to capture events from your Software Development Lifecycle. It acts as the central hub for managing how Developer Connect understands your application, its runtime environments, and the artifacts deployed within them.
    */
   export interface Schema$InsightsConfig {
     /**
@@ -838,7 +897,7 @@ export namespace developerconnect_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The GCP projects to track with the InsightsConfig.
+     * Optional. The projects to track with the InsightsConfig.
      */
     projects?: Schema$Projects;
     /**
@@ -1175,7 +1234,7 @@ export namespace developerconnect_v1 {
    */
   export interface Schema$Projects {
     /**
-     * Optional. The GCP Project IDs. Format: projects/{project\}
+     * Optional. The project IDs. Format: {project\}
      */
     projectIds?: string[] | null;
   }
@@ -1188,7 +1247,7 @@ export namespace developerconnect_v1 {
      */
     scopes?: string[] | null;
     /**
-     * Immutable. Developer Connect provided OAuth.
+     * Optional. Immutable. Developer Connect provided OAuth.
      */
     systemProviderId?: string | null;
   }
@@ -1222,6 +1281,15 @@ export namespace developerconnect_v1 {
     uri?: string | null;
   }
   /**
+   * Configuration for connections to SSM instance
+   */
+  export interface Schema$SecureSourceManagerInstanceConfig {
+    /**
+     * Required. Immutable. SSM instance resource, formatted as `projects/x/locations/x/instances/x`
+     */
+    instance?: string | null;
+  }
+  /**
    * ServiceDirectoryConfig represents Service Directory configuration for a connection.
    */
   export interface Schema$ServiceDirectoryConfig {
@@ -1243,11 +1311,11 @@ export namespace developerconnect_v1 {
      */
     clientId?: string | null;
     /**
-     * https://datatracker.ietf.org/doc/html/rfc7636#section-4.1 Follow http://shortn/_WFYl6U0NyC to include it in the AutoCodeURL.
+     * Please refer to https://datatracker.ietf.org/doc/html/rfc7636#section-4.1
      */
     codeChallenge?: string | null;
     /**
-     * https://datatracker.ietf.org/doc/html/rfc7636#section-4.2
+     * Please refer to https://datatracker.ietf.org/doc/html/rfc7636#section-4.2
      */
     codeChallengeMethod?: string | null;
     /**
@@ -1485,7 +1553,7 @@ export namespace developerconnect_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3770,10 +3838,12 @@ export namespace developerconnect_v1 {
      *       //   "githubEnterpriseConfig": {},
      *       //   "gitlabConfig": {},
      *       //   "gitlabEnterpriseConfig": {},
+     *       //   "httpConfig": {},
      *       //   "installationState": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "secureSourceManagerInstanceConfig": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -4392,10 +4462,12 @@ export namespace developerconnect_v1 {
      *   //   "githubEnterpriseConfig": {},
      *   //   "gitlabConfig": {},
      *   //   "gitlabEnterpriseConfig": {},
+     *   //   "httpConfig": {},
      *   //   "installationState": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
+     *   //   "secureSourceManagerInstanceConfig": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -4703,10 +4775,12 @@ export namespace developerconnect_v1 {
      *       //   "githubEnterpriseConfig": {},
      *       //   "gitlabConfig": {},
      *       //   "gitlabEnterpriseConfig": {},
+     *       //   "httpConfig": {},
      *       //   "installationState": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "secureSourceManagerInstanceConfig": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
