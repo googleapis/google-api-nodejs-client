@@ -2343,7 +2343,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$LineItem {
     /**
-     * Item's listed price on Play Store, this may or may not include tax. Excludes any discounts or promotions.
+     * Item's listed price on Play Store, this may or may not include tax. Excludes Google-funded discounts only.
      */
     listingPrice?: Schema$Money;
     /**

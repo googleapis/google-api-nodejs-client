@@ -5555,7 +5555,7 @@
       }
     }
   },
-  "revision": "20260105",
+  "revision": "20260119",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8749,7 +8749,7 @@
       "properties": {
         "listingPrice": {
           "$ref": "Money",
-          "description": "Item's listed price on Play Store, this may or may not include tax. Excludes any discounts or promotions."
+          "description": "Item's listed price on Play Store, this may or may not include tax. Excludes Google-funded discounts only."
         },
         "oneTimePurchaseDetails": {
           "$ref": "OneTimePurchaseDetails",
