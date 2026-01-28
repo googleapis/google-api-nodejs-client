@@ -2722,7 +2722,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260115",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -8824,7 +8824,7 @@
           "type": "boolean"
         },
         "mode": {
-          "description": "SELinux mode enforcing / permissive.",
+          "description": "SELinux mode disabled / enforcing / permissive.",
           "type": "string"
         }
       },

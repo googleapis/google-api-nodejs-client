@@ -555,6 +555,162 @@
                 }
               }
             },
+            "assetsExportJobs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new assets export job.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assetsExportJobs",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.assetsExportJobs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "assetsExportJobId": {
+                      "description": "Required. The ID to use for the asset export job.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where the assts export job will be created.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/assetsExportJobs",
+                  "request": {
+                    "$ref": "AssetsExportJob"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an assets export job.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assetsExportJobs/{assetsExportJobsId}",
+                  "httpMethod": "DELETE",
+                  "id": "migrationcenter.projects.locations.assetsExportJobs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the assets export job to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assetsExportJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of an assets export job.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assetsExportJobs/{assetsExportJobsId}",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.assetsExportJobs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assetsExportJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AssetsExportJob"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the assets export jobs in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assetsExportJobs",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.assetsExportJobs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results that the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/assetsExportJobs",
+                  "response": {
+                    "$ref": "ListAssetsExportJobsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "run": {
+                  "description": "Runs an assets export job, returning an AssetsExportJobExecution.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/assetsExportJobs/{assetsExportJobsId}:run",
+                  "httpMethod": "POST",
+                  "id": "migrationcenter.projects.locations.assetsExportJobs.run",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/assetsExportJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:run",
+                  "request": {
+                    "$ref": "RunAssetsExportJobRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "discoveryClients": {
               "methods": {
                 "create": {
@@ -2412,7 +2568,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260121",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2819,6 +2975,167 @@
       },
       "type": "object"
     },
+    "AssetsExportJob": {
+      "description": "Assets export job message.",
+      "id": "AssetsExportJob",
+      "properties": {
+        "condition": {
+          "$ref": "AssetsExportJobExportCondition",
+          "description": "Optional. Conditions for selecting assets to export."
+        },
+        "createTime": {
+          "description": "Output only. Resource creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inventory": {
+          "$ref": "AssetsExportJobInventory",
+          "description": "Export asset inventory details."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Identifier. Resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networkDependencies": {
+          "$ref": "AssetsExportJobNetworkDependencies",
+          "description": "Export data regarding asset network dependencies."
+        },
+        "performanceData": {
+          "$ref": "AssetsExportJobPerformanceData",
+          "description": "Export asset with performance data."
+        },
+        "recentExecutions": {
+          "description": "Output only. Recent non expired executions of the job.",
+          "items": {
+            "$ref": "AssetsExportJobExecution"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "showHidden": {
+          "description": "Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.",
+          "type": "boolean"
+        },
+        "signedUriDestination": {
+          "$ref": "SignedUriDestination",
+          "description": "Export to Cloud Storage files downloadable using signed URIs."
+        },
+        "updateTime": {
+          "description": "Output only. Resource update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetsExportJobExecution": {
+      "description": "Execution status of assets export job.",
+      "id": "AssetsExportJobExecution",
+      "properties": {
+        "endTime": {
+          "description": "Output only. Completion time of the export.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "executionId": {
+          "description": "Output only. Globally unique identifier of the execution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. Expiration time for the export and artifacts.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedAssetCount": {
+          "description": "Output only. Number of assets requested for export after resolving the requested filters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "result": {
+          "$ref": "AssetsExportJobExecutionResult",
+          "description": "Output only. Result of the export execution.",
+          "readOnly": true
+        },
+        "startTime": {
+          "description": "Output only. Execution timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetsExportJobExecutionResult": {
+      "description": "Contains the result of the assets export.",
+      "id": "AssetsExportJobExecutionResult",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. Error encountered during export.",
+          "readOnly": true
+        },
+        "outputFiles": {
+          "$ref": "OutputFileList",
+          "description": "Output only. List of output files.",
+          "readOnly": true
+        },
+        "signedUris": {
+          "$ref": "SignedUris",
+          "description": "Output only. Signed URLs for downloading export artifacts.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "AssetsExportJobExportCondition": {
+      "description": "Conditions for selecting assets to export.",
+      "id": "AssetsExportJobExportCondition",
+      "properties": {
+        "filter": {
+          "description": "Optional. Assets filter, supports the same syntax as asset listing.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetsExportJobInventory": {
+      "description": "Configuration for asset inventory details exports.",
+      "id": "AssetsExportJobInventory",
+      "properties": {},
+      "type": "object"
+    },
+    "AssetsExportJobNetworkDependencies": {
+      "description": "Configuration for network dependencies exports.",
+      "id": "AssetsExportJobNetworkDependencies",
+      "properties": {},
+      "type": "object"
+    },
+    "AssetsExportJobPerformanceData": {
+      "description": "Configuration for performance data exports.",
+      "id": "AssetsExportJobPerformanceData",
+      "properties": {
+        "maxDays": {
+          "description": "Optional. When this value is set to a positive integer, performance data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned. The maximum value is 420; values above 420 will be coerced to 420. If unset (0 value) a default value of 40 will be used.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AwsEc2PlatformDetails": {
       "description": "AWS EC2 specific details.",
       "id": "AwsEc2PlatformDetails",
@@ -3126,6 +3443,30 @@
           "description": "Percentage of total CPU capacity utilized. Must be in the interval [0, 100]. On most systems can be calculated using 100 - idle percentage.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CsvOutputFile": {
+      "description": "Contains a single output file of type CSV.",
+      "id": "CsvOutputFile",
+      "properties": {
+        "columnsCount": {
+          "description": "Output only. Number of columns in the file.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rowCount": {
+          "description": "Output only. Number of rows in the file.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "signedUri": {
+          "$ref": "SignedUri",
+          "description": "Output only. Signed URI destination.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4589,6 +4930,26 @@
       },
       "type": "object"
     },
+    "ListAssetsExportJobsResponse": {
+      "description": "Response message for listing assets export jobs.",
+      "id": "ListAssetsExportJobsResponse",
+      "properties": {
+        "assetsExportJobs": {
+          "description": "Output only. The list of assets export jobs.",
+          "items": {
+            "$ref": "AssetsExportJob"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. A token identifying a page of results the server should return.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAssetsResponse": {
       "description": "Response message for listing assets.",
       "id": "ListAssetsResponse",
@@ -5673,6 +6034,44 @@
       },
       "type": "object"
     },
+    "OutputFile": {
+      "description": "Contains a single output file.",
+      "id": "OutputFile",
+      "properties": {
+        "csvOutputFile": {
+          "$ref": "CsvOutputFile",
+          "description": "Output only. CSV output file.",
+          "readOnly": true
+        },
+        "fileSizeBytes": {
+          "description": "Output only. File size in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "xlsxOutputFile": {
+          "$ref": "XlsxOutputFile",
+          "description": "Output only. XLSX output file.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "OutputFileList": {
+      "description": "Contains a list of output files.",
+      "id": "OutputFileList",
+      "properties": {
+        "entries": {
+          "description": "Output only. List of output files.",
+          "items": {
+            "$ref": "OutputFile"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PerformanceSample": {
       "description": "Performance data sample.",
       "id": "PerformanceSample",
@@ -6511,6 +6910,29 @@
       },
       "type": "object"
     },
+    "RunAssetsExportJobRequest": {
+      "description": "A request to run an assets export job.",
+      "id": "RunAssetsExportJobRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunAssetsExportJobResponse": {
+      "description": "Response message for running an assets export job.",
+      "id": "RunAssetsExportJobResponse",
+      "properties": {
+        "assetsExportJobExecution": {
+          "$ref": "AssetsExportJobExecution",
+          "description": "Output only. Execution status of the assets export operation.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "RunImportJobRequest": {
       "description": "A request to run an import job.",
       "id": "RunImportJobRequest",
@@ -6691,6 +7113,59 @@
         "preferenceSet": {
           "description": "The preference set used by default for a project.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignedUri": {
+      "description": "Contains a signed URI.",
+      "id": "SignedUri",
+      "properties": {
+        "file": {
+          "description": "Output only. Name of the file the Signed URI references.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. Download URI for the file.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignedUriDestination": {
+      "description": "Signed URI destination configuration.",
+      "id": "SignedUriDestination",
+      "properties": {
+        "fileFormat": {
+          "description": "Required. The file format to export.",
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "CSV",
+            "XLSX"
+          ],
+          "enumDescriptions": [
+            "Unspecified file format will be treated as CSV.",
+            "CSV file format.",
+            "XLSX file format which used in Excel."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignedUris": {
+      "description": "Contains a list of Signed URIs.",
+      "id": "SignedUris",
+      "properties": {
+        "signedUris": {
+          "description": "Output only. List of signed URIs.",
+          "items": {
+            "$ref": "SignedUri"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -7274,6 +7749,18 @@
         "vcenterVmId": {
           "description": "vCenter VM ID.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "XlsxOutputFile": {
+      "description": "Contains a single output file of type XLSX.",
+      "id": "XlsxOutputFile",
+      "properties": {
+        "signedUri": {
+          "$ref": "SignedUri",
+          "description": "Output only. Signed URI destination.",
+          "readOnly": true
         }
       },
       "type": "object"
