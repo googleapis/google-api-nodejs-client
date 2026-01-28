@@ -323,13 +323,17 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260123",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
       "description": "Used for advanced voice options.",
       "id": "AdvancedVoiceOptions",
       "properties": {
+        "enableTextnorm": {
+          "description": "Optional. If true, textnorm will be applied to text input. This feature is enabled by default. Only applies for Gemini TTS.",
+          "type": "boolean"
+        },
         "lowLatencyJourneySynthesis": {
           "description": "Only for Journey voices. If false, the synthesis is context aware and has a higher latency.",
           "type": "boolean"
@@ -734,7 +738,7 @@
       "properties": {
         "advancedVoiceOptions": {
           "$ref": "AdvancedVoiceOptions",
-          "description": "Advanced voice options."
+          "description": "Optional. Advanced voice options."
         },
         "audioConfig": {
           "$ref": "AudioConfig",
