@@ -11,6 +11,7 @@
     "policysimulator:v1beta",
     "datalineage:v1",
     "healthcare:v1",
-    "healthcare:v1beta1"
+    "healthcare:v1beta1",
+    "connectors:v2"
   ]
 }
