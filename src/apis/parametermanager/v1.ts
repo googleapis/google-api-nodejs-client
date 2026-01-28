@@ -1124,7 +1124,7 @@ export namespace parametermanager_v1 {
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return.
+     *     // Optional. A page token, received from a previous `ListParameters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameters` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. Parent value for ListParametersRequest in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -1446,7 +1446,7 @@ export namespace parametermanager_v1 {
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListParameters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameters` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -1963,7 +1963,7 @@ export namespace parametermanager_v1 {
      *       orderBy: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. A token identifying a page of results the server should return.
+     *       // Optional. A page token, received from a previous `ListParameterVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameterVersions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. Parent value for ListParameterVersionsRequest in the format `projects/x/locations/x/parameters/x`.
      *       parent:
@@ -2440,7 +2440,7 @@ export namespace parametermanager_v1 {
      */
     pageSize?: number;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListParameterVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListParameterVersions` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
