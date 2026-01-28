@@ -1316,47 +1316,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "exportAppImage": {
-                  "description": "Exports a user image to Artifact Registry.",
-                  "flatPath": "v1beta/apps/{appsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
-                  "httpMethod": "POST",
-                  "id": "appengine.apps.services.versions.exportAppImage",
-                  "parameterOrder": [
-                    "appsId",
-                    "servicesId",
-                    "versionsId"
-                  ],
-                  "parameters": {
-                    "appsId": {
-                      "description": "Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app}/services/{service}/versions/{version}",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "servicesId": {
-                      "description": "Part of `name`. See documentation of `appsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "versionsId": {
-                      "description": "Part of `name`. See documentation of `appsId`.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/apps/{appsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
-                  "request": {
-                    "$ref": "ExportAppImageRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "get": {
                   "description": "Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.",
                   "flatPath": "v1beta/apps/{appsId}/services/{servicesId}/versions/{versionsId}",
@@ -2612,61 +2571,6 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
-                        "exportAppImage": {
-                          "description": "Exports a user image to Artifact Registry.",
-                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
-                          "httpMethod": "POST",
-                          "id": "appengine.projects.locations.applications.services.versions.exportAppImage",
-                          "parameterOrder": [
-                            "projectsId",
-                            "locationsId",
-                            "applicationsId",
-                            "servicesId",
-                            "versionsId"
-                          ],
-                          "parameters": {
-                            "applicationsId": {
-                              "description": "Part of `name`. See documentation of `projectsId`.",
-                              "location": "path",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "locationsId": {
-                              "description": "Part of `name`. See documentation of `projectsId`.",
-                              "location": "path",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "projectsId": {
-                              "description": "Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app}/services/{service}/versions/{version}",
-                              "location": "path",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "servicesId": {
-                              "description": "Part of `name`. See documentation of `projectsId`.",
-                              "location": "path",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "versionsId": {
-                              "description": "Part of `name`. See documentation of `projectsId`.",
-                              "location": "path",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}:exportAppImage",
-                          "request": {
-                            "$ref": "ExportAppImageRequest"
-                          },
-                          "response": {
-                            "$ref": "Operation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
                         "patch": {
                           "description": "Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}",
@@ -2727,6 +2631,74 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        }
+                      },
+                      "resources": {
+                        "instances": {
+                          "methods": {
+                            "debug": {
+                              "description": "Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in \"debug mode\", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started.Only applicable for instances in App Engine flexible environment.",
+                              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug",
+                              "httpMethod": "POST",
+                              "id": "appengine.projects.locations.applications.services.versions.instances.debug",
+                              "parameterOrder": [
+                                "projectsId",
+                                "locationsId",
+                                "applicationsId",
+                                "servicesId",
+                                "versionsId",
+                                "instancesId"
+                              ],
+                              "parameters": {
+                                "applicationsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "instancesId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "locationsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "projectsId": {
+                                  "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "servicesId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "versionsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}:debug",
+                              "request": {
+                                "$ref": "DebugInstanceRequest"
+                              },
+                              "response": {
+                                "$ref": "Operation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -2837,7 +2809,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260120",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3581,21 +3553,6 @@
         },
         "staticFile": {
           "description": "Static file content to be served for this error.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ExportAppImageRequest": {
-      "description": "Request message for Versions.ExportAppImage.",
-      "id": "ExportAppImageRequest",
-      "properties": {
-        "destinationRepository": {
-          "description": "Optional. The full resource name of the AR repository to export to. Format: projects/{project}/locations/{location}/repositories/{repository} If not specified, defaults to projects/{project}/locations/{location}/repositories/gae-standard in the same region as the app. The default repository will be created if it does not exist.",
-          "type": "string"
-        },
-        "serviceAccount": {
-          "description": "Optional. Optional: A service account to use for authenticating to Artifact Registry.",
           "type": "string"
         }
       },
@@ -4578,6 +4535,11 @@
           },
           "type": "array"
         },
+        "isGceProjectDeprovisioning": {
+          "deprecated": true,
+          "description": "DEPRECATED: Indicates whether the GCE project is in the DEPROVISIONING state. This field is a temporary workaround (see b/475310865) to allow GCE extensions to bypass certain checks during deprovisioning. It will be replaced by a permanent solution in the future.",
+          "type": "boolean"
+        },
         "p4ServiceAccount": {
           "description": "The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.",
           "type": "string"
@@ -5525,13 +5487,18 @@
           "description": "Whether to deploy this version in a container on a virtual machine.",
           "type": "boolean"
         },
+        "vpcAccess": {
+          "$ref": "VpcAccess",
+          "description": "Enables VPC access connectivity for standard apps."
+        },
         "vpcAccessConnector": {
           "$ref": "VpcAccessConnector",
           "description": "Enables VPC connectivity for standard apps."
         },
         "vpcEgress": {
           "$ref": "VpcEgress",
-          "description": "Enables VPC egress connectivity for standard apps."
+          "deprecated": true,
+          "description": "Deprecated: Use vpc_access instead. Enables VPC egress connectivity for standard apps."
         },
         "zones": {
           "description": "The Google Compute Engine zones that are supported by this version in the App Engine flexible environment. Deprecated.",
@@ -5563,6 +5530,34 @@
       },
       "type": "object"
     },
+    "VpcAccess": {
+      "description": "VPC Access settings",
+      "id": "VpcAccess",
+      "properties": {
+        "networkInterfaces": {
+          "description": "The Direct VPC configuration. Currently only single network interface is supported.",
+          "items": {
+            "$ref": "VpcNetworkInterface"
+          },
+          "type": "array"
+        },
+        "vpcEgress": {
+          "description": "The traffic egress setting for the VPC network interface, controlling what traffic is diverted through it.",
+          "enum": [
+            "VPC_EGRESS_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_IP_RANGES"
+          ],
+          "enumDescriptions": [
+            "No value set; apply default behavior",
+            "Force all traffic to egress through the NetworkInterface (and configured VPC Network)",
+            "Force all Private IP Space traffic to egress through NetworkInterface (and configured VPC Network)"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VpcAccessConnector": {
       "description": "VPC access connector specification.",
       "id": "VpcAccessConnector",
@@ -5589,7 +5584,8 @@
       "type": "object"
     },
     "VpcEgress": {
-      "description": "Vpc Egress configuration.",
+      "deprecated": true,
+      "description": "Deprecated: Use VpcAccess instead. Vpc Egress configuration.",
       "id": "VpcEgress",
       "properties": {
         "egressSetting": {
@@ -5616,6 +5612,28 @@
         "subnetworkKey": {
           "$ref": "SubnetworkKey",
           "description": "The subnetwork key."
+        }
+      },
+      "type": "object"
+    },
+    "VpcNetworkInterface": {
+      "description": "Network interface key message.",
+      "id": "VpcNetworkInterface",
+      "properties": {
+        "network": {
+          "description": "Optional. The VPC network that the App Engine resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork. Could be either a short name or a full path. e.g. {VPC_NETWORK} or projects/{HOST_PROJECT_ID}/global/networks/{VPC_NETWORK}",
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Optional. The VPC subnetwork that the App Engine resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used. Could be either a short name or a full path. e.g. {SUBNET_NAME} or projects/{HOST_PROJECT_ID}/regions/{REGION}/subnetworks/{SUBNET_NAME}",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Optional. The network tags that will be applied to this App Engine resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

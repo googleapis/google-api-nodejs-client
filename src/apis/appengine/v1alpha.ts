@@ -582,6 +582,10 @@ export namespace appengine_v1alpha {
      */
     gceTag?: Schema$GceTag[];
     /**
+     * DEPRECATED: Indicates whether the GCE project is in the DEPROVISIONING state. This field is a temporary workaround (see b/475310865) to allow GCE extensions to bypass certain checks during deprovisioning. It will be replaced by a permanent solution in the future.
+     */
+    isGceProjectDeprovisioning?: boolean | null;
+    /**
      * The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.
      */
     p4ServiceAccount?: string | null;
