@@ -636,6 +636,10 @@
     "package": "@google-cloud/apihub"
   },
   {
+    "api": "cloudapiregistry",
+    "package": "@google-cloud/apiregistry"
+  },
+  {
     "api": "apigeeregistry",
     "package": "@google-cloud/apigee-registry"
   },
@@ -730,6 +734,10 @@
   {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
+  },
+  {
+    "api": "gkerecommender",
+    "package": "@google-cloud/gkerecommender"
   },
   {
     "api": "admanager",

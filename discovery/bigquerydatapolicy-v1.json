@@ -405,7 +405,7 @@
       }
     }
   },
-  "revision": "20250317",
+  "revision": "20260114",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -492,7 +492,8 @@
             "LAST_FOUR_CHARACTERS",
             "FIRST_FOUR_CHARACTERS",
             "EMAIL_MASK",
-            "DATE_YEAR_MASK"
+            "DATE_YEAR_MASK",
+            "RANDOM_HASH"
           ],
           "enumDescriptions": [
             "Default, unspecified predefined expression. No masking will take place since no expression is specified.",
@@ -502,7 +503,8 @@
             "Masking expression shows the last four characters of text. The masking behavior is as follows: * If text length > 4 characters: Replace text with XXXXX, append last four characters of original text. * If text length <= 4 characters: Apply SHA-256 hash.",
             "Masking expression shows the first four characters of text. The masking behavior is as follows: * If text length > 4 characters: Replace text with XXXXX, prepend first four characters of original text. * If text length <= 4 characters: Apply SHA-256 hash.",
             "Masking expression for email addresses. The masking behavior is as follows: * Syntax-valid email address: Replace username with XXXXX. For example, cloudysanfrancisco@gmail.com becomes XXXXX@gmail.com. * Syntax-invalid email address: Apply SHA-256 hash. For more information, see Email mask.",
-            "Masking expression to only show the *year* of `Date`, `DateTime` and `TimeStamp`. For example, with the year 2076: * DATE : 2076-01-01 * DATETIME : 2076-01-01T00:00:00 * TIMESTAMP : 2076-01-01 00:00:00 UTC Truncation occurs according to the UTC time zone. To change this, adjust the default time zone using the `time_zone` system variable. For more information, see the System variables reference."
+            "Masking expression to only show the *year* of `Date`, `DateTime` and `TimeStamp`. For example, with the year 2076: * DATE : 2076-01-01 * DATETIME : 2076-01-01T00:00:00 * TIMESTAMP : 2076-01-01 00:00:00 UTC Truncation occurs according to the UTC time zone. To change this, adjust the default time zone using the `time_zone` system variable. For more information, see the System variables reference.",
+            "A masking expression that uses hashing to mask column data. It differs from SHA-256 in that a unique random value is generated for each query and is added to the hash input, resulting in a different masked result for each query. Creating and updating a data policy with a `RANDOM_HASH` masking expression is only supported for the Data Policy v2 API."
           ],
           "type": "string"
         },

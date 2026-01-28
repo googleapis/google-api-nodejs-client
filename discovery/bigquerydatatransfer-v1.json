@@ -49,6 +49,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.europe-west6.rep.googleapis.com/",
       "location": "europe-west6"
     },
@@ -66,6 +71,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -1488,7 +1503,7 @@
       }
     }
   },
-  "revision": "20251105",
+  "revision": "20260112",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

@@ -410,6 +410,10 @@ import {
 } from './groupssettings';
 import {VERSIONS as healthcareVersions, healthcare} from './healthcare';
 import {VERSIONS as homegraphVersions, homegraph} from './homegraph';
+import {
+  VERSIONS as hypercomputeclusterVersions,
+  hypercomputecluster,
+} from './hypercomputecluster';
 import {VERSIONS as iamVersions, iam} from './iam';
 import {
   VERSIONS as iamcredentialsVersions,
@@ -705,6 +709,10 @@ import {VERSIONS as tagmanagerVersions, tagmanager} from './tagmanager';
 import {VERSIONS as tasksVersions, tasks} from './tasks';
 import {VERSIONS as testingVersions, testing} from './testing';
 import {VERSIONS as texttospeechVersions, texttospeech} from './texttospeech';
+import {
+  VERSIONS as threatintelligenceVersions,
+  threatintelligence,
+} from './threatintelligence';
 import {VERSIONS as toolresultsVersions, toolresults} from './toolresults';
 import {VERSIONS as tpuVersions, tpu} from './tpu';
 import {
@@ -946,6 +954,7 @@ export const APIS: APIList = {
   groupssettings: groupssettingsVersions,
   healthcare: healthcareVersions,
   homegraph: homegraphVersions,
+  hypercomputecluster: hypercomputeclusterVersions,
   iam: iamVersions,
   iamcredentials: iamcredentialsVersions,
   iap: iapVersions,
@@ -1067,6 +1076,7 @@ export const APIS: APIList = {
   tasks: tasksVersions,
   testing: testingVersions,
   texttospeech: texttospeechVersions,
+  threatintelligence: threatintelligenceVersions,
   toolresults: toolresultsVersions,
   tpu: tpuVersions,
   trafficdirector: trafficdirectorVersions,
@@ -1268,6 +1278,7 @@ export class GeneratedAPIs {
   groupssettings = groupssettings;
   healthcare = healthcare;
   homegraph = homegraph;
+  hypercomputecluster = hypercomputecluster;
   iam = iam;
   iamcredentials = iamcredentials;
   iap = iap;
@@ -1389,6 +1400,7 @@ export class GeneratedAPIs {
   tasks = tasks;
   testing = testing;
   texttospeech = texttospeech;
+  threatintelligence = threatintelligence;
   toolresults = toolresults;
   tpu = tpu;
   trafficdirector = trafficdirector;

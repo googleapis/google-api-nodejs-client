@@ -1786,7 +1786,7 @@
       }
     }
   },
-  "revision": "20251211",
+  "revision": "20260123",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4255,13 +4255,15 @@
             "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
             "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
             "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
-            "RISK_ASSESSMENT_PROVIDER_LAYERX"
+            "RISK_ASSESSMENT_PROVIDER_LAYERX",
+            "RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2"
           ],
           "enumDescriptions": [
             "Default value when no provider is specified.",
             "CRXcavator.",
             "Spin.Ai.",
-            "LayerX Security."
+            "LayerX Security.",
+            "Spin.AI V2."
           ],
           "readOnly": true,
           "type": "string"
