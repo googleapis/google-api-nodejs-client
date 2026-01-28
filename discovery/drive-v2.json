@@ -1316,14 +1316,14 @@
             },
             "visibility": {
               "default": "DEFAULT",
-              "description": "The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.",
+              "description": "The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when the source is not a Google Doc file and when `convert=false`.",
               "enum": [
                 "DEFAULT",
                 "PRIVATE"
               ],
               "enumDescriptions": [
-                "The visibility of the new file is determined by the user's default visibility/sharing policies.",
-                "The new file will be visible to only the owner."
+                "The visibility of the new file is determined by the user's default visibility or sharing policies.",
+                "The user's default visibility or sharing policies are ignored, and the new file is only visible to the owner and any users with permissions inherited from the parent folder."
               ],
               "location": "query",
               "type": "string"
@@ -1667,14 +1667,14 @@
             },
             "visibility": {
               "default": "DEFAULT",
-              "description": "The visibility of the new file. This parameter is only relevant when convert=false.",
+              "description": "The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when `convert=false`.",
               "enum": [
                 "DEFAULT",
                 "PRIVATE"
               ],
               "enumDescriptions": [
-                "The visibility of the new file is determined by the user's default visibility/sharing policies.",
-                "The new file will be visible to only the owner."
+                "The visibility of the new file is determined by the user's default visibility or sharing policies.",
+                "The user's default visibility or sharing policies are ignored, and the new file is only visible to the owner and any users with permissions inherited from the parent folder."
               ],
               "location": "query",
               "type": "string"
@@ -3893,7 +3893,7 @@
       }
     }
   },
-  "revision": "20251114",
+  "revision": "20260118",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {

@@ -6493,7 +6493,7 @@ export namespace drive_v2 {
      *     timedTextLanguage: 'placeholder-value',
      *     // The timed text track name.
      *     timedTextTrackName: 'placeholder-value',
-     *     // The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     *     // The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when the source is not a Google Doc file and when `convert=false`.
      *     visibility: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7605,7 +7605,7 @@ export namespace drive_v2 {
      *     timedTextTrackName: 'placeholder-value',
      *     // Whether to use the content as indexable text.
      *     useContentAsIndexableText: 'placeholder-value',
-     *     // The visibility of the new file. This parameter is only relevant when convert=false.
+     *     // The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when `convert=false`.
      *     visibility: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9949,7 +9949,7 @@ export namespace drive_v2 {
      */
     timedTextTrackName?: string;
     /**
-     * The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
+     * The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when the source is not a Google Doc file and when `convert=false`.
      */
     visibility?: string;
 
@@ -10098,7 +10098,7 @@ export namespace drive_v2 {
      */
     useContentAsIndexableText?: boolean;
     /**
-     * The visibility of the new file. This parameter is only relevant when convert=false.
+     * The visibility of the new file. Permissions are still inherited from parent folders. This parameter is only relevant when `convert=false`.
      */
     visibility?: string;
 
