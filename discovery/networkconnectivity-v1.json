@@ -211,6 +211,184 @@
             }
           },
           "resources": {
+            "automatedDnsRecords": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new AutomatedDnsRecord in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/automatedDnsRecords",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.automatedDnsRecords.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "automatedDnsRecordId": {
+                      "description": "Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/automatedDnsRecords/foo') See https://google.aip.dev/122#resource-id-segments Unique per location. If one is not provided, one will be generated.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "insertMode": {
+                      "description": "Optional. The insert mode when creating AutomatedDnsRecord.",
+                      "enum": [
+                        "INSERT_MODE_UNSPECIFIED",
+                        "FAIL_IF_EXISTS",
+                        "OVERWRITE"
+                      ],
+                      "enumDescriptions": [
+                        "An invalid insert mode as the default case.",
+                        "Fail the request if the record already exists in cloud DNS.",
+                        "Overwrite the existing record in cloud DNS."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name of the AutomatedDnsRecord. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/automatedDnsRecords",
+                  "request": {
+                    "$ref": "AutomatedDnsRecord"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AutomatedDnsRecord.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/automatedDnsRecords/{automatedDnsRecordsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.automatedDnsRecords.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "deleteMode": {
+                      "description": "Optional. Delete mode when deleting AutomatedDnsRecord. If set to DEPROGRAM, the record will be deprogrammed in Cloud DNS. If set to SKIP_DEPROGRAMMING, the record will not be deprogrammed in Cloud DNS.",
+                      "enum": [
+                        "DELETE_MODE_UNSPECIFIED",
+                        "DEPROGRAM",
+                        "SKIP_DEPROGRAMMING"
+                      ],
+                      "enumDescriptions": [
+                        "An invalid delete mode as the default case.",
+                        "Deprogram the record in Cloud DNS.",
+                        "Skip deprogramming the record in Cloud DNS."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "etag": {
+                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the AutomatedDnsRecord to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/automatedDnsRecords/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AutomatedDnsRecord.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/automatedDnsRecords/{automatedDnsRecordsId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.automatedDnsRecords.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the AutomatedDnsRecord to get. Format: projects/{project}/locations/{location}/automatedDnsRecords/{automated_dns_record}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/automatedDnsRecords/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AutomatedDnsRecord"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AutomatedDnsRecords in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/automatedDnsRecords",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.automatedDnsRecords.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results per page that should be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/automatedDnsRecords",
+                  "response": {
+                    "$ref": "ListAutomatedDnsRecordsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "global": {
               "resources": {
                 "hubs": {
@@ -3540,7 +3718,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260120",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -3684,6 +3862,11 @@
       "description": "Information for the automatically created subnetwork and its associated IR.",
       "id": "AutoCreatedSubnetworkInfo",
       "properties": {
+        "delinked": {
+          "description": "Output only. Indicates whether the subnetwork is delinked from the Service Connection Policy. Only set if the subnetwork mode is AUTO_CREATED during creation.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "internalRange": {
           "description": "Output only. URI of the automatically created Internal Range. Only set if the subnetwork mode is AUTO_CREATED during creation.",
           "readOnly": true,
@@ -3722,6 +3905,135 @@
         "ttl": {
           "description": "Optional. The Time To Live for the DNS record, in seconds. If not provided, a default of 30 seconds will be used.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutomatedDnsRecord": {
+      "description": "Represents a DNS record managed by the AutomatedDnsRecord API.",
+      "id": "AutomatedDnsRecord",
+      "properties": {
+        "consumerNetwork": {
+          "description": "Required. Immutable. The full resource path of the consumer network this AutomatedDnsRecord is visible to. Example: \"projects/{projectNumOrId}/global/networks/{networkName}\".",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp of when the record was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creationMode": {
+          "description": "Required. Immutable. The creation mode of the AutomatedDnsRecord. This field is immutable.",
+          "enum": [
+            "CREATION_MODE_UNSPECIFIED",
+            "CONSUMER_API",
+            "SERVICE_CONNECTION_MAP"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The record was created through the AutomatedDnsRecord CCFE consumer API.",
+            "The record was created by a ServiceConnectionMap. Its lifecycle is managed by that ServiceConnectionMap."
+          ],
+          "type": "string"
+        },
+        "currentConfig": {
+          "$ref": "Config",
+          "description": "Output only. The current settings for this record as identified by (`hostname`, `dns_suffix`, `type`) in Cloud DNS. The `current_config` field reflects the actual settings of the DNS record in Cloud DNS based on the `hostname`, `dns_suffix`, and `type`. * **Absence:** If `current_config` is unset, it means a DNS record with the specified `hostname`, `dns_suffix`, and `type` does not currently exist in Cloud DNS. This could be because the `AutomatedDnsRecord` has never been successfully programmed, has been deleted, or there was an error during provisioning. * **Presence:** If `current_config` is present: * It can be different from the `original_config`. This can happen due to several reasons: * Out-of-band changes: A consumer might have directly modified the DNS record in Cloud DNS. * `OVERWRITE` operations from other `AutomatedDnsRecord` resources: Another `AutomatedDnsRecord` with the same identifying attributes (`hostname`, `dns_suffix`, `type`) but a different configuration might have overwritten the record using `insert_mode: OVERWRITE`. Therefore, the presence of `current_config` indicates that a corresponding DNS record exists, but its values (TTL and RRData) might not always align with the `original_config` of the AutomatedDnsRecord.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "A human-readable description of the record.",
+          "type": "string"
+        },
+        "dnsSuffix": {
+          "description": "Required. Immutable. The dns suffix for this record to use in longest-suffix matching. Requires a trailing dot. Example: \"example.com.\"",
+          "type": "string"
+        },
+        "dnsZone": {
+          "description": "Output only. DnsZone is the DNS zone managed by automation. Format: projects/{project}/managedZones/{managedZone}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "fqdn": {
+          "description": "Output only. The FQDN created by combining the hostname and dns suffix. Should include a trailing dot.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Required. Immutable. The hostname for the DNS record. This value will be prepended to the `dns_suffix` to create the full domain name (FQDN) for the record. For example, if `hostname` is \"corp.db\" and `dns_suffix` is \"example.com.\", the resulting record will be \"corp.db.example.com.\". Should not include a trailing dot.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. The name of an AutomatedDnsRecord. Format: projects/{project}/locations/{location}/automatedDnsRecords/{automated_dns_record} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "type": "string"
+        },
+        "originalConfig": {
+          "$ref": "Config",
+          "description": "Required. Immutable. The configuration settings used to create this DNS record. These settings define the desired state of the record as specified by the producer."
+        },
+        "recordType": {
+          "description": "Required. Immutable. The identifier of a supported record type.",
+          "enum": [
+            "RECORD_TYPE_UNSPECIFIED",
+            "A",
+            "AAAA",
+            "TXT",
+            "CNAME"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Represents an A record.",
+            "Represents an AAAA record.",
+            "Represents a TXT record.",
+            "Represents a CNAME record."
+          ],
+          "type": "string"
+        },
+        "serviceClass": {
+          "description": "Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceclasses.use` IAM permission for the provided service class.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current operational state of this AutomatedDnsRecord as managed by Service Connectivity Automation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROGRAMMED",
+            "FAILED_DEPROGRAMMING",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The AutomatedDnsRecord has been successfully programmed.",
+            "A non-recoverable error occurred while attempting to deprogram the DNS record from Cloud DNS during deletion.",
+            "The AutomatedDnsRecord is being created.",
+            "The AutomatedDnsRecord is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateDetails": {
+          "description": "Output only. A human-readable message providing more context about the current state, such as an error description if the state is `FAILED_DEPROGRAMMING`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp of when the record was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3816,6 +4128,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Config": {
+      "description": "Defines the configuration of a DNS record.",
+      "id": "Config",
+      "properties": {
+        "rrdatas": {
+          "description": "Required. The list of resource record data strings. The content and format of these strings depend on the AutomatedDnsRecord.type. For many common record types, this list may contain multiple strings. As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples. Examples: A record: [\"192.0.2.1\"] or [\"192.0.2.1\", \"192.0.2.2\"] TXT record: [\"This is a text record\"] CNAME record: [\"target.example.com.\"] AAAA record: [\"::1\"] or [\"2001:0db8:85a3:0000:0000:8a2e:0370:7334\", \"2001:0db8:85a3:0000:0000:8a2e:0370:7335\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ttl": {
+          "description": "Required. Number of seconds that this DNS record can be cached by resolvers.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4562,8 +4893,9 @@
           "description": "Optional. Range auto-allocation options, may be set only when auto-allocation is selected by not setting ip_cidr_range (and setting prefix_length)."
         },
         "createTime": {
-          "description": "Time when the internal range was created.",
+          "description": "Output only. Time when the internal range was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
@@ -4650,8 +4982,9 @@
           "type": "array"
         },
         "updateTime": {
-          "description": "Time when the internal range was updated.",
+          "description": "Output only. Time when the internal range was updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "usage": {
@@ -4742,7 +5075,7 @@
           "type": "string"
         },
         "proposedExcludeExportRanges": {
-          "description": "Output only. The proposed exclude export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.",
           "items": {
             "type": "string"
           },
@@ -4750,7 +5083,7 @@
           "type": "array"
         },
         "proposedIncludeExportRanges": {
-          "description": "Output only. The proposed include export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed include export IP ranges waiting for hub administrator's approval.",
           "items": {
             "type": "string"
           },
@@ -4822,7 +5155,7 @@
           "type": "array"
         },
         "proposedExcludeExportRanges": {
-          "description": "Output only. The proposed exclude export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.",
           "items": {
             "type": "string"
           },
@@ -4830,7 +5163,7 @@
           "type": "array"
         },
         "proposedIncludeExportRanges": {
-          "description": "Output only. The proposed include export IP ranges waiting for hub administration's approval.",
+          "description": "Output only. The proposed include export IP ranges waiting for hub administrator's approval.",
           "items": {
             "type": "string"
           },
@@ -4870,6 +5203,31 @@
           "description": "Output only. The VPC network where these VPN tunnels are located.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAutomatedDnsRecordsResponse": {
+      "description": "Response for ListAutomatedDnsRecords.",
+      "id": "ListAutomatedDnsRecordsResponse",
+      "properties": {
+        "automatedDnsRecords": {
+          "description": "AutomatedDnsRecords to be returned.",
+          "items": {
+            "$ref": "AutomatedDnsRecord"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6597,7 +6955,7 @@
           "type": "string"
         },
         "fieldPathsPendingUpdate": {
-          "description": "Optional. The list of fields waiting for hub administration's approval.",
+          "description": "Optional. The list of fields waiting for hub administrator's approval.",
           "items": {
             "type": "string"
           },
@@ -6894,7 +7252,7 @@
       "type": "object"
     },
     "StateReason": {
-      "description": "The reason a spoke is inactive.",
+      "description": "The reason for the current state of the spoke.",
       "id": "StateReason",
       "properties": {
         "code": {
