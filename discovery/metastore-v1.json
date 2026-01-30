@@ -1695,7 +1695,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20260122",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2072,7 +2072,8 @@
       "type": "object"
     },
     "CustomRegionMetadata": {
-      "description": "Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.",
       "id": "CustomRegionMetadata",
       "properties": {
         "optionalReadOnlyRegions": {
@@ -2659,7 +2660,8 @@
       "id": "LocationMetadata",
       "properties": {
         "customRegionMetadata": {
-          "description": "Possible configurations supported if the current region is a custom region.",
+          "deprecated": true,
+          "description": "Deprecated: Use a single region service instead. Possible configurations supported if the current region is a custom region.",
           "items": {
             "$ref": "CustomRegionMetadata"
           },
@@ -2667,7 +2669,8 @@
         },
         "multiRegionMetadata": {
           "$ref": "MultiRegionMetadata",
-          "description": "The multi-region metadata if the current region is a multi-region."
+          "deprecated": true,
+          "description": "Deprecated: Use a single region service instead. The multi-region metadata if the current region is a multi-region."
         },
         "supportedHiveMetastoreVersions": {
           "description": "The versions of Hive Metastore that can be used when creating a new metastore service in this location. The server guarantees that exactly one HiveMetastoreVersion in the list will set is_default.",
@@ -2971,7 +2974,8 @@
       "type": "object"
     },
     "MultiRegionMetadata": {
-      "description": "The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.",
       "id": "MultiRegionMetadata",
       "properties": {
         "constituentRegions": {

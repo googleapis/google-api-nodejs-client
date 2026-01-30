@@ -412,7 +412,7 @@ export namespace metastore_v1alpha {
     subnetwork?: string | null;
   }
   /**
-   * Custom configuration used to specify regions that the metastore service runs in. Currently only supported in the us multi-region.
+   * Deprecated: Use a single region service instead. Custom configuration used to specify regions that the metastore service runs in. Currently only supported in the us multi-region.
    */
   export interface Schema$CustomRegionConfig {
     /**
@@ -425,7 +425,7 @@ export namespace metastore_v1alpha {
     readWriteRegions?: string[] | null;
   }
   /**
-   * Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
+   * Deprecated: Use a single region service instead. Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
    */
   export interface Schema$CustomRegionMetadata {
     /**
@@ -836,11 +836,11 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$LocationMetadata {
     /**
-     * Possible configurations supported if the current region is a custom region.
+     * Deprecated: Use a single region service instead. Possible configurations supported if the current region is a custom region.
      */
     customRegionMetadata?: Schema$CustomRegionMetadata[];
     /**
-     * The multi-region metadata if the current region is a multi-region.
+     * Deprecated: Use a single region service instead. The multi-region metadata if the current region is a multi-region.
      */
     multiRegionMetadata?: Schema$MultiRegionMetadata;
     /**
@@ -1004,17 +1004,20 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$MoveTableToDatabaseResponse {}
   /**
-   * The multi-region config for the Dataproc Metastore service.
+   * Deprecated: Use a single region service instead. The multi-region config for the Dataproc Metastore service.
    */
   export interface Schema$MultiRegionConfig {
     /**
-     * Output only. The list of root CA certificates that a gRPC client uses to connect to a multi-regional Dataproc Metastore service.
+     * Output only. Deprecated: Use a single region service instead. The list of root CA certificates that a gRPC client uses to connect to a multi-regional Dataproc Metastore service.
      */
     certificates?: Schema$RootCACertificate[];
+    /**
+     * Immutable. Deprecated: Use a single region service instead.
+     */
     customRegionConfig?: Schema$CustomRegionConfig;
   }
   /**
-   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
+   * Deprecated: Use a single region service instead. The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
    */
   export interface Schema$MultiRegionMetadata {
     /**
@@ -1213,15 +1216,15 @@ export namespace metastore_v1alpha {
     restoreType?: string | null;
   }
   /**
-   * A gRPC client must install all root CA certificates to connect to a multi-regional Dataproc Metastore service and achieve failover.
+   * Deprecated: Use a single region service instead. A gRPC client must install all root CA certificates to connect to a multi-regional Dataproc Metastore service and achieve failover.
    */
   export interface Schema$RootCACertificate {
     /**
-     * The root CA certificate in PEM format. The maximum length is 65536 bytes.
+     * Deprecated: Use a single region service instead. The root CA certificate in PEM format. The maximum length is 65536 bytes.
      */
     certificate?: string | null;
     /**
-     * The certificate expiration time in timestamp format.
+     * Deprecated: Use a single region service instead. The certificate expiration time in timestamp format.
      */
     expirationTime?: string | null;
   }
@@ -1329,7 +1332,7 @@ export namespace metastore_v1alpha {
      */
     metadataManagementActivity?: Schema$MetadataManagementActivity;
     /**
-     * Optional. Specifies the multi-region configuration information for the Hive metastore service.
+     * Optional. Deprecated: Use a single region service instead. Specifies the multi-region configuration information for the Hive metastore service.
      */
     multiRegionConfig?: Schema$MultiRegionConfig;
     /**

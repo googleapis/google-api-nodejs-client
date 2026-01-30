@@ -394,7 +394,7 @@ export namespace metastore_v1 {
     subnetwork?: string | null;
   }
   /**
-   * Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
+   * Deprecated: Use a single region service instead. Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
    */
   export interface Schema$CustomRegionMetadata {
     /**
@@ -783,11 +783,11 @@ export namespace metastore_v1 {
    */
   export interface Schema$LocationMetadata {
     /**
-     * Possible configurations supported if the current region is a custom region.
+     * Deprecated: Use a single region service instead. Possible configurations supported if the current region is a custom region.
      */
     customRegionMetadata?: Schema$CustomRegionMetadata[];
     /**
-     * The multi-region metadata if the current region is a multi-region.
+     * Deprecated: Use a single region service instead. The multi-region metadata if the current region is a multi-region.
      */
     multiRegionMetadata?: Schema$MultiRegionMetadata;
     /**
@@ -947,7 +947,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$MoveTableToDatabaseResponse {}
   /**
-   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
+   * Deprecated: Use a single region service instead. The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
    */
   export interface Schema$MultiRegionMetadata {
     /**
