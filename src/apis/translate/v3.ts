@@ -216,7 +216,7 @@ export namespace translate_v3 {
      */
     content?: string[] | null;
     /**
-     * Required. The resource name for the dataset to use for adaptive MT. `projects/{project\}/locations/{location-id\}/adaptiveMtDatasets/{dataset\}`
+     * Required. The resource name for the dataset to use for adaptive MT translation. `projects/{project\}/locations/{location-id\}/adaptiveMtDatasets/{dataset\}`
      */
     dataset?: string | null;
     /**
@@ -2989,7 +2989,7 @@ export namespace translate_v3 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5054,7 +5054,7 @@ export namespace translate_v3 {
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtFilesResponse.next_page_token returned from the previous call to `ListAdaptiveMtFiles` method. The first page is returned if `page_token`is empty or missing.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the project from which to list the Adaptive MT files. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     *       // Required. The resource name of the dataset from which to list the Adaptive MT files. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      *       parent:
      *         'projects/my-project/locations/my-location/adaptiveMtDatasets/my-adaptiveMtDataset',
      *     });
@@ -5190,7 +5190,7 @@ export namespace translate_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project from which to list the Adaptive MT files. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     * Required. The resource name of the dataset from which to list the Adaptive MT files. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      */
     parent?: string;
   }
@@ -5240,7 +5240,7 @@ export namespace translate_v3 {
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtSentencesRequest.next_page_token returned from the previous call to `ListTranslationMemories` method. The first page is returned if `page_token` is empty or missing.
      *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     *         // Required. The resource name of the Adaptive MT file from which to list the sentences. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      *         parent:
      *           'projects/my-project/locations/my-location/adaptiveMtDatasets/my-adaptiveMtDataset/adaptiveMtFiles/my-adaptiveMtFile',
      *       },
@@ -5367,7 +5367,7 @@ export namespace translate_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     * Required. The resource name of the Adaptive MT file from which to list the sentences. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      */
     parent?: string;
   }
@@ -5417,7 +5417,7 @@ export namespace translate_v3 {
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of ListAdaptiveMtSentencesRequest.next_page_token returned from the previous call to `ListTranslationMemories` method. The first page is returned if `page_token` is empty or missing.
      *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     *         // Required. The resource name of the Adaptive MT file from which to list the sentences. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      *         parent:
      *           'projects/my-project/locations/my-location/adaptiveMtDatasets/my-adaptiveMtDataset',
      *       },
@@ -5544,7 +5544,7 @@ export namespace translate_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project from which to list the Adaptive MT files. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
+     * Required. The resource name of the Adaptive MT file from which to list the sentences. The following format lists all sentences under a file. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}/adaptiveMtFiles/{file\}` The following format lists all sentences within a dataset. `projects/{project\}/locations/{location\}/adaptiveMtDatasets/{dataset\}`
      */
     parent?: string;
   }
