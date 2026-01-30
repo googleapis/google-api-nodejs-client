@@ -5019,6 +5019,40 @@
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
             },
+            "defer": {
+              "description": "Defers the renewal of a subscription.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:defer",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.subscriptionsv2.defer",
+              "parameterOrder": [
+                "packageName",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "Required. The token provided to the user's device when the subscription was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:defer",
+              "request": {
+                "$ref": "DeferSubscriptionPurchaseRequest"
+              },
+              "response": {
+                "$ref": "DeferSubscriptionPurchaseResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
             "get": {
               "description": "Get metadata about a subscription",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}",
@@ -5555,7 +5589,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260129",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6281,6 +6315,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "BasePriceOfferPhase": {
+      "description": "Details about base price offer phase.",
+      "id": "BasePriceOfferPhase",
+      "properties": {},
       "type": "object"
     },
     "BatchDeleteOneTimeProductOffersRequest": {
@@ -7139,6 +7179,51 @@
       },
       "type": "object"
     },
+    "DeferSubscriptionPurchaseRequest": {
+      "description": "Request for the v2 purchases.subscriptions.defer API.",
+      "id": "DeferSubscriptionPurchaseRequest",
+      "properties": {
+        "deferralContext": {
+          "$ref": "DeferralContext",
+          "description": "Required. Details about the subscription deferral."
+        }
+      },
+      "type": "object"
+    },
+    "DeferSubscriptionPurchaseResponse": {
+      "description": "Response for the v2 purchases.subscriptions.defer API.",
+      "id": "DeferSubscriptionPurchaseResponse",
+      "properties": {
+        "itemExpiryTimeDetails": {
+          "description": "The new expiry time for each subscription items.",
+          "items": {
+            "$ref": "ItemExpiryTimeDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DeferralContext": {
+      "description": "Deferral context of the purchases.subscriptionsv2.defer API.",
+      "id": "DeferralContext",
+      "properties": {
+        "deferDuration": {
+          "description": "Required. The duration by which all subscription items should be deferred.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Required. The API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If set to \"true\", the request is a dry run to validate the effect of Defer, the subscription would not be impacted.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DeferredItemRemoval": {
       "description": "Information related to deferred item replacement.",
       "id": "DeferredItemRemoval",
@@ -7916,6 +8001,12 @@
       "properties": {},
       "type": "object"
     },
+    "FreeTrialOfferPhase": {
+      "description": "Details about free trial offer phase.",
+      "id": "FreeTrialOfferPhase",
+      "properties": {},
+      "type": "object"
+    },
     "FullRefund": {
       "description": "A full refund of the remaining amount of a transaction.",
       "id": "FullRefund",
@@ -8681,6 +8772,28 @@
       },
       "type": "object"
     },
+    "IntroductoryPriceOfferPhase": {
+      "description": "Details about introductory price offer phase.",
+      "id": "IntroductoryPriceOfferPhase",
+      "properties": {},
+      "type": "object"
+    },
+    "ItemExpiryTimeDetails": {
+      "description": "Expiry time details of a subscription item.",
+      "id": "ItemExpiryTimeDetails",
+      "properties": {
+        "expiryTime": {
+          "description": "The new expiry time for this subscription item.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "productId": {
+          "description": "The product ID of the subscription item (for example, 'premium_plan').",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ItemReplacement": {
       "description": "Details about a subscription line item that is being replaced.",
       "id": "ItemReplacement",
@@ -9203,6 +9316,29 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OfferPhase": {
+      "description": "Offer phase details.",
+      "id": "OfferPhase",
+      "properties": {
+        "basePrice": {
+          "$ref": "BasePriceOfferPhase",
+          "description": "Set when the offer phase is a base plan pricing phase."
+        },
+        "freeTrial": {
+          "$ref": "FreeTrialOfferPhase",
+          "description": "Set when the offer phase is a free trial."
+        },
+        "introductoryPrice": {
+          "$ref": "IntroductoryPriceOfferPhase",
+          "description": "Set when the offer phase is an introductory price offer phase."
+        },
+        "prorationPeriod": {
+          "$ref": "ProrationPeriodOfferPhase",
+          "description": "Set when the offer phase is a proration period."
         }
       },
       "type": "object"
@@ -10415,6 +10551,29 @@
             "The order funds a base price period.",
             "The order funds an introductory pricing period.",
             "The order funds a free trial period."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProrationPeriodOfferPhase": {
+      "description": "Details about proration period offer phase.",
+      "id": "ProrationPeriodOfferPhase",
+      "properties": {
+        "originalOfferPhaseType": {
+          "description": "The original offer phase type before the proration period. Only set when the proration period is updated from an existing offer phase.",
+          "enum": [
+            "ORIGINAL_OFFER_PHASE_TYPE_UNSPECIFIED",
+            "BASE",
+            "INTRODUCTORY",
+            "FREE_TRIAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified original offer phase type.",
+            "The subscription is in the base pricing phase (e.g. full price).",
+            "The subscription is in an introductory pricing phase.",
+            "The subscription is in a free trial."
           ],
           "type": "string"
         }
@@ -11742,6 +11901,10 @@
           "$ref": "OfferDetails",
           "description": "The offer details for this item."
         },
+        "offerPhase": {
+          "$ref": "OfferPhase",
+          "description": "Current offer phase details for this item."
+        },
         "prepaidPlan": {
           "$ref": "PrepaidPlan",
           "description": "The item is prepaid."
@@ -11778,6 +11941,10 @@
         "canceledStateContext": {
           "$ref": "CanceledStateContext",
           "description": "Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED."
+        },
+        "etag": {
+          "description": "Entity tag representing the current state of the subscription. The developer will provide this etag for subscription actions. This etag is always present for auto-renewing and prepaid subscriptions.",
+          "type": "string"
         },
         "externalAccountIdentifiers": {
           "$ref": "ExternalAccountIdentifiers",
@@ -12371,11 +12538,11 @@
       "type": "object"
     },
     "TrackTargetedCountry": {
-      "description": "Representation of a single country where the contents of a track are available.",
+      "description": "Representation of a single country where the contents of a track can be made available.",
       "id": "TrackTargetedCountry",
       "properties": {
         "countryCode": {
-          "description": "The country to target, as a two-letter CLDR code.",
+          "description": "The country that can be targeted, as a two-letter CLDR code.",
           "type": "string"
         }
       },

@@ -658,6 +658,10 @@ export namespace androidpublisher_v3 {
     state?: string | null;
   }
   /**
+   * Details about base price offer phase.
+   */
+  export interface Schema$BasePriceOfferPhase {}
+  /**
    * Request message for BatchDeleteOneTimeProductOffers.
    */
   export interface Schema$BatchDeleteOneTimeProductOffersRequest {
@@ -1239,6 +1243,23 @@ export namespace androidpublisher_v3 {
     productId?: string | null;
   }
   /**
+   * Deferral context of the purchases.subscriptionsv2.defer API.
+   */
+  export interface Schema$DeferralContext {
+    /**
+     * Required. The duration by which all subscription items should be deferred.
+     */
+    deferDuration?: string | null;
+    /**
+     * Required. The API will fail if the etag does not match the latest etag for this subscription. The etag is retrieved from purchases.subscriptionsv2.get: https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get
+     */
+    etag?: string | null;
+    /**
+     * If set to "true", the request is a dry run to validate the effect of Defer, the subscription would not be impacted.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * Information related to deferred item replacement.
    */
   export interface Schema$DeferredItemRemoval {}
@@ -1250,6 +1271,24 @@ export namespace androidpublisher_v3 {
      * The product_id going to replace the existing product_id.
      */
     productId?: string | null;
+  }
+  /**
+   * Request for the v2 purchases.subscriptions.defer API.
+   */
+  export interface Schema$DeferSubscriptionPurchaseRequest {
+    /**
+     * Required. Details about the subscription deferral.
+     */
+    deferralContext?: Schema$DeferralContext;
+  }
+  /**
+   * Response for the v2 purchases.subscriptions.defer API.
+   */
+  export interface Schema$DeferSubscriptionPurchaseResponse {
+    /**
+     * The new expiry time for each subscription items.
+     */
+    itemExpiryTimeDetails?: Schema$ItemExpiryTimeDetails[];
   }
   /**
    * Request message for deleting an one-time product offer.
@@ -1794,6 +1833,10 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$FreeTrialDetails {}
   /**
+   * Details about free trial offer phase.
+   */
+  export interface Schema$FreeTrialOfferPhase {}
+  /**
    * A full refund of the remaining amount of a transaction.
    */
   export interface Schema$FullRefund {}
@@ -2305,6 +2348,23 @@ export namespace androidpublisher_v3 {
     introductoryPricePeriod?: string | null;
   }
   /**
+   * Details about introductory price offer phase.
+   */
+  export interface Schema$IntroductoryPriceOfferPhase {}
+  /**
+   * Expiry time details of a subscription item.
+   */
+  export interface Schema$ItemExpiryTimeDetails {
+    /**
+     * The new expiry time for this subscription item.
+     */
+    expiryTime?: string | null;
+    /**
+     * The product ID of the subscription item (for example, 'premium_plan').
+     */
+    productId?: string | null;
+  }
+  /**
    * Details about a subscription line item that is being replaced.
    */
   export interface Schema$ItemReplacement {
@@ -2670,6 +2730,27 @@ export namespace androidpublisher_v3 {
      * The latest offer tags associated with the offer. It includes tags inherited from the base plan.
      */
     offerTags?: string[] | null;
+  }
+  /**
+   * Offer phase details.
+   */
+  export interface Schema$OfferPhase {
+    /**
+     * Set when the offer phase is a base plan pricing phase.
+     */
+    basePrice?: Schema$BasePriceOfferPhase;
+    /**
+     * Set when the offer phase is a free trial.
+     */
+    freeTrial?: Schema$FreeTrialOfferPhase;
+    /**
+     * Set when the offer phase is an introductory price offer phase.
+     */
+    introductoryPrice?: Schema$IntroductoryPriceOfferPhase;
+    /**
+     * Set when the offer phase is a proration period.
+     */
+    prorationPeriod?: Schema$ProrationPeriodOfferPhase;
   }
   /**
    * Details of a pricing phase for the entitlement period funded by this order.
@@ -3539,6 +3620,15 @@ export namespace androidpublisher_v3 {
      * Represent the original offer phase from the purchased the line item if the proration period contains any of them. For example, a proration period from CHARGE_FULL_PRICE plan change may merge the 1st offer phase of the subscription offer of the new product user purchased. In this case, the original offer phase will be set here.
      */
     originalOfferPhase?: string | null;
+  }
+  /**
+   * Details about proration period offer phase.
+   */
+  export interface Schema$ProrationPeriodOfferPhase {
+    /**
+     * The original offer phase type before the proration period. Only set when the proration period is updated from an existing offer phase.
+     */
+    originalOfferPhaseType?: string | null;
   }
   /**
    * Details about taxation, Google Play policy and legal compliance for one-time product purchase options.
@@ -4457,6 +4547,10 @@ export namespace androidpublisher_v3 {
      */
     offerDetails?: Schema$OfferDetails;
     /**
+     * Current offer phase details for this item.
+     */
+    offerPhase?: Schema$OfferPhase;
+    /**
      * The item is prepaid.
      */
     prepaidPlan?: Schema$PrepaidPlan;
@@ -4512,6 +4606,10 @@ export namespace androidpublisher_v3 {
      * Additional context around canceled subscriptions. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_CANCELED or SUBSCRIPTION_STATE_EXPIRED.
      */
     canceledStateContext?: Schema$CanceledStateContext;
+    /**
+     * Entity tag representing the current state of the subscription. The developer will provide this etag for subscription actions. This etag is always present for auto-renewing and prepaid subscriptions.
+     */
+    etag?: string | null;
     /**
      * User account identifier in the third-party service.
      */
@@ -4885,11 +4983,11 @@ export namespace androidpublisher_v3 {
     tracks?: Schema$Track[];
   }
   /**
-   * Representation of a single country where the contents of a track are available.
+   * Representation of a single country where the contents of a track can be made available.
    */
   export interface Schema$TrackTargetedCountry {
     /**
-     * The country to target, as a two-letter CLDR code.
+     * The country that can be targeted, as a two-letter CLDR code.
      */
     countryCode?: string | null;
   }
@@ -26087,6 +26185,164 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Defers the renewal of a subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptionsv2.defer({
+     *     // Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // Required. The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deferralContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "itemExpiryTimeDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    defer(
+      params: Params$Resource$Purchases$Subscriptionsv2$Defer,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    defer(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Defer,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$DeferSubscriptionPurchaseResponse>
+    >;
+    defer(
+      params: Params$Resource$Purchases$Subscriptionsv2$Defer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    defer(
+      params: Params$Resource$Purchases$Subscriptionsv2$Defer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>,
+      callback: BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+    ): void;
+    defer(
+      params: Params$Resource$Purchases$Subscriptionsv2$Defer,
+      callback: BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+    ): void;
+    defer(
+      callback: BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+    ): void;
+    defer(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Defer
+        | BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeferSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$DeferSubscriptionPurchaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Defer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Subscriptionsv2$Defer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:defer'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeferSubscriptionPurchaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeferSubscriptionPurchaseResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get metadata about a subscription
      * @example
      * ```js
@@ -26128,6 +26384,7 @@ export namespace androidpublisher_v3 {
      *   // {
      *   //   "acknowledgementState": "my_acknowledgementState",
      *   //   "canceledStateContext": {},
+     *   //   "etag": "my_etag",
      *   //   "externalAccountIdentifiers": {},
      *   //   "kind": "my_kind",
      *   //   "latestOrderId": "my_latestOrderId",
@@ -26412,6 +26669,21 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CancelSubscriptionPurchaseRequest;
+  }
+  export interface Params$Resource$Purchases$Subscriptionsv2$Defer extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeferSubscriptionPurchaseRequest;
   }
   export interface Params$Resource$Purchases$Subscriptionsv2$Get extends StandardParameters {
     /**
