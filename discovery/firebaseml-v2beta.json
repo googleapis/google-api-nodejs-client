@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260111",
+  "revision": "20260128",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1250,11 +1250,13 @@
           "enum": [
             "TRAFFIC_TYPE_UNSPECIFIED",
             "ON_DEMAND",
+            "ON_DEMAND_FLEX",
             "PROVISIONED_THROUGHPUT"
           ],
           "enumDescriptions": [
             "Unspecified request traffic type.",
             "The request was processed using Pay-As-You-Go quota.",
+            "Type for Flex traffic.",
             "Type for Provisioned Throughput traffic."
           ],
           "readOnly": true,
