@@ -454,6 +454,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "undelete": {
+                  "description": "Undeletes Looker instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "looker.projects.locations.instances.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -715,7 +743,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260119",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -983,6 +1011,10 @@
           "$ref": "AdminSettings",
           "description": "Looker Instance Admin settings."
         },
+        "catalogIntegrationEnabled": {
+          "description": "Optional. Indicates whether catalog integration is enabled for the Looker instance.",
+          "type": "boolean"
+        },
         "classType": {
           "description": "Optional. Storage class of the instance.",
           "enum": [
@@ -1153,6 +1185,23 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "softDeleteReason": {
+          "description": "Output only. The reason for the instance being in a soft-deleted state.",
+          "enum": [
+            "SOFT_DELETE_REASON_UNSPECIFIED",
+            "BILLING_ACCOUNT_ISSUE",
+            "TRIAL_EXPIRED",
+            "CUSTOMER_REQUEST"
+          ],
+          "enumDescriptions": [
+            "Soft delete reason is unspecified. This is the default value.",
+            "Instance is soft deleted due to billing account issues.",
+            "Instance is soft deleted due to trial expiration.",
+            "Instance is soft deleted by the customer."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The state of the instance.",
           "enum": [
@@ -1177,6 +1226,12 @@
             "Instance is being exported.",
             "Instance is importing data."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "suspendedTime": {
+          "description": "Output only. The time when the Looker instance was suspended (soft deleted).",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
@@ -1668,6 +1723,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "UndeleteInstanceRequest": {
+      "description": "Request options for undeleting an instance.",
+      "id": "UndeleteInstanceRequest",
+      "properties": {},
       "type": "object"
     },
     "UserMetadata": {
