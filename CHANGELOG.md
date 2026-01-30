@@ -4,6 +4,32 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [171.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v171.0.0...googleapis-v171.1.0) (2026-01-30)
+
+
+### Features
+
+* **androidpublisher:** update the API ([dcb64ae](https://github.com/googleapis/google-api-nodejs-client/commit/dcb64aef7424f7564023c6424093df3d07763e32))
+* **containeranalysis:** update the API ([248a583](https://github.com/googleapis/google-api-nodejs-client/commit/248a5830c3a8e9c1371f678727ee488ec86147d5))
+* **container:** update the API ([eaa3dba](https://github.com/googleapis/google-api-nodejs-client/commit/eaa3dba4409e6ce1b4a6358e6e8faee1e1557f33))
+* **dataplex:** update the API ([1d3bbd8](https://github.com/googleapis/google-api-nodejs-client/commit/1d3bbd88ad94700e36d2a15b38e9deb1b601ebcd))
+* **gkehub:** update the API ([f9d42c7](https://github.com/googleapis/google-api-nodejs-client/commit/f9d42c7f06215930c2a864b16b31f6d6bc57542f))
+* **looker:** update the API ([b04810c](https://github.com/googleapis/google-api-nodejs-client/commit/b04810c987b1bdb870609535f4fdb97837b96943))
+* **metastore:** update the API ([a6c8839](https://github.com/googleapis/google-api-nodejs-client/commit/a6c88396088a29e956141ac36c56576688c032c2))
+* regenerate index files ([807d1f3](https://github.com/googleapis/google-api-nodejs-client/commit/807d1f3c5b8e53be5b5cabe93039106664c6f6c3))
+* **run:** update the API ([44780b5](https://github.com/googleapis/google-api-nodejs-client/commit/44780b550f26ab14f0bee0a763c7afb9b44f504f))
+* **securitycenter:** update the API ([a12bab2](https://github.com/googleapis/google-api-nodejs-client/commit/a12bab2b3e3d453d2a0a579468fa765de0f01030))
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([a7330dd](https://github.com/googleapis/google-api-nodejs-client/commit/a7330dda6c9f2892e32a897bf875ea45946dcc09))
+* **netapp:** update the API ([1517a53](https://github.com/googleapis/google-api-nodejs-client/commit/1517a533c272f1925572f4d99e0f135817f94e49))
+* **networkmanagement:** update the API ([7bb10ef](https://github.com/googleapis/google-api-nodejs-client/commit/7bb10efb267402da74f33ffe940497e47eb73548))
+* **privateca:** update the API ([9d4db0f](https://github.com/googleapis/google-api-nodejs-client/commit/9d4db0f49aca4a3d3d5749efec419e7213b2c94e))
+* **tpu:** update the API ([3f48ea4](https://github.com/googleapis/google-api-nodejs-client/commit/3f48ea44e5f92cd45a20bf76649dd198acca005e))
+* **translate:** update the API ([647e12d](https://github.com/googleapis/google-api-nodejs-client/commit/647e12dddf78b0d508bd3d19f1aa009f170bd83e))
+
 ## [171.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v170.1.0...googleapis-v171.0.0) (2026-01-28)
 
 
