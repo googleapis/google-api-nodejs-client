@@ -777,7 +777,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: List all public locations: Use the path GET /v1/locations. List project-visible locations: Use the path GET /v1/projects/{project_id}/locations. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.list",
@@ -7327,6 +7327,183 @@
                 }
               }
             },
+            "metadataFeeds": {
+              "methods": {
+                "create": {
+                  "description": "Creates a MetadataFeed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/metadataFeeds",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.metadataFeeds.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "metadataFeedId": {
+                      "description": "Optional. The metadata job ID. If not provided, a unique ID is generated with the prefix metadata-job-.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent location, in the format projects/{project_id_or_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/metadataFeeds",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1MetadataFeed"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a MetadataFeed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/metadataFeeds/{metadataFeedsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.projects.locations.metadataFeeds.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/MetadataFeeds/{metadata_feed_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/metadataFeeds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a MetadataFeed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/metadataFeeds/{metadataFeedsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.metadataFeeds.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/MetadataFeeds/{metadata_feed_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/metadataFeeds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1MetadataFeed"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve a list of MetadataFeeds.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/metadataFeeds",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.metadataFeeds.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = \"value1\" labels:key1 name = \"value\"You can combine filters with AND, OR, and NOT operators.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The field to sort the results by, either name or create_time. If not specified, the ordering is undefined.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of metadata feeds to return. The service might return fewer feeds than this value. If unspecified, at most 10 feeds are returned. The maximum value is 1,000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The page token received from a previous ListMetadataFeeds call. Provide this token to retrieve the subsequent page of results. When paginating, all other parameters that are provided to the ListMetadataFeeds request must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent location, in the format projects/{project_id_or_number}/locations/{location_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/metadataFeeds",
+                  "response": {
+                    "$ref": "GoogleCloudDataplexV1ListMetadataFeedsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a MetadataFeed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/metadataFeeds/{metadataFeedsId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataplex.projects.locations.metadataFeeds.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/metadataFeeds/{metadata_feed_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/metadataFeeds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDataplexV1MetadataFeed"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "metadataJobs": {
               "methods": {
                 "cancel": {
@@ -7601,7 +7778,7 @@
       }
     }
   },
-  "revision": "20251223",
+  "revision": "20260127",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -9155,6 +9332,25 @@
         "catalogPublishingEnabled": {
           "description": "Optional. Whether to publish result to Dataplex Catalog.",
           "type": "boolean"
+        },
+        "generationScopes": {
+          "description": "Optional. Specifies which components of the data documentation to generate. Any component that is required to generate the specified components will also be generated. If no generation scope is specified, all available documentation components will be generated.",
+          "items": {
+            "enum": [
+              "GENERATION_SCOPE_UNSPECIFIED",
+              "ALL",
+              "TABLE_AND_COLUMN_DESCRIPTIONS",
+              "SQL_QUERIES"
+            ],
+            "enumDescriptions": [
+              "Unspecified generation scope. If no generation scope is specified, all available documentation components will be generated.",
+              "All the possible results will be generated.",
+              "Table and column descriptions will be generated.",
+              "SQL queries will be generated."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13042,6 +13238,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1ListMetadataFeedsResponse": {
+      "description": "Response message for ListMetadataFeeds.",
+      "id": "GoogleCloudDataplexV1ListMetadataFeedsResponse",
+      "properties": {
+        "metadataFeeds": {
+          "description": "List of metadata feeds under the specified parent location.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1MetadataFeed"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. If there are no more results in the list, the value is empty.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that the service couldn't reach.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1ListMetadataJobsResponse": {
       "description": "List metadata jobs response.",
       "id": "GoogleCloudDataplexV1ListMetadataJobsResponse",
@@ -13140,6 +13361,118 @@
           "description": "Zones under the given parent lake.",
           "items": {
             "$ref": "GoogleCloudDataplexV1Zone"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataFeed": {
+      "description": "MetadataFeed contains information related to the metadata feed.",
+      "id": "GoogleCloudDataplexV1MetadataFeed",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the feed was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filters": {
+          "$ref": "GoogleCloudDataplexV1MetadataFeedFilters",
+          "description": "Optional. The filters of the metadata feed. Only the changes that match the filters are published."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the metadata feed, in the format projects/{project_id_or_number}/locations/{location_id}/metadataFeeds/{metadata_feed_id}.",
+          "type": "string"
+        },
+        "pubsubTopic": {
+          "description": "Optional. The pubsub topic that you want the metadata feed messages to publish to. Please grant Dataplex service account the permission to publish messages to the topic. The service account is: service-{PROJECT_NUMBER}@gcp-sa-dataplex.iam.gserviceaccount.com.",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "GoogleCloudDataplexV1MetadataFeedScope",
+          "description": "Required. The scope of the metadata feed. Only the in scope changes are published."
+        },
+        "uid": {
+          "description": "Output only. A system-generated, globally unique ID for the metadata job. If the metadata job is deleted and then re-created with the same name, this ID is different.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the feed was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataFeedFilters": {
+      "description": "Filters defines the type of changes that you want to listen to. You can have multiple entry type filters and multiple aspect type filters. All of the entry type filters are OR'ed together. All of the aspect type filters are OR'ed together. All of the entry type filters and aspect type filters are AND'ed together.",
+      "id": "GoogleCloudDataplexV1MetadataFeedFilters",
+      "properties": {
+        "aspectTypes": {
+          "description": "Optional. The aspect types that you want to listen to. Depending on how the aspect is attached to the entry, in the format: projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "changeTypes": {
+          "description": "Optional. The type of change that you want to listen to. If not specified, all changes are published.",
+          "items": {
+            "enum": [
+              "CHANGE_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Unspecified change type. Defaults to UNSPECIFIED.",
+              "The change is a create event.",
+              "The change is an update event.",
+              "The change is a delete event."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entryTypes": {
+          "description": "Optional. The entry types that you want to listen to, specified as relative resource names in the format projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}. Only entries that belong to the specified entry types are published.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1MetadataFeedScope": {
+      "description": "Scope defines the scope of the metadata feed. Scopes are exclusive. Only one of the scopes can be specified.",
+      "id": "GoogleCloudDataplexV1MetadataFeedScope",
+      "properties": {
+        "entryGroups": {
+          "description": "Optional. The entry groups whose entries you want to listen to. Must be in the format: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organizationLevel": {
+          "description": "Optional. Whether the metadata feed is at the organization-level. If true, all changes happened to the entries in the same organization as the feed are published. If false, you must specify a list of projects or a list of entry groups whose entries you want to listen to.The default is false.",
+          "type": "boolean"
+        },
+        "projects": {
+          "description": "Optional. The projects whose entries you want to listen to. Must be in the same organization as the feed. Must be in the format: projects/{project_id_or_number}.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
