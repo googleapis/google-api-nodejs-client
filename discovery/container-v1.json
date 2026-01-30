@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260120",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2847,6 +2847,10 @@
         "rayOperatorConfig": {
           "$ref": "RayOperatorConfig",
           "description": "Optional. Configuration for Ray Operator addon."
+        },
+        "sliceControllerConfig": {
+          "$ref": "SliceControllerConfig",
+          "description": "Optional. Configuration for the slice controller add-on."
         },
         "statefulHaConfig": {
           "$ref": "StatefulHAConfig",
@@ -3296,6 +3300,23 @@
           "description": "Disk size in GB. Replaces NodeConfig.disk_size_gb",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BootDiskProfile": {
+      "description": "Swap on the node's boot disk.",
+      "id": "BootDiskProfile",
+      "properties": {
+        "swapSizeGib": {
+          "description": "Specifies the size of the swap space in gibibytes (GiB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "swapSizePercent": {
+          "description": "Specifies the size of the swap space as a percentage of the boot disk size.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4715,6 +4736,18 @@
       },
       "type": "object"
     },
+    "DedicatedLocalSsdProfile": {
+      "description": "Provisions a new, separate local NVMe SSD exclusively for swap.",
+      "id": "DedicatedLocalSsdProfile",
+      "properties": {
+        "diskCount": {
+          "description": "The number of physical local NVMe SSD disks to attach.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DefaultComputeClassConfig": {
       "description": "DefaultComputeClassConfig defines default compute class configuration.",
       "id": "DefaultComputeClassConfig",
@@ -4827,6 +4860,17 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptionConfig": {
+      "description": "Defines encryption settings for the swap space.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "disabled": {
+          "description": "Optional. If true, swap space will not be encrypted. Defaults to false (encrypted).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "EnterpriseConfig": {
       "deprecated": true,
       "description": "EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.",
@@ -4860,6 +4904,23 @@
             "ENTERPRISE indicates a GKE Enterprise cluster."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EphemeralLocalSsdProfile": {
+      "description": "Swap on the local SSD shared with pod ephemeral storage.",
+      "id": "EphemeralLocalSsdProfile",
+      "properties": {
+        "swapSizeGib": {
+          "description": "Specifies the size of the swap space in gibibytes (GiB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "swapSizePercent": {
+          "description": "Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5052,6 +5113,25 @@
       "properties": {
         "secretUri": {
           "description": "Secret URI, in the form \"projects/$PROJECT_ID/secrets/$SECRET_NAME/versions/$VERSION\". Version can be fixed (e.g. \"2\") or \"latest\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GPUDirectConfig": {
+      "description": "GPUDirectConfig specifies the GPU direct strategy on the node pool.",
+      "id": "GPUDirectConfig",
+      "properties": {
+        "gpuDirectStrategy": {
+          "description": "The type of GPU direct strategy to enable on the node pool.",
+          "enum": [
+            "GPU_DIRECT_STRATEGY_UNSPECIFIED",
+            "RDMA"
+          ],
+          "enumDescriptions": [
+            "Default value. No GPU Direct strategy is enabled on the node.",
+            "GPUDirect-RDMA on A3 Ultra, and A4 machine types"
+          ],
           "type": "string"
         }
       },
@@ -5717,6 +5797,10 @@
         "nodeKernelModuleLoading": {
           "$ref": "NodeKernelModuleLoading",
           "description": "Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification."
+        },
+        "swapConfig": {
+          "$ref": "SwapConfig",
+          "description": "Optional. Enables and configures swap space on nodes. If omitted, swap is disabled."
         },
         "sysctls": {
           "additionalProperties": {
@@ -6538,6 +6622,10 @@
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "Google Container File System (image streaming) configs."
+        },
+        "gpuDirectConfig": {
+          "$ref": "GPUDirectConfig",
+          "description": "The configuration for GPU Direct"
         },
         "gvnic": {
           "$ref": "VirtualNIC",
@@ -8742,6 +8830,17 @@
       },
       "type": "object"
     },
+    "SliceControllerConfig": {
+      "description": "Configuration for the Slice Controller.",
+      "id": "SliceControllerConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Indicates whether Slice Controller is enabled in the cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SoleTenantConfig": {
       "description": "SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.",
       "id": "SoleTenantConfig",
@@ -8927,6 +9026,33 @@
         "message": {
           "description": "Human-friendly representation of the condition",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SwapConfig": {
+      "description": "Configuration for swap memory on a node pool.",
+      "id": "SwapConfig",
+      "properties": {
+        "bootDiskProfile": {
+          "$ref": "BootDiskProfile",
+          "description": "Swap on the node's boot disk."
+        },
+        "dedicatedLocalSsdProfile": {
+          "$ref": "DedicatedLocalSsdProfile",
+          "description": "Provisions a new, separate local NVMe SSD exclusively for swap."
+        },
+        "enabled": {
+          "description": "Optional. Enables or disables swap for the node pool.",
+          "type": "boolean"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. If omitted, swap space is encrypted by default."
+        },
+        "ephemeralLocalSsdProfile": {
+          "$ref": "EphemeralLocalSsdProfile",
+          "description": "Swap on the local SSD shared with pod ephemeral storage."
         }
       },
       "type": "object"
@@ -9467,12 +9593,14 @@
           "enum": [
             "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED",
             "BLUE_GREEN",
-            "SURGE"
+            "SURGE",
+            "SHORT_LIVED"
           ],
           "enumDescriptions": [
             "Default value if unset. GKE internally defaults the update strategy to SURGE for unspecified strategies.",
             "blue-green upgrade.",
-            "SURGE is the traditional way of upgrade a node pool. max_surge and max_unavailable determines the level of upgrade parallelism."
+            "SURGE is the traditional way of upgrade a node pool. max_surge and max_unavailable determines the level of upgrade parallelism.",
+            "SHORT_LIVED is the dedicated upgrade strategy for QueuedProvisioning and flex start nodepools scaled up only by enqueueing to the Dynamic Workload Scheduler (DWS)."
           ],
           "type": "string"
         }

@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260120",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2948,6 +2948,10 @@
         "rayOperatorConfig": {
           "$ref": "RayOperatorConfig",
           "description": "Optional. Configuration for Ray Operator addon."
+        },
+        "sliceControllerConfig": {
+          "$ref": "SliceControllerConfig",
+          "description": "Optional. Configuration for the slice controller add-on."
         },
         "statefulHaConfig": {
           "$ref": "StatefulHAConfig",
@@ -5459,6 +5463,25 @@
       },
       "type": "object"
     },
+    "GPUDirectConfig": {
+      "description": "GPUDirectConfig specifies the GPU direct strategy on the node pool.",
+      "id": "GPUDirectConfig",
+      "properties": {
+        "gpuDirectStrategy": {
+          "description": "The type of GPU direct strategy to enable on the node pool.",
+          "enum": [
+            "GPU_DIRECT_STRATEGY_UNSPECIFIED",
+            "RDMA"
+          ],
+          "enumDescriptions": [
+            "Default value. No GPU Direct strategy is enabled on the node.",
+            "GPUDirect-RDMA on A3 Ultra, and A4 machine types"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GPUDriverInstallationConfig": {
       "description": "GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.",
       "id": "GPUDriverInstallationConfig",
@@ -7105,6 +7128,10 @@
         "gcfsConfig": {
           "$ref": "GcfsConfig",
           "description": "GCFS (Google Container File System) configs."
+        },
+        "gpuDirectConfig": {
+          "$ref": "GPUDirectConfig",
+          "description": "The configuration for GPU Direct"
         },
         "gvnic": {
           "$ref": "VirtualNIC",
@@ -9476,6 +9503,17 @@
       },
       "type": "object"
     },
+    "SliceControllerConfig": {
+      "description": "Configuration for the Slice Controller.",
+      "id": "SliceControllerConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Indicates whether Slice Controller is enabled in the cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SoleTenantConfig": {
       "description": "SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.",
       "id": "SoleTenantConfig",
@@ -10292,12 +10330,14 @@
           "enum": [
             "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED",
             "BLUE_GREEN",
-            "SURGE"
+            "SURGE",
+            "SHORT_LIVED"
           ],
           "enumDescriptions": [
             "Default value if unset. GKE internally defaults the update strategy to SURGE for unspecified strategies.",
             "blue-green upgrade.",
-            "SURGE is the traditional way of upgrading a node pool. max_surge and max_unavailable determines the level of upgrade parallelism."
+            "SURGE is the traditional way of upgrading a node pool. max_surge and max_unavailable determines the level of upgrade parallelism.",
+            "SHORT_LIVED is the dedicated upgrade strategy for QueuedProvisioning and flex start nodepools scaled up only by enqueueing to the Dynamic Workload Scheduler (DWS)."
           ],
           "type": "string"
         }

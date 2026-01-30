@@ -278,6 +278,10 @@ export namespace container_v1 {
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
     /**
+     * Optional. Configuration for the slice controller add-on.
+     */
+    sliceControllerConfig?: Schema$SliceControllerConfig;
+    /**
      * Optional. Configuration for the StatefulHA add-on.
      */
     statefulHaConfig?: Schema$StatefulHAConfig;
@@ -579,6 +583,19 @@ export namespace container_v1 {
      * Disk size in GB. Replaces NodeConfig.disk_size_gb
      */
     sizeGb?: string | null;
+  }
+  /**
+   * Swap on the node's boot disk.
+   */
+  export interface Schema$BootDiskProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the boot disk size.
+     */
+    swapSizePercent?: number | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -1591,6 +1608,15 @@ export namespace container_v1 {
     state?: string | null;
   }
   /**
+   * Provisions a new, separate local NVMe SSD exclusively for swap.
+   */
+  export interface Schema$DedicatedLocalSsdProfile {
+    /**
+     * The number of physical local NVMe SSD disks to attach.
+     */
+    diskCount?: string | null;
+  }
+  /**
    * DefaultComputeClassConfig defines default compute class configuration.
    */
   export interface Schema$DefaultComputeClassConfig {
@@ -1703,6 +1729,15 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Defines encryption settings for the swap space.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. If true, swap space will not be encrypted. Defaults to false (encrypted).
+     */
+    disabled?: boolean | null;
+  }
+  /**
    * EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
    */
   export interface Schema$EnterpriseConfig {
@@ -1714,6 +1749,19 @@ export namespace container_v1 {
      * desired_tier specifies the desired tier of the cluster.
      */
     desiredTier?: string | null;
+  }
+  /**
+   * Swap on the local SSD shared with pod ephemeral storage.
+   */
+  export interface Schema$EphemeralLocalSsdProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
+     */
+    swapSizePercent?: number | null;
   }
   /**
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
@@ -1975,6 +2023,15 @@ export namespace container_v1 {
      * Whether the Backup for GKE agent is enabled for this cluster.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * GPUDirectConfig specifies the GPU direct strategy on the node pool.
+   */
+  export interface Schema$GPUDirectConfig {
+    /**
+     * The type of GPU direct strategy to enable on the node pool.
+     */
+    gpuDirectStrategy?: string | null;
   }
   /**
    * GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.
@@ -2329,6 +2386,10 @@ export namespace container_v1 {
      * Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification.
      */
     nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
+    /**
+     * Optional. Enables and configures swap space on nodes. If omitted, swap is disabled.
+     */
+    swapConfig?: Schema$SwapConfig;
     /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
@@ -2831,6 +2892,10 @@ export namespace container_v1 {
      * Google Container File System (image streaming) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * The configuration for GPU Direct
+     */
+    gpuDirectConfig?: Schema$GPUDirectConfig;
     /**
      * Enable or disable gvnic in the node pool.
      */
@@ -4382,6 +4447,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * Configuration for the Slice Controller.
+   */
+  export interface Schema$SliceControllerConfig {
+    /**
+     * Optional. Indicates whether Slice Controller is enabled in the cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.
    */
   export interface Schema$SoleTenantConfig {
@@ -4478,6 +4552,31 @@ export namespace container_v1 {
      * Human-friendly representation of the condition
      */
     message?: string | null;
+  }
+  /**
+   * Configuration for swap memory on a node pool.
+   */
+  export interface Schema$SwapConfig {
+    /**
+     * Swap on the node's boot disk.
+     */
+    bootDiskProfile?: Schema$BootDiskProfile;
+    /**
+     * Provisions a new, separate local NVMe SSD exclusively for swap.
+     */
+    dedicatedLocalSsdProfile?: Schema$DedicatedLocalSsdProfile;
+    /**
+     * Optional. Enables or disables swap for the node pool.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. If omitted, swap space is encrypted by default.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
+     * Swap on the local SSD shared with pod ephemeral storage.
+     */
+    ephemeralLocalSsdProfile?: Schema$EphemeralLocalSsdProfile;
   }
   /**
    * Represents an arbitrary window of time.

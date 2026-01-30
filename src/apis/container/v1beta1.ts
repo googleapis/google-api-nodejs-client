@@ -294,6 +294,10 @@ export namespace container_v1beta1 {
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
     /**
+     * Optional. Configuration for the slice controller add-on.
+     */
+    sliceControllerConfig?: Schema$SliceControllerConfig;
+    /**
      * Optional. Configuration for the StatefulHA add-on.
      */
     statefulHaConfig?: Schema$StatefulHAConfig;
@@ -2220,6 +2224,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * GPUDirectConfig specifies the GPU direct strategy on the node pool.
+   */
+  export interface Schema$GPUDirectConfig {
+    /**
+     * The type of GPU direct strategy to enable on the node pool.
+     */
+    gpuDirectStrategy?: string | null;
+  }
+  /**
    * GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.
    */
   export interface Schema$GPUDriverInstallationConfig {
@@ -3164,6 +3177,10 @@ export namespace container_v1beta1 {
      * GCFS (Google Container File System) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * The configuration for GPU Direct
+     */
+    gpuDirectConfig?: Schema$GPUDirectConfig;
     /**
      * Enable or disable gvnic on the node pool.
      */
@@ -4831,6 +4848,15 @@ export namespace container_v1beta1 {
   export interface Schema$ShieldedNodes {
     /**
      * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Configuration for the Slice Controller.
+   */
+  export interface Schema$SliceControllerConfig {
+    /**
+     * Optional. Indicates whether Slice Controller is enabled in the cluster.
      */
     enabled?: boolean | null;
   }
