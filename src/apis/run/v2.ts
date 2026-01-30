@@ -476,6 +476,14 @@ export namespace run_v2 {
      */
     cancelledCount?: number | null;
     /**
+     * Output only. Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Output only. Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
+    /**
      * Output only. Represents time when the execution was completed. It is not guaranteed to be set in happens-before order across separate operations.
      */
     completionTime?: string | null;
@@ -520,7 +528,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.
+     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are used, this field will be BETA.
      */
     launchStage?: string | null;
     /**
@@ -613,6 +621,14 @@ export namespace run_v2 {
      * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 ExecutionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
     /**
      * Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 ExecutionTemplate.
      */
@@ -1269,6 +1285,14 @@ export namespace run_v2 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Output only. Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Output only. Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
+    /**
      * Output only. The Condition of this Revision, containing its readiness status, and detailed error information in case it did not reach a serving state.
      */
     conditions?: Schema$GoogleCloudRunV2Condition[];
@@ -1325,7 +1349,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.
+     * The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are used, this field will be BETA.
      */
     launchStage?: string | null;
     /**
@@ -1431,6 +1455,14 @@ export namespace run_v2 {
      * Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
     /**
      * Holds the single container that defines the unit of execution for this Revision.
      */
@@ -2319,6 +2351,14 @@ export namespace run_v2 {
      * Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 WorkerPoolRevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Optional. Arbitrary identifier for the API client.
+     */
+    client?: string | null;
+    /**
+     * Optional. Arbitrary version identifier for the API client.
+     */
+    clientVersion?: string | null;
     /**
      * Holds list of the containers that defines the unit of execution for this Revision.
      */
@@ -7531,6 +7571,8 @@ export namespace run_v2 {
      *   // {
      *   //   "annotations": {},
      *   //   "cancelledCount": 0,
+     *   //   "client": "my_client",
+     *   //   "clientVersion": "my_clientVersion",
      *   //   "completionTime": "my_completionTime",
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
@@ -10640,6 +10682,8 @@ export namespace run_v2 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "client": "my_client",
+     *   //   "clientVersion": "my_clientVersion",
      *   //   "conditions": [],
      *   //   "containers": [],
      *   //   "createTime": "my_createTime",
@@ -12592,6 +12636,8 @@ export namespace run_v2 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "client": "my_client",
+     *   //   "clientVersion": "my_clientVersion",
      *   //   "conditions": [],
      *   //   "containers": [],
      *   //   "createTime": "my_createTime",

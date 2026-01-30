@@ -2373,7 +2373,7 @@
       }
     }
   },
-  "revision": "20260117",
+  "revision": "20260123",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2927,6 +2927,16 @@
           "readOnly": true,
           "type": "integer"
         },
+        "client": {
+          "description": "Output only. Arbitrary identifier for the API client.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Output only. Arbitrary version identifier for the API client.",
+          "readOnly": true,
+          "type": "string"
+        },
         "completionTime": {
           "description": "Output only. Represents time when the execution was completed. It is not guaranteed to be set in happens-before order across separate operations.",
           "format": "google-datetime",
@@ -2995,7 +3005,7 @@
           "type": "object"
         },
         "launchStage": {
-          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.",
+          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are used, this field will be BETA.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -3155,6 +3165,14 @@
           },
           "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 ExecutionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
+        },
+        "client": {
+          "description": "Optional. Arbitrary identifier for the API client.",
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Optional. Arbitrary version identifier for the API client.",
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {
@@ -4119,6 +4137,16 @@
           "readOnly": true,
           "type": "object"
         },
+        "client": {
+          "description": "Output only. Arbitrary identifier for the API client.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Output only. Arbitrary version identifier for the API client.",
+          "readOnly": true,
+          "type": "string"
+        },
         "conditions": {
           "description": "Output only. The Condition of this Revision, containing its readiness status, and detailed error information in case it did not reach a serving state.",
           "items": {
@@ -4219,7 +4247,7 @@
           "type": "object"
         },
         "launchStage": {
-          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.",
+          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are used, this field will be BETA.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -4372,6 +4400,14 @@
           },
           "description": "Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
+        },
+        "client": {
+          "description": "Optional. Arbitrary identifier for the API client.",
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Optional. Arbitrary version identifier for the API client.",
+          "type": "string"
         },
         "containers": {
           "description": "Holds the single container that defines the unit of execution for this Revision.",
@@ -5650,6 +5686,14 @@
           },
           "description": "Optional. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 WorkerPoolRevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
+        },
+        "client": {
+          "description": "Optional. Arbitrary identifier for the API client.",
+          "type": "string"
+        },
+        "clientVersion": {
+          "description": "Optional. Arbitrary version identifier for the API client.",
+          "type": "string"
         },
         "containers": {
           "description": "Holds list of the containers that defines the unit of execution for this Revision.",
