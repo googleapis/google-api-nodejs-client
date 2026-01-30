@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260114",
+  "revision": "20260121",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1838,6 +1838,7 @@
             "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
             "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
             "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+            "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS",
             "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS",
             "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
             "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
@@ -1941,7 +1942,8 @@
             "Route's next hop forwarding rule doesn't match next hop IP address.",
             "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
             "Route's next hop forwarding rule type is invalid (it's not a forwarding rule of the internal passthrough load balancer).",
-            "Packet is sent from the Internet or Google service to the private IPv6 address.",
+            "Packet is sent from the Internet to the private IPv6 address.",
+            "Packet is sent from the Internet to the private IPv4 address.",
             "Packet is sent from the external IPv6 source address of an instance to the private IPv6 address of an instance.",
             "The packet does not match a policy-based VPN tunnel local selector.",
             "The packet does not match a policy-based VPN tunnel remote selector.",
@@ -2311,11 +2313,11 @@
           "type": "string"
         },
         "network": {
-          "description": "A VPC network URI. Used according to the `network_type`. Relevant only for the source endpoints.",
+          "description": "A VPC network URI. For source endpoints, used according to the `network_type`. For destination endpoints, used only when the source is an external IP address endpoint, and the destination is an internal IP address endpoint.",
           "type": "string"
         },
         "networkType": {
-          "description": "Type of the network where the endpoint is located. Relevant only for the source endpoints.",
+          "description": "For source endpoints, type of the network where the endpoint is located. Not relevant for destination endpoints.",
           "enum": [
             "NETWORK_TYPE_UNSPECIFIED",
             "GCP_NETWORK",
@@ -2336,7 +2338,7 @@
           "type": "integer"
         },
         "projectId": {
-          "description": "Endpoint project ID. Used according to the `network_type`. Relevant only for the source endpoints.",
+          "description": "For source endpoints, endpoint project ID. Used according to the `network_type`. Not relevant for destination endpoints.",
           "type": "string"
         },
         "redisCluster": {

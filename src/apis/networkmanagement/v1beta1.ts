@@ -600,11 +600,11 @@ export namespace networkmanagement_v1beta1 {
      */
     loadBalancerType?: string | null;
     /**
-     * A VPC network URI. Used according to the `network_type`. Relevant only for the source endpoints.
+     * A VPC network URI. For source endpoints, used according to the `network_type`. For destination endpoints, used only when the source is an external IP address endpoint, and the destination is an internal IP address endpoint.
      */
     network?: string | null;
     /**
-     * Type of the network where the endpoint is located. Relevant only for the source endpoints.
+     * For source endpoints, type of the network where the endpoint is located. Not relevant for destination endpoints.
      */
     networkType?: string | null;
     /**
@@ -612,7 +612,7 @@ export namespace networkmanagement_v1beta1 {
      */
     port?: number | null;
     /**
-     * Endpoint project ID. Used according to the `network_type`. Relevant only for the source endpoints.
+     * For source endpoints, endpoint project ID. Used according to the `network_type`. Not relevant for destination endpoints.
      */
     projectId?: string | null;
     /**
