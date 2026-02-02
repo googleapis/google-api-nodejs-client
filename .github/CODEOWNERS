@@ -5,5 +5,5 @@
 # https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners#codeowners-syntax
 
 
-# Unless specified, the jsteam is the default owner for nodejs repositories.
-*     @googleapis/jsteam
+# Unless specified, the googleapis/cloud-sdk-nodejs-team is the default owner for nodejs repositories.
+*     @googleapis/cloud-sdk-nodejs-team
