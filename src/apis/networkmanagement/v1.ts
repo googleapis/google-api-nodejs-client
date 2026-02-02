@@ -576,6 +576,10 @@ export namespace networkmanagement_v1 {
      */
     gkeMasterCluster?: string | null;
     /**
+     * A [GKE Pod](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) URI.
+     */
+    gkePod?: string | null;
+    /**
      * A Compute Engine instance URI.
      */
     instance?: string | null;
@@ -592,11 +596,11 @@ export namespace networkmanagement_v1 {
      */
     loadBalancerType?: string | null;
     /**
-     * A VPC network URI.
+     * A VPC network URI. For source endpoints, used according to the `network_type`. For destination endpoints, used only when the source is an external IP address endpoint, and the destination is an internal IP address endpoint.
      */
     network?: string | null;
     /**
-     * Type of the network where the endpoint is located. Applicable only to source endpoint, as destination network type can be inferred from the source.
+     * For source endpoints, type of the network where the endpoint is located. Not relevant for destination endpoints.
      */
     networkType?: string | null;
     /**
@@ -604,7 +608,7 @@ export namespace networkmanagement_v1 {
      */
     port?: number | null;
     /**
-     * Project ID where the endpoint is located. The project ID can be derived from the URI if you provide a endpoint or network URI. The following are two cases where you may need to provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.
+     * For source endpoints, endpoint project ID. Used according to the `network_type`. Not relevant for destination endpoints.
      */
     projectId?: string | null;
     /**
@@ -823,6 +827,44 @@ export namespace networkmanagement_v1 {
     internalIp?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Google Kubernetes Engine (GKE) Pod.
+   */
+  export interface Schema$GkePodInfo {
+    /**
+     * IP address of a GKE Pod. If the Pod is dual-stack, this is the IP address relevant to the trace.
+     */
+    ipAddress?: string | null;
+    /**
+     * URI of the network containing the GKE Pod.
+     */
+    networkUri?: string | null;
+    /**
+     * URI of a GKE Pod. For Pods in regional Clusters, the URI format is: `projects/{project\}/locations/{location\}/clusters/{cluster\}/k8s/namespaces/{namespace\}/pods/{pod\}` For Pods in zonal Clusters, the URI format is: `projects/{project\}/zones/{zone\}/clusters/{cluster\}/k8s/namespaces/{namespace\}/pods/{pod\}`
+     */
+    podUri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with ARRIVE_AT_GOOGLE_MANAGED_SERVICE state.
+   */
+  export interface Schema$GoogleManagedServiceInfo {
+    /**
+     * IP address of the Google-managed service endpoint.
+     */
+    ipAddress?: string | null;
+    /**
+     * URI of the Google-managed service endpoint network, it is empty if the IP address is a public IP address.
+     */
+    networkUri?: string | null;
+    /**
+     * Type of a Google-managed service.
+     */
+    serviceType?: string | null;
+    /**
+     * URI of the Google-managed service.
+     */
+    serviceUri?: string | null;
+  }
+  /**
    * For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths
    */
   export interface Schema$GoogleServiceInfo {
@@ -933,6 +975,19 @@ export namespace networkmanagement_v1 {
      * URI of an Interconnect attachment.
      */
     uri?: string | null;
+  }
+  /**
+   * For display only. Contains information about why IP masquerading was skipped for the packet.
+   */
+  export interface Schema$IpMasqueradingSkippedInfo {
+    /**
+     * The matched non-masquerade IP range. Only set if reason is DESTINATION_IP_IN_CONFIGURED_NON_MASQUERADE_RANGE or DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE.
+     */
+    nonMasqueradeRange?: string | null;
+    /**
+     * Reason why IP masquerading was not applied.
+     */
+    reason?: string | null;
   }
   /**
    * Describes measured latency distribution.
@@ -1763,6 +1818,14 @@ export namespace networkmanagement_v1 {
      */
     gkeMaster?: Schema$GKEMasterInfo;
     /**
+     * Display information of a Google Kubernetes Engine Pod.
+     */
+    gkePod?: Schema$GkePodInfo;
+    /**
+     * Display information of a Google-managed service.
+     */
+    googleManagedService?: Schema$GoogleManagedServiceInfo;
+    /**
      * Display information of a Google service
      */
     googleService?: Schema$GoogleServiceInfo;
@@ -1778,6 +1841,10 @@ export namespace networkmanagement_v1 {
      * Display information of an interconnect attachment.
      */
     interconnectAttachment?: Schema$InterconnectAttachmentInfo;
+    /**
+     * Display information of the reason why GKE Pod IP masquerading was skipped.
+     */
+    ipMasqueradingSkipped?: Schema$IpMasqueradingSkippedInfo;
     /**
      * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */
@@ -2059,13 +2126,11 @@ export namespace networkmanagement_v1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
-    operations: Resource$Organizations$Locations$Operations;
+    global: Resource$Organizations$Locations$Global;
     vpcFlowLogsConfigs: Resource$Organizations$Locations$Vpcflowlogsconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Organizations$Locations$Operations(
-        this.context
-      );
+      this.global = new Resource$Organizations$Locations$Global(this.context);
       this.vpcFlowLogsConfigs =
         new Resource$Organizations$Locations$Vpcflowlogsconfigs(this.context);
     }
@@ -2388,7 +2453,18 @@ export namespace networkmanagement_v1 {
     pageToken?: string;
   }
 
-  export class Resource$Organizations$Locations$Operations {
+  export class Resource$Organizations$Locations$Global {
+    context: APIRequestContext;
+    operations: Resource$Organizations$Locations$Global$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Organizations$Locations$Global$Operations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Global$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2424,18 +2500,17 @@ export namespace networkmanagement_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.organizations.locations.operations.cancel(
-     *     {
+     *   const res =
+     *     await networkmanagement.organizations.locations.global.operations.cancel({
      *       // The name of the operation resource to be cancelled.
-     *       name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *       name: 'organizations/my-organization/locations/global/operations/my-operation',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     },
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2455,31 +2530,31 @@ export namespace networkmanagement_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
-      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     cancel(
-      params?: Params$Resource$Organizations$Locations$Operations$Cancel,
+      params?: Params$Resource$Organizations$Locations$Global$Operations$Cancel,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     cancel(
-      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     cancel(
-      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     cancel(
-      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Cancel,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     cancel(callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
       paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Operations$Cancel
+        | Params$Resource$Organizations$Locations$Global$Operations$Cancel
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2495,13 +2570,13 @@ export namespace networkmanagement_v1 {
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
+        {}) as Params$Resource$Organizations$Locations$Global$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Organizations$Locations$Operations$Cancel;
+          {} as Params$Resource$Organizations$Locations$Global$Operations$Cancel;
         options = {};
       }
 
@@ -2566,12 +2641,11 @@ export namespace networkmanagement_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.organizations.locations.operations.delete(
-     *     {
+     *   const res =
+     *     await networkmanagement.organizations.locations.global.operations.delete({
      *       // The name of the operation resource to be deleted.
-     *       name: 'organizations/my-organization/locations/my-location/operations/my-operation',
-     *     },
-     *   );
+     *       name: 'organizations/my-organization/locations/global/operations/my-operation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2591,31 +2665,31 @@ export namespace networkmanagement_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Delete,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     delete(
-      params?: Params$Resource$Organizations$Locations$Operations$Delete,
+      params?: Params$Resource$Organizations$Locations$Global$Operations$Delete,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
     delete(
-      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     delete(
-      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Delete,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
     delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Operations$Delete
+        | Params$Resource$Organizations$Locations$Global$Operations$Delete
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2631,13 +2705,13 @@ export namespace networkmanagement_v1 {
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Operations$Delete;
+        {}) as Params$Resource$Organizations$Locations$Global$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Organizations$Locations$Operations$Delete;
+          {} as Params$Resource$Organizations$Locations$Global$Operations$Delete;
         options = {};
       }
 
@@ -2702,10 +2776,11 @@ export namespace networkmanagement_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.organizations.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
-     *   });
+     *   const res =
+     *     await networkmanagement.organizations.locations.global.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'organizations/my-organization/locations/global/operations/my-operation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2731,31 +2806,31 @@ export namespace networkmanagement_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Organizations$Locations$Operations$Get,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Get,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     get(
-      params?: Params$Resource$Organizations$Locations$Operations$Get,
+      params?: Params$Resource$Organizations$Locations$Global$Operations$Get,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
     get(
-      params: Params$Resource$Organizations$Locations$Operations$Get,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Organizations$Locations$Operations$Get,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Get,
       options: MethodOptions | BodyResponseCallback<Schema$Operation>,
       callback: BodyResponseCallback<Schema$Operation>
     ): void;
     get(
-      params: Params$Resource$Organizations$Locations$Operations$Get,
+      params: Params$Resource$Organizations$Locations$Global$Operations$Get,
       callback: BodyResponseCallback<Schema$Operation>
     ): void;
     get(callback: BodyResponseCallback<Schema$Operation>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Operations$Get
+        | Params$Resource$Organizations$Locations$Global$Operations$Get
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2771,12 +2846,13 @@ export namespace networkmanagement_v1 {
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Operations$Get;
+        {}) as Params$Resource$Organizations$Locations$Global$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Operations$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Operations$Get;
         options = {};
       }
 
@@ -2841,18 +2917,19 @@ export namespace networkmanagement_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.organizations.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'organizations/my-organization/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
+     *   const res =
+     *     await networkmanagement.organizations.locations.global.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'organizations/my-organization/locations/global',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *       returnPartialSuccess: 'placeholder-value',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2876,33 +2953,33 @@ export namespace networkmanagement_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Organizations$Locations$Operations$List,
+      params: Params$Resource$Organizations$Locations$Global$Operations$List,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
     list(
-      params?: Params$Resource$Organizations$Locations$Operations$List,
+      params?: Params$Resource$Organizations$Locations$Global$Operations$List,
       options?: MethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
     list(
-      params: Params$Resource$Organizations$Locations$Operations$List,
+      params: Params$Resource$Organizations$Locations$Global$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Organizations$Locations$Operations$List,
+      params: Params$Resource$Organizations$Locations$Global$Operations$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
-      params: Params$Resource$Organizations$Locations$Operations$List,
+      params: Params$Resource$Organizations$Locations$Global$Operations$List,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Operations$List
+        | Params$Resource$Organizations$Locations$Global$Operations$List
         | BodyResponseCallback<Schema$ListOperationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2918,12 +2995,13 @@ export namespace networkmanagement_v1 {
       | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Operations$List;
+        {}) as Params$Resource$Organizations$Locations$Global$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Operations$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Operations$List;
         options = {};
       }
 
@@ -2962,7 +3040,7 @@ export namespace networkmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Global$Operations$Cancel extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
      */
@@ -2973,19 +3051,19 @@ export namespace networkmanagement_v1 {
      */
     requestBody?: Schema$CancelOperationRequest;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Global$Operations$Delete extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Global$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
+  export interface Params$Resource$Organizations$Locations$Global$Operations$List extends StandardParameters {
     /**
      * The standard list filter.
      */

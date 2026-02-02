@@ -211,6 +211,53 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "queryUserRootContents": {
+              "description": "Returns the contents of a caller's root folder in a given location. The root folder contains all resources that are created by the user and not contained in any other folder.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}:queryUserRootContents",
+              "httpMethod": "GET",
+              "id": "dataform.projects.locations.queryUserRootContents",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter=\"display_name=\"MyFolder\"\"`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "Required. Location of the user root folder whose contents to list. Format: projects/*/locations/*",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), created_at, last_modified_at. Examples: - `orderBy=\"display_name\"` - `orderBy=\"display_name desc\"`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token received from a previous `QueryUserRootContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryUserRootFolderContents`, with the exception of `page_size`, must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+location}:queryUserRootContents",
+              "response": {
+                "$ref": "QueryUserRootContentsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/bigquery",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "updateConfig": {
               "description": "Update default config for a given project and location. **Note:** *This method does not fully implement [AIP/134](https://google.aip.dev/134). The wildcard entry (\\*) is treated as a bad request, and when the `field_mask` is omitted, the request is treated as a full update on all modifiable fields.*",
               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/config",
@@ -250,6 +297,92 @@
           "resources": {
             "folders": {
               "methods": {
+                "create": {
+                  "description": "Creates a new Folder in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.folders.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "folderId": {
+                      "description": "The ID to use for the Folder, which will become the final component of the Folder's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location in which to create the Folder. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/folders",
+                  "request": {
+                    "$ref": "Folder"
+                  },
+                  "response": {
+                    "$ref": "Folder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Folder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataform.projects.locations.folders.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Folder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/folders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Fetches a single Folder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.folders.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Folder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/folders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Folder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}:getIamPolicy",
@@ -276,6 +409,117 @@
                   "path": "v1beta1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "move": {
+                  "description": "Moves a Folder to a new Folder, TeamFolder, or the root location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}:move",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.folders.move",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the Folder to move.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/folders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:move",
+                  "request": {
+                    "$ref": "MoveFolderRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single Folder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataform.projects.locations.folders.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The Folder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/folders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Specifies the fields to be updated in the Folder. If left unset, all fields that can be updated, will be updated. A few fields cannot be updated and will be ignored if specified in the update_mask (e.g. parent_name, team_folder_name).",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "Folder"
+                  },
+                  "response": {
+                    "$ref": "Folder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "queryFolderContents": {
+                  "description": "Returns the contents of a given Folder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/folders/{foldersId}:queryFolderContents",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.folders.queryFolderContents",
+                  "parameterOrder": [
+                    "folder"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter=\"display_name=\"MyFolder\"\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "folder": {
+                      "description": "Required. Name of the folder whose contents to list. Format: projects/*/locations/*/folders/*",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/folders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: display_name (default), create_time, last_modified_time. Examples: - `orderBy=\"display_name\"` - `orderBy=\"display_name desc\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `QueryFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryFolderContents`, with the exception of `page_size`, must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+folder}:queryFolderContents",
+                  "response": {
+                    "$ref": "QueryFolderContentsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigquery",
@@ -758,6 +1002,35 @@
                   "path": "v1beta1/{+parent}/repositories",
                   "response": {
                     "$ref": "ListRepositoriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "move": {
+                  "description": "Moves a Repository to a new location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:move",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.repositories.move",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the repository to move.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:move",
+                  "request": {
+                    "$ref": "MoveRepositoryRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigquery",
@@ -2370,6 +2643,92 @@
             },
             "teamFolders": {
               "methods": {
+                "create": {
+                  "description": "Creates a new TeamFolder in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.teamFolders.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location in which to create the TeamFolder. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "teamFolderId": {
+                      "description": "The ID to use for the TeamFolder, which will become the final component of the TeamFolder's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/teamFolders",
+                  "request": {
+                    "$ref": "TeamFolder"
+                  },
+                  "response": {
+                    "$ref": "TeamFolder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single TeamFolder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders/{teamFoldersId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataform.projects.locations.teamFolders.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The TeamFolder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/teamFolders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Fetches a single TeamFolder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders/{teamFoldersId}",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.teamFolders.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The TeamFolder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/teamFolders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "TeamFolder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders/{teamFoldersId}:getIamPolicy",
@@ -2396,6 +2755,135 @@
                   "path": "v1beta1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a single TeamFolder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders/{teamFoldersId}",
+                  "httpMethod": "PATCH",
+                  "id": "dataform.projects.locations.teamFolders.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The TeamFolder's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/teamFolders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Specifies the fields to be updated in the Folder. If left unset, all fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "TeamFolder"
+                  },
+                  "response": {
+                    "$ref": "TeamFolder"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "queryContents": {
+                  "description": "Returns the contents of a given TeamFolder.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders/{teamFoldersId}:queryContents",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.teamFolders.queryContents",
+                  "parameterOrder": [
+                    "teamFolder"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter=\"display_name=\"MyFolder\"\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to additionally sort results by. Will order Folders before Repositories, and then by `order_by` in ascending order. Supported keywords: `display_name` (default), `create_time`, last_modified_time. Examples: - `orderBy=\"display_name\"` - `orderBy=\"display_name desc\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of paths to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `QueryTeamFolderContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryTeamFolderContents`, with the exception of `page_size`, must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "teamFolder": {
+                      "description": "Required. Name of the team_folder whose contents to list. Format: `projects/*/locations/*/teamFolders/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/teamFolders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+teamFolder}:queryContents",
+                  "response": {
+                    "$ref": "QueryTeamFolderContentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "search": {
+                  "description": "Returns all TeamFolders in a given location that the caller has access to and match the provided filter.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/teamFolders:search",
+                  "httpMethod": "GET",
+                  "id": "dataform.projects.locations.teamFolders.search",
+                  "parameterOrder": [
+                    "location"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Optional filtering for the returned list. Filtering is currently only supported on the `display_name` field. Example: - `filter=\"display_name=\"MyFolder\"\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Required. Location in which to query TeamFolders. Format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: - `orderBy=\"display_name\"` - `orderBy=\"display_name desc\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+location}/teamFolders:search",
+                  "response": {
+                    "$ref": "SearchTeamFoldersResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/bigquery",
@@ -2467,7 +2955,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260106",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3272,6 +3760,67 @@
       },
       "type": "object"
     },
+    "Folder": {
+      "description": "Represents a Dataform Folder. This is a resource that is used to organize Files and other Folders and provide hierarchical access controls.",
+      "id": "Folder",
+      "properties": {
+        "containingFolder": {
+          "description": "Optional. The containing Folder resource name. This should take the format: projects/{project}/locations/{location}/folders/{folder}, projects/{project}/locations/{location}/teamFolders/{teamFolder}, or just projects/{project}/locations/{location} if this is a root Folder. This field can only be updated through MoveFolder.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp of when the Folder was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creatorIamPrincipal": {
+          "description": "Output only. The IAM principal identifier of the creator of the Folder.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The Folder's user-friendly name.",
+          "type": "string"
+        },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The Folder's name.",
+          "type": "string"
+        },
+        "teamFolderName": {
+          "description": "Output only. The resource name of the TeamFolder that this Folder is associated with. This should take the format: projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this is not set, the Folder is not associated with a TeamFolder and is a UserFolder.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp of when the Folder was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FolderContentsEntry": {
+      "description": "Represents a single content entry.",
+      "id": "FolderContentsEntry",
+      "properties": {
+        "folder": {
+          "$ref": "Folder",
+          "description": "A subfolder."
+        },
+        "repository": {
+          "$ref": "Repository",
+          "description": "A repository."
+        }
+      },
+      "type": "object"
+    },
     "GitRemoteSettings": {
       "description": "Controls Git remote configuration for a repository.",
       "id": "GitRemoteSettings",
@@ -3768,6 +4317,28 @@
       "properties": {},
       "type": "object"
     },
+    "MoveFolderRequest": {
+      "description": "`MoveFolder` request message.",
+      "id": "MoveFolderRequest",
+      "properties": {
+        "destinationContainingFolder": {
+          "description": "Required. The name of the Folder, TeamFolder, or root location to move the Folder to. Can be in the format of: - \"\" to move into the root User folder - `projects/*/locations/*/folders/*` - `projects/*/locations/*/teamFolders/*`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MoveRepositoryRequest": {
+      "description": "`MoveRepository` request message.",
+      "id": "MoveRepositoryRequest",
+      "properties": {
+        "destinationContainingFolder": {
+          "description": "Required. The name of the Folder, TeamFolder, or root location to move the repository to. Can be in the format of: - \"\" to move into the root User folder - `projects/*/locations/*/folders/*` - `projects/*/locations/*/teamFolders/*`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Notebook": {
       "description": "Represents a notebook.",
       "id": "Notebook",
@@ -4077,6 +4648,24 @@
       },
       "type": "object"
     },
+    "QueryFolderContentsResponse": {
+      "description": "`QueryFolderContents` response message.",
+      "id": "QueryFolderContentsResponse",
+      "properties": {
+        "entries": {
+          "description": "List of entries in the folder.",
+          "items": {
+            "$ref": "FolderContentsEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "QueryRepositoryDirectoryContentsResponse": {
       "description": "`QueryRepositoryDirectoryContents` response message.",
       "id": "QueryRepositoryDirectoryContentsResponse",
@@ -4085,6 +4674,42 @@
           "description": "List of entries in the directory.",
           "items": {
             "$ref": "DirectoryEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryTeamFolderContentsResponse": {
+      "description": "`QueryTeamFolderContents` response message.",
+      "id": "QueryTeamFolderContentsResponse",
+      "properties": {
+        "entries": {
+          "description": "List of entries in the TeamFolder.",
+          "items": {
+            "$ref": "TeamFolderContentsEntry"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryUserRootContentsResponse": {
+      "description": "`QueryUserRootContents` response message.",
+      "id": "QueryUserRootContentsResponse",
+      "properties": {
+        "entries": {
+          "description": "List of entries in the folder.",
+          "items": {
+            "$ref": "RootContentsEntry"
           },
           "type": "array"
         },
@@ -4376,6 +5001,10 @@
       "description": "Represents a Dataform Git repository.",
       "id": "Repository",
       "properties": {
+        "containingFolder": {
+          "description": "Optional. The name of the containing folder of the repository. The field is immutable and it can be modified via a MoveRepository operation. Format: `projects/*/locations/*/folders/*`. or `projects/*/locations/*/teamFolders/*`.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The timestamp of when the repository was created.",
           "format": "google-datetime",
@@ -4427,6 +5056,11 @@
           "description": "Optional. Input only. If set to true, the authenticated user will be granted the roles/dataform.admin role on the created repository. To modify access to the created repository later apply setIamPolicy from https://cloud.google.com/dataform/reference/rest#rest-resource:-v1beta1.projects.locations.repositories",
           "type": "boolean"
         },
+        "teamFolderName": {
+          "description": "Output only. The resource name of the TeamFolder that this Repository is associated with. This should take the format: projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this is not set, the Repository is not associated with a TeamFolder.",
+          "readOnly": true,
+          "type": "string"
+        },
         "workspaceCompilationOverrides": {
           "$ref": "WorkspaceCompilationOverrides",
           "description": "Optional. If set, fields of `workspace_compilation_overrides` override the default compilation settings that are specified in dataform.json when creating workspace-scoped compilation results. See documentation for `WorkspaceCompilationOverrides` for more information."
@@ -4456,6 +5090,21 @@
       "description": "`ResetWorkspaceChanges` response message.",
       "id": "ResetWorkspaceChangesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "RootContentsEntry": {
+      "description": "Represents a single content entry.",
+      "id": "RootContentsEntry",
+      "properties": {
+        "folder": {
+          "$ref": "Folder",
+          "description": "A subfolder."
+        },
+        "repository": {
+          "$ref": "Repository",
+          "description": "A repository."
+        }
+      },
       "type": "object"
     },
     "ScheduledExecutionRecord": {
@@ -4529,6 +5178,24 @@
         "file": {
           "$ref": "FileSearchResult",
           "description": "Details when search result is a file."
+        }
+      },
+      "type": "object"
+    },
+    "SearchTeamFoldersResponse": {
+      "description": "`SearchTeamFolders` response message.",
+      "id": "SearchTeamFoldersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "results": {
+          "description": "List of TeamFolders that match the search query.",
+          "items": {
+            "$ref": "TeamFolderSearchResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4626,6 +5293,69 @@
         "schema": {
           "description": "Optional. The action's schema (BigQuery dataset ID), within `database`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TeamFolder": {
+      "description": "Represents a Dataform TeamFolder. This is a resource that sits at the project level and is used to organize Repositories and Folders with hierarchical access controls. They provide a team context and stricter access controls.",
+      "id": "TeamFolder",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of when the TeamFolder was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creatorIamPrincipal": {
+          "description": "Output only. The IAM principal identifier of the creator of the TeamFolder.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The TeamFolder's user-friendly name.",
+          "type": "string"
+        },
+        "internalMetadata": {
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The TeamFolder's name.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp of when the TeamFolder was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TeamFolderContentsEntry": {
+      "description": "Represents a single content entry.",
+      "id": "TeamFolderContentsEntry",
+      "properties": {
+        "folder": {
+          "$ref": "Folder",
+          "description": "A subfolder."
+        },
+        "repository": {
+          "$ref": "Repository",
+          "description": "A repository."
+        }
+      },
+      "type": "object"
+    },
+    "TeamFolderSearchResult": {
+      "description": "Represents a single content entry.",
+      "id": "TeamFolderSearchResult",
+      "properties": {
+        "teamFolder": {
+          "$ref": "TeamFolder",
+          "description": "A TeamFolder resource that is in the project / location."
         }
       },
       "type": "object"
@@ -4898,6 +5628,10 @@
           "$ref": "DataEncryptionState",
           "description": "Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.",
           "readOnly": true
+        },
+        "disableMoves": {
+          "description": "Optional. If set to true, workspaces will not be moved if its linked Repository is moved. Instead, it will be deleted.",
+          "type": "boolean"
         },
         "internalMetadata": {
           "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",

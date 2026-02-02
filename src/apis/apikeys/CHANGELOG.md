@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v5.0.1...apikeys-v6.0.0) (2026-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **apikeys:** This release has breaking changes.
+
+### Features
+
+* **apikeys:** update the API ([43eff2a](https://github.com/googleapis/google-api-nodejs-client/commit/43eff2a680c345c3640a575fde23d5ee665bad80))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v5.0.0...apikeys-v5.0.1) (2025-12-05)
 
 

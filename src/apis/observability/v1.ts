@@ -112,6 +112,8 @@ export namespace observability_v1 {
    */
   export class Observability {
     context: APIRequestContext;
+    folders: Resource$Folders;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +122,8 @@ export namespace observability_v1 {
         google,
       };
 
+      this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -320,6 +324,1908 @@ export namespace observability_v1 {
      * Output only. The last update timestamp of the trace scope.
      */
     updateTime?: string | null;
+  }
+
+  export class Resource$Folders {
+    context: APIRequestContext;
+    locations: Resource$Folders$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Folders$Locations(this.context);
+    }
+  }
+
+  export class Resource$Folders$Locations {
+    context: APIRequestContext;
+    operations: Resource$Folders$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Folders$Locations$Operations(this.context);
+    }
+
+    /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.get({
+     *     // Resource name for the location.
+     *     name: 'folders/my-folder/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Folders$Locations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
+    get(
+      params: Params$Resource$Folders$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Get
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.list({
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'folders/my-folder',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Folders$Locations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Get extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$List extends StandardParameters {
+    /**
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     */
+    extraLocationTypes?: string[];
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Folders$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'folders/my-folder/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Folders$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Folders$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    cancel(
+      params: Params$Resource$Folders$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Folders$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Folders$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'folders/my-folder/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Folders$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Folders$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'folders/my-folder/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Folders$Locations$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    get(
+      params: Params$Resource$Folders$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.folders.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'folders/my-folder/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Folders$Locations$Operations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
+    list(
+      params: Params$Resource$Folders$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Operations$Cancel extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Folders$Locations$Operations$Delete extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Operations$List extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    operations: Resource$Organizations$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Organizations$Locations$Operations(
+        this.context
+      );
+    }
+
+    /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.get({
+     *     // Resource name for the location.
+     *     name: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Get
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.list({
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'organizations/my-organization',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Get extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$List extends StandardParameters {
+    /**
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     */
+    extraLocationTypes?: string[];
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Organizations$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/observability.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const observability = google.observability('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await observability.organizations.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'organizations/my-organization/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Operations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://observability.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$Delete extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$List extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects {

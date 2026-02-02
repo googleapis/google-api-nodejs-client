@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v6.0.0...apihub-v6.0.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **apihub:** update the API ([a30f74c](https://github.com/googleapis/google-api-nodejs-client/commit/a30f74c8b5822b476a870c484e8f32f6a457ef5f))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v5.2.1...apihub-v6.0.0) (2025-12-15)
 
 

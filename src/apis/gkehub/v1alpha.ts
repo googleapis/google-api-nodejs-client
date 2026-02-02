@@ -264,7 +264,7 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ClusterSelector {
     /**
-     * The label selector must be a valid CEL (go/cel) expression which evaluates resource.labels.
+     * Optional. A valid CEL (Common Expression Language) expression which evaluates `resource.labels`.
      */
     labelSelector?: string | null;
   }
@@ -1024,7 +1024,7 @@ export namespace gkehub_v1alpha {
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
     /**
-     * Optional. Enables automatic Feature management.
+     * Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only supports manual upgrades.
      */
     management?: string | null;
     /**
@@ -3184,7 +3184,7 @@ export namespace gkehub_v1alpha {
      */
     name?: string | null;
     /**
-     * Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project\}/locations/global/rolloutSequences/{rollout_sequence\}`. Empty for user initiated rollouts.
+     * Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project\}/locations/global/rolloutSequences/{rollout_sequence\}`.
      */
     rolloutSequence?: string | null;
     /**
@@ -3192,7 +3192,7 @@ export namespace gkehub_v1alpha {
      */
     schedule?: Schema$Schedule;
     /**
-     * Output only. The stages of the Rollout. Note: this is only populated for google-initiated rollouts.
+     * Output only. The stages of the Rollout.
      */
     stages?: Schema$RolloutStage[];
     /**
@@ -3212,7 +3212,7 @@ export namespace gkehub_v1alpha {
      */
     updateTime?: string | null;
     /**
-     * Optional. Config for version upgrade of clusters. Note: Currently for GDCE clusters only.
+     * Optional. Config for version upgrade of clusters.
      */
     versionUpgrade?: Schema$VersionUpgrade;
   }
@@ -3304,11 +3304,11 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$RolloutTarget {
     /**
-     * Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters/. I.e. for GKE clusters, it is formatted as: //container.googleapis.com/projects//locations//clusters/. For GDCE, it is formatted as: //edgecontainer.googleapis.com/projects//locations//clusters/.
+     * Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: `//{api_service\}/projects/{project_number\}/locations/{location\}/clusters/{cluster_name\}`. .
      */
     cluster?: string | null;
     /**
-     * Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters//nodePools/.
+     * Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: `//{api_service\}/projects/{project_number\}/locations/{location\}/clusters/{cluster_name\}/nodePools/{node_pool_name\}`.
      */
     nodePool?: string | null;
     /**

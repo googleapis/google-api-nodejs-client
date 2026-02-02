@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v12.3.0...spanner-v12.3.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **spanner:** update the API ([d777322](https://github.com/googleapis/google-api-nodejs-client/commit/d77732246b4fee736ccddd02d1a1f3d066e2fca9))
+
 ## [12.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v12.2.0...spanner-v12.3.0) (2025-12-29)
 
 

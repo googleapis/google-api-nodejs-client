@@ -953,7 +953,7 @@
                 "accept": [
                   "message/*"
                 ],
-                "maxSize": "52428800",
+                "maxSize": "157286400",
                 "protocols": {
                   "resumable": {
                     "multipart": true,
@@ -1032,7 +1032,7 @@
                 "accept": [
                   "message/*"
                 ],
-                "maxSize": "52428800",
+                "maxSize": "157286400",
                 "protocols": {
                   "resumable": {
                     "multipart": true,
@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260112",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {

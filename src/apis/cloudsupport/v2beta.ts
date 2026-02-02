@@ -205,6 +205,10 @@ export namespace cloudsupport_v2beta {
     /**
      * # gdata.* are outside protos with mising documentation
      */
+    uploadFragmentListCreationInfo?: string | null;
+    /**
+     * # gdata.* are outside protos with mising documentation
+     */
     uploadMetadataContainer?: string | null;
   }
   /**

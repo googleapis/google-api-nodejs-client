@@ -135,6 +135,10 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$AdvancedVoiceOptions {
     /**
+     * Optional. If true, textnorm will be applied to text input. This feature is enabled by default. Only applies for Gemini TTS.
+     */
+    enableTextnorm?: boolean | null;
+    /**
      * Only for Journey voices. If false, the synthesis is context aware and has a higher latency.
      */
     lowLatencyJourneySynthesis?: boolean | null;
@@ -407,7 +411,7 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$SynthesizeSpeechRequest {
     /**
-     * Advanced voice options.
+     * Optional. Advanced voice options.
      */
     advancedVoiceOptions?: Schema$AdvancedVoiceOptions;
     /**

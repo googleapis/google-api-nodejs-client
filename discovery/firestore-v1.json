@@ -2425,7 +2425,7 @@
       }
     }
   },
-  "revision": "20260105",
+  "revision": "20260116",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4455,7 +4455,15 @@
     "GoogleFirestoreAdminV1LocationMetadata": {
       "description": "The metadata message for google.cloud.location.Location.metadata.",
       "id": "GoogleFirestoreAdminV1LocationMetadata",
-      "properties": {},
+      "properties": {
+        "availableStoragePlacements": {
+          "description": "The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like \"us\", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as \"nam5\" or \"eur3\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1PitrSnapshot": {

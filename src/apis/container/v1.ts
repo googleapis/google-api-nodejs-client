@@ -158,6 +158,10 @@ export namespace container_v1 {
      */
     podIpv4RangeNames?: string[] | null;
     /**
+     * Draining status of the additional subnet.
+     */
+    status?: string | null;
+    /**
      * Name of the subnetwork. This can be the full path of the subnetwork or just the name. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -273,6 +277,10 @@ export namespace container_v1 {
      * Optional. Configuration for Ray Operator addon.
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
+    /**
+     * Optional. Configuration for the slice controller add-on.
+     */
+    sliceControllerConfig?: Schema$SliceControllerConfig;
     /**
      * Optional. Configuration for the StatefulHA add-on.
      */
@@ -577,6 +585,19 @@ export namespace container_v1 {
     sizeGb?: string | null;
   }
   /**
+   * Swap on the node's boot disk.
+   */
+  export interface Schema$BootDiskProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the boot disk size.
+     */
+    swapSizePercent?: number | null;
+  }
+  /**
    * CancelOperationRequest cancels a single operation.
    */
   export interface Schema$CancelOperationRequest {
@@ -713,7 +734,7 @@ export namespace container_v1 {
      */
     binaryAuthorization?: Schema$BinaryAuthorization;
     /**
-     * The IP address range of the container pods in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
+     * The IP address range of the container pods in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      */
     clusterIpv4Cidr?: string | null;
     /**
@@ -965,7 +986,7 @@ export namespace container_v1 {
      */
     selfLink?: string | null;
     /**
-     * Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
+     * Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
      */
     servicesIpv4Cidr?: string | null;
     /**
@@ -985,7 +1006,7 @@ export namespace container_v1 {
      */
     subnetwork?: string | null;
     /**
-     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -1009,6 +1030,10 @@ export namespace container_v1 {
    * ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.
    */
   export interface Schema$ClusterAutoscaling {
+    /**
+     * Autopilot general profile for the cluster, which defines the configuration for the cluster.
+     */
+    autopilotGeneralProfile?: string | null;
     /**
      * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.
      */
@@ -1583,6 +1608,15 @@ export namespace container_v1 {
     state?: string | null;
   }
   /**
+   * Provisions a new, separate local NVMe SSD exclusively for swap.
+   */
+  export interface Schema$DedicatedLocalSsdProfile {
+    /**
+     * The number of physical local NVMe SSD disks to attach.
+     */
+    diskCount?: string | null;
+  }
+  /**
    * DefaultComputeClassConfig defines default compute class configuration.
    */
   export interface Schema$DefaultComputeClassConfig {
@@ -1695,6 +1729,15 @@ export namespace container_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Defines encryption settings for the swap space.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. If true, swap space will not be encrypted. Defaults to false (encrypted).
+     */
+    disabled?: boolean | null;
+  }
+  /**
    * EnterpriseConfig is the cluster enterprise configuration. Deprecated: GKE Enterprise features are now available without an Enterprise tier.
    */
   export interface Schema$EnterpriseConfig {
@@ -1706,6 +1749,19 @@ export namespace container_v1 {
      * desired_tier specifies the desired tier of the cluster.
      */
     desiredTier?: string | null;
+  }
+  /**
+   * Swap on the local SSD shared with pod ephemeral storage.
+   */
+  export interface Schema$EphemeralLocalSsdProfile {
+    /**
+     * Specifies the size of the swap space in gibibytes (GiB).
+     */
+    swapSizeGib?: string | null;
+    /**
+     * Specifies the size of the swap space as a percentage of the ephemeral local SSD capacity.
+     */
+    swapSizePercent?: number | null;
   }
   /**
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
@@ -1969,6 +2025,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * GPUDirectConfig specifies the GPU direct strategy on the node pool.
+   */
+  export interface Schema$GPUDirectConfig {
+    /**
+     * The type of GPU direct strategy to enable on the node pool.
+     */
+    gpuDirectStrategy?: string | null;
+  }
+  /**
    * GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.
    */
   export interface Schema$GPUDriverInstallationConfig {
@@ -2128,7 +2193,7 @@ export namespace container_v1 {
      */
     clusterIpv4Cidr?: string | null;
     /**
-     * The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     clusterIpv4CidrBlock?: string | null;
     /**
@@ -2156,7 +2221,7 @@ export namespace container_v1 {
      */
     nodeIpv4Cidr?: string | null;
     /**
-     * The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     nodeIpv4CidrBlock?: string | null;
     /**
@@ -2168,7 +2233,7 @@ export namespace container_v1 {
      */
     servicesIpv4Cidr?: string | null;
     /**
-     * The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     servicesIpv4CidrBlock?: string | null;
     /**
@@ -2192,7 +2257,7 @@ export namespace container_v1 {
      */
     subnetworkName?: string | null;
     /**
-     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
+     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -2321,6 +2386,10 @@ export namespace container_v1 {
      * Optional. Configuration for kernel module loading on nodes. When enabled, the node pool will be provisioned with a Container-Optimized OS image that enforces kernel module signature verification.
      */
     nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
+    /**
+     * Optional. Enables and configures swap space on nodes. If omitted, swap is disabled.
+     */
+    swapConfig?: Schema$SwapConfig;
     /**
      * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
@@ -2784,6 +2853,10 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.
+     */
+    consolidationDelay?: string | null;
+    /**
      * Parameters for containerd customization.
      */
     containerdConfig?: Schema$ContainerdConfig;
@@ -2819,6 +2892,10 @@ export namespace container_v1 {
      * Google Container File System (image streaming) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * The configuration for GPU Direct
+     */
+    gpuDirectConfig?: Schema$GPUDirectConfig;
     /**
      * Enable or disable gvnic in the node pool.
      */
@@ -3139,7 +3216,7 @@ export namespace container_v1 {
      */
     podRange?: string | null;
     /**
-     * The subnetwork path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.
+     * Optional. The subnetwork name/path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork can be either: 1. A user supplied subnetwork name/full path during node pool creation. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet 2. A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
      */
     subnetwork?: string | null;
   }
@@ -4370,6 +4447,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * Configuration for the Slice Controller.
+   */
+  export interface Schema$SliceControllerConfig {
+    /**
+     * Optional. Indicates whether Slice Controller is enabled in the cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.
    */
   export interface Schema$SoleTenantConfig {
@@ -4466,6 +4552,31 @@ export namespace container_v1 {
      * Human-friendly representation of the condition
      */
     message?: string | null;
+  }
+  /**
+   * Configuration for swap memory on a node pool.
+   */
+  export interface Schema$SwapConfig {
+    /**
+     * Swap on the node's boot disk.
+     */
+    bootDiskProfile?: Schema$BootDiskProfile;
+    /**
+     * Provisions a new, separate local NVMe SSD exclusively for swap.
+     */
+    dedicatedLocalSsdProfile?: Schema$DedicatedLocalSsdProfile;
+    /**
+     * Optional. Enables or disables swap for the node pool.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. If omitted, swap space is encrypted by default.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
+     * Swap on the local SSD shared with pod ephemeral storage.
+     */
+    ephemeralLocalSsdProfile?: Schema$EphemeralLocalSsdProfile;
   }
   /**
    * Represents an arbitrary window of time.
@@ -4576,6 +4687,10 @@ export namespace container_v1 {
      * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.
+     */
+    consolidationDelay?: string | null;
     /**
      * The desired containerd config for nodes in the node pool. Initiates an upgrade operation that recreates the nodes with the new config.
      */
@@ -10508,6 +10623,7 @@ export namespace container_v1 {
      *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "consolidationDelay": "my_consolidationDelay",
      *       //   "containerdConfig": {},
      *       //   "diskSizeGb": "my_diskSizeGb",
      *       //   "diskType": "my_diskType",
@@ -16505,6 +16621,7 @@ export namespace container_v1 {
      *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "consolidationDelay": "my_consolidationDelay",
      *       //   "containerdConfig": {},
      *       //   "diskSizeGb": "my_diskSizeGb",
      *       //   "diskType": "my_diskType",

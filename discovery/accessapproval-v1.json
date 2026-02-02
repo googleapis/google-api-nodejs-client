@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260126",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -943,6 +943,14 @@
           "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that an ancestor of this Project or Folder has set active_key_version (this field will always be unset for the organization since organizations do not have ancestors).",
           "readOnly": true,
           "type": "boolean"
+        },
+        "ancestorsEnrolledServices": {
+          "description": "Output only. Field to differentiate ancestor enrolled services from locally enrolled services.",
+          "items": {
+            "$ref": "EnrolledService"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "approvalPolicy": {
           "$ref": "CustomerApprovalApprovalPolicy",

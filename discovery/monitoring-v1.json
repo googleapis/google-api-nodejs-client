@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20250821",
+  "revision": "20260108",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1596,6 +1596,17 @@
         },
         "typeUrl": {
           "description": "The field type URL, without the scheme, for message or enumeration types. Example: \"type.googleapis.com/google.protobuf.Timestamp\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilterControl": {
+      "description": "A widget that displays an input field to change the value of a template variable.",
+      "id": "FilterControl",
+      "properties": {
+        "templateVariable": {
+          "description": "Name of the template variable the widget affects.",
           "type": "string"
         }
       },
@@ -2998,6 +3009,10 @@
         "errorReportingPanel": {
           "$ref": "ErrorReportingPanel",
           "description": "A widget that displays a list of error groups."
+        },
+        "filterControl": {
+          "$ref": "FilterControl",
+          "description": "A widget that displays an input field to change the value of a template variable."
         },
         "id": {
           "description": "Optional. The widget id. Ids may be made up of alphanumerics, dashes and underscores. Widget ids are optional.",

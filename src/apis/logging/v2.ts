@@ -742,7 +742,7 @@ export namespace logging_v2 {
    */
   export interface Schema$ListLogEntriesRequest {
     /**
-     * Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://cloud.google.com/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.To make queries faster, you can make the filter more selective by using restrictions on indexed fields (https://cloud.google.com/logging/docs/view/logging-query-language#indexed-fields) as well as limit the time range of the query by adding range restrictions on the timestamp field.
+     * Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://{$universe.dns_names.final_documentation_domain\}/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.To make queries faster, you can make the filter more selective by using restrictions on indexed fields (https://{$universe.dns_names.final_documentation_domain\}/logging/docs/view/logging-query-language#indexed-fields) as well as limit the time range of the query by adding range restrictions on the timestamp field.
      */
     filter?: string | null;
     /**
@@ -1000,9 +1000,13 @@ export namespace logging_v2 {
      */
     apphub?: Schema$AppHub;
     /**
-     * Output only. AppHub application metadata associated with the destination application. This is only populated if the log represented "edge"-like data (such as for VPC flow logs) with a source and destination.
+     * Output only. AppHub application metadata associated with the destination application. This is only populated if the log represented "edge"-like data (such as for VPC flow logs) with a destination.
      */
     apphubDestination?: Schema$AppHub;
+    /**
+     * Output only. AppHub application metadata associated with the source application. This is only populated if the log represented "edge"-like data (such as for VPC flow logs) with a source.
+     */
+    apphubSource?: Schema$AppHub;
     /**
      * Output only. The Error Reporting (https://cloud.google.com/error-reporting) error groups associated with this LogEntry. Error Reporting sets the values for this field during error group creation.For more information, see View error details( https://cloud.google.com/error-reporting/docs/viewing-errors#view_error_details)This field isn't available during log routing (https://cloud.google.com/logging/docs/routing/overview)
      */
@@ -1020,7 +1024,7 @@ export namespace logging_v2 {
      */
     jsonPayload?: {[key: string]: any} | null;
     /**
-     * Optional. A map of key, value pairs that provides additional information about the log entry. The labels can be user-defined or system-defined.User-defined labels are arbitrary key, value pairs that you can use to classify logs.System-defined labels are defined by GCP services for platform logs. They have two components - a service namespace component and the attribute name. For example: compute.googleapis.com/resource_name.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.
+     * Optional. A map of key, value pairs that provides additional information about the log entry. The labels can be user-defined or system-defined.User-defined labels are arbitrary key, value pairs that you can use to classify logs.System-defined labels are defined by cloud services for platform logs. They have two components - a service namespace component and the attribute name. For example: compute.googleapis.com/resource_name.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1882,7 +1886,7 @@ export namespace logging_v2 {
      */
     bufferWindow?: string | null;
     /**
-     * Optional. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.
+     * Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://{$universe.dns_names.final_documentation_domain\}/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.
      */
     filter?: string | null;
     /**

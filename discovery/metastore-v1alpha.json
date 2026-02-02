@@ -1807,7 +1807,7 @@
       }
     }
   },
-  "revision": "20251125",
+  "revision": "20260122",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2208,7 +2208,8 @@
       "type": "object"
     },
     "CustomRegionConfig": {
-      "description": "Custom configuration used to specify regions that the metastore service runs in. Currently only supported in the us multi-region.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. Custom configuration used to specify regions that the metastore service runs in. Currently only supported in the us multi-region.",
       "id": "CustomRegionConfig",
       "properties": {
         "readOnlyRegions": {
@@ -2229,7 +2230,8 @@
       "type": "object"
     },
     "CustomRegionMetadata": {
-      "description": "Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.",
       "id": "CustomRegionMetadata",
       "properties": {
         "optionalReadOnlyRegions": {
@@ -2848,7 +2850,8 @@
       "id": "LocationMetadata",
       "properties": {
         "customRegionMetadata": {
-          "description": "Possible configurations supported if the current region is a custom region.",
+          "deprecated": true,
+          "description": "Deprecated: Use a single region service instead. Possible configurations supported if the current region is a custom region.",
           "items": {
             "$ref": "CustomRegionMetadata"
           },
@@ -2856,7 +2859,8 @@
         },
         "multiRegionMetadata": {
           "$ref": "MultiRegionMetadata",
-          "description": "The multi-region metadata if the current region is a multi-region."
+          "deprecated": true,
+          "description": "Deprecated: Use a single region service instead. The multi-region metadata if the current region is a multi-region."
         },
         "supportedHiveMetastoreVersions": {
           "description": "The versions of Hive Metastore that can be used when creating a new metastore service in this location. The server guarantees that exactly one HiveMetastoreVersion in the list will set is_default.",
@@ -3164,12 +3168,13 @@
       "type": "object"
     },
     "MultiRegionConfig": {
-      "description": "The multi-region config for the Dataproc Metastore service.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. The multi-region config for the Dataproc Metastore service.",
       "id": "MultiRegionConfig",
       "properties": {
         "certificates": {
           "deprecated": true,
-          "description": "Output only. The list of root CA certificates that a gRPC client uses to connect to a multi-regional Dataproc Metastore service.",
+          "description": "Output only. Deprecated: Use a single region service instead. The list of root CA certificates that a gRPC client uses to connect to a multi-regional Dataproc Metastore service.",
           "items": {
             "$ref": "RootCACertificate"
           },
@@ -3177,13 +3182,16 @@
           "type": "array"
         },
         "customRegionConfig": {
-          "$ref": "CustomRegionConfig"
+          "$ref": "CustomRegionConfig",
+          "deprecated": true,
+          "description": "Immutable. Deprecated: Use a single region service instead."
         }
       },
       "type": "object"
     },
     "MultiRegionMetadata": {
-      "description": "The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.",
+      "deprecated": true,
+      "description": "Deprecated: Use a single region service instead. The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.",
       "id": "MultiRegionMetadata",
       "properties": {
         "constituentRegions": {
@@ -3478,17 +3486,17 @@
     },
     "RootCACertificate": {
       "deprecated": true,
-      "description": "A gRPC client must install all root CA certificates to connect to a multi-regional Dataproc Metastore service and achieve failover.",
+      "description": "Deprecated: Use a single region service instead. A gRPC client must install all root CA certificates to connect to a multi-regional Dataproc Metastore service and achieve failover.",
       "id": "RootCACertificate",
       "properties": {
         "certificate": {
           "deprecated": true,
-          "description": "The root CA certificate in PEM format. The maximum length is 65536 bytes.",
+          "description": "Deprecated: Use a single region service instead. The root CA certificate in PEM format. The maximum length is 65536 bytes.",
           "type": "string"
         },
         "expirationTime": {
           "deprecated": true,
-          "description": "The certificate expiration time in timestamp format.",
+          "description": "Deprecated: Use a single region service instead. The certificate expiration time in timestamp format.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -3644,7 +3652,8 @@
         },
         "multiRegionConfig": {
           "$ref": "MultiRegionConfig",
-          "description": "Optional. Specifies the multi-region configuration information for the Hive metastore service."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use a single region service instead. Specifies the multi-region configuration information for the Hive metastore service."
         },
         "name": {
           "description": "Immutable. Identifier. The relative resource name of the metastore service, in the following format:projects/{project_number}/locations/{location_id}/services/{service_id}.",

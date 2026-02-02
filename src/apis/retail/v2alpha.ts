@@ -513,11 +513,11 @@ export namespace retail_v2alpha {
      */
     name?: string | null;
     /**
-     * Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BASIC view.
+     * Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BRANCH_VIEW_BASIC view.
      */
     productCountStats?: Schema$GoogleCloudRetailV2alphaBranchProductCountStatistic[];
     /**
-     * Output only. The quality metrics measured among products of this branch. See QualityMetric.requirement_key for supported metrics. Metrics could be missing if failed to retrieve. This field is not populated in BranchView.BASIC view.
+     * Output only. The quality metrics measured among products of this branch. See QualityMetric.requirement_key for supported metrics. Metrics could be missing if failed to retrieve. This field is not populated in BranchView.BRANCH_VIEW_BASIC view.
      */
     qualityMetrics?: Schema$GoogleCloudRetailV2alphaBranchQualityMetric[];
   }
@@ -1049,7 +1049,7 @@ export namespace retail_v2alpha {
      */
     filter?: string | null;
     /**
-     * Optional. The sort string to specify the sorting of search results. The syntax of the sort string is the same as SearchRequest.sort.
+     * Optional. The sort string to specify the sorting of search results. The syntax of the sort string is the same as SearchRequest.order_by.
      */
     sortBy?: string | null;
   }
@@ -1058,7 +1058,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaConversationalSearchRequestUserAnswer {
     /**
-     * Optional. This field specifies the selected answer during the conversational search. This should be a subset of ConversationalSearchResponse.followup_question.suggested_answers.
+     * Optional. This field specifies the selected answer during the conversational search. This should be a subset of ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer.
      */
     selectedAnswer?: Schema$GoogleCloudRetailV2alphaConversationalSearchRequestUserAnswerSelectedAnswer;
     /**
@@ -1113,7 +1113,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaConversationalSearchResponseConversationalFilteringResult {
     /**
-     * This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous ConversationalSearchRequest.search_params.filter and SearchRequest.filter, and use the merged filter in the follow up requests.
+     * This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous ConversationalSearchRequest.SearchParams.filter and SearchRequest.filter, and use the merged filter in the follow up requests.
      */
     additionalFilter?: Schema$GoogleCloudRetailV2alphaConversationalSearchResponseConversationalFilteringResultAdditionalFilter;
     /**
@@ -1270,7 +1270,7 @@ export namespace retail_v2alpha {
      */
     filter?: string | null;
     /**
-     * Required. The output location of the data.
+     * Required. The output location of the data. Only `bigquery_destination` is supported, and `bigquery_destination.table_type` must be set to `view`.
      */
     outputConfig?: Schema$GoogleCloudRetailV2alphaOutputConfig;
   }
@@ -1322,7 +1322,7 @@ export namespace retail_v2alpha {
      */
     filter?: string | null;
     /**
-     * Required. The output location of the data.
+     * Required. The output location of the data. Only `bigquery_destination` is supported, and `bigquery_destination.table_type` must be set to `view`.
      */
     outputConfig?: Schema$GoogleCloudRetailV2alphaOutputConfig;
   }
@@ -1352,7 +1352,7 @@ export namespace retail_v2alpha {
      */
     filter?: string | null;
     /**
-     * Required. The output location of the data.
+     * Required. The output location of the data. Only `bigquery_destination` is supported, and `bigquery_destination.table_type` must be set to `view`.
      */
     outputConfig?: Schema$GoogleCloudRetailV2alphaOutputConfig;
   }
@@ -3217,7 +3217,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec {
     /**
-     * This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous ConversationalSearchResult.conversation_id. For the initial request, this should be empty.
+     * This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous SearchResponse.ConversationalSearchResult.conversation_id. For the initial request, this should be empty.
      */
     conversationId?: string | null;
     /**
@@ -3234,7 +3234,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer {
     /**
-     * This field specifies the selected attributes during the conversational search. This should be a subset of ConversationalSearchResult.suggested_answers.
+     * This field specifies the selected attributes during the conversational search. This should be a subset of SearchResponse.ConversationalSearchResult.suggested_answers.
      */
     selectedAnswer?: Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer;
     /**

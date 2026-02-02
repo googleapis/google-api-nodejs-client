@@ -3414,7 +3414,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.bidders.pretargetingConfigs.get({
-     *     // Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *     // Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfigs/{configId\}
      *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
      *   });
      *   console.log(res.data);
@@ -4624,7 +4624,7 @@ export namespace realtimebidding_v1 {
   }
   export interface Params$Resource$Bidders$Pretargetingconfigs$Get extends StandardParameters {
     /**
-     * Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     * Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfigs/{configId\}
      */
     name?: string;
   }

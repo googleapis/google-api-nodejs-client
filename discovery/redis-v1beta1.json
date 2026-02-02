@@ -1058,7 +1058,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1078,7 +1078,7 @@
       }
     }
   },
-  "revision": "20251104",
+  "revision": "20260107",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1951,7 +1951,8 @@
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -1960,7 +1961,8 @@
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support."
+            "Represents if a resource version is in extended support.",
+            "Represents if a resource has no automated backup policy."
           ],
           "type": "string"
         }
@@ -2330,7 +2332,8 @@
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
           ],
           "enumDeprecated": [
             false,
@@ -2381,6 +2384,7 @@
             false,
             false,
             false,
+            true,
             false,
             false,
             false,
@@ -2430,7 +2434,7 @@
             false,
             false,
             false,
-            false,
+            true,
             false,
             false,
             false,
@@ -2544,7 +2548,8 @@
             "Outdated client.",
             "Databoost is disabled.",
             "Recommended maintenance policy.",
-            "Resource version is in extended support."
+            "Resource version is in extended support.",
+            "Change in performance KPIs."
           ],
           "type": "string"
         },
@@ -2989,7 +2994,8 @@
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
           ],
           "enumDeprecated": [
             false,
@@ -3040,6 +3046,7 @@
             false,
             false,
             false,
+            true,
             false,
             false,
             false,
@@ -3089,7 +3096,7 @@
             false,
             false,
             false,
-            false,
+            true,
             false,
             false,
             false,
@@ -3203,7 +3210,8 @@
             "Outdated client.",
             "Databoost is disabled.",
             "Recommended maintenance policy.",
-            "Resource version is in extended support."
+            "Resource version is in extended support.",
+            "Change in performance KPIs."
           ],
           "type": "string"
         }
@@ -3257,7 +3265,8 @@
             "SIGNAL_TYPE_NO_ROOT_PASSWORD",
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -3266,7 +3275,8 @@
             "Represents if a database has a password configured for the root account or not.",
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
-            "Represents if a resource version is in extended support."
+            "Represents if a resource version is in extended support.",
+            "Represents if a resource has no automated backup policy."
           ],
           "type": "string"
         }
@@ -4061,7 +4071,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -4108,11 +4118,21 @@
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "MachineConfiguration",
       "properties": {
+        "baselineSlots": {
+          "description": "Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
+        },
         "cpuCount": {
           "deprecated": true,
           "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
+        },
+        "maxReservationSlots": {
+          "description": "Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
         },
         "memorySizeInBytes": {
           "description": "Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.",

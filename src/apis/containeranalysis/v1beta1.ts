@@ -1779,6 +1779,10 @@ export namespace containeranalysis_v1beta1 {
      */
     lastScanTime?: string | null;
     /**
+     * The last time vulnerability scan results changed.
+     */
+    lastVulnerabilityUpdateTime?: string | null;
+    /**
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;

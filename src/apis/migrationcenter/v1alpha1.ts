@@ -4284,7 +4284,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     enabled?: boolean | null;
     /**
-     * SELinux mode enforcing / permissive.
+     * SELinux mode disabled / enforcing / permissive.
      */
     mode?: string | null;
   }

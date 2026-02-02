@@ -1876,7 +1876,7 @@
       }
     }
   },
-  "revision": "20251211",
+  "revision": "20260108",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3498,7 +3498,9 @@
             "FAILED",
             "BOOTSTRAPPING",
             "PROMOTING",
-            "SWITCHOVER"
+            "SWITCHOVER",
+            "STOPPING",
+            "STARTING"
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
@@ -3510,7 +3512,9 @@
             "The creation of the instance failed or a fatal error occurred during an operation on the instance. Note: Instances in this state would tried to be auto-repaired. And Customers should be able to restart, update or delete these instances.",
             "The instance has been configured to sync data from some other source.",
             "The instance is being promoted.",
-            "The instance has entered switchover state. All updates on instance are restricted while the instance is in this state."
+            "The instance has entered switchover state. All updates on instance are restricted while the instance is in this state.",
+            "The instance is being stopped.",
+            "The instance is being started."
           ],
           "readOnly": true,
           "type": "string"
@@ -4823,47 +4827,6 @@
       },
       "type": "object"
     },
-    "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata": {
-      "description": "BigQueryResourceMetadata contains information about the BigQuery resource. Next ID: 9",
-      "id": "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata",
-      "properties": {
-        "createTime": {
-          "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "fullResourceName": {
-          "description": "Required. Full resource name of this instance.",
-          "type": "string"
-        },
-        "location": {
-          "description": "Required. location of the resource",
-          "type": "string"
-        },
-        "product": {
-          "$ref": "StorageDatabasecenterProtoCommonProduct",
-          "description": "The product this resource represents."
-        },
-        "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
-          "type": "string"
-        },
-        "resourceId": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Required. Database resource id."
-        },
-        "updateTime": {
-          "description": "The time at which the resource was updated and recorded at partner service.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "userLabelSet": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainUserLabels",
-          "description": "User-provided labels associated with the resource"
-        }
-      },
-      "type": "object"
-    },
     "StorageDatabasecenterPartnerapiV1mainCompliance": {
       "description": "Contains compliance information about a security standard indicating unmet recommendations.",
       "id": "StorageDatabasecenterPartnerapiV1mainCompliance",
@@ -4949,10 +4912,6 @@
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
           "description": "BackupDR metadata is used to ingest metadata from BackupDR."
         },
-        "bigqueryResourceMetadata": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata",
-          "description": "For BigQuery resource metadata."
-        },
         "configBasedSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
           "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
@@ -4976,8 +4935,7 @@
             "RECOMMENDATION_SIGNAL_DATA",
             "CONFIG_BASED_SIGNAL_DATA",
             "BACKUPDR_METADATA",
-            "DATABASE_RESOURCE_SIGNAL_DATA",
-            "BIGQUERY_RESOURCE_METADATA"
+            "DATABASE_RESOURCE_SIGNAL_DATA"
           ],
           "enumDescriptions": [
             "",
@@ -4987,8 +4945,7 @@
             "Database resource recommendation signal data",
             "Database config based signal data",
             "Database resource metadata from BackupDR",
-            "Database resource signal data",
-            "BigQuery resource metadata"
+            "Database resource signal data"
           ],
           "type": "string"
         },
@@ -5235,7 +5192,8 @@
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
           ],
           "enumDeprecated": [
             false,
@@ -5337,6 +5295,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -5449,7 +5408,8 @@
             "Outdated client.",
             "Databoost is disabled.",
             "Recommended maintenance policy.",
-            "Resource version is in extended support."
+            "Resource version is in extended support.",
+            "Change in performance KPIs."
           ],
           "type": "string"
         },
@@ -5502,7 +5462,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigquery.googleapis.com/Dataset, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -5894,7 +5854,8 @@
             "SIGNAL_TYPE_OUTDATED_CLIENT",
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
-            "SIGNAL_TYPE_EXTENDED_SUPPORT"
+            "SIGNAL_TYPE_EXTENDED_SUPPORT",
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
           ],
           "enumDeprecated": [
             false,
@@ -5996,6 +5957,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6108,7 +6070,8 @@
             "Outdated client.",
             "Databoost is disabled.",
             "Recommended maintenance policy.",
-            "Resource version is in extended support."
+            "Resource version is in extended support.",
+            "Change in performance KPIs."
           ],
           "type": "string"
         }
@@ -6267,11 +6230,21 @@
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
       "properties": {
+        "baselineSlots": {
+          "description": "Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
+        },
         "cpuCount": {
           "deprecated": true,
           "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
+        },
+        "maxReservationSlots": {
+          "description": "Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.",
+          "format": "int64",
+          "type": "string"
         },
         "memorySizeInBytes": {
           "description": "Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.",

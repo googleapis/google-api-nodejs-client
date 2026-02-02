@@ -296,7 +296,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1165,7 +1165,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20260111",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1249,6 +1249,10 @@
       "description": "A data source that backs Firebase Data Connect services.",
       "id": "Datasource",
       "properties": {
+        "httpGraphql": {
+          "$ref": "HttpGraphql",
+          "description": "HTTP GraphQL server webhook configurations."
+        },
         "postgresql": {
           "$ref": "PostgreSql",
           "description": "PostgreSQL configurations."
@@ -1530,6 +1534,22 @@
       },
       "type": "object"
     },
+    "HttpGraphql": {
+      "description": "Settings for HTTP GraphQL server webhook.",
+      "id": "HttpGraphql",
+      "properties": {
+        "timeout": {
+          "description": "Optional. Timeout duration for the HTTP request.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The endpoint of the HTTP GraphQL server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ImpersonateRequest": {
       "description": "The Impersonate request to Firebase Data Connect.",
       "id": "ImpersonateRequest",
@@ -1635,7 +1655,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },

@@ -800,7 +800,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -829,7 +829,7 @@
               ],
               "parameters": {
                 "snapshot": {
-                  "description": "Required. Identifier. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -855,7 +855,7 @@
               ],
               "parameters": {
                 "snapshot": {
-                  "description": "Required. Identifier. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.",
+                  "description": "Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/snapshots/[^/]+$",
                   "required": true,
@@ -924,7 +924,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id}`.",
+                  "description": "Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1099,7 +1099,7 @@
               ],
               "parameters": {
                 "subscription": {
-                  "description": "Required. Identifier. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.",
+                  "description": "Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1151,7 +1151,7 @@
               ],
               "parameters": {
                 "subscription": {
-                  "description": "Required. Identifier. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.",
+                  "description": "Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/subscriptions/[^/]+$",
                   "required": true,
@@ -1220,7 +1220,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.",
+                  "description": "Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1482,7 +1482,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. Identifier. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1508,7 +1508,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. Identifier. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1577,7 +1577,7 @@
                   "type": "string"
                 },
                 "project": {
-                  "description": "Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id}`.",
+                  "description": "Required. The name of the project in which to list topics. Format is `projects/{project-id}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1632,7 +1632,7 @@
               ],
               "parameters": {
                 "topic": {
-                  "description": "Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.",
+                  "description": "Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/topics/[^/]+$",
                   "required": true,
@@ -1798,9 +1798,28 @@
       }
     }
   },
-  "revision": "20251212",
+  "revision": "20260116",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
+    "AIInference": {
+      "description": "Configuration for making inference requests against Vertex AI models.",
+      "id": "AIInference",
+      "properties": {
+        "endpoint": {
+          "description": "Required. An endpoint to a Vertex AI model of the form `projects/{project}/locations/{location}/endpoints/{endpoint}` or `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`. Vertex AI API requests will be sent to this endpoint.",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "type": "string"
+        },
+        "unstructuredInference": {
+          "$ref": "UnstructuredInference",
+          "description": "Optional. Requests and responses can be any arbitrary JSON object."
+        }
+      },
+      "type": "object"
+    },
     "AcknowledgeRequest": {
       "description": "Request for the Acknowledge method.",
       "id": "AcknowledgeRequest",
@@ -2019,7 +2038,8 @@
             "PERMISSION_DENIED",
             "NOT_FOUND",
             "SCHEMA_MISMATCH",
-            "IN_TRANSIT_LOCATION_RESTRICTION"
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "VERTEX_AI_LOCATION_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2027,7 +2047,8 @@
             "Cannot write to the BigQuery table because of permission denied errors. This can happen if - Pub/Sub SA has not been granted the [appropriate BigQuery IAM permissions](https://cloud.google.com/pubsub/docs/create-subscription#assign_bigquery_service_account) - bigquery.googleapis.com API is not enabled for the project ([instructions](https://cloud.google.com/service-usage/docs/enable-disable))",
             "Cannot write to the BigQuery table because it does not exist.",
             "Cannot write to the BigQuery table due to a schema mismatch.",
-            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions."
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions.",
+            "Cannot write to the BigQuery table because the table is not in the same location as where Vertex AI models used in `message_transform`s are deployed."
           ],
           "readOnly": true,
           "type": "string"
@@ -2177,7 +2198,8 @@
             "PERMISSION_DENIED",
             "NOT_FOUND",
             "IN_TRANSIT_LOCATION_RESTRICTION",
-            "SCHEMA_MISMATCH"
+            "SCHEMA_MISMATCH",
+            "VERTEX_AI_LOCATION_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2185,7 +2207,8 @@
             "Cannot write to the Cloud Storage bucket because of permission denied errors.",
             "Cannot write to the Cloud Storage bucket because it does not exist.",
             "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions.",
-            "Cannot write to the Cloud Storage bucket due to an incompatibility between the topic schema and subscription settings."
+            "Cannot write to the Cloud Storage bucket due to an incompatibility between the topic schema and subscription settings.",
+            "Cannot write to the Cloud Storage bucket because the bucket is not in the same location as where Vertex AI models used in `message_transform`s are deployed."
           ],
           "readOnly": true,
           "type": "string"
@@ -2270,7 +2293,7 @@
           "type": "object"
         },
         "subscription": {
-          "description": "Required. Identifier. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.",
+          "description": "Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.",
           "type": "string"
         },
         "tags": {
@@ -2540,6 +2563,10 @@
       "description": "All supported message transforms types.",
       "id": "MessageTransform",
       "properties": {
+        "aiInference": {
+          "$ref": "AIInference",
+          "description": "Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to."
+        },
         "disabled": {
           "description": "Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.",
           "type": "boolean"
@@ -2988,7 +3015,7 @@
         },
         "analyticsHubSubscriptionInfo": {
           "$ref": "AnalyticsHubSubscriptionInfo",
-          "description": "Output only. Information about the associated Analytics Hub subscription. Only set if the subscritpion is created by Analytics Hub.",
+          "description": "Output only. Information about the associated Analytics Hub subscription. Only set if the subscription is created by Analytics Hub.",
           "readOnly": true
         },
         "bigqueryConfig": {
@@ -3081,7 +3108,7 @@
           "type": "object"
         },
         "topic": {
-          "description": "Required. Identifier. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.",
+          "description": "Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.",
           "type": "string"
         },
         "topicMessageRetentionDuration": {
@@ -3205,6 +3232,21 @@
             "type": "string"
           },
           "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "UnstructuredInference": {
+      "description": "Configuration for making inferences using arbitrary JSON payloads.",
+      "id": "UnstructuredInference",
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A parameters object to be included in each inference request. The parameters object is combined with the data field of the Pub/Sub message to form the inference request.",
           "type": "object"
         }
       },

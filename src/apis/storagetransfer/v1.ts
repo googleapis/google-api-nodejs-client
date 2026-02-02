@@ -807,6 +807,14 @@ export namespace storagetransfer_v1 {
      * Objects in the data source that are not transferred because they already exist in the data sink.
      */
     objectsFromSourceSkippedBySync?: string | null;
+    /**
+     * Number of unrestored deep archive objects skipped.
+     */
+    unrestoredDeepArchiveObjectsSkippedCount?: string | null;
+    /**
+     * Number of glacier objects skipped, glacier objects are unsupported by default regardless of the restore status. Allowlist the project to copy glacier objects if needed.
+     */
+    unsupportedS3GlacierObjectsSkippedCount?: string | null;
   }
   /**
    * This resource represents the configuration of a transfer job that runs periodically.

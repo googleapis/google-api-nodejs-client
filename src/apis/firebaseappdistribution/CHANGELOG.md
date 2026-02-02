@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v12.1.0...firebaseappdistribution-v12.2.0) (2026-01-28)
+
+
+### Features
+
+* **firebaseappdistribution:** update the API ([e25d236](https://github.com/googleapis/google-api-nodejs-client/commit/e25d2367728a185dd8a552e772b128224d7daee5))
+
 ## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v12.0.0...firebaseappdistribution-v12.1.0) (2025-12-05)
 
 

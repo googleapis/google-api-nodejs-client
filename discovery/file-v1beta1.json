@@ -1136,7 +1136,7 @@
       }
     }
   },
-  "revision": "20251204",
+  "revision": "20260114",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2246,15 +2246,17 @@
           "type": "array"
         },
         "modes": {
-          "description": "Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported.",
+          "description": "Internet protocol versions for which the instance has IP addresses assigned.",
           "items": {
             "enum": [
               "ADDRESS_MODE_UNSPECIFIED",
-              "MODE_IPV4"
+              "MODE_IPV4",
+              "MODE_IPV6"
             ],
             "enumDescriptions": [
               "Internet protocol not set.",
-              "Use the IPv4 internet protocol."
+              "Use the IPv4 internet protocol.",
+              "Use the IPv6 internet protocol. Only supported when using Private Service Connect."
             ],
             "type": "string"
           },

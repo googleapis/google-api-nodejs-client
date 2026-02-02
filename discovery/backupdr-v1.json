@@ -2262,7 +2262,7 @@
       }
     }
   },
-  "revision": "20251227",
+  "revision": "20260116",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2429,15 +2429,46 @@
     "AlloyDBClusterBackupPlanAssociationProperties": {
       "description": "Properties for an AlloyDB cluster backup plan association.",
       "id": "AlloyDBClusterBackupPlanAssociationProperties",
-      "properties": {},
+      "properties": {
+        "clusterUid": {
+          "description": "Output only. The cluster UID of the AlloyDB cluster.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "AlloyDBClusterDataSourceProperties": {
       "description": "AlloyDBClusterDataSourceProperties represents the properties of a AlloyDB cluster resource that are stored in the DataSource. .",
       "id": "AlloyDBClusterDataSourceProperties",
       "properties": {
+        "clusterUid": {
+          "description": "Output only. The cluster UID of the AlloyDB cluster backed up by the datasource.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. Name of the AlloyDB cluster backed up by the datasource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pitrWindows": {
+          "description": "Output only. Point in time recovery windows. The order is guaranteed to be ascending by start time.",
+          "items": {
+            "$ref": "AlloyDbPitrWindow"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AlloyDBClusterDataSourceReferenceProperties": {
+      "description": "AlloyDBClusterDataSourceReferenceProperties represents the properties of an AlloyDB cluster that are stored in the DataSourceReference.",
+      "id": "AlloyDBClusterDataSourceReferenceProperties",
+      "properties": {
+        "name": {
+          "description": "Output only. Name of the AlloyDB cluster backed up by the datasource. Format: projects/{project}/locations/{location}/clusters/{cluster}",
           "readOnly": true,
           "type": "string"
         }
@@ -2465,6 +2496,31 @@
         "storedBytes": {
           "description": "Output only. Storage usage of this particular backup",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlloyDbPitrWindow": {
+      "description": "Point in time recovery window for an AlloyDB cluster.",
+      "id": "AlloyDbPitrWindow",
+      "properties": {
+        "endTime": {
+          "description": "Output only. The end time of the PITR window. It is not set if the corresponding Backup Plan Association is active.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "logRetentionDays": {
+          "description": "Output only. Log retention days for the PITR window.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The start time of the PITR window.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
@@ -4298,6 +4354,11 @@
       "description": "The Google Cloud resource that the DataSource is associated with.",
       "id": "DataSourceGcpResourceInfo",
       "properties": {
+        "alloyDbClusterProperties": {
+          "$ref": "AlloyDBClusterDataSourceReferenceProperties",
+          "description": "Output only. The properties of the AlloyDB cluster.",
+          "readOnly": true
+        },
         "cloudSqlInstanceProperties": {
           "$ref": "CloudSqlInstanceDataSourceReferenceProperties",
           "description": "Output only. The properties of the Cloud SQL instance.",

@@ -3713,6 +3713,8 @@ export namespace managedkafka_v1 {
      *   // Do the magic
      *   const res =
      *     await managedkafka.projects.locations.clusters.consumerGroups.list({
+     *       // Optional. Filter expression for the result. Only supports filtering by topic name as a key in the `topics` map.
+     *       filter: 'placeholder-value',
      *       // Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned.
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListConsumerGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConsumerGroups` must match the call that provided the page token.
@@ -3993,6 +3995,10 @@ export namespace managedkafka_v1 {
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Consumergroups$List extends StandardParameters {
+    /**
+     * Optional. Filter expression for the result. Only supports filtering by topic name as a key in the `topics` map.
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned.
      */

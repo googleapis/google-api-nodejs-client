@@ -149,6 +149,7 @@ export namespace compute_beta {
     instances: Resource$Instances;
     instanceSettings: Resource$Instancesettings;
     instanceTemplates: Resource$Instancetemplates;
+    instantSnapshotGroups: Resource$Instantsnapshotgroups;
     instantSnapshots: Resource$Instantsnapshots;
     interconnectAttachmentGroups: Resource$Interconnectattachmentgroups;
     interconnectAttachments: Resource$Interconnectattachments;
@@ -192,6 +193,7 @@ export namespace compute_beta {
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionInstances: Resource$Regioninstances;
     regionInstanceTemplates: Resource$Regioninstancetemplates;
+    regionInstantSnapshotGroups: Resource$Regioninstantsnapshotgroups;
     regionInstantSnapshots: Resource$Regioninstantsnapshots;
     regionMultiMigMembers: Resource$Regionmultimigmembers;
     regionMultiMigs: Resource$Regionmultimigs;
@@ -213,6 +215,7 @@ export namespace compute_beta {
     regionZones: Resource$Regionzones;
     reservationBlocks: Resource$Reservationblocks;
     reservations: Resource$Reservations;
+    reservationSlots: Resource$Reservationslots;
     reservationSubBlocks: Resource$Reservationsubblocks;
     resourcePolicies: Resource$Resourcepolicies;
     rolloutPlans: Resource$Rolloutplans;
@@ -293,6 +296,9 @@ export namespace compute_beta {
       this.instances = new Resource$Instances(this.context);
       this.instanceSettings = new Resource$Instancesettings(this.context);
       this.instanceTemplates = new Resource$Instancetemplates(this.context);
+      this.instantSnapshotGroups = new Resource$Instantsnapshotgroups(
+        this.context
+      );
       this.instantSnapshots = new Resource$Instantsnapshots(this.context);
       this.interconnectAttachmentGroups =
         new Resource$Interconnectattachmentgroups(this.context);
@@ -366,6 +372,8 @@ export namespace compute_beta {
       this.regionInstanceTemplates = new Resource$Regioninstancetemplates(
         this.context
       );
+      this.regionInstantSnapshotGroups =
+        new Resource$Regioninstantsnapshotgroups(this.context);
       this.regionInstantSnapshots = new Resource$Regioninstantsnapshots(
         this.context
       );
@@ -408,6 +416,7 @@ export namespace compute_beta {
       this.regionZones = new Resource$Regionzones(this.context);
       this.reservationBlocks = new Resource$Reservationblocks(this.context);
       this.reservations = new Resource$Reservations(this.context);
+      this.reservationSlots = new Resource$Reservationslots(this.context);
       this.reservationSubBlocks = new Resource$Reservationsubblocks(
         this.context
       );
@@ -4712,6 +4721,10 @@ export namespace compute_beta {
    */
   export interface Schema$BulkInsertDiskResource {
     /**
+     * The parameters for the instant snapshot group.
+     */
+    instantSnapshotGroupParameters?: Schema$InstantSnapshotGroupParameters;
+    /**
      * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
      * This may be a full or partial URL, such as:
      *
@@ -4737,6 +4750,10 @@ export namespace compute_beta {
      * The maximum number of instances to create.
      */
     count?: string | null;
+    /**
+     * A flexible specification of machine type of instances to create.
+     */
+    instanceFlexibilityPolicy?: Schema$InstanceFlexibilityPolicy;
     /**
      * The instance properties defining the VM instances to be created. Required
      * if sourceInstanceTemplate is not provided.
@@ -7161,6 +7178,11 @@ export namespace compute_beta {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ExternalVpnGatewayParams;
+    /**
      * Indicates the user-supplied redundancy type of this external VPN gateway.
      */
     redundancyType?: string | null;
@@ -7237,6 +7259,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ExternalVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$FileContentBuffer {
     /**
@@ -8013,9 +8054,7 @@ export namespace compute_beta {
     percent?: number | null;
   }
   /**
-   * A flexible specification of a time range that has 3 points of
-   * flexibility: (1) a flexible start time, (2) a flexible end time, (3) a
-   * flexible duration.
+   * Specifies a flexible time range with flexible start time and duration.
    *
    * It is possible to specify a contradictory time range that cannot be matched
    * by any Interval. This causes a validation error.
@@ -8061,17 +8100,6 @@ export namespace compute_beta {
      * endpoint can be accessed from another region.
      */
     allowPscGlobalAccess?: boolean | null;
-    /**
-     * This is used in PSC consumer ForwardingRule to control whether the producer
-     * is allowed to inject packets into the consumer's network. If set to true,
-     * the target service attachment must have tunneling enabled and
-     * TunnelingConfig.RoutingMode set to PACKET_INJECTION
-     * Non-PSC forwarding rules should not use this field.
-     *
-     * This field was never released to any customers and is deprecated and
-     * will be removed in the future.
-     */
-    allowPscPacketInjection?: boolean | null;
     /**
      * The ports, portRange, and allPorts
      * fields are mutually exclusive. Only packets addressed to ports in the
@@ -12502,6 +12530,54 @@ export namespace compute_beta {
     minNodeCpus?: number | null;
   }
   /**
+   * A flexible specification of machine types for instances to create.
+   */
+  export interface Schema$InstanceFlexibilityPolicy {
+    /**
+     * Specification of alternative, flexible instance subsets.
+     * One of them will be selected to create the instances
+     * based on various criteria, like:
+     * - ranks,
+     * - location policy,
+     * - current capacity,
+     * - available reservations (you can specify affinity in
+     * InstanceProperties),
+     * - SWAN/GOOSE limitations.
+     * Key is an arbitrary, unique RFC1035 string that identifies the instance
+     * selection.
+     */
+    instanceSelections?: {
+      [key: string]: Schema$InstanceFlexibilityPolicyInstanceSelection;
+    } | null;
+  }
+  /**
+   * Specification of machine type to use. Every position inside this message
+   * is an alternative.
+   * The count specified in the shape flexibility must not exceed the number
+   * of entries in per_instance_properties or the capacity of the
+   * name_pattern, if used.
+   */
+  export interface Schema$InstanceFlexibilityPolicyInstanceSelection {
+    /**
+     * Disks to be attached to the instances created from in this selection.
+     * They override the disks specified in the instance properties.
+     */
+    disks?: Schema$AttachedDisk[];
+    /**
+     * Alternative machine types to use for instances that are created from
+     * these properties. This field only accepts a machine type names, for
+     * example `n2-standard-4` and not URLs or partial URLs.
+     */
+    machineTypes?: string[] | null;
+    /**
+     * Rank when prioritizing the shape flexibilities.
+     * The instance selections with rank are considered
+     * first, in the ascending order of the rank.
+     * If not set, defaults to 0.
+     */
+    rank?: string | null;
+  }
+  /**
    * Represents an Instance Group resource.
    *
    * Instance Groups can be used to configure a target forload
@@ -14960,6 +15036,19 @@ export namespace compute_beta {
      */
     sourceDiskId?: string | null;
     /**
+     * Output only. [Output Only] URL of the source instant snapshot this instant snapshot is
+     * part of. Note that the source instant snapshot group must be in the same
+     * zone/region as the instant snapshot to be created. This can be a full or
+     * valid partial URL.
+     */
+    sourceInstantSnapshotGroup?: string | null;
+    /**
+     * Output only. [Output Only] The ID value of the source instant snapshot group this
+     * InstantSnapshot is part of. This value may be used to determine whether the
+     * InstantSnapshot was created as part of an InstantSnapshotGroup creation.
+     */
+    sourceInstantSnapshotGroupId?: string | null;
+    /**
      * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      */
     status?: string | null;
@@ -15008,6 +15097,97 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Represents an InstantSnapshotGroup resource.
+   *
+   * An instant snapshot group is a set of instant snapshots that represents a
+   * point in time state of a consistency group.
+   */
+  export interface Schema$InstantSnapshotGroup {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshotGroup for InstantSnapshotGroup
+     * resources.
+     */
+    kind?: string | null;
+    /**
+     * Identifier. Name of the resource; provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] URL of the region where the instant snapshot group resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
+     */
+    region?: string | null;
+    resourceStatus?: Schema$InstantSnapshotGroupResourceStatus;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
+     */
+    selfLinkWithId?: string | null;
+    sourceConsistencyGroup?: string | null;
+    /**
+     * Output only. [Output Only]
+     */
+    status?: string | null;
+    /**
+     * Output only. [Output Only] URL of the zone where the instant snapshot group resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
+     */
+    zone?: string | null;
+  }
+  export interface Schema$InstantSnapshotGroupParameters {
+    /**
+     * The source instant snapshot group used to create disks. You can provide
+     * this as a partial or full URL to the resource. For example, the following
+     * are valid values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instantSnapshotGroups/instantSnapshotGroup
+     *      - projects/project/zones/zone/instantSnapshotGroups/instantSnapshotGroup
+     *      - zones/zone/instantSnapshotGroups/instantSnapshotGroup
+     */
+    sourceInstantSnapshotGroup?: string | null;
+  }
+  export interface Schema$InstantSnapshotGroupResourceStatus {
+    /**
+     * Output only. [Output Only]
+     */
+    consistencyMembershipResolutionTime?: string | null;
+    /**
+     * Output only. [Output Only]
+     */
+    sourceInfo?: Schema$InstantSnapshotGroupSourceInfo;
+  }
+  export interface Schema$InstantSnapshotGroupSourceInfo {
+    consistencyGroup?: string | null;
+    consistencyGroupId?: string | null;
   }
   /**
    * Contains a list of InstantSnapshot resources.
@@ -15418,6 +15598,7 @@ export namespace compute_beta {
      *    - BPS_20G: 20 Gbit/s
      *    - BPS_50G: 50 Gbit/s
      *    - BPS_100G: 100 Gbit/s
+     *    - BPS_400G: 400 Gbit/s
      */
     bandwidth?: string | null;
     /**
@@ -17778,6 +17959,49 @@ export namespace compute_beta {
       message?: string;
     } | null;
   }
+  /**
+   * Contains a list of InstantSnapshotGroup resources.
+   */
+  export interface Schema$ListInstantSnapshotGroups {
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of InstantSnapshotGroup resources.
+     */
+    items?: Schema$InstantSnapshotGroup[];
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   export interface Schema$LocalDisk {
     /**
      * Specifies the number of such disks.
@@ -17928,6 +18152,11 @@ export namespace compute_beta {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional parameters that are passed in the request, but are
+     * not persisted in the resource.
+     */
+    params?: Schema$MachineImageParams;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -18016,6 +18245,21 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Machine Image parameters
+   */
+  export interface Schema$MachineImageParams {
+    /**
+     * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * Represents a Machine Type resource.
@@ -20071,9 +20315,7 @@ export namespace compute_beta {
      */
     stackType?: string | null;
     /**
-     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     * peering is `ACTIVE` when there's a matching configuration in the peer
-     * network.
+     * Output only. [Output Only] State for the peering.
      */
     state?: string | null;
     /**
@@ -24905,6 +25147,131 @@ export namespace compute_beta {
      * Specifies if all, running or unused hosts are in scope for this request.
      */
     maintenanceScope?: string | null;
+  }
+  /**
+   * Represents a reservation slot resource.
+   */
+  export interface Schema$ReservationSlot {
+    /**
+     * Output only. [Output Only] The creation timestamp, formatted asRFC3339 text.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for this resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] The type of resource. Alwayscompute#reservationSlot for reservation slots.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] The name of the reservation slot.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] The physical topology of the reservation slot.
+     */
+    physicalTopology?: Schema$ReservationSlotPhysicalTopology;
+    /**
+     * Output only. [Output Only] A server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] A server-defined URL for this resource with the resource ID.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * Specify share settings to create a shared slot. Set to empty
+     * to inherit the share settings from a parent resource.
+     */
+    shareSettings?: Schema$ShareSettings;
+    /**
+     * Output only. [Output Only] The state of the reservation slot.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output Only] The status of the reservation slot.
+     */
+    status?: Schema$ReservationSlotStatus;
+    /**
+     * Output only. [Output Only] The zone in which the reservation slot resides.
+     */
+    zone?: string | null;
+  }
+  export interface Schema$ReservationSlotPhysicalTopology {
+    /**
+     * The unique identifier of the capacity block within the cluster.
+     */
+    block?: string | null;
+    /**
+     * The cluster name of the reservation sub-block.
+     */
+    cluster?: string | null;
+    /**
+     * The unique identifier of the capacity host within the capacity sub-block.
+     */
+    host?: string | null;
+    /**
+     * The unique identifier of the capacity sub-block within the capacity
+     * block.
+     */
+    subBlock?: string | null;
+  }
+  export interface Schema$ReservationSlotsGetResponse {
+    resource?: Schema$ReservationSlot;
+  }
+  /**
+   * A list of reservation slots within a single reservation.
+   */
+  export interface Schema$ReservationSlotsListResponse {
+    /**
+     * The unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of reservation slot resources.
+     */
+    items?: Schema$ReservationSlot[];
+    /**
+     * The type of resource. Alwayscompute#reservationSlot for a list of reservation
+     * slots.
+     */
+    kind?: string | null;
+    /**
+     * This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * An informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$ReservationSlotStatus {
+    /**
+     * Output only. [Output Only] The physical topology of the reservation sub-block.
+     */
+    physicalTopology?: Schema$ReservationSlotPhysicalTopology;
+    /**
+     * Output only. The RDMA IP address of the physical host.
+     */
+    rdmaIpAddresses?: string[] | null;
+    /**
+     * Output only. The URIs of the instances currently running on this slot.
+     */
+    runningInstances?: string[] | null;
   }
   export interface Schema$ReservationsPerformMaintenanceRequest {
     /**
@@ -31013,15 +31380,15 @@ export namespace compute_beta {
    */
   export interface Schema$StoragePoolExapoolProvisionedCapacityGb {
     /**
-     * Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      */
     capacityOptimized?: string | null;
     /**
-     * Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned read-optimized capacity for this Exapool
      */
     readOptimized?: string | null;
     /**
-     * Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned write-optimized capacity for this Exapool
      */
     writeOptimized?: string | null;
   }
@@ -31392,9 +31759,9 @@ export namespace compute_beta {
    */
   export interface Schema$Subnetwork {
     /**
-     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Whether this subnetwork's ranges can conflict with existing custom routes.
      * Setting this to true allows this subnetwork's primary and secondary ranges
-     * to overlap with (and contain) static routes that have already been
+     * to overlap with (and contain) custom routes that have already been
      * configured on the corresponding network.
      *
      * For example if a static route has range 10.1.0.0/16, a subnet
@@ -31410,8 +31777,6 @@ export namespace compute_beta {
      *
      * The default value is false and applies to all existing subnetworks and
      * automatically created subnetworks.
-     *
-     * This field cannot be set to true at resource creation time.
      */
     allowSubnetCidrRoutesOverlap?: boolean | null;
     /**
@@ -31584,7 +31949,7 @@ export namespace compute_beta {
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to the
      * primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     * primary or secondary ranges. This field can be updated with apatch request.
+     * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      */
     secondaryIpRanges?: Schema$SubnetworkSecondaryRange[];
     /**
@@ -31775,20 +32140,33 @@ export namespace compute_beta {
      * The range of IP addresses belonging to this subnetwork secondary range.
      * Provide this property when you create the subnetwork. Ranges must be
      * unique and non-overlapping with all primary and secondary IP ranges
-     * within a network. Only IPv4 is supported. The range can be any range
-     * listed in theValid
+     * within a network. Both IPv4 and IPv6 ranges are supported. For IPv4,
+     * the range can be any range listed in theValid
      * ranges list.
+     *
+     * For IPv6:
+     * The range must have a /64 prefix length.
+     * The range must be omitted, for auto-allocation from Google-defined ULA
+     * IPv6 range.
+     * For BYOGUA internal IPv6 secondary range, the range may be specified
+     * along with the `ipCollection` field.
+     * If an `ipCollection` is specified, the requested ip_cidr_range must lie
+     * within the range of the PDP referenced by the `ipCollection` field for
+     * allocation.
+     * If `ipCollection` field is specified, but ip_cidr_range is not,
+     * the range is auto-allocated from the PDP referenced by the `ipCollection`
+     * field.
      */
     ipCidrRange?: string | null;
     /**
      * The name associated with this subnetwork secondary range, used when adding
-     * an alias IP range to a VM instance.
+     * an alias IP/IPv6 range to a VM instance.
      * The name must be 1-63 characters long, and comply withRFC1035.
      * The name must be unique within the subnetwork.
      */
     rangeName?: string | null;
     /**
-     * The URL of the reserved internal range.
+     * The URL of the reserved internal range. Only IPv4 is supported.
      */
     reservedInternalRange?: string | null;
   }
@@ -33402,6 +33780,11 @@ export namespace compute_beta {
      */
     network?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$TargetVpnGatewayParams;
+    /**
      * [Output Only] URL of the region where the target VPN gateway resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -33497,6 +33880,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$TargetVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
@@ -34228,6 +34630,7 @@ export namespace compute_beta {
   export interface Schema$UsableSubnetworkSecondaryRange {
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
+     * Can be Ipv4 or Ipv6 range.
      */
     ipCidrRange?: string | null;
     /**
@@ -34686,6 +35089,11 @@ export namespace compute_beta {
      */
     network?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnGatewayParams;
+    /**
      * Output only. [Output Only] URL of the region where the VPN gateway resides.
      */
     region?: string | null;
@@ -34779,6 +35187,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnGatewaysGetStatusResponse {
     result?: Schema$VpnGatewayStatus;
@@ -34989,6 +35416,11 @@ export namespace compute_beta {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnTunnelParams;
+    /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is
      * connected.
      * Provided by the client when the VPN tunnel is created.
@@ -35182,6 +35614,25 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnTunnelParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnTunnelPhase1Algorithms {
     dh?: string[] | null;
@@ -49918,6 +50369,7 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "instantSnapshotGroupParameters": {},
      *       //   "sourceConsistencyGroupPolicy": "my_sourceConsistencyGroupPolicy"
      *       // }
      *     },
@@ -55501,6 +55953,7 @@ export namespace compute_beta {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "redundancyType": "my_redundancyType",
      *   //   "selfLink": "my_selfLink"
      *   // }
@@ -55666,6 +56119,7 @@ export namespace compute_beta {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "redundancyType": "my_redundancyType",
      *       //   "selfLink": "my_selfLink"
      *       // }
@@ -63233,7 +63687,6 @@ export namespace compute_beta {
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
-     *   //   "allowPscPacketInjection": false,
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -63429,7 +63882,6 @@ export namespace compute_beta {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
-     *       //   "allowPscPacketInjection": false,
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -63901,7 +64353,6 @@ export namespace compute_beta {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
-     *       //   "allowPscPacketInjection": false,
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -68687,7 +69138,6 @@ export namespace compute_beta {
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
-     *   //   "allowPscPacketInjection": false,
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -68881,7 +69331,6 @@ export namespace compute_beta {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
-     *       //   "allowPscPacketInjection": false,
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -69349,7 +69798,6 @@ export namespace compute_beta {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
-     *       //   "allowPscPacketInjection": false,
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -97088,6 +97536,7 @@ export namespace compute_beta {
      *       // request body parameters
      *       // {
      *       //   "count": "my_count",
+     *       //   "instanceFlexibilityPolicy": {},
      *       //   "instanceProperties": {},
      *       //   "locationPolicy": {},
      *       //   "minCount": "my_minCount",
@@ -111038,6 +111487,1516 @@ export namespace compute_beta {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Instantsnapshotgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * deletes a Zonal InstantSnapshotGroup resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.delete({
+     *     // Name of the InstantSnapshot resource to delete.
+     *     instantSnapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Instantsnapshotgroups$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Instantsnapshotgroups$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Instantsnapshotgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Instantsnapshotgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Instantsnapshotgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instantSnapshotGroup'],
+        pathParams: ['instantSnapshotGroup', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * returns the specified InstantSnapshotGroup resource in the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.get({
+     *     // Name of the InstantSnapshotGroup resource to return.
+     *     instantSnapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "resourceStatus": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "sourceConsistencyGroup": "my_sourceConsistencyGroup",
+     *   //   "status": "my_status",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Instantsnapshotgroups$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Instantsnapshotgroups$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstantSnapshotGroup>>;
+    get(
+      params: Params$Resource$Instantsnapshotgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Instantsnapshotgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>,
+      callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
+    ): void;
+    get(
+      params: Params$Resource$Instantsnapshotgroups$Get,
+      callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InstantSnapshotGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Get
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstantSnapshotGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups/{instantSnapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instantSnapshotGroup'],
+        pathParams: ['instantSnapshotGroup', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstantSnapshotGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstantSnapshotGroup>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Instantsnapshotgroups$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * inserts a Zonal InstantSnapshotGroup resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // begin_interface: MixerMutationRequestBuilder
+     *     sourceConsistencyGroup: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "resourceStatus": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "sourceConsistencyGroup": "my_sourceConsistencyGroup",
+     *       //   "status": "my_status",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Instantsnapshotgroups$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Instantsnapshotgroups$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Instantsnapshotgroups$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Instantsnapshotgroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Instantsnapshotgroups$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * retrieves the list of InstantSnapshotGroup resources contained within
+     * the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Instantsnapshotgroups$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Instantsnapshotgroups$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInstantSnapshotGroups>>;
+    list(
+      params: Params$Resource$Instantsnapshotgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Instantsnapshotgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      params: Params$Resource$Instantsnapshotgroups$List,
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$List
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInstantSnapshotGroups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstantSnapshotGroups>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstantSnapshotGroups>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Instantsnapshotgroups$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Instantsnapshotgroups$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instantSnapshotGroups.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Instantsnapshotgroups$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Instantsnapshotgroups$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Instantsnapshotgroups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Instantsnapshotgroups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Instantsnapshotgroups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Instantsnapshotgroups$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instantsnapshotgroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instantsnapshotgroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instantSnapshotGroups/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Instantsnapshotgroups$Delete extends StandardParameters {
+    /**
+     * Name of the InstantSnapshot resource to delete.
+     */
+    instantSnapshotGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$Get extends StandardParameters {
+    /**
+     * Name of the InstantSnapshotGroup resource to return.
+     */
+    instantSnapshotGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder
+     */
+    sourceConsistencyGroup?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstantSnapshotGroup;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ZoneSetPolicyRequest;
+  }
+  export interface Params$Resource$Instantsnapshotgroups$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Instantsnapshots {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -111555,6 +113514,8 @@ export namespace compute_beta {
      *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "sourceDisk": "my_sourceDisk",
      *   //   "sourceDiskId": "my_sourceDiskId",
+     *   //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *   //   "sourceInstantSnapshotGroupId": "my_sourceInstantSnapshotGroupId",
      *   //   "status": "my_status",
      *   //   "zone": "my_zone"
      *   // }
@@ -111882,6 +113843,8 @@ export namespace compute_beta {
      *       //   "selfLinkWithId": "my_selfLinkWithId",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskId": "my_sourceDiskId",
+     *       //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *       //   "sourceInstantSnapshotGroupId": "my_sourceInstantSnapshotGroupId",
      *       //   "status": "my_status",
      *       //   "zone": "my_zone"
      *       // }
@@ -124591,6 +126554,7 @@ export namespace compute_beta {
      *   //   "labels": {},
      *   //   "machineImageEncryptionKey": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "savedDisks": [],
@@ -124921,6 +126885,7 @@ export namespace compute_beta {
      *       //   "labels": {},
      *       //   "machineImageEncryptionKey": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "savedDisks": [],
@@ -171301,6 +173266,7 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "instantSnapshotGroupParameters": {},
      *       //   "sourceConsistencyGroupPolicy": "my_sourceConsistencyGroupPolicy"
      *       // }
      *     },
@@ -192318,6 +194284,7 @@ export namespace compute_beta {
      *       // request body parameters
      *       // {
      *       //   "count": "my_count",
+     *       //   "instanceFlexibilityPolicy": {},
      *       //   "instanceProperties": {},
      *       //   "locationPolicy": {},
      *       //   "minCount": "my_minCount",
@@ -193471,6 +195438,1518 @@ export namespace compute_beta {
     view?: string;
   }
 
+  export class Resource$Regioninstantsnapshotgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * deletes a Regional InstantSnapshotGroup resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.delete({
+     *     // Name of the InstantSnapshotGroup resource to delete.
+     *     instantSnapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regioninstantsnapshotgroups$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regioninstantsnapshotgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regioninstantsnapshotgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regioninstantsnapshotgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'instantSnapshotGroup'],
+        pathParams: ['instantSnapshotGroup', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * returns the specified InstantSnapshotGroup resource in the specified
+     * region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.get({
+     *     // Name of the InstantSnapshotGroup resource to return.
+     *     instantSnapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "resourceStatus": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "sourceConsistencyGroup": "my_sourceConsistencyGroup",
+     *   //   "status": "my_status",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regioninstantsnapshotgroups$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InstantSnapshotGroup>>;
+    get(
+      params: Params$Resource$Regioninstantsnapshotgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regioninstantsnapshotgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>,
+      callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
+    ): void;
+    get(
+      params: Params$Resource$Regioninstantsnapshotgroups$Get,
+      callback: BodyResponseCallback<Schema$InstantSnapshotGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InstantSnapshotGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Get
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstantSnapshotGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InstantSnapshotGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups/{instantSnapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'instantSnapshotGroup'],
+        pathParams: ['instantSnapshotGroup', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstantSnapshotGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstantSnapshotGroup>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * creates a Regional InstantSnapshotGroup resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // begin_interface: MixerMutationRequestBuilder
+     *     sourceConsistencyGroup: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "resourceStatus": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "sourceConsistencyGroup": "my_sourceConsistencyGroup",
+     *       //   "status": "my_status",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regioninstantsnapshotgroups$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regioninstantsnapshotgroups$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regioninstantsnapshotgroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regioninstantsnapshotgroups$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * retrieves the list of InstantSnapshotGroup resources contained within
+     * the specified region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regioninstantsnapshotgroups$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regioninstantsnapshotgroups$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListInstantSnapshotGroups>>;
+    list(
+      params: Params$Resource$Regioninstantsnapshotgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regioninstantsnapshotgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>,
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      params: Params$Resource$Regioninstantsnapshotgroups$List,
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$List
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInstantSnapshotGroups>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListInstantSnapshotGroups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInstantSnapshotGroups>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInstantSnapshotGroups>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Regioninstantsnapshotgroups$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioninstantsnapshotgroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstantSnapshotGroups.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regioninstantsnapshotgroups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstantsnapshotgroups$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstantsnapshotgroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstantsnapshotgroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/instantSnapshotGroups/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regioninstantsnapshotgroups$Delete extends StandardParameters {
+    /**
+     * Name of the InstantSnapshotGroup resource to delete.
+     */
+    instantSnapshotGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$Get extends StandardParameters {
+    /**
+     * Name of the InstantSnapshotGroup resource to return.
+     */
+    instantSnapshotGroup?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * begin_interface: MixerMutationRequestBuilder
+     */
+    sourceConsistencyGroup?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstantSnapshotGroup;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSetPolicyRequest;
+  }
+  export interface Params$Resource$Regioninstantsnapshotgroups$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Regioninstantsnapshots {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -193732,6 +197211,8 @@ export namespace compute_beta {
      *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "sourceDisk": "my_sourceDisk",
      *   //   "sourceDiskId": "my_sourceDiskId",
+     *   //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *   //   "sourceInstantSnapshotGroupId": "my_sourceInstantSnapshotGroupId",
      *   //   "status": "my_status",
      *   //   "zone": "my_zone"
      *   // }
@@ -194059,6 +197540,8 @@ export namespace compute_beta {
      *       //   "selfLinkWithId": "my_selfLinkWithId",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskId": "my_sourceDiskId",
+     *       //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *       //   "sourceInstantSnapshotGroupId": "my_sourceInstantSnapshotGroupId",
      *       //   "status": "my_status",
      *       //   "zone": "my_zone"
      *       // }
@@ -226227,6 +229710,766 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$Reservation;
+  }
+
+  export class Resource$Reservationslots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves information about the specified reservation slot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.get({
+     *     // The name of the parent reservation and parent block, formatted as
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the reservation slot, formatted as RFC1035 or a resource ID
+     *     // number.
+     *     reservationSlot: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Reservationslots$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsGetResponse>>;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>,
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Get
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsGetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationSlotsGetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReservationSlotsGetResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of reservation slots under a single reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the parent reservation and parent block, formatted as
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Reservationslots$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsListResponse>>;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>,
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$List
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSlots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName'],
+        pathParams: ['parentName', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationSlotsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReservationSlotsListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a reservation slot in the specified sub-block.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.update({
+     *     // The name of the sub-block resource.
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the slot resource.
+     *     reservationSlot: 'placeholder-value',
+     *     // The fields to be updated as part of this request.
+     *     updateMask: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "physicalTopology": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "shareSettings": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Reservationslots$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Update
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Reservationslots$Get extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block, formatted as
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the reservation slot, formatted as RFC1035 or a resource ID
+     * number.
+     */
+    reservationSlot?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The name of the parent reservation and parent block, formatted as
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$Update extends StandardParameters {
+    /**
+     * The name of the sub-block resource.
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the slot resource.
+     */
+    reservationSlot?: string;
+    /**
+     * The fields to be updated as part of this request.
+     */
+    updateMask?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSlot;
   }
 
   export class Resource$Reservationsubblocks {
@@ -270905,6 +275148,7 @@ export namespace compute_beta {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -271075,6 +275319,7 @@ export namespace compute_beta {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
@@ -275027,6 +279272,7 @@ export namespace compute_beta {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "stackType": "my_stackType",
@@ -275348,6 +279594,7 @@ export namespace compute_beta {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "stackType": "my_stackType",
@@ -276946,6 +281193,7 @@ export namespace compute_beta {
      *   //   "labels": {},
      *   //   "localTrafficSelector": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "peerExternalGateway": "my_peerExternalGateway",
      *   //   "peerExternalGatewayInterface": 0,
      *   //   "peerGcpGateway": "my_peerGcpGateway",
@@ -277128,6 +281376,7 @@ export namespace compute_beta {
      *       //   "labels": {},
      *       //   "localTrafficSelector": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "peerExternalGateway": "my_peerExternalGateway",
      *       //   "peerExternalGatewayInterface": 0,
      *       //   "peerGcpGateway": "my_peerGcpGateway",

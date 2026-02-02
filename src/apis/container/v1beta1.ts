@@ -162,6 +162,10 @@ export namespace container_v1beta1 {
      */
     podIpv4RangeNames?: string[] | null;
     /**
+     * Draining status of the additional subnet.
+     */
+    status?: string | null;
+    /**
      * Name of the subnetwork. This can be the full path of the subnetwork or just the name. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -289,6 +293,10 @@ export namespace container_v1beta1 {
      * Optional. Configuration for Ray Operator addon.
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
+    /**
+     * Optional. Configuration for the slice controller add-on.
+     */
+    sliceControllerConfig?: Schema$SliceControllerConfig;
     /**
      * Optional. Configuration for the StatefulHA add-on.
      */
@@ -772,7 +780,7 @@ export namespace container_v1beta1 {
      */
     binaryAuthorization?: Schema$BinaryAuthorization;
     /**
-     * The IP address range of the container pods in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
+     * The IP address range of the container pods in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`). Leave blank to have one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      */
     clusterIpv4Cidr?: string | null;
     /**
@@ -1060,7 +1068,7 @@ export namespace container_v1beta1 {
      */
     selfLink?: string | null;
     /**
-     * Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
+     * Output only. The IP address range of the Kubernetes services in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). Service addresses are typically put in the last `/16` from the container CIDR.
      */
     servicesIpv4Cidr?: string | null;
     /**
@@ -1084,7 +1092,7 @@ export namespace container_v1beta1 {
      */
     tpuConfig?: Schema$TpuConfig;
     /**
-     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `1.2.3.4/29`). This field is deprecated due to the deprecation of 2VM TPU. The end of life date for 2VM TPU is 2025-04-25.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -1116,6 +1124,10 @@ export namespace container_v1beta1 {
    * ClusterAutoscaling contains global, per-cluster information required by Cluster Autoscaler to automatically adjust the size of the cluster and create/delete node pools based on the current needs.
    */
   export interface Schema$ClusterAutoscaling {
+    /**
+     * Autopilot general profile for the cluster, which defines the configuration for the cluster.
+     */
+    autopilotGeneralProfile?: string | null;
     /**
      * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.
      */
@@ -2212,6 +2224,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * GPUDirectConfig specifies the GPU direct strategy on the node pool.
+   */
+  export interface Schema$GPUDirectConfig {
+    /**
+     * The type of GPU direct strategy to enable on the node pool.
+     */
+    gpuDirectStrategy?: string | null;
+  }
+  /**
    * GPUDriverInstallationConfig specifies the version of GPU driver to be auto installed.
    */
   export interface Schema$GPUDriverInstallationConfig {
@@ -2388,7 +2409,7 @@ export namespace container_v1beta1 {
      */
     clusterIpv4Cidr?: string | null;
     /**
-     * The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range for the cluster pod IPs. If this field is set, then `cluster.cluster_ipv4_cidr` must be left blank. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     clusterIpv4CidrBlock?: string | null;
     /**
@@ -2416,7 +2437,7 @@ export namespace container_v1beta1 {
      */
     nodeIpv4Cidr?: string | null;
     /**
-     * The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range of the instance IPs in this cluster. This is applicable only if `create_subnetwork` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     nodeIpv4CidrBlock?: string | null;
     /**
@@ -2428,7 +2449,7 @@ export namespace container_v1beta1 {
      */
     servicesIpv4Cidr?: string | null;
     /**
-     * The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
+     * The IP address range of the services IPs in this cluster. If blank, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use.
      */
     servicesIpv4CidrBlock?: string | null;
     /**
@@ -2452,7 +2473,7 @@ export namespace container_v1beta1 {
      */
     subnetworkName?: string | null;
     /**
-     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.
+     * The IP address range of the Cloud TPUs in this cluster. If unspecified, a range will be automatically chosen with the default size. This field is only applicable when `use_ip_aliases` is true. If unspecified, the range will use the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range to use. This field is deprecated, use cluster.tpu_config.ipv4_cidr_block instead.
      */
     tpuIpv4CidrBlock?: string | null;
     /**
@@ -3113,6 +3134,10 @@ export namespace container_v1beta1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.
+     */
+    consolidationDelay?: string | null;
+    /**
      * Parameters for containerd customization.
      */
     containerdConfig?: Schema$ContainerdConfig;
@@ -3152,6 +3177,10 @@ export namespace container_v1beta1 {
      * GCFS (Google Container File System) configs.
      */
     gcfsConfig?: Schema$GcfsConfig;
+    /**
+     * The configuration for GPU Direct
+     */
+    gpuDirectConfig?: Schema$GPUDirectConfig;
     /**
      * Enable or disable gvnic on the node pool.
      */
@@ -3484,7 +3513,7 @@ export namespace container_v1beta1 {
      */
     podRange?: string | null;
     /**
-     * The subnetwork path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.
+     * Optional. The subnetwork name/path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork can be either: 1. A user supplied subnetwork name/full path during node pool creation. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet 2. A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
      */
     subnetwork?: string | null;
   }
@@ -4823,6 +4852,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * Configuration for the Slice Controller.
+   */
+  export interface Schema$SliceControllerConfig {
+    /**
+     * Optional. Indicates whether Slice Controller is enabled in the cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.
    */
   export interface Schema$SoleTenantConfig {
@@ -5084,6 +5122,10 @@ export namespace container_v1beta1 {
      * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can scale down underutilized nodes. If not set, nodes are scaled down by default behavior, i.e. according to the chosen autoscaling profile.
+     */
+    consolidationDelay?: string | null;
     /**
      * The desired containerd config for nodes in the node pool. Initiates an upgrade operation that recreates the nodes with the new config.
      */
@@ -11443,6 +11485,7 @@ export namespace container_v1beta1 {
      *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "consolidationDelay": "my_consolidationDelay",
      *       //   "containerdConfig": {},
      *       //   "diskSizeGb": "my_diskSizeGb",
      *       //   "diskType": "my_diskType",
@@ -17630,6 +17673,7 @@ export namespace container_v1beta1 {
      *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
+     *       //   "consolidationDelay": "my_consolidationDelay",
      *       //   "containerdConfig": {},
      *       //   "diskSizeGb": "my_diskSizeGb",
      *       //   "diskType": "my_diskType",

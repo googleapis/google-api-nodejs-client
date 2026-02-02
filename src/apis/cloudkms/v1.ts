@@ -129,6 +129,32 @@ export namespace cloudkms_v1 {
   }
 
   /**
+   * Add a quorum member to the SingleTenantHsmInstance. This will increase the total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+   */
+  export interface Schema$AddQuorumMember {
+    /**
+     * Required. The public key associated with the 2FA key for the new quorum member to add. Public keys must be associated with RSA 2048 keys.
+     */
+    twoFactorPublicKeyPem?: string | null;
+  }
+  /**
+   * Request message for HsmManagement.ApproveSingleTenantHsmInstanceProposal.
+   */
+  export interface Schema$ApproveSingleTenantHsmInstanceProposalRequest {
+    /**
+     * Required. The reply to QuorumParameters for approving the proposal.
+     */
+    quorumReply?: Schema$QuorumReply;
+    /**
+     * Required. The reply to RequiredActionQuorumParameters for approving the proposal.
+     */
+    requiredActionQuorumReply?: Schema$RequiredActionQuorumReply;
+  }
+  /**
+   * Response message for HsmManagement.ApproveSingleTenantHsmInstanceProposal.
+   */
+  export interface Schema$ApproveSingleTenantHsmInstanceProposalResponse {}
+  /**
    * Request message for KeyManagementService.AsymmetricDecrypt.
    */
   export interface Schema$AsymmetricDecryptRequest {
@@ -333,6 +359,32 @@ export namespace cloudkms_v1 {
      * Google partition certificate chain corresponding to the attestation.
      */
     googlePartitionCerts?: string[] | null;
+  }
+  /**
+   * A challenge to be signed by a 2FA key.
+   */
+  export interface Schema$Challenge {
+    /**
+     * Output only. The challenge to be signed by the 2FA key indicated by the public key.
+     */
+    challenge?: string | null;
+    /**
+     * Output only. The public key associated with the 2FA key that should sign the challenge.
+     */
+    publicKeyPem?: string | null;
+  }
+  /**
+   * A reply to a challenge signed by a 2FA key.
+   */
+  export interface Schema$ChallengeReply {
+    /**
+     * Required. The public key associated with the 2FA key.
+     */
+    publicKeyPem?: string | null;
+    /**
+     * Required. The signed challenge associated with the 2FA key. The signature must be RSASSA-PKCS1 v1.5 with a SHA256 digest.
+     */
+    signedChallenge?: string | null;
   }
   /**
    * Data with integrity verification field.
@@ -563,6 +615,10 @@ export namespace cloudkms_v1 {
     usedPrimary?: boolean | null;
   }
   /**
+   * Delete the SingleTenantHsmInstance. Deleting a SingleTenantHsmInstance will make all CryptoKeys attached to the SingleTenantHsmInstance unusable. The SingleTenantHsmInstance must not be in the DELETING or DELETED state to perform this operation.
+   */
+  export interface Schema$DeleteSingleTenantHsmInstance {}
+  /**
    * Request message for KeyManagementService.DestroyCryptoKeyVersion.
    */
   export interface Schema$DestroyCryptoKeyVersionRequest {}
@@ -583,6 +639,10 @@ export namespace cloudkms_v1 {
      */
     sha512?: string | null;
   }
+  /**
+   * Disable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+   */
+  export interface Schema$DisableSingleTenantHsmInstance {}
   /**
    * An EkmConfig is a singleton resource that represents configuration parameters that apply to all CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC in a given project and location.
    */
@@ -625,6 +685,14 @@ export namespace cloudkms_v1 {
      */
     serviceResolvers?: Schema$ServiceResolver[];
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
+   * Enable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the DISABLED state to perform this operation.
+   */
+  export interface Schema$EnableSingleTenantHsmInstance {}
   /**
    * Request message for KeyManagementService.Encrypt.
    */
@@ -675,6 +743,10 @@ export namespace cloudkms_v1 {
      */
     verifiedPlaintextCrc32c?: boolean | null;
   }
+  /**
+   * Request message for HsmManagement.ExecuteSingleTenantHsmInstanceProposal.
+   */
+  export interface Schema$ExecuteSingleTenantHsmInstanceProposalRequest {}
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -1003,6 +1075,40 @@ export namespace cloudkms_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for HsmManagement.ListSingleTenantHsmInstanceProposals.
+   */
+  export interface Schema$ListSingleTenantHsmInstanceProposalsResponse {
+    /**
+     * A token to retrieve next page of results. Pass this value in ListSingleTenantHsmInstanceProposalsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SingleTenantHsmInstanceProposals.
+     */
+    singleTenantHsmInstanceProposals?: Schema$SingleTenantHsmInstanceProposal[];
+    /**
+     * The total number of SingleTenantHsmInstanceProposals that matched the query. This field is not populated if ListSingleTenantHsmInstanceProposalsRequest.filter is applied.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * Response message for HsmManagement.ListSingleTenantHsmInstances.
+   */
+  export interface Schema$ListSingleTenantHsmInstancesResponse {
+    /**
+     * A token to retrieve next page of results. Pass this value in ListSingleTenantHsmInstancesRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SingleTenantHsmInstances.
+     */
+    singleTenantHsmInstances?: Schema$SingleTenantHsmInstance[];
+    /**
+     * The total number of SingleTenantHsmInstances that matched the query. This field is not populated if ListSingleTenantHsmInstancesRequest.filter is applied.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -1212,6 +1318,49 @@ export namespace cloudkms_v1 {
     publicKeyFormat?: string | null;
   }
   /**
+   * Configuration for M of N quorum auth.
+   */
+  export interface Schema$QuorumAuth {
+    /**
+     * Output only. The required numbers of approvers. The M value used for M of N quorum auth. Must be greater than or equal to 2 and less than or equal to total_approver_count - 1.
+     */
+    requiredApproverCount?: number | null;
+    /**
+     * Required. The total number of approvers. This is the N value used for M of N quorum auth. Must be greater than or equal to 3 and less than or equal to 16.
+     */
+    totalApproverCount?: number | null;
+    /**
+     * Output only. The public keys associated with the 2FA keys for M of N quorum auth.
+     */
+    twoFactorPublicKeyPems?: string[] | null;
+  }
+  /**
+   * Parameters of quorum approval for the SingleTenantHsmInstanceProposal.
+   */
+  export interface Schema$QuorumParameters {
+    /**
+     * Output only. The public keys associated with the 2FA keys that have already approved the SingleTenantHsmInstanceProposal by signing the challenge.
+     */
+    approvedTwoFactorPublicKeyPems?: string[] | null;
+    /**
+     * Output only. The challenges to be signed by 2FA keys for quorum auth. M of N of these challenges are required to be signed to approve the operation.
+     */
+    challenges?: Schema$Challenge[];
+    /**
+     * Output only. The required numbers of approvers. This is the M value used for M of N quorum auth. It is less than the number of public keys.
+     */
+    requiredApproverCount?: number | null;
+  }
+  /**
+   * The reply to QuorumParameters for approving the proposal.
+   */
+  export interface Schema$QuorumReply {
+    /**
+     * Required. The challenge replies to approve the proposal. Challenge replies can be sent across multiple requests. The proposal will be approved when required_approver_count challenge replies are provided.
+     */
+    challengeReplies?: Schema$ChallengeReply[];
+  }
+  /**
    * Request message for KeyManagementService.RawDecrypt.
    */
   export interface Schema$RawDecryptRequest {
@@ -1348,6 +1497,66 @@ export namespace cloudkms_v1 {
     verifiedPlaintextCrc32c?: boolean | null;
   }
   /**
+   * Refreshes the SingleTenantHsmInstance. This operation must be performed periodically to keep the SingleTenantHsmInstance active. This operation must be performed before unrefreshed_duration_until_disable has passed. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+   */
+  export interface Schema$RefreshSingleTenantHsmInstance {}
+  /**
+   * Register 2FA keys for the SingleTenantHsmInstance. This operation requires all Challenges to be signed by 2FA keys. The SingleTenantHsmInstance must be in the PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation.
+   */
+  export interface Schema$RegisterTwoFactorAuthKeys {
+    /**
+     * Required. The required numbers of approvers to set for the SingleTenantHsmInstance. This is the M value used for M of N quorum auth. Must be greater than or equal to 2 and less than or equal to total_approver_count - 1.
+     */
+    requiredApproverCount?: number | null;
+    /**
+     * Required. The public keys associated with the 2FA keys for M of N quorum auth. Public keys must be associated with RSA 2048 keys.
+     */
+    twoFactorPublicKeyPems?: string[] | null;
+  }
+  /**
+   * Remove a quorum member from the SingleTenantHsmInstance. This will reduce total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+   */
+  export interface Schema$RemoveQuorumMember {
+    /**
+     * Required. The public key associated with the 2FA key for the quorum member to remove. Public keys must be associated with RSA 2048 keys.
+     */
+    twoFactorPublicKeyPem?: string | null;
+  }
+  /**
+   * Parameters for an approval that has both required challenges and a quorum.
+   */
+  export interface Schema$RequiredActionQuorumParameters {
+    /**
+     * Output only. The public keys associated with the 2FA keys that have already approved the SingleTenantHsmInstanceProposal by signing the challenge.
+     */
+    approvedTwoFactorPublicKeyPems?: string[] | null;
+    /**
+     * Output only. The challenges to be signed by 2FA keys for quorum auth. M of N of these challenges are required to be signed to approve the operation.
+     */
+    quorumChallenges?: Schema$Challenge[];
+    /**
+     * Output only. The required number of quorum approvers. This is the M value used for M of N quorum auth. It is less than the number of public keys.
+     */
+    requiredApproverCount?: number | null;
+    /**
+     * Output only. A list of specific challenges that must be signed. For some operations, this will contain a single challenge.
+     */
+    requiredChallenges?: Schema$Challenge[];
+  }
+  /**
+   * The reply to RequiredActionQuorumParameters for approving the proposal.
+   */
+  export interface Schema$RequiredActionQuorumReply {
+    /**
+     * Required. Quorum members' signed challenge replies. These can be provided across multiple requests. The proposal will be approved when required_approver_count quorum_challenge_replies are provided and when all required_challenge_replies are provided.
+     */
+    quorumChallengeReplies?: Schema$ChallengeReply[];
+    /**
+     * Required. All required challenges must be signed for the proposal to be approved. These can be sent across multiple requests.
+     */
+    requiredChallengeReplies?: Schema$ChallengeReply[];
+  }
+  /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
    */
   export interface Schema$RestoreCryptoKeyVersionRequest {}
@@ -1421,6 +1630,112 @@ export namespace cloudkms_v1 {
     effectiveKajPolicy?: Schema$KeyAccessJustificationsPolicyConfig;
   }
   /**
+   * A SingleTenantHsmInstance represents a single-tenant HSM instance. It can be used for creating CryptoKeys with a ProtectionLevel of HSM_SINGLE_TENANT, as well as performing cryptographic operations using keys created within the SingleTenantHsmInstance.
+   */
+  export interface Schema$SingleTenantHsmInstance {
+    /**
+     * Output only. The time at which the SingleTenantHsmInstance was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time at which the SingleTenantHsmInstance was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. The time at which the instance will be automatically disabled if not refreshed. This field is updated upon creation and after each successful refresh operation and enable. A RefreshSingleTenantHsmInstance operation must be made via a SingleTenantHsmInstanceProposal before this time otherwise the SingleTenantHsmInstance will become disabled.
+     */
+    disableTime?: string | null;
+    /**
+     * Identifier. The resource name for this SingleTenantHsmInstance in the format `projects/x/locations/x/singleTenantHsmInstances/x`.
+     */
+    name?: string | null;
+    /**
+     * Required. The quorum auth configuration for the SingleTenantHsmInstance.
+     */
+    quorumAuth?: Schema$QuorumAuth;
+    /**
+     * Output only. The state of the SingleTenantHsmInstance.
+     */
+    state?: string | null;
+    /**
+     * Output only. The system-defined duration that an instance can remain unrefreshed until it is automatically disabled. This will have a value of 120 days.
+     */
+    unrefreshedDurationUntilDisable?: string | null;
+  }
+  /**
+   * A SingleTenantHsmInstanceProposal represents a proposal to perform an operation on a SingleTenantHsmInstance.
+   */
+  export interface Schema$SingleTenantHsmInstanceProposal {
+    /**
+     * Add a quorum member to the SingleTenantHsmInstance. This will increase the total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+     */
+    addQuorumMember?: Schema$AddQuorumMember;
+    /**
+     * Output only. The time at which the SingleTenantHsmInstanceProposal was created.
+     */
+    createTime?: string | null;
+    /**
+     * Delete the SingleTenantHsmInstance. Deleting a SingleTenantHsmInstance will make all CryptoKeys attached to the SingleTenantHsmInstance unusable. The SingleTenantHsmInstance must be in the DISABLED or PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation.
+     */
+    deleteSingleTenantHsmInstance?: Schema$DeleteSingleTenantHsmInstance;
+    /**
+     * Output only. The time at which the SingleTenantHsmInstanceProposal was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Disable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+     */
+    disableSingleTenantHsmInstance?: Schema$DisableSingleTenantHsmInstance;
+    /**
+     * Enable the SingleTenantHsmInstance. The SingleTenantHsmInstance must be in the DISABLED state to perform this operation.
+     */
+    enableSingleTenantHsmInstance?: Schema$EnableSingleTenantHsmInstance;
+    /**
+     * The time at which the SingleTenantHsmInstanceProposal will expire if not approved and executed.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. The root cause of the most recent failure. Only present if state is FAILED.
+     */
+    failureReason?: string | null;
+    /**
+     * Identifier. The resource name for this SingleTenantHsmInstance in the format `projects/x/locations/x/singleTenantHsmInstances/x/proposals/x`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time at which the soft-deleted SingleTenantHsmInstanceProposal will be permanently purged. This field is only populated when the state is DELETED and will be set a time after expiration of the proposal, i.e. \>= expire_time or (create_time + ttl).
+     */
+    purgeTime?: string | null;
+    /**
+     * Output only. The quorum approval parameters for the SingleTenantHsmInstanceProposal.
+     */
+    quorumParameters?: Schema$QuorumParameters;
+    /**
+     * Refreshes the SingleTenantHsmInstance. This operation must be performed periodically to keep the SingleTenantHsmInstance active. This operation must be performed before unrefreshed_duration_until_disable has passed. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+     */
+    refreshSingleTenantHsmInstance?: Schema$RefreshSingleTenantHsmInstance;
+    /**
+     * Register 2FA keys for the SingleTenantHsmInstance. This operation requires all N Challenges to be signed by 2FA keys. The SingleTenantHsmInstance must be in the PENDING_TWO_FACTOR_AUTH_REGISTRATION state to perform this operation.
+     */
+    registerTwoFactorAuthKeys?: Schema$RegisterTwoFactorAuthKeys;
+    /**
+     * Remove a quorum member from the SingleTenantHsmInstance. This will reduce total_approver_count by 1. The SingleTenantHsmInstance must be in the ACTIVE state to perform this operation.
+     */
+    removeQuorumMember?: Schema$RemoveQuorumMember;
+    /**
+     * Output only. Parameters for an approval of a SingleTenantHsmInstanceProposal that has both required challenges and a quorum.
+     */
+    requiredActionQuorumParameters?: Schema$RequiredActionQuorumParameters;
+    /**
+     * Output only. The state of the SingleTenantHsmInstanceProposal.
+     */
+    state?: string | null;
+    /**
+     * Input only. The TTL for the SingleTenantHsmInstanceProposal. Proposals will expire after this duration.
+     */
+    ttl?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1485,7 +1800,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Returns the AutokeyConfig for a folder.
+     * Returns the AutokeyConfig for a folder or project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1518,7 +1833,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -1775,7 +2090,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Updates the AutokeyConfig for a folder. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
+     * Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
      * @example
      * ```js
      * // Before running the sample:
@@ -2091,7 +2406,7 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Folders$Getautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -2474,6 +2789,148 @@ export namespace cloudkms_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
+    }
+
+    /**
+     * Returns the AutokeyConfig for a folder or project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.getAutokeyConfig({
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     name: 'projects/my-project/autokeyConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "keyProject": "my_keyProject",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAutokeyConfig(
+      params?: Params$Resource$Projects$Getautokeyconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      params: Params$Resource$Projects$Getautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    getAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
     }
 
     /**
@@ -3083,6 +3540,161 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.updateAutokeyConfig({
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     *     name: 'projects/my-project/autokeyConfig',
+     *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "keyProject": "my_keyProject",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "keyProject": "my_keyProject",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateAutokeyConfig(
+      params?: Params$Resource$Projects$Updateautokeyconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$AutokeyConfig>,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      params: Params$Resource$Projects$Updateautokeyconfig,
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      callback: BodyResponseCallback<Schema$AutokeyConfig>
+    ): void;
+    updateAutokeyConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updateautokeyconfig
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutokeyConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutokeyConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updateautokeyconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updateautokeyconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutokeyConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutokeyConfig>(parameters);
+      }
+    }
+
+    /**
      * Updates the KeyAccessJustificationsPolicyConfig for a given organization, folder, or project.
      * @example
      * ```js
@@ -3242,6 +3854,12 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Getautokeyconfig extends StandardParameters {
+    /**
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getkajpolicyconfig extends StandardParameters {
     /**
      * Required. The name of the KeyAccessJustificationsPolicyConfig to get.
@@ -3266,6 +3884,21 @@ export namespace cloudkms_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Projects$Updateautokeyconfig extends StandardParameters {
+    /**
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     */
+    name?: string;
+    /**
+     * Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutokeyConfig;
+  }
   export interface Params$Resource$Projects$Updatekajpolicyconfig extends StandardParameters {
     /**
      * Identifier. The resource name for this KeyAccessJustificationsPolicyConfig in the format of "{organizations|folders|projects\}/x/kajPolicyConfig".
@@ -3289,6 +3922,7 @@ export namespace cloudkms_v1 {
     keyHandles: Resource$Projects$Locations$Keyhandles;
     keyRings: Resource$Projects$Locations$Keyrings;
     operations: Resource$Projects$Locations$Operations;
+    singleTenantHsmInstances: Resource$Projects$Locations$Singletenanthsminstances;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.ekmConfig = new Resource$Projects$Locations$Ekmconfig(this.context);
@@ -3302,6 +3936,8 @@ export namespace cloudkms_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.singleTenantHsmInstances =
+        new Resource$Projects$Locations$Singletenanthsminstances(this.context);
     }
 
     /**
@@ -12926,5 +13562,1575 @@ export namespace cloudkms_v1 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Singletenanthsminstances {
+    context: APIRequestContext;
+    proposals: Resource$Projects$Locations$Singletenanthsminstances$Proposals;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.proposals =
+        new Resource$Projects$Locations$Singletenanthsminstances$Proposals(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new SingleTenantHsmInstance in a given Project and Location. User must create a RegisterTwoFactorAuthKeys proposal with this single-tenant HSM instance to finish setup of the instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.singleTenantHsmInstances.create(
+     *     {
+     *       // Required. The resource name of the location associated with the SingleTenantHsmInstance, in the format `projects/x/locations/x`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     *       singleTenantHsmInstanceId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "deleteTime": "my_deleteTime",
+     *         //   "disableTime": "my_disableTime",
+     *         //   "name": "my_name",
+     *         //   "quorumAuth": {},
+     *         //   "state": "my_state",
+     *         //   "unrefreshedDurationUntilDisable": "my_unrefreshedDurationUntilDisable"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/singleTenantHsmInstances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns metadata for a given SingleTenantHsmInstance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.singleTenantHsmInstances.get({
+     *     // Required. The name of the SingleTenantHsmInstance to get.
+     *     name: 'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "disableTime": "my_disableTime",
+     *   //   "name": "my_name",
+     *   //   "quorumAuth": {},
+     *   //   "state": "my_state",
+     *   //   "unrefreshedDurationUntilDisable": "my_unrefreshedDurationUntilDisable"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SingleTenantHsmInstance>>;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SingleTenantHsmInstance>,
+      callback: BodyResponseCallback<Schema$SingleTenantHsmInstance>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Get,
+      callback: BodyResponseCallback<Schema$SingleTenantHsmInstance>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SingleTenantHsmInstance>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Get
+        | BodyResponseCallback<Schema$SingleTenantHsmInstance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SingleTenantHsmInstance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SingleTenantHsmInstance>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SingleTenantHsmInstance>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SingleTenantHsmInstance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SingleTenantHsmInstance>(parameters);
+      }
+    }
+
+    /**
+     * Lists SingleTenantHsmInstances.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.singleTenantHsmInstances.list({
+     *     // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of SingleTenantHsmInstances to include in the response. Further SingleTenantHsmInstances can subsequently be obtained by including the ListSingleTenantHsmInstancesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstancesResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the SingleTenantHsmInstances to list, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. If set to true, HsmManagement.ListSingleTenantHsmInstances will also return SingleTenantHsmInstances in DELETED state.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "singleTenantHsmInstances": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSingleTenantHsmInstancesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>,
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$List,
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$List
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstancesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSingleTenantHsmInstancesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/singleTenantHsmInstances').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSingleTenantHsmInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSingleTenantHsmInstancesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Create extends StandardParameters {
+    /**
+     * Required. The resource name of the location associated with the SingleTenantHsmInstance, in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     */
+    singleTenantHsmInstanceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SingleTenantHsmInstance;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Get extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstance to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$List extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
+    /**
+     * Optional. Optional limit on the number of SingleTenantHsmInstances to include in the response. Further SingleTenantHsmInstances can subsequently be obtained by including the ListSingleTenantHsmInstancesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstancesResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location associated with the SingleTenantHsmInstances to list, in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Optional. If set to true, HsmManagement.ListSingleTenantHsmInstances will also return SingleTenantHsmInstances in DELETED state.
+     */
+    showDeleted?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Singletenanthsminstances$Proposals {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Approves a SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance. The proposal must be in the PENDING state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.approve(
+     *       {
+     *         // Required. The name of the SingleTenantHsmInstanceProposal to approve.
+     *         name: 'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance/proposals/my-proposal',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "quorumReply": {},
+     *           //   "requiredActionQuorumReply": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    approve(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    approve(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+    >;
+    approve(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>,
+      callback: BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve,
+      callback: BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+    ): void;
+    approve(
+      callback: BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+    ): void;
+    approve(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve
+        | BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ApproveSingleTenantHsmInstanceProposalResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ApproveSingleTenantHsmInstanceProposalResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ApproveSingleTenantHsmInstanceProposalResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.create(
+     *       {
+     *         // Required. The name of the SingleTenantHsmInstance associated with the SingleTenantHsmInstanceProposals.
+     *         parent:
+     *           'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance',
+     *         // Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     *         singleTenantHsmInstanceProposalId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "addQuorumMember": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "deleteSingleTenantHsmInstance": {},
+     *           //   "deleteTime": "my_deleteTime",
+     *           //   "disableSingleTenantHsmInstance": {},
+     *           //   "enableSingleTenantHsmInstance": {},
+     *           //   "expireTime": "my_expireTime",
+     *           //   "failureReason": "my_failureReason",
+     *           //   "name": "my_name",
+     *           //   "purgeTime": "my_purgeTime",
+     *           //   "quorumParameters": {},
+     *           //   "refreshSingleTenantHsmInstance": {},
+     *           //   "registerTwoFactorAuthKeys": {},
+     *           //   "removeQuorumMember": {},
+     *           //   "requiredActionQuorumParameters": {},
+     *           //   "state": "my_state",
+     *           //   "ttl": "my_ttl"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/proposals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a SingleTenantHsmInstanceProposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.delete(
+     *       {
+     *         // Required. The name of the SingleTenantHsmInstanceProposal to delete.
+     *         name: 'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance/proposals/my-proposal',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Executes a SingleTenantHsmInstanceProposal for a given SingleTenantHsmInstance. The proposal must be in the APPROVED state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.execute(
+     *       {
+     *         // Required. The name of the SingleTenantHsmInstanceProposal to execute.
+     *         name: 'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance/proposals/my-proposal',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    execute(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    execute(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    execute(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    execute(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    execute(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    execute(callback: BodyResponseCallback<Schema$Operation>): void;
+    execute(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:execute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns metadata for a given SingleTenantHsmInstanceProposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.get({
+     *       // Required. The name of the SingleTenantHsmInstanceProposal to get.
+     *       name: 'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance/proposals/my-proposal',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addQuorumMember": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteSingleTenantHsmInstance": {},
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "disableSingleTenantHsmInstance": {},
+     *   //   "enableSingleTenantHsmInstance": {},
+     *   //   "expireTime": "my_expireTime",
+     *   //   "failureReason": "my_failureReason",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "quorumParameters": {},
+     *   //   "refreshSingleTenantHsmInstance": {},
+     *   //   "registerTwoFactorAuthKeys": {},
+     *   //   "removeQuorumMember": {},
+     *   //   "requiredActionQuorumParameters": {},
+     *   //   "state": "my_state",
+     *   //   "ttl": "my_ttl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SingleTenantHsmInstanceProposal>>;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>,
+      callback: BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get,
+      callback: BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get
+        | BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SingleTenantHsmInstanceProposal>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SingleTenantHsmInstanceProposal>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SingleTenantHsmInstanceProposal>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SingleTenantHsmInstanceProposal>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists SingleTenantHsmInstanceProposals.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.singleTenantHsmInstances.proposals.list({
+     *       // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       filter: 'placeholder-value',
+     *       // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Optional limit on the number of SingleTenantHsmInstanceProposals to include in the response. Further SingleTenantHsmInstanceProposals can subsequently be obtained by including the ListSingleTenantHsmInstanceProposalsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstanceProposalsResponse.next_page_token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the single tenant HSM instance associated with the SingleTenantHsmInstanceProposals to list, in the format `projects/x/locations/x/singleTenantHsmInstances/x`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/singleTenantHsmInstances/my-singleTenantHsmInstance',
+     *       // Optional. If set to true, HsmManagement.ListSingleTenantHsmInstanceProposals will also return SingleTenantHsmInstanceProposals in DELETED state.
+     *       showDeleted: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "singleTenantHsmInstanceProposals": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>,
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List,
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSingleTenantHsmInstanceProposalsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/proposals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSingleTenantHsmInstanceProposalsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSingleTenantHsmInstanceProposalsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Approve extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstanceProposal to approve.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApproveSingleTenantHsmInstanceProposalRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Create extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstance associated with the SingleTenantHsmInstanceProposals.
+     */
+    parent?: string;
+    /**
+     * Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     */
+    singleTenantHsmInstanceProposalId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SingleTenantHsmInstanceProposal;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Delete extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstanceProposal to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Execute extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstanceProposal to execute.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteSingleTenantHsmInstanceProposalRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$Get extends StandardParameters {
+    /**
+     * Required. The name of the SingleTenantHsmInstanceProposal to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Singletenanthsminstances$Proposals$List extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
+    /**
+     * Optional. Optional limit on the number of SingleTenantHsmInstanceProposals to include in the response. Further SingleTenantHsmInstanceProposals can subsequently be obtained by including the ListSingleTenantHsmInstanceProposalsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Optional pagination token, returned earlier via ListSingleTenantHsmInstanceProposalsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the single tenant HSM instance associated with the SingleTenantHsmInstanceProposals to list, in the format `projects/x/locations/x/singleTenantHsmInstances/x`.
+     */
+    parent?: string;
+    /**
+     * Optional. If set to true, HsmManagement.ListSingleTenantHsmInstanceProposals will also return SingleTenantHsmInstanceProposals in DELETED state.
+     */
+    showDeleted?: boolean;
   }
 }

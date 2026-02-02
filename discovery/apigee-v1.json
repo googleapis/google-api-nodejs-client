@@ -11914,7 +11914,7 @@
       }
     }
   },
-  "revision": "20251216",
+  "revision": "20260106",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -17813,10 +17813,20 @@
           "type": "string"
         },
         "caCertificate": {
-          "description": "Output only. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Use `ca_certificates` instead. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`.",
           "format": "byte",
           "readOnly": true,
           "type": "string"
+        },
+        "caCertificates": {
+          "description": "Output only. Base64-encoded public certificates for the root CA of the Apigee organization. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`. Multiple certificates are used to support certificate rotation.",
+          "items": {
+            "format": "byte",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "controlPlaneEncryptionKeyName": {
           "description": "Optional. Cloud KMS key name used for encrypting control plane data that is stored in a multi region. Only used for the data residency region \"US\" or \"EU\". If not specified or [BillingType](#BillingType) is `EVALUATION`, a Google-Managed encryption key will be used. Format: `projects/*/locations/*/keyRings/*/cryptoKeys/*`",

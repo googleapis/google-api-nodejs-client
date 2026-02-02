@@ -357,6 +357,136 @@
   },
   "protocol": "rest",
   "resources": {
+    "folders": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "config": {
+              "methods": {
+                "get": {
+                  "description": "Get the Config for a given resource.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/config",
+                  "httpMethod": "GET",
+                  "id": "datalineage.folders.locations.config.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update the Config for a given resource.",
+                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/config",
+                  "httpMethod": "PATCH",
+                  "id": "datalineage.folders.locations.config.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "organizations": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "config": {
+              "methods": {
+                "get": {
+                  "description": "Get the Config for a given resource.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/config",
+                  "httpMethod": "GET",
+                  "id": "datalineage.organizations.locations.config.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update the Config for a given resource.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/config",
+                  "httpMethod": "PATCH",
+                  "id": "datalineage.organizations.locations.config.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -456,6 +586,63 @@
             }
           },
           "resources": {
+            "config": {
+              "methods": {
+                "get": {
+                  "description": "Get the Config for a given resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/config",
+                  "httpMethod": "GET",
+                  "id": "datalineage.projects.locations.config.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. REQUIRED: The resource name of the config to be fetched. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update the Config for a given resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/config",
+                  "httpMethod": "PATCH",
+                  "id": "datalineage.projects.locations.config.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1Config"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -1060,9 +1247,87 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260123",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
+    "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
+      "description": "Configuration for Data Lineage. Defines different configuration options for Lineage customers to control behaviour of lineage systems.",
+      "id": "GoogleCloudDatacatalogLineageConfigmanagementV1Config",
+      "properties": {
+        "etag": {
+          "description": "Optional. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a config from overwriting each other. It is required that systems make use of the `etag` in the read-modify-write cycle to perform config updates in order to avoid race conditions: An `etag` is returned in the response to `GetConfig`, and systems are expected to put that etag in the request to `UpdateConfig` to ensure that their change will be applied to the same version of the config. If an `etag` is not provided in the call to `UpdateConfig`, then the existing config, if any, will be overwritten.",
+          "type": "string"
+        },
+        "ingestion": {
+          "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion",
+          "description": "Optional. Ingestion rule for Data Lineage ingestion."
+        },
+        "name": {
+          "description": "Identifier. The resource name of the config. Format: `organizations/{organization_id}/locations/global/config` `folders/{folder_id}/locations/global/config` `projects/{project_id}/locations/global/config` `projects/{project_number}/locations/global/config`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion": {
+      "description": "Defines how Lineage should be ingested for a given resource.",
+      "id": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestion",
+      "properties": {
+        "rules": {
+          "description": "Optional. List of rules for Data Lineage ingestion.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule": {
+      "description": "Ingestion rule for Data Lineage ingestion.",
+      "id": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRule",
+      "properties": {
+        "integrationSelector": {
+          "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector",
+          "description": "Required. Integration selector of the rule. The rule is only applied to the Integration selected by the selector."
+        },
+        "lineageEnablement": {
+          "$ref": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement",
+          "description": "Required. Lineage enablement configuration. Defines configurations for the ingestion of lineage for the resource and its children. If unspecified, the ingestion will be enabled only if it was configured in the resource's parent."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector": {
+      "description": "Integration selector of the rule. The rule is only applied to the Integration selected by the selector.",
+      "id": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleIntegrationSelector",
+      "properties": {
+        "integration": {
+          "description": "Required. Integration to which the rule applies. This field can be used to specify the integration against which the ingestion rule should be applied.",
+          "enum": [
+            "INTEGRATION_UNSPECIFIED",
+            "DATAPROC"
+          ],
+          "enumDescriptions": [
+            "Integration is Unspecified",
+            "Dataproc"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement": {
+      "description": "Lineage enablement configuration. Defines configurations for the ingestion of lineage for the resource and its children.",
+      "id": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Required. If true, ingestion of lineage should be enabled. If false, it should be disabled. If unspecified, the system default value is used.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
       "description": "Request message for BatchSearchLinkProcesses.",
       "id": "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest",

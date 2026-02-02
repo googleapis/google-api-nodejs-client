@@ -379,6 +379,10 @@ export namespace firebaseapphosting_v1 {
    */
   export interface Schema$Config {
     /**
+     * Output only. [OUTPUT_ONLY] This field represents all environment variables employed during both the build and runtime. This list reflects the result of merging variables from all sources (Backend.override_env, Build.Config.env, YAML, defaults, system). Each variable includes its `origin`
+     */
+    effectiveEnv?: Schema$EnvironmentVariable[];
+    /**
      * Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_build_source) Attempts to set this for other build types will result in an error
      */
     env?: Schema$EnvironmentVariable[];
@@ -624,6 +628,14 @@ export namespace firebaseapphosting_v1 {
      */
     availability?: string[] | null;
     /**
+     * Output only. The high-level origin category of the environment variable.
+     */
+    origin?: string | null;
+    /**
+     * Output only. Specific detail about the source. For APPHOSTING_YAML origins, this will contain the exact filename, such as "apphosting.yaml" or "apphosting.staging.yaml".
+     */
+    originFileName?: string | null;
+    /**
      * A fully qualified secret version. The value of the secret will be accessed once while building the application and once per cold start of the container at runtime. The service account used by Cloud Build and by Cloud Run must each have the `secretmanager.versions.access` permission on the secret.
      */
     secret?: string | null;
@@ -865,6 +877,19 @@ export namespace firebaseapphosting_v1 {
     verb?: string | null;
   }
   /**
+   * A file path pattern to match against.
+   */
+  export interface Schema$Path {
+    /**
+     * Optional. The pattern to match against.
+     */
+    pattern?: string | null;
+    /**
+     * Optional. The type of pattern to match against.
+     */
+    type?: string | null;
+  }
+  /**
    * Specifies redirect behavior for a domain.
    */
   export interface Schema$Redirect {
@@ -950,6 +975,14 @@ export namespace firebaseapphosting_v1 {
      * Output only. If `disabled` is set, the time at which the automatic rollouts were disabled.
      */
     disabledTime?: string | null;
+    /**
+     * Optional. A list of file paths patterns to exclude from triggering a rollout. Patterns in this list take precedence over required_paths. **Note**: All paths must be in the ignored_paths in order for the rollout to be skipped. Limited to 100 paths. Example: ignored_paths: { pattern: "foo/bar/excluded/x” type: GLOB \}
+     */
+    ignoredPaths?: Schema$Path[];
+    /**
+     * Optional. A list of file paths patterns that trigger a build and rollout if at least one of the changed files in the commit are present in this list. This field is optional; the rollout policy will default to triggering on all paths if not populated. Limited to 100 paths. Example: “required_paths: { pattern: "foo/bar/x” type: GLOB \}
+     */
+    requiredPaths?: Schema$Path[];
   }
   /**
    * Additional configuration to apply to the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).

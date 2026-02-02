@@ -638,7 +638,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "description": "Identifier. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
                       "required": true,
@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20260120",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AllocationOptions": {
@@ -1428,12 +1428,13 @@
           "description": "Optional. Range auto-allocation options, may be set only when auto-allocation is selected by not setting ip_cidr_range (and setting prefix_length)."
         },
         "createTime": {
-          "description": "Time when the internal range was created.",
+          "description": "Output only. Time when the internal range was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "A description of this resource.",
+          "description": "Optional. A description of this resource.",
           "type": "string"
         },
         "excludeCidrRanges": {
@@ -1448,14 +1449,14 @@
           "type": "boolean"
         },
         "ipCidrRange": {
-          "description": "IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
+          "description": "Optional. IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User-defined labels.",
+          "description": "Optional. User-defined labels.",
           "type": "object"
         },
         "migration": {
@@ -1463,11 +1464,11 @@
           "description": "Optional. Must be present if usage is set to FOR_MIGRATION."
         },
         "name": {
-          "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "description": "Identifier. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
           "type": "string"
         },
         "network": {
-          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
+          "description": "Optional. The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project}/locations/global/networks/{network} projects/{project}/locations/global/networks/{network} {network}",
           "type": "string"
         },
         "overlaps": {
@@ -1488,7 +1489,7 @@
           "type": "array"
         },
         "peering": {
-          "description": "The type of peering set for this internal range.",
+          "description": "Optional. The type of peering set for this internal range.",
           "enum": [
             "PEERING_UNSPECIFIED",
             "FOR_SELF",
@@ -1504,7 +1505,7 @@
           "type": "string"
         },
         "prefixLength": {
-          "description": "An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
+          "description": "Optional. An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
           "format": "int32",
           "type": "integer"
         },
@@ -1516,12 +1517,13 @@
           "type": "array"
         },
         "updateTime": {
-          "description": "Time when the internal range was updated.",
+          "description": "Output only. Time when the internal range was updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "usage": {
-          "description": "The type of usage set for this internal range.",
+          "description": "Optional. The type of usage set for this internal range.",
           "enum": [
             "USAGE_UNSPECIFIED",
             "FOR_VPC",

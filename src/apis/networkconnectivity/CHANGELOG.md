@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v16.1.0...networkconnectivity-v16.2.0) (2026-01-28)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([7e2c413](https://github.com/googleapis/google-api-nodejs-client/commit/7e2c4139f206f662a3c2fe97dbcf79da21ee50bd))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v16.0.1...networkconnectivity-v16.1.0) (2025-12-29)
 
 

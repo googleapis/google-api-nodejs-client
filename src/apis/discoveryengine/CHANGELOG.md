@@ -1,5 +1,12 @@
 # Changelog
 
+## [28.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.3.0...discoveryengine-v28.4.0) (2026-01-28)
+
+
+### Features
+
+* **discoveryengine:** update the API ([3b632cf](https://github.com/googleapis/google-api-nodejs-client/commit/3b632cf265027a4948198bebf9371d7841651376))
+
 ## [28.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.2.0...discoveryengine-v28.3.0) (2026-01-09)
 
 

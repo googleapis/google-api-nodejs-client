@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20251123",
+  "revision": "20260113",
   "rootUrl": "https://youtubereporting.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -445,6 +445,11 @@
         },
         "readToken": {
           "description": "gdata",
+          "type": "string"
+        },
+        "uploadFragmentListCreationInfo": {
+          "description": "gdata",
+          "format": "byte",
           "type": "string"
         },
         "uploadMetadataContainer": {

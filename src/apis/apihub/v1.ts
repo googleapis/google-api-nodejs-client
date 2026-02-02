@@ -1047,7 +1047,7 @@ export namespace apihub_v1 {
      */
     sourceMetadata?: Schema$GoogleCloudApihubV1SourceMetadata[];
     /**
-     * Optional. The project to which the deployment belongs. For GCP gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.
+     * Optional. The project to which the deployment belongs. For Google Cloud gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.
      */
     sourceProject?: string | null;
     /**
@@ -1122,7 +1122,7 @@ export namespace apihub_v1 {
      */
     name?: string | null;
     /**
-     * Optional. For an observation pushed from a gcp resource, this would be the gcp project id.
+     * Optional. For an observation pushed from a Google Cloud resource, this would be the Google Cloud project id.
      */
     origin?: string | null;
     /**
@@ -2173,7 +2173,7 @@ export namespace apihub_v1 {
       [key: string]: Schema$GoogleCloudApihubV1SourceEnvironment;
     } | null;
     /**
-     * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.
+     * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of Google Cloud based plugins and org id in case of non-Google Cloud based plugins. This field will be a required field for Google provided on-ramp plugins.
      */
     sourceProjectId?: string | null;
     /**
@@ -2202,7 +2202,7 @@ export namespace apihub_v1 {
      */
     hubInstanceAction?: Schema$GoogleCloudApihubV1ExecutionStatus;
     /**
-     * Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of Non-GCP plugins like OPDK.
+     * Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of non-Google Cloud plugins like OPDK.
      */
     resourceConfig?: Schema$GoogleCloudApihubV1ResourceConfig;
     /**
@@ -2214,7 +2214,7 @@ export namespace apihub_v1 {
      */
     scheduleTimeZone?: string | null;
     /**
-     * Optional. The service account used to publish data. Note, the service account will only be accepted for non GCP plugins like OPDK.
+     * Optional. The service account used to publish data. Note, the service account will only be accepted for non-Google Cloud plugins like OPDK.
      */
     serviceAccount?: string | null;
     /**
@@ -4893,7 +4893,7 @@ export namespace apihub_v1 {
     }
 
     /**
-     * Looks up an Api Hub instance in a given GCP project. There will always be only one Api Hub instance for a GCP project across all locations.
+     * Looks up an Api Hub instance in a given Google Cloud project. There will always be only one Api Hub instance for a Google Cloud project across all locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4923,7 +4923,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.apiHubInstances.lookup({
-     *     // Required. There will always be only one Api Hub instance for a GCP project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
+     *     // Required. There will always be only one Api Hub instance for a Google Cloud project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5070,7 +5070,7 @@ export namespace apihub_v1 {
   }
   export interface Params$Resource$Projects$Locations$Apihubinstances$Lookup extends StandardParameters {
     /**
-     * Required. There will always be only one Api Hub instance for a GCP project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
+     * Required. There will always be only one Api Hub instance for a Google Cloud project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
   }

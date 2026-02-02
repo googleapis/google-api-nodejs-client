@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v25.1.1...serviceconsumermanagement-v25.2.0) (2026-01-28)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([cea3a81](https://github.com/googleapis/google-api-nodejs-client/commit/cea3a81fa1495e342bab02529a22191674d5f7de))
+
 ## [25.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v25.1.0...serviceconsumermanagement-v25.1.1) (2025-12-05)
 
 

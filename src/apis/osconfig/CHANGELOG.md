@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v11.0.1...osconfig-v11.1.0) (2026-01-28)
+
+
+### Features
+
+* **osconfig:** update the API ([12b1d5c](https://github.com/googleapis/google-api-nodejs-client/commit/12b1d5cb1f1dd65d2810303cfe9f1fb47c74081c))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v11.0.0...osconfig-v11.0.1) (2025-12-05)
 
 

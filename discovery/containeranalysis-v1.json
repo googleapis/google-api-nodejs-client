@@ -1715,7 +1715,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260123",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -4583,6 +4583,11 @@
         },
         "lastScanTime": {
           "description": "The last time this resource was scanned.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "lastVulnerabilityUpdateTime": {
+          "description": "The last time vulnerability scan results changed.",
           "format": "google-datetime",
           "type": "string"
         },

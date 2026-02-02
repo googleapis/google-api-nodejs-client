@@ -157,6 +157,10 @@ export namespace datastream_v1 {
      */
     salesforceExcludedObjects?: Schema$SalesforceOrg;
     /**
+     * Spanner data source objects to avoid backfilling.
+     */
+    spannerExcludedObjects?: Schema$SpannerDatabase;
+    /**
      * SQLServer data source objects to avoid backfilling
      */
     sqlServerExcludedObjects?: Schema$SqlServerRdbms;
@@ -254,7 +258,7 @@ export namespace datastream_v1 {
     timeUnitPartition?: Schema$TimeUnitPartition;
   }
   /**
-   * BigQuery warehouse profile.
+   * Profile for connecting to a BigQuery destination.
    */
   export interface Schema$BigQueryProfile {}
   /**
@@ -325,7 +329,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$ConnectionProfile {
     /**
-     * BigQuery Connection Profile configuration.
+     * Profile for connecting to a BigQuery destination.
      */
     bigqueryProfile?: Schema$BigQueryProfile;
     /**
@@ -341,7 +345,7 @@ export namespace datastream_v1 {
      */
     forwardSshConnectivity?: Schema$ForwardSshTunnelConnectivity;
     /**
-     * Cloud Storage ConnectionProfile configuration.
+     * Profile for connecting to a Cloud Storage destination.
      */
     gcsProfile?: Schema$GcsProfile;
     /**
@@ -349,11 +353,11 @@ export namespace datastream_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * MongoDB Connection Profile configuration.
+     * Profile for connecting to a MongoDB source.
      */
     mongodbProfile?: Schema$MongodbProfile;
     /**
-     * MySQL ConnectionProfile configuration.
+     * Profile for connecting to a MySQL source.
      */
     mysqlProfile?: Schema$MysqlProfile;
     /**
@@ -361,11 +365,11 @@ export namespace datastream_v1 {
      */
     name?: string | null;
     /**
-     * Oracle ConnectionProfile configuration.
+     * Profile for connecting to an Oracle source.
      */
     oracleProfile?: Schema$OracleProfile;
     /**
-     * PostgreSQL Connection Profile configuration.
+     * Profile for connecting to a PostgreSQL source.
      */
     postgresqlProfile?: Schema$PostgresqlProfile;
     /**
@@ -373,7 +377,7 @@ export namespace datastream_v1 {
      */
     privateConnectivity?: Schema$PrivateConnectivity;
     /**
-     * Salesforce Connection Profile configuration.
+     * Profile for connecting to a Salesforce source.
      */
     salesforceProfile?: Schema$SalesforceProfile;
     /**
@@ -385,7 +389,11 @@ export namespace datastream_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * SQLServer Connection Profile configuration.
+     * Profile for connecting to a Spanner source.
+     */
+    spannerProfile?: Schema$SpannerProfile;
+    /**
+     * Profile for connecting to a SQLServer source.
      */
     sqlServerProfile?: Schema$SqlServerProfile;
     /**
@@ -449,43 +457,47 @@ export namespace datastream_v1 {
    */
   export interface Schema$DiscoverConnectionProfileRequest {
     /**
-     * An ad-hoc connection profile configuration.
+     * Optional. An ad-hoc connection profile configuration.
      */
     connectionProfile?: Schema$ConnectionProfile;
     /**
-     * A reference to an existing connection profile.
+     * Optional. A reference to an existing connection profile.
      */
     connectionProfileName?: string | null;
     /**
-     * Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).
+     * Optional. Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).
      */
     fullHierarchy?: boolean | null;
     /**
-     * The number of hierarchy levels below the current level to be retrieved.
+     * Optional. The number of hierarchy levels below the current level to be retrieved.
      */
     hierarchyDepth?: number | null;
     /**
-     * MongoDB cluster to enrich with child data objects and metadata.
+     * Optional. MongoDB cluster to enrich with child data objects and metadata.
      */
     mongodbCluster?: Schema$MongodbCluster;
     /**
-     * MySQL RDBMS to enrich with child data objects and metadata.
+     * Optional. MySQL RDBMS to enrich with child data objects and metadata.
      */
     mysqlRdbms?: Schema$MysqlRdbms;
     /**
-     * Oracle RDBMS to enrich with child data objects and metadata.
+     * Optional. Oracle RDBMS to enrich with child data objects and metadata.
      */
     oracleRdbms?: Schema$OracleRdbms;
     /**
-     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     * Optional. PostgreSQL RDBMS to enrich with child data objects and metadata.
      */
     postgresqlRdbms?: Schema$PostgresqlRdbms;
     /**
-     * Salesforce organization to enrich with child data objects and metadata.
+     * Optional. Salesforce organization to enrich with child data objects and metadata.
      */
     salesforceOrg?: Schema$SalesforceOrg;
     /**
-     * SQLServer RDBMS to enrich with child data objects and metadata.
+     * Optional. Spanner database to enrich with child data objects and metadata.
+     */
+    spannerDatabase?: Schema$SpannerDatabase;
+    /**
+     * Optional. SQLServer RDBMS to enrich with child data objects and metadata.
      */
     sqlServerRdbms?: Schema$SqlServerRdbms;
   }
@@ -513,6 +525,10 @@ export namespace datastream_v1 {
      * Enriched Salesforce organization.
      */
     salesforceOrg?: Schema$SalesforceOrg;
+    /**
+     * Enriched Spanner database.
+     */
+    spannerDatabase?: Schema$SpannerDatabase;
     /**
      * Enriched SQLServer RDBMS object.
      */
@@ -573,7 +589,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$EventFilter {
     /**
-     * An SQL-query Where clause selecting which data should be included, not including the "WHERE" keyword. E.g., "t.key1 = 'value1' AND t.key2 = 'value2'".
+     * An SQL-query Where clause selecting which data should be included, not including the "WHERE" keyword. e.g., `t.key1 = 'value1' AND t.key2 = 'value2'`
      */
     sqlWhereClause?: string | null;
   }
@@ -641,7 +657,7 @@ export namespace datastream_v1 {
     path?: string | null;
   }
   /**
-   * Cloud Storage bucket profile.
+   * Profile for connecting to a Cloud Storage destination.
    */
   export interface Schema$GcsProfile {
     /**
@@ -649,7 +665,7 @@ export namespace datastream_v1 {
      */
     bucket?: string | null;
     /**
-     * The root path inside the Cloud Storage bucket.
+     * Optional. The root path inside the Cloud Storage bucket.
      */
     rootPath?: string | null;
   }
@@ -902,7 +918,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbCollection {
     /**
-     * Collection name.
+     * The collection name.
      */
     collection?: string | null;
     /**
@@ -919,7 +935,7 @@ export namespace datastream_v1 {
      */
     collections?: Schema$MongodbCollection[];
     /**
-     * Database name.
+     * The database name.
      */
     database?: string | null;
   }
@@ -928,7 +944,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MongodbField {
     /**
-     * Field name.
+     * The field name.
      */
     field?: string | null;
   }
@@ -946,7 +962,7 @@ export namespace datastream_v1 {
     database?: string | null;
   }
   /**
-   * MongoDB profile.
+   * Profile for connecting to a MongoDB source.
    */
   export interface Schema$MongodbProfile {
     /**
@@ -987,15 +1003,15 @@ export namespace datastream_v1 {
     username?: string | null;
   }
   /**
-   * MongoDB source configuration.
+   * Configuration for syncing data from a MongoDB source.
    */
   export interface Schema$MongodbSourceConfig {
     /**
-     * MongoDB collections to exclude from the stream.
+     * The MongoDB collections to exclude from the stream.
      */
     excludeObjects?: Schema$MongodbCluster;
     /**
-     * MongoDB collections to include in the stream.
+     * The MongoDB collections to include in the stream.
      */
     includeObjects?: Schema$MongodbCluster;
     /**
@@ -1053,7 +1069,7 @@ export namespace datastream_v1 {
      */
     collation?: string | null;
     /**
-     * Column name.
+     * The column name.
      */
     column?: string | null;
     /**
@@ -1090,7 +1106,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MysqlDatabase {
     /**
-     * Database name.
+     * The database name.
      */
     database?: string | null;
     /**
@@ -1134,7 +1150,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile.
+   * Profile for connecting to a MySQL source.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -1172,7 +1188,7 @@ export namespace datastream_v1 {
     mysqlDatabases?: Schema$MysqlDatabase[];
   }
   /**
-   * MySQL source configuration
+   * Configuration for syncing data from a MySQL source.
    */
   export interface Schema$MysqlSourceConfig {
     /**
@@ -1180,7 +1196,7 @@ export namespace datastream_v1 {
      */
     binaryLogPosition?: Schema$BinaryLogPosition;
     /**
-     * MySQL objects to exclude from the stream.
+     * The MySQL objects to exclude from the stream.
      */
     excludeObjects?: Schema$MysqlRdbms;
     /**
@@ -1188,7 +1204,7 @@ export namespace datastream_v1 {
      */
     gtid?: Schema$Gtid;
     /**
-     * MySQL objects to retrieve from the source.
+     * The MySQL objects to retrieve from the source.
      */
     includeObjects?: Schema$MysqlRdbms;
     /**
@@ -1238,7 +1254,7 @@ export namespace datastream_v1 {
      */
     mysqlColumns?: Schema$MysqlColumn[];
     /**
-     * Table name.
+     * The table name.
      */
     table?: string | null;
   }
@@ -1380,7 +1396,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$OracleColumn {
     /**
-     * Column name.
+     * The column name.
      */
     column?: string | null;
     /**
@@ -1430,7 +1446,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile.
+   * Profile for connecting to an Oracle source.
    */
   export interface Schema$OracleProfile {
     /**
@@ -1488,7 +1504,7 @@ export namespace datastream_v1 {
      */
     oracleTables?: Schema$OracleTable[];
     /**
-     * Schema name.
+     * The schema name.
      */
     schema?: string | null;
   }
@@ -1502,7 +1518,7 @@ export namespace datastream_v1 {
     scn?: string | null;
   }
   /**
-   * Oracle data source configuration
+   * Configuration for syncing data from an Oracle source.
    */
   export interface Schema$OracleSourceConfig {
     /**
@@ -1514,11 +1530,11 @@ export namespace datastream_v1 {
      */
     dropLargeObjects?: Schema$DropLargeObjects;
     /**
-     * Oracle objects to exclude from the stream.
+     * The Oracle objects to exclude from the stream.
      */
     excludeObjects?: Schema$OracleRdbms;
     /**
-     * Oracle objects to include in the stream.
+     * The Oracle objects to include in the stream.
      */
     includeObjects?: Schema$OracleRdbms;
     /**
@@ -1564,7 +1580,7 @@ export namespace datastream_v1 {
      */
     oracleColumns?: Schema$OracleColumn[];
     /**
-     * Table name.
+     * The table name.
      */
     table?: string | null;
   }
@@ -1573,7 +1589,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$PostgresqlColumn {
     /**
-     * Column name.
+     * The column name.
      */
     column?: string | null;
     /**
@@ -1619,7 +1635,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * PostgreSQL database profile.
+   * Profile for connecting to a PostgreSQL source.
    */
   export interface Schema$PostgresqlProfile {
     /**
@@ -1669,20 +1685,20 @@ export namespace datastream_v1 {
      */
     postgresqlTables?: Schema$PostgresqlTable[];
     /**
-     * Schema name.
+     * The schema name.
      */
     schema?: string | null;
   }
   /**
-   * PostgreSQL data source configuration
+   * Configuration for syncing data from a PostgreSQL source.
    */
   export interface Schema$PostgresqlSourceConfig {
     /**
-     * PostgreSQL objects to exclude from the stream.
+     * The PostgreSQL objects to exclude from the stream.
      */
     excludeObjects?: Schema$PostgresqlRdbms;
     /**
-     * PostgreSQL objects to include in the stream.
+     * The PostgreSQL objects to include in the stream.
      */
     includeObjects?: Schema$PostgresqlRdbms;
     /**
@@ -1720,7 +1736,7 @@ export namespace datastream_v1 {
      */
     postgresqlColumns?: Schema$PostgresqlColumn[];
     /**
-     * Table name.
+     * The table name.
      */
     table?: string | null;
   }
@@ -1859,7 +1875,7 @@ export namespace datastream_v1 {
      */
     dataType?: string | null;
     /**
-     * Field name.
+     * The field name.
      */
     name?: string | null;
     /**
@@ -1876,7 +1892,7 @@ export namespace datastream_v1 {
      */
     fields?: Schema$SalesforceField[];
     /**
-     * Object name.
+     * The object name.
      */
     objectName?: string | null;
   }
@@ -1899,7 +1915,7 @@ export namespace datastream_v1 {
     objects?: Schema$SalesforceObject[];
   }
   /**
-   * Salesforce profile
+   * Profile for connecting to a Salesforce source.
    */
   export interface Schema$SalesforceProfile {
     /**
@@ -1916,19 +1932,19 @@ export namespace datastream_v1 {
     userCredentials?: Schema$UserCredentials;
   }
   /**
-   * Salesforce source configuration
+   * Configuration for syncing data from a Salesforce source.
    */
   export interface Schema$SalesforceSourceConfig {
     /**
-     * Salesforce objects to exclude from the stream.
+     * The Salesforce objects to exclude from the stream.
      */
     excludeObjects?: Schema$SalesforceOrg;
     /**
-     * Salesforce objects to retrieve from the source.
+     * The Salesforce objects to retrieve from the source.
      */
     includeObjects?: Schema$SalesforceOrg;
     /**
-     * Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be between 5 minutes and 24 hours.
+     * Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be from `5 minutes` to `24 hours`, inclusive.
      */
     pollingInterval?: string | null;
   }
@@ -2004,6 +2020,10 @@ export namespace datastream_v1 {
      */
     sourceConnectionProfile?: string | null;
     /**
+     * Spanner data source configuration.
+     */
+    spannerSourceConfig?: Schema$SpannerSourceConfig;
+    /**
      * SQLServer data source configuration.
      */
     sqlServerSourceConfig?: Schema$SqlServerSourceConfig;
@@ -2046,9 +2066,132 @@ export namespace datastream_v1 {
      */
     salesforceIdentifier?: Schema$SalesforceObjectIdentifier;
     /**
+     * Spanner data source object identifier.
+     */
+    spannerIdentifier?: Schema$SpannerObjectIdentifier;
+    /**
      * SQLServer data source object identifier.
      */
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
+  }
+  /**
+   * Spanner column.
+   */
+  export interface Schema$SpannerColumn {
+    /**
+     * Required. The column name.
+     */
+    column?: string | null;
+    /**
+     * Optional. Spanner data type.
+     */
+    dataType?: string | null;
+    /**
+     * Optional. Whether or not the column is a primary key.
+     */
+    isPrimaryKey?: boolean | null;
+    /**
+     * Optional. The ordinal position of the column in the table.
+     */
+    ordinalPosition?: string | null;
+  }
+  /**
+   * Spanner database structure.
+   */
+  export interface Schema$SpannerDatabase {
+    /**
+     * Optional. Spanner schemas in the database.
+     */
+    schemas?: Schema$SpannerSchema[];
+  }
+  /**
+   * Spanner data source object identifier.
+   */
+  export interface Schema$SpannerObjectIdentifier {
+    /**
+     * Optional. The schema name.
+     */
+    schema?: string | null;
+    /**
+     * Required. The table name.
+     */
+    table?: string | null;
+  }
+  /**
+   * Profile for connecting to a Spanner source.
+   */
+  export interface Schema$SpannerProfile {
+    /**
+     * Required. Immutable. Cloud Spanner database resource. This field is immutable. Must be in the format: projects/{project\}/instances/{instance\}/databases/{database_id\}.
+     */
+    database?: string | null;
+    /**
+     * Optional. The Spanner endpoint to connect to. Defaults to the global endpoint (https://spanner.googleapis.com). Must be in the format: https://spanner.{region\}.rep.googleapis.com.
+     */
+    host?: string | null;
+  }
+  /**
+   * Spanner schema.
+   */
+  export interface Schema$SpannerSchema {
+    /**
+     * Required. The schema name.
+     */
+    schema?: string | null;
+    /**
+     * Optional. Spanner tables in the schema.
+     */
+    tables?: Schema$SpannerTable[];
+  }
+  /**
+   * Configuration for syncing data from a Spanner source.
+   */
+  export interface Schema$SpannerSourceConfig {
+    /**
+     * Optional. Whether to use Data Boost for Spanner backfills. Defaults to false if not set.
+     */
+    backfillDataBoostEnabled?: boolean | null;
+    /**
+     * Required. Immutable. The change stream name to use for the stream.
+     */
+    changeStreamName?: string | null;
+    /**
+     * Optional. The Spanner objects to avoid retrieving. If some objects are both included and excluded, an error will be thrown.
+     */
+    excludeObjects?: Schema$SpannerDatabase;
+    /**
+     * Optional. The FGAC role to use for the stream.
+     */
+    fgacRole?: string | null;
+    /**
+     * Optional. The Spanner objects to retrieve from the data source. If some objects are both included and excluded, an error will be thrown.
+     */
+    includeObjects?: Schema$SpannerDatabase;
+    /**
+     * Optional. Maximum number of concurrent backfill tasks.
+     */
+    maxConcurrentBackfillTasks?: number | null;
+    /**
+     * Optional. Maximum number of concurrent CDC tasks.
+     */
+    maxConcurrentCdcTasks?: number | null;
+    /**
+     * Optional. The RPC priority to use for the stream.
+     */
+    spannerRpcPriority?: string | null;
+  }
+  /**
+   * Spanner table.
+   */
+  export interface Schema$SpannerTable {
+    /**
+     * Optional. Spanner columns in the table.
+     */
+    columns?: Schema$SpannerColumn[];
+    /**
+     * Required. The table name.
+     */
+    table?: string | null;
   }
   /**
    * CDC strategy to start replicating from a specific position in the source.
@@ -2084,7 +2227,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$SqlServerColumn {
     /**
-     * Column name.
+     * The column name.
      */
     column?: string | null;
     /**
@@ -2139,7 +2282,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile.
+   * Profile for connecting to a SQLServer source.
    */
   export interface Schema$SqlServerProfile {
     /**
@@ -2185,7 +2328,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$SqlServerSchema {
     /**
-     * Schema name.
+     * The schema name.
      */
     schema?: string | null;
     /**
@@ -2194,7 +2337,7 @@ export namespace datastream_v1 {
     tables?: Schema$SqlServerTable[];
   }
   /**
-   * SQLServer data source configuration
+   * Configuration for syncing data from a SQLServer source.
    */
   export interface Schema$SqlServerSourceConfig {
     /**
@@ -2202,11 +2345,11 @@ export namespace datastream_v1 {
      */
     changeTables?: Schema$SqlServerChangeTables;
     /**
-     * SQLServer objects to exclude from the stream.
+     * The SQLServer objects to exclude from the stream.
      */
     excludeObjects?: Schema$SqlServerRdbms;
     /**
-     * SQLServer objects to include in the stream.
+     * The SQLServer objects to include in the stream.
      */
     includeObjects?: Schema$SqlServerRdbms;
     /**
@@ -2248,7 +2391,7 @@ export namespace datastream_v1 {
      */
     columns?: Schema$SqlServerColumn[];
     /**
-     * Table name.
+     * The table name.
      */
     table?: string | null;
   }
@@ -2594,9 +2737,9 @@ export namespace datastream_v1 {
      *   const res = await datastream.projects.locations.fetchStaticIps({
      *     // Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
-     *     // Maximum number of Ips to return, will likely not be specified.
+     *     // Optional. Maximum number of Ips to return, will likely not be specified.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListStaticIps` call. will likely not be specified.
+     *     // Optional. A page token, received from a previous `ListStaticIps` call. will likely not be specified.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3000,11 +3143,11 @@ export namespace datastream_v1 {
      */
     name?: string;
     /**
-     * Maximum number of Ips to return, will likely not be specified.
+     * Optional. Maximum number of Ips to return, will likely not be specified.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListStaticIps` call. will likely not be specified.
+     * Optional. A page token, received from a previous `ListStaticIps` call. will likely not be specified.
      */
     pageToken?: string;
   }
@@ -3104,6 +3247,7 @@ export namespace datastream_v1 {
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},
      *       //   "updateTime": "my_updateTime"
@@ -3406,6 +3550,7 @@ export namespace datastream_v1 {
      *       //   "oracleRdbms": {},
      *       //   "postgresqlRdbms": {},
      *       //   "salesforceOrg": {},
+     *       //   "spannerDatabase": {},
      *       //   "sqlServerRdbms": {}
      *       // }
      *     },
@@ -3419,6 +3564,7 @@ export namespace datastream_v1 {
      *   //   "oracleRdbms": {},
      *   //   "postgresqlRdbms": {},
      *   //   "salesforceOrg": {},
+     *   //   "spannerDatabase": {},
      *   //   "sqlServerRdbms": {}
      *   // }
      * }
@@ -3581,6 +3727,7 @@ export namespace datastream_v1 {
      *   //   "salesforceProfile": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "spannerProfile": {},
      *   //   "sqlServerProfile": {},
      *   //   "staticServiceIpConnectivity": {},
      *   //   "updateTime": "my_updateTime"
@@ -3711,13 +3858,13 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.connectionProfiles.list({
-     *     // Filter request.
+     *     // Optional. Filter request.
      *     filter: 'placeholder-value',
-     *     // Order by fields for the result.
+     *     // Optional. Order by fields for the result.
      *     orderBy: 'placeholder-value',
-     *     // Maximum number of connection profiles to return. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. Maximum number of connection profiles to return. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // Page token received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
+     *     // Optional. Page token received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent that owns the collection of connection profiles.
      *     parent: 'projects/my-project/locations/my-location',
@@ -3895,6 +4042,7 @@ export namespace datastream_v1 {
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},
      *       //   "updateTime": "my_updateTime"
@@ -4063,19 +4211,19 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connectionprofiles$List extends StandardParameters {
     /**
-     * Filter request.
+     * Optional. Filter request.
      */
     filter?: string;
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      */
     orderBy?: string;
     /**
-     * Maximum number of connection profiles to return. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of connection profiles to return. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListConnectionProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectionProfiles` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5218,13 +5366,13 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.privateConnections.list({
-     *     // Filter request.
+     *     // Optional. Filter request.
      *     filter: 'placeholder-value',
-     *     // Order by fields for the result.
+     *     // Optional. Order by fields for the result.
      *     orderBy: 'placeholder-value',
      *     // Maximum number of private connectivity configurations to return. If unspecified, at most 50 private connectivity configurations that will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     *     // Optional. Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent that owns the collection of private connectivity configurations.
      *     parent: 'projects/my-project/locations/my-location',
@@ -5391,11 +5539,11 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Privateconnections$List extends StandardParameters {
     /**
-     * Filter request.
+     * Optional. Filter request.
      */
     filter?: string;
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      */
     orderBy?: string;
     /**
@@ -5403,7 +5551,7 @@ export namespace datastream_v1 {
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListPrivateConnections` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPrivateConnections` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5897,13 +6045,13 @@ export namespace datastream_v1 {
      *   // Do the magic
      *   const res =
      *     await datastream.projects.locations.privateConnections.routes.list({
-     *       // Filter request.
+     *       // Optional. Filter request.
      *       filter: 'placeholder-value',
-     *       // Order by fields for the result.
+     *       // Optional. Order by fields for the result.
      *       orderBy: 'placeholder-value',
-     *       // Maximum number of Routes to return. The service may return fewer than this value. If unspecified, at most 50 Routes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       // Optional. Maximum number of Routes to return. The service may return fewer than this value. If unspecified, at most 50 Routes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *       pageSize: 'placeholder-value',
-     *       // Page token received from a previous `ListRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRoutes` must match the call that provided the page token.
+     *       // Optional. Page token received from a previous `ListRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRoutes` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. The parent that owns the collection of Routess.
      *       parent:
@@ -6053,19 +6201,19 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Privateconnections$Routes$List extends StandardParameters {
     /**
-     * Filter request.
+     * Optional. Filter request.
      */
     filter?: string;
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      */
     orderBy?: string;
     /**
-     * Maximum number of Routes to return. The service may return fewer than this value. If unspecified, at most 50 Routes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of Routes to return. The service may return fewer than this value. If unspecified, at most 50 Routes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRoutes` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRoutes` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6576,13 +6724,13 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.streams.list({
-     *     // Filter request.
+     *     // Optional. Filter request.
      *     filter: 'placeholder-value',
-     *     // Order by fields for the result.
+     *     // Optional. Order by fields for the result.
      *     orderBy: 'placeholder-value',
-     *     // Maximum number of streams to return. If unspecified, at most 50 streams will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. Maximum number of streams to return. If unspecified, at most 50 streams will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // Page token received from a previous `ListStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreams` must match the call that provided the page token.
+     *     // Optional. Page token received from a previous `ListStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreams` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent that owns the collection of streams.
      *     parent: 'projects/my-project/locations/my-location',
@@ -7054,19 +7202,19 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Streams$List extends StandardParameters {
     /**
-     * Filter request.
+     * Optional. Filter request.
      */
     filter?: string;
     /**
-     * Order by fields for the result.
+     * Optional. Order by fields for the result.
      */
     orderBy?: string;
     /**
-     * Maximum number of streams to return. If unspecified, at most 50 streams will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of streams to return. If unspecified, at most 50 streams will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreams` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreams` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -7291,9 +7439,9 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.streams.objects.list({
-     *     // Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // Page token received from a previous `ListStreamObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreamObjectsRequest` must match the call that provided the page token.
+     *     // Optional. Page token received from a previous `ListStreamObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreamObjectsRequest` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent stream that owns the collection of objects.
      *     parent: 'projects/my-project/locations/my-location/streams/my-stream',
@@ -7870,11 +8018,11 @@ export namespace datastream_v1 {
   }
   export interface Params$Resource$Projects$Locations$Streams$Objects$List extends StandardParameters {
     /**
-     * Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Page token received from a previous `ListStreamObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreamObjectsRequest` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListStreamObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListStreamObjectsRequest` must match the call that provided the page token.
      */
     pageToken?: string;
     /**

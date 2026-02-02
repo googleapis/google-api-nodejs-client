@@ -2493,7 +2493,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260102",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -4756,6 +4756,14 @@
         "description": {
           "description": "Optional. Description of the version, as specified in its metadata.",
           "type": "string"
+        },
+        "fingerprints": {
+          "description": "Output only. Immutable reference for the version, calculated based on the version's content. Currently we only support dirsum_sha256 hash algorithm. Additional hash algorithms may be added in the future.",
+          "items": {
+            "$ref": "Hash"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "metadata": {
           "additionalProperties": {

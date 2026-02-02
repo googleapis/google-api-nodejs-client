@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/compute",
-  "version": "35.3.0",
+  "version": "36.0.0",
   "description": "compute",
   "main": "build/index.js",
   "types": "build/index.d.ts",

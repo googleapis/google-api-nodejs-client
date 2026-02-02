@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260113",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -644,6 +644,11 @@
         },
         "readToken": {
           "description": "# gdata.* are outside protos with mising documentation",
+          "type": "string"
+        },
+        "uploadFragmentListCreationInfo": {
+          "description": "# gdata.* are outside protos with mising documentation",
+          "format": "byte",
           "type": "string"
         },
         "uploadMetadataContainer": {

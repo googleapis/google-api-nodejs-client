@@ -1,5 +1,16 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v18.4.0...alloydb-v19.0.0) (2026-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **alloydb:** This release has breaking changes.
+
+### Features
+
+* **alloydb:** update the API ([22faa4d](https://github.com/googleapis/google-api-nodejs-client/commit/22faa4d2eaf32ef687a006d01d3c1fc1f31855fa))
+
 ## [18.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v18.3.0...alloydb-v18.4.0) (2025-12-15)
 
 

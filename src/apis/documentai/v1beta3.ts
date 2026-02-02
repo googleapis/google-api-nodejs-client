@@ -2320,6 +2320,10 @@ export namespace documentai_v1beta3 {
      */
     entityValidationOutput?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutput;
     /**
+     * Optional. The history of this revision.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta3DocumentProvenance;
+    /**
      * The revision id.
      */
     revisionId?: string | null;
@@ -3192,6 +3196,10 @@ export namespace documentai_v1beta3 {
      * Display name to show to users.
      */
     displayName?: string | null;
+    /**
+     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     */
+    documentPrompt?: string | null;
     /**
      * Entity types of the schema.
      */

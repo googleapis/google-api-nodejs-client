@@ -210,7 +210,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GetTagsRequest {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
   }
@@ -219,17 +219,17 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GetTagsResponse {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
      * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * A checksum based on the current bindings. This field is always set in server responses.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * Metadata for the given google.cloud.location.Location.
@@ -661,7 +661,7 @@ export namespace memcache_v1beta2 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -916,7 +916,11 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$SetTagsRequest {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
@@ -927,27 +931,23 @@ export namespace memcache_v1beta2 {
      * Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * Response message for SetTags.
    */
   export interface Schema$SetTagsResponse {
     /**
-     * Required. The full One Platform resource name of the service resource.
+     * A checksum based on the current bindings. This field is always set in server responses.
+     */
+    etag?: string | null;
+    /**
+     * Required. The full resource name of the service resource.
      */
     name?: string | null;
     /**
      * Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as " : ". For example: "123/environment" : "production", "123/costCenter" : "marketing"
      */
     tags?: {[key: string]: string} | null;
-    /**
-     * A checksum based on the current bindings. This field is always set in server responses.
-     */
-    tagsEtag?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1235,7 +1235,7 @@ export namespace memcache_v1beta2 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1361,7 +1361,7 @@ export namespace memcache_v1beta2 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3505,7 +3505,7 @@ export namespace memcache_v1beta2 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3657,7 +3657,7 @@ export namespace memcache_v1beta2 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

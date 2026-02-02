@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v8.3.0...apphub-v8.3.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **apphub:** update the API ([88e8bdf](https://github.com/googleapis/google-api-nodejs-client/commit/88e8bdfcfa477aa7a4d0a13091fa831b0cc77229))
+
 ## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v8.2.0...apphub-v8.3.0) (2025-12-15)
 
 

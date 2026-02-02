@@ -976,6 +976,10 @@ export namespace servicecontrol_v1 {
      */
     quotaConsumed?: {[key: string]: number} | null;
     /**
+     * Output only. Indicates the state of the quota extraction.
+     */
+    quotaExtractionState?: string | null;
+    /**
      * Quota metrics to indicate the usage. Depending on the check request, one or more of the following metrics will be included: 1. For rate quota, per quota group or per quota metric incremental usage will be specified using the following delta metric: "serviceruntime.googleapis.com/api/consumer/quota_used_count" 2. For allocation quota, per quota metric total usage will be specified using the following gauge metric: "serviceruntime.googleapis.com/allocation/consumer/quota_used_count" 3. For both rate quota and allocation quota, the quota limit reached condition will be specified using the following boolean metric: "serviceruntime.googleapis.com/quota/exceeded"
      */
     quotaMetrics?: Schema$MetricValueSet[];

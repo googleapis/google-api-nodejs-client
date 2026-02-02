@@ -1846,6 +1846,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     lastScanTime?: string | null;
     /**
+     * Optional. The last time vulnerability scan results changed.
+     */
+    lastVulnerabilityUpdateTime?: string | null;
+    /**
      * Output only. An operation that indicates the status of the current scan. This field is deprecated, do not use.
      */
     operation?: Schema$Operation;

@@ -10004,7 +10004,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the Endpoint.",
+                      "description": "Identifier. The resource name of the Endpoint.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -10240,7 +10240,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the Endpoint.",
+                      "description": "Identifier. The resource name of the Endpoint.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -19490,7 +19490,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_field}\"}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name`",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_field}\"}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name` * `software_config.custom_container_config.image_uri`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -30639,7 +30639,7 @@
       }
     }
   },
-  "revision": "20251215",
+  "revision": "20260116",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -31183,6 +31183,85 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1AggregationOutput": {
+      "description": "The aggregation result for the entire dataset and all metrics.",
+      "id": "GoogleCloudAiplatformV1AggregationOutput",
+      "properties": {
+        "aggregationResults": {
+          "description": "One AggregationResult per metric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1AggregationResult"
+          },
+          "type": "array"
+        },
+        "dataset": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationDataset",
+          "description": "The dataset used for evaluation & aggregation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1AggregationResult": {
+      "description": "The aggregation result for a single metric.",
+      "id": "GoogleCloudAiplatformV1AggregationResult",
+      "properties": {
+        "aggregationMetric": {
+          "description": "Aggregation metric.",
+          "enum": [
+            "AGGREGATION_METRIC_UNSPECIFIED",
+            "AVERAGE",
+            "MODE",
+            "STANDARD_DEVIATION",
+            "VARIANCE",
+            "MINIMUM",
+            "MAXIMUM",
+            "MEDIAN",
+            "PERCENTILE_P90",
+            "PERCENTILE_P95",
+            "PERCENTILE_P99"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation metric.",
+            "Average aggregation metric. Not supported for Pairwise metric.",
+            "Mode aggregation metric.",
+            "Standard deviation aggregation metric. Not supported for pairwise metric.",
+            "Variance aggregation metric. Not supported for pairwise metric.",
+            "Minimum aggregation metric. Not supported for pairwise metric.",
+            "Maximum aggregation metric. Not supported for pairwise metric.",
+            "Median aggregation metric. Not supported for pairwise metric.",
+            "90th percentile aggregation metric. Not supported for pairwise metric.",
+            "95th percentile aggregation metric. Not supported for pairwise metric.",
+            "99th percentile aggregation metric. Not supported for pairwise metric."
+          ],
+          "type": "string"
+        },
+        "bleuMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1BleuMetricValue",
+          "description": "Results for bleu metric."
+        },
+        "customCodeExecutionResult": {
+          "$ref": "GoogleCloudAiplatformV1CustomCodeExecutionResult",
+          "description": "Result for code execution metric."
+        },
+        "exactMatchMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1ExactMatchMetricValue",
+          "description": "Results for exact match metric."
+        },
+        "pairwiseMetricResult": {
+          "$ref": "GoogleCloudAiplatformV1PairwiseMetricResult",
+          "description": "Result for pairwise metric."
+        },
+        "pointwiseMetricResult": {
+          "$ref": "GoogleCloudAiplatformV1PointwiseMetricResult",
+          "description": "Result for pointwise metric."
+        },
+        "rougeMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1RougeMetricValue",
+          "description": "Results for rouge metric."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1Annotation": {
       "description": "Used to assign specific AnnotationSpec to a particular area of a DataItem or the whole part of the DataItem.",
       "id": "GoogleCloudAiplatformV1Annotation",
@@ -31699,7 +31778,7 @@
       "id": "GoogleCloudAiplatformV1AutoscalingMetricSpec",
       "properties": {
         "metricName": {
-          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages`",
+          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages` * `prometheus.googleapis.com/vertex_dcgm_fi_dev_gpu_util` * `prometheus.googleapis.com/vertex_vllm_gpu_cache_usage_perc` * `prometheus.googleapis.com/vertex_vllm_num_requests_waiting`",
           "type": "string"
         },
         "target": {
@@ -32180,6 +32259,10 @@
         "instancesFormat": {
           "description": "Required. The format in which instances are given, must be one of the Model's supported_input_storage_formats.",
           "type": "string"
+        },
+        "vertexMultimodalDatasetSource": {
+          "$ref": "GoogleCloudAiplatformV1VertexMultimodalDatasetSource",
+          "description": "A Vertex Managed Dataset. Currently, only datasets of type Multimodal are supported."
         }
       },
       "type": "object"
@@ -32228,6 +32311,10 @@
         "predictionsFormat": {
           "description": "Required. The format in which Vertex AI gives the predictions, must be one of the Model's supported_output_storage_formats.",
           "type": "string"
+        },
+        "vertexMultimodalDatasetDestination": {
+          "$ref": "GoogleCloudAiplatformV1VertexMultimodalDatasetDestination",
+          "description": "The details for a Vertex Multimodal Dataset that will be created for the output."
         }
       },
       "type": "object"
@@ -32248,6 +32335,11 @@
         },
         "gcsOutputDirectory": {
           "description": "Output only. The full path of the Cloud Storage directory created, into which the prediction output is written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vertexMultimodalDatasetName": {
+          "description": "Output only. The resource name of the Vertex Managed Dataset created, into which the prediction output is written. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
           "readOnly": true,
           "type": "string"
         }
@@ -34059,6 +34151,19 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1CustomCodeExecutionResult": {
+      "description": "Result for custom code execution metric.",
+      "id": "GoogleCloudAiplatformV1CustomCodeExecutionResult",
+      "properties": {
+        "score": {
+          "description": "Output only. Custom code execution score.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1CustomCodeExecutionSpec": {
       "description": "Specificies a metric that is populated by evaluating user-defined Python code.",
       "id": "GoogleCloudAiplatformV1CustomCodeExecutionSpec",
@@ -35799,8 +35904,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the Endpoint.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the Endpoint.",
           "type": "string"
         },
         "network": {
@@ -36047,6 +36151,23 @@
         "outputConfig": {
           "$ref": "GoogleCloudAiplatformV1OutputConfig",
           "description": "Required. Config for evaluation output."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluateDatasetResponse": {
+      "description": "The results from an evaluation run performed by the EvaluationService.",
+      "id": "GoogleCloudAiplatformV1EvaluateDatasetResponse",
+      "properties": {
+        "aggregationOutput": {
+          "$ref": "GoogleCloudAiplatformV1AggregationOutput",
+          "description": "Output only. Aggregation statistics derived from results of EvaluationService.",
+          "readOnly": true
+        },
+        "outputInfo": {
+          "$ref": "GoogleCloudAiplatformV1OutputInfo",
+          "description": "Output only. Output info for EvaluationService.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -41184,12 +41305,16 @@
           "enum": [
             "THINKING_LEVEL_UNSPECIFIED",
             "LOW",
-            "HIGH"
+            "MEDIUM",
+            "HIGH",
+            "MINIMAL"
           ],
           "enumDescriptions": [
             "Unspecified thinking level.",
             "Low thinking level.",
-            "High thinking level."
+            "Medium thinking level.",
+            "High thinking level.",
+            "MINIMAL thinking level."
           ],
           "type": "string"
         }
@@ -47625,6 +47750,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1OutputInfo": {
+      "description": "Describes the info for output of EvaluationService.",
+      "id": "GoogleCloudAiplatformV1OutputInfo",
+      "properties": {
+        "gcsOutputDirectory": {
+          "description": "Output only. The full path of the Cloud Storage directory created, into which the evaluation results and aggregation results are written.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1PSCAutomationConfig": {
       "description": "PSC config that is used to automatically create PSC endpoints in the user projects.",
       "id": "GoogleCloudAiplatformV1PSCAutomationConfig",
@@ -47980,7 +48117,7 @@
           "description": "per part media resolution. Media resolution for the input media."
         },
         "text": {
-          "description": "Optional. The text content of the part.",
+          "description": "Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.",
           "type": "string"
         },
         "thought": {
@@ -48009,13 +48146,15 @@
             "MEDIA_RESOLUTION_UNSPECIFIED",
             "MEDIA_RESOLUTION_LOW",
             "MEDIA_RESOLUTION_MEDIUM",
-            "MEDIA_RESOLUTION_HIGH"
+            "MEDIA_RESOLUTION_HIGH",
+            "MEDIA_RESOLUTION_ULTRA_HIGH"
           ],
           "enumDescriptions": [
             "Media resolution has not been set.",
             "Media resolution set to low.",
             "Media resolution set to medium.",
-            "Media resolution set to high."
+            "Media resolution set to high.",
+            "Media resolution set to ultra high. This is for image only."
           ],
           "type": "string"
         }
@@ -48256,7 +48395,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "The spec of the pipeline.",
+          "description": "A compiled definition of a pipeline, represented as a `JSON` object. Defines the structure of the pipeline, including its components, tasks, and parameters. This specification is generated by compiling a pipeline function defined in `Python` using the `Kubeflow Pipelines SDK`.",
           "type": "object"
         },
         "preflightValidations": {
@@ -51438,7 +51577,7 @@
           "type": "string"
         },
         "pythonVersion": {
-          "description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value is 3.10.",
+          "description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
           "type": "string"
         },
         "requirementsGcsUri": {
@@ -51526,7 +51665,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, default value is 3.10.",
+          "description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
           "type": "string"
         }
       },
@@ -61786,6 +61925,32 @@
       "properties": {
         "servingConfig": {
           "description": "Vertex AI Search Serving Config resource full name. For example, `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}` or `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1VertexMultimodalDatasetDestination": {
+      "description": "The details for a Vertex Multimodal Dataset output.",
+      "id": "GoogleCloudAiplatformV1VertexMultimodalDatasetDestination",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudAiplatformV1BigQueryDestination",
+          "description": "Optional. The destination of the underlying BigQuery table that will be created for the output Multimodal Dataset. If not specified, the BigQuery table will be created in a default BigQuery dataset."
+        },
+        "displayName": {
+          "description": "Optional. Display name of the output dataset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1VertexMultimodalDatasetSource": {
+      "description": "The Vertex Multimodal Dataset for the input content.",
+      "id": "GoogleCloudAiplatformV1VertexMultimodalDatasetSource",
+      "properties": {
+        "datasetName": {
+          "description": "Required. The resource name of the Vertex Dataset. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
           "type": "string"
         }
       },

@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20251208",
+  "revision": "20260126",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1141,6 +1141,11 @@
         },
         "lastScanTime": {
           "description": "The last time this resource was scanned.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "lastVulnerabilityUpdateTime": {
+          "description": "The last time vulnerability scan results changed.",
           "format": "google-datetime",
           "type": "string"
         },

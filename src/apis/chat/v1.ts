@@ -736,6 +736,19 @@ export namespace chat_v1 {
     parameters?: Schema$ActionParameter[];
   }
   /**
+   * Metadata about the source space from which a message was forwarded.
+   */
+  export interface Schema$ForwardedMetadata {
+    /**
+     * Output only. The resource name of the source space. Format: spaces/{space\}
+     */
+    space?: string | null;
+    /**
+     * Output only. The display name of the source space or DM at the time of forwarding. For `SPACE`, this is the space name. For `DIRECT_MESSAGE`, this is the other participant's name (e.g., "User A"). For `GROUP_CHAT`, this is a generated name based on members' first names, limited to 5 including the creator (e.g., "User A, User B").
+     */
+    spaceDisplayName?: string | null;
+  }
+  /**
    * An action that describes the behavior when the form is submitted. For example, you can invoke an Apps Script script to handle the form. If the action is triggered, the form values are sent to the server. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
    */
   export interface Schema$GoogleAppsCardV1Action {
@@ -1066,7 +1079,7 @@ export namespace chat_v1 {
     expressionDataCondition?: Schema$GoogleAppsCardV1ExpressionDataCondition;
   }
   /**
-   * A configuration object that helps configure the data sources for a widget. Available for Google Workspace add-ons that extend Google Workspace Studio. Unavailable for Google Chat apps.
+   * A configuration object that helps configure the data sources for a widget. Available for Google Chat apps and Google Workspace add-ons that extend Google Workspace Studio.
    */
   export interface Schema$GoogleAppsCardV1DataSourceConfig {
     /**
@@ -1506,7 +1519,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` widget in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
+     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
      */
     dataSourceConfigs?: Schema$GoogleAppsCardV1DataSourceConfig[];
     /**
@@ -2393,6 +2406,10 @@ export namespace chat_v1 {
    */
   export interface Schema$QuotedMessageMetadata {
     /**
+     * Output only. Metadata about the source space of the quoted message. Populated only for FORWARD quote type.
+     */
+    forwardedMetadata?: Schema$ForwardedMetadata;
+    /**
      * Required. The timestamp when the quoted message was created or when the quoted message was last updated. If the message was edited, use this field, `last_update_time`. If the message was never edited, use `create_time`. If `last_update_time` doesn't match the latest version of the quoted message, the request fails.
      */
     lastUpdateTime?: string | null;
@@ -2400,6 +2417,39 @@ export namespace chat_v1 {
      * Required. Resource name of the message that is quoted. Format: `spaces/{space\}/messages/{message\}`
      */
     name?: string | null;
+    /**
+     * Output only. A snapshot of the quoted message's content.
+     */
+    quotedMessageSnapshot?: Schema$QuotedMessageSnapshot;
+    /**
+     * Optional. Specifies the quote type. If not set, defaults to REPLY in the message read/write path for backward compatibility.
+     */
+    quoteType?: string | null;
+  }
+  /**
+   * Provides a snapshot of the content of the quoted message at the time of quoting or forwarding
+   */
+  export interface Schema$QuotedMessageSnapshot {
+    /**
+     * Output only. Annotations parsed from the text body of the quoted message. Populated only for FORWARD quote type.
+     */
+    annotations?: Schema$Annotation[];
+    /**
+     * Output only. Attachments that were part of the quoted message. These are copies of the quoted message's attachment metadata. Populated only for FORWARD quote type.
+     */
+    attachments?: Schema$Attachment[];
+    /**
+     * Output only. Contains the quoted message `text` with markups added to support rich formatting like hyperlinks,custom emojis, markup, etc. Populated only for FORWARD quote type.
+     */
+    formattedText?: string | null;
+    /**
+     * Output only. The quoted message's author name. Populated for both REPLY & FORWARD quote types.
+     */
+    sender?: string | null;
+    /**
+     * Output only. Snapshot of the quoted message's text content.
+     */
+    text?: string | null;
   }
   /**
    * A reaction to a message.

@@ -2043,43 +2043,6 @@ export namespace alloydb_v1beta {
     status?: string | null;
   }
   /**
-   * BigQueryResourceMetadata contains information about the BigQuery resource. Next ID: 9
-   */
-  export interface Schema$StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata {
-    /**
-     * The creation time of the resource, i.e. the time when resource is created and recorded in partner service.
-     */
-    createTime?: string | null;
-    /**
-     * Required. Full resource name of this instance.
-     */
-    fullResourceName?: string | null;
-    /**
-     * Required. location of the resource
-     */
-    location?: string | null;
-    /**
-     * The product this resource represents.
-     */
-    product?: Schema$StorageDatabasecenterProtoCommonProduct;
-    /**
-     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
-     */
-    resourceContainer?: string | null;
-    /**
-     * Required. Database resource id.
-     */
-    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
-    /**
-     * The time at which the resource was updated and recorded at partner service.
-     */
-    updateTime?: string | null;
-    /**
-     * User-provided labels associated with the resource
-     */
-    userLabelSet?: Schema$StorageDatabasecenterPartnerapiV1mainUserLabels;
-  }
-  /**
    * Contains compliance information about a security standard indicating unmet recommendations.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainCompliance {
@@ -2134,10 +2097,6 @@ export namespace alloydb_v1beta {
      * BackupDR metadata is used to ingest metadata from BackupDR.
      */
     backupdrMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata;
-    /**
-     * For BigQuery resource metadata.
-     */
-    bigqueryResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainBigQueryResourceMetadata;
     /**
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */
@@ -2242,7 +2201,7 @@ export namespace alloydb_v1beta {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigquery.googleapis.com/Dataset, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -2479,9 +2438,17 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainMachineConfiguration {
     /**
+     * Optional. Baseline slots for BigQuery Reservations. Baseline slots are in increments of 50.
+     */
+    baselineSlots?: string | null;
+    /**
      * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
+    /**
+     * Optional. Max slots for BigQuery Reservations. Max slots are in increments of 50.
+     */
+    maxReservationSlots?: string | null;
     /**
      * Memory size in bytes. TODO(b/342344482) add proto validations again after bug fix.
      */

@@ -315,7 +315,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Optional. The list of fields to update. Supported fields: * `customer_provided_config`",
+              "description": "Optional. The list of fields to update. Supported fields: * `customer_provided_config` * `customer_provided_config.notebooklm_config.observability_config`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1505,6 +1505,35 @@
                 },
                 "dataStores": {
                   "methods": {
+                    "addPatientFilter": {
+                      "description": "Adds a group of patient IDs as a patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:addPatientFilter",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.addPatientFilter",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+dataStore}:addPatientFilter",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
                     "completeQuery": {
                       "description": "Completes the specified user input with keyword suggestions.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:completeQuery",
@@ -1631,6 +1660,35 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "deletePatientFilter": {
+                      "description": "Deletes the entire patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:deletePatientFilter",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.deletePatientFilter",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+dataStore}:deletePatientFilter",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
@@ -1790,6 +1848,64 @@
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
+                    "removePatientFilter": {
+                      "description": "Removes a group of patient IDs from the patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the list of patient IDs to remove will be constructed from the direct members of the group which are Patient resources.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:removePatientFilter",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.removePatientFilter",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+dataStore}:removePatientFilter",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "replacePatientFilter": {
+                      "description": "Replaces the patient filter for the data store. This method is essentially a combination of DeletePatientFilters and AddPatientFilter. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:replacePatientFilter",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataStores.replacePatientFilter",
+                      "parameterOrder": [
+                        "dataStore"
+                      ],
+                      "parameters": {
+                        "dataStore": {
+                          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+dataStore}:replacePatientFilter",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
                     "trainCustomModel": {
                       "description": "Trains a custom model.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}:trainCustomModel",
@@ -1913,7 +2029,7 @@
                               "type": "string"
                             },
                             "view": {
-                              "description": "The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.",
+                              "description": "The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.",
                               "enum": [
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
@@ -1954,7 +2070,7 @@
                               "type": "string"
                             },
                             "view": {
-                              "description": "The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.",
+                              "description": "The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.",
                               "enum": [
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
@@ -5091,6 +5207,67 @@
                             "https://www.googleapis.com/auth/cloud-platform",
                             "https://www.googleapis.com/auth/discoveryengine.readwrite"
                           ]
+                        },
+                        "getConfig": {
+                          "description": "Gets the AnalyticsConfig.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/analytics/config",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.analytics.getConfig",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the analytics customer config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/analytics/config`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/analytics/config$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAnalyticsConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
+                        },
+                        "updateConfig": {
+                          "description": "Updates the AnalyticsConfig for analytics.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/analytics/config",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.analytics.updateConfig",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the analytics customer config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/analytics/config`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/analytics/config$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "The list of fields of AnalyticsConfig to update. If not specified, the method will perform a full replacement.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAnalyticsConfig"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAnalyticsConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                          ]
                         }
                       }
                     },
@@ -5271,7 +5448,7 @@
                               "type": "integer"
                             },
                             "pageSize": {
-                              "description": "Optional. Maximum number of AgentViewss to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
+                              "description": "Optional. Maximum number of AgentViews to return. If unspecified, defaults to 100. The maximum allowed value is 1000; anything above that will be coerced down to 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -5446,6 +5623,11 @@
                                   "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
                                   "required": true,
                                   "type": "string"
+                                },
+                                "revisionId": {
+                                  "description": "Optional. The Revision ID of the Agent to disable. If not specified, the latest revision will be disabled.",
+                                  "location": "query",
+                                  "type": "string"
                                 }
                               },
                               "path": "v1alpha/{+name}:disableAgent",
@@ -5472,6 +5654,11 @@
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
                                   "required": true,
+                                  "type": "string"
+                                },
+                                "revisionId": {
+                                  "description": "Optional. The Revision ID of the Agent to enable. If not specified, the latest revision will be enabled.",
+                                  "location": "query",
                                   "type": "string"
                                 }
                               },
@@ -7272,6 +7459,35 @@
             },
             "dataStores": {
               "methods": {
+                "addPatientFilter": {
+                  "description": "Adds a group of patient IDs as a patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:addPatientFilter",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.addPatientFilter",
+                  "parameterOrder": [
+                    "dataStore"
+                  ],
+                  "parameters": {
+                    "dataStore": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+dataStore}:addPatientFilter",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
                 "completeQuery": {
                   "description": "Completes the specified user input with keyword suggestions.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:completeQuery",
@@ -7398,6 +7614,35 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.assist.readwrite",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "deletePatientFilter": {
+                  "description": "Deletes the entire patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:deletePatientFilter",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.deletePatientFilter",
+                  "parameterOrder": [
+                    "dataStore"
+                  ],
+                  "parameters": {
+                    "dataStore": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+dataStore}:deletePatientFilter",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
@@ -7557,6 +7802,64 @@
                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                   ]
                 },
+                "removePatientFilter": {
+                  "description": "Removes a group of patient IDs from the patient filter for the data store. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the list of patient IDs to remove will be constructed from the direct members of the group which are Patient resources.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:removePatientFilter",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.removePatientFilter",
+                  "parameterOrder": [
+                    "dataStore"
+                  ],
+                  "parameters": {
+                    "dataStore": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+dataStore}:removePatientFilter",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
+                "replacePatientFilter": {
+                  "description": "Replaces the patient filter for the data store. This method is essentially a combination of DeletePatientFilters and AddPatientFilter. Patient filters are empty by default when a data store is created, and are stored in a separate table. The data store must first be created, and must be a healthcare data store. This method will fail if the data store does not have a patient filter. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}:replacePatientFilter",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.dataStores.replacePatientFilter",
+                  "parameterOrder": [
+                    "dataStore"
+                  ],
+                  "parameters": {
+                    "dataStore": {
+                      "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+dataStore}:replacePatientFilter",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                  ]
+                },
                 "updateDocumentProcessingConfig": {
                   "description": "Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/documentProcessingConfig",
@@ -7651,7 +7954,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.",
+                          "description": "The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.",
                           "enum": [
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
@@ -7692,7 +7995,7 @@
                           "type": "string"
                         },
                         "view": {
-                          "description": "The view to apply to the returned Branch. Defaults to Branch.BranchView.BASIC if unspecified.",
+                          "description": "The view to apply to the returned Branch. Defaults to BranchView.BRANCH_VIEW_BASIC if unspecified.",
                           "enum": [
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
@@ -12111,7 +12414,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260125",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -13499,7 +13802,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -13726,7 +14029,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -13767,7 +14070,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -14618,7 +14921,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -14636,6 +14939,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
@@ -14753,6 +15060,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -14929,6 +15292,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15403,9 +15773,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -16549,6 +16937,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest": {
+      "description": "Request for DataStoreService.AddPatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAddPatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition": {
       "description": "Stores the definition of an agent that uses ADK and is deployed to Agent Engine (formerly known as Reasoning Engine).",
       "id": "GoogleCloudDiscoveryengineV1alphaAdkAgentDefinition",
@@ -16640,7 +17046,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec": {
-      "description": "Specification to boost suggestions based on the condtion of the suggestion.",
+      "description": "Specification to boost suggestions based on the condition of the suggestion.",
       "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec",
       "properties": {
         "conditionBoostSpecs": {
@@ -17206,6 +17612,12 @@
           "description": "The reason why the agent was suspended. Only set if the state is SUSPENDED.",
           "type": "string"
         },
+        "updateTime": {
+          "description": "Output only. The timestamp when the agent was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "userAnnotations": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaUserAnnotations",
           "description": "Optional. Per-user annotations of the current caller for the agent."
@@ -17394,6 +17806,21 @@
         "tableId": {
           "description": "Required. The AlloyDB table to copy the data from with a length limit of 256 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAnalyticsConfig": {
+      "description": "The customer controllable config for Analytics.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAnalyticsConfig",
+      "properties": {
+        "name": {
+          "description": "Required. The resource name of the analytics customer config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}/analytics/config`",
+          "type": "string"
+        },
+        "userLevelMetricsEnabled": {
+          "description": "Whether user-level metrics are enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -18839,7 +19266,7 @@
           "description": "Possibly grounded response text or media from the assistant."
         },
         "replyId": {
-          "description": "Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple AssistantService.StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.",
+          "description": "Output only. When set, uniquely identifies a reply within the `AssistAnswer` resource. During an AssistantService.StreamAssist call, multiple `Reply` messages with the same ID can occur within the response stream (across multiple StreamAssistResponse messages). These represent parts of a single `Reply` message in the final `AssistAnswer` resource.",
           "readOnly": true,
           "type": "string"
         }
@@ -19343,7 +19770,7 @@
           "type": "boolean"
         },
         "scopes": {
-          "description": "Required. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events`",
+          "description": "Optional. The scopes to request. Example: `https://www.googleapis.com/auth/calendar.events` If omitted, no additional scopes are requested beyond those required by the authorization uri. If set, it will overwrite the scopes in the authorization uri when acquiring user authorization.",
           "items": {
             "type": "string"
           },
@@ -19910,7 +20337,7 @@
       "properties": {
         "branchStats": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaBranchBranchStats",
-          "description": "Output only. Stistics describing a branch. This field is not populated in BranchView.BASIC view.",
+          "description": "Output only. Statistics describing a branch. This field is not populated in BranchView.BRANCH_VIEW_BASIC view.",
           "readOnly": true
         },
         "displayName": {
@@ -21647,7 +22074,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -21874,7 +22301,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -21915,7 +22342,7 @@
             "Default value.",
             "The connector is being set up.",
             "The connector is successfully set up and awaiting next sync run.",
-            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by CollectionService.DeleteCollection API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
             "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
@@ -22438,6 +22865,17 @@
         "updateTime": {
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest": {
+      "description": "Request for DataStoreService.DeletePatientFilters method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeletePatientFiltersRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned.",
           "type": "string"
         }
       },
@@ -23107,7 +23545,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -23125,6 +23563,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
@@ -23251,6 +23693,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -24292,6 +24790,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -25592,7 +26097,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse": {
-      "description": "Response message for UserLicenseService.ListLicenseConfigUsageStats method.",
+      "description": "Response message for UserLicenseService.ListLicenseConfigsUsageStats method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListLicenseConfigsUsageStatsResponse",
       "properties": {
         "licenseConfigUsageStats": {
@@ -25934,6 +26439,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata": {
+      "description": "Metadata related to the progress of the various patient filter operations. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaPatientFilterOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "filtersAddedCount": {
+          "description": "The number of patient IDs added to the patient filter.",
+          "format": "int64",
+          "type": "string"
+        },
+        "filtersRemovedCount": {
+          "description": "The number of patient IDs removed from the patient filter.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaPauseEngineRequest": {
       "description": "Request for pausing training of an engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaPauseEngineRequest",
@@ -26029,9 +26561,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -26963,6 +27513,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest": {
+      "description": "Request for DataStoreService.RemovePatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRemovePatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore does not have a patient filter, a NOT_FOUND error will be returned",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the list of patients to remove from the patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the list of IDs to remove will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaRemoveSuggestionRequest": {
       "description": "Request message for CompletionService.RemoveSuggestion method.",
       "id": "GoogleCloudDiscoveryengineV1alphaRemoveSuggestionRequest",
@@ -26995,6 +27563,24 @@
       "description": "Response message for CompletionService.RemoveSuggestion method.",
       "id": "GoogleCloudDiscoveryengineV1alphaRemoveSuggestionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest": {
+      "description": "Request for DataStoreService.ReplacePatientFilter method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned. If the requested DataStore already has a patient filter, an ALREADY_EXISTS error will be returned.",
+          "type": "string"
+        },
+        "filterGroups": {
+          "description": "Required. Names of the Group resources to use as a basis for the list of patients for the new patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. if the caller does not have permission to access the FHIR store, regardless of whether it exists, PERMISSION_DENIED error is returned. If the discovery engine service account does not have permission to access the FHIR store, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the group is not found at the location, a RESOURCE_NOT_FOUND error will be returned. The filter group must be a FHIR resource name of type Group, and the new filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaReply": {
@@ -27583,7 +28169,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -28228,7 +28814,7 @@
           "type": "array"
         },
         "extractedFilterBehavior": {
-          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
             "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
             "HARD_FILTER",
@@ -28484,7 +29070,8 @@
         },
         "naturalLanguageQueryUnderstandingInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfo",
-          "description": "Natural language query understanding information for the returned results."
+          "description": "Output only. Natural language query understanding information for the returned results.",
+          "readOnly": true
         },
         "nextPageToken": {
           "description": "A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
@@ -30848,6 +31435,14 @@
           "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
+        "nodes": {
+          "description": "Output only. The nodes associated with the Widget Config.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigNode"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "resultDisplayType": {
           "deprecated": true,
           "description": "The type of snippet to display in UCS widget. - RESULT_DISPLAY_TYPE_UNSPECIFIED for existing users. - SNIPPET for new non-enterprise search users. - EXTRACTIVE_ANSWER for new enterprise search users.",
@@ -31001,7 +31596,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         }
       },
@@ -31080,7 +31675,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         },
         "workspaceType": {
@@ -31137,7 +31732,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookUpWidgetConfig, the project number and location part is erased in this field.",
+          "description": "The name of the data store. It should be data store resource name Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field.",
           "type": "string"
         }
       },
@@ -31197,6 +31792,63 @@
       "properties": {
         "url": {
           "description": "Image URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigNode": {
+      "description": "Represents a single reusable computational or logical unit.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigNode",
+      "properties": {
+        "description": {
+          "description": "Output only. A detailed description of what the node does.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. A human readable name for the node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "Output only. An identifier or URL pointing to an icon representing this node type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outputSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. The output schema of the tool. This schema is expected to conform to the OpenAPI Schema standard (see https://spec.openapis.org/oas/v3.0.3.html/ and AIP-146). It describes the structure of the output produced by this node.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "parameterSchema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. The parameter schema of the tool. This schema is expected to conform to the OpenAPI Schema standard (see https://spec.openapis.org/oas/v3.0.3.html and AIP-146). It describes the expected structure of the parameters that this node accepts.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "type": {
+          "description": "Output only. The type of the node.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TRIGGER",
+            "FLOW",
+            "CONNECTOR"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Trigger type.",
+            "Flow type.",
+            "Connector type."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -31306,7 +31958,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "readOnly": true,
           "type": "object"
         },
@@ -32694,7 +33346,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails`",
           "type": "object"
         },
         "industryVertical": {
@@ -32712,6 +33364,10 @@
             "The healthcare FHIR vertical."
           ],
           "type": "string"
+        },
+        "knowledgeGraphConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
+          "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
@@ -32829,6 +33485,62 @@
         "companyName": {
           "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig": {
+      "description": "Configuration message for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
+      "properties": {
+        "cloudKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enableCloudKnowledgeGraph": {
+          "description": "Whether to enable the Cloud Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "enablePrivateKnowledgeGraph": {
+          "description": "Whether to enable the Private Knowledge Graph for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "featureConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig",
+          "description": "Optional. Feature config for the Knowledge Graph."
+        },
+        "privateKnowledgeGraphTypes": {
+          "description": "Specify entity types to support.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig": {
+      "description": "Feature config for the Knowledge Graph.",
+      "id": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfigFeatureConfig",
+      "properties": {
+        "disablePrivateKgAutoComplete": {
+          "description": "Whether to disable the private KG auto complete for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgEnrichment": {
+          "description": "Whether to disable the private KG enrichment for the engine. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUiChips": {
+          "description": "Whether to disable the private KG for query UI chips. Defaults to false if not specified.",
+          "type": "boolean"
+        },
+        "disablePrivateKgQueryUnderstanding": {
+          "description": "Whether to disable the private KG query understanding for the engine. Defaults to false if not specified.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -33095,6 +33807,13 @@
         "enableStaticIndexingForBatchIngestion": {
           "description": "Whether to enable static indexing for `HEALTHCARE_FHIR` batch ingestion. If set to `true`, the batch ingestion will be processed in a static indexing mode which is slower but more capable of handling larger volume.",
           "type": "boolean"
+        },
+        "initialFilterGroups": {
+          "description": "Optional. Names of the Group resources to use as a basis for the initial patient filter, in format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Group/{group_id}`. The filter group must be a FHIR resource name of type Group, and the filter will be constructed from the direct members of the group which are Patient resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -33705,9 +34424,27 @@
           "format": "int64",
           "type": "string"
         },
+        "indexingCoreThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the indexing core subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update indexing core subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchQpmThresholdNextUpdateTime": {
+          "description": "Output only. The earliest next update time for the search QPM subscription threshold. This is based on the next_update_time returned by the underlying Cloud Billing Subscription V3 API. This field is populated only if an update QPM subscription threshold request is succeeded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "startTime": {
           "description": "Optional. The start time of the currently active billing subscription.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "terminateTime": {
+          "description": "Output only. The latest terminate effective time of search qpm and indexing core subscriptions.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -34119,7 +34856,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
+          "description": "Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as PageInfo.page_category. This field is the equivalent of the query for browse (navigation) queries. It's used by the browse model when the query is empty. If the field is empty, it will not be used by the browse model. If the field contains more than one element, only the first element will be used. To represent full path of a category, use '>' character to separate different hierarchies. If '>' is part of the category name, replace it with other character(s). For example, `Graphics Cards > RTX>4090 > Founders Edition` where \"RTX > 4090\" represents one level, can be rewritten as `Graphics Cards > RTX_4090 > Founders Edition`",
           "items": {
             "type": "string"
           },
@@ -34760,7 +35497,7 @@
           "type": "array"
         },
         "extractedFilterBehavior": {
-          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition is set to FilterExtractionCondition.ENABLED.",
           "enum": [
             "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
             "HARD_FILTER",
@@ -35606,7 +36343,7 @@
       "type": "object"
     },
     "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest": {
-      "description": "Request for SourceService.BatchDeleteSourcesRequest method.",
+      "description": "Request for BatchDeleteSourcesRequest method.",
       "id": "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest",
       "properties": {
         "names": {
@@ -35672,9 +36409,17 @@
           "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonIngestionError",
           "description": "Indicates an error occurred while ingesting the source."
         },
+        "mimeTypeBlocked": {
+          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked",
+          "description": "Indicates that the source MIME type is blocked."
+        },
         "paywallError": {
           "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError",
           "description": "Indicates that the source is paywalled and cannot be ingested."
+        },
+        "policyCheckFailed": {
+          "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed",
+          "description": "Indicates that the policy check failed."
         },
         "sourceEmpty": {
           "$ref": "GoogleCloudNotebooklmV1alphaFailureReasonSourceEmpty",
@@ -35763,9 +36508,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked": {
+      "description": "Indicates that the source MIME type is blocked.",
+      "id": "GoogleCloudNotebooklmV1alphaFailureReasonMimeTypeBlocked",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError": {
       "description": "Indicates that the source is paywalled and cannot be ingested.",
       "id": "GoogleCloudNotebooklmV1alphaFailureReasonPaywallError",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed": {
+      "description": "Indicates that the policy check failed.",
+      "id": "GoogleCloudNotebooklmV1alphaFailureReasonPolicyCheckFailed",
       "properties": {},
       "type": "object"
     },

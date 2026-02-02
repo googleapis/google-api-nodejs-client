@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v15.1.0...cloudsupport-v15.2.0) (2026-01-28)
+
+
+### Features
+
+* **cloudsupport:** update the API ([1091666](https://github.com/googleapis/google-api-nodejs-client/commit/1091666d6536b5ad56442393b1fc455e134decb8))
+
 ## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v15.0.0...cloudsupport-v15.1.0) (2025-12-05)
 
 

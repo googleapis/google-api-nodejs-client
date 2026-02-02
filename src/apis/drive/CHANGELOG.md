@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v20.0.0...drive-v20.0.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([0e2be01](https://github.com/googleapis/google-api-nodejs-client/commit/0e2be01ceb697cea9c6d1cb3fe0f30aa498fa51e))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v19.2.1...drive-v20.0.0) (2025-12-15)
 
 

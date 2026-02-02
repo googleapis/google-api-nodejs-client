@@ -521,23 +521,6 @@ export namespace youtube_v3 {
     type?: string | null;
   }
   /**
-   * Response for the Videos.stats API. Returns VideoStat information about a batch of videos. VideoStat contains a subset of the information in Video that is relevant to statistics and content details.
-   */
-  export interface Schema$BatchGetStatsResponse {
-    /**
-     * Output only. Etag of this resource.
-     */
-    etag?: string | null;
-    /**
-     * Output only. The videos' stats information.
-     */
-    items?: Schema$VideoStat[];
-    /**
-     * Output only. Identifies what kind of resource this is. Value: the fixed string "youtube#batchGetStatsResponse".
-     */
-    kind?: string | null;
-  }
-  /**
    * A *caption* resource represents a YouTube caption track. A caption track is associated with exactly one YouTube video.
    */
   export interface Schema$Caption {
@@ -4578,35 +4561,6 @@ export namespace youtube_v3 {
     title?: string | null;
   }
   /**
-   * A *VideoStat* resource represents a YouTube video's stats.
-   */
-  export interface Schema$VideoStat {
-    /**
-     * Output only. The VideoStatsContentDetails object contains information about the video content, including the length of the video.
-     */
-    contentDetails?: Schema$VideoStatsContentDetails;
-    /**
-     * Output only. Etag of this resource.
-     */
-    etag?: string | null;
-    /**
-     * Output only. The ID that YouTube uses to uniquely identify the video.
-     */
-    id?: string | null;
-    /**
-     * Output only. Identifies what kind of resource this is. Value: the fixed string "youtube#videoStats".
-     */
-    kind?: string | null;
-    /**
-     * Output only. The VideoStatsSnippet object contains basic details about the video, such publish time.
-     */
-    snippet?: Schema$VideoStatsSnippet;
-    /**
-     * Output only. The VideoStatsStatistics object contains statistics about the video.
-     */
-    statistics?: Schema$VideoStatsStatistics;
-  }
-  /**
    * Statistics about the video, such as the number of times the video was viewed or liked.
    */
   export interface Schema$VideoStatistics {
@@ -4628,41 +4582,6 @@ export namespace youtube_v3 {
     likeCount?: string | null;
     /**
      * The number of times the video has been viewed.
-     */
-    viewCount?: string | null;
-  }
-  /**
-   * Details about the content of a YouTube Video. This is a subset of the information in VideoContentDetails specifically for the Videos.stats API.
-   */
-  export interface Schema$VideoStatsContentDetails {
-    /**
-     * Output only. The length of the video. The property value is a [`google.protobuf.Duration`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) object.
-     */
-    duration?: string | null;
-  }
-  /**
-   * Basic details about a video. This is a subset of the information in VideoSnippet specifically for the Videos.stats API.
-   */
-  export interface Schema$VideoStatsSnippet {
-    /**
-     * Output only. The date and time that the video was uploaded. The property value is a [`google.protobuf.Timestamp`](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#timestamp) object.
-     */
-    publishTime?: string | null;
-  }
-  /**
-   * Statistics about the video, such as the number of times the video was viewed or liked.
-   */
-  export interface Schema$VideoStatsStatistics {
-    /**
-     * Output only. The number of comments for the video.
-     */
-    commentCount?: string | null;
-    /**
-     * Output only. The number of users who have indicated that they liked the video by giving it a positive rating.
-     */
-    likeCount?: string | null;
-    /**
-     * Output only. The number of times the video has been viewed.
      */
     viewCount?: string | null;
   }
@@ -19279,11 +19198,9 @@ export namespace youtube_v3 {
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
     liveChat: Resource$Youtube$V3$Livechat;
-    videos: Resource$Youtube$V3$Videos;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
-      this.videos = new Resource$Youtube$V3$Videos(this.context);
     }
 
     /**
@@ -19660,174 +19577,5 @@ export namespace youtube_v3 {
      * Specifies the size of the profile image that should be returned for each user.
      */
     profileImageSize?: number;
-  }
-
-  export class Resource$Youtube$V3$Videos {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Retrieves a batch of VideoStat resources, possibly filtered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.youtube.v3.videos.batchGetStats({
-     *     // Required. Return videos with the given ids. The number of IDs specified cannot exceed 50.
-     *     id: 'placeholder-value',
-     *     // Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     *     onBehalfOfContentOwner: 'placeholder-value',
-     *     // Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
-     *     part: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchGetStats(
-      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchGetStats(
-      params?: Params$Resource$Youtube$V3$Videos$Batchgetstats,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>;
-    batchGetStats(
-      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchGetStats(
-      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetStatsResponse>,
-      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
-    ): void;
-    batchGetStats(
-      params: Params$Resource$Youtube$V3$Videos$Batchgetstats,
-      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
-    ): void;
-    batchGetStats(
-      callback: BodyResponseCallback<Schema$BatchGetStatsResponse>
-    ): void;
-    batchGetStats(
-      paramsOrCallback?:
-        | Params$Resource$Youtube$V3$Videos$Batchgetstats
-        | BodyResponseCallback<Schema$BatchGetStatsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$BatchGetStatsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$BatchGetStatsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetStatsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Youtube$V3$Videos$Batchgetstats;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Youtube$V3$Videos$Batchgetstats;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/youtube/v3/videos:batchGetStats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$BatchGetStatsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$BatchGetStatsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Youtube$V3$Videos$Batchgetstats extends StandardParameters {
-    /**
-     * Required. Return videos with the given ids. The number of IDs specified cannot exceed 50.
-     */
-    id?: string[];
-    /**
-     * Optional. **Note:** This parameter is intended exclusively for YouTube content partners. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     */
-    onBehalfOfContentOwner?: string;
-    /**
-     * Required. The `**part**` parameter specifies a comma-separated list of one or more `videoStat` resource properties that the API response will include. If the parameter identifies a property that contains child properties, the child properties will be included in the response. For example, in a `videoStat` resource, the `statistics` property contains `view_count` and `like_count`. As such, if you set `**part=snippet**`, the API response will contain all of those properties.
-     */
-    part?: string[];
   }
 }

@@ -38,7 +38,7 @@
   "canonicalName": "Cloud Search",
   "description": "Cloud Search provides cloud-based search capabilities over Google Workspace data. The Cloud Search API allows indexing of non-Google Workspace data into Cloud Search.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/cloud-search/docs/guides/",
+  "documentationLink": "https://developers.google.com/workspace/cloud-search/docs/guides/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -521,7 +521,7 @@
                       "type": "string"
                     },
                     "version": {
-                      "description": "Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).",
+                      "description": "Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/workspace/cloud-search/docs/guides/operations).",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -807,7 +807,7 @@
     "media": {
       "methods": {
         "upload": {
-          "description": "Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.",
+          "description": "Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/workspace/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/workspace/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.",
           "flatPath": "v1/media/{mediaId}",
           "httpMethod": "POST",
           "id": "cloudsearch.media.upload",
@@ -916,6 +916,11 @@
                   "description": "The standard list page token.",
                   "location": "query",
                   "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}/lro",
@@ -937,27 +942,8 @@
     },
     "query": {
       "methods": {
-        "debugSearch": {
-          "description": "Returns Debug information for Cloud Search Query API provides the search method. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
-          "flatPath": "v1/query:debugSearch",
-          "httpMethod": "POST",
-          "id": "cloudsearch.query.debugSearch",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/query:debugSearch",
-          "request": {
-            "$ref": "SearchRequest"
-          },
-          "response": {
-            "$ref": "DebugResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud_search",
-            "https://www.googleapis.com/auth/cloud_search.query"
-          ]
-        },
         "removeActivity": {
-          "description": "Provides functionality to remove logged activity for a user. Currently to be used only for Chat 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "Provides functionality to remove logged activity for a user. Currently to be used only for Chat 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/workspace/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query:removeActivity",
           "httpMethod": "POST",
           "id": "cloudsearch.query.removeActivity",
@@ -976,7 +962,7 @@
           ]
         },
         "search": {
-          "description": "The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from Google Workspace apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from Google Workspace apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/workspace/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query/search",
           "httpMethod": "POST",
           "id": "cloudsearch.query.search",
@@ -995,7 +981,7 @@
           ]
         },
         "suggest": {
-          "description": "Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/workspace/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query/suggest",
           "httpMethod": "POST",
           "id": "cloudsearch.query.suggest",
@@ -1018,7 +1004,7 @@
         "sources": {
           "methods": {
             "list": {
-              "description": "Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+              "description": "Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/workspace/cloud-search/docs/guides/delegation/).",
               "flatPath": "v1/query/sources",
               "httpMethod": "GET",
               "id": "cloudsearch.query.sources.list",
@@ -1253,7 +1239,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/workspace/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1441,7 +1427,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/workspace/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1507,7 +1493,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+                  "description": "Only applies to [`settings.searchapplications.patch`](https://developers.google.com/workspace/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -2115,7 +2101,7 @@
       }
     }
   },
-  "revision": "20241113",
+  "revision": "20260114",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -2668,27 +2654,6 @@
         "enableDebugging": {
           "description": "If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "DebugResponse": {
-      "description": "Debug Search Response.",
-      "id": "DebugResponse",
-      "properties": {
-        "gsrRequest": {
-          "description": "Serialized string of GenericSearchRequest.",
-          "format": "byte",
-          "type": "string"
-        },
-        "gsrResponse": {
-          "description": "Serialized string of GenericSearchResponse.",
-          "format": "byte",
-          "type": "string"
-        },
-        "searchResponse": {
-          "$ref": "SearchResponse",
-          "description": "Search response."
         }
       },
       "type": "object"
@@ -5359,7 +5324,7 @@
           "description": "The structured data for the item that should conform to a registered object definition in the schema for the data source."
         },
         "version": {
-          "description": "Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).",
+          "description": "Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/workspace/cloud-search/docs/guides/operations).",
           "format": "byte",
           "type": "string"
         }
@@ -5367,7 +5332,7 @@
       "type": "object"
     },
     "ItemAcl": {
-      "description": "Access control list information for the item. For more information see [Map ACLs](https://developers.google.com/cloud-search/docs/guides/acls).",
+      "description": "Access control list information for the item. For more information see [Map ACLs](https://developers.google.com/workspace/cloud-search/docs/guides/acls).",
       "id": "ItemAcl",
       "properties": {
         "aclInheritanceType": {
@@ -5667,6 +5632,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -6493,7 +6465,7 @@
           "type": "boolean"
         },
         "isWildcardSearchable": {
-          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable. For more details, see [Define object properties](https://developers.google.com/cloud-search/docs/guides/schema-guide#properties)",
+          "description": "Indicates that users can perform wildcard search for this property. Only supported for Text properties. IsReturnable must be true to set this option. In a given datasource maximum of 5 properties can be marked as is_wildcard_searchable. For more details, see [Define object properties](https://developers.google.com/workspace/cloud-search/docs/guides/schema-guide#properties)",
           "type": "boolean"
         },
         "name": {
@@ -6635,6 +6607,16 @@
         },
         "interpretedQuery": {
           "description": "The interpretation of the query used in search. For example, queries with natural language intent like \"email from john\" will be interpreted as \"from:john source:mail\". This field will not be filled when the reason is NOT_ENOUGH_RESULTS_FOUND_FOR_USER_QUERY.",
+          "type": "string"
+        },
+        "interpretedQueryActualResultCount": {
+          "description": "The actual number of results returned by the interpreted query.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "interpretedQueryEstimatedResultCount": {
+          "description": "The estimated number of results returned by the interpreted query.",
+          "format": "int64",
           "type": "string"
         },
         "reason": {
@@ -7268,7 +7250,7 @@
       "type": "object"
     },
     "SearchRequest": {
-      "description": "The search API request. NEXT ID: 17",
+      "description": "The search API request. NEXT ID: 24",
       "id": "SearchRequest",
       "properties": {
         "contextAttributes": {
@@ -7321,7 +7303,7 @@
       "type": "object"
     },
     "SearchResponse": {
-      "description": "The search API response. NEXT ID: 17",
+      "description": "The search API response. NEXT ID: 19",
       "id": "SearchResponse",
       "properties": {
         "debugInfo": {
@@ -7386,7 +7368,7 @@
       "type": "object"
     },
     "SearchResult": {
-      "description": "Results containing indexed information for a document.",
+      "description": "Results containing indexed information for a document. Next ID: 16",
       "id": "SearchResult",
       "properties": {
         "clusteredResults": {
@@ -7910,7 +7892,7 @@
           "$ref": "DataSource"
         },
         "updateMask": {
-          "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
+          "description": "Only applies to [`settings.datasources.patch`](https://developers.google.com/workspace/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.",
           "format": "google-fieldmask",
           "type": "string"
         }

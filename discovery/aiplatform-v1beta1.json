@@ -8057,49 +8057,6 @@
         }
       }
     },
-    "project": {
-      "resources": {
-        "locations": {
-          "resources": {
-            "datasets": {
-              "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/project/{projectId}/locations/{locationsId}/datasets/{datasetsId}:getIamPolicy",
-                  "httpMethod": "POST",
-                  "id": "aiplatform.project.locations.datasets.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^project/[^/]+/locations/[^/]+/datasets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "projects": {
       "methods": {
         "fetchPublisherModelConfig": {
@@ -10049,6 +10006,37 @@
                   "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1beta1Dataset"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.datasets.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -12485,7 +12473,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the Endpoint.",
+                      "description": "Identifier. The resource name of the Endpoint.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -12780,7 +12768,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the Endpoint.",
+                      "description": "Identifier. The resource name of the Endpoint.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -24624,7 +24612,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_field}\"}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name`",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Input format: `{paths: \"${updated_field}\"}` Updatable fields: * `encryption_spec.kms_key_name` * `display_name` * `software_config.post_startup_script_config.post_startup_script` * `software_config.post_startup_script_config.post_startup_script_url` * `software_config.post_startup_script_config.post_startup_script_behavior` * `software_config.env` * `software_config.colab_image.release_name` * `software_config.custom_container_config.image_uri`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -31105,7 +31093,8 @@
                     "$ref": "GoogleCloudAiplatformV1beta1Tensorboard"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "list": {
@@ -31157,7 +31146,8 @@
                     "$ref": "GoogleCloudAiplatformV1beta1ListTensorboardsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "patch": {
@@ -31356,7 +31346,8 @@
                         "$ref": "GoogleCloudAiplatformV1beta1TensorboardExperiment"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
                     },
                     "list": {
@@ -31408,7 +31399,8 @@
                         "$ref": "GoogleCloudAiplatformV1beta1ListTensorboardExperimentsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
                     },
                     "patch": {
@@ -31741,7 +31733,8 @@
                             "$ref": "GoogleCloudAiplatformV1beta1TensorboardRun"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only"
                           ]
                         },
                         "list": {
@@ -31793,7 +31786,8 @@
                             "$ref": "GoogleCloudAiplatformV1beta1ListTensorboardRunsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud-platform.read-only"
                           ]
                         },
                         "patch": {
@@ -32126,7 +32120,8 @@
                                 "$ref": "GoogleCloudAiplatformV1beta1TensorboardTimeSeries"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/cloud-platform.read-only"
                               ]
                             },
                             "list": {
@@ -32178,7 +32173,8 @@
                                 "$ref": "GoogleCloudAiplatformV1beta1ListTensorboardTimeSeriesResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/cloud-platform.read-only"
                               ]
                             },
                             "patch": {
@@ -32248,7 +32244,8 @@
                                 "$ref": "GoogleCloudAiplatformV1beta1ReadTensorboardTimeSeriesDataResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/cloud-platform.read-only"
                               ]
                             },
                             "readBlobData": {
@@ -32279,7 +32276,8 @@
                                 "$ref": "GoogleCloudAiplatformV1beta1ReadTensorboardBlobDataResponse"
                               },
                               "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform"
+                                "https://www.googleapis.com/auth/cloud-platform",
+                                "https://www.googleapis.com/auth/cloud-platform.read-only"
                               ]
                             }
                           },
@@ -37773,7 +37771,7 @@
       }
     }
   },
-  "revision": "20251215",
+  "revision": "20260116",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -39043,7 +39041,7 @@
       "id": "GoogleCloudAiplatformV1beta1AutoscalingMetricSpec",
       "properties": {
         "metricName": {
-          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages`",
+          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count` * `pubsub.googleapis.com/subscription/num_undelivered_messages` * `prometheus.googleapis.com/vertex_dcgm_fi_dev_gpu_util` * `prometheus.googleapis.com/vertex_vllm_gpu_cache_usage_perc` * `prometheus.googleapis.com/vertex_vllm_num_requests_waiting`",
           "type": "string"
         },
         "monitoredResourceLabels": {
@@ -39583,6 +39581,10 @@
         "instancesFormat": {
           "description": "Required. The format in which instances are given, must be one of the Model's supported_input_storage_formats.",
           "type": "string"
+        },
+        "vertexMultimodalDatasetSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetSource",
+          "description": "A Vertex Managed Dataset. Currently, only datasets of type Multimodal are supported."
         }
       },
       "type": "object"
@@ -39631,6 +39633,10 @@
         "predictionsFormat": {
           "description": "Required. The format in which Vertex AI gives the predictions, must be one of the Model's supported_output_storage_formats.",
           "type": "string"
+        },
+        "vertexMultimodalDatasetDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetDestination",
+          "description": "The details for a Vertex Multimodal Dataset that will be created for the output."
         }
       },
       "type": "object"
@@ -39651,6 +39657,11 @@
         },
         "gcsOutputDirectory": {
           "description": "Output only. The full path of the Cloud Storage directory created, into which the prediction output is written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vertexMultimodalDatasetName": {
+          "description": "Output only. The resource name of the Vertex Managed Dataset created, into which the prediction output is written. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
           "readOnly": true,
           "type": "string"
         }
@@ -43567,8 +43578,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the Endpoint.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the Endpoint.",
           "type": "string"
         },
         "network": {
@@ -43820,17 +43830,17 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse": {
-      "description": "Response in LRO for EvaluationService.EvaluateDataset.",
+      "description": "The results from an evaluation run performed by the EvaluationService.",
       "id": "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse",
       "properties": {
         "aggregationOutput": {
           "$ref": "GoogleCloudAiplatformV1beta1AggregationOutput",
-          "description": "Output only. Aggregation statistics derived from results of EvaluationService.EvaluateDataset.",
+          "description": "Output only. Aggregation statistics derived from results of EvaluationService.",
           "readOnly": true
         },
         "outputInfo": {
           "$ref": "GoogleCloudAiplatformV1beta1OutputInfo",
-          "description": "Output only. Output info for EvaluationService.EvaluateDataset.",
+          "description": "Output only. Output info for EvaluationService.",
           "readOnly": true
         }
       },
@@ -43852,7 +43862,7 @@
         },
         "evaluateDatasetResponse": {
           "$ref": "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse",
-          "description": "Output only. Results for EvaluationService.EvaluateDataset.",
+          "description": "Output only. Results for EvaluationService.",
           "readOnly": true
         },
         "operationName": {
@@ -49961,12 +49971,16 @@
           "enum": [
             "THINKING_LEVEL_UNSPECIFIED",
             "LOW",
-            "HIGH"
+            "MEDIUM",
+            "HIGH",
+            "MINIMAL"
           ],
           "enumDescriptions": [
             "Unspecified thinking level.",
             "Low thinking level.",
-            "High thinking level."
+            "Medium thinking level.",
+            "High thinking level.",
+            "MINIMAL thinking level."
           ],
           "type": "string"
         }
@@ -57568,7 +57582,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1OutputInfo": {
-      "description": "Describes the info for output of EvaluationService.EvaluateDataset.",
+      "description": "Describes the info for output of EvaluationService.",
       "id": "GoogleCloudAiplatformV1beta1OutputInfo",
       "properties": {
         "gcsOutputDirectory": {
@@ -57934,7 +57948,7 @@
           "description": "per part media resolution. Media resolution for the input media."
         },
         "text": {
-          "description": "Optional. The text content of the part.",
+          "description": "Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.",
           "type": "string"
         },
         "thought": {
@@ -57963,13 +57977,15 @@
             "MEDIA_RESOLUTION_UNSPECIFIED",
             "MEDIA_RESOLUTION_LOW",
             "MEDIA_RESOLUTION_MEDIUM",
-            "MEDIA_RESOLUTION_HIGH"
+            "MEDIA_RESOLUTION_HIGH",
+            "MEDIA_RESOLUTION_ULTRA_HIGH"
           ],
           "enumDescriptions": [
             "Media resolution has not been set.",
             "Media resolution set to low.",
             "Media resolution set to medium.",
-            "Media resolution set to high."
+            "Media resolution set to high.",
+            "Media resolution set to ultra high. This is for image only."
           ],
           "type": "string"
         }
@@ -58237,7 +58253,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "The spec of the pipeline.",
+          "description": "A compiled definition of a pipeline, represented as a `JSON` object. Defines the structure of the pipeline, including its components, tasks, and parameters. This specification is generated by compiling a pipeline function defined in `Python` using the `Kubeflow Pipelines SDK`.",
           "type": "object"
         },
         "pipelineTaskRerunConfigs": {
@@ -61995,7 +62011,7 @@
           "type": "string"
         },
         "pythonVersion": {
-          "description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value is 3.10.",
+          "description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
           "type": "string"
         },
         "requirementsGcsUri": {
@@ -62083,7 +62099,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, default value is 3.10.",
+          "description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
           "type": "string"
         }
       },
@@ -73348,7 +73364,7 @@
           "type": "string"
         },
         "veoDataMixtureRatio": {
-          "description": "Optional. The ratio of Google internal dataset to use in the training mixture, in range of `[0, 1)`. If `0.2`, it means 20% of Google internal dataset and 80% of user dataset will be used for training.",
+          "description": "Optional. The ratio of Google internal dataset to use in the training mixture, in range of `[0, 1)`. If `0.2`, it means 20% of Google internal dataset and 80% of user dataset will be used for training. If not set, the default value is 0.1.",
           "format": "double",
           "type": "number"
         }
@@ -73426,6 +73442,32 @@
       "properties": {
         "servingConfig": {
           "description": "Vertex AI Search Serving Config resource full name. For example, `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}` or `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetDestination": {
+      "description": "The details for a Vertex Multimodal Dataset output.",
+      "id": "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetDestination",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryDestination",
+          "description": "Optional. The destination of the underlying BigQuery table that will be created for the output Multimodal Dataset. If not specified, the BigQuery table will be created in a default BigQuery dataset."
+        },
+        "displayName": {
+          "description": "Optional. Display name of the output dataset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetSource": {
+      "description": "The Vertex Multimodal Dataset for the input content.",
+      "id": "GoogleCloudAiplatformV1beta1VertexMultimodalDatasetSource",
+      "properties": {
+        "datasetName": {
+          "description": "Required. The resource name of the Vertex Dataset. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
           "type": "string"
         }
       },

@@ -695,11 +695,11 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     assignableEmployeeIds?: string[] | null;
     /**
-     * Fixed number of days off per week. An employee has a given day off if they are not assigned to a shift that starts on that day. A week is 7 days and begins on Sunday.
+     * Optional. Fixed number of days off per week. An employee has a given day off if they are not assigned to a shift that starts on that day. A week is 7 days and begins on Sunday.
      */
     daysOffCountPerWeek?: number | null;
     /**
-     * Fixed dates when shifts from this template should not be generated.
+     * Optional. Fixed dates when shifts from this template should not be generated.
      */
     daysOffDates?: Schema$DateList;
     /**

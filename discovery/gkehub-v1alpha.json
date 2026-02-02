@@ -2498,7 +2498,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260119",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2713,7 +2713,7 @@
       "id": "ClusterSelector",
       "properties": {
         "labelSelector": {
-          "description": "The label selector must be a valid CEL (go/cel) expression which evaluates resource.labels.",
+          "description": "Optional. A valid CEL (Common Expression Language) expression which evaluates `resource.labels`.",
           "type": "string"
         }
       },
@@ -3916,7 +3916,8 @@
           "description": "Optional. Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead."
         },
         "management": {
-          "description": "Optional. Enables automatic Feature management.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only supports manual upgrades.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
@@ -7042,7 +7043,7 @@
           "type": "string"
         },
         "rolloutSequence": {
-          "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`. Empty for user initiated rollouts.",
+          "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`.",
           "type": "string"
         },
         "schedule": {
@@ -7051,7 +7052,7 @@
           "readOnly": true
         },
         "stages": {
-          "description": "Output only. The stages of the Rollout. Note: this is only populated for google-initiated rollouts.",
+          "description": "Output only. The stages of the Rollout.",
           "items": {
             "$ref": "RolloutStage"
           },
@@ -7097,7 +7098,7 @@
         },
         "versionUpgrade": {
           "$ref": "VersionUpgrade",
-          "description": "Optional. Config for version upgrade of clusters. Note: Currently for GDCE clusters only."
+          "description": "Optional. Config for version upgrade of clusters."
         }
       },
       "type": "object"
@@ -7242,12 +7243,12 @@
       "id": "RolloutTarget",
       "properties": {
         "cluster": {
-          "description": "Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters/. I.e. for GKE clusters, it is formatted as: //container.googleapis.com/projects//locations//clusters/. For GDCE, it is formatted as: //edgecontainer.googleapis.com/projects//locations//clusters/.",
+          "description": "Optional. Output only. The resource link of the Cluster resource upgraded in this Rollout. It is formatted as: `//{api_service}/projects/{project_number}/locations/{location}/clusters/{cluster_name}`. .",
           "readOnly": true,
           "type": "string"
         },
         "nodePool": {
-          "description": "Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: ///projects//locations//clusters//nodePools/.",
+          "description": "Optional. Output only. The resource link of the NodePool resource upgraded in this Rollout. It is formatted as: `//{api_service}/projects/{project_number}/locations/{location}/clusters/{cluster_name}/nodePools/{node_pool_name}`.",
           "readOnly": true,
           "type": "string"
         },

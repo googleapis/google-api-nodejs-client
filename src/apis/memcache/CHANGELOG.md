@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v10.0.1...memcache-v11.0.0) (2026-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **memcache:** This release has breaking changes.
+
+### Features
+
+* **memcache:** update the API ([1c00301](https://github.com/googleapis/google-api-nodejs-client/commit/1c00301784d6fda2a56c92d30015e3740d300dc0))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v10.0.0...memcache-v10.0.1) (2025-12-05)
 
 

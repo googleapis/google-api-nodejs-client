@@ -1300,7 +1300,7 @@ export namespace firebaseml_v2beta {
      */
     mediaResolution?: Schema$GoogleCloudAiplatformV1beta1PartMediaResolution;
     /**
-     * Optional. The text content of the part.
+     * Optional. The text content of the part. When sent from the VSCode Gemini Code Assist extension, references to @mentioned items will be converted to markdown boldface text. For example `@my-repo` will be converted to and sent as `**my-repo**` by the IDE agent.
      */
     text?: string | null;
     /**

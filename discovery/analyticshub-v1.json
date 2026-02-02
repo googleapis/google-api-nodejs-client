@@ -1247,9 +1247,28 @@
       }
     }
   },
-  "revision": "20251208",
+  "revision": "20260118",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
+    "AIInference": {
+      "description": "Configuration for making inference requests against Vertex AI models.",
+      "id": "AIInference",
+      "properties": {
+        "endpoint": {
+          "description": "Required. An endpoint to a Vertex AI model of the form `projects/{project}/locations/{location}/endpoints/{endpoint}` or `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`. Vertex AI API requests will be sent to this endpoint.",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "type": "string"
+        },
+        "unstructuredInference": {
+          "$ref": "UnstructuredInference",
+          "description": "Optional. Requests and responses can be any arbitrary JSON object."
+        }
+      },
+      "type": "object"
+    },
     "ApproveQueryTemplateRequest": {
       "description": "Message for approving a QueryTemplate.",
       "id": "ApproveQueryTemplateRequest",
@@ -2166,6 +2185,10 @@
       "description": "All supported message transforms types.",
       "id": "MessageTransform",
       "properties": {
+        "aiInference": {
+          "$ref": "AIInference",
+          "description": "Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to."
+        },
         "disabled": {
           "description": "Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.",
           "type": "boolean"
@@ -2916,6 +2939,21 @@
       "description": "Configuration for writing message data in text format. Message payloads will be written to files as raw text, separated by a newline.",
       "id": "TextConfig",
       "properties": {},
+      "type": "object"
+    },
+    "UnstructuredInference": {
+      "description": "Configuration for making inferences using arbitrary JSON payloads.",
+      "id": "UnstructuredInference",
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A parameters object to be included in each inference request. The parameters object is combined with the data field of the Pub/Sub message to form the inference request.",
+          "type": "object"
+        }
+      },
       "type": "object"
     }
   },

@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250722",
+  "revision": "20260123",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -527,6 +527,7 @@
           "description": "Input only. Basic notification template to use across all platforms."
         },
         "token": {
+          "deprecated": true,
           "description": "Registration token to send a message to.",
           "type": "string"
         },

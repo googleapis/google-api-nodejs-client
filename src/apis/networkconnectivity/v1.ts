@@ -216,6 +216,10 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$AutoCreatedSubnetworkInfo {
     /**
+     * Output only. Indicates whether the subnetwork is delinked from the Service Connection Policy. Only set if the subnetwork mode is AUTO_CREATED during creation.
+     */
+    delinked?: boolean | null;
+    /**
      * Output only. URI of the automatically created Internal Range. Only set if the subnetwork mode is AUTO_CREATED during creation.
      */
     internalRange?: string | null;
@@ -248,6 +252,83 @@ export namespace networkconnectivity_v1 {
      * Optional. The Time To Live for the DNS record, in seconds. If not provided, a default of 30 seconds will be used.
      */
     ttl?: string | null;
+  }
+  /**
+   * Represents a DNS record managed by the AutomatedDnsRecord API.
+   */
+  export interface Schema$AutomatedDnsRecord {
+    /**
+     * Required. Immutable. The full resource path of the consumer network this AutomatedDnsRecord is visible to. Example: "projects/{projectNumOrId\}/global/networks/{networkName\}".
+     */
+    consumerNetwork?: string | null;
+    /**
+     * Output only. The timestamp of when the record was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Immutable. The creation mode of the AutomatedDnsRecord. This field is immutable.
+     */
+    creationMode?: string | null;
+    /**
+     * Output only. The current settings for this record as identified by (`hostname`, `dns_suffix`, `type`) in Cloud DNS. The `current_config` field reflects the actual settings of the DNS record in Cloud DNS based on the `hostname`, `dns_suffix`, and `type`. * **Absence:** If `current_config` is unset, it means a DNS record with the specified `hostname`, `dns_suffix`, and `type` does not currently exist in Cloud DNS. This could be because the `AutomatedDnsRecord` has never been successfully programmed, has been deleted, or there was an error during provisioning. * **Presence:** If `current_config` is present: * It can be different from the `original_config`. This can happen due to several reasons: * Out-of-band changes: A consumer might have directly modified the DNS record in Cloud DNS. * `OVERWRITE` operations from other `AutomatedDnsRecord` resources: Another `AutomatedDnsRecord` with the same identifying attributes (`hostname`, `dns_suffix`, `type`) but a different configuration might have overwritten the record using `insert_mode: OVERWRITE`. Therefore, the presence of `current_config` indicates that a corresponding DNS record exists, but its values (TTL and RRData) might not always align with the `original_config` of the AutomatedDnsRecord.
+     */
+    currentConfig?: Schema$Config;
+    /**
+     * A human-readable description of the record.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The dns suffix for this record to use in longest-suffix matching. Requires a trailing dot. Example: "example.com."
+     */
+    dnsSuffix?: string | null;
+    /**
+     * Output only. DnsZone is the DNS zone managed by automation. Format: projects/{project\}/managedZones/{managedZone\}
+     */
+    dnsZone?: string | null;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The FQDN created by combining the hostname and dns suffix. Should include a trailing dot.
+     */
+    fqdn?: string | null;
+    /**
+     * Required. Immutable. The hostname for the DNS record. This value will be prepended to the `dns_suffix` to create the full domain name (FQDN) for the record. For example, if `hostname` is "corp.db" and `dns_suffix` is "example.com.", the resulting record will be "corp.db.example.com.". Should not include a trailing dot.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. The name of an AutomatedDnsRecord. Format: projects/{project\}/locations/{location\}/automatedDnsRecords/{automated_dns_record\} See: https://google.aip.dev/122#fields-representing-resource-names
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The configuration settings used to create this DNS record. These settings define the desired state of the record as specified by the producer.
+     */
+    originalConfig?: Schema$Config;
+    /**
+     * Required. Immutable. The identifier of a supported record type.
+     */
+    recordType?: string | null;
+    /**
+     * Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceclasses.use` IAM permission for the provided service class.
+     */
+    serviceClass?: string | null;
+    /**
+     * Output only. The current operational state of this AutomatedDnsRecord as managed by Service Connectivity Automation.
+     */
+    state?: string | null;
+    /**
+     * Output only. A human-readable message providing more context about the current state, such as an error description if the state is `FAILED_DEPROGRAMMING`.
+     */
+    stateDetails?: string | null;
+    /**
+     * Output only. The timestamp of when the record was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -295,6 +376,19 @@ export namespace networkconnectivity_v1 {
      * List of validation errors. If the list is empty, the consumer config is valid.
      */
     errors?: string[] | null;
+  }
+  /**
+   * Defines the configuration of a DNS record.
+   */
+  export interface Schema$Config {
+    /**
+     * Required. The list of resource record data strings. The content and format of these strings depend on the AutomatedDnsRecord.type. For many common record types, this list may contain multiple strings. As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples. Examples: A record: ["192.0.2.1"] or ["192.0.2.1", "192.0.2.2"] TXT record: ["This is a text record"] CNAME record: ["target.example.com."] AAAA record: ["::1"] or ["2001:0db8:85a3:0000:0000:8a2e:0370:7334", "2001:0db8:85a3:0000:0000:8a2e:0370:7335"]
+     */
+    rrdatas?: string[] | null;
+    /**
+     * Required. Number of seconds that this DNS record can be cached by resolvers.
+     */
+    ttl?: string | null;
   }
   /**
    * Allow the producer to specify which consumers can connect to it.
@@ -748,7 +842,7 @@ export namespace networkconnectivity_v1 {
      */
     allocationOptions?: Schema$AllocationOptions;
     /**
-     * Time when the internal range was created.
+     * Output only. Time when the internal range was created.
      */
     createTime?: string | null;
     /**
@@ -800,7 +894,7 @@ export namespace networkconnectivity_v1 {
      */
     targetCidrRange?: string[] | null;
     /**
-     * Time when the internal range was updated.
+     * Output only. Time when the internal range was updated.
      */
     updateTime?: string | null;
     /**
@@ -855,11 +949,11 @@ export namespace networkconnectivity_v1 {
      */
     producerNetwork?: string | null;
     /**
-     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     * Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.
      */
     proposedExcludeExportRanges?: string[] | null;
     /**
-     * Output only. The proposed include export IP ranges waiting for hub administration's approval.
+     * Output only. The proposed include export IP ranges waiting for hub administrator's approval.
      */
     proposedIncludeExportRanges?: string[] | null;
     /**
@@ -905,11 +999,11 @@ export namespace networkconnectivity_v1 {
      */
     producerVpcSpokes?: string[] | null;
     /**
-     * Output only. The proposed exclude export IP ranges waiting for hub administration's approval.
+     * Output only. The proposed exclude export IP ranges waiting for hub administrator's approval.
      */
     proposedExcludeExportRanges?: string[] | null;
     /**
-     * Output only. The proposed include export IP ranges waiting for hub administration's approval.
+     * Output only. The proposed include export IP ranges waiting for hub administrator's approval.
      */
     proposedIncludeExportRanges?: string[] | null;
     /**
@@ -937,6 +1031,23 @@ export namespace networkconnectivity_v1 {
      * Output only. The VPC network where these VPN tunnels are located.
      */
     vpcNetwork?: string | null;
+  }
+  /**
+   * Response for ListAutomatedDnsRecords.
+   */
+  export interface Schema$ListAutomatedDnsRecordsResponse {
+    /**
+     * AutomatedDnsRecords to be returned.
+     */
+    automatedDnsRecords?: Schema$AutomatedDnsRecord[];
+    /**
+     * The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response message to list `Destination` resources.
@@ -2110,7 +2221,7 @@ export namespace networkconnectivity_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. The list of fields waiting for hub administration's approval.
+     * Optional. The list of fields waiting for hub administrator's approval.
      */
     fieldPathsPendingUpdate?: string[] | null;
     /**
@@ -2240,7 +2351,7 @@ export namespace networkconnectivity_v1 {
     state?: string | null;
   }
   /**
-   * The reason a spoke is inactive.
+   * The reason for the current state of the spoke.
    */
   export interface Schema$StateReason {
     /**
@@ -2321,6 +2432,7 @@ export namespace networkconnectivity_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    automatedDnsRecords: Resource$Projects$Locations$Automateddnsrecords;
     global: Resource$Projects$Locations$Global;
     internalRanges: Resource$Projects$Locations$Internalranges;
     multicloudDataTransferConfigs: Resource$Projects$Locations$Multiclouddatatransferconfigs;
@@ -2334,6 +2446,8 @@ export namespace networkconnectivity_v1 {
     spokes: Resource$Projects$Locations$Spokes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.automatedDnsRecords =
+        new Resource$Projects$Locations$Automateddnsrecords(this.context);
       this.global = new Resource$Projects$Locations$Global(this.context);
       this.internalRanges = new Resource$Projects$Locations$Internalranges(
         this.context
@@ -2843,6 +2957,723 @@ export namespace networkconnectivity_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Automateddnsrecords {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new AutomatedDnsRecord in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.automatedDnsRecords.create({
+     *       // Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/automatedDnsRecords/foo') See https://google.aip.dev/122#resource-id-segments Unique per location. If one is not provided, one will be generated.
+     *       automatedDnsRecordId: 'placeholder-value',
+     *       // Optional. The insert mode when creating AutomatedDnsRecord.
+     *       insertMode: 'placeholder-value',
+     *       // Required. The parent resource's name of the AutomatedDnsRecord. ex. projects/123/locations/us-east1
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "consumerNetwork": "my_consumerNetwork",
+     *         //   "createTime": "my_createTime",
+     *         //   "creationMode": "my_creationMode",
+     *         //   "currentConfig": {},
+     *         //   "description": "my_description",
+     *         //   "dnsSuffix": "my_dnsSuffix",
+     *         //   "dnsZone": "my_dnsZone",
+     *         //   "etag": "my_etag",
+     *         //   "fqdn": "my_fqdn",
+     *         //   "hostname": "my_hostname",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "originalConfig": {},
+     *         //   "recordType": "my_recordType",
+     *         //   "serviceClass": "my_serviceClass",
+     *         //   "state": "my_state",
+     *         //   "stateDetails": "my_stateDetails",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Automateddnsrecords$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Automateddnsrecords$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Automateddnsrecords$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/automatedDnsRecords').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single AutomatedDnsRecord.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.automatedDnsRecords.delete({
+     *       // Optional. Delete mode when deleting AutomatedDnsRecord. If set to DEPROGRAM, the record will be deprogrammed in Cloud DNS. If set to SKIP_DEPROGRAMMING, the record will not be deprogrammed in Cloud DNS.
+     *       deleteMode: 'placeholder-value',
+     *       // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *       etag: 'placeholder-value',
+     *       // Required. The name of the AutomatedDnsRecord to delete.
+     *       name: 'projects/my-project/locations/my-location/automatedDnsRecords/my-automatedDnsRecord',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Automateddnsrecords$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Automateddnsrecords$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Automateddnsrecords$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single AutomatedDnsRecord.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.automatedDnsRecords.get({
+     *       // Required. Name of the AutomatedDnsRecord to get. Format: projects/{project\}/locations/{location\}/automatedDnsRecords/{automated_dns_record\}
+     *       name: 'projects/my-project/locations/my-location/automatedDnsRecords/my-automatedDnsRecord',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumerNetwork": "my_consumerNetwork",
+     *   //   "createTime": "my_createTime",
+     *   //   "creationMode": "my_creationMode",
+     *   //   "currentConfig": {},
+     *   //   "description": "my_description",
+     *   //   "dnsSuffix": "my_dnsSuffix",
+     *   //   "dnsZone": "my_dnsZone",
+     *   //   "etag": "my_etag",
+     *   //   "fqdn": "my_fqdn",
+     *   //   "hostname": "my_hostname",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "originalConfig": {},
+     *   //   "recordType": "my_recordType",
+     *   //   "serviceClass": "my_serviceClass",
+     *   //   "state": "my_state",
+     *   //   "stateDetails": "my_stateDetails",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Automateddnsrecords$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AutomatedDnsRecord>>;
+    get(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AutomatedDnsRecord>,
+      callback: BodyResponseCallback<Schema$AutomatedDnsRecord>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$Get,
+      callback: BodyResponseCallback<Schema$AutomatedDnsRecord>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AutomatedDnsRecord>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Automateddnsrecords$Get
+        | BodyResponseCallback<Schema$AutomatedDnsRecord>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutomatedDnsRecord>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutomatedDnsRecord>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AutomatedDnsRecord>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Automateddnsrecords$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Automateddnsrecords$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutomatedDnsRecord>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutomatedDnsRecord>(parameters);
+      }
+    }
+
+    /**
+     * Lists AutomatedDnsRecords in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.automatedDnsRecords.list({
+     *       // A filter expression that filters the results listed in the response.
+     *       filter: 'placeholder-value',
+     *       // Sort the results by a certain order.
+     *       orderBy: 'placeholder-value',
+     *       // The maximum number of results per page that should be returned.
+     *       pageSize: 'placeholder-value',
+     *       // The page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource's name. ex. projects/123/locations/us-east1
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedDnsRecords": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Automateddnsrecords$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAutomatedDnsRecordsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>,
+      callback: BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Automateddnsrecords$List,
+      callback: BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Automateddnsrecords$List
+        | BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAutomatedDnsRecordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAutomatedDnsRecordsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Automateddnsrecords$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Automateddnsrecords$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/automatedDnsRecords').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAutomatedDnsRecordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAutomatedDnsRecordsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Automateddnsrecords$Create extends StandardParameters {
+    /**
+     * Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/automatedDnsRecords/foo') See https://google.aip.dev/122#resource-id-segments Unique per location. If one is not provided, one will be generated.
+     */
+    automatedDnsRecordId?: string;
+    /**
+     * Optional. The insert mode when creating AutomatedDnsRecord.
+     */
+    insertMode?: string;
+    /**
+     * Required. The parent resource's name of the AutomatedDnsRecord. ex. projects/123/locations/us-east1
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutomatedDnsRecord;
+  }
+  export interface Params$Resource$Projects$Locations$Automateddnsrecords$Delete extends StandardParameters {
+    /**
+     * Optional. Delete mode when deleting AutomatedDnsRecord. If set to DEPROGRAM, the record will be deprogrammed in Cloud DNS. If set to SKIP_DEPROGRAMMING, the record will not be deprogrammed in Cloud DNS.
+     */
+    deleteMode?: string;
+    /**
+     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the AutomatedDnsRecord to delete.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Automateddnsrecords$Get extends StandardParameters {
+    /**
+     * Required. Name of the AutomatedDnsRecord to get. Format: projects/{project\}/locations/{location\}/automatedDnsRecords/{automated_dns_record\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Automateddnsrecords$List extends StandardParameters {
+    /**
+     * A filter expression that filters the results listed in the response.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name. ex. projects/123/locations/us-east1
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Global {

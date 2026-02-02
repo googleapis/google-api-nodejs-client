@@ -1135,6 +1135,10 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$DirectoryUsersCreateGuestRequest {
     /**
+     * Optional. Immutable ID of the Google Workspace account.
+     */
+    customer?: string | null;
+    /**
      * Immutable. External email of the guest user being created.
      */
     primaryGuestEmail?: string | null;
@@ -20547,6 +20551,7 @@ export namespace admin_directory_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "customer": "my_customer",
      *       //   "primaryGuestEmail": "my_primaryGuestEmail"
      *       // }
      *     },

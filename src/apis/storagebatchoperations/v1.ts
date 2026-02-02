@@ -151,6 +151,67 @@ export namespace storagebatchoperations_v1 {
     buckets?: Schema$Bucket[];
   }
   /**
+   * BucketOperation represents a bucket-level breakdown of a Job.
+   */
+  export interface Schema$BucketOperation {
+    /**
+     * The bucket name of the objects to be transformed in the BucketOperation.
+     */
+    bucketName?: string | null;
+    /**
+     * Output only. The time that the BucketOperation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Output only. Information about the progress of the bucket operation.
+     */
+    counters?: Schema$Counters;
+    /**
+     * Output only. The time that the BucketOperation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Delete objects.
+     */
+    deleteObject?: Schema$DeleteObject;
+    /**
+     * Output only. Summarizes errors encountered with sample error log entries.
+     */
+    errorSummaries?: Schema$ErrorSummary[];
+    /**
+     * Specifies objects in a manifest file.
+     */
+    manifest?: Schema$Manifest;
+    /**
+     * Identifier. The resource name of the BucketOperation. This is defined by the service. Format: projects/{project\}/locations/global/jobs/{job_id\}/bucketOperations/{bucket_operation\}.
+     */
+    name?: string | null;
+    /**
+     * Specifies objects matching a prefix set.
+     */
+    prefixList?: Schema$PrefixList;
+    /**
+     * Updates object metadata. Allows updating fixed-key and custom metadata and fixed-key metadata i.e. Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Type, Custom-Time.
+     */
+    putMetadata?: Schema$PutMetadata;
+    /**
+     * Changes object hold status.
+     */
+    putObjectHold?: Schema$PutObjectHold;
+    /**
+     * Rewrite the object and updates metadata like KMS key.
+     */
+    rewriteObject?: Schema$RewriteObject;
+    /**
+     * Output only. The time that the BucketOperation was started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. State of the BucketOperation.
+     */
+    state?: string | null;
+  }
+  /**
    * Message for Job to Cancel
    */
   export interface Schema$CancelJobRequest {
@@ -295,6 +356,23 @@ export namespace storagebatchoperations_v1 {
      * Output only. State of the job.
      */
     state?: string | null;
+  }
+  /**
+   * Message for response to listing BucketOperations
+   */
+  export interface Schema$ListBucketOperationsResponse {
+    /**
+     * A list of storage batch bucket operations.
+     */
+    bucketOperations?: Schema$BucketOperation[];
+    /**
+     * A token identifying a page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Message for response to listing Jobs
@@ -884,8 +962,11 @@ export namespace storagebatchoperations_v1 {
 
   export class Resource$Projects$Locations$Jobs {
     context: APIRequestContext;
+    bucketOperations: Resource$Projects$Locations$Jobs$Bucketoperations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.bucketOperations =
+        new Resource$Projects$Locations$Jobs$Bucketoperations(this.context);
     }
 
     /**
@@ -1225,6 +1306,8 @@ export namespace storagebatchoperations_v1 {
      *
      *   // Do the magic
      *   const res = await storagebatchoperations.projects.locations.jobs.delete({
+     *     // Optional. If set to true, any child bucket operations of the job will also be deleted. Highly recommended to be set to true by all clients. Users cannot mutate bucket operations directly, so only the jobs.delete permission is required to delete a job (and its child bucket operations).
+     *     force: 'placeholder-value',
      *     // Required. The `name` of the job to delete. Format: projects/{project_id\}/locations/global/jobs/{job_id\} .
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID in case you need to retry your request. Requests with same `request_id` will be ignored for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -1656,6 +1739,10 @@ export namespace storagebatchoperations_v1 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$Delete extends StandardParameters {
     /**
+     * Optional. If set to true, any child bucket operations of the job will also be deleted. Highly recommended to be set to true by all clients. Users cannot mutate bucket operations directly, so only the jobs.delete permission is required to delete a job (and its child bucket operations).
+     */
+    force?: boolean;
+    /**
      * Required. The `name` of the job to delete. Format: projects/{project_id\}/locations/global/jobs/{job_id\} .
      */
     name?: string;
@@ -1689,6 +1776,348 @@ export namespace storagebatchoperations_v1 {
     pageToken?: string;
     /**
      * Required. Format: projects/{project_id\}/locations/global.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Jobs$Bucketoperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a BucketOperation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagebatchoperations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storagebatchoperations = google.storagebatchoperations('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await storagebatchoperations.projects.locations.jobs.bucketOperations.get({
+     *       // Required. `name` of the bucket operation to retrieve. Format: projects/{project_id\}/locations/global/jobs/{job_id\}/bucketOperations/{bucket_operation_id\}.
+     *       name: 'projects/my-project/locations/my-location/jobs/my-job/bucketOperations/my-bucketOperation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketName": "my_bucketName",
+     *   //   "completeTime": "my_completeTime",
+     *   //   "counters": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteObject": {},
+     *   //   "errorSummaries": [],
+     *   //   "manifest": {},
+     *   //   "name": "my_name",
+     *   //   "prefixList": {},
+     *   //   "putMetadata": {},
+     *   //   "putObjectHold": {},
+     *   //   "rewriteObject": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BucketOperation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BucketOperation>,
+      callback: BodyResponseCallback<Schema$BucketOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get,
+      callback: BodyResponseCallback<Schema$BucketOperation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BucketOperation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get
+        | BodyResponseCallback<Schema$BucketOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BucketOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BucketOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BucketOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagebatchoperations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BucketOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BucketOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists BucketOperations in a given project and job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagebatchoperations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storagebatchoperations = google.storagebatchoperations('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await storagebatchoperations.projects.locations.jobs.bucketOperations.list({
+     *       // Optional. Filters results as defined by https://google.aip.dev/160.
+     *       filter: 'placeholder-value',
+     *       // Optional. Field to sort by. Supported fields are name, create_time.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The list page size. Default page size is 100.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The list page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Format: projects/{project_id\}/locations/global/jobs/{job_id\}.
+     *       parent: 'projects/my-project/locations/my-location/jobs/my-job',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bucketOperations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Jobs$Bucketoperations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBucketOperationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBucketOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListBucketOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Jobs$Bucketoperations$List,
+      callback: BodyResponseCallback<Schema$ListBucketOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBucketOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Bucketoperations$List
+        | BodyResponseCallback<Schema$ListBucketOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBucketOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBucketOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBucketOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Bucketoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Bucketoperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagebatchoperations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bucketOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBucketOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBucketOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Bucketoperations$Get extends StandardParameters {
+    /**
+     * Required. `name` of the bucket operation to retrieve. Format: projects/{project_id\}/locations/global/jobs/{job_id\}/bucketOperations/{bucket_operation_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Bucketoperations$List extends StandardParameters {
+    /**
+     * Optional. Filters results as defined by https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. Supported fields are name, create_time.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The list page size. Default page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The list page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: projects/{project_id\}/locations/global/jobs/{job_id\}.
      */
     parent?: string;
   }

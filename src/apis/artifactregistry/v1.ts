@@ -1703,6 +1703,10 @@ export namespace artifactregistry_v1 {
      */
     description?: string | null;
     /**
+     * Output only. Immutable reference for the version, calculated based on the version's content. Currently we only support dirsum_sha256 hash algorithm. Additional hash algorithms may be added in the future.
+     */
+    fingerprints?: Schema$Hash[];
+    /**
      * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the resources could be: DockerImage MavenArtifact
      */
     metadata?: {[key: string]: any} | null;
@@ -10291,6 +10295,7 @@ export namespace artifactregistry_v1 {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "fingerprints": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "relatedTags": [],
@@ -10596,6 +10601,7 @@ export namespace artifactregistry_v1 {
      *           //   "annotations": {},
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
+     *           //   "fingerprints": [],
      *           //   "metadata": {},
      *           //   "name": "my_name",
      *           //   "relatedTags": [],
@@ -10611,6 +10617,7 @@ export namespace artifactregistry_v1 {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "fingerprints": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "relatedTags": [],

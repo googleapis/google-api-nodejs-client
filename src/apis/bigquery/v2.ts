@@ -2056,15 +2056,15 @@ export namespace bigquery_v2 {
    */
   export interface Schema$IncrementalResultStats {
     /**
-     * Reason why incremental query results are/were not written by the query.
+     * Output only. Reason why incremental query results are/were not written by the query.
      */
     disabledReason?: string | null;
     /**
-     * The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.
+     * Output only. The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.
      */
     resultSetLastModifyTime?: string | null;
     /**
-     * The time at which the result table's contents were completely replaced. May be absent if no results have been written or the query has completed.
+     * Output only. The time at which the result table's contents were completely replaced. May be absent if no results have been written or the query has completed.
      */
     resultSetLastReplaceTime?: string | null;
   }
@@ -2637,7 +2637,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * Optional. Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Optional. Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query uses BigQuery's [GoogleSQL](https://docs.cloud.google.com/bigquery/docs/introduction-sql). When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
@@ -3841,7 +3841,7 @@ export namespace bigquery_v2 {
      */
     timeoutMs?: number | null;
     /**
-     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query uses BigQuery's [GoogleSQL](https://docs.cloud.google.com/bigquery/docs/introduction-sql). When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
@@ -5753,7 +5753,7 @@ export namespace bigquery_v2 {
      */
     useExplicitColumnNames?: boolean | null;
     /**
-     * Specifies whether to use BigQuery's legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery's GoogleSQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value. A wrapper is used here because the default value is True.
+     * Specifies whether to use BigQuery's legacy SQL for this view. The default value is true. If set to false, the view uses BigQuery's [GoogleSQL](https://docs.cloud.google.com/bigquery/docs/introduction-sql). Queries and views that reference this view must use the same flag value. A wrapper is used here because the default value is True.
      */
     useLegacySql?: boolean | null;
     /**

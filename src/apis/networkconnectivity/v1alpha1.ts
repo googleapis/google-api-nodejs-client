@@ -314,11 +314,11 @@ export namespace networkconnectivity_v1alpha1 {
      */
     allocationOptions?: Schema$AllocationOptions;
     /**
-     * Time when the internal range was created.
+     * Output only. Time when the internal range was created.
      */
     createTime?: string | null;
     /**
-     * A description of this resource.
+     * Optional. A description of this resource.
      */
     description?: string | null;
     /**
@@ -330,11 +330,11 @@ export namespace networkconnectivity_v1alpha1 {
      */
     immutable?: boolean | null;
     /**
-     * IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
+     * Optional. IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
      */
     ipCidrRange?: string | null;
     /**
-     * User-defined labels.
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -342,11 +342,11 @@ export namespace networkconnectivity_v1alpha1 {
      */
     migration?: Schema$Migration;
     /**
-     * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     * Identifier. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
     name?: string | null;
     /**
-     * The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project\}/locations/global/networks/{network\} projects/{project\}/locations/global/networks/{network\} {network\}
+     * Optional. The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. For example: https://www.googleapis.com/compute/v1/projects/{project\}/locations/global/networks/{network\} projects/{project\}/locations/global/networks/{network\} {network\}
      */
     network?: string | null;
     /**
@@ -354,11 +354,11 @@ export namespace networkconnectivity_v1alpha1 {
      */
     overlaps?: string[] | null;
     /**
-     * The type of peering set for this internal range.
+     * Optional. The type of peering set for this internal range.
      */
     peering?: string | null;
     /**
-     * An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.
+     * Optional. An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.
      */
     prefixLength?: number | null;
     /**
@@ -366,11 +366,11 @@ export namespace networkconnectivity_v1alpha1 {
      */
     targetCidrRange?: string[] | null;
     /**
-     * Time when the internal range was updated.
+     * Output only. Time when the internal range was updated.
      */
     updateTime?: string | null;
     /**
-     * The type of usage set for this internal range.
+     * Optional. The type of usage set for this internal range.
      */
     usage?: string | null;
     /**
@@ -3120,7 +3120,7 @@ export namespace networkconnectivity_v1alpha1 {
      *   // Do the magic
      *   const res = await networkconnectivity.projects.locations.internalRanges.patch(
      *     {
-     *       // Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     *       // Identifier. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      *       name: 'projects/my-project/locations/my-location/internalRanges/my-internalRange',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -3639,7 +3639,7 @@ export namespace networkconnectivity_v1alpha1 {
   }
   export interface Params$Resource$Projects$Locations$Internalranges$Patch extends StandardParameters {
     /**
-     * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
+     * Identifier. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
     name?: string;
     /**

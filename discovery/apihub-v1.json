@@ -504,7 +504,7 @@
                   ]
                 },
                 "lookup": {
-                  "description": "Looks up an Api Hub instance in a given GCP project. There will always be only one Api Hub instance for a GCP project across all locations.",
+                  "description": "Looks up an Api Hub instance in a given Google Cloud project. There will always be only one Api Hub instance for a Google Cloud project across all locations.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apiHubInstances:lookup",
                   "httpMethod": "GET",
                   "id": "apihub.projects.locations.apiHubInstances.lookup",
@@ -513,7 +513,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. There will always be only one Api Hub instance for a GCP project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project}/locations/{location}`",
+                      "description": "Required. There will always be only one Api Hub instance for a Google Cloud project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3173,7 +3173,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260119",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -4551,7 +4551,7 @@
           "type": "array"
         },
         "sourceProject": {
-          "description": "Optional. The project to which the deployment belongs. For GCP gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.",
+          "description": "Optional. The project to which the deployment belongs. For Google Cloud gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.",
           "type": "string"
         },
         "sourceUri": {
@@ -4644,7 +4644,7 @@
           "type": "string"
         },
         "origin": {
-          "description": "Optional. For an observation pushed from a gcp resource, this would be the gcp project id.",
+          "description": "Optional. For an observation pushed from a Google Cloud resource, this would be the Google Cloud project id.",
           "type": "string"
         },
         "serverIps": {
@@ -4676,8 +4676,8 @@
             ],
             "enumDescriptions": [
               "Source type not specified.",
-              "GCP external load balancer.",
-              "GCP internal load balancer."
+              "Google Cloud external load balancer.",
+              "Google Cloud internal load balancer."
             ],
             "type": "string"
           },
@@ -6240,7 +6240,7 @@
           "type": "object"
         },
         "sourceProjectId": {
-          "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.",
+          "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of Google Cloud based plugins and org id in case of non-Google Cloud based plugins. This field will be a required field for Google provided on-ramp plugins.",
           "type": "string"
         },
         "state": {
@@ -6293,7 +6293,7 @@
         },
         "resourceConfig": {
           "$ref": "GoogleCloudApihubV1ResourceConfig",
-          "description": "Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of Non-GCP plugins like OPDK.",
+          "description": "Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of non-Google Cloud plugins like OPDK.",
           "readOnly": true
         },
         "scheduleCronExpression": {
@@ -6305,7 +6305,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. The service account used to publish data. Note, the service account will only be accepted for non GCP plugins like OPDK.",
+          "description": "Optional. The service account used to publish data. Note, the service account will only be accepted for non-Google Cloud plugins like OPDK.",
           "type": "string"
         },
         "state": {

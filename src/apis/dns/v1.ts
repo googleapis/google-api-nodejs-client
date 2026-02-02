@@ -5757,13 +5757,13 @@ export namespace dns_v1 {
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
      *     maxResults: 'placeholder-value',
-     *     // Restricts the list to return only records with this fully qualified domain name. Mutually exclusive with the {@code filter\} field.
+     *     // Specify a fully qualified domain name to view only those records. The name parameter is not supported and must be omitted when you use filter.
      *     name: 'placeholder-value',
      *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
      *     pageToken: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
-     *     // Restricts the list to return only records of this type. If present, the "name" parameter must also be present. Mutually exclusive with the {@code filter\} field.
+     *     // Specify a record type to view only those records. You must also specify the name parameter. The type parameter is not supported and must be omitted when you use filter.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6119,7 +6119,7 @@ export namespace dns_v1 {
      */
     maxResults?: number;
     /**
-     * Restricts the list to return only records with this fully qualified domain name. Mutually exclusive with the {@code filter\} field.
+     * Specify a fully qualified domain name to view only those records. The name parameter is not supported and must be omitted when you use filter.
      */
     name?: string;
     /**
@@ -6131,7 +6131,7 @@ export namespace dns_v1 {
      */
     project?: string;
     /**
-     * Restricts the list to return only records of this type. If present, the "name" parameter must also be present. Mutually exclusive with the {@code filter\} field.
+     * Specify a record type to view only those records. You must also specify the name parameter. The type parameter is not supported and must be omitted when you use filter.
      */
     type?: string;
   }

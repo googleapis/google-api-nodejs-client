@@ -134,6 +134,23 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
+   * Configuration for making inference requests against Vertex AI models.
+   */
+  export interface Schema$AIInference {
+    /**
+     * Required. An endpoint to a Vertex AI model of the form `projects/{project\}/locations/{location\}/endpoints/{endpoint\}` or `projects/{project\}/locations/{location\}/publishers/{publisher\}/models/{model\}`. Vertex AI API requests will be sent to this endpoint.
+     */
+    endpoint?: string | null;
+    /**
+     * Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain\}/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Optional. Requests and responses can be any arbitrary JSON object.
+     */
+    unstructuredInference?: Schema$UnstructuredInference;
+  }
+  /**
    * Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
    */
   export interface Schema$AnalyticsHubSubscriptionInfo {
@@ -429,7 +446,7 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string | null;
     /**
@@ -638,6 +655,10 @@ export namespace pubsub_v1 {
    * All supported message transforms types.
    */
   export interface Schema$MessageTransform {
+    /**
+     * Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to.
+     */
+    aiInference?: Schema$AIInference;
     /**
      * Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.
      */
@@ -960,7 +981,7 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number | null;
     /**
-     * Output only. Information about the associated Analytics Hub subscription. Only set if the subscritpion is created by Analytics Hub.
+     * Output only. Information about the associated Analytics Hub subscription. Only set if the subscription is created by Analytics Hub.
      */
     analyticsHubSubscriptionInfo?: Schema$AnalyticsHubSubscriptionInfo;
     /**
@@ -1032,7 +1053,7 @@ export namespace pubsub_v1 {
      */
     tags?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
+     * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string | null;
     /**
@@ -1119,6 +1140,15 @@ export namespace pubsub_v1 {
      * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
      */
     tags?: {[key: string]: string} | null;
+  }
+  /**
+   * Configuration for making inferences using arbitrary JSON payloads.
+   */
+  export interface Schema$UnstructuredInference {
+    /**
+     * Optional. A parameters object to be included in each inference request. The parameters object is combined with the data field of the Pub/Sub message to form the inference request.
+     */
+    parameters?: {[key: string]: any} | null;
   }
   /**
    * Request for the UpdateSnapshot method.
@@ -3344,7 +3374,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
-     *     // Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
      *     name: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -3494,7 +3524,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
-     *     // Required. Identifier. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3629,7 +3659,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
-     *     // Required. Identifier. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
+     *     // Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3917,7 +3947,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
+     *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4480,7 +4510,7 @@ export namespace pubsub_v1 {
 
   export interface Params$Resource$Projects$Snapshots$Create extends StandardParameters {
     /**
-     * Required. Identifier. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the [resource name rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). Format is `projects/{project\}/snapshots/{snap\}`.
      */
     name?: string;
 
@@ -4491,13 +4521,13 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Snapshots$Delete extends StandardParameters {
     /**
-     * Required. Identifier. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
   export interface Params$Resource$Projects$Snapshots$Get extends StandardParameters {
     /**
-     * Required. Identifier. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
+     * Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
@@ -4521,7 +4551,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Identifier. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
+     * Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -4930,7 +4960,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
-     *     // Required. Identifier. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
+     *     // Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -5210,7 +5240,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
-     *     // Required. Identifier. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
+     *     // Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -5518,7 +5548,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
+     *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -6712,7 +6742,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Delete extends StandardParameters {
     /**
-     * Required. Identifier. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
@@ -6724,7 +6754,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Subscriptions$Get extends StandardParameters {
     /**
-     * Required. Identifier. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
+     * Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
@@ -6748,7 +6778,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Identifier. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
+     * Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -7041,7 +7071,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
-     *     // Required. Identifier. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -7176,7 +7206,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
-     *     // Required. Identifier. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -7471,7 +7501,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id\}`.
+     *     // Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -7768,7 +7798,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
-     *     // Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
+     *     // Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -8198,13 +8228,13 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Delete extends StandardParameters {
     /**
-     * Required. Identifier. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Get extends StandardParameters {
     /**
-     * Required. Identifier. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
@@ -8228,7 +8258,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Identifier. The name of the project in which to list topics. Format is `projects/{project-id\}`.
+     * Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -8245,7 +8275,7 @@ export namespace pubsub_v1 {
   }
   export interface Params$Resource$Projects$Topics$Publish extends StandardParameters {
     /**
-     * Required. Identifier. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
+     * Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
 

@@ -396,6 +396,127 @@ export namespace migrationcenter_v1 {
     dailyResourceUsageAggregations?: Schema$DailyResourceUsageAggregation[];
   }
   /**
+   * Assets export job message.
+   */
+  export interface Schema$AssetsExportJob {
+    /**
+     * Optional. Conditions for selecting assets to export.
+     */
+    condition?: Schema$AssetsExportJobExportCondition;
+    /**
+     * Output only. Resource creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Export asset inventory details.
+     */
+    inventory?: Schema$AssetsExportJobInventory;
+    /**
+     * Optional. Labels as key value pairs. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. Resource name.
+     */
+    name?: string | null;
+    /**
+     * Export data regarding asset network dependencies.
+     */
+    networkDependencies?: Schema$AssetsExportJobNetworkDependencies;
+    /**
+     * Export asset with performance data.
+     */
+    performanceData?: Schema$AssetsExportJobPerformanceData;
+    /**
+     * Output only. Recent non expired executions of the job.
+     */
+    recentExecutions?: Schema$AssetsExportJobExecution[];
+    /**
+     * Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean | null;
+    /**
+     * Export to Cloud Storage files downloadable using signed URIs.
+     */
+    signedUriDestination?: Schema$SignedUriDestination;
+    /**
+     * Output only. Resource update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Execution status of assets export job.
+   */
+  export interface Schema$AssetsExportJobExecution {
+    /**
+     * Output only. Completion time of the export.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Globally unique identifier of the execution.
+     */
+    executionId?: string | null;
+    /**
+     * Output only. Expiration time for the export and artifacts.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. Number of assets requested for export after resolving the requested filters.
+     */
+    requestedAssetCount?: number | null;
+    /**
+     * Output only. Result of the export execution.
+     */
+    result?: Schema$AssetsExportJobExecutionResult;
+    /**
+     * Output only. Execution timestamp.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Contains the result of the assets export.
+   */
+  export interface Schema$AssetsExportJobExecutionResult {
+    /**
+     * Output only. Error encountered during export.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. List of output files.
+     */
+    outputFiles?: Schema$OutputFileList;
+    /**
+     * Output only. Signed URLs for downloading export artifacts.
+     */
+    signedUris?: Schema$SignedUris;
+  }
+  /**
+   * Conditions for selecting assets to export.
+   */
+  export interface Schema$AssetsExportJobExportCondition {
+    /**
+     * Optional. Assets filter, supports the same syntax as asset listing.
+     */
+    filter?: string | null;
+  }
+  /**
+   * Configuration for asset inventory details exports.
+   */
+  export interface Schema$AssetsExportJobInventory {}
+  /**
+   * Configuration for network dependencies exports.
+   */
+  export interface Schema$AssetsExportJobNetworkDependencies {}
+  /**
+   * Configuration for performance data exports.
+   */
+  export interface Schema$AssetsExportJobPerformanceData {
+    /**
+     * Optional. When this value is set to a positive integer, performance data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned. The maximum value is 420; values above 420 will be coerced to 420. If unset (0 value) a default value of 40 will be used.
+     */
+    maxDays?: number | null;
+  }
+  /**
    * AWS EC2 specific details.
    */
   export interface Schema$AwsEc2PlatformDetails {
@@ -594,6 +715,23 @@ export namespace migrationcenter_v1 {
      * Percentage of total CPU capacity utilized. Must be in the interval [0, 100]. On most systems can be calculated using 100 - idle percentage.
      */
     utilizedPercentage?: number | null;
+  }
+  /**
+   * Contains a single output file of type CSV.
+   */
+  export interface Schema$CsvOutputFile {
+    /**
+     * Output only. Number of columns in the file.
+     */
+    columnsCount?: number | null;
+    /**
+     * Output only. Number of rows in the file.
+     */
+    rowCount?: number | null;
+    /**
+     * Output only. Signed URI destination.
+     */
+    signedUri?: Schema$SignedUri;
   }
   /**
    * Usage data aggregation for a single day.
@@ -1622,6 +1760,19 @@ export namespace migrationcenter_v1 {
     updateTime?: string | null;
   }
   /**
+   * Response message for listing assets export jobs.
+   */
+  export interface Schema$ListAssetsExportJobsResponse {
+    /**
+     * Output only. The list of assets export jobs.
+     */
+    assetsExportJobs?: Schema$AssetsExportJob[];
+    /**
+     * Output only. A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing assets.
    */
   export interface Schema$ListAssetsResponse {
@@ -2377,6 +2528,32 @@ export namespace migrationcenter_v1 {
     verb?: string | null;
   }
   /**
+   * Contains a single output file.
+   */
+  export interface Schema$OutputFile {
+    /**
+     * Output only. CSV output file.
+     */
+    csvOutputFile?: Schema$CsvOutputFile;
+    /**
+     * Output only. File size in bytes.
+     */
+    fileSizeBytes?: string | null;
+    /**
+     * Output only. XLSX output file.
+     */
+    xlsxOutputFile?: Schema$XlsxOutputFile;
+  }
+  /**
+   * Contains a list of output files.
+   */
+  export interface Schema$OutputFileList {
+    /**
+     * Output only. List of output files.
+     */
+    entries?: Schema$OutputFile[];
+  }
+  /**
    * Performance data sample.
    */
   export interface Schema$PerformanceSample {
@@ -3004,6 +3181,24 @@ export namespace migrationcenter_v1 {
     vmwareNode?: Schema$ReportSummaryVmwareNode;
   }
   /**
+   * A request to run an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Response message for running an assets export job.
+   */
+  export interface Schema$RunAssetsExportJobResponse {
+    /**
+     * Output only. Execution status of the assets export operation.
+     */
+    assetsExportJobExecution?: Schema$AssetsExportJobExecution;
+  }
+  /**
    * A request to run an import job.
    */
   export interface Schema$RunImportJobRequest {
@@ -3126,6 +3321,37 @@ export namespace migrationcenter_v1 {
      * The preference set used by default for a project.
      */
     preferenceSet?: string | null;
+  }
+  /**
+   * Contains a signed URI.
+   */
+  export interface Schema$SignedUri {
+    /**
+     * Output only. Name of the file the Signed URI references.
+     */
+    file?: string | null;
+    /**
+     * Output only. Download URI for the file.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Signed URI destination configuration.
+   */
+  export interface Schema$SignedUriDestination {
+    /**
+     * Required. The file format to export.
+     */
+    fileFormat?: string | null;
+  }
+  /**
+   * Contains a list of Signed URIs.
+   */
+  export interface Schema$SignedUris {
+    /**
+     * Output only. List of signed URIs.
+     */
+    signedUris?: Schema$SignedUri[];
   }
   /**
    * Preferences concerning Sole Tenancy nodes and VMs.
@@ -3456,6 +3682,15 @@ export namespace migrationcenter_v1 {
      */
     vcenterVmId?: string | null;
   }
+  /**
+   * Contains a single output file of type XLSX.
+   */
+  export interface Schema$XlsxOutputFile {
+    /**
+     * Output only. Signed URI destination.
+     */
+    signedUri?: Schema$SignedUri;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -3469,6 +3704,7 @@ export namespace migrationcenter_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     assets: Resource$Projects$Locations$Assets;
+    assetsExportJobs: Resource$Projects$Locations$Assetsexportjobs;
     discoveryClients: Resource$Projects$Locations$Discoveryclients;
     groups: Resource$Projects$Locations$Groups;
     importJobs: Resource$Projects$Locations$Importjobs;
@@ -3480,6 +3716,9 @@ export namespace migrationcenter_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Locations$Assets(this.context);
+      this.assetsExportJobs = new Resource$Projects$Locations$Assetsexportjobs(
+        this.context
+      );
       this.discoveryClients = new Resource$Projects$Locations$Discoveryclients(
         this.context
       );
@@ -5476,6 +5715,816 @@ export namespace migrationcenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Frames;
+  }
+
+  export class Resource$Projects$Locations$Assetsexportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new assets export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assetsExportJobs.create({
+     *     // Required. The ID to use for the asset export job.
+     *     assetsExportJobId: 'placeholder-value',
+     *     // Required. The parent resource where the assts export job will be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "condition": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "inventory": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "networkDependencies": {},
+     *       //   "performanceData": {},
+     *       //   "recentExecutions": [],
+     *       //   "showHidden": false,
+     *       //   "signedUriDestination": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an assets export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assetsExportJobs.delete({
+     *     // Required. The name of the assets export job to delete.
+     *     name: 'projects/my-project/locations/my-location/assetsExportJobs/my-assetsExportJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Assetsexportjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of an assets export job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assetsExportJobs.get({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/assetsExportJobs/my-assetsExportJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "condition": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "inventory": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "networkDependencies": {},
+     *   //   "performanceData": {},
+     *   //   "recentExecutions": [],
+     *   //   "showHidden": false,
+     *   //   "signedUriDestination": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AssetsExportJob>>;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AssetsExportJob>,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Get,
+      callback: BodyResponseCallback<Schema$AssetsExportJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssetsExportJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Get
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssetsExportJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AssetsExportJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssetsExportJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssetsExportJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the assets export jobs in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assetsExportJobs.list({
+     *     // Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results that the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent resource.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetsExportJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsExportJobsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$List,
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$List
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsExportJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAssetsExportJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/assetsExportJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssetsExportJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Runs an assets export job, returning an AssetsExportJobExecution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/migrationcenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const migrationcenter = google.migrationcenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await migrationcenter.projects.locations.assetsExportJobs.run({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/assetsExportJobs/my-assetsExportJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    run(
+      params?: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Assetsexportjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Assetsexportjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Assetsexportjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the asset export job.
+     */
+    assetsExportJobId?: string;
+    /**
+     * Required. The parent resource where the assts export job will be created.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AssetsExportJob;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Delete extends StandardParameters {
+    /**
+     * Required. The name of the assets export job to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Assetsexportjobs$Run extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAssetsExportJobRequest;
   }
 
   export class Resource$Projects$Locations$Discoveryclients {

@@ -525,7 +525,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "description": "Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId}/pretargetingConfigs/{configId}",
                   "location": "path",
                   "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
                   "required": true,
@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20260114",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {

@@ -9152,7 +9152,7 @@
       }
     }
   },
-  "revision": "20251128",
+  "revision": "20260116",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -9983,7 +9983,7 @@
       "id": "ListLogEntriesRequest",
       "properties": {
         "filter": {
-          "description": "Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://cloud.google.com/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.To make queries faster, you can make the filter more selective by using restrictions on indexed fields (https://cloud.google.com/logging/docs/view/logging-query-language#indexed-fields) as well as limit the time range of the query by adding range restrictions on the timestamp field.",
+          "description": "Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://{$universe.dns_names.final_documentation_domain}/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.To make queries faster, you can make the filter more selective by using restrictions on indexed fields (https://{$universe.dns_names.final_documentation_domain}/logging/docs/view/logging-query-language#indexed-fields) as well as limit the time range of the query by adding range restrictions on the timestamp field.",
           "type": "string"
         },
         "orderBy": {
@@ -10354,7 +10354,12 @@
         },
         "apphubDestination": {
           "$ref": "AppHub",
-          "description": "Output only. AppHub application metadata associated with the destination application. This is only populated if the log represented \"edge\"-like data (such as for VPC flow logs) with a source and destination.",
+          "description": "Output only. AppHub application metadata associated with the destination application. This is only populated if the log represented \"edge\"-like data (such as for VPC flow logs) with a destination.",
+          "readOnly": true
+        },
+        "apphubSource": {
+          "$ref": "AppHub",
+          "description": "Output only. AppHub application metadata associated with the source application. This is only populated if the log represented \"edge\"-like data (such as for VPC flow logs) with a source.",
           "readOnly": true
         },
         "errorGroups": {
@@ -10385,7 +10390,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. A map of key, value pairs that provides additional information about the log entry. The labels can be user-defined or system-defined.User-defined labels are arbitrary key, value pairs that you can use to classify logs.System-defined labels are defined by GCP services for platform logs. They have two components - a service namespace component and the attribute name. For example: compute.googleapis.com/resource_name.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.",
+          "description": "Optional. A map of key, value pairs that provides additional information about the log entry. The labels can be user-defined or system-defined.User-defined labels are arbitrary key, value pairs that you can use to classify logs.System-defined labels are defined by cloud services for platform logs. They have two components - a service namespace component and the attribute name. For example: compute.googleapis.com/resource_name.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.",
           "type": "object"
         },
         "logName": {
@@ -11621,7 +11626,7 @@
           "type": "string"
         },
         "filter": {
-          "description": "Optional. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.",
+          "description": "Optional. A filter that chooses which log entries to return. For more information, see Logging query language (https://{$universe.dns_names.final_documentation_domain}/logging/docs/view/logging-query-language).Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of a filter is 20,000 characters.",
           "type": "string"
         },
         "resourceNames": {

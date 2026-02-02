@@ -212,6 +212,105 @@ export namespace osconfig_v1alpha {
     percent?: number | null;
   }
   /**
+   * Represents the metadata of a generic long-running operation.
+   */
+  export interface Schema$GoogleCloudOsconfigCommonV1alpha__OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Represents the metadata of a generic long-running operation.
+   */
+  export interface Schema$GoogleCloudOsconfigCommonV1main__OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Represents the metadata of a generic long-running operation.
+   */
+  export interface Schema$GoogleCloudOsconfigCommonV1__OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.
    */
   export interface Schema$GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata {
@@ -655,6 +754,23 @@ export namespace osconfig_v1alpha {
      * The pagination token to retrieve the next page of inventory objects.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$ListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * A response message for listing OS Policy assignment reports including the page of results and page token.
@@ -1612,6 +1728,7 @@ export namespace osconfig_v1alpha {
     context: APIRequestContext;
     instanceOSPoliciesCompliances: Resource$Projects$Locations$Instanceospoliciescompliances;
     instances: Resource$Projects$Locations$Instances;
+    operations: Resource$Projects$Locations$Operations;
     osPolicyAssignments: Resource$Projects$Locations$Ospolicyassignments;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1620,6 +1737,9 @@ export namespace osconfig_v1alpha {
           this.context
         );
       this.instances = new Resource$Projects$Locations$Instances(this.context);
+      this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
       this.osPolicyAssignments =
         new Resource$Projects$Locations$Ospolicyassignments(this.context);
     }
@@ -2984,6 +3104,619 @@ export namespace osconfig_v1alpha {
      * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Operations$Cancel extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Delete extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$Get extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Projects$Locations$Ospolicyassignments {

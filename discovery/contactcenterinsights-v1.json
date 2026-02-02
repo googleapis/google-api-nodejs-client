@@ -193,6 +193,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getCorrelationConfig": {
+              "description": "Gets correlation config.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/correlationConfig",
+              "httpMethod": "GET",
+              "id": "contactcenterinsights.projects.locations.getCorrelationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the correlation config resource to get. Format: projects/{project}/locations/{location}/correlationConfig",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/correlationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudContactcenterinsightsV1CorrelationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getEncryptionSpec": {
               "description": "Gets location-level encryption key specification.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/encryptionSpec",
@@ -335,6 +360,68 @@
               },
               "response": {
                 "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "testCorrelationConfig": {
+              "description": "Tests correlation config on a conversation.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:testCorrelationConfig",
+              "httpMethod": "POST",
+              "id": "contactcenterinsights.projects.locations.testCorrelationConfig",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location to test correlation config. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:testCorrelationConfig",
+              "request": {
+                "$ref": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateCorrelationConfig": {
+              "description": "Updates correlation config.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/correlationConfig",
+              "httpMethod": "PATCH",
+              "id": "contactcenterinsights.projects.locations.updateCorrelationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. Identifier. The resource name of the correlation config. Format: projects/{project}/locations/{location}/correlationConfig",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/correlationConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The list of fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudContactcenterinsightsV1CorrelationConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudContactcenterinsightsV1CorrelationConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -2012,6 +2099,191 @@
                 }
               }
             },
+            "autoLabelingRules": {
+              "methods": {
+                "create": {
+                  "description": "Creates an auto labeling rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "autoLabelingRuleId": {
+                      "description": "Required. The ID to use for the auto labeling rule, which will become the final component of the auto labeling rule's resource name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location to create the auto labeling rule in. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/autoLabelingRules",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an auto labeling rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules/{autoLabelingRulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the auto labeling rule to delete. Format: projects/{project}/locations/{location}/autoLabelingRules/{auto_labeling_rule}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoLabelingRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an auto labeling rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules/{autoLabelingRulesId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the auto labeling rule to get. Format: projects/{project}/locations/{location}/autoLabelingRules/{auto_labeling_rule}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoLabelingRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists auto labeling rules.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of auto labeling rules to return in a single response. If unspecified, at most 100 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location to list auto labeling rules from. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/autoLabelingRules",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListAutoLabelingRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an auto labeling rule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules/{autoLabelingRulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the auto-labeling rule. Format: projects/{project}/locations/{location}/autoLabelingRules/{auto_labeling_rule}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autoLabelingRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "test": {
+                  "description": "Tests auto labeling rules against a conversation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autoLabelingRules:test",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.autoLabelingRules.test",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent project and location. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/autoLabelingRules:test",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "conversations": {
               "methods": {
                 "bulkAnalyze": {
@@ -2328,6 +2600,11 @@
                   "parameters": {
                     "allowMissing": {
                       "description": "Optional. Defaults to false. If set to true, and the conversation is not found, a new conversation will be created. In this situation, `update_mask` is ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "conversationAutoLabelingUpdateConfig.allowAutoLabelingUpdate": {
+                      "description": "Optional. If set to true, the conversation will be updated with auto labeling results.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -5453,7 +5730,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260121",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -5956,6 +6233,79 @@
           "description": "Output only. Update time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AutoLabelingRule": {
+      "description": "Rule for auto-labeling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1AutoLabelingRule",
+      "properties": {
+        "active": {
+          "description": "Whether the rule is active.",
+          "type": "boolean"
+        },
+        "conditions": {
+          "description": "Conditions to apply for auto-labeling the label_key. Representing sequential block of if .. else if .. else statements. The value of the first matching condition will be used.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelingCondition"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The time at which this rule was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the rule.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The user-provided display name of the rule.",
+          "type": "string"
+        },
+        "labelKey": {
+          "description": "The label key. This is also the {auto_labeling_rule} in the resource name. Only settable if label_key_type is LABEL_KEY_TYPE_CUSTOM.",
+          "type": "string"
+        },
+        "labelKeyType": {
+          "description": "The type of the label key.",
+          "enum": [
+            "LABEL_KEY_TYPE_UNSPECIFIED",
+            "LABEL_KEY_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified label key type.",
+            "The label key is custom defined by the user."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the auto-labeling rule. Format: projects/{project}/locations/{location}/autoLabelingRules/{auto_labeling_rule}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the rule was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelingCondition": {
+      "description": "Condition for auto-labeling conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1AutoLabelingRuleLabelingCondition",
+      "properties": {
+        "condition": {
+          "description": "A optional CEL expression to be evaluated as a boolean value. Once evaluated as true, then we will proceed with the value evaluation. An empty condition will be auto evaluated as true.",
+          "type": "string"
+        },
+        "value": {
+          "description": "CEL expression to be evaluated as the value.",
           "type": "string"
         }
       },
@@ -6547,6 +6897,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult": {
+      "description": "The result of testing a constraint expression on a pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult",
+      "properties": {
+        "conversationA": {
+          "description": "The first conversation resource name.",
+          "type": "string"
+        },
+        "conversationB": {
+          "description": "The second conversation resource name.",
+          "type": "string"
+        },
+        "ruleConstraintResults": {
+          "description": "The results for each applicable constraint rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResultRuleConstraintResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResultRuleConstraintResult": {
+      "description": "The result of a single constraint rule on the pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResultRuleConstraintResult",
+      "properties": {
+        "constraintMet": {
+          "description": "Whether the constraint expression evaluated to true for (A, B) or (B, A).",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the constraint expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1Conversation": {
       "description": "The conversation resource.",
       "id": "GoogleCloudContactcenterinsightsV1Conversation",
@@ -6558,6 +6949,11 @@
         "callMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1ConversationCallMetadata",
           "description": "Call-specific metadata."
+        },
+        "correlationInfo": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationCorrelationInfo",
+          "description": "Output only. Info for correlating across conversations.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. The time at which the conversation was created.",
@@ -6610,14 +7006,14 @@
           "readOnly": true
         },
         "medium": {
-          "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
+          "description": "Immutable. The conversation medium.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -6690,6 +7086,93 @@
           "description": "The audio channel that contains the customer.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationCorrelationInfo": {
+      "description": "Info for correlating across conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationCorrelationInfo",
+      "properties": {
+        "correlationTypes": {
+          "description": "Output only. The correlation types of this conversation. A single conversation can have multiple correlation types. For example a conversation that only has a single segment is both a SEGMENT and a FULL_CONVERSATION.",
+          "items": {
+            "enum": [
+              "CORRELATION_TYPE_UNSPECIFIED",
+              "SEGMENT",
+              "PARTIAL",
+              "FULL",
+              "SYNTHETIC"
+            ],
+            "enumDescriptions": [
+              "Default value for unspecified.",
+              "This conversation represents a segment of a full conversation. The lowest level of granularity.",
+              "This conversation represents a partial conversation of potentially multiple segments but is not a full conversation.",
+              "This conversation represents a full conversation of potentially multiple segments.",
+              "This conversation represents a synthetic conversation."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a segment of.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mergedFullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a merged conversation of.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationCorrelationResult": {
+      "description": "The result of testing correlation config on a single conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationCorrelationResult",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name.",
+          "type": "string"
+        },
+        "ruleResults": {
+          "description": "The results for each correlation rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConversationCorrelationResultRuleCorrelationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationCorrelationResultRuleCorrelationResult": {
+      "description": "The result of a single correlation rule.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationCorrelationResultRuleCorrelationResult",
+      "properties": {
+        "correlationId": {
+          "description": "The correlation ID generated by the join key expression.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the join key expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationDataOptions": {
+      "description": "Options for configuring what metadata is included in the conversation data used in QAI and Discovery Engine.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationDataOptions",
+      "properties": {
+        "includeDialogflowInteractionData": {
+          "description": "Whether to include the per turn Dialogflow interaction data in conversation transcript.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7046,6 +7529,70 @@
         "word": {
           "description": "The word itself. Includes punctuation marks that surround the word.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1CorrelationConfig": {
+      "description": "A configuration that defines how to correlate conversations for a given a given project.",
+      "id": "GoogleCloudContactcenterinsightsV1CorrelationConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the correlation config was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fullConversationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1CorrelationTypeConfig",
+          "description": "The correlation type config for full conversations."
+        },
+        "name": {
+          "description": "Immutable. Identifier. The resource name of the correlation config. Format: projects/{project}/locations/{location}/correlationConfig",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the correlation config was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1CorrelationRule": {
+      "description": "A correlation rule that defines how to join conversations for a given correlation type.",
+      "id": "GoogleCloudContactcenterinsightsV1CorrelationRule",
+      "properties": {
+        "active": {
+          "description": "Optional. Whether the config is active to be evaluated.",
+          "type": "boolean"
+        },
+        "constraintExpression": {
+          "description": "Optional. A cel expression (go/cel) to be evaluated as a boolean value. Two variables conversation_a and conversation_b will be available for evaluation. This expression should evaluate to true if conversation_a and conversation_b should be joined. This is used as an extra constraint on top of the join_key_expression to further refine the group of conversations that are joined together and will be evaluated in both directions. for two conversations c1 and c2 and the result will be OR'd. We will evaluate: f(c1, c2) OR f(c2, c1)",
+          "type": "string"
+        },
+        "joinKeyExpression": {
+          "description": "Optional. A cel expression (go/cel) to be evaluated as a string value. This string value will be used as the join key for the correlation.",
+          "type": "string"
+        },
+        "ruleId": {
+          "description": "Required. The unique identifier of the rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1CorrelationTypeConfig": {
+      "description": "A list of correlation rules for a given correlation type.",
+      "id": "GoogleCloudContactcenterinsightsV1CorrelationTypeConfig",
+      "properties": {
+        "correlationRules": {
+          "description": "A list of correlation rules to be evaluated for correlation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1CorrelationRule"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8336,7 +8883,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -8599,7 +9146,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -8792,6 +9339,24 @@
           "description": "The AuthorizedViews under the parent.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1AuthorizedView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListAutoLabelingRulesResponse": {
+      "description": "The response message for listing auto labeling rules.",
+      "id": "GoogleCloudContactcenterinsightsV1ListAutoLabelingRulesResponse",
+      "properties": {
+        "autoLabelingRules": {
+          "description": "The auto labeling rules.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule"
           },
           "type": "array"
         },
@@ -9406,6 +9971,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig",
           "description": "The configuration of the predefined question. This field will only be set if the Question Type is predefined."
         },
+        "qaQuestionDataOptions": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionQaQuestionDataOptions",
+          "description": "Options for configuring the data used to generate the QA question."
+        },
         "questionBody": {
           "description": "Question text. E.g., \"Did the agent greet the customer?\"",
           "type": "string"
@@ -9507,6 +10076,17 @@
             "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QaQuestionQaQuestionDataOptions": {
+      "description": "Options for configuring the data used to generate the QA question.",
+      "id": "GoogleCloudContactcenterinsightsV1QaQuestionQaQuestionDataOptions",
+      "properties": {
+        "conversationDataOptions": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationDataOptions",
+          "description": "Options for configuring the conversation data used to generate the QA question."
         }
       },
       "type": "object"
@@ -9948,6 +10528,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointConversationMeasure",
           "description": "The measure related to conversations."
         },
+        "dialogflowInteractionMeasure": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+          "description": "The measure related to dialogflow interactions."
+        },
         "interval": {
           "$ref": "GoogleTypeInterval",
           "description": "The interval that this data point represents. * If this is the total data point, the interval is [starting create time, ending create time) from the request. * If this a data point from the time series, the interval is [time, time + time granularity from the request)."
@@ -9959,6 +10543,66 @@
       "description": "The measure related to conversations.",
       "id": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointConversationMeasure",
       "properties": {
+        "aaSupervisorAssignedConversationsCount": {
+          "description": "The number of conversations that were assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorDroppedConversationsCount": {
+          "description": "The number of conversations that were dropped, i.e. escalated but not assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorEscalatedConversationsCount": {
+          "description": "The number of conversations that were escalated to an AA human supervisor for intervention.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorMonitoredConversationsCount": {
+          "description": "The number of conversations scanned by the AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorTransferredToHumanAgentConvCount": {
+          "description": "The number of conversations transferred to a human agent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentMessageTriggerCount": {
+          "description": "Count of agent messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageCount": {
+          "description": "Count of Ai Coach Suggestion that has been used by agents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageRatio": {
+          "description": "Proportion of Ai Coach Suggestion that has been used by agents.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerCount": {
+          "description": "Count of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerRatio": {
+          "description": "Proportion of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionMessageTriggerCount": {
+          "description": "Count of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionMessageTriggerRatio": {
+          "description": "Proportion of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
         "averageAgentSentimentScore": {
           "description": "The average agent's sentiment score.",
           "format": "float",
@@ -9994,9 +10638,44 @@
           "format": "float",
           "type": "number"
         },
+        "averageSummarizationSuggestionEditDistance": {
+          "description": "Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageSummarizationSuggestionNormalizedEditDistance": {
+          "description": "Normalized Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion. Normalized edit distance is the average of (edit distance / summary length).",
+          "format": "double",
+          "type": "number"
+        },
         "averageTurnCount": {
           "description": "The average turn count.",
           "format": "float",
+          "type": "number"
+        },
+        "avgConversationClientTurnSentimentEma": {
+          "description": "The exponential moving average of the sentiment score of client turns in the conversation.",
+          "format": "double",
+          "type": "number"
+        },
+        "containedConversationCount": {
+          "description": "The number of conversations that were contained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containedConversationRatio": {
+          "description": "The percentage of conversations that were contained.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationAiCoachSuggestionCount": {
+          "description": "Count of conversations that has Ai Coach Suggestions.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationAiCoachSuggestionRatio": {
+          "description": "Proportion of conversations that has Ai Coach Suggestions.",
+          "format": "double",
           "type": "number"
         },
         "conversationCount": {
@@ -10004,12 +10683,142 @@
           "format": "int32",
           "type": "integer"
         },
+        "conversationSuggestedSummaryRatio": {
+          "description": "Proportion of conversations that had a suggested summary.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationTotalAgentMessageCount": {
+          "description": "The agent message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationTotalCustomerMessageCount": {
+          "description": "The customer message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationalAgentsAverageAudioInAudioOutLatency": {
+          "description": "The average latency of conversational agents' audio in audio out latency per interaction. This is computed as the average of the all the interactions' audio in audio out latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageEndToEndLatency": {
+          "description": "The average latency of conversational agents' latency per interaction. This is computed as the average of the all the iteractions' end to end latencies in a conversation and averaged across conversations. The e2e latency is the time between the end of the user utterance and the start of the agent utterance on the interaction level.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageLlmCallLatency": {
+          "description": "The average latency of conversational agents' LLM call latency per interaction. This is computed as the average of the all the interactions LLM call latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageTtsLatency": {
+          "description": "The macro average latency of conversational agents' TTS latency per interaction. This is computed as the average of the all the interactions' TTS latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowAverageWebhookLatency": {
+          "description": "Average latency of dialogflow webhook calls.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationCount": {
+          "description": "count of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationRatio": {
+          "description": "Proportion of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoInputRatio": {
+          "description": "Proportion of dialogflow interactions that has empty input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoMatchRatio": {
+          "description": "Proportion of dialogflow interactions that has no intent match for the input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookFailureRatio": {
+          "description": "Proportion of dialogflow webhook calls that failed.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookTimeoutRatio": {
+          "description": "Proportion of dialogflow webhook calls that timed out.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistResultCount": {
+          "description": "Count of knowledge assist results (Proactive Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistUriClickRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchAgentQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries made by the agent compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchResultCount": {
+          "description": "Count of knowledge search results (Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeSearchSuggestedQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries suggested compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchUriClickRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
         "qaTagScores": {
           "description": "Average QA normalized score for all the tags.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointConversationMeasureQaTagScore"
           },
           "type": "array"
+        },
+        "summarizationSuggestionEditRatio": {
+          "description": "Proportion of summarization suggestions that were manually edited.",
+          "format": "double",
+          "type": "number"
+        },
+        "summarizationSuggestionResultCount": {
+          "description": "Count of summarization suggestions results.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -10026,6 +10835,55 @@
         "tag": {
           "description": "Tag name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure": {
+      "description": "The measure related to dialogflow interactions.",
+      "id": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+      "properties": {
+        "percentileAudioInAudioOutLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for audio in audio out latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileEndToEndLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for end to end chat latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileLlmCallLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for LLM latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileToolUseLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for tool use latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileTtsLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for TTS latency in milliseconds per dialogflow interaction level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult": {
+      "description": "The percentile result. Currently supported percentiles are 50th, 90th, and 99th.",
+      "id": "GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceDataPointPercentileResult",
+      "properties": {
+        "p50": {
+          "description": "The 50th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p90": {
+          "description": "The 90th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p99": {
+          "description": "The 99th percentile value.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -10536,6 +11394,181 @@
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleRequest": {
+      "description": "The request message for testing auto labeling rules.",
+      "id": "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleRequest",
+      "properties": {
+        "autoLabelingRule": {
+          "$ref": "GoogleCloudContactcenterinsightsV1AutoLabelingRule",
+          "description": "Required. The auto labeling rule to test."
+        },
+        "conversation": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Conversation",
+          "description": "Required. Conversation data to test rules against."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleResponse": {
+      "description": "The response message for testing auto labeling rules.",
+      "id": "GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleResponse",
+      "properties": {
+        "labelResult": {
+          "description": "The result of the test auto labeling rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadata": {
+      "description": "Metadata for testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataset": {
+          "description": "The dataset used for sampling conversations.",
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStats",
+          "description": "The statistics for the operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStats": {
+      "description": "Statistics for TestCorrelationConfig operation.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStats",
+      "properties": {
+        "conversationCorrelationErrors": {
+          "description": "A list of errors that occurred during correlation, one for each conversation that failed.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError"
+          },
+          "type": "array"
+        },
+        "correlatedConversationsCount": {
+          "description": "The number of conversations correlated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failedConversationsCount": {
+          "description": "The number of conversations that failed correlation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "sampledConversationsCount": {
+          "description": "The number of conversations sampled.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError": {
+      "description": "An error that occurred during correlation for a specific conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name that had an error during correlation.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequest": {
+      "description": "The request to test correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequest",
+      "properties": {
+        "conversations": {
+          "$ref": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequestConversations",
+          "description": "Optional. A list of conversations to test against."
+        },
+        "correlationConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1CorrelationConfig",
+          "description": "Required. The correlation config to test."
+        },
+        "filter": {
+          "description": "Optional. Filter to select conversations to test correlation against. Conversations matching this filter will be sampled based on start time. The most recent `max_sample_count` conversations will be selected. If no conversations match the filter, the request will fail with an `INVALID_ARGUMENT` error.",
+          "type": "string"
+        },
+        "maxSampleCount": {
+          "description": "Optional. The maximum number of conversations to sample when using the `filter`. If not set, defaults to 1000. Values greater than 1000 are coerced to 1000. This field is ignored if `conversations` is provided.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequestConversations": {
+      "description": "Wrapper for a list of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigRequestConversations",
+      "properties": {
+        "conversations": {
+          "description": "Optional. The conversations.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Conversation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponse": {
+      "description": "The response of testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponse",
+      "properties": {
+        "detailedResults": {
+          "$ref": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponseDetailedCorrelationResults",
+          "description": "Results for the DETAILED_SYNC execution mode."
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponseDetailedCorrelationResults": {
+      "description": "Wrapper for detailed, step-by-step results.",
+      "id": "GoogleCloudContactcenterinsightsV1TestCorrelationConfigResponseDetailedCorrelationResults",
+      "properties": {
+        "constraintResults": {
+          "description": "A list of constraint evaluation results for each pair of conversations.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult"
+          },
+          "type": "array"
+        },
+        "joinKeyResults": {
+          "description": "A list of join key correlation results for each conversation tested.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConversationCorrelationResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -11291,6 +12324,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResult": {
+      "description": "The result of testing a constraint expression on a pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResult",
+      "properties": {
+        "conversationA": {
+          "description": "The first conversation resource name.",
+          "type": "string"
+        },
+        "conversationB": {
+          "description": "The second conversation resource name.",
+          "type": "string"
+        },
+        "ruleConstraintResults": {
+          "description": "The results for each applicable constraint rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResultRuleConstraintResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResultRuleConstraintResult": {
+      "description": "The result of a single constraint rule on the pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResultRuleConstraintResult",
+      "properties": {
+        "constraintMet": {
+          "description": "Whether the constraint expression evaluated to true for (A, B) or (B, A).",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the constraint expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1Conversation": {
       "description": "The conversation resource.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1Conversation",
@@ -11302,6 +12376,11 @@
         "callMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadata",
           "description": "Call-specific metadata."
+        },
+        "correlationInfo": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationInfo",
+          "description": "Output only. Info for correlating across conversations.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. The time at which the conversation was created.",
@@ -11354,14 +12433,14 @@
           "readOnly": true
         },
         "medium": {
-          "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
+          "description": "Immutable. The conversation medium.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -11434,6 +12513,82 @@
           "description": "The audio channel that contains the customer.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationInfo": {
+      "description": "Info for correlating across conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationInfo",
+      "properties": {
+        "correlationTypes": {
+          "description": "Output only. The correlation types of this conversation. A single conversation can have multiple correlation types. For example a conversation that only has a single segment is both a SEGMENT and a FULL_CONVERSATION.",
+          "items": {
+            "enum": [
+              "CORRELATION_TYPE_UNSPECIFIED",
+              "SEGMENT",
+              "PARTIAL",
+              "FULL",
+              "SYNTHETIC"
+            ],
+            "enumDescriptions": [
+              "Default value for unspecified.",
+              "This conversation represents a segment of a full conversation. The lowest level of granularity.",
+              "This conversation represents a partial conversation of potentially multiple segments but is not a full conversation.",
+              "This conversation represents a full conversation of potentially multiple segments.",
+              "This conversation represents a synthetic conversation."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a segment of.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mergedFullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a merged conversation of.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResult": {
+      "description": "The result of testing correlation config on a single conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResult",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name.",
+          "type": "string"
+        },
+        "ruleResults": {
+          "description": "The results for each correlation rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResultRuleCorrelationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResultRuleCorrelationResult": {
+      "description": "The result of a single correlation rule.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResultRuleCorrelationResult",
+      "properties": {
+        "correlationId": {
+          "description": "The correlation ID generated by the join key expression.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the join key expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13030,7 +14185,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -13293,7 +14448,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -13770,6 +14925,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointConversationMeasure",
           "description": "The measure related to conversations."
         },
+        "dialogflowInteractionMeasure": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+          "description": "The measure related to dialogflow interactions."
+        },
         "interval": {
           "$ref": "GoogleTypeInterval",
           "description": "The interval that this data point represents. * If this is the total data point, the interval is [starting create time, ending create time) from the request. * If this a data point from the time series, the interval is [time, time + time granularity from the request)."
@@ -13781,6 +14940,66 @@
       "description": "The measure related to conversations.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointConversationMeasure",
       "properties": {
+        "aaSupervisorAssignedConversationsCount": {
+          "description": "The number of conversations that were assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorDroppedConversationsCount": {
+          "description": "The number of conversations that were dropped, i.e. escalated but not assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorEscalatedConversationsCount": {
+          "description": "The number of conversations that were escalated to an AA human supervisor for intervention.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorMonitoredConversationsCount": {
+          "description": "The number of conversations scanned by the AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorTransferredToHumanAgentConvCount": {
+          "description": "The number of conversations transferred to a human agent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentMessageTriggerCount": {
+          "description": "Count of agent messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageCount": {
+          "description": "Count of Ai Coach Suggestion that has been used by agents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageRatio": {
+          "description": "Proportion of Ai Coach Suggestion that has been used by agents.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerCount": {
+          "description": "Count of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerRatio": {
+          "description": "Proportion of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionMessageTriggerCount": {
+          "description": "Count of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionMessageTriggerRatio": {
+          "description": "Proportion of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
         "averageAgentSentimentScore": {
           "description": "The average agent's sentiment score.",
           "format": "float",
@@ -13816,9 +15035,44 @@
           "format": "float",
           "type": "number"
         },
+        "averageSummarizationSuggestionEditDistance": {
+          "description": "Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageSummarizationSuggestionNormalizedEditDistance": {
+          "description": "Normalized Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion. Normalized edit distance is the average of (edit distance / summary length).",
+          "format": "double",
+          "type": "number"
+        },
         "averageTurnCount": {
           "description": "The average turn count.",
           "format": "float",
+          "type": "number"
+        },
+        "avgConversationClientTurnSentimentEma": {
+          "description": "The exponential moving average of the sentiment score of client turns in the conversation.",
+          "format": "double",
+          "type": "number"
+        },
+        "containedConversationCount": {
+          "description": "The number of conversations that were contained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containedConversationRatio": {
+          "description": "The percentage of conversations that were contained.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationAiCoachSuggestionCount": {
+          "description": "Count of conversations that has Ai Coach Suggestions.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationAiCoachSuggestionRatio": {
+          "description": "Proportion of conversations that has Ai Coach Suggestions.",
+          "format": "double",
           "type": "number"
         },
         "conversationCount": {
@@ -13826,12 +15080,142 @@
           "format": "int32",
           "type": "integer"
         },
+        "conversationSuggestedSummaryRatio": {
+          "description": "Proportion of conversations that had a suggested summary.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationTotalAgentMessageCount": {
+          "description": "The agent message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationTotalCustomerMessageCount": {
+          "description": "The customer message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationalAgentsAverageAudioInAudioOutLatency": {
+          "description": "The average latency of conversational agents' audio in audio out latency per interaction. This is computed as the average of the all the interactions' audio in audio out latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageEndToEndLatency": {
+          "description": "The average latency of conversational agents' latency per interaction. This is computed as the average of the all the iteractions' end to end latencies in a conversation and averaged across conversations. The e2e latency is the time between the end of the user utterance and the start of the agent utterance on the interaction level.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageLlmCallLatency": {
+          "description": "The average latency of conversational agents' LLM call latency per interaction. This is computed as the average of the all the interactions LLM call latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageTtsLatency": {
+          "description": "The macro average latency of conversational agents' TTS latency per interaction. This is computed as the average of the all the interactions' TTS latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowAverageWebhookLatency": {
+          "description": "Average latency of dialogflow webhook calls.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationCount": {
+          "description": "count of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationRatio": {
+          "description": "Proportion of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoInputRatio": {
+          "description": "Proportion of dialogflow interactions that has empty input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoMatchRatio": {
+          "description": "Proportion of dialogflow interactions that has no intent match for the input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookFailureRatio": {
+          "description": "Proportion of dialogflow webhook calls that failed.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookTimeoutRatio": {
+          "description": "Proportion of dialogflow webhook calls that timed out.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistResultCount": {
+          "description": "Count of knowledge assist results (Proactive Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistUriClickRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchAgentQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries made by the agent compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchResultCount": {
+          "description": "Count of knowledge search results (Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeSearchSuggestedQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries suggested compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchUriClickRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
         "qaTagScores": {
           "description": "Average QA normalized score for all the tags.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointConversationMeasureQaTagScore"
           },
           "type": "array"
+        },
+        "summarizationSuggestionEditRatio": {
+          "description": "Proportion of summarization suggestions that were manually edited.",
+          "format": "double",
+          "type": "number"
+        },
+        "summarizationSuggestionResultCount": {
+          "description": "Count of summarization suggestions results.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -13848,6 +15232,55 @@
         "tag": {
           "description": "Tag name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure": {
+      "description": "The measure related to dialogflow interactions.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+      "properties": {
+        "percentileAudioInAudioOutLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for audio in audio out latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileEndToEndLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for end to end chat latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileLlmCallLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for LLM latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileToolUseLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for tool use latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileTtsLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for TTS latency in milliseconds per dialogflow interaction level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult": {
+      "description": "The percentile result. Currently supported percentiles are 50th, 90th, and 99th.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceDataPointPercentileResult",
+      "properties": {
+        "p50": {
+          "description": "The 50th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p90": {
+          "description": "The 90th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p99": {
+          "description": "The 99th percentile value.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -14177,6 +15610,117 @@
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadata": {
+      "description": "Metadata for testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataset": {
+          "description": "The dataset used for sampling conversations.",
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStats",
+          "description": "The statistics for the operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStats": {
+      "description": "Statistics for TestCorrelationConfig operation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStats",
+      "properties": {
+        "conversationCorrelationErrors": {
+          "description": "A list of errors that occurred during correlation, one for each conversation that failed.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError"
+          },
+          "type": "array"
+        },
+        "correlatedConversationsCount": {
+          "description": "The number of conversations correlated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failedConversationsCount": {
+          "description": "The number of conversations that failed correlation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "sampledConversationsCount": {
+          "description": "The number of conversations sampled.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError": {
+      "description": "An error that occurred during correlation for a specific conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name that had an error during correlation.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponse": {
+      "description": "The response of testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponse",
+      "properties": {
+        "detailedResults": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponseDetailedCorrelationResults",
+          "description": "Results for the DETAILED_SYNC execution mode."
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponseDetailedCorrelationResults": {
+      "description": "Wrapper for detailed, step-by-step results.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1TestCorrelationConfigResponseDetailedCorrelationResults",
+      "properties": {
+        "constraintResults": {
+          "description": "A list of constraint evaluation results for each pair of conversations.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConstraintEvaluationResult"
+          },
+          "type": "array"
+        },
+        "joinKeyResults": {
+          "description": "A list of join key correlation results for each conversation tested.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationCorrelationResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15049,6 +16593,47 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResult": {
+      "description": "The result of testing a constraint expression on a pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResult",
+      "properties": {
+        "conversationA": {
+          "description": "The first conversation resource name.",
+          "type": "string"
+        },
+        "conversationB": {
+          "description": "The second conversation resource name.",
+          "type": "string"
+        },
+        "ruleConstraintResults": {
+          "description": "The results for each applicable constraint rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResultRuleConstraintResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResultRuleConstraintResult": {
+      "description": "The result of a single constraint rule on the pair of conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResultRuleConstraintResult",
+      "properties": {
+        "constraintMet": {
+          "description": "Whether the constraint expression evaluated to true for (A, B) or (B, A).",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the constraint expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1mainConversation": {
       "description": "The conversation resource.",
       "id": "GoogleCloudContactcenterinsightsV1mainConversation",
@@ -15060,6 +16645,11 @@
         "callMetadata": {
           "$ref": "GoogleCloudContactcenterinsightsV1mainConversationCallMetadata",
           "description": "Call-specific metadata."
+        },
+        "correlationInfo": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationInfo",
+          "description": "Output only. Info for correlating across conversations.",
+          "readOnly": true
         },
         "createTime": {
           "description": "Output only. The time at which the conversation was created.",
@@ -15112,14 +16702,14 @@
           "readOnly": true
         },
         "medium": {
-          "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
+          "description": "Immutable. The conversation medium.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -15192,6 +16782,82 @@
           "description": "The audio channel that contains the customer.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationCorrelationInfo": {
+      "description": "Info for correlating across conversations.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationInfo",
+      "properties": {
+        "correlationTypes": {
+          "description": "Output only. The correlation types of this conversation. A single conversation can have multiple correlation types. For example a conversation that only has a single segment is both a SEGMENT and a FULL_CONVERSATION.",
+          "items": {
+            "enum": [
+              "CORRELATION_TYPE_UNSPECIFIED",
+              "SEGMENT",
+              "PARTIAL",
+              "FULL",
+              "SYNTHETIC"
+            ],
+            "enumDescriptions": [
+              "Default value for unspecified.",
+              "This conversation represents a segment of a full conversation. The lowest level of granularity.",
+              "This conversation represents a partial conversation of potentially multiple segments but is not a full conversation.",
+              "This conversation represents a full conversation of potentially multiple segments.",
+              "This conversation represents a synthetic conversation."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a segment of.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "mergedFullConversationCorrelationId": {
+          "description": "Output only. The full conversation correlation id this conversation is a merged conversation of.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResult": {
+      "description": "The result of testing correlation config on a single conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResult",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name.",
+          "type": "string"
+        },
+        "ruleResults": {
+          "description": "The results for each correlation rule.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResultRuleCorrelationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResultRuleCorrelationResult": {
+      "description": "The result of a single correlation rule.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResultRuleCorrelationResult",
+      "properties": {
+        "correlationId": {
+          "description": "The correlation ID generated by the join key expression.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status if the join key expression failed to evaluate."
+        },
+        "ruleId": {
+          "description": "The rule ID.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16788,7 +18454,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -17051,7 +18717,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value, if unspecified will default to PHONE_CALL.",
+            "Default value for unspecified.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -17528,6 +19194,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure",
           "description": "The measure related to conversations."
         },
+        "dialogflowInteractionMeasure": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+          "description": "The measure related to dialogflow interactions."
+        },
         "interval": {
           "$ref": "GoogleTypeInterval",
           "description": "The interval that this data point represents. * If this is the total data point, the interval is [starting create time, ending create time) from the request. * If this a data point from the time series, the interval is [time, time + time granularity from the request)."
@@ -17539,6 +19209,66 @@
       "description": "The measure related to conversations.",
       "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasure",
       "properties": {
+        "aaSupervisorAssignedConversationsCount": {
+          "description": "The number of conversations that were assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorDroppedConversationsCount": {
+          "description": "The number of conversations that were dropped, i.e. escalated but not assigned to an AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorEscalatedConversationsCount": {
+          "description": "The number of conversations that were escalated to an AA human supervisor for intervention.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorMonitoredConversationsCount": {
+          "description": "The number of conversations scanned by the AA human supervisor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aaSupervisorTransferredToHumanAgentConvCount": {
+          "description": "The number of conversations transferred to a human agent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentMessageTriggerCount": {
+          "description": "Count of agent messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageCount": {
+          "description": "Count of Ai Coach Suggestion that has been used by agents.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionAgentUsageRatio": {
+          "description": "Proportion of Ai Coach Suggestion that has been used by agents.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerCount": {
+          "description": "Count of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionCustomerMessageTriggerRatio": {
+          "description": "Proportion of customer messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "aiCoachSuggestionMessageTriggerCount": {
+          "description": "Count of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "aiCoachSuggestionMessageTriggerRatio": {
+          "description": "Proportion of end_of_utterance trigger event messages that triggered an Ai Coach Suggestion.",
+          "format": "double",
+          "type": "number"
+        },
         "averageAgentSentimentScore": {
           "description": "The average agent's sentiment score.",
           "format": "float",
@@ -17574,9 +19304,44 @@
           "format": "float",
           "type": "number"
         },
+        "averageSummarizationSuggestionEditDistance": {
+          "description": "Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion.",
+          "format": "double",
+          "type": "number"
+        },
+        "averageSummarizationSuggestionNormalizedEditDistance": {
+          "description": "Normalized Average edit distance of the summarization suggestions. Edit distance (also called as levenshtein distance) is calculated by summing up number of insertions, deletions and substitutions required to transform the summization feedback to the original summary suggestion. Normalized edit distance is the average of (edit distance / summary length).",
+          "format": "double",
+          "type": "number"
+        },
         "averageTurnCount": {
           "description": "The average turn count.",
           "format": "float",
+          "type": "number"
+        },
+        "avgConversationClientTurnSentimentEma": {
+          "description": "The exponential moving average of the sentiment score of client turns in the conversation.",
+          "format": "double",
+          "type": "number"
+        },
+        "containedConversationCount": {
+          "description": "The number of conversations that were contained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "containedConversationRatio": {
+          "description": "The percentage of conversations that were contained.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationAiCoachSuggestionCount": {
+          "description": "Count of conversations that has Ai Coach Suggestions.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationAiCoachSuggestionRatio": {
+          "description": "Proportion of conversations that has Ai Coach Suggestions.",
+          "format": "double",
           "type": "number"
         },
         "conversationCount": {
@@ -17584,12 +19349,142 @@
           "format": "int32",
           "type": "integer"
         },
+        "conversationSuggestedSummaryRatio": {
+          "description": "Proportion of conversations that had a suggested summary.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationTotalAgentMessageCount": {
+          "description": "The agent message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationTotalCustomerMessageCount": {
+          "description": "The customer message count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversationalAgentsAverageAudioInAudioOutLatency": {
+          "description": "The average latency of conversational agents' audio in audio out latency per interaction. This is computed as the average of the all the interactions' audio in audio out latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageEndToEndLatency": {
+          "description": "The average latency of conversational agents' latency per interaction. This is computed as the average of the all the iteractions' end to end latencies in a conversation and averaged across conversations. The e2e latency is the time between the end of the user utterance and the start of the agent utterance on the interaction level.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageLlmCallLatency": {
+          "description": "The average latency of conversational agents' LLM call latency per interaction. This is computed as the average of the all the interactions LLM call latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "conversationalAgentsAverageTtsLatency": {
+          "description": "The macro average latency of conversational agents' TTS latency per interaction. This is computed as the average of the all the interactions' TTS latencies in a conversation and averaged across conversations.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowAverageWebhookLatency": {
+          "description": "Average latency of dialogflow webhook calls.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationCount": {
+          "description": "count of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowConversationsEscalationRatio": {
+          "description": "Proportion of conversations that was handed off from virtual agent to human agent.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoInputRatio": {
+          "description": "Proportion of dialogflow interactions that has empty input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowInteractionsNoMatchRatio": {
+          "description": "Proportion of dialogflow interactions that has no intent match for the input.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookFailureRatio": {
+          "description": "Proportion of dialogflow webhook calls that failed.",
+          "format": "double",
+          "type": "number"
+        },
+        "dialogflowWebhookTimeoutRatio": {
+          "description": "Proportion of dialogflow webhook calls that timed out.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeAssistResultCount": {
+          "description": "Count of knowledge assist results (Proactive Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeAssistUriClickRatio": {
+          "description": "Proportion of knowledge assist (Proactive Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchAgentQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries made by the agent compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchNegativeFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had negative feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchPositiveFeedbackRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had positive feedback.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchResultCount": {
+          "description": "Count of knowledge search results (Generative Knowledge Assist) shown to the user.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "knowledgeSearchSuggestedQuerySourceRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries suggested compared to the total number of knowledge search queries made.",
+          "format": "double",
+          "type": "number"
+        },
+        "knowledgeSearchUriClickRatio": {
+          "description": "Proportion of knowledge search (Generative Knowledge Assist) queries that had a URL clicked.",
+          "format": "double",
+          "type": "number"
+        },
         "qaTagScores": {
           "description": "Average QA normalized score for all the tags.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointConversationMeasureQaTagScore"
           },
           "type": "array"
+        },
+        "summarizationSuggestionEditRatio": {
+          "description": "Proportion of summarization suggestions that were manually edited.",
+          "format": "double",
+          "type": "number"
+        },
+        "summarizationSuggestionResultCount": {
+          "description": "Count of summarization suggestions results.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -17606,6 +19501,55 @@
         "tag": {
           "description": "Tag name.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointDialogflowInteractionMeasure": {
+      "description": "The measure related to dialogflow interactions.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointDialogflowInteractionMeasure",
+      "properties": {
+        "percentileAudioInAudioOutLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for audio in audio out latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileEndToEndLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for end to end chat latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileLlmCallLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for LLM latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileToolUseLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for tool use latency in milliseconds per dialogflow interaction level."
+        },
+        "percentileTtsLatency": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+          "description": "The percentile result for TTS latency in milliseconds per dialogflow interaction level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult": {
+      "description": "The percentile result. Currently supported percentiles are 50th, 90th, and 99th.",
+      "id": "GoogleCloudContactcenterinsightsV1mainQueryMetricsResponseSliceDataPointPercentileResult",
+      "properties": {
+        "p50": {
+          "description": "The 50th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p90": {
+          "description": "The 90th percentile value.",
+          "format": "double",
+          "type": "number"
+        },
+        "p99": {
+          "description": "The 99th percentile value.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -17935,6 +19879,117 @@
         "speechRecognizer": {
           "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadata": {
+      "description": "Metadata for testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataset": {
+          "description": "The dataset used for sampling conversations.",
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStats",
+          "description": "The statistics for the operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStats": {
+      "description": "Statistics for TestCorrelationConfig operation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStats",
+      "properties": {
+        "conversationCorrelationErrors": {
+          "description": "A list of errors that occurred during correlation, one for each conversation that failed.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError"
+          },
+          "type": "array"
+        },
+        "correlatedConversationsCount": {
+          "description": "The number of conversations correlated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failedConversationsCount": {
+          "description": "The number of conversations that failed correlation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "sampledConversationsCount": {
+          "description": "The number of conversations sampled.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError": {
+      "description": "An error that occurred during correlation for a specific conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigMetadataFullConversationCorrelationStatsConversationCorrelationError",
+      "properties": {
+        "conversation": {
+          "description": "The conversation resource name that had an error during correlation.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error status."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponse": {
+      "description": "The response of testing correlation config.",
+      "id": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponse",
+      "properties": {
+        "detailedResults": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponseDetailedCorrelationResults",
+          "description": "Results for the DETAILED_SYNC execution mode."
+        },
+        "partialErrors": {
+          "description": "Partial errors during test correlation config operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponseDetailedCorrelationResults": {
+      "description": "Wrapper for detailed, step-by-step results.",
+      "id": "GoogleCloudContactcenterinsightsV1mainTestCorrelationConfigResponseDetailedCorrelationResults",
+      "properties": {
+        "constraintResults": {
+          "description": "A list of constraint evaluation results for each pair of conversations.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConstraintEvaluationResult"
+          },
+          "type": "array"
+        },
+        "joinKeyResults": {
+          "description": "A list of join key correlation results for each conversation tested.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationCorrelationResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -1584,7 +1584,7 @@ export namespace toolresults_v1beta3 {
     /**
      * Warning message with additional details of the issue. Should always be a message from com.google.devtools.toolresults.v1.warnings
      */
-    warning?: Schema$Any;
+    warning_migration?: Schema$Any;
   }
   /**
    * A summary of a test suite result either parsed from XML or uploaded directly by a user. Note: the API related comments are for StepService only. This message is also being used in ExecutionService in a read only mode for the corresponding step.

@@ -2122,7 +2122,7 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260119",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3349,7 +3349,8 @@
           "description": "Optional. Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead."
         },
         "management": {
-          "description": "Optional. Enables automatic Feature management.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only supports manual upgrades.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",

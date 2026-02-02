@@ -232,7 +232,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AdGroupAd {
     /**
-     * The unique ID of the ad. Assigned by the system.
+     * Output only. The unique ID of the ad. Assigned by the system.
      */
     adGroupAdId?: string | null;
     /**
@@ -240,7 +240,7 @@ export namespace displayvideo_v3 {
      */
     adGroupId?: string | null;
     /**
-     * The policy approval status of the ad.
+     * Output only. The policy approval status of the ad.
      */
     adPolicy?: Schema$AdPolicy;
     /**
@@ -248,7 +248,7 @@ export namespace displayvideo_v3 {
      */
     adUrls?: Schema$AdUrl[];
     /**
-     * The unique ID of the advertiser the ad belongs to.
+     * Output only. The unique ID of the advertiser the ad belongs to.
      */
     advertiserId?: string | null;
     /**
@@ -280,7 +280,7 @@ export namespace displayvideo_v3 {
      */
     mastheadAd?: Schema$MastheadAd;
     /**
-     * The resource name of the ad.
+     * Output only. The resource name of the ad.
      */
     name?: string | null;
     /**
@@ -4165,7 +4165,7 @@ export namespace displayvideo_v3 {
     integrationCode?: string | null;
   }
   /**
-   * An inventory source.
+   * An inventory source. Next ID: 22
    */
   export interface Schema$InventorySource {
     /**
@@ -4666,7 +4666,7 @@ export namespace displayvideo_v3 {
   }
   export interface Schema$ListAdGroupAdsResponse {
     /**
-     * The list of ad group ads. This list will be absent if empty.
+     * The list of ads. This list will be absent if empty.
      */
     adGroupAds?: Schema$AdGroupAd[];
     /**
@@ -8192,7 +8192,7 @@ export namespace displayvideo_v3 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.adGroupAds.get({
-     *     // Required. The ID of the ad group ad to fetch.
+     *     // Required. The ID of the ad to fetch.
      *     adGroupAdId: '[^/]+',
      *     // Required. The ID of the advertiser this ad group ad belongs to.
      *     advertiserId: '[^/]+',
@@ -8346,9 +8346,9 @@ export namespace displayvideo_v3 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.adGroupAds.list({
-     *     // Required. The ID of the advertiser the ad groups belongs to.
+     *     // Required. The ID of the advertiser the ads belong to.
      *     advertiserId: '[^/]+',
-     *     // Optional. Allows filtering by custom ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     *     // Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      *     filter: 'placeholder-value',
      *     // Optional. Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -8465,7 +8465,7 @@ export namespace displayvideo_v3 {
 
   export interface Params$Resource$Advertisers$Adgroupads$Get extends StandardParameters {
     /**
-     * Required. The ID of the ad group ad to fetch.
+     * Required. The ID of the ad to fetch.
      */
     adGroupAdId?: string;
     /**
@@ -8475,11 +8475,11 @@ export namespace displayvideo_v3 {
   }
   export interface Params$Resource$Advertisers$Adgroupads$List extends StandardParameters {
     /**
-     * Required. The ID of the advertiser the ad groups belongs to.
+     * Required. The ID of the advertiser the ads belong to.
      */
     advertiserId?: string;
     /**
-     * Optional. Allows filtering by custom ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     * Optional. Allows filtering by ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**

@@ -146,11 +146,11 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$AutonomousDatabase {
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Immutable. The password for the default ADMIN user.
      */
     adminPassword?: string | null;
     /**
-     * Optional. The subnet CIDR range for the Autonomous Database.
+     * Optional. Immutable. The subnet CIDR range for the Autonomous Database.
      */
     cidr?: string | null;
     /**
@@ -158,7 +158,7 @@ export namespace oracledatabase_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The name of the Autonomous Database. The database name must be unique in the project. The name must begin with a letter and can contain a maximum of 30 alphanumeric characters.
+     * Optional. Immutable. The name of the Autonomous Database. The database name must be unique in the project. The name must begin with a letter and can contain a maximum of 30 alphanumeric characters.
      */
     database?: string | null;
     /**
@@ -166,7 +166,7 @@ export namespace oracledatabase_v1 {
      */
     disasterRecoverySupportedLocations?: string[] | null;
     /**
-     * Optional. The display name for the Autonomous Database. The name does not have to be unique within your project.
+     * Optional. Immutable. The display name for the Autonomous Database. The name does not have to be unique within your project.
      */
     displayName?: string | null;
     /**
@@ -182,15 +182,15 @@ export namespace oracledatabase_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project\}/global/networks/{network\}
+     * Optional. Immutable. The name of the VPC network used by the Autonomous Database in the following format: projects/{project\}/global/networks/{network\}
      */
     network?: string | null;
     /**
-     * Optional. The name of the OdbNetwork associated with the Autonomous Database. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     * Optional. Immutable. The name of the OdbNetwork associated with the Autonomous Database. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
      */
     odbNetwork?: string | null;
     /**
-     * Optional. The name of the OdbSubnet associated with the Autonomous Database. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     * Optional. Immutable. The name of the OdbSubnet associated with the Autonomous Database. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
      */
     odbSubnet?: string | null;
     /**
@@ -202,7 +202,7 @@ export namespace oracledatabase_v1 {
      */
     properties?: Schema$AutonomousDatabaseProperties;
     /**
-     * Optional. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation.
+     * Optional. Immutable. The source Autonomous Database configuration for the standby Autonomous Database. The source Autonomous Database is configured while creating the Peer Autonomous Database and can't be updated after creation.
      */
     sourceConfig?: Schema$SourceConfig;
   }
@@ -425,7 +425,7 @@ export namespace oracledatabase_v1 {
      */
     allocatedStorageSizeTb?: number | null;
     /**
-     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     * Optional. Immutable. The list of allowlisted IP addresses for the Autonomous Database.
      */
     allowlistedIps?: string[] | null;
     /**
@@ -445,15 +445,15 @@ export namespace oracledatabase_v1 {
      */
     availableUpgradeVersions?: string[] | null;
     /**
-     * Optional. The retention period for the Autonomous Database. This field is specified in days, can range from 1 day to 60 days, and has a default value of 60 days.
+     * Optional. Immutable. The retention period for the Autonomous Database. This field is specified in days, can range from 1 day to 60 days, and has a default value of 60 days.
      */
     backupRetentionPeriodDays?: number | null;
     /**
-     * Optional. The character set for the Autonomous Database. The default is AL32UTF8.
+     * Optional. Immutable. The character set for the Autonomous Database. The default is AL32UTF8.
      */
     characterSet?: string | null;
     /**
-     * Optional. The number of compute servers for the Autonomous Database.
+     * Optional. Immutable. The number of compute servers for the Autonomous Database.
      */
     computeCount?: number | null;
     /**
@@ -465,11 +465,11 @@ export namespace oracledatabase_v1 {
      */
     connectionUrls?: Schema$AutonomousDatabaseConnectionUrls;
     /**
-     * Optional. The number of CPU cores to be made available to the database.
+     * Optional. Immutable. The number of CPU cores to be made available to the database.
      */
     cpuCoreCount?: number | null;
     /**
-     * Optional. The list of customer contacts.
+     * Optional. Immutable. The list of customer contacts.
      */
     customerContacts?: Schema$CustomerContact[];
     /**
@@ -485,23 +485,23 @@ export namespace oracledatabase_v1 {
      */
     dataSafeState?: string | null;
     /**
-     * Optional. The size of the data stored in the database, in gigabytes.
+     * Optional. Immutable. The size of the data stored in the database, in gigabytes.
      */
     dataStorageSizeGb?: number | null;
     /**
-     * Optional. The size of the data stored in the database, in terabytes.
+     * Optional. Immutable. The size of the data stored in the database, in terabytes.
      */
     dataStorageSizeTb?: number | null;
     /**
-     * Optional. The edition of the Autonomous Databases.
+     * Optional. Immutable. The edition of the Autonomous Databases.
      */
     dbEdition?: string | null;
     /**
-     * Optional. The Oracle Database version for the Autonomous Database.
+     * Optional. Immutable. The Oracle Database version for the Autonomous Database.
      */
     dbVersion?: string | null;
     /**
-     * Required. The workload type of the Autonomous Database.
+     * Required. Immutable. The workload type of the Autonomous Database.
      */
     dbWorkload?: string | null;
     /**
@@ -521,7 +521,7 @@ export namespace oracledatabase_v1 {
      */
     failedDataRecoveryDuration?: string | null;
     /**
-     * Optional. This field indicates if auto scaling is enabled for the Autonomous Database CPU core count.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for the Autonomous Database CPU core count.
      */
     isAutoScalingEnabled?: boolean | null;
     /**
@@ -529,11 +529,11 @@ export namespace oracledatabase_v1 {
      */
     isLocalDataGuardEnabled?: boolean | null;
     /**
-     * Optional. This field indicates if auto scaling is enabled for the Autonomous Database storage.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for the Autonomous Database storage.
      */
     isStorageAutoScalingEnabled?: boolean | null;
     /**
-     * Required. The license type used for the Autonomous Database.
+     * Required. Immutable. The license type used for the Autonomous Database.
      */
     licenseType?: string | null;
     /**
@@ -561,7 +561,7 @@ export namespace oracledatabase_v1 {
      */
     maintenanceEndTime?: string | null;
     /**
-     * Optional. The maintenance schedule of the Autonomous Database.
+     * Optional. Immutable. The maintenance schedule of the Autonomous Database.
      */
     maintenanceScheduleType?: string | null;
     /**
@@ -573,11 +573,11 @@ export namespace oracledatabase_v1 {
      */
     memoryTableGbs?: number | null;
     /**
-     * Optional. This field specifies if the Autonomous Database requires mTLS connections.
+     * Optional. Immutable. This field specifies if the Autonomous Database requires mTLS connections.
      */
     mtlsConnectionRequired?: boolean | null;
     /**
-     * Optional. The national character set for the Autonomous Database. The default is AL16UTF16.
+     * Optional. Immutable. The national character set for the Autonomous Database. The default is AL16UTF16.
      */
     nCharacterSet?: string | null;
     /**
@@ -613,11 +613,11 @@ export namespace oracledatabase_v1 {
      */
     privateEndpoint?: string | null;
     /**
-     * Optional. The private endpoint IP address for the Autonomous Database.
+     * Optional. Immutable. The private endpoint IP address for the Autonomous Database.
      */
     privateEndpointIp?: string | null;
     /**
-     * Optional. The private endpoint label for the Autonomous Database.
+     * Optional. Immutable. The private endpoint label for the Autonomous Database.
      */
     privateEndpointLabel?: string | null;
     /**
@@ -637,7 +637,7 @@ export namespace oracledatabase_v1 {
      */
     scheduledOperationDetails?: Schema$ScheduledOperationDetails[];
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault secret.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault secret.
      */
     secretId?: string | null;
     /**
@@ -665,7 +665,7 @@ export namespace oracledatabase_v1 {
      */
     usedDataStorageSizeTbs?: number | null;
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      */
     vaultId?: string | null;
   }
@@ -2047,7 +2047,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$FailoverAutonomousDatabaseRequest {
     /**
-     * Required. The peer database name to fail over to.
+     * Optional. The peer database name to fail over to. Required for cross-region standby, and must be omitted for in-region Data Guard.
      */
     peerAutonomousDatabase?: string | null;
   }
@@ -2854,7 +2854,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$SwitchoverAutonomousDatabaseRequest {
     /**
-     * Required. The peer database name to switch over to.
+     * Optional. The peer database name to switch over to. Required for cross-region standby, and must be omitted for in-region Data Guard.
      */
     peerAutonomousDatabase?: string | null;
   }
@@ -3117,7 +3117,7 @@ export namespace oracledatabase_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v19.2.0...documentai-v19.3.0) (2026-01-28)
+
+
+### Features
+
+* **documentai:** update the API ([969341f](https://github.com/googleapis/google-api-nodejs-client/commit/969341f6699592b913422800572d067dc46b3b30))
+
 ## [19.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v19.1.1...documentai-v19.2.0) (2026-01-09)
 
 

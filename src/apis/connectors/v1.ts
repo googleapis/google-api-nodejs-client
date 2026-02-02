@@ -738,6 +738,10 @@ export namespace connectors_v1 {
      */
     connectionRatelimitWindowSeconds?: string | null;
     /**
+     * Indicate whether connection service account is enabled. If false, the common runtime service agent is used.
+     */
+    connectionServiceAccountEnabled?: boolean | null;
+    /**
      * Indicate whether connector versioning is enabled.
      */
     connectorVersioningEnabled?: boolean | null;
@@ -777,6 +781,10 @@ export namespace connectors_v1 {
      * Indicate whether memstore is required for connector job.
      */
     provisionMemstore?: boolean | null;
+    /**
+     * Indicate whether public network ingress should be enabled.
+     */
+    publicNetworkIngressEnabled?: boolean | null;
     /**
      * Max QPS supported by the connector version before throttling of requests.
      */
@@ -1228,6 +1236,18 @@ export namespace connectors_v1 {
    */
   export interface Schema$EgressControlConfig {
     /**
+     * Optional. Access mode for egress control.
+     */
+    accessMode?: string | null;
+    /**
+     * Additional extraction rules to identity the backends from customer provided configuration in Connection resource. These rules are applied in addition to the ones specified in `oneof_backends`.
+     */
+    additionalExtractionRules?: Schema$ExtractionRules;
+    /**
+     * Optional. Used when access_mode is RESTRICTED or ACCESS_MODE_UNSPECIFIED.
+     */
+    allowlistedProjectNumbers?: string[] | null;
+    /**
      * Static Comma separated backends which are common for all Connection resources. Supported formats for each backend are host:port or just host (host can be ip address or domain name).
      */
     backends?: string | null;
@@ -1235,6 +1255,10 @@ export namespace connectors_v1 {
      * Extractions Rules to extract the backends from customer provided configuration.
      */
     extractionRules?: Schema$ExtractionRules;
+    /**
+     * Launch environment for egress control.
+     */
+    launchEnvironment?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1996,6 +2020,10 @@ export namespace connectors_v1 {
      */
     extractionRegex?: string | null;
     /**
+     * Format string used to format the extracted backend details. If empty, extracted backend details will be returned as it is.
+     */
+    formatString?: string | null;
+    /**
      * Source on which the rule is applied.
      */
     source?: Schema$Source;
@@ -2541,7 +2569,7 @@ export namespace connectors_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -4453,7 +4481,7 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.list({
-     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4745,7 +4773,7 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -14527,7 +14555,7 @@ export namespace connectors_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14679,7 +14707,7 @@ export namespace connectors_v1 {
      */
     pageToken?: string;
     /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `"projects/example/locations/-"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

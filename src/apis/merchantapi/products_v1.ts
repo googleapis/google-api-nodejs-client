@@ -396,7 +396,7 @@ export namespace merchantapi_products_v1 {
     ratio?: number | null;
   }
   /**
-   * LINT.IfChange(LoyaltyProgram) A message that represents loyalty program.
+   * A message that represents loyalty program.
    */
   export interface Schema$LoyaltyProgram {
     /**

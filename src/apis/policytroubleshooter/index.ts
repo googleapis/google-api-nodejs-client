@@ -16,10 +16,14 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {policytroubleshooter_v1} from './v1';
 import {policytroubleshooter_v1beta} from './v1beta';
+import {policytroubleshooter_v3} from './v3';
+import {policytroubleshooter_v3beta} from './v3beta';
 
 export const VERSIONS = {
   v1: policytroubleshooter_v1.Policytroubleshooter,
   v1beta: policytroubleshooter_v1beta.Policytroubleshooter,
+  v3: policytroubleshooter_v3.Policytroubleshooter,
+  v3beta: policytroubleshooter_v3beta.Policytroubleshooter,
 };
 
 export function policytroubleshooter(
@@ -34,10 +38,24 @@ export function policytroubleshooter(
 export function policytroubleshooter(
   options: policytroubleshooter_v1beta.Options
 ): policytroubleshooter_v1beta.Policytroubleshooter;
+export function policytroubleshooter(
+  version: 'v3'
+): policytroubleshooter_v3.Policytroubleshooter;
+export function policytroubleshooter(
+  options: policytroubleshooter_v3.Options
+): policytroubleshooter_v3.Policytroubleshooter;
+export function policytroubleshooter(
+  version: 'v3beta'
+): policytroubleshooter_v3beta.Policytroubleshooter;
+export function policytroubleshooter(
+  options: policytroubleshooter_v3beta.Options
+): policytroubleshooter_v3beta.Policytroubleshooter;
 export function policytroubleshooter<
   T =
     | policytroubleshooter_v1.Policytroubleshooter
-    | policytroubleshooter_v1beta.Policytroubleshooter,
+    | policytroubleshooter_v1beta.Policytroubleshooter
+    | policytroubleshooter_v3.Policytroubleshooter
+    | policytroubleshooter_v3beta.Policytroubleshooter,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -45,6 +63,10 @@ export function policytroubleshooter<
     | policytroubleshooter_v1.Options
     | 'v1beta'
     | policytroubleshooter_v1beta.Options
+    | 'v3'
+    | policytroubleshooter_v3.Options
+    | 'v3beta'
+    | policytroubleshooter_v3beta.Options
 ) {
   return getAPI<T>('policytroubleshooter', versionOrOptions, VERSIONS, this);
 }
@@ -53,6 +75,8 @@ const auth = new AuthPlus();
 export {auth};
 export {policytroubleshooter_v1};
 export {policytroubleshooter_v1beta};
+export {policytroubleshooter_v3};
+export {policytroubleshooter_v3beta};
 export {
   AuthPlus,
   GlobalOptions,

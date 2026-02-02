@@ -2184,7 +2184,7 @@ export namespace dataproc_v1 {
      */
     operations?: Schema$Operation[];
     /**
-     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.
+     * Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.
      */
     unreachable?: string[] | null;
   }
@@ -2703,7 +2703,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$PyPiRepositoryConfig {
     /**
-     * Optional. PyPi repository address
+     * Optional. The PyPi repository address. Note: This field is not available for batch workloads.
      */
     pypiRepository?: string | null;
   }
@@ -2992,7 +2992,7 @@ export namespace dataproc_v1 {
      */
     autotuningConfig?: Schema$AutotuningConfig;
     /**
-     * Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.
+     * Optional. Cohort identifier. Identifies families of the workloads that have the same shape, for example, daily ETL jobs.
      */
     cohort?: string | null;
     /**
@@ -3600,6 +3600,88 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SparkConnectConfig {}
   /**
+   * Represents the lifecycle and details of an Execution via Spark Connect
+   */
+  export interface Schema$SparkConnectExecutionInfo {
+    /**
+     * Timestamp when the execution was closed.
+     */
+    closeTimestamp?: string | null;
+    /**
+     * Detailed information about the execution.
+     */
+    detail?: string | null;
+    /**
+     * Timestamp when the execution finished.
+     */
+    finishTimestamp?: string | null;
+    /**
+     * Optional. List of job ids associated with the execution.
+     */
+    jobIds?: string[] | null;
+    /**
+     * Required. Job tag of the execution.
+     */
+    jobTag?: string | null;
+    /**
+     * Unique identifier for the operation.
+     */
+    operationId?: string | null;
+    /**
+     * Required. Session ID, ties the execution to a specific Spark Connect session.
+     */
+    sessionId?: string | null;
+    /**
+     * Optional. Tags associated with the Spark session.
+     */
+    sparkSessionTags?: string[] | null;
+    /**
+     * Optional. List of sql execution ids associated with the execution.
+     */
+    sqlExecIds?: string[] | null;
+    /**
+     * Timestamp when the execution started.
+     */
+    startTimestamp?: string | null;
+    /**
+     * Output only. Current state of the execution.
+     */
+    state?: string | null;
+    /**
+     * statement of the execution.
+     */
+    statement?: string | null;
+    /**
+     * User ID of the user who started the execution.
+     */
+    userId?: string | null;
+  }
+  /**
+   * Represents session-level information for Spark Connect
+   */
+  export interface Schema$SparkConnectSessionInfo {
+    /**
+     * Timestamp when the session finished.
+     */
+    finishTimestamp?: string | null;
+    /**
+     * Required. Session ID of the session.
+     */
+    sessionId?: string | null;
+    /**
+     * Timestamp when the session started.
+     */
+    startTimestamp?: string | null;
+    /**
+     * Optional. Total number of executions in the session.
+     */
+    totalExecution?: string | null;
+    /**
+     * User ID of the user who started the session.
+     */
+    userId?: string | null;
+  }
+  /**
    * Spark History Server configuration for the workload.
    */
   export interface Schema$SparkHistoryServerConfig {
@@ -3847,6 +3929,14 @@ export namespace dataproc_v1 {
     rddOperationGraph?: Schema$RddOperationGraph;
     rddStorageInfo?: Schema$RddStorageInfo;
     resourceProfileInfo?: Schema$ResourceProfileInfo;
+    /**
+     * Spark Connect Execution Info
+     */
+    sparkConnectExecutionInfo?: Schema$SparkConnectExecutionInfo;
+    /**
+     * Spark Connect Session Info
+     */
+    sparkConnectSessionInfo?: Schema$SparkConnectSessionInfo;
     sparkPlanGraph?: Schema$SparkPlanGraph;
     speculationStageSummary?: Schema$SpeculationStageSummary;
     sqlExecutionUiData?: Schema$SqlExecutionUiData;
@@ -10835,7 +10925,7 @@ export namespace dataproc_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10979,7 +11069,7 @@ export namespace dataproc_v1 {
      */
     pageToken?: string;
     /**
-     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }
@@ -24380,7 +24470,7 @@ export namespace dataproc_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
-     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     // When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -24832,7 +24922,7 @@ export namespace dataproc_v1 {
      */
     pageToken?: string;
     /**
-     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to "projects/example/locations/-".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
+     * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
   }

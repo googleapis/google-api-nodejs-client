@@ -200,6 +200,7 @@ export namespace compute_v1 {
     regionZones: Resource$Regionzones;
     reservationBlocks: Resource$Reservationblocks;
     reservations: Resource$Reservations;
+    reservationSlots: Resource$Reservationslots;
     reservationSubBlocks: Resource$Reservationsubblocks;
     resourcePolicies: Resource$Resourcepolicies;
     routers: Resource$Routers;
@@ -366,6 +367,7 @@ export namespace compute_v1 {
       this.regionZones = new Resource$Regionzones(this.context);
       this.reservationBlocks = new Resource$Reservationblocks(this.context);
       this.reservations = new Resource$Reservations(this.context);
+      this.reservationSlots = new Resource$Reservationslots(this.context);
       this.reservationSubBlocks = new Resource$Reservationsubblocks(
         this.context
       );
@@ -4420,6 +4422,10 @@ export namespace compute_v1 {
      */
     count?: string | null;
     /**
+     * A flexible specification of machine type of instances to create.
+     */
+    instanceFlexibilityPolicy?: Schema$InstanceFlexibilityPolicy;
+    /**
      * The instance properties defining the VM instances to be created. Required
      * if sourceInstanceTemplate is not provided.
      */
@@ -4533,6 +4539,16 @@ export namespace compute_v1 {
   }
   export interface Schema$BulkZoneSetLabelsRequest {
     requests?: Schema$BulkSetLabelsRequest[];
+  }
+  export interface Schema$BundledLocalSsds {
+    /**
+     * The default disk interface if the interface is not specified.
+     */
+    defaultInterface?: string | null;
+    /**
+     * The number of partitions.
+     */
+    partitionCount?: number | null;
   }
   export interface Schema$CacheInvalidationRule {
     /**
@@ -7348,9 +7364,7 @@ export namespace compute_v1 {
     percent?: number | null;
   }
   /**
-   * A flexible specification of a time range that has 3 points of
-   * flexibility: (1) a flexible start time, (2) a flexible end time, (3) a
-   * flexible duration.
+   * Specifies a flexible time range with flexible start time and duration.
    *
    * It is possible to specify a contradictory time range that cannot be matched
    * by any Interval. This causes a validation error.
@@ -11077,6 +11091,54 @@ export namespace compute_v1 {
     minNodeCpus?: number | null;
   }
   /**
+   * A flexible specification of machine types for instances to create.
+   */
+  export interface Schema$InstanceFlexibilityPolicy {
+    /**
+     * Specification of alternative, flexible instance subsets.
+     * One of them will be selected to create the instances
+     * based on various criteria, like:
+     * - ranks,
+     * - location policy,
+     * - current capacity,
+     * - available reservations (you can specify affinity in
+     * InstanceProperties),
+     * - SWAN/GOOSE limitations.
+     * Key is an arbitrary, unique RFC1035 string that identifies the instance
+     * selection.
+     */
+    instanceSelections?: {
+      [key: string]: Schema$InstanceFlexibilityPolicyInstanceSelection;
+    } | null;
+  }
+  /**
+   * Specification of machine type to use. Every position inside this message
+   * is an alternative.
+   * The count specified in the shape flexibility must not exceed the number
+   * of entries in per_instance_properties or the capacity of the
+   * name_pattern, if used.
+   */
+  export interface Schema$InstanceFlexibilityPolicyInstanceSelection {
+    /**
+     * Disks to be attached to the instances created from in this selection.
+     * They override the disks specified in the instance properties.
+     */
+    disks?: Schema$AttachedDisk[];
+    /**
+     * Alternative machine types to use for instances that are created from
+     * these properties. This field only accepts a machine type names, for
+     * example `n2-standard-4` and not URLs or partial URLs.
+     */
+    machineTypes?: string[] | null;
+    /**
+     * Rank when prioritizing the shape flexibilities.
+     * The instance selections with rank are considered
+     * first, in the ascending order of the rank.
+     * If not set, defaults to 0.
+     */
+    rank?: string | null;
+  }
+  /**
    * Represents an Instance Group resource.
    *
    * Instance Groups can be used to configure a target forload
@@ -13695,6 +13757,7 @@ export namespace compute_v1 {
      *    - BPS_20G: 20 Gbit/s
      *    - BPS_50G: 50 Gbit/s
      *    - BPS_100G: 100 Gbit/s
+     *    - BPS_400G: 400 Gbit/s
      */
     bandwidth?: string | null;
     /**
@@ -16205,6 +16268,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional parameters that are passed in the request, but are
+     * not persisted in the resource.
+     */
+    params?: Schema$MachineImageParams;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -16295,6 +16363,21 @@ export namespace compute_v1 {
     } | null;
   }
   /**
+   * Machine Image parameters
+   */
+  export interface Schema$MachineImageParams {
+    /**
+     * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
+  }
+  /**
    * Represents a Machine Type resource.
    *
    * You can use specific machine types for your VM instances based on performance
@@ -16313,6 +16396,10 @@ export namespace compute_v1 {
      * [Output Only] The architecture of the machine type.
      */
     architecture?: string | null;
+    /**
+     * [Output Only] The configuration of bundled local SSD for the machine type.
+     */
+    bundledLocalSsds?: Schema$BundledLocalSsds;
     /**
      * [Output Only] Creation timestamp inRFC3339
      * text format.
@@ -17969,9 +18056,7 @@ export namespace compute_v1 {
      */
     stackType?: string | null;
     /**
-     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     * peering is `ACTIVE` when there's a matching configuration in the peer
-     * network.
+     * Output only. [Output Only] State for the peering.
      */
     state?: string | null;
     /**
@@ -22369,6 +22454,131 @@ export namespace compute_v1 {
      */
     maintenanceScope?: string | null;
   }
+  /**
+   * Represents a reservation slot resource.
+   */
+  export interface Schema$ReservationSlot {
+    /**
+     * Output only. [Output Only] The creation timestamp, formatted asRFC3339 text.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for this resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] The type of resource. Alwayscompute#reservationSlot for reservation slots.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] The name of the reservation slot.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] The physical topology of the reservation slot.
+     */
+    physicalTopology?: Schema$ReservationSlotPhysicalTopology;
+    /**
+     * Output only. [Output Only] A server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] A server-defined URL for this resource with the resource ID.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * Specify share settings to create a shared slot. Set to empty
+     * to inherit the share settings from a parent resource.
+     */
+    shareSettings?: Schema$ShareSettings;
+    /**
+     * Output only. [Output Only] The state of the reservation slot.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output Only] The status of the reservation slot.
+     */
+    status?: Schema$ReservationSlotStatus;
+    /**
+     * Output only. [Output Only] The zone in which the reservation slot resides.
+     */
+    zone?: string | null;
+  }
+  export interface Schema$ReservationSlotPhysicalTopology {
+    /**
+     * The unique identifier of the capacity block within the cluster.
+     */
+    block?: string | null;
+    /**
+     * The cluster name of the reservation sub-block.
+     */
+    cluster?: string | null;
+    /**
+     * The unique identifier of the capacity host within the capacity sub-block.
+     */
+    host?: string | null;
+    /**
+     * The unique identifier of the capacity sub-block within the capacity
+     * block.
+     */
+    subBlock?: string | null;
+  }
+  export interface Schema$ReservationSlotsGetResponse {
+    resource?: Schema$ReservationSlot;
+  }
+  /**
+   * A list of reservation slots within a single reservation.
+   */
+  export interface Schema$ReservationSlotsListResponse {
+    /**
+     * The unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of reservation slot resources.
+     */
+    items?: Schema$ReservationSlot[];
+    /**
+     * The type of resource. Alwayscompute#reservationSlot for a list of reservation
+     * slots.
+     */
+    kind?: string | null;
+    /**
+     * This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * An informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$ReservationSlotStatus {
+    /**
+     * Output only. [Output Only] The physical topology of the reservation sub-block.
+     */
+    physicalTopology?: Schema$ReservationSlotPhysicalTopology;
+    /**
+     * Output only. The RDMA IP address of the physical host.
+     */
+    rdmaIpAddresses?: string[] | null;
+    /**
+     * Output only. The URIs of the instances currently running on this slot.
+     */
+    runningInstances?: string[] | null;
+  }
   export interface Schema$ReservationsPerformMaintenanceRequest {
     /**
      * Specifies if all, running or unused hosts are in scope for this request.
@@ -22777,6 +22987,11 @@ export namespace compute_v1 {
    * It specifies the failure bucket separation
    */
   export interface Schema$ResourcePolicyGroupPlacementPolicy {
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     */
+    acceleratorTopologyMode?: string | null;
     /**
      * The number of availability domains to spread instances across. If two
      * instances are in different availability domain, they are not in the same
@@ -27589,15 +27804,15 @@ export namespace compute_v1 {
    */
   export interface Schema$StoragePoolExapoolProvisionedCapacityGb {
     /**
-     * Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      */
     capacityOptimized?: string | null;
     /**
-     * Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned read-optimized capacity for this Exapool
      */
     readOptimized?: string | null;
     /**
-     * Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned write-optimized capacity for this Exapool
      */
     writeOptimized?: string | null;
   }
@@ -27961,9 +28176,9 @@ export namespace compute_v1 {
    */
   export interface Schema$Subnetwork {
     /**
-     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Whether this subnetwork's ranges can conflict with existing custom routes.
      * Setting this to true allows this subnetwork's primary and secondary ranges
-     * to overlap with (and contain) static routes that have already been
+     * to overlap with (and contain) custom routes that have already been
      * configured on the corresponding network.
      *
      * For example if a static route has range 10.1.0.0/16, a subnet
@@ -27979,8 +28194,6 @@ export namespace compute_v1 {
      *
      * The default value is false and applies to all existing subnetworks and
      * automatically created subnetworks.
-     *
-     * This field cannot be set to true at resource creation time.
      */
     allowSubnetCidrRoutesOverlap?: boolean | null;
     /**
@@ -28137,6 +28350,10 @@ export namespace compute_v1 {
      */
     reservedInternalRange?: string | null;
     /**
+     * Configures subnet mask resolution for this subnetwork.
+     */
+    resolveSubnetMask?: string | null;
+    /**
      * The role of subnetwork. Currently, this field is only used when
      * purpose is set to GLOBAL_MANAGED_PROXY orREGIONAL_MANAGED_PROXY. The value can be set toACTIVE or BACKUP. An ACTIVE
      * subnetwork is one that is currently being used for Envoy-based load
@@ -28149,7 +28366,7 @@ export namespace compute_v1 {
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to the
      * primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     * primary or secondary ranges. This field can be updated with apatch request.
+     * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      */
     secondaryIpRanges?: Schema$SubnetworkSecondaryRange[];
     /**
@@ -28340,20 +28557,33 @@ export namespace compute_v1 {
      * The range of IP addresses belonging to this subnetwork secondary range.
      * Provide this property when you create the subnetwork. Ranges must be
      * unique and non-overlapping with all primary and secondary IP ranges
-     * within a network. Only IPv4 is supported. The range can be any range
-     * listed in theValid
+     * within a network. Both IPv4 and IPv6 ranges are supported. For IPv4,
+     * the range can be any range listed in theValid
      * ranges list.
+     *
+     * For IPv6:
+     * The range must have a /64 prefix length.
+     * The range must be omitted, for auto-allocation from Google-defined ULA
+     * IPv6 range.
+     * For BYOGUA internal IPv6 secondary range, the range may be specified
+     * along with the `ipCollection` field.
+     * If an `ipCollection` is specified, the requested ip_cidr_range must lie
+     * within the range of the PDP referenced by the `ipCollection` field for
+     * allocation.
+     * If `ipCollection` field is specified, but ip_cidr_range is not,
+     * the range is auto-allocated from the PDP referenced by the `ipCollection`
+     * field.
      */
     ipCidrRange?: string | null;
     /**
      * The name associated with this subnetwork secondary range, used when adding
-     * an alias IP range to a VM instance.
+     * an alias IP/IPv6 range to a VM instance.
      * The name must be 1-63 characters long, and comply withRFC1035.
      * The name must be unique within the subnetwork.
      */
     rangeName?: string | null;
     /**
-     * The URL of the reserved internal range.
+     * The URL of the reserved internal range. Only IPv4 is supported.
      */
     reservedInternalRange?: string | null;
   }
@@ -30723,6 +30953,7 @@ export namespace compute_v1 {
   export interface Schema$UsableSubnetworkSecondaryRange {
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
+     * Can be Ipv4 or Ipv6 range.
      */
     ipCidrRange?: string | null;
     /**
@@ -88180,6 +88411,7 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "count": "my_count",
+     *       //   "instanceFlexibilityPolicy": {},
      *       //   "instanceProperties": {},
      *       //   "locationPolicy": {},
      *       //   "minCount": "my_minCount",
@@ -114233,6 +114465,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "machineImageEncryptionKey": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "savedDisks": [],
@@ -114563,6 +114796,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "machineImageEncryptionKey": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "savedDisks": [],
@@ -115969,6 +116203,7 @@ export namespace compute_v1 {
      *   // {
      *   //   "accelerators": [],
      *   //   "architecture": "my_architecture",
+     *   //   "bundledLocalSsds": {},
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "deprecated": {},
      *   //   "description": "my_description",
@@ -162826,6 +163061,165 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthCheckServices.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regionhealthcheckservices$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regionhealthcheckservices$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthcheckservices$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthcheckservices$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthcheckservices$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthcheckservices$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthcheckservices$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionhealthcheckservices$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Regionhealthcheckservices$Delete extends StandardParameters {
@@ -163048,6 +163442,25 @@ export namespace compute_v1 {
      * Request body metadata
      */
     requestBody?: Schema$HealthCheckService;
+  }
+  export interface Params$Resource$Regionhealthcheckservices$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
   export class Resource$Regioninstancegroupmanagers {
@@ -170343,6 +170756,7 @@ export namespace compute_v1 {
      *       // request body parameters
      *       // {
      *       //   "count": "my_count",
+     *       //   "instanceFlexibilityPolicy": {},
      *       //   "instanceProperties": {},
      *       //   "locationPolicy": {},
      *       //   "minCount": "my_minCount",
@@ -195885,6 +196299,766 @@ export namespace compute_v1 {
     requestBody?: Schema$Reservation;
   }
 
+  export class Resource$Reservationslots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves information about the specified reservation slot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.get({
+     *     // The name of the parent reservation and parent block, formatted as
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the reservation slot, formatted as RFC1035 or a resource ID
+     *     // number.
+     *     reservationSlot: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Reservationslots$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsGetResponse>>;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>,
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      params: Params$Resource$Reservationslots$Get,
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Get
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationSlotsGetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsGetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationSlotsGetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReservationSlotsGetResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of reservation slots under a single reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the parent reservation and parent block, formatted as
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Reservationslots$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsListResponse>>;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>,
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Reservationslots$List,
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ReservationSlotsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$List
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationSlotsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReservationSlotsListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName'],
+        pathParams: ['parentName', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationSlotsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReservationSlotsListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a reservation slot in the specified sub-block.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.update({
+     *     // The name of the sub-block resource.
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the slot resource.
+     *     reservationSlot: 'placeholder-value',
+     *     // The fields to be updated as part of this request.
+     *     updateMask: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "physicalTopology": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "shareSettings": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Reservationslots$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Update
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Reservationslots$Get extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block, formatted as
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the reservation slot, formatted as RFC1035 or a resource ID
+     * number.
+     */
+    reservationSlot?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The name of the parent reservation and parent block, formatted as
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$Update extends StandardParameters {
+    /**
+     * The name of the sub-block resource.
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the slot resource.
+     */
+    reservationSlot?: string;
+    /**
+     * The fields to be updated as part of this request.
+     */
+    updateMask?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSlot;
+  }
+
   export class Resource$Reservationsubblocks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -219561,6 +220735,7 @@ export namespace compute_v1 {
      *   //   "purpose": "my_purpose",
      *   //   "region": "my_region",
      *   //   "reservedInternalRange": "my_reservedInternalRange",
+     *   //   "resolveSubnetMask": "my_resolveSubnetMask",
      *   //   "role": "my_role",
      *   //   "secondaryIpRanges": [],
      *   //   "selfLink": "my_selfLink",
@@ -219901,6 +221076,7 @@ export namespace compute_v1 {
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "reservedInternalRange": "my_reservedInternalRange",
+     *       //   "resolveSubnetMask": "my_resolveSubnetMask",
      *       //   "role": "my_role",
      *       //   "secondaryIpRanges": [],
      *       //   "selfLink": "my_selfLink",
@@ -220628,6 +221804,7 @@ export namespace compute_v1 {
      *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "reservedInternalRange": "my_reservedInternalRange",
+     *       //   "resolveSubnetMask": "my_resolveSubnetMask",
      *       //   "role": "my_role",
      *       //   "secondaryIpRanges": [],
      *       //   "selfLink": "my_selfLink",

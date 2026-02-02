@@ -1636,7 +1636,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260118",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -5096,6 +5096,10 @@
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentEntityValidationOutput",
           "description": "The entity validation output for this revision."
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentProvenance",
+          "description": "Optional. The history of this revision."
+        },
         "revisionId": {
           "description": "The revision id.",
           "type": "string"
@@ -6303,6 +6307,10 @@
         },
         "displayName": {
           "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "documentPrompt": {
+          "description": "Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.",
           "type": "string"
         },
         "entityTypes": {

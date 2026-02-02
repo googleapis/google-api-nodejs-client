@@ -1625,7 +1625,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -4653,7 +4653,7 @@
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections e.g. when parent is set to \"projects/example/locations/-\".This field is not by default supported and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "description": "When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to \"projects/example/locations/-\".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5032,7 +5032,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260122",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -8425,7 +8425,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections e.g. when attempting to list all resources across all supported locations.",
+          "description": "Unordered list. Unreachable resources. Populated when the request sets ListOperationsRequest.return_partial_success and reads across collections. For example, when attempting to list all resources across all supported locations.",
           "items": {
             "type": "string"
           },
@@ -9254,7 +9254,7 @@
       "id": "PyPiRepositoryConfig",
       "properties": {
         "pypiRepository": {
-          "description": "Optional. PyPi repository address",
+          "description": "Optional. The PyPi repository address. Note: This field is not available for batch workloads.",
           "type": "string"
         }
       },
@@ -9831,7 +9831,7 @@
           "description": "Optional. Autotuning configuration of the workload."
         },
         "cohort": {
-          "description": "Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.",
+          "description": "Optional. Cohort identifier. Identifies families of the workloads that have the same shape, for example, daily ETL jobs.",
           "type": "string"
         },
         "containerImage": {
@@ -10875,6 +10875,128 @@
       "properties": {},
       "type": "object"
     },
+    "SparkConnectExecutionInfo": {
+      "description": "Represents the lifecycle and details of an Execution via Spark Connect",
+      "id": "SparkConnectExecutionInfo",
+      "properties": {
+        "closeTimestamp": {
+          "description": "Timestamp when the execution was closed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Detailed information about the execution.",
+          "type": "string"
+        },
+        "finishTimestamp": {
+          "description": "Timestamp when the execution finished.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobIds": {
+          "description": "Optional. List of job ids associated with the execution.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "jobTag": {
+          "description": "Required. Job tag of the execution.",
+          "type": "string"
+        },
+        "operationId": {
+          "description": "Unique identifier for the operation.",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Required. Session ID, ties the execution to a specific Spark Connect session.",
+          "type": "string"
+        },
+        "sparkSessionTags": {
+          "description": "Optional. Tags associated with the Spark session.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sqlExecIds": {
+          "description": "Optional. List of sql execution ids associated with the execution.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "startTimestamp": {
+          "description": "Timestamp when the execution started.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the execution.",
+          "enum": [
+            "EXECUTION_STATE_UNKNOWN",
+            "EXECUTION_STATE_STARTED",
+            "EXECUTION_STATE_COMPILED",
+            "EXECUTION_STATE_READY",
+            "EXECUTION_STATE_CANCELED",
+            "EXECUTION_STATE_FAILED",
+            "EXECUTION_STATE_FINISHED",
+            "EXECUTION_STATE_CLOSED"
+          ],
+          "enumDescriptions": [
+            "Execution state is unknown.",
+            "Execution state is started.",
+            "Execution state is compiled.",
+            "Execution state is ready.",
+            "Execution state is canceled.",
+            "Execution state is failed.",
+            "Execution state is finished.",
+            "Execution state is closed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statement": {
+          "description": "statement of the execution.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User ID of the user who started the execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SparkConnectSessionInfo": {
+      "description": "Represents session-level information for Spark Connect",
+      "id": "SparkConnectSessionInfo",
+      "properties": {
+        "finishTimestamp": {
+          "description": "Timestamp when the session finished.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Required. Session ID of the session.",
+          "type": "string"
+        },
+        "startTimestamp": {
+          "description": "Timestamp when the session started.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalExecution": {
+          "description": "Optional. Total number of executions in the session.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userId": {
+          "description": "User ID of the user who started the session.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SparkHistoryServerConfig": {
       "description": "Spark History Server configuration for the workload.",
       "id": "SparkHistoryServerConfig",
@@ -11287,6 +11409,14 @@
         },
         "resourceProfileInfo": {
           "$ref": "ResourceProfileInfo"
+        },
+        "sparkConnectExecutionInfo": {
+          "$ref": "SparkConnectExecutionInfo",
+          "description": "Spark Connect Execution Info"
+        },
+        "sparkConnectSessionInfo": {
+          "$ref": "SparkConnectSessionInfo",
+          "description": "Spark Connect Session Info"
         },
         "sparkPlanGraph": {
           "$ref": "SparkPlanGraph"
