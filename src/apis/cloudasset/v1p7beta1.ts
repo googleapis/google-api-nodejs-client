@@ -307,7 +307,7 @@ export namespace cloudasset_v1p7beta1 {
    */
   export interface Schema$GoogleCloudAssetV1p7beta1GcsDestination {
     /**
-     * The URI of the Cloud Storage object. It's the same URI that is used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
+     * The URI of the Cloud Storage object. It's the same URI that is used by gcloud storage. Example: "gs://bucket_name/object_name". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
      */
     uri?: string | null;
     /**
