@@ -220,6 +220,37 @@ export namespace securitycenter_v1beta2 {
     confidence?: number | null;
   }
   /**
+   * Represents an ADC application associated with the finding.
+   */
+  export interface Schema$AdcApplication {
+    /**
+     * Consumer provided attributes for the AppHub application.
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV1ResourceApplicationAttributes;
+    /**
+     * The resource name of an ADC Application. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applications/{application\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC template associated with the finding.
+   */
+  export interface Schema$AdcApplicationTemplateRevision {
+    /**
+     * The resource name of an ADC Application Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC shared template associated with the finding.
+   */
+  export interface Schema$AdcSharedTemplateRevision {
+    /**
+     * The resource name of an ADC Shared Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
+  }
+  /**
    * Details about resources affected by this finding.
    */
   export interface Schema$AffectedResources {
@@ -2007,6 +2038,18 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The ADC application associated with the finding.
+     */
+    adcApplication?: Schema$AdcApplication;
+    /**
+     * The ADC template associated with the finding.
+     */
+    adcApplicationTemplate?: Schema$AdcApplicationTemplateRevision;
+    /**
+     * The ADC shared template associated with the finding.
+     */
+    adcSharedTemplate?: Schema$AdcSharedTemplateRevision;
+    /**
      * The App Hub application this resource belongs to.
      */
     application?: Schema$GoogleCloudSecuritycenterV1ResourceApplication;
@@ -2351,6 +2394,37 @@ export namespace securitycenter_v1beta2 {
      * A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.
      */
     confidence?: number | null;
+  }
+  /**
+   * Represents an ADC application associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AdcApplication {
+    /**
+     * Consumer provided attributes for the AppHub application.
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2ResourceApplicationAttributes;
+    /**
+     * The resource name of an ADC Application. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applications/{application\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC template associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision {
+    /**
+     * The resource name of an ADC Application Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC shared template associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AdcSharedTemplateRevision {
+    /**
+     * The resource name of an ADC Shared Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
   }
   /**
    * Details about resources affected by this finding.
@@ -3957,6 +4031,18 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2IssueResource {
     /**
+     * The ADC application associated with the finding.
+     */
+    adcApplication?: Schema$GoogleCloudSecuritycenterV2IssueResourceAdcApplication;
+    /**
+     * The ADC template associated with the finding.
+     */
+    adcApplicationTemplate?: Schema$GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision;
+    /**
+     * The ADC shared template associated with the finding.
+     */
+    adcSharedTemplate?: Schema$GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision;
+    /**
      * The AppHub application associated with the resource, if any. Only populated for the primary resource.
      */
     application?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplication;
@@ -3988,6 +4074,37 @@ export namespace securitycenter_v1beta2 {
      * The type of the resource associated with the issue.
      */
     type?: string | null;
+  }
+  /**
+   * Represents an ADC application associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAdcApplication {
+    /**
+     * Consumer provided attributes for the AppHub application.
+     */
+    attributes?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes;
+    /**
+     * The resource name of an ADC Application. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applications/{application\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC template associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision {
+    /**
+     * The resource name of an ADC Application Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents an ADC shared template associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision {
+    /**
+     * The resource name of an ADC Shared Template Revision. Format: projects/{project\}/locations/{location\}/spaces/{space\}/applicationTemplates/{application_template\}/revisions/{revision\}
+     */
+    name?: string | null;
   }
   /**
    * The AppHub application associated with the resource, if any.
@@ -4656,6 +4773,18 @@ export namespace securitycenter_v1beta2 {
    * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Resource {
+    /**
+     * The ADC application associated with the finding.
+     */
+    adcApplication?: Schema$GoogleCloudSecuritycenterV2AdcApplication;
+    /**
+     * The ADC template associated with the finding.
+     */
+    adcApplicationTemplate?: Schema$GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision;
+    /**
+     * The ADC shared template associated with the finding.
+     */
+    adcSharedTemplate?: Schema$GoogleCloudSecuritycenterV2AdcSharedTemplateRevision;
     /**
      * The App Hub application this resource belongs to.
      */
