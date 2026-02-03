@@ -163,7 +163,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1alpha1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "contactcenteraiplatform.projects.locations.list",
@@ -551,7 +551,7 @@
       }
     }
   },
-  "revision": "20260108",
+  "revision": "20260129",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -623,6 +623,12 @@
           "description": "Required. Immutable. At least 2 and max 16 char long, must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).",
           "type": "string"
         },
+        "deleteTime": {
+          "description": "Output only. Timestamp in UTC of when this resource was soft-deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. A user friendly name for the ContactCenter.",
           "type": "string"
@@ -630,6 +636,12 @@
         "early": {
           "$ref": "Early",
           "description": "Optional. Early release channel."
+        },
+        "expireTime": {
+          "description": "Output only. Timestamp in UTC of when this resource is considered expired.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "featureConfig": {
           "$ref": "FeatureConfig",
@@ -670,6 +682,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "purgeTime": {
+          "description": "Output only. Timestamp in UTC of when this resource is going to be hard-deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "releaseVersion": {
           "description": "Output only. UJET release version, unique for each new release.",
           "readOnly": true,
@@ -701,7 +719,7 @@
             "State TERMINATING",
             "State FAILED",
             "State TERMINATING_FAILED",
-            "State TERMINATED",
+            "Reused for soft-deleted state because semantically equivalent to `DELETED` as implied by go/aip/164.",
             "State IN_GRACE_PERIOD",
             "State in STATE_FAILING_OVER. This State must ONLY be used by Multiregional Instances when a failover was triggered. Customers are not able to update instances in this state.",
             "State DEGRADED. This State must ONLY be used by Multiregional Instances after a failover was executed successfully. Customers are not able to update instances in this state.",
@@ -950,7 +968,7 @@
         },
         "solverConfig": {
           "$ref": "SolverConfig",
-          "description": "Optional. Parameters for the solver."
+          "description": "Required. Parameters for the solver."
         },
         "workforceDemands": {
           "$ref": "WorkforceDemandList",

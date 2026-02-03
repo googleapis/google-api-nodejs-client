@@ -183,6 +183,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     customerDomainPrefix?: string | null;
     /**
+     * Output only. Timestamp in UTC of when this resource was soft-deleted.
+     */
+    deleteTime?: string | null;
+    /**
      * Required. A user friendly name for the ContactCenter.
      */
     displayName?: string | null;
@@ -190,6 +194,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Optional. Early release channel.
      */
     early?: Schema$Early;
+    /**
+     * Output only. Timestamp in UTC of when this resource is considered expired.
+     */
+    expireTime?: string | null;
     /**
      * Optional. Feature configuration to populate the feature flags.
      */
@@ -222,6 +230,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * Output only. TODO(b/283407860) Deprecate this field.
      */
     privateComponents?: string[] | null;
+    /**
+     * Output only. Timestamp in UTC of when this resource is going to be hard-deleted.
+     */
+    purgeTime?: string | null;
     /**
      * Output only. UJET release version, unique for each new release.
      */
@@ -409,7 +421,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     shiftTemplates?: Schema$ShiftTemplate[];
     /**
-     * Optional. Parameters for the solver.
+     * Required. Parameters for the solver.
      */
     solverConfig?: Schema$SolverConfig;
     /**
@@ -1202,7 +1214,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1595,8 +1607,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "createTime": "my_createTime",
      *         //   "critical": {},
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
+     *         //   "deleteTime": "my_deleteTime",
      *         //   "displayName": "my_displayName",
      *         //   "early": {},
+     *         //   "expireTime": "my_expireTime",
      *         //   "featureConfig": {},
      *         //   "instanceConfig": {},
      *         //   "kmsKey": "my_kmsKey",
@@ -1605,6 +1619,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "normal": {},
      *         //   "privateAccess": {},
      *         //   "privateComponents": [],
+     *         //   "purgeTime": "my_purgeTime",
      *         //   "releaseVersion": "my_releaseVersion",
      *         //   "samlParams": {},
      *         //   "state": "my_state",
@@ -1909,8 +1924,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "critical": {},
      *   //   "customerDomainPrefix": "my_customerDomainPrefix",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "early": {},
+     *   //   "expireTime": "my_expireTime",
      *   //   "featureConfig": {},
      *   //   "instanceConfig": {},
      *   //   "kmsKey": "my_kmsKey",
@@ -1919,6 +1936,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   //   "normal": {},
      *   //   "privateAccess": {},
      *   //   "privateComponents": [],
+     *   //   "purgeTime": "my_purgeTime",
      *   //   "releaseVersion": "my_releaseVersion",
      *   //   "samlParams": {},
      *   //   "state": "my_state",
@@ -2223,8 +2241,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "createTime": "my_createTime",
      *         //   "critical": {},
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
+     *         //   "deleteTime": "my_deleteTime",
      *         //   "displayName": "my_displayName",
      *         //   "early": {},
+     *         //   "expireTime": "my_expireTime",
      *         //   "featureConfig": {},
      *         //   "instanceConfig": {},
      *         //   "kmsKey": "my_kmsKey",
@@ -2233,6 +2253,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "normal": {},
      *         //   "privateAccess": {},
      *         //   "privateComponents": [],
+     *         //   "purgeTime": "my_purgeTime",
      *         //   "releaseVersion": "my_releaseVersion",
      *         //   "samlParams": {},
      *         //   "state": "my_state",
