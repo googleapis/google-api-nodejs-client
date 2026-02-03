@@ -3436,7 +3436,7 @@
       }
     }
   },
-  "revision": "20251230",
+  "revision": "20260122",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Ack": {
@@ -3591,6 +3591,19 @@
           "description": "Optional. If specified, overrides the autoscaling target high_priority_cpu_utilization_percent in the top-level autoscaling configuration for the selected replicas.",
           "format": "int32",
           "type": "integer"
+        },
+        "autoscalingTargetTotalCpuUtilizationPercent": {
+          "description": "Optional. If specified, overrides the autoscaling target `total_cpu_utilization_percent` in the top-level autoscaling configuration for the selected replicas.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "disableHighPriorityCpuAutoscaling": {
+          "description": "Optional. If true, disables high priority CPU autoscaling for the selected replicas and ignores high_priority_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_high_priority_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_high_priority_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the high_priority_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported.",
+          "type": "boolean"
+        },
+        "disableTotalCpuAutoscaling": {
+          "description": "Optional. If true, disables total CPU autoscaling for the selected replicas and ignores total_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_total_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_total_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the total_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3627,12 +3640,17 @@
       "id": "AutoscalingTargets",
       "properties": {
         "highPriorityCpuUtilizationPercent": {
-          "description": "Required. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive.",
+          "description": "Optional. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on high priority CPU utilization.",
           "format": "int32",
           "type": "integer"
         },
         "storageUtilizationPercent": {
           "description": "Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 99] inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCpuUtilizationPercent": {
+          "description": "Optional. The target total CPU utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on total CPU utilization. If both `high_priority_cpu_utilization_percent` and `total_cpu_utilization_percent` are specified, the autoscaler provisions the larger of the two required compute capacities to satisfy both targets.",
           "format": "int32",
           "type": "integer"
         }
@@ -3722,6 +3740,23 @@
         "maxExpireTime": {
           "description": "Output only. The max allowed expiration time of the backup, with microseconds granularity. A backup's expiration time can be configured in multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or copying an existing backup, the expiration time specified must be less than `Backup.max_expire_time`.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "minimumRestorableEdition": {
+          "description": "Output only. The minimum edition required to successfully restore the backup. Populated only if the edition is Enterprise or Enterprise Plus.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Edition not specified.",
+            "Standard edition.",
+            "Enterprise edition.",
+            "Enterprise Plus edition."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -4065,6 +4100,20 @@
         "variable": {
           "description": "Only present if the child node is SCALAR and corresponds to an output variable of the parent node. The field carries the name of the output variable. For example, a `TableScan` operator that reads rows from a table will have child links to the `SCALAR` nodes representing the output variables created for each column that is read by the operator. The corresponding `variable` fields will be set to the variable names assigned to the columns.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ClientContext": {
+      "description": "Container for various pieces of client-owned context attached to a request.",
+      "id": "ClientContext",
+      "properties": {
+        "secureContext": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "description": "Optional. Map of parameter name to value for this request. These values will be returned by any SECURE_CONTEXT() calls invoked by this request (e.g., by queries against Parameterized Secure Views).",
+          "type": "object"
         }
       },
       "type": "object"
@@ -6624,7 +6673,7 @@
           "additionalProperties": {
             "$ref": "Type"
           },
-          "description": "It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.",
+          "description": "Optional. It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.",
           "type": "object"
         },
         "params": {
@@ -6632,7 +6681,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `\"WHERE id > @msg_id AND id < @msg_id + 100\"` It's an error to execute a SQL statement with unbound parameters.",
+          "description": "Optional. Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `\"WHERE id > @msg_id AND id < @msg_id + 100\"` It's an error to execute a SQL statement with unbound parameters.",
           "type": "object"
         },
         "partitionOptions": {
@@ -7168,6 +7217,10 @@
       "description": "Common request options for various APIs.",
       "id": "RequestOptions",
       "properties": {
+        "clientContext": {
+          "$ref": "ClientContext",
+          "description": "Optional. Optional context that may be needed for some requests."
+        },
         "priority": {
           "description": "Priority for the request.",
           "enum": [

@@ -245,6 +245,18 @@ export namespace spanner_v1 {
      * Optional. If specified, overrides the autoscaling target high_priority_cpu_utilization_percent in the top-level autoscaling configuration for the selected replicas.
      */
     autoscalingTargetHighPriorityCpuUtilizationPercent?: number | null;
+    /**
+     * Optional. If specified, overrides the autoscaling target `total_cpu_utilization_percent` in the top-level autoscaling configuration for the selected replicas.
+     */
+    autoscalingTargetTotalCpuUtilizationPercent?: number | null;
+    /**
+     * Optional. If true, disables high priority CPU autoscaling for the selected replicas and ignores high_priority_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_high_priority_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_high_priority_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the high_priority_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported.
+     */
+    disableHighPriorityCpuAutoscaling?: boolean | null;
+    /**
+     * Optional. If true, disables total CPU autoscaling for the selected replicas and ignores total_cpu_utilization_percent in the top-level autoscaling configuration. When setting this field to true, setting autoscaling_target_total_cpu_utilization_percent field to a non-zero value for the same replica is not supported. If false, the autoscaling_target_total_cpu_utilization_percent field in the replica will be used if set to a non-zero value. Otherwise, the total_cpu_utilization_percent field in the top-level autoscaling configuration will be used. Setting both disable_high_priority_cpu_autoscaling and disable_total_cpu_autoscaling to true for the same replica is not supported.
+     */
+    disableTotalCpuAutoscaling?: boolean | null;
   }
   /**
    * The autoscaling limits for the instance. Users can define the minimum and maximum compute capacity allocated to the instance, and the autoscaler will only scale within that range. Users can either use nodes or processing units to specify the limits, but should use the same unit to set both the min_limit and max_limit.
@@ -272,13 +284,17 @@ export namespace spanner_v1 {
    */
   export interface Schema$AutoscalingTargets {
     /**
-     * Required. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive.
+     * Optional. The target high priority cpu utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on high priority CPU utilization.
      */
     highPriorityCpuUtilizationPercent?: number | null;
     /**
      * Required. The target storage utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 99] inclusive.
      */
     storageUtilizationPercent?: number | null;
+    /**
+     * Optional. The target total CPU utilization percentage that the autoscaler should be trying to achieve for the instance. This number is on a scale from 0 (no utilization) to 100 (full utilization). The valid range is [10, 90] inclusive. If not specified or set to 0, the autoscaler skips scaling based on total CPU utilization. If both `high_priority_cpu_utilization_percent` and `total_cpu_utilization_percent` are specified, the autoscaler provisions the larger of the two required compute capacities to satisfy both targets.
+     */
+    totalCpuUtilizationPercent?: number | null;
   }
   /**
    * A backup of a Cloud Spanner database.
@@ -332,6 +348,10 @@ export namespace spanner_v1 {
      * Output only. The max allowed expiration time of the backup, with microseconds granularity. A backup's expiration time can be configured in multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or copying an existing backup, the expiration time specified must be less than `Backup.max_expire_time`.
      */
     maxExpireTime?: string | null;
+    /**
+     * Output only. The minimum edition required to successfully restore the backup. Populated only if the edition is Enterprise or Enterprise Plus.
+     */
+    minimumRestorableEdition?: string | null;
     /**
      * Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects//instances//backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects//instances/`.
      */
@@ -598,6 +618,15 @@ export namespace spanner_v1 {
      * Only present if the child node is SCALAR and corresponds to an output variable of the parent node. The field carries the name of the output variable. For example, a `TableScan` operator that reads rows from a table will have child links to the `SCALAR` nodes representing the output variables created for each column that is read by the operator. The corresponding `variable` fields will be set to the variable names assigned to the columns.
      */
     variable?: string | null;
+  }
+  /**
+   * Container for various pieces of client-owned context attached to a request.
+   */
+  export interface Schema$ClientContext {
+    /**
+     * Optional. Map of parameter name to value for this request. These values will be returned by any SECURE_CONTEXT() calls invoked by this request (e.g., by queries against Parameterized Secure Views).
+     */
+    secureContext?: {[key: string]: any} | null;
   }
   /**
    * Metadata for a column.
@@ -2376,11 +2405,11 @@ export namespace spanner_v1 {
    */
   export interface Schema$PartitionQueryRequest {
     /**
-     * Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id \> @msg_id AND id < @msg_id + 100"` It's an error to execute a SQL statement with unbound parameters.
+     * Optional. Parameter names and values that bind to placeholders in the SQL string. A parameter placeholder consists of the `@` character followed by the parameter name (for example, `@firstName`). Parameter names can contain letters, numbers, and underscores. Parameters can appear anywhere that a literal value is expected. The same parameter name can be used more than once, for example: `"WHERE id \> @msg_id AND id < @msg_id + 100"` It's an error to execute a SQL statement with unbound parameters.
      */
     params?: {[key: string]: any} | null;
     /**
-     * It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.
+     * Optional. It isn't always possible for Cloud Spanner to infer the right SQL type from a JSON value. For example, values of type `BYTES` and values of type `STRING` both appear in params as JSON strings. In these cases, `param_types` can be used to specify the exact SQL type for some or all of the SQL query parameters. See the definition of Type for more information about SQL types.
      */
     paramTypes?: {[key: string]: Schema$Type} | null;
     /**
@@ -2746,6 +2775,10 @@ export namespace spanner_v1 {
    * Common request options for various APIs.
    */
   export interface Schema$RequestOptions {
+    /**
+     * Optional. Optional context that may be needed for some requests.
+     */
+    clientContext?: Schema$ClientContext;
     /**
      * Priority for the request.
      */
@@ -7570,6 +7603,7 @@ export namespace spanner_v1 {
      *       //   "incrementalBackupChainId": "my_incrementalBackupChainId",
      *       //   "instancePartitions": [],
      *       //   "maxExpireTime": "my_maxExpireTime",
+     *       //   "minimumRestorableEdition": "my_minimumRestorableEdition",
      *       //   "name": "my_name",
      *       //   "oldestVersionTime": "my_oldestVersionTime",
      *       //   "referencingBackups": [],
@@ -7875,6 +7909,7 @@ export namespace spanner_v1 {
      *   //   "incrementalBackupChainId": "my_incrementalBackupChainId",
      *   //   "instancePartitions": [],
      *   //   "maxExpireTime": "my_maxExpireTime",
+     *   //   "minimumRestorableEdition": "my_minimumRestorableEdition",
      *   //   "name": "my_name",
      *   //   "oldestVersionTime": "my_oldestVersionTime",
      *   //   "referencingBackups": [],
@@ -8329,6 +8364,7 @@ export namespace spanner_v1 {
      *       //   "incrementalBackupChainId": "my_incrementalBackupChainId",
      *       //   "instancePartitions": [],
      *       //   "maxExpireTime": "my_maxExpireTime",
+     *       //   "minimumRestorableEdition": "my_minimumRestorableEdition",
      *       //   "name": "my_name",
      *       //   "oldestVersionTime": "my_oldestVersionTime",
      *       //   "referencingBackups": [],
@@ -8355,6 +8391,7 @@ export namespace spanner_v1 {
      *   //   "incrementalBackupChainId": "my_incrementalBackupChainId",
      *   //   "instancePartitions": [],
      *   //   "maxExpireTime": "my_maxExpireTime",
+     *   //   "minimumRestorableEdition": "my_minimumRestorableEdition",
      *   //   "name": "my_name",
      *   //   "oldestVersionTime": "my_oldestVersionTime",
      *   //   "referencingBackups": [],
