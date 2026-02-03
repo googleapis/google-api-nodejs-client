@@ -268,11 +268,11 @@ export namespace gkehub_v2alpha {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
-     * Optional. Configuration for deployment overrides.
+     * Optional. Configuration for deployment overrides. Applies only to Config Sync deployments with containers that are not a root or namespace reconciler: `reconciler-manager`, `otel-collector`, `resource-group-controller-manager`, `admission-webhook`. To override a root or namespace reconciler, use the rootsync or reposync fields at https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/reference/rootsync-reposync-fields#override-resources instead.
      */
     deploymentOverrides?: Schema$ConfigManagementDeploymentOverride[];
     /**
-     * Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
+     * Optional. Enables the installation of Config Sync. If set to true, the Feature will manage Config Sync resources, and apply the other ConfigSync fields if they exist. If set to false, the Feature will ignore all other ConfigSync fields and delete the Config Sync resources. If omitted, ConfigSync is considered enabled if the git or oci field is present.
      */
     enabled?: boolean | null;
     /**
@@ -288,11 +288,11 @@ export namespace gkehub_v2alpha {
      */
     oci?: Schema$ConfigManagementOciConfig;
     /**
-     * Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.
+     * Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to false, disables the Config Sync admission webhook and does not prevent drifts. Defaults to false. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/prevent-config-drift for details.
      */
     preventDrift?: boolean | null;
     /**
-     * Optional. Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
+     * Optional. Specifies whether the Config Sync repo is in `hierarchical` or `unstructured` mode. Defaults to `hierarchical`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.
      */
     sourceFormat?: string | null;
     /**
@@ -441,19 +441,19 @@ export namespace gkehub_v2alpha {
      */
     containerName?: string | null;
     /**
-     * Optional. The cpu limit of the container.
+     * Optional. The cpu limit of the container. Use the following CPU resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.
      */
     cpuLimit?: string | null;
     /**
-     * Optional. The cpu request of the container.
+     * Optional. The cpu request of the container. Use the following CPU resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.
      */
     cpuRequest?: string | null;
     /**
-     * Optional. The memory limit of the container.
+     * Optional. The memory limit of the container. Use the following memory resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.
      */
     memoryLimit?: string | null;
     /**
-     * Optional. The memory request of the container.
+     * Optional. The memory request of the container. Use the following memory resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.
      */
     memoryRequest?: string | null;
   }
@@ -517,11 +517,11 @@ export namespace gkehub_v2alpha {
    */
   export interface Schema$ConfigManagementGitConfig {
     /**
-     * Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.
      */
     gcpServiceAccountEmail?: string | null;
     /**
-     * Optional. URL for the HTTPS proxy to be used when communicating with the Git repo.
+     * Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Only specify when secret_type is `cookiefile`, `token`, or `none`.
      */
     httpsProxy?: string | null;
     /**
@@ -529,7 +529,7 @@ export namespace gkehub_v2alpha {
      */
     policyDir?: string | null;
     /**
-     * Required. Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount, githubapp or none. The validation of this is case-sensitive.
+     * Required. Type of secret configured for access to the Git repo. Must be one of `ssh`, `cookiefile`, `gcenode`, `token`, `gcpserviceaccount`, `githubapp` or `none`. The validation of this is case-sensitive.
      */
     secretType?: string | null;
     /**
@@ -636,7 +636,7 @@ export namespace gkehub_v2alpha {
    */
   export interface Schema$ConfigManagementOciConfig {
     /**
-     * Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.
+     * Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.
      */
     gcpServiceAccountEmail?: string | null;
     /**
@@ -644,7 +644,7 @@ export namespace gkehub_v2alpha {
      */
     policyDir?: string | null;
     /**
-     * Required. Type of secret configured for access to the OCI repo. Must be one of gcenode, gcpserviceaccount, k8sserviceaccount or none. The validation of this is case-sensitive.
+     * Required. Type of secret configured for access to the OCI repo. Must be one of `gcenode`, `gcpserviceaccount`, `k8sserviceaccount` or `none`. The validation of this is case-sensitive.
      */
     secretType?: string | null;
     /**
@@ -767,11 +767,11 @@ export namespace gkehub_v2alpha {
    */
   export interface Schema$ConfigManagementSpec {
     /**
-     * Optional. Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set.
+     * Optional. Deprecated: Binauthz configuration will be ignored and should not be set.
      */
     binauthz?: Schema$ConfigManagementBinauthzConfig;
     /**
-     * Optional. The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     * Optional. User-specified cluster name used by the Config Sync cluster-name-selector annotation or ClusterSelector object, for applying configs to only a subset of clusters. Read more about the cluster-name-selector annotation and ClusterSelector object at https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/cluster-scoped-objects#limiting-configs. Only set this field if a name different from the cluster's fleet membership name is used by the Config Sync cluster-name-selector annotation or ClusterSelector.
      */
     cluster?: string | null;
     /**
@@ -791,7 +791,7 @@ export namespace gkehub_v2alpha {
      */
     policyController?: Schema$ConfigManagementPolicyController;
     /**
-     * Optional. Version of ACM installed.
+     * Optional. Version of Config Sync to install. Defaults to the latest supported Config Sync version if the config_sync field is enabled. See supported versions at https://cloud.google.com/kubernetes-engine/config-sync/docs/get-support-config-sync#version_support_policy.
      */
     version?: string | null;
   }
@@ -963,6 +963,10 @@ export namespace gkehub_v2alpha {
      * The high-level state of this MembershipFeature.
      */
     state?: Schema$State;
+    /**
+     * Workload Identity state
+     */
+    workloadidentity?: Schema$WorkloadIdentityState;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1956,6 +1960,34 @@ export namespace gkehub_v2alpha {
      */
     certificateManagement?: string | null;
   }
+  /**
+   * IdentityProviderStateDetail represents the state of an Identity Provider.
+   */
+  export interface Schema$WorkloadIdentityIdentityProviderStateDetail {
+    /**
+     * The state of the Identity Provider.
+     */
+    code?: string | null;
+    /**
+     * A human-readable description of the current state or returned error.
+     */
+    description?: string | null;
+  }
+  /**
+   * **WorkloadIdentity**: The membership-specific state for WorkloadIdentity feature.
+   */
+  export interface Schema$WorkloadIdentityState {
+    /**
+     * Deprecated, this field will be erased after code is changed to use the new field.
+     */
+    description?: string | null;
+    /**
+     * The state of the Identity Providers corresponding to the membership.
+     */
+    identityProviderStateDetails?: {
+      [key: string]: Schema$WorkloadIdentityIdentityProviderStateDetail;
+    } | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2119,7 +2151,7 @@ export namespace gkehub_v2alpha {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
