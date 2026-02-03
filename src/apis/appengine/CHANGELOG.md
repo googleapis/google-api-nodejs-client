@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v14.0.0...appengine-v14.0.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([a7330dd](https://github.com/googleapis/google-api-nodejs-client/commit/a7330dda6c9f2892e32a897bf875ea45946dcc09))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v13.2.0...appengine-v14.0.0) (2026-01-28)
 
 
