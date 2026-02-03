@@ -1797,6 +1797,41 @@
             "https://www.googleapis.com/auth/sqlservice.admin"
           ]
         },
+        "restoreBackupMcp": {
+          "description": "Restores a backup of a Cloud SQL instance for Model Context Protocol (MCP) server.",
+          "flatPath": "v1/projects/{targetProject}/instances/{targetInstance}:restoreBackupMcp",
+          "httpMethod": "POST",
+          "id": "sql.instances.restoreBackupMcp",
+          "parameterOrder": [
+            "targetProject",
+            "targetInstance"
+          ],
+          "parameters": {
+            "targetInstance": {
+              "description": "Required. Cloud SQL instance ID of the target. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "targetProject": {
+              "description": "Required. Project ID of the target project.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{targetProject}/instances/{targetInstance}:restoreBackupMcp",
+          "request": {
+            "$ref": "SqlInstancesRestoreBackupMcpRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "rotateServerCa": {
           "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCa",
@@ -2790,7 +2825,7 @@
       }
     }
   },
-  "revision": "20260106",
+  "revision": "20260119",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -8197,6 +8232,25 @@
       "description": "Instance reset replica size request.",
       "id": "SqlInstancesResetReplicaSizeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "SqlInstancesRestoreBackupMcpRequest": {
+      "description": "Instance restore backup request for MCP.",
+      "id": "SqlInstancesRestoreBackupMcpRequest",
+      "properties": {
+        "backupId": {
+          "description": "Required. The identifier of the backup to restore. This will be one of the following: 1. An int64 containing a backup_run_id. 2. A backup name of the format 'projects/{project}/backups/{backup-uid}'. 3. A backupDR name of the format 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}'.",
+          "type": "string"
+        },
+        "sourceInstance": {
+          "description": "Optional. The Cloud SQL instance ID of the source instance containing the backup. Only necessary if the backup_id is a backup_run_id.",
+          "type": "string"
+        },
+        "sourceProject": {
+          "description": "Required. The project ID of the source instance containing the backup.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SqlInstancesStartExternalSyncRequest": {

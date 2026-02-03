@@ -2003,7 +2003,7 @@
       }
     }
   },
-  "revision": "20260105",
+  "revision": "20260123",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2103,6 +2103,43 @@
           "description": "A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "AdcApplication": {
+      "description": "Represents an ADC application associated with the finding.",
+      "id": "AdcApplication",
+      "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV1ResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the AppHub application."
+        },
+        "name": {
+          "description": "The resource name of an ADC Application. Format: projects/{project}/locations/{location}/spaces/{space}/applications/{application}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdcApplicationTemplateRevision": {
+      "description": "Represents an ADC template associated with the finding.",
+      "id": "AdcApplicationTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Application Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdcSharedTemplateRevision": {
+      "description": "Represents an ADC shared template associated with the finding.",
+      "id": "AdcSharedTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Shared Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4534,6 +4571,18 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
       "properties": {
+        "adcApplication": {
+          "$ref": "AdcApplication",
+          "description": "The ADC application associated with the finding."
+        },
+        "adcApplicationTemplate": {
+          "$ref": "AdcApplicationTemplateRevision",
+          "description": "The ADC template associated with the finding."
+        },
+        "adcSharedTemplate": {
+          "$ref": "AdcSharedTemplateRevision",
+          "description": "The ADC shared template associated with the finding."
+        },
         "application": {
           "$ref": "GoogleCloudSecuritycenterV1ResourceApplication",
           "description": "The App Hub application this resource belongs to."
@@ -5301,6 +5350,43 @@
           "description": "A score of 0 means that there is low confidence that the detected event is an actual attack. A score of 1 means that there is high confidence that the detected event is an attack. See the [Adaptive Protection documentation](https://cloud.google.com/armor/docs/adaptive-protection-overview#configure-alert-tuning) for further explanation.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AdcApplication": {
+      "description": "Represents an ADC application associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2AdcApplication",
+      "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV2ResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the AppHub application."
+        },
+        "name": {
+          "description": "The resource name of an ADC Application. Format: projects/{project}/locations/{location}/spaces/{space}/applications/{application}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision": {
+      "description": "Represents an ADC template associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Application Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AdcSharedTemplateRevision": {
+      "description": "Represents an ADC shared template associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2AdcSharedTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Shared Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7712,6 +7798,18 @@
       "description": "A resource associated with the an issue.",
       "id": "GoogleCloudSecuritycenterV2IssueResource",
       "properties": {
+        "adcApplication": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceAdcApplication",
+          "description": "The ADC application associated with the finding."
+        },
+        "adcApplicationTemplate": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision",
+          "description": "The ADC template associated with the finding."
+        },
+        "adcSharedTemplate": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision",
+          "description": "The ADC shared template associated with the finding."
+        },
         "application": {
           "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplication",
           "description": "The AppHub application associated with the resource, if any. Only populated for the primary resource."
@@ -7754,6 +7852,43 @@
         },
         "type": {
           "description": "The type of the resource associated with the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceAdcApplication": {
+      "description": "Represents an ADC application associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceAdcApplication",
+      "properties": {
+        "attributes": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplicationAttributes",
+          "description": "Consumer provided attributes for the AppHub application."
+        },
+        "name": {
+          "description": "The resource name of an ADC Application. Format: projects/{project}/locations/{location}/spaces/{space}/applications/{application}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision": {
+      "description": "Represents an ADC template associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceAdcApplicationTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Application Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision": {
+      "description": "Represents an ADC shared template associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceAdcSharedTemplateRevision",
+      "properties": {
+        "name": {
+          "description": "The resource name of an ADC Shared Template Revision. Format: projects/{project}/locations/{location}/spaces/{space}/applicationTemplates/{application_template}/revisions/{revision}",
           "type": "string"
         }
       },
@@ -9287,6 +9422,18 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV2Resource",
       "properties": {
+        "adcApplication": {
+          "$ref": "GoogleCloudSecuritycenterV2AdcApplication",
+          "description": "The ADC application associated with the finding."
+        },
+        "adcApplicationTemplate": {
+          "$ref": "GoogleCloudSecuritycenterV2AdcApplicationTemplateRevision",
+          "description": "The ADC template associated with the finding."
+        },
+        "adcSharedTemplate": {
+          "$ref": "GoogleCloudSecuritycenterV2AdcSharedTemplateRevision",
+          "description": "The ADC shared template associated with the finding."
+        },
         "application": {
           "$ref": "GoogleCloudSecuritycenterV2ResourceApplication",
           "description": "The App Hub application this resource belongs to."

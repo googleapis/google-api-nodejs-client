@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v17.1.0...containeranalysis-v17.2.0) (2026-01-30)
+
+
+### Features
+
+* **containeranalysis:** update the API ([248a583](https://github.com/googleapis/google-api-nodejs-client/commit/248a5830c3a8e9c1371f678727ee488ec86147d5))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v17.0.1...containeranalysis-v17.1.0) (2025-12-15)
 
 

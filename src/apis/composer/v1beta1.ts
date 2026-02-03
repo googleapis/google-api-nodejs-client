@@ -948,7 +948,7 @@ export namespace composer_v1beta1 {
      */
     enablePrivateBuildsOnly?: boolean | null;
     /**
-     * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
+     * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*. This field is going to be deprecated. Use `networking_type` instead.
      */
     enablePrivateEnvironment?: boolean | null;
     /**
