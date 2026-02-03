@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v8.3.0...looker-v8.4.0) (2026-01-30)
+
+
+### Features
+
+* **looker:** update the API ([b04810c](https://github.com/googleapis/google-api-nodejs-client/commit/b04810c987b1bdb870609535f4fdb97837b96943))
+
 ## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v8.2.0...looker-v8.3.0) (2025-12-15)
 
 
