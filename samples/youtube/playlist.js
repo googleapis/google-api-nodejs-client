@@ -49,9 +49,9 @@ async function getPlaylistData(etag) {
   const res = await youtube.playlists.list({
     part: 'id,snippet',
     id: 'PLIivdWyY5sqIij_cgINUHZDMnGjVx3rxi',
-    headers: headers,
+    headers,
   });
-  console.log('Status code: ' + res.status);
+  console.log(`Status code: ${res.status}`);
   console.log(res.data);
   return res;
 }
