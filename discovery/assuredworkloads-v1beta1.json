@@ -661,7 +661,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260129",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -1741,7 +1741,8 @@
             "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
             "SOVEREIGN_CONTROLS_BY_PSN",
             "SOVEREIGN_CONTROLS_BY_CNTXT",
-            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM"
+            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
+            "SPAIN_DATA_BOUNDARY_BY_TELEFONICA"
           ],
           "enumDescriptions": [
             "",
@@ -1750,7 +1751,8 @@
             "Enum representing SIA_MINSAIT (Indra) partner.",
             "Enum representing PSN (TIM) partner.",
             "Enum representing CNTXT (Kingdom of Saudi Arabia) partner.",
-            "Enum representing CNTXT (Kingdom of Saudi Arabia) partner offering without EKM."
+            "Enum representing CNTXT (Kingdom of Saudi Arabia) partner offering without EKM.",
+            "Enum representing Telefonica (Spain) partner."
           ],
           "type": "string"
         },

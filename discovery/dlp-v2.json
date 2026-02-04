@@ -68,6 +68,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -5123,7 +5128,7 @@
       }
     }
   },
-  "revision": "20260120",
+  "revision": "20260123",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
