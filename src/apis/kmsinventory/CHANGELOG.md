@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v8.1.0...kmsinventory-v8.2.0) (2026-02-04)
+
+
+### Features
+
+* run the generator ([#3882](https://github.com/googleapis/google-api-nodejs-client/issues/3882)) ([3420baf](https://github.com/googleapis/google-api-nodejs-client/commit/3420baf9d545b8ed5cc7c69104d0ac5b8f6b2a7a))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v8.0.1...kmsinventory-v8.1.0) (2025-12-15)
 
 
