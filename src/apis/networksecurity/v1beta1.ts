@@ -6070,9 +6070,9 @@ export namespace networksecurity_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfileGroups.list({
-     *       // Maximum number of SecurityProfileGroups to return per call.
+     *       // Optional. Maximum number of SecurityProfileGroups to return per call.
      *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     *       // Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
      *       pageToken: 'placeholder-value',
      *       // Required. The project or organization and location from which the SecurityProfileGroups should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
@@ -6388,11 +6388,11 @@ export namespace networksecurity_v1beta1 {
   }
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$List extends StandardParameters {
     /**
-     * Maximum number of SecurityProfileGroups to return per call.
+     * Optional. Maximum number of SecurityProfileGroups to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -6908,9 +6908,9 @@ export namespace networksecurity_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.securityProfiles.list({
-     *       // Maximum number of SecurityProfiles to return per call.
+     *       // Optional. Maximum number of SecurityProfiles to return per call.
      *       pageSize: 'placeholder-value',
-     *       // The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     *       // Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
      *       pageToken: 'placeholder-value',
      *       // Required. The project or organization and location from which the SecurityProfiles should be listed, specified in the format `projects|organizations/x/locations/{location\}`.
      *       parent: 'organizations/my-organization/locations/my-location',
@@ -7222,11 +7222,11 @@ export namespace networksecurity_v1beta1 {
   }
   export interface Params$Resource$Organizations$Locations$Securityprofiles$List extends StandardParameters {
     /**
-     * Maximum number of SecurityProfiles to return per call.
+     * Optional. Maximum number of SecurityProfiles to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -7484,7 +7484,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

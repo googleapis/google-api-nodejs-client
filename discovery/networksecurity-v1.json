@@ -816,13 +816,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of SecurityProfileGroups to return per call.",
+                      "description": "Optional. Maximum number of SecurityProfileGroups to return per call.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListSecurityProfileGroupsResponse` Indicates that this is a continuation of a prior `ListSecurityProfileGroups` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -978,13 +978,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of SecurityProfiles to return per call.",
+                      "description": "Optional. Maximum number of SecurityProfiles to return per call.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.",
+                      "description": "Optional. The value returned by the last `ListSecurityProfilesResponse` Indicates that this is a continuation of a prior `ListSecurityProfiles` call, and that the system should return the next page of data.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1074,7 +1074,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networksecurity.projects.locations.list",
@@ -5419,7 +5419,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260125",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -8150,6 +8150,18 @@
             "An attempt to delete the endpoint group has failed. This is a terminal state and the endpoint group is not expected to recover. The only permitted operation is to retry deleting the endpoint group."
           ],
           "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. The type of the endpoint group. If left unspecified, defaults to DIRECT.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DIRECT"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "An endpoint group that sends packets to a single deployment group."
+          ],
           "type": "string"
         },
         "updateTime": {
