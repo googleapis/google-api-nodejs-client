@@ -1715,7 +1715,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260130",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -5464,6 +5464,11 @@
       "description": "A type of analysis that can be done for a resource.",
       "id": "Note",
       "properties": {
+        "advisoryPublishTime": {
+          "description": "The timestamp when the advisory was first published by the source feed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "attestation": {
           "$ref": "AttestationNote",
           "description": "A note describing an attestation role."
