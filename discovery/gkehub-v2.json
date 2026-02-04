@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v2/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "gkehub.projects.locations.list",
@@ -482,7 +482,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260126",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -712,14 +712,14 @@
       "id": "ConfigManagementConfigSync",
       "properties": {
         "deploymentOverrides": {
-          "description": "Optional. Configuration for deployment overrides.",
+          "description": "Optional. Configuration for deployment overrides. Applies only to Config Sync deployments with containers that are not a root or namespace reconciler: `reconciler-manager`, `otel-collector`, `resource-group-controller-manager`, `admission-webhook`. To override a root or namespace reconciler, use the rootsync or reposync fields at https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/reference/rootsync-reposync-fields#override-resources instead.",
           "items": {
             "$ref": "ConfigManagementDeploymentOverride"
           },
           "type": "array"
         },
         "enabled": {
-          "description": "Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.",
+          "description": "Optional. Enables the installation of Config Sync. If set to true, the Feature will manage Config Sync resources, and apply the other ConfigSync fields if they exist. If set to false, the Feature will ignore all other ConfigSync fields and delete the Config Sync resources. If omitted, ConfigSync is considered enabled if the git or oci field is present.",
           "type": "boolean"
         },
         "git": {
@@ -736,11 +736,11 @@
           "description": "Optional. OCI repo configuration for the cluster."
         },
         "preventDrift": {
-          "description": "Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.",
+          "description": "Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to false, disables the Config Sync admission webhook and does not prevent drifts. Defaults to false. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/prevent-config-drift for details.",
           "type": "boolean"
         },
         "sourceFormat": {
-          "description": "Optional. Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
+          "description": "Optional. Specifies whether the Config Sync repo is in `hierarchical` or `unstructured` mode. Defaults to `hierarchical`. See https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/concepts/configs#organize-configs for an explanation.",
           "type": "string"
         },
         "stopSyncing": {
@@ -1092,19 +1092,19 @@
           "type": "string"
         },
         "cpuLimit": {
-          "description": "Optional. The cpu limit of the container.",
+          "description": "Optional. The cpu limit of the container. Use the following CPU resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.",
           "type": "string"
         },
         "cpuRequest": {
-          "description": "Optional. The cpu request of the container.",
+          "description": "Optional. The cpu request of the container. Use the following CPU resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu.",
           "type": "string"
         },
         "memoryLimit": {
-          "description": "Optional. The memory limit of the container.",
+          "description": "Optional. The memory limit of the container. Use the following memory resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.",
           "type": "string"
         },
         "memoryRequest": {
-          "description": "Optional. The memory request of the container.",
+          "description": "Optional. The memory request of the container. Use the following memory resource units: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory.",
           "type": "string"
         }
       },
@@ -1221,11 +1221,11 @@
       "id": "ConfigManagementGitConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.",
           "type": "string"
         },
         "httpsProxy": {
-          "description": "Optional. URL for the HTTPS proxy to be used when communicating with the Git repo.",
+          "description": "Optional. URL for the HTTPS proxy to be used when communicating with the Git repo. Only specify when secret_type is `cookiefile`, `token`, or `none`.",
           "type": "string"
         },
         "policyDir": {
@@ -1233,7 +1233,7 @@
           "type": "string"
         },
         "secretType": {
-          "description": "Required. Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount, githubapp or none. The validation of this is case-sensitive.",
+          "description": "Required. Type of secret configured for access to the Git repo. Must be one of `ssh`, `cookiefile`, `gcenode`, `token`, `gcpserviceaccount`, `githubapp` or `none`. The validation of this is case-sensitive.",
           "type": "string"
         },
         "syncBranch": {
@@ -1383,7 +1383,7 @@
       "id": "ConfigManagementOciConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is `gcpserviceaccount`.",
           "type": "string"
         },
         "policyDir": {
@@ -1391,7 +1391,7 @@
           "type": "string"
         },
         "secretType": {
-          "description": "Required. Type of secret configured for access to the OCI repo. Must be one of gcenode, gcpserviceaccount, k8sserviceaccount or none. The validation of this is case-sensitive.",
+          "description": "Required. Type of secret configured for access to the OCI repo. Must be one of `gcenode`, `gcpserviceaccount`, `k8sserviceaccount` or `none`. The validation of this is case-sensitive.",
           "type": "string"
         },
         "syncRepo": {
@@ -1578,10 +1578,10 @@
         "binauthz": {
           "$ref": "ConfigManagementBinauthzConfig",
           "deprecated": true,
-          "description": "Optional. Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set."
+          "description": "Optional. Deprecated: Binauthz configuration will be ignored and should not be set."
         },
         "cluster": {
-          "description": "Optional. The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.",
+          "description": "Optional. User-specified cluster name used by the Config Sync cluster-name-selector annotation or ClusterSelector object, for applying configs to only a subset of clusters. Read more about the cluster-name-selector annotation and ClusterSelector object at https://docs.cloud.google.com/kubernetes-engine/config-sync/docs/how-to/cluster-scoped-objects#limiting-configs. Only set this field if a name different from the cluster's fleet membership name is used by the Config Sync cluster-name-selector annotation or ClusterSelector.",
           "type": "string"
         },
         "configSync": {
@@ -1614,7 +1614,7 @@
           "description": "Optional. Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead."
         },
         "version": {
-          "description": "Optional. Version of ACM installed.",
+          "description": "Optional. Version of Config Sync to install. Defaults to the latest supported Config Sync version if the config_sync field is enabled. See supported versions at https://cloud.google.com/kubernetes-engine/config-sync/docs/get-support-config-sync#version_support_policy.",
           "type": "string"
         }
       },
@@ -1833,6 +1833,10 @@
         "state": {
           "$ref": "State",
           "description": "The high-level state of this MembershipFeature."
+        },
+        "workloadidentity": {
+          "$ref": "WorkloadIdentityState",
+          "description": "Workload Identity state"
         }
       },
       "type": "object"
@@ -3460,6 +3464,49 @@
             "Enable workload certificate feature."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityIdentityProviderStateDetail": {
+      "description": "IdentityProviderStateDetail represents the state of an Identity Provider.",
+      "id": "WorkloadIdentityIdentityProviderStateDetail",
+      "properties": {
+        "code": {
+          "description": "The state of the Identity Provider.",
+          "enum": [
+            "IDENTITY_PROVIDER_STATE_UNSPECIFIED",
+            "IDENTITY_PROVIDER_STATE_OK",
+            "IDENTITY_PROVIDER_STATE_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown state.",
+            "The Identity Provider was created/updated successfully.",
+            "The Identity Provider was not created/updated successfully. The error message is in the description field."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "A human-readable description of the current state or returned error.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityState": {
+      "description": "**WorkloadIdentity**: The membership-specific state for WorkloadIdentity feature.",
+      "id": "WorkloadIdentityState",
+      "properties": {
+        "description": {
+          "description": "Deprecated, this field will be erased after code is changed to use the new field.",
+          "type": "string"
+        },
+        "identityProviderStateDetails": {
+          "additionalProperties": {
+            "$ref": "WorkloadIdentityIdentityProviderStateDetail"
+          },
+          "description": "The state of the Identity Providers corresponding to the membership.",
+          "type": "object"
         }
       },
       "type": "object"
