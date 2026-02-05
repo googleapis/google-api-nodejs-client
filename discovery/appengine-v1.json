@@ -2584,6 +2584,65 @@
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
+                            },
+                            "delete": {
+                              "description": "Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see \"How Instances are Managed\" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}",
+                              "httpMethod": "DELETE",
+                              "id": "appengine.projects.locations.applications.services.versions.instances.delete",
+                              "parameterOrder": [
+                                "projectsId",
+                                "locationsId",
+                                "applicationsId",
+                                "servicesId",
+                                "versionsId",
+                                "instancesId"
+                              ],
+                              "parameters": {
+                                "applicationsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "instancesId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "locationsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "projectsId": {
+                                  "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "servicesId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "versionsId": {
+                                  "description": "Part of `name`. See documentation of `projectsId`.",
+                                  "location": "path",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}",
+                              "response": {
+                                "$ref": "Operation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
                             }
                           }
                         }
@@ -2598,7 +2657,7 @@
       }
     }
   },
-  "revision": "20260126",
+  "revision": "20260202",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
