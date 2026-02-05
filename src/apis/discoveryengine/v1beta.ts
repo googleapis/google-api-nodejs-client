@@ -2709,6 +2709,10 @@ export namespace discoveryengine_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Observability config for the engine.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1alphaObservabilityConfig;
+    /**
      * Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
      */
     recommendationMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata;
@@ -3527,6 +3531,19 @@ export namespace discoveryengine_v1beta {
     mode?: string | null;
   }
   /**
+   * Observability config for a resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaObservabilityConfig {
+    /**
+     * Optional. Enables observability. If false, all other flags are ignored.
+     */
+    observabilityEnabled?: boolean | null;
+    /**
+     * Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.
+     */
+    sensitiveLoggingEnabled?: boolean | null;
+  }
+  /**
    * Response message for CrawlRateManagementService.ObtainCrawlRate method. The response contains organcic or dedicated crawl rate time series data for monitoring, depending on whether dedicated crawl rate is set.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse {
@@ -3660,6 +3677,10 @@ export namespace discoveryengine_v1beta {
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+    /**
+     * Optional. Observability config for NotebookLM.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1alphaObservabilityConfig;
     /**
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
@@ -8701,6 +8722,10 @@ export namespace discoveryengine_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Observability config for the engine.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1betaObservabilityConfig;
+    /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
     searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig;
@@ -9982,6 +10007,19 @@ export namespace discoveryengine_v1beta {
     mode?: string | null;
   }
   /**
+   * Observability config for a resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaObservabilityConfig {
+    /**
+     * Optional. Enables observability. If false, all other flags are ignored.
+     */
+    observabilityEnabled?: boolean | null;
+    /**
+     * Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.
+     */
+    sensitiveLoggingEnabled?: boolean | null;
+  }
+  /**
    * Request message for CrawlRateManagementService.ObtainCrawlRate method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest {
@@ -10168,6 +10206,10 @@ export namespace discoveryengine_v1beta {
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+    /**
+     * Optional. Observability config for NotebookLM.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1betaObservabilityConfig;
     /**
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
@@ -13976,6 +14018,10 @@ export namespace discoveryengine_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Observability config for the engine.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1ObservabilityConfig;
+    /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
     searchEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineSearchEngineConfig;
@@ -14462,6 +14508,19 @@ export namespace discoveryengine_v1beta {
     mode?: string | null;
   }
   /**
+   * Observability config for a resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ObservabilityConfig {
+    /**
+     * Optional. Enables observability. If false, all other flags are ignored.
+     */
+    observabilityEnabled?: boolean | null;
+    /**
+     * Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.
+     */
+    sensitiveLoggingEnabled?: boolean | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Project {
@@ -14538,6 +14597,10 @@ export namespace discoveryengine_v1beta {
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
+    /**
+     * Optional. Observability config for NotebookLM.
+     */
+    observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1ObservabilityConfig;
     /**
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
@@ -33481,6 +33544,7 @@ export namespace discoveryengine_v1beta {
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
+     *         //   "observabilityConfig": {},
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -33805,6 +33869,7 @@ export namespace discoveryengine_v1beta {
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
+     *   //   "observabilityConfig": {},
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34137,6 +34202,7 @@ export namespace discoveryengine_v1beta {
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
+     *         //   "observabilityConfig": {},
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -34163,6 +34229,7 @@ export namespace discoveryengine_v1beta {
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
+     *   //   "observabilityConfig": {},
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34337,6 +34404,7 @@ export namespace discoveryengine_v1beta {
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
+     *   //   "observabilityConfig": {},
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34514,6 +34582,7 @@ export namespace discoveryengine_v1beta {
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
+     *   //   "observabilityConfig": {},
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"

@@ -12414,7 +12414,7 @@
       }
     }
   },
-  "revision": "20260125",
+  "revision": "20260130",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -14969,6 +14969,10 @@
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ObservabilityConfig",
+          "description": "Optional. Observability config for the engine."
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -15718,6 +15722,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ObservabilityConfig": {
+      "description": "Observability config for a resource.",
+      "id": "GoogleCloudDiscoveryengineV1ObservabilityConfig",
+      "properties": {
+        "observabilityEnabled": {
+          "description": "Optional. Enables observability. If false, all other flags are ignored.",
+          "type": "boolean"
+        },
+        "sensitiveLoggingEnabled": {
+          "description": "Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1Project": {
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1Project",
@@ -15817,6 +15836,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1ObservabilityConfig",
+          "description": "Optional. Observability config for NotebookLM."
         },
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
@@ -23593,6 +23616,10 @@
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaObservabilityConfig",
+          "description": "Optional. Observability config for the engine."
+        },
         "recommendationMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata",
           "description": "Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.",
@@ -26313,6 +26340,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaObservabilityConfig": {
+      "description": "Observability config for a resource.",
+      "id": "GoogleCloudDiscoveryengineV1alphaObservabilityConfig",
+      "properties": {
+        "observabilityEnabled": {
+          "description": "Optional. Enables observability. If false, all other flags are ignored.",
+          "type": "boolean"
+        },
+        "sensitiveLoggingEnabled": {
+          "description": "Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest": {
       "description": "Request message for CrawlRateManagementService.ObtainCrawlRate method.",
       "id": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest",
@@ -26605,6 +26647,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaObservabilityConfig",
+          "description": "Optional. Observability config for NotebookLM."
         },
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
@@ -33394,6 +33440,10 @@
           "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaObservabilityConfig",
+          "description": "Optional. Observability config for the engine."
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -34320,6 +34370,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaObservabilityConfig": {
+      "description": "Observability config for a resource.",
+      "id": "GoogleCloudDiscoveryengineV1betaObservabilityConfig",
+      "properties": {
+        "observabilityEnabled": {
+          "description": "Optional. Enables observability. If false, all other flags are ignored.",
+          "type": "boolean"
+        },
+        "sensitiveLoggingEnabled": {
+          "description": "Optional. Enables sensitive logging. Sensitive logging includes customer core content (e.g. prompts, responses). If false, will sanitize all sensitive fields.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse": {
       "description": "Response message for CrawlRateManagementService.ObtainCrawlRate method. The response contains organcic or dedicated crawl rate time series data for monitoring, depending on whether dedicated crawl rate is set.",
       "id": "GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponse",
@@ -34468,6 +34533,10 @@
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
+        },
+        "observabilityConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaObservabilityConfig",
+          "description": "Optional. Observability config for NotebookLM."
         },
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
