@@ -108,6 +108,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.in.rep.googleapis.com/",
       "location": "in"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.ca.rep.googleapis.com/",
+      "location": "ca"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2814,7 +2819,7 @@
       }
     }
   },
-  "revision": "20260116",
+  "revision": "20260123",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -3040,6 +3045,22 @@
         },
         "keyProject": {
           "description": "Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision a new CryptoKey when a KeyHandle is created. On UpdateAutokeyConfig, the caller will require `cloudkms.cryptoKeys.setIamPolicy` permission on this key project. Once configured, for Cloud KMS Autokey to function properly, this key project must have the Cloud KMS API activated and the Cloud KMS Service Agent for this key project must be granted the `cloudkms.admin` role (or pertinent permissions). A request with an empty key project field will clear the configuration.",
+          "type": "string"
+        },
+        "keyProjectResolutionMode": {
+          "description": "Optional. KeyProjectResolutionMode for the AutokeyConfig. Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or `DISABLED`.",
+          "enum": [
+            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+            "DEDICATED_KEY_PROJECT",
+            "RESOURCE_PROJECT",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. KeyProjectResolutionMode when not specified will act as `DEDICATED_KEY_PROJECT`.",
+            "Keys are created in a dedicated project specified by `key_project`.",
+            "Keys are created in the same project as the resource requesting the key. `key_project` must not be set when this mode is used.",
+            "Disables the AutokeyConfig. When this mode is set, any AutokeyConfig from higher levels in the resource hierarchy are ignored for this resource and its descendants. This setting can be overridden by a more specific configuration at a lower level. For example, if Autokey is disabled on a folder, it can be re-enabled on a sub-folder or project within that folder by setting a different mode (e.g., DEDICATED_KEY_PROJECT or RESOURCE_PROJECT)."
+          ],
           "type": "string"
         },
         "name": {
@@ -4223,7 +4244,7 @@
           "type": "string"
         },
         "cryptoKeyBackend": {
-          "description": "Immutable. The resource name of the backend environment where the key material for the wrapping key resides and where all related cryptographic operations are performed. Currently, this field is only populated for keys stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.",
+          "description": "Immutable. The resource name of the backend environment where the key material for the wrapping key resides and where all related cryptographic operations are performed. Currently, this field is only populated for keys stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future. Supported resources: * `\"projects/*/locations/*/singleTenantHsmInstances/*\"`",
           "type": "string"
         },
         "expireEventTime": {
