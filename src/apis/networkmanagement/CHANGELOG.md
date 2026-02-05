@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v18.0.1...networkmanagement-v18.1.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v18.0.0...networkmanagement-v18.0.1) (2026-01-30)
 
 
