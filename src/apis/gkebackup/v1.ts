@@ -908,6 +908,15 @@ export namespace gkebackup_v1 {
     signedUrl?: string | null;
   }
   /**
+   * Request message for GetTags.
+   */
+  export interface Schema$GetTagsRequest {
+    /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+  }
+  /**
    * Response message for GetTags.
    */
   export interface Schema$GetTagsResponse {
@@ -1726,6 +1735,10 @@ export namespace gkebackup_v1 {
      */
     etag?: string | null;
     /**
+     * Required. The full resource name of the service resource.
+     */
+    name?: string | null;
+    /**
      * Optional. A unique identifier for this request. Must be a valid UUID. This request is only idempotent if a `request_id` is provided.
      */
     requestId?: string | null;
@@ -2185,7 +2198,7 @@ export namespace gkebackup_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4815,6 +4828,7 @@ export namespace gkebackup_v1 {
      *       // request body parameters
      *       // {
      *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
      *       //   "requestId": "my_requestId",
      *       //   "tags": {}
      *       // }
@@ -10643,6 +10657,7 @@ export namespace gkebackup_v1 {
      *       // request body parameters
      *       // {
      *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
      *       //   "requestId": "my_requestId",
      *       //   "tags": {}
      *       // }
