@@ -3870,7 +3870,7 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
