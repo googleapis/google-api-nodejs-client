@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v6.0.2...secretmanager-v6.1.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v6.0.1...secretmanager-v6.0.2) (2025-12-05)
 
 
