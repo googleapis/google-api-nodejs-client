@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1alpha/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "cloudlocationfinder.projects.locations.list",
@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20251022",
+  "revision": "20260128",
   "rootUrl": "https://cloudlocationfinder.googleapis.com/",
   "schemas": {
     "CloudLocation": {
