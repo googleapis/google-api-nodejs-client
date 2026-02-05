@@ -1696,6 +1696,160 @@ export namespace contactcenterinsights_v1 {
     transcriptUri?: string | null;
   }
   /**
+   * The conversation transcript for the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript {
+    /**
+     * The conversation id of the chart.
+     */
+    conversationId?: string | null;
+    /**
+     * Output only. The create time of the conversation.
+     */
+    createTime?: string | null;
+    /**
+     * Ordered list of messages, including user inputs and system responses.
+     */
+    messages?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessage[];
+    /**
+     * Output only. The update time of the conversation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The message in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessage {
+    /**
+     * Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.
+     */
+    createTime?: string | null;
+    /**
+     * The message id of the message.
+     */
+    messageId?: string | null;
+    /**
+     * A wrapper for system messages per turn.
+     */
+    systemMessageWrapper?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessages;
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    userMessage?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageUserMessage;
+  }
+  /**
+   * A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessage {
+    /**
+     * Chart spec from LLM
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * Raw SQL from LLM, before templatization
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * A direct natural language response to the user message.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput;
+    /**
+     * Optional. User provided chart spec
+     */
+    userProvidedChartSpec?: {[key: string]: any} | null;
+    /**
+     * Optional. User provided SQL query
+     */
+    userProvidedSqlQuery?: string | null;
+  }
+  /**
+   * A wrapper for system messages per turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessages {
+    /**
+     * A message from the system in response to the user.
+     */
+    systemMessages?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessage[];
+  }
+  /**
+   * A text output message from the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput {
+    /**
+     * The parts of the message.
+     */
+    text?: string[] | null;
+    /**
+     * The type of the text message.
+     */
+    textType?: string | null;
+  }
+  /**
+   * The user message.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageUserMessage {
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    text?: string | null;
+  }
+  /**
+   * The metadata for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsMetadata {
+    /**
+     * The error message when the generative insights request fails.
+     */
+    errorMessages?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponse {
+    /**
+     * The full list of generative responses. Each response is ordered by time.
+     */
+    generativeResponses?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse[];
+    /**
+     * The transcript of the generative insights conversation.
+     */
+    transcript?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript;
+  }
+  /**
+   * Wrapper for storing the generative response for a chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse {
+    /**
+     * The chart spec for the data. This will be specified in the vega-lite or vega format.
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponseTextOutput;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textOutput?: string | null;
+  }
+  /**
+   * Wrapper for text output.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponseTextOutput {
+    /**
+     * The text output from the LLM.
+     */
+    text?: string[] | null;
+    /**
+     * The type of text output.
+     */
+    textType?: string | null;
+  }
+  /**
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1HoldData {}
@@ -4028,6 +4182,69 @@ export namespace contactcenterinsights_v1 {
     silenceData?: Schema$GoogleCloudContactcenterinsightsV1SilenceData;
   }
   /**
+   * Configurable dashboard's widget that displays data as a chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Chart {
+    /**
+     * Output only. Chart type.
+     */
+    chartType?: string | null;
+    /**
+     * Chart visualization type.
+     */
+    chartVisualizationType?: string | null;
+    /**
+     * Output only. Chart create time.
+     */
+    createTime?: string | null;
+    dataSource?: Schema$GoogleCloudContactcenterinsightsV1ChartDataSource;
+    /**
+     * Date range config applied to the chart.
+     */
+    dateRangeConfig?: Schema$GoogleCloudContactcenterinsightsV1DateRangeConfig;
+    /**
+     * Chart description
+     */
+    description?: string | null;
+    /**
+     * User provided display name of the chart.
+     */
+    displayName?: string | null;
+    /**
+     * Filter applied to all charts in the container. Should support scope later.
+     */
+    filter?: string | null;
+    /**
+     * The height of the chart in grid units.
+     */
+    height?: number | null;
+    /**
+     * Identifier. Chart resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}/charts/{chart\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Chart last update time.
+     */
+    updateTime?: string | null;
+    /**
+     * The width of the chart in grid units.
+     */
+    width?: number | null;
+  }
+  /**
+   * The request data for visualizing the dataset in the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ChartDataSource {
+    /**
+     * Use natural language query to generate the chart.
+     */
+    generativeInsights?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsights;
+    /**
+     * Use the existing QueryMetrics to generate the chart.
+     */
+    queryMetrics?: Schema$GoogleCloudContactcenterinsightsV1QueryMetrics;
+  }
+  /**
    * The result of testing a constraint expression on a pair of conversations.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult {
@@ -4060,6 +4277,43 @@ export namespace contactcenterinsights_v1 {
      * The rule ID.
      */
     ruleId?: string | null;
+  }
+  /**
+   * Configurable dashboard's container. Container can contain multiple widgets.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Container {
+    /**
+     * Output only. Unique ID for the container.
+     */
+    containerId?: string | null;
+    /**
+     * Date range config applied to all charts in the container.
+     */
+    dateRangeConfig?: Schema$GoogleCloudContactcenterinsightsV1DateRangeConfig;
+    /**
+     * Container description
+     */
+    description?: string | null;
+    /**
+     * User provided display name of the Container.
+     */
+    displayName?: string | null;
+    /**
+     * Filter applied to all charts in the container. Should support scope later.
+     */
+    filter?: string | null;
+    /**
+     * The height of the container in grid units.
+     */
+    height?: number | null;
+    /**
+     * Widgets in the Container.
+     */
+    widgets?: Schema$GoogleCloudContactcenterinsightsV1Widget[];
+    /**
+     * The width of the container in grid units.
+     */
+    width?: number | null;
   }
   /**
    * The conversation resource.
@@ -4630,6 +4884,47 @@ export namespace contactcenterinsights_v1 {
     parent?: string | null;
   }
   /**
+   * Configurable dashboard
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Dashboard {
+    /**
+     * Output only. Dashboard creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Date range config applied to all charts in the dashboard.
+     */
+    dateRangeConfig?: Schema$GoogleCloudContactcenterinsightsV1DateRangeConfig;
+    /**
+     * Dashboard description
+     */
+    description?: string | null;
+    /**
+     * User provided display name of the dashboard.
+     */
+    displayName?: string | null;
+    /**
+     * Filter applied to all charts in the dashboard. Should support scope later.
+     */
+    filter?: string | null;
+    /**
+     * Identifier. Dashboard resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether the dashboard is read-only. All predefined dashboards are read-only and cannot be modified by the user.
+     */
+    readOnly?: boolean | null;
+    /**
+     * The dashboard's root widget container. We want to display the dashboard layout in a tree-like structure, where the root container contains other widgets (containers or charts) as children.
+     */
+    rootContainer?: Schema$GoogleCloudContactcenterinsightsV1Container;
+    /**
+     * Output only. Dashboard last update time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Dataset {
@@ -4661,6 +4956,32 @@ export namespace contactcenterinsights_v1 {
      * Output only. Dataset update time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Date range configuration for dashboard charts.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1DateRangeConfig {
+    /**
+     * An absolute date range.
+     */
+    absoluteDateRange?: Schema$GoogleCloudContactcenterinsightsV1QueryInterval;
+    /**
+     * A relative date range.
+     */
+    relativeDateRange?: Schema$GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange;
+  }
+  /**
+   * Relative date range configuration.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange {
+    /**
+     * Required. The quantity of units in the past.
+     */
+    quantity?: string | null;
+    /**
+     * Required. The unit of time.
+     */
+    unit?: string | null;
   }
   /**
    * Metadata for deleting an issue model.
@@ -5270,6 +5591,321 @@ export namespace contactcenterinsights_v1 {
     signedAudioUris?: Schema$GoogleCloudContactcenterinsightsV1SignedAudioUris;
   }
   /**
+   * The conversation transcript for the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript {
+    /**
+     * The conversation id of the chart.
+     */
+    conversationId?: string | null;
+    /**
+     * Output only. The create time of the conversation.
+     */
+    createTime?: string | null;
+    /**
+     * Ordered list of messages, including user inputs and system responses.
+     */
+    messages?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessage[];
+    /**
+     * Output only. The update time of the conversation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The message in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessage {
+    /**
+     * Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.
+     */
+    createTime?: string | null;
+    /**
+     * The message id of the message.
+     */
+    messageId?: string | null;
+    /**
+     * A wrapper for system messages per turn.
+     */
+    systemMessageWrapper?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessages;
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    userMessage?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageUserMessage;
+  }
+  /**
+   * A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessage {
+    /**
+     * Chart spec from LLM
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * Raw SQL from LLM, before templatization
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * A direct natural language response to the user message.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput;
+    /**
+     * Optional. User provided chart spec
+     */
+    userProvidedChartSpec?: {[key: string]: any} | null;
+    /**
+     * Optional. User provided SQL query
+     */
+    userProvidedSqlQuery?: string | null;
+  }
+  /**
+   * A wrapper for system messages per turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessages {
+    /**
+     * A message from the system in response to the user.
+     */
+    systemMessages?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessage[];
+  }
+  /**
+   * A text output message from the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput {
+    /**
+     * The parts of the message.
+     */
+    text?: string[] | null;
+    /**
+     * The type of the text message.
+     */
+    textType?: string | null;
+  }
+  /**
+   * The user message.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageUserMessage {
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    text?: string | null;
+  }
+  /**
+   * Request that use natural language query to generate the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsights {
+    /**
+     * The chart checkpoint used to generate the chart.
+     */
+    chartCheckpoint?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint;
+    /**
+     * Output only. The chart conversations used to generate the chart.
+     */
+    chartConversations?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversation[];
+    /**
+     * Chart spec for the chart.
+     */
+    chartSpec?: {[key: string]: any} | null;
+    request?: {[key: string]: any} | null;
+    /**
+     * Optional. For charts with comparison, this key will determine the metric that will be compared between the current and another dataset.
+     */
+    sqlComparisonKey?: string | null;
+    /**
+     * SQL query used to generate the chart.
+     */
+    sqlQuery?: string | null;
+  }
+  /**
+   * The current chart checkpoint state.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint {
+    /**
+     * The revision id of the chart.
+     */
+    revisionId?: string | null;
+    /**
+     * The session id of the chart.
+     */
+    sessionId?: string | null;
+  }
+  /**
+   * The conversation used to generate the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversation {
+    /**
+     * The conversation id of the chart.
+     */
+    conversationId?: string | null;
+    /**
+     * The create time of the conversation.
+     */
+    createTime?: string | null;
+    /**
+     * Ordered list of messages, including user inputs and system responses.
+     */
+    messages?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessage[];
+    /**
+     * The update time of the conversation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The message in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessage {
+    /**
+     * For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.
+     */
+    createTime?: string | null;
+    /**
+     * The message id of the message.
+     */
+    messageId?: string | null;
+    /**
+     * A message from the system in response to the user.
+     */
+    systemMessage?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessage;
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    userMessage?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageUserMessage;
+  }
+  /**
+   * A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessage {
+    /**
+     * Chart spec from LLM
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * Raw SQL from LLM, before templatization
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * A direct natural language response to the user message.
+     */
+    textOutput?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput;
+  }
+  /**
+   * A text output message from the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput {
+    /**
+     * The parts of the message.
+     */
+    texts?: string[] | null;
+    /**
+     * The type of the text message.
+     */
+    type?: string | null;
+  }
+  /**
+   * The user message.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageUserMessage {
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    text?: string | null;
+  }
+  /**
+   * The metadata for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsMetadata {
+    /**
+     * The error message when the generative insights request fails.
+     */
+    errorMessages?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The request for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest {
+    /**
+     * The full name of the chart resource this request corresponds to. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}/charts/{chart\}
+     */
+    chart?: string | null;
+    /**
+     * Optional. Filter for the data that can be specified in addition to the natural language query. This `filter` is specifically used for charts where comparisons are possible. For example, "compare to last month" or "compare to previous quarter".
+     */
+    comparisonFilter?: string | null;
+    /**
+     * Filter for the data that can be specified in addition to the natural language query. Users are encouraged to use this field to populate time-windows.
+     */
+    filter?: string | null;
+    /**
+     * The natural language query specified by the user. If this field is specified, `sql_query` will be ignored.
+     */
+    naturalLanguageQuery?: string | null;
+    /**
+     * Optional. The revision id that maps to the state of the chart state revision. When specified, the backend will reload the chart with the sql and visual spec from that revision.
+     */
+    revisionId?: string | null;
+    /**
+     * Optional. The session id of the conversation. If the session id is not specified, backend will generate a random session id. If the session id is specified, will associate user-provided user_query with the provided session id.
+     */
+    sessionId?: string | null;
+    /**
+     * Optional. For charts with comparison, this key will determine the metric that will be compared between the current and another dataset.
+     */
+    sqlComparisonKey?: string | null;
+    /**
+     * Optional. The SQL query specified by the user. This query must be in BigQuery SQL dialect. The `filter` field will also be ignored, as it is assumed that any filtering is already included in the SQL query.
+     */
+    sqlQuery?: string | null;
+    /**
+     * Optional. The user provided chart spec for the chart. This will be used to override the visual spec generated by the LLM.
+     */
+    userProvidedChartSpec?: {[key: string]: any} | null;
+  }
+  /**
+   * The response for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsResponse {
+    /**
+     * The full list of generative responses. Each response is ordered by time.
+     */
+    generativeResponses?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse[];
+    /**
+     * The transcript of the generative insights conversation.
+     */
+    transcript?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript;
+  }
+  /**
+   * Wrapper for storing the generative response for a chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse {
+    /**
+     * The chart spec for the data. This will be specified in the vega-lite or vega format.
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponseTextOutput;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textOutput?: string | null;
+  }
+  /**
+   * Wrapper for text output.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponseTextOutput {
+    /**
+     * The text output from the LLM.
+     */
+    text?: string[] | null;
+    /**
+     * The type of text output.
+     */
+    textType?: string | null;
+  }
+  /**
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1HoldData {}
@@ -5800,6 +6436,19 @@ export namespace contactcenterinsights_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response of listing charts.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse {
+    /**
+     * The charts under the parent.
+     */
+    charts?: Schema$GoogleCloudContactcenterinsightsV1Chart[];
+    /**
+     * The value returned by the last `ListChartsResponse`. This value indicates that this is a continuation of a prior `ListCharts` call and that the system should return the next page of data.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response of listing conversations.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ListConversationsResponse {
@@ -5809,6 +6458,19 @@ export namespace contactcenterinsights_v1 {
     conversations?: Schema$GoogleCloudContactcenterinsightsV1Conversation[];
     /**
      * A token which can be sent as `page_token` to retrieve the next page. If this field is set, it means there is another page available. If it is not set, it means no other pages are available.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response of listing dashboards.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse {
+    /**
+     * The dashboards under the parent.
+     */
+    dashboards?: Schema$GoogleCloudContactcenterinsightsV1Dashboard[];
+    /**
+     * The value returned by the last `ListDashboardsResponse`. This value indicates that this is a continuation of a prior `ListDashboards` call and that the system should return the next page of data.
      */
     nextPageToken?: string | null;
   }
@@ -7642,6 +8304,160 @@ export namespace contactcenterinsights_v1 {
      * Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.
      */
     transcriptUri?: string | null;
+  }
+  /**
+   * The conversation transcript for the chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript {
+    /**
+     * The conversation id of the chart.
+     */
+    conversationId?: string | null;
+    /**
+     * Output only. The create time of the conversation.
+     */
+    createTime?: string | null;
+    /**
+     * Ordered list of messages, including user inputs and system responses.
+     */
+    messages?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessage[];
+    /**
+     * Output only. The update time of the conversation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The message in the conversation.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessage {
+    /**
+     * Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.
+     */
+    createTime?: string | null;
+    /**
+     * The message id of the message.
+     */
+    messageId?: string | null;
+    /**
+     * A wrapper for system messages per turn.
+     */
+    systemMessageWrapper?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessages;
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    userMessage?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageUserMessage;
+  }
+  /**
+   * A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessage {
+    /**
+     * Chart spec from LLM
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * Raw SQL from LLM, before templatization
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * A direct natural language response to the user message.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessageTextOutput;
+    /**
+     * Optional. User provided chart spec
+     */
+    userProvidedChartSpec?: {[key: string]: any} | null;
+    /**
+     * Optional. User provided SQL query
+     */
+    userProvidedSqlQuery?: string | null;
+  }
+  /**
+   * A wrapper for system messages per turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessages {
+    /**
+     * A message from the system in response to the user.
+     */
+    systemMessages?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessage[];
+  }
+  /**
+   * A text output message from the system.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessageTextOutput {
+    /**
+     * The parts of the message.
+     */
+    text?: string[] | null;
+    /**
+     * The type of the text message.
+     */
+    textType?: string | null;
+  }
+  /**
+   * The user message.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageUserMessage {
+    /**
+     * A message from the user that is interacting with the system.
+     */
+    text?: string | null;
+  }
+  /**
+   * The metadata for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsMetadata {
+    /**
+     * The error message when the generative insights request fails.
+     */
+    errorMessages?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response for generative insights.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponse {
+    /**
+     * The full list of generative responses. Each response is ordered by time.
+     */
+    generativeResponses?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse[];
+    /**
+     * The transcript of the generative insights conversation.
+     */
+    transcript?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript;
+  }
+  /**
+   * Wrapper for storing the generative response for a chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse {
+    /**
+     * The chart spec for the data. This will be specified in the vega-lite or vega format.
+     */
+    chartSpec?: {[key: string]: any} | null;
+    /**
+     * The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.
+     */
+    generatedSqlQuery?: string | null;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textMessage?: Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponseTextOutput;
+    /**
+     * The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.
+     */
+    textOutput?: string | null;
+  }
+  /**
+   * Wrapper for text output.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponseTextOutput {
+    /**
+     * The text output from the LLM.
+     */
+    text?: string[] | null;
+    /**
+     * The type of text output.
+     */
+    textType?: string | null;
   }
   /**
    * The data for a hold annotation.
@@ -9680,6 +10496,12 @@ export namespace contactcenterinsights_v1 {
     startTime?: string | null;
   }
   /**
+   * Request data that use the existing QueryMetrics.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1QueryMetrics {
+    request?: {[key: string]: any} | null;
+  }
+  /**
    * The metadata from querying metrics.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1QueryMetricsMetadata {
@@ -10743,6 +11565,27 @@ export namespace contactcenterinsights_v1 {
     value?: string | null;
   }
   /**
+   * Represents a dashboard element, could be a nested Container or Chart.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1Widget {
+    /**
+     * A chart widget.
+     */
+    chart?: Schema$GoogleCloudContactcenterinsightsV1Chart;
+    /**
+     * A reference to a chart widget. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}/charts/{chart\}
+     */
+    chartReference?: string | null;
+    /**
+     * A container widget.
+     */
+    container?: Schema$GoogleCloudContactcenterinsightsV1Container;
+    /**
+     * Filter applied to all charts in the container. Should support scope later.
+     */
+    filter?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$GoogleIamV1AuditConfig {
@@ -10951,6 +11794,7 @@ export namespace contactcenterinsights_v1 {
     authorizedViewSets: Resource$Projects$Locations$Authorizedviewsets;
     autoLabelingRules: Resource$Projects$Locations$Autolabelingrules;
     conversations: Resource$Projects$Locations$Conversations;
+    dashboards: Resource$Projects$Locations$Dashboards;
     datasets: Resource$Projects$Locations$Datasets;
     encryptionSpec: Resource$Projects$Locations$Encryptionspec;
     insightsdata: Resource$Projects$Locations$Insightsdata;
@@ -10973,6 +11817,9 @@ export namespace contactcenterinsights_v1 {
       this.autoLabelingRules =
         new Resource$Projects$Locations$Autolabelingrules(this.context);
       this.conversations = new Resource$Projects$Locations$Conversations(
+        this.context
+      );
+      this.dashboards = new Resource$Projects$Locations$Dashboards(
         this.context
       );
       this.datasets = new Resource$Projects$Locations$Datasets(this.context);
@@ -11466,6 +12313,170 @@ export namespace contactcenterinsights_v1 {
         params,
         requiredParams: ['parent'],
         pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Natural language based Insights which powers the next generation of dashboards in Insights. Next generation of QueryMetrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.generativeInsights(
+     *     {
+     *       // Required. The location of the data. "projects/{project\}/locations/{location\}"
+     *       location: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "chart": "my_chart",
+     *         //   "comparisonFilter": "my_comparisonFilter",
+     *         //   "filter": "my_filter",
+     *         //   "naturalLanguageQuery": "my_naturalLanguageQuery",
+     *         //   "revisionId": "my_revisionId",
+     *         //   "sessionId": "my_sessionId",
+     *         //   "sqlComparisonKey": "my_sqlComparisonKey",
+     *         //   "sqlQuery": "my_sqlQuery",
+     *         //   "userProvidedChartSpec": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Generativeinsights,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generativeInsights(
+      params?: Params$Resource$Projects$Locations$Generativeinsights,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Generativeinsights,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Generativeinsights,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Generativeinsights,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generativeinsights
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generativeinsights;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Generativeinsights;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+location}:generativeInsights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
         context: this.context,
       };
       if (callback) {
@@ -12926,6 +13937,17 @@ export namespace contactcenterinsights_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Generativeinsights extends StandardParameters {
+    /**
+     * Required. The location of the data. "projects/{project\}/locations/{location\}"
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest;
   }
   export interface Params$Resource$Projects$Locations$Getcorrelationconfig extends StandardParameters {
     /**
@@ -15895,6 +16917,173 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
+     * Natural language based Insights which powers the next generation of dashboards in Insights. Next generation of QueryMetrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.generativeInsights(
+     *       {
+     *         // Required. The location of the data. "projects/{project\}/locations/{location\}"
+     *         location:
+     *           'projects/my-project/locations/my-location/authorizedViewSets/my-authorizedViewSet/authorizedViews/my-authorizedView',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "chart": "my_chart",
+     *           //   "comparisonFilter": "my_comparisonFilter",
+     *           //   "filter": "my_filter",
+     *           //   "naturalLanguageQuery": "my_naturalLanguageQuery",
+     *           //   "revisionId": "my_revisionId",
+     *           //   "sessionId": "my_sessionId",
+     *           //   "sqlComparisonKey": "my_sqlComparisonKey",
+     *           //   "sqlQuery": "my_sqlQuery",
+     *           //   "userProvidedChartSpec": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generativeInsights(
+      params?: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      params: Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    generativeInsights(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+location}:generativeInsights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Get AuthorizedView
      * @example
      * ```js
@@ -17351,6 +18540,17 @@ export namespace contactcenterinsights_v1 {
      * Required. The name of the AuthorizedView to delete.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Generativeinsights extends StandardParameters {
+    /**
+     * Required. The location of the data. "projects/{project\}/locations/{location\}"
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest;
   }
   export interface Params$Resource$Projects$Locations$Authorizedviewsets$Authorizedviews$Get extends StandardParameters {
     /**
@@ -28359,6 +29559,1732 @@ export namespace contactcenterinsights_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
+  }
+
+  export class Resource$Projects$Locations$Dashboards {
+    context: APIRequestContext;
+    charts: Resource$Projects$Locations$Dashboards$Charts;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.charts = new Resource$Projects$Locations$Dashboards$Charts(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a Dashboard.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.dashboards.create({
+     *     // Optional. A unique ID for the new Dashboard. This ID will become the final component of the Dashboard's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     *     dashboardId: 'placeholder-value',
+     *     // Required. The parent resource of the dashboard.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dateRangeConfig": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "readOnly": false,
+     *       //   "rootContainer": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "rootContainer": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dashboards$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Create
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dashboards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a Dashboard.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.dashboards.delete({
+     *     // Required. The name of the dashboard to delete.
+     *     name: 'projects/my-project/locations/my-location/dashboards/my-dashboard',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Dashboards$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Dashboard.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.dashboards.get({
+     *     // Required. The name of the dashboard to get.
+     *     name: 'projects/my-project/locations/my-location/dashboards/my-dashboard',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "rootContainer": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Dashboards$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Dashboards.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.dashboards.list({
+     *     // Optional. The filter expression to filter dashboards listed in the response.
+     *     filter: 'placeholder-value',
+     *     // Optional. The order by expression to order dashboards listed in the response.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of dashboards to return. The service may return fewer than this value. The default and maximum value is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The value returned by the last `ListDashboardsResponse`. This value indicates that this is a continuation of a prior `ListDashboards` call and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource of the dashboards.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dashboards": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dashboards$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dashboards').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListDashboardsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Dashboard.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await contactcenterinsights.projects.locations.dashboards.patch({
+     *     // Identifier. Dashboard resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}
+     *     name: 'projects/my-project/locations/my-location/dashboards/my-dashboard',
+     *     // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dateRangeConfig": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "name": "my_name",
+     *       //   "readOnly": false,
+     *       //   "rootContainer": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "rootContainer": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Dashboards$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Dashboard>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Dashboard>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dashboards$Create extends StandardParameters {
+    /**
+     * Optional. A unique ID for the new Dashboard. This ID will become the final component of the Dashboard's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    dashboardId?: string;
+    /**
+     * Required. The parent resource of the dashboard.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1Dashboard;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Delete extends StandardParameters {
+    /**
+     * Required. The name of the dashboard to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Get extends StandardParameters {
+    /**
+     * Required. The name of the dashboard to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$List extends StandardParameters {
+    /**
+     * Optional. The filter expression to filter dashboards listed in the response.
+     */
+    filter?: string;
+    /**
+     * Optional. The order by expression to order dashboards listed in the response.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of dashboards to return. The service may return fewer than this value. The default and maximum value is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The value returned by the last `ListDashboardsResponse`. This value indicates that this is a continuation of a prior `ListDashboards` call and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the dashboards.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Patch extends StandardParameters {
+    /**
+     * Identifier. Dashboard resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1Dashboard;
+  }
+
+  export class Resource$Projects$Locations$Dashboards$Charts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Chart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.dashboards.charts.create({
+     *       // Optional. A unique ID for the new Chart. This ID will become the final component of the Chart's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     *       chartId: 'placeholder-value',
+     *       // Required. The parent resource of the chart.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dashboards/my-dashboard',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "chartType": "my_chartType",
+     *         //   "chartVisualizationType": "my_chartVisualizationType",
+     *         //   "createTime": "my_createTime",
+     *         //   "dataSource": {},
+     *         //   "dateRangeConfig": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "filter": "my_filter",
+     *         //   "height": 0,
+     *         //   "name": "my_name",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "width": 0
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chartType": "my_chartType",
+     *   //   "chartVisualizationType": "my_chartVisualizationType",
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": {},
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "height": 0,
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dashboards$Charts$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Charts$Create
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Charts$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dashboards$Charts$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/charts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a Chart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.dashboards.charts.delete({
+     *       // Required. The name of the chart to delete.
+     *       name: 'projects/my-project/locations/my-location/dashboards/my-dashboard/charts/my-chart',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Dashboards$Charts$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Charts$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Charts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dashboards$Charts$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Chart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.dashboards.charts.get({
+     *       // Required. The name of the chart to get.
+     *       name: 'projects/my-project/locations/my-location/dashboards/my-dashboard/charts/my-chart',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chartType": "my_chartType",
+     *   //   "chartVisualizationType": "my_chartVisualizationType",
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": {},
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "height": 0,
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Dashboards$Charts$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Charts$Get
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Charts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Dashboards$Charts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Charts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.dashboards.charts.list({
+     *       // Required. The parent resource of the charts.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dashboards/my-dashboard',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "charts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dashboards$Charts$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Charts$List
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Charts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dashboards$Charts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/charts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1ListChartsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Chart.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.dashboards.charts.patch({
+     *       // Identifier. Chart resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}/charts/{chart\}
+     *       name: 'projects/my-project/locations/my-location/dashboards/my-dashboard/charts/my-chart',
+     *       // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "chartType": "my_chartType",
+     *         //   "chartVisualizationType": "my_chartVisualizationType",
+     *         //   "createTime": "my_createTime",
+     *         //   "dataSource": {},
+     *         //   "dateRangeConfig": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "filter": "my_filter",
+     *         //   "height": 0,
+     *         //   "name": "my_name",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "width": 0
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chartType": "my_chartType",
+     *   //   "chartVisualizationType": "my_chartVisualizationType",
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": {},
+     *   //   "dateRangeConfig": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "height": 0,
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "width": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Dashboards$Charts$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dashboards$Charts$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dashboards$Charts$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudContactcenterinsightsV1Chart>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dashboards$Charts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dashboards$Charts$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1Chart>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dashboards$Charts$Create extends StandardParameters {
+    /**
+     * Optional. A unique ID for the new Chart. This ID will become the final component of the Chart's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    chartId?: string;
+    /**
+     * Required. The parent resource of the chart.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1Chart;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Charts$Delete extends StandardParameters {
+    /**
+     * Required. The name of the chart to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Charts$Get extends StandardParameters {
+    /**
+     * Required. The name of the chart to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Charts$List extends StandardParameters {
+    /**
+     * Required. The parent resource of the charts.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dashboards$Charts$Patch extends StandardParameters {
+    /**
+     * Identifier. Chart resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}/charts/{chart\}
+     */
+    name?: string;
+    /**
+     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1Chart;
   }
 
   export class Resource$Projects$Locations$Datasets {

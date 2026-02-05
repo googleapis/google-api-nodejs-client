@@ -193,6 +193,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "generativeInsights": {
+              "description": "Natural language based Insights which powers the next generation of dashboards in Insights. Next generation of QueryMetrics.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generativeInsights",
+              "httpMethod": "POST",
+              "id": "contactcenterinsights.projects.locations.generativeInsights",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The location of the data. \"projects/{project}/locations/{location}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:generativeInsights",
+              "request": {
+                "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getCorrelationConfig": {
               "description": "Gets correlation config.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/correlationConfig",
@@ -999,6 +1027,34 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "generativeInsights": {
+                      "description": "Natural language based Insights which powers the next generation of dashboards in Insights. Next generation of QueryMetrics.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizedViewSets/{authorizedViewSetsId}/authorizedViews/{authorizedViewsId}:generativeInsights",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.authorizedViewSets.authorizedViews.generativeInsights",
+                      "parameterOrder": [
+                        "location"
+                      ],
+                      "parameters": {
+                        "location": {
+                          "description": "Required. The location of the data. \"projects/{project}/locations/{location}\"",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/authorizedViewSets/[^/]+/authorizedViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+location}:generativeInsights",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3342,6 +3398,321 @@
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "dashboards": {
+              "methods": {
+                "create": {
+                  "description": "Creates a Dashboard.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.dashboards.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dashboardId": {
+                      "description": "Optional. A unique ID for the new Dashboard. This ID will become the final component of the Dashboard's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the dashboard.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dashboards",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Dashboard.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.dashboards.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the dashboard to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a Dashboard.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.dashboards.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the dashboard to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Dashboards.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.dashboards.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filter expression to filter dashboards listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. The order by expression to order dashboards listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of dashboards to return. The service may return fewer than this value. The default and maximum value is 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListDashboardsResponse`. This value indicates that this is a continuation of a prior `ListDashboards` call and that the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the dashboards.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/dashboards",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListDashboardsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a Dashboard.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.dashboards.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Dashboard resource name. Format: projects/{project}/locations/{location}/dashboards/{dashboard}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "charts": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a Chart.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.dashboards.charts.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "chartId": {
+                          "description": "Optional. A unique ID for the new Chart. This ID will become the final component of the Chart's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource of the chart.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/charts",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Chart.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
+                      "httpMethod": "DELETE",
+                      "id": "contactcenterinsights.projects.locations.dashboards.charts.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the chart to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Chart.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.dashboards.charts.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the chart to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Charts.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts",
+                      "httpMethod": "GET",
+                      "id": "contactcenterinsights.projects.locations.dashboards.charts.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource of the charts.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/charts",
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1ListChartsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Chart.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dashboards/{dashboardsId}/charts/{chartsId}",
+                      "httpMethod": "PATCH",
+                      "id": "contactcenterinsights.projects.locations.dashboards.charts.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. Chart resource name. Format: projects/{project}/locations/{location}/dashboards/{dashboard}/charts/{chart}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dashboards/[^/]+/charts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1Chart"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -5730,7 +6101,7 @@
       }
     }
   },
-  "revision": "20260121",
+  "revision": "20260202",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -6897,6 +7268,118 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1Chart": {
+      "description": "Configurable dashboard's widget that displays data as a chart.",
+      "id": "GoogleCloudContactcenterinsightsV1Chart",
+      "properties": {
+        "chartType": {
+          "description": "Output only. Chart type.",
+          "enum": [
+            "CHART_TYPE_UNSPECIFIED",
+            "SYSTEM_DEFINED",
+            "USER_DEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified chart type.",
+            "Pre-defined chart type.",
+            "Configurable chart type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "chartVisualizationType": {
+          "description": "Chart visualization type.",
+          "enum": [
+            "CHART_VISUALIZATION_TYPE_UNSPECIFIED",
+            "BAR",
+            "LINE",
+            "AREA",
+            "PIE",
+            "SCATTER",
+            "TABLE",
+            "SCORE_CARD",
+            "SUNBURST",
+            "GAUGE",
+            "SANKEY"
+          ],
+          "enumDescriptions": [
+            "Unspecified chart visualization type.",
+            "Bar chart.",
+            "Line chart.",
+            "Area chart.",
+            "Pie chart.",
+            "Scatter chart.",
+            "Table chart.",
+            "Score card chart.",
+            "Sunburst chart.",
+            "Gauge chart.",
+            "Sankey chart."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Chart create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ChartDataSource"
+        },
+        "dateRangeConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DateRangeConfig",
+          "description": "Date range config applied to the chart."
+        },
+        "description": {
+          "description": "Chart description",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User provided display name of the chart.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Filter applied to all charts in the container. Should support scope later.",
+          "type": "string"
+        },
+        "height": {
+          "description": "The height of the chart in grid units.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Identifier. Chart resource name. Format: projects/{project}/locations/{location}/dashboards/{dashboard}/charts/{chart}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Chart last update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "width": {
+          "description": "The width of the chart in grid units.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ChartDataSource": {
+      "description": "The request data for visualizing the dataset in the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1ChartDataSource",
+      "properties": {
+        "generativeInsights": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsights",
+          "description": "Use natural language query to generate the chart."
+        },
+        "queryMetrics": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryMetrics",
+          "description": "Use the existing QueryMetrics to generate the chart."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult": {
       "description": "The result of testing a constraint expression on a pair of conversations.",
       "id": "GoogleCloudContactcenterinsightsV1ConstraintEvaluationResult",
@@ -6934,6 +7417,51 @@
         "ruleId": {
           "description": "The rule ID.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Container": {
+      "description": "Configurable dashboard's container. Container can contain multiple widgets.",
+      "id": "GoogleCloudContactcenterinsightsV1Container",
+      "properties": {
+        "containerId": {
+          "description": "Output only. Unique ID for the container.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dateRangeConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DateRangeConfig",
+          "description": "Date range config applied to all charts in the container."
+        },
+        "description": {
+          "description": "Container description",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User provided display name of the Container.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Filter applied to all charts in the container. Should support scope later.",
+          "type": "string"
+        },
+        "height": {
+          "description": "The height of the container in grid units.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "widgets": {
+          "description": "Widgets in the Container.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Widget"
+          },
+          "type": "array"
+        },
+        "width": {
+          "description": "The width of the container in grid units.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7702,6 +8230,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1Dashboard": {
+      "description": "Configurable dashboard",
+      "id": "GoogleCloudContactcenterinsightsV1Dashboard",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Dashboard creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dateRangeConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DateRangeConfig",
+          "description": "Date range config applied to all charts in the dashboard."
+        },
+        "description": {
+          "description": "Dashboard description",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User provided display name of the dashboard.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Filter applied to all charts in the dashboard. Should support scope later.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Dashboard resource name. Format: projects/{project}/locations/{location}/dashboards/{dashboard}",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "Output only. Whether the dashboard is read-only. All predefined dashboards are read-only and cannot be modified by the user.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "rootContainer": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Container",
+          "description": "The dashboard's root widget container. We want to display the dashboard layout in a tree-like structure, where the root container contains other widgets (containers or charts) as children."
+        },
+        "updateTime": {
+          "description": "Output only. Dashboard last update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1Dataset": {
       "description": "Dataset resource represents a collection of conversations that may be bounded (Static Dataset, e.g. golden dataset for training), or unbounded (Dynamic Dataset, e.g. live traffic, or agent training traffic)",
       "id": "GoogleCloudContactcenterinsightsV1Dataset",
@@ -7747,6 +8323,53 @@
           "description": "Output only. Dataset update time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DateRangeConfig": {
+      "description": "Date range configuration for dashboard charts.",
+      "id": "GoogleCloudContactcenterinsightsV1DateRangeConfig",
+      "properties": {
+        "absoluteDateRange": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QueryInterval",
+          "description": "An absolute date range."
+        },
+        "relativeDateRange": {
+          "$ref": "GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange",
+          "description": "A relative date range."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange": {
+      "description": "Relative date range configuration.",
+      "id": "GoogleCloudContactcenterinsightsV1DateRangeConfigRelativeDateRange",
+      "properties": {
+        "quantity": {
+          "description": "Required. The quantity of units in the past.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Required. The unit of time.",
+          "enum": [
+            "TIME_UNIT_UNSPECIFIED",
+            "DAY",
+            "WEEK",
+            "MONTH",
+            "QUARTER",
+            "YEAR"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Day.",
+            "Week.",
+            "Month.",
+            "Quarter.",
+            "Year."
+          ],
           "type": "string"
         }
       },
@@ -8626,6 +9249,462 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript": {
+      "description": "The conversation transcript for the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript",
+      "properties": {
+        "conversationId": {
+          "description": "The conversation id of the chart.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The create time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messages": {
+          "description": "Ordered list of messages, including user inputs and system responses.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessage"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The update time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessage": {
+      "description": "The message in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessage",
+      "properties": {
+        "createTime": {
+          "description": "Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messageId": {
+          "description": "The message id of the message.",
+          "type": "string"
+        },
+        "systemMessageWrapper": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessages",
+          "description": "A wrapper for system messages per turn."
+        },
+        "userMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageUserMessage",
+          "description": "A message from the user that is interacting with the system."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessage": {
+      "description": "A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessage",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Chart spec from LLM",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "Raw SQL from LLM, before templatization",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+          "description": "A direct natural language response to the user message."
+        },
+        "userProvidedChartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. User provided chart spec",
+          "type": "object"
+        },
+        "userProvidedSqlQuery": {
+          "description": "Optional. User provided SQL query",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput": {
+      "description": "A text output message from the system.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+      "properties": {
+        "text": {
+          "description": "The parts of the message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of the text message.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The default text type.",
+            "The text is a thinking plan generated by the thinking tool.",
+            "The text is a final response to the user question.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessages": {
+      "description": "A wrapper for system messages per turn.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessages",
+      "properties": {
+        "systemMessages": {
+          "description": "A message from the system in response to the user.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageSystemMessage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageUserMessage": {
+      "description": "The user message.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscriptMessageUserMessage",
+      "properties": {
+        "text": {
+          "description": "A message from the user that is interacting with the system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsights": {
+      "description": "Request that use natural language query to generate the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsights",
+      "properties": {
+        "chartCheckpoint": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint",
+          "description": "The chart checkpoint used to generate the chart."
+        },
+        "chartConversations": {
+          "deprecated": true,
+          "description": "Output only. The chart conversations used to generate the chart.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Chart spec for the chart.",
+          "type": "object"
+        },
+        "request": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "sqlComparisonKey": {
+          "description": "Optional. For charts with comparison, this key will determine the metric that will be compared between the current and another dataset.",
+          "type": "string"
+        },
+        "sqlQuery": {
+          "description": "SQL query used to generate the chart.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint": {
+      "description": "The current chart checkpoint state.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartCheckpoint",
+      "properties": {
+        "revisionId": {
+          "description": "The revision id of the chart.",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "The session id of the chart.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversation": {
+      "description": "The conversation used to generate the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversation",
+      "properties": {
+        "conversationId": {
+          "description": "The conversation id of the chart.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The create time of the conversation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "messages": {
+          "description": "Ordered list of messages, including user inputs and system responses.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessage"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "The update time of the conversation.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessage": {
+      "description": "The message in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessage",
+      "properties": {
+        "createTime": {
+          "description": "For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "messageId": {
+          "description": "The message id of the message.",
+          "type": "string"
+        },
+        "systemMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessage",
+          "description": "A message from the system in response to the user."
+        },
+        "userMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageUserMessage",
+          "description": "A message from the user that is interacting with the system."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessage": {
+      "description": "A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessage",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Chart spec from LLM",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "Raw SQL from LLM, before templatization",
+          "type": "string"
+        },
+        "textOutput": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput",
+          "description": "A direct natural language response to the user message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput": {
+      "description": "A text output message from the system.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageSystemMessageTextOutput",
+      "properties": {
+        "texts": {
+          "description": "The parts of the message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "The type of the text message.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The default text type.",
+            "The text is a thinking plan generated by the thinking tool.",
+            "The text is a final response to the user question.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageUserMessage": {
+      "description": "The user message.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsChartConversationMessageUserMessage",
+      "properties": {
+        "text": {
+          "description": "A message from the user that is interacting with the system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsMetadata": {
+      "description": "The metadata for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsMetadata",
+      "properties": {
+        "errorMessages": {
+          "description": "The error message when the generative insights request fails.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest": {
+      "description": "The request for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest",
+      "properties": {
+        "chart": {
+          "description": "The full name of the chart resource this request corresponds to. Format: projects/{project}/locations/{location}/dashboards/{dashboard}/charts/{chart}",
+          "type": "string"
+        },
+        "comparisonFilter": {
+          "description": "Optional. Filter for the data that can be specified in addition to the natural language query. This `filter` is specifically used for charts where comparisons are possible. For example, \"compare to last month\" or \"compare to previous quarter\".",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Filter for the data that can be specified in addition to the natural language query. Users are encouraged to use this field to populate time-windows.",
+          "type": "string"
+        },
+        "naturalLanguageQuery": {
+          "description": "The natural language query specified by the user. If this field is specified, `sql_query` will be ignored.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Optional. The revision id that maps to the state of the chart state revision. When specified, the backend will reload the chart with the sql and visual spec from that revision.",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Optional. The session id of the conversation. If the session id is not specified, backend will generate a random session id. If the session id is specified, will associate user-provided user_query with the provided session id.",
+          "type": "string"
+        },
+        "sqlComparisonKey": {
+          "description": "Optional. For charts with comparison, this key will determine the metric that will be compared between the current and another dataset.",
+          "type": "string"
+        },
+        "sqlQuery": {
+          "description": "Optional. The SQL query specified by the user. This query must be in BigQuery SQL dialect. The `filter` field will also be ignored, as it is assumed that any filtering is already included in the SQL query.",
+          "type": "string"
+        },
+        "userProvidedChartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The user provided chart spec for the chart. This will be used to override the visual spec generated by the LLM.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponse": {
+      "description": "The response for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponse",
+      "properties": {
+        "generativeResponses": {
+          "description": "The full list of generative responses. Each response is ordered by time.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse"
+          },
+          "type": "array"
+        },
+        "transcript": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript",
+          "description": "The transcript of the generative insights conversation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse": {
+      "description": "Wrapper for storing the generative response for a chart.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The chart spec for the data. This will be specified in the vega-lite or vega format.",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponseTextOutput",
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response."
+        },
+        "textOutput": {
+          "deprecated": true,
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponseTextOutput": {
+      "description": "Wrapper for text output.",
+      "id": "GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponseTextOutput",
+      "properties": {
+        "text": {
+          "description": "The text output from the LLM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of text output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The type is unspecified.",
+            "The text is part of LLM reasoning.",
+            "The text is the final answer from LLM.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1HoldData": {
       "description": "The data for a hold annotation.",
       "id": "GoogleCloudContactcenterinsightsV1HoldData",
@@ -9367,6 +10446,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1ListChartsResponse": {
+      "description": "The response of listing charts.",
+      "id": "GoogleCloudContactcenterinsightsV1ListChartsResponse",
+      "properties": {
+        "charts": {
+          "description": "The charts under the parent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Chart"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The value returned by the last `ListChartsResponse`. This value indicates that this is a continuation of a prior `ListCharts` call and that the system should return the next page of data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1ListConversationsResponse": {
       "description": "The response of listing conversations.",
       "id": "GoogleCloudContactcenterinsightsV1ListConversationsResponse",
@@ -9380,6 +10477,24 @@
         },
         "nextPageToken": {
           "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is set, it means there is another page available. If it is not set, it means no other pages are available.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListDashboardsResponse": {
+      "description": "The response of listing dashboards.",
+      "id": "GoogleCloudContactcenterinsightsV1ListDashboardsResponse",
+      "properties": {
+        "dashboards": {
+          "description": "The dashboards under the parent.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Dashboard"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The value returned by the last `ListDashboardsResponse`. This value indicates that this is a continuation of a prior `ListDashboards` call and that the system should return the next page of data.",
           "type": "string"
         }
       },
@@ -10411,6 +11526,20 @@
           "description": "Required. The start time of the time window.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QueryMetrics": {
+      "description": "Request data that use the existing QueryMetrics.",
+      "id": "GoogleCloudContactcenterinsightsV1QueryMetrics",
+      "properties": {
+        "request": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "type": "object"
         }
       },
       "type": "object"
@@ -11772,6 +12901,29 @@
         },
         "value": {
           "description": "A filter to reduce conversation results to a specific subset. Refer to https://cloud.google.com/contact-center/insights/docs/filtering for details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1Widget": {
+      "description": "Represents a dashboard element, could be a nested Container or Chart.",
+      "id": "GoogleCloudContactcenterinsightsV1Widget",
+      "properties": {
+        "chart": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Chart",
+          "description": "A chart widget."
+        },
+        "chartReference": {
+          "description": "A reference to a chart widget. Format: projects/{project}/locations/{location}/dashboards/{dashboard}/charts/{chart}",
+          "type": "string"
+        },
+        "container": {
+          "$ref": "GoogleCloudContactcenterinsightsV1Container",
+          "description": "A container widget."
+        },
+        "filter": {
+          "description": "Filter applied to all charts in the container. Should support scope later.",
           "type": "string"
         }
       },
@@ -13923,6 +15075,241 @@
         },
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript": {
+      "description": "The conversation transcript for the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript",
+      "properties": {
+        "conversationId": {
+          "description": "The conversation id of the chart.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The create time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messages": {
+          "description": "Ordered list of messages, including user inputs and system responses.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessage"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The update time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessage": {
+      "description": "The message in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessage",
+      "properties": {
+        "createTime": {
+          "description": "Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messageId": {
+          "description": "The message id of the message.",
+          "type": "string"
+        },
+        "systemMessageWrapper": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessages",
+          "description": "A wrapper for system messages per turn."
+        },
+        "userMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageUserMessage",
+          "description": "A message from the user that is interacting with the system."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessage": {
+      "description": "A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessage",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Chart spec from LLM",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "Raw SQL from LLM, before templatization",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+          "description": "A direct natural language response to the user message."
+        },
+        "userProvidedChartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. User provided chart spec",
+          "type": "object"
+        },
+        "userProvidedSqlQuery": {
+          "description": "Optional. User provided SQL query",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput": {
+      "description": "A text output message from the system.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+      "properties": {
+        "text": {
+          "description": "The parts of the message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of the text message.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The default text type.",
+            "The text is a thinking plan generated by the thinking tool.",
+            "The text is a final response to the user question.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessages": {
+      "description": "A wrapper for system messages per turn.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessages",
+      "properties": {
+        "systemMessages": {
+          "description": "A message from the system in response to the user.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageSystemMessage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageUserMessage": {
+      "description": "The user message.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscriptMessageUserMessage",
+      "properties": {
+        "text": {
+          "description": "A message from the user that is interacting with the system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsMetadata": {
+      "description": "The metadata for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsMetadata",
+      "properties": {
+        "errorMessages": {
+          "description": "The error message when the generative insights request fails.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponse": {
+      "description": "The response for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponse",
+      "properties": {
+        "generativeResponses": {
+          "description": "The full list of generative responses. Each response is ordered by time.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse"
+          },
+          "type": "array"
+        },
+        "transcript": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript",
+          "description": "The transcript of the generative insights conversation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse": {
+      "description": "Wrapper for storing the generative response for a chart.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The chart spec for the data. This will be specified in the vega-lite or vega format.",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponseTextOutput",
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response."
+        },
+        "textOutput": {
+          "deprecated": true,
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponseTextOutput": {
+      "description": "Wrapper for text output.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponseTextOutput",
+      "properties": {
+        "text": {
+          "description": "The text output from the LLM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of text output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The type is unspecified.",
+            "The text is part of LLM reasoning.",
+            "The text is the final answer from LLM.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
           "type": "string"
         }
       },
@@ -18192,6 +19579,241 @@
         },
         "transcriptUri": {
           "description": "Immutable. Cloud Storage URI that points to a file that contains the conversation transcript.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript": {
+      "description": "The conversation transcript for the chart.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript",
+      "properties": {
+        "conversationId": {
+          "description": "The conversation id of the chart.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The create time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messages": {
+          "description": "Ordered list of messages, including user inputs and system responses.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessage"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The update time of the conversation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessage": {
+      "description": "The message in the conversation.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessage",
+      "properties": {
+        "createTime": {
+          "description": "Output only. For user messages, this is the time at which the system received the message. For system messages, this is the time at which the system generated the message.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "messageId": {
+          "description": "The message id of the message.",
+          "type": "string"
+        },
+        "systemMessageWrapper": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessages",
+          "description": "A wrapper for system messages per turn."
+        },
+        "userMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageUserMessage",
+          "description": "A message from the user that is interacting with the system."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessage": {
+      "description": "A message from the system in response to the user. This message can also be a message from the user as historical context for multiturn conversations with the system.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessage",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Chart spec from LLM",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "Raw SQL from LLM, before templatization",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+          "description": "A direct natural language response to the user message."
+        },
+        "userProvidedChartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. User provided chart spec",
+          "type": "object"
+        },
+        "userProvidedSqlQuery": {
+          "description": "Optional. User provided SQL query",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessageTextOutput": {
+      "description": "A text output message from the system.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessageTextOutput",
+      "properties": {
+        "text": {
+          "description": "The parts of the message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of the text message.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The default text type.",
+            "The text is a thinking plan generated by the thinking tool.",
+            "The text is a final response to the user question.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessages": {
+      "description": "A wrapper for system messages per turn.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessages",
+      "properties": {
+        "systemMessages": {
+          "description": "A message from the system in response to the user.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageSystemMessage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageUserMessage": {
+      "description": "The user message.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscriptMessageUserMessage",
+      "properties": {
+        "text": {
+          "description": "A message from the user that is interacting with the system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsMetadata": {
+      "description": "The metadata for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsMetadata",
+      "properties": {
+        "errorMessages": {
+          "description": "The error message when the generative insights request fails.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponse": {
+      "description": "The response for generative insights.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponse",
+      "properties": {
+        "generativeResponses": {
+          "description": "The full list of generative responses. Each response is ordered by time.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse"
+          },
+          "type": "array"
+        },
+        "transcript": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript",
+          "description": "The transcript of the generative insights conversation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse": {
+      "description": "Wrapper for storing the generative response for a chart.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse",
+      "properties": {
+        "chartSpec": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The chart spec for the data. This will be specified in the vega-lite or vega format.",
+          "type": "object"
+        },
+        "generatedSqlQuery": {
+          "description": "The generated SQL query from the LLM. Will be populated during the chart building phase. The generated SQL will be cached in the corresponding chart resource.",
+          "type": "string"
+        },
+        "textMessage": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponseTextOutput",
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response."
+        },
+        "textOutput": {
+          "deprecated": true,
+          "description": "The text output from the LLM. Will be populated during the chart building phase. For a reloaded chart, this will NOT be populated. May contain THOUGHT or a FINAL response or some in-progress response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponseTextOutput": {
+      "description": "Wrapper for text output.",
+      "id": "GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponseTextOutput",
+      "properties": {
+        "text": {
+          "description": "The text output from the LLM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "textType": {
+          "description": "The type of text output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "THOUGHT",
+            "FINAL_RESPONSE",
+            "PROGRESS"
+          ],
+          "enumDescriptions": [
+            "The type is unspecified.",
+            "The text is part of LLM reasoning.",
+            "The text is the final answer from LLM.",
+            "The text is an informational message about the agent's progress, such as a tool being invoked. This is distinct from the agent's internal thought process (`THOUGHT`) and the final answer to the user (`FINAL_RESPONSE`). These messages provide insight into the agent's actions."
+          ],
           "type": "string"
         }
       },
