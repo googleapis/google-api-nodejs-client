@@ -1247,9 +1247,84 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260130",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
+    "ApiservingMcpMcpToolDataHandlingProfile": {
+      "description": "Profile describing the data handling characteristics of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: \"google.com/tool.profiles/data_handling\"",
+      "id": "ApiservingMcpMcpToolDataHandlingProfile",
+      "properties": {
+        "inputDataAccessLevel": {
+          "description": "// The data access level of the tool's inputs.",
+          "enum": [
+            "DATA_ACCESS_LEVEL_UNSPECIFIED",
+            "DATA_ACCESS_LEVEL_PUBLIC",
+            "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+            "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+            "DATA_ACCESS_LEVEL_PII",
+            "DATA_ACCESS_LEVEL_USER",
+            "DATA_ACCESS_LEVEL_NO_DATA_ACCESS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Public data.",
+            "Confidential data.",
+            "Need-to-know data.",
+            "Personally Identifiable Information (PII) data.",
+            "User data.",
+            "The tool does not access any data."
+          ],
+          "type": "string"
+        },
+        "outputDataAccessLevel": {
+          "description": "The data access level of the tool's outputs.",
+          "enum": [
+            "DATA_ACCESS_LEVEL_UNSPECIFIED",
+            "DATA_ACCESS_LEVEL_PUBLIC",
+            "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+            "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+            "DATA_ACCESS_LEVEL_PII",
+            "DATA_ACCESS_LEVEL_USER",
+            "DATA_ACCESS_LEVEL_NO_DATA_ACCESS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Public data.",
+            "Confidential data.",
+            "Need-to-know data.",
+            "Personally Identifiable Information (PII) data.",
+            "User data.",
+            "The tool does not access any data."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApiservingMcpMcpToolLifecycleProfile": {
+      "description": "Profile describing the lifecycle stage of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: \"google.com/tool.profiles/lifecycle\"",
+      "id": "ApiservingMcpMcpToolLifecycleProfile",
+      "properties": {
+        "launchState": {
+          "description": "Output only. The current launch state of the MCP tool.",
+          "enum": [
+            "LAUNCH_STATE_UNSPECIFIED",
+            "LAUNCH_STATE_DEVELOPMENT",
+            "LAUNCH_STATE_PRODUCTION_PREVIEW",
+            "LAUNCH_STATE_GENERAL_AVAILABILITY"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The tool is currently in development.",
+            "The tool is in production preview.",
+            "The tool is generally available."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
       "description": "Configuration for Data Lineage. Defines different configuration options for Lineage customers to control behaviour of lineage systems.",
       "id": "GoogleCloudDatacatalogLineageConfigmanagementV1Config",
@@ -1322,7 +1397,7 @@
       "id": "GoogleCloudDatacatalogLineageConfigmanagementV1ConfigIngestionIngestionRuleLineageEnablement",
       "properties": {
         "enabled": {
-          "description": "Optional. Required. If true, ingestion of lineage should be enabled. If false, it should be disabled. If unspecified, the system default value is used.",
+          "description": "Optional. If true, ingestion of lineage should be enabled. If false, it should be disabled. If unspecified, the system default value is used.",
           "type": "boolean"
         }
       },

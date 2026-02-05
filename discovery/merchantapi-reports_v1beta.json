@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20260106",
+  "revision": "20260202",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
@@ -1301,10 +1301,10 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Product is not eligible or is disapproved for all reporting contexts.",
-            "Product's status is pending in all reporting contexts.",
-            "Product is eligible for some (but not all) reporting contexts.",
-            "Product is eligible for all reporting contexts."
+            "Product is not eligible or is disapproved for all reporting contexts and countries.",
+            "Product's status is pending in all reporting contexts and countries.",
+            "Product is eligible for some (but not all) reporting contexts and countries.",
+            "Product is eligible for all reporting contexts and countries."
           ],
           "type": "string"
         },
