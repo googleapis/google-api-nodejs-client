@@ -1106,6 +1106,10 @@ export namespace androidpublisher_v3 {
      * The intital price to convert other regions from. Tax exclusive.
      */
     price?: Schema$Money;
+    /**
+     * Optional. Product tax category code in context. Product tax category determines the transaction tax rates applied to the product that will be factored into the price calculation. If not set, tax rates for the default product tax category will be used. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.
+     */
+    productTaxCategoryCode?: string | null;
   }
   /**
    * Response message for ConvertRegionPrices.
@@ -16487,7 +16491,8 @@ export namespace androidpublisher_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "price": {}
+     *       //   "price": {},
+     *       //   "productTaxCategoryCode": "my_productTaxCategoryCode"
      *       // }
      *     },
      *   });
