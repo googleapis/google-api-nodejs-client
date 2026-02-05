@@ -844,27 +844,6 @@ export namespace networkmanagement_v1 {
     podUri?: string | null;
   }
   /**
-   * For display only. Metadata associated with ARRIVE_AT_GOOGLE_MANAGED_SERVICE state.
-   */
-  export interface Schema$GoogleManagedServiceInfo {
-    /**
-     * IP address of the Google-managed service endpoint.
-     */
-    ipAddress?: string | null;
-    /**
-     * URI of the Google-managed service endpoint network, it is empty if the IP address is a public IP address.
-     */
-    networkUri?: string | null;
-    /**
-     * Type of a Google-managed service.
-     */
-    serviceType?: string | null;
-    /**
-     * URI of the Google-managed service.
-     */
-    serviceUri?: string | null;
-  }
-  /**
    * For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths
    */
   export interface Schema$GoogleServiceInfo {
@@ -1822,10 +1801,6 @@ export namespace networkmanagement_v1 {
      */
     gkePod?: Schema$GkePodInfo;
     /**
-     * Display information of a Google-managed service.
-     */
-    googleManagedService?: Schema$GoogleManagedServiceInfo;
-    /**
      * Display information of a Google service
      */
     googleService?: Schema$GoogleServiceInfo;
@@ -2275,7 +2250,7 @@ export namespace networkmanagement_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4105,7 +4080,7 @@ export namespace networkmanagement_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

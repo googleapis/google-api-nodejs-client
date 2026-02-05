@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta1/organizations/{organizationsId}/locations",
               "httpMethod": "GET",
               "id": "networkmanagement.organizations.locations.list",
@@ -516,7 +516,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networkmanagement.projects.locations.list",
@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260121",
+  "revision": "20260130",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1925,7 +1925,8 @@
             "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
             "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
             "HYBRID_SUBNET_REGION_MISMATCH",
-            "HYBRID_SUBNET_NO_ROUTE"
+            "HYBRID_SUBNET_NO_ROUTE",
+            "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -2030,7 +2031,8 @@
             "Packet is dropped due to destination IP not matching the appliance mapping IPs configured on the L2 Interconnect attachment.",
             "Packet could be dropped because it matches a route associated with an NCC spoke in the hybrid subnet context, but such a configuration is not supported.",
             "Packet is dropped because the region of the hybrid subnet is different from the region of the next hop of the route matched within this hybrid subnet.",
-            "Packet is dropped because no matching route was found in the hybrid subnet."
+            "Packet is dropped because no matching route was found in the hybrid subnet.",
+            "Packet is dropped because there is no valid matching route from the network of the Google-managed service to the destination."
           ],
           "type": "string"
         },
@@ -2213,10 +2215,6 @@
       "description": "Source or destination of the Connectivity Test.",
       "id": "Endpoint",
       "properties": {
-        "alloyDbInstance": {
-          "description": "An [AlloyDB Instance](https://cloud.google.com/alloydb) URI.",
-          "type": "string"
-        },
         "appEngineVersion": {
           "$ref": "AppEngineVersionEndpoint",
           "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions). Applicable only to source endpoint."
@@ -2325,10 +2323,10 @@
             "INTERNET"
           ],
           "enumDescriptions": [
-            "Unspecified. The `project_id` field should be set to the project where the GCP endpoint is located, or where the non-GCP endpoint should be reachable from (via routes to non-GCP networks). The test will analyze all possible IP address locations. This might take longer and produce inaccurate or ambiguous results, so prefer specifying an explicit network type.",
-            "A VPC network. The `network` field should be set to the URI of this network. Only endpoints within this network will be considered.",
-            "A non-GCP network (for example, an on-premises network or network in another Cloud). The `network` field should be set to the URI of the VPC network containing a corresponding VPN tunnel, Interconnect attachment, or router appliance instance. Only endpoints reachable from the provided VPC network via the routes to non-GCP networks will be considered.",
-            "Internet. Only endpoints reachable over public Internet and endpoints within Google API and service ranges will be considered."
+            "Unspecified. The test will analyze all possible IP address locations. This might take longer and produce inaccurate or ambiguous results, so prefer specifying an explicit network type. The `project_id` field should be set to the project where the GCP endpoint is located, or where the non-GCP endpoint should be reachable from (via routes to non-GCP networks). The project might also be inferred from the Connectivity Test project or other projects referenced in the request.",
+            "A VPC network. Should be used for internal IP addresses in VPC networks. The `network` field should be set to the URI of this network. Only endpoints within this network will be considered.",
+            "A non-GCP network (for example, an on-premises network or another cloud provider network). Should be used for internal IP addresses outside of Google Cloud. The `network` field should be set to the URI of the VPC network containing a corresponding Cloud VPN tunnel, Cloud Interconnect VLAN attachment, or a router appliance instance. Only endpoints reachable from the provided VPC network via the routes to non-GCP networks will be considered.",
+            "Internet. Should be used for internet-routable external IP addresses or IP addresses for global Google APIs and services."
           ],
           "type": "string"
         },
@@ -2671,45 +2669,6 @@
         },
         "podUri": {
           "description": "URI of a GKE Pod. For Pods in regional Clusters, the URI format is: `projects/{project}/locations/{location}/clusters/{cluster}/k8s/namespaces/{namespace}/pods/{pod}` For Pods in zonal Clusters, the URI format is: `projects/{project}/zones/{zone}/clusters/{cluster}/k8s/namespaces/{namespace}/pods/{pod}`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleManagedServiceInfo": {
-      "description": "For display only. Metadata associated with ARRIVE_AT_GOOGLE_MANAGED_SERVICE state.",
-      "id": "GoogleManagedServiceInfo",
-      "properties": {
-        "ipAddress": {
-          "description": "IP address of the Google-managed service endpoint.",
-          "type": "string"
-        },
-        "networkUri": {
-          "description": "URI of the Google-managed service endpoint network, it is empty if the IP address is a public IP address.",
-          "type": "string"
-        },
-        "serviceType": {
-          "description": "Type of a Google-managed service.",
-          "enum": [
-            "SERVICE_TYPE_UNSPECIFIED",
-            "UNSUPPORTED",
-            "CLOUD_SQL",
-            "GKE_CLUSTER_CONTROL_PLANE",
-            "REDIS_CLUSTER",
-            "REDIS_INSTANCE"
-          ],
-          "enumDescriptions": [
-            "Service type is unspecified.",
-            "Unsupported Google-managed service.",
-            "Cloud SQL Instance.",
-            "GKE Cluster control plane.",
-            "Redis Cluster.",
-            "Redis Instance."
-          ],
-          "type": "string"
-        },
-        "serviceUri": {
-          "description": "URI of the Google-managed service.",
           "type": "string"
         }
       },
@@ -4128,10 +4087,6 @@
           "$ref": "GkePodInfo",
           "description": "Display information of a Google Kubernetes Engine Pod."
         },
-        "googleManagedService": {
-          "$ref": "GoogleManagedServiceInfo",
-          "description": "Display information of a Google-managed service."
-        },
         "googleService": {
           "$ref": "GoogleServiceInfo",
           "description": "Display information of a Google service"
@@ -4232,7 +4187,6 @@
             "ARRIVE_AT_VPC_CONNECTOR",
             "DIRECT_VPC_EGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
-            "ARRIVE_AT_GOOGLE_MANAGED_SERVICE",
             "NAT",
             "SKIP_GKE_POD_IP_MASQUERADING",
             "PROXY_CONNECTION",
@@ -4282,7 +4236,6 @@
             false,
             false,
             false,
-            false,
             false
           ],
           "enumDescriptions": [
@@ -4318,7 +4271,6 @@
             "Forwarding state: arriving at a VPC connector.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
-            "Forwarding state: arriving at a Google-managed service endpoint.",
             "Transition state: packet header translated. The `nat` field is populated with the translation information.",
             "Transition state: GKE Pod IP masquerading is skipped. The `ip_masquerading_skipped` field is populated with the reason.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
