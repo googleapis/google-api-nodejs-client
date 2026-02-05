@@ -2498,7 +2498,7 @@
       }
     }
   },
-  "revision": "20260122",
+  "revision": "20260129",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -7625,7 +7625,7 @@
           "description": "The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set. SearchRequest.personalization_spec will override ServingConfig.personalization_spec."
         },
         "placeId": {
-          "description": "Optional. An id corresponding to a place, such as a store id or region id. When specified, we use the price from the local inventory with the matching product's LocalInventory.place_id for revenue optimization.",
+          "description": "Optional. An id corresponding to a place, such as a store id or region id. When specified, we use the price from the local inventory with the matching product's LocalInventory.place_id for revenue optimization. Note, the currency of the local inventory's price must match the currency of the product's price.",
           "type": "string"
         },
         "query": {
