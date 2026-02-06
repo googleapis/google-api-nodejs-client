@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v17.1.0...migrationcenter-v17.2.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v17.0.0...migrationcenter-v17.1.0) (2026-01-28)
 
 

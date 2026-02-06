@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [171.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v171.3.0...googleapis-v171.4.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [171.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v171.2.0...googleapis-v171.3.0) (2026-02-04)
 
 
