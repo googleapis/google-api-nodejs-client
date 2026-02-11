@@ -696,6 +696,10 @@ export namespace ondemandscanning_v1 {
      */
     name?: string | null;
     /**
+     * The registry in which the base image is from.
+     */
+    registry?: string | null;
+    /**
      * The repository name in which the base image is from.
      */
     repository?: string | null;

@@ -1047,7 +1047,7 @@
       "kind": "discovery#directoryItem",
       "name": "bigtableadmin",
       "preferred": true,
-      "title": "Bigtable MCP Service",
+      "title": "Cloud Bigtable Admin API",
       "version": "v2"
     },
     {
@@ -3861,7 +3861,7 @@
       "version": "v1"
     },
     {
-      "description": "",
+      "description": "The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.",
       "discoveryRestUrl": "https://hypercomputecluster.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://docs.cloud.google.com/cluster-director/docs",
       "icons": {

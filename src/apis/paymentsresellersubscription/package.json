@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/paymentsresellersubscription",
-  "version": "18.2.2",
+  "version": "18.3.0",
   "description": "paymentsresellersubscription",
   "main": "build/index.js",
   "types": "build/index.d.ts",

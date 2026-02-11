@@ -1,5 +1,12 @@
 # Changelog
 
+## [35.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.2.0...androidpublisher-v35.3.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [35.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.1.1...androidpublisher-v35.2.0) (2026-01-30)
 
 

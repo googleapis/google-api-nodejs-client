@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/aiplatform",
-  "version": "29.0.0",
+  "version": "29.1.0",
   "description": "aiplatform",
   "main": "build/index.js",
   "types": "build/index.d.ts",

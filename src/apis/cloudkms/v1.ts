@@ -277,6 +277,10 @@ export namespace cloudkms_v1 {
      */
     keyProject?: string | null;
     /**
+     * Optional. KeyProjectResolutionMode for the AutokeyConfig. Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or `DISABLED`.
+     */
+    keyProjectResolutionMode?: string | null;
+    /**
      * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
      */
     name?: string | null;
@@ -845,7 +849,7 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
-     * Immutable. The resource name of the backend environment where the key material for the wrapping key resides and where all related cryptographic operations are performed. Currently, this field is only populated for keys stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.
+     * Immutable. The resource name of the backend environment where the key material for the wrapping key resides and where all related cryptographic operations are performed. Currently, this field is only populated for keys stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future. Supported resources: * `"projects/x/locations/x/singleTenantHsmInstances/x"`
      */
     cryptoKeyBackend?: string | null;
     /**
@@ -1842,6 +1846,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "etag": "my_etag",
      *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }
@@ -2134,6 +2139,7 @@ export namespace cloudkms_v1 {
      *       // {
      *       //   "etag": "my_etag",
      *       //   "keyProject": "my_keyProject",
+     *       //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *       //   "name": "my_name",
      *       //   "state": "my_state"
      *       // }
@@ -2145,6 +2151,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "etag": "my_etag",
      *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }
@@ -2834,6 +2841,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "etag": "my_etag",
      *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }
@@ -3584,6 +3592,7 @@ export namespace cloudkms_v1 {
      *       // {
      *       //   "etag": "my_etag",
      *       //   "keyProject": "my_keyProject",
+     *       //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *       //   "name": "my_name",
      *       //   "state": "my_state"
      *       // }
@@ -3595,6 +3604,7 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "etag": "my_etag",
      *   //   "keyProject": "my_keyProject",
+     *   //   "keyProjectResolutionMode": "my_keyProjectResolutionMode",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }

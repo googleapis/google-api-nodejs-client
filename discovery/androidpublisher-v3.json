@@ -5589,7 +5589,7 @@
       }
     }
   },
-  "revision": "20260129",
+  "revision": "20260204",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6946,6 +6946,10 @@
         "price": {
           "$ref": "Money",
           "description": "The intital price to convert other regions from. Tax exclusive."
+        },
+        "productTaxCategoryCode": {
+          "description": "Optional. Product tax category code in context. Product tax category determines the transaction tax rates applied to the product that will be factored into the price calculation. If not set, tax rates for the default product tax category will be used. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/16408159) for more information.",
+          "type": "string"
         }
       },
       "type": "object"

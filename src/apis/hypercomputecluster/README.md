@@ -2,7 +2,7 @@
 
 # hypercomputecluster
 
-> 
+> The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

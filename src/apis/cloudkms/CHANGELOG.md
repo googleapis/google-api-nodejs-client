@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v25.1.0...cloudkms-v25.2.0) (2026-02-05)
+
+
+### Features
+
+* run the generator ([#3886](https://github.com/googleapis/google-api-nodejs-client/issues/3886)) ([5612fac](https://github.com/googleapis/google-api-nodejs-client/commit/5612fac62016b7a4ea7a09dece59a9dd99aed8df))
+
 ## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v25.0.0...cloudkms-v25.1.0) (2026-01-28)
 
 

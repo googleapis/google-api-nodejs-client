@@ -11592,6 +11592,8 @@ export namespace storage_v1 {
      *     destinationObject: 'placeholder-value',
      *     // Apply a predefined set of access controls to the destination object.
      *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Specifies which groups of Object Contexts from the source object(s) should be dropped from the destination object.
+     *     dropContextGroups: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      *     ifGenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
@@ -13617,6 +13619,8 @@ export namespace storage_v1 {
      *     destinationObject: 'placeholder-value',
      *     // Apply a predefined set of access controls to the destination object.
      *     destinationPredefinedAcl: 'placeholder-value',
+     *     // Specifies which groups of Object Contexts from the source object should be dropped from the destination object.
+     *     dropContextGroups: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      *     ifGenerationMatch: 'placeholder-value',
      *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
@@ -14583,6 +14587,10 @@ export namespace storage_v1 {
      */
     destinationPredefinedAcl?: string;
     /**
+     * Specifies which groups of Object Contexts from the source object(s) should be dropped from the destination object.
+     */
+    dropContextGroups?: string[];
+    /**
      * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */
     ifGenerationMatch?: string;
@@ -15073,6 +15081,10 @@ export namespace storage_v1 {
      * Apply a predefined set of access controls to the destination object.
      */
     destinationPredefinedAcl?: string;
+    /**
+     * Specifies which groups of Object Contexts from the source object should be dropped from the destination object.
+     */
+    dropContextGroups?: string[];
     /**
      * Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
      */

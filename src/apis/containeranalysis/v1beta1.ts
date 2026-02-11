@@ -2524,6 +2524,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Note {
     /**
+     * The timestamp when the advisory was first published by the source.
+     */
+    advisoryPublishTime?: string | null;
+    /**
      * A note describing an attestation role.
      */
     attestationAuthority?: Schema$Authority;
@@ -3829,6 +3833,7 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -3860,6 +3865,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -4154,6 +4160,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -4610,6 +4617,7 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -4641,6 +4649,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -6174,6 +6183,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -7741,6 +7751,7 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -7772,6 +7783,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -8066,6 +8078,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -8522,6 +8535,7 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -8553,6 +8567,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -10076,6 +10091,7 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},

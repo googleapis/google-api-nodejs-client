@@ -15,9 +15,5 @@ branchProtectionRules:
       - windows
       - OwlBot Post Processor
 permissionRules:
-  - team: yoshi-admins
-    permission: admin
-  - team: jsteam-admins
-    permission: admin
-  - team: jsteam
+  - team: cloud-sdk-nodejs-team
     permission: push

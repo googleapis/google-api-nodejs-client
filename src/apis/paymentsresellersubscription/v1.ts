@@ -142,7 +142,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$CancelSubscriptionRequest {
     /**
-     * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund. - YouTube subscriptions must use this option currently. However, the user will still have access to the subscription until the end of the billing cycle.
+     * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancellation at renewal_time, and will not issue a refund. - YouTube subscriptions must use this option currently. However, the user will still have access to the subscription until the end of the billing cycle.
      */
     cancelImmediately?: boolean | null;
     /**
@@ -294,11 +294,11 @@ export namespace paymentsresellersubscription_v1 {
      */
     filter?: string | null;
     /**
-     * Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 promotions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number | null;
     /**
-     * Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `FindEligiblePromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FindEligiblePromotions` must match the call that provided the page token.
      */
     pageToken?: string | null;
   }
@@ -316,11 +316,11 @@ export namespace paymentsresellersubscription_v1 {
     promotions?: Schema$Promotion[];
   }
   /**
-   * Details for a subscriptiin line item with finite billing cycles.
+   * Details for a subscription line item with finite billing cycles.
    */
   export interface Schema$FiniteBillingCycleDetails {
     /**
-     * Required. The number of a subscription line item billing cycles after which billing will stop automatically.
+     * The number of a subscription line item billing cycles after which billing will stop automatically.
      */
     billingCycleCountLimit?: string | null;
   }
@@ -483,7 +483,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     productType?: string | null;
     /**
-     * Output only. 2-letter ISO region code where the product is available in. Ex. "US" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1
+     * Output only. 2-letter ISO region code where the product is available in. Ex. "US" Please refer to: https://en.wikipedia.org/wiki/ISO_3166-1
      */
     regionCodes?: string[] | null;
     /**
@@ -576,7 +576,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     promotionType?: string | null;
     /**
-     * Output only. 2-letter ISO region code where the promotion is available in. Ex. "US" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1
+     * Output only. 2-letter ISO region code where the promotion is available in. Ex. "US" Please refer to: https://en.wikipedia.org/wiki/ISO_3166-1
      */
     regionCodes?: string[] | null;
     /**
@@ -788,7 +788,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     oneTimeRecurrenceDetails?: Schema$SubscriptionLineItemOneTimeRecurrenceDetails;
     /**
-     * Required. Product resource name that identifies one the line item The format is 'partners/{partner_id\}/products/{product_id\}'.
+     * Required. Product resource name that identifies the product associated with this line item. The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
     product?: string | null;
     /**
@@ -957,7 +957,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Currently, it doesn't support **YouTube** products. Retrieves the products that can be resold by the partner. It should be autenticated with a service account.
+     * Currently, it doesn't support **YouTube** products. Retrieves the products that can be resold by the partner. It should be authenticated with a service account.
      * @example
      * ```js
      * // Before running the sample:
@@ -1131,7 +1131,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Currently, it is only enabeld for **YouTube**. Finds eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
+     * Currently, it is only enabled for **YouTube**. Finds eligible promotions for the current user. The API requires user authorization via OAuth. The bare minimum oauth scope `openid` is sufficient, which will skip the consent screen.
      * @example
      * ```js
      * // Before running the sample:
@@ -1288,7 +1288,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Currently, it doesn't support **YouTube** promotions. Retrieves the promotions, such as free trial, that can be used by the partner. It should be autenticated with a service account.
+     * Currently, it doesn't support **YouTube** promotions. Retrieves the promotions, such as free trial, that can be used by the partner. It should be authenticated with a service account.
      * @example
      * ```js
      * // Before running the sample:
@@ -1320,7 +1320,7 @@ export namespace paymentsresellersubscription_v1 {
      *   const res = await paymentsresellersubscription.partners.promotions.list({
      *     // Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 promotions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -1453,7 +1453,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     filter?: string;
     /**
-     * Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 promotions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -3034,7 +3034,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Updates a line item of a subscription. It should be autenticated with a service account.
+     * Updates a line item of a subscription. It should be authenticated with a service account.
      * @example
      * ```js
      * // Before running the sample:

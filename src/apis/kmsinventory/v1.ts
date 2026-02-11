@@ -185,7 +185,7 @@ export namespace kmsinventory_v1 {
     resourceType?: string | null;
   }
   /**
-   * Aggregate information about the resources protected by a Cloud KMS key in the same Cloud organization as the key.
+   * Aggregate information about the resources protected by a Cloud KMS key in the same Cloud organization/project as the key.
    */
   export interface Schema$GoogleCloudKmsInventoryV1ProtectedResourcesSummary {
     /**
@@ -212,6 +212,10 @@ export namespace kmsinventory_v1 {
      * The number of resources protected by the key grouped by resource type.
      */
     resourceTypes?: {[key: string]: string} | null;
+    /**
+     * Warning messages for the state of response ProtectedResourcesSummary For example, if the organization service account is not configured, INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
+     */
+    warnings?: Schema$GoogleCloudKmsInventoryV1Warning[];
   }
   /**
    * Response message for KeyTrackingService.SearchProtectedResources.
@@ -225,6 +229,19 @@ export namespace kmsinventory_v1 {
      * Protected resources for this page.
      */
     protectedResources?: Schema$GoogleCloudKmsInventoryV1ProtectedResource[];
+  }
+  /**
+   * Warning message specifying various states of response data that might indicate incomplete or partial results.
+   */
+  export interface Schema$GoogleCloudKmsInventoryV1Warning {
+    /**
+     * The literal message providing context and details about the warnings.
+     */
+    displayMessage?: string | null;
+    /**
+     * The specific warning code for the displayed message.
+     */
+    warningCode?: string | null;
   }
   /**
    * A CryptoKey represents a logical key that can be used for cryptographic operations. A CryptoKey is made up of zero or more versions, which represent the actual key material used in cryptographic operations.
@@ -436,7 +453,7 @@ export namespace kmsinventory_v1 {
     }
 
     /**
-     * Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization.
+     * Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization/project.
      * @example
      * ```js
      * // Before running the sample:
@@ -474,7 +491,7 @@ export namespace kmsinventory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
      *     resourceTypes: 'placeholder-value',
-     *     // Required. Resource name of the organization. Example: organizations/123
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      *     scope: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -610,7 +627,7 @@ export namespace kmsinventory_v1 {
      */
     resourceTypes?: string[];
     /**
-     * Required. Resource name of the organization. Example: organizations/123
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      */
     scope?: string;
   }
@@ -619,10 +636,14 @@ export namespace kmsinventory_v1 {
     context: APIRequestContext;
     cryptoKeys: Resource$Projects$Cryptokeys;
     locations: Resource$Projects$Locations;
+    protectedResources: Resource$Projects$Protectedresources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.cryptoKeys = new Resource$Projects$Cryptokeys(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
+      this.protectedResources = new Resource$Projects$Protectedresources(
+        this.context
+      );
     }
   }
 
@@ -827,7 +848,7 @@ export namespace kmsinventory_v1 {
     }
 
     /**
-     * Returns aggregate information about the resources protected by the given Cloud KMS CryptoKey. Only resources within the same Cloud organization as the key will be returned. The project that holds the key must be part of an organization in order for this call to succeed.
+     * Returns aggregate information about the resources protected by the given Cloud KMS CryptoKey. By default, summary of resources within the same Cloud organization as the key will be returned, which requires the KMS organization service account to be configured(refer https://docs.cloud.google.com/kms/docs/view-key-usage#required-roles). If the KMS organization service account is not configured or key's project is not part of an organization, set fallback_scope to `FALLBACK_SCOPE_PROJECT` to retrieve a summary of protected resources within the key's project.
      * @example
      * ```js
      * // Before running the sample:
@@ -859,6 +880,8 @@ export namespace kmsinventory_v1 {
      *   const res =
      *     await kmsinventory.projects.locations.keyRings.cryptoKeys.getProtectedResourcesSummary(
      *       {
+     *         // Optional. The scope to use if the kms organization service account is not configured.
+     *         fallbackScope: 'placeholder-value',
      *         // Required. The resource name of the CryptoKey.
      *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
      *       },
@@ -872,7 +895,8 @@ export namespace kmsinventory_v1 {
      *   //   "name": "my_name",
      *   //   "projectCount": 0,
      *   //   "resourceCount": "my_resourceCount",
-     *   //   "resourceTypes": {}
+     *   //   "resourceTypes": {},
+     *   //   "warnings": []
      *   // }
      * }
      *
@@ -985,8 +1009,198 @@ export namespace kmsinventory_v1 {
 
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getprotectedresourcessummary extends StandardParameters {
     /**
+     * Optional. The scope to use if the kms organization service account is not configured.
+     */
+    fallbackScope?: string;
+    /**
      * Required. The resource name of the CryptoKey.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Protectedresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization/project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/kmsinventory.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const kmsinventory = google.kmsinventory('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await kmsinventory.projects.protectedResources.search({
+     *     // Required. The resource name of the CryptoKey.
+     *     cryptoKey: 'placeholder-value',
+     *     // The maximum number of resources to return. The service may return fewer than this value. If unspecified, at most 500 resources will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous KeyTrackingService.SearchProtectedResources call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to KeyTrackingService.SearchProtectedResources must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
+     *     resourceTypes: 'placeholder-value',
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     *     scope: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "protectedResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Protectedresources$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Projects$Protectedresources$Search,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+    >;
+    search(
+      params: Params$Resource$Projects$Protectedresources$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Protectedresources$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Protectedresources$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Protectedresources$Search
+        | BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Protectedresources$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Protectedresources$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://kmsinventory.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}/protectedResources:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Protectedresources$Search extends StandardParameters {
+    /**
+     * Required. The resource name of the CryptoKey.
+     */
+    cryptoKey?: string;
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value. If unspecified, at most 500 resources will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous KeyTrackingService.SearchProtectedResources call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to KeyTrackingService.SearchProtectedResources must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
+     */
+    resourceTypes?: string[];
+    /**
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     */
+    scope?: string;
   }
 }

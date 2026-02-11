@@ -110,7 +110,7 @@
         "protectedResources": {
           "methods": {
             "search": {
-              "description": "Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization.",
+              "description": "Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization/project.",
               "flatPath": "v1/organizations/{organizationsId}/protectedResources:search",
               "httpMethod": "GET",
               "id": "kmsinventory.organizations.protectedResources.search",
@@ -141,7 +141,7 @@
                   "type": "string"
                 },
                 "scope": {
-                  "description": "Required. Resource name of the organization. Example: organizations/123",
+                  "description": "Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/12345678\") * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\")",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -209,7 +209,7 @@
                 "cryptoKeys": {
                   "methods": {
                     "getProtectedResourcesSummary": {
-                      "description": "Returns aggregate information about the resources protected by the given Cloud KMS CryptoKey. Only resources within the same Cloud organization as the key will be returned. The project that holds the key must be part of an organization in order for this call to succeed.",
+                      "description": "Returns aggregate information about the resources protected by the given Cloud KMS CryptoKey. By default, summary of resources within the same Cloud organization as the key will be returned, which requires the KMS organization service account to be configured(refer https://docs.cloud.google.com/kms/docs/view-key-usage#required-roles). If the KMS organization service account is not configured or key's project is not part of an organization, set fallback_scope to `FALLBACK_SCOPE_PROJECT` to retrieve a summary of protected resources within the key's project.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/protectedResourcesSummary",
                       "httpMethod": "GET",
                       "id": "kmsinventory.projects.locations.keyRings.cryptoKeys.getProtectedResourcesSummary",
@@ -217,6 +217,19 @@
                         "name"
                       ],
                       "parameters": {
+                        "fallbackScope": {
+                          "description": "Optional. The scope to use if the kms organization service account is not configured.",
+                          "enum": [
+                            "FALLBACK_SCOPE_UNSPECIFIED",
+                            "FALLBACK_SCOPE_PROJECT"
+                          ],
+                          "enumDescriptions": [
+                            "Unspecified scope type.",
+                            "If set to `FALLBACK_SCOPE_PROJECT`, the API will fall back to using key's project as request scope if the kms organization service account is not configured."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. The resource name of the CryptoKey.",
                           "location": "path",
@@ -238,11 +251,62 @@
               }
             }
           }
+        },
+        "protectedResources": {
+          "methods": {
+            "search": {
+              "description": "Returns metadata about the resources protected by the given Cloud KMS CryptoKey in the given Cloud organization/project.",
+              "flatPath": "v1/projects/{projectsId}/protectedResources:search",
+              "httpMethod": "GET",
+              "id": "kmsinventory.projects.protectedResources.search",
+              "parameterOrder": [
+                "scope"
+              ],
+              "parameters": {
+                "cryptoKey": {
+                  "description": "Required. The resource name of the CryptoKey.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of resources to return. The service may return fewer than this value. If unspecified, at most 500 resources will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous KeyTrackingService.SearchProtectedResources call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to KeyTrackingService.SearchProtectedResources must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "resourceTypes": {
+                  "description": "Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "scope": {
+                  "description": "Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/12345678\") * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\")",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+scope}/protectedResources:search",
+              "response": {
+                "$ref": "GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20260111",
+  "revision": "20260201",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -319,7 +383,7 @@
       "type": "object"
     },
     "GoogleCloudKmsInventoryV1ProtectedResourcesSummary": {
-      "description": "Aggregate information about the resources protected by a Cloud KMS key in the same Cloud organization as the key.",
+      "description": "Aggregate information about the resources protected by a Cloud KMS key in the same Cloud organization/project as the key.",
       "id": "GoogleCloudKmsInventoryV1ProtectedResourcesSummary",
       "properties": {
         "cloudProducts": {
@@ -359,6 +423,13 @@
           },
           "description": "The number of resources protected by the key grouped by resource type.",
           "type": "object"
+        },
+        "warnings": {
+          "description": "Warning messages for the state of response ProtectedResourcesSummary For example, if the organization service account is not configured, INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.",
+          "items": {
+            "$ref": "GoogleCloudKmsInventoryV1Warning"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -377,6 +448,33 @@
             "$ref": "GoogleCloudKmsInventoryV1ProtectedResource"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudKmsInventoryV1Warning": {
+      "description": "Warning message specifying various states of response data that might indicate incomplete or partial results.",
+      "id": "GoogleCloudKmsInventoryV1Warning",
+      "properties": {
+        "displayMessage": {
+          "description": "The literal message providing context and details about the warnings.",
+          "type": "string"
+        },
+        "warningCode": {
+          "description": "The specific warning code for the displayed message.",
+          "enum": [
+            "WARNING_CODE_UNSPECIFIED",
+            "INSUFFICIENT_PERMISSIONS_PARTIAL_DATA",
+            "RESOURCE_LIMIT_EXCEEDED_PARTIAL_DATA",
+            "ORG_LESS_PROJECT_PARTIAL_DATA"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Indicates that the caller or service agent lacks necessary permissions to view some of the requested data. The response may be partial. Examples: - KMS organization service agent {service_agent_name} lacks the `cloudasset.assets.searchAllResources` permission on the scope.",
+            "Indicates that a resource limit has been exceeded, resulting in partial data. Examples: - The project has more than 10,000 assets (resources, crypto keys, key handles, IAM policies, etc).",
+            "Indicates that the project is org-less. Thus the analysis is only done for the project level data and results might be partial."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
