@@ -65,6 +65,32 @@ describe('Options', () => {
     assert.deepStrictEqual(google._options.params.hello, 'world');
   });
 
+  it('should disable http2 in global options and emit a warning', () => {
+    const google = new GoogleApis();
+    const emitWarningStub = sandbox.stub(process, 'emitWarning');
+
+    google.options({http2: true, timeout: 1234});
+
+    assert.strictEqual(google._options.http2, false);
+    assert.strictEqual(google._options.timeout, 1234);
+    assert.strictEqual(emitWarningStub.callCount, 1);
+    const [message, warningOptions] = emitWarningStub.firstCall.args;
+    assert.match(String(message), /http2: true/);
+    assert.deepStrictEqual(warningOptions, {
+      code: 'GOOGLEAPIS_HTTP2_DISABLED',
+    });
+  });
+
+  it('should not emit warning when http2 is false', () => {
+    const google = new GoogleApis();
+    const emitWarningStub = sandbox.stub(process, 'emitWarning');
+
+    google.options({http2: false});
+
+    assert.strictEqual(google._options.http2, false);
+    assert.strictEqual(emitWarningStub.callCount, 0);
+  });
+
   it('should promote endpoint options over global options', async () => {
     const google = new GoogleApis();
     google.options({params: {hello: 'world'}});

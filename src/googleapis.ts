@@ -62,7 +62,29 @@ export class GoogleApis extends GeneratedAPIs {
    * @param options - Configuration options.
    */
   options(options?: GlobalOptions) {
-    this._options = options || {};
+    this._options = this.normalizeGlobalOptions(options);
+  }
+
+  private normalizeGlobalOptions(options?: GlobalOptions): GlobalOptions {
+    if (!options) {
+      return {};
+    }
+
+    if (!options.http2) {
+      return options;
+    }
+
+    process.emitWarning(
+      'google.options({http2: true}) is temporarily disabled due hanging request issues. Falling back to HTTP/1.1.',
+      {
+        code: 'GOOGLEAPIS_HTTP2_DISABLED',
+      },
+    );
+
+    return {
+      ...options,
+      http2: false,
+    };
   }
 
   /**
