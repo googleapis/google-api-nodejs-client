@@ -184,11 +184,11 @@ To ask for permissions from a user to retrieve an access token, you redirect the
 ```js
 const {google} = require('googleapis');
 
-const oauth2Client = new google.auth.OAuth2(
-  YOUR_CLIENT_ID,
-  YOUR_CLIENT_SECRET,
-  YOUR_REDIRECT_URL
-);
+const oauth2Client = new google.auth.OAuth2({
+  clientId: YOUR_CLIENT_ID,
+  clientSecret: YOUR_CLIENT_SECRET,
+  redirectUri: YOUR_REDIRECT_URL,
+});
 
 // generate a url that asks permissions for Blogger and Google Calendar scopes
 const scopes = [
@@ -357,11 +357,11 @@ You can set the `auth` as a global or service-level option so you don't need to 
 ```js
 const {google} = require('googleapis');
 
-const oauth2Client = new google.auth.OAuth2(
-  YOUR_CLIENT_ID,
-  YOUR_CLIENT_SECRET,
-  YOUR_REDIRECT_URL
-);
+const oauth2Client = new google.auth.OAuth2({
+  clientId: YOUR_CLIENT_ID,
+  clientSecret: YOUR_CLIENT_SECRET,
+  redirectUri: YOUR_REDIRECT_URL,
+});
 
 // set auth as a global default
 google.options({
@@ -373,11 +373,11 @@ Instead of setting the option globally, you can also set the authentication clie
 
 ```js
 const {google} = require('googleapis');
-const oauth2Client = new google.auth.OAuth2(
-  YOUR_CLIENT_ID,
-  YOUR_CLIENT_SECRET,
-  YOUR_REDIRECT_URL
-);
+const oauth2Client = new google.auth.OAuth2({
+  clientId: YOUR_CLIENT_ID,
+  clientSecret: YOUR_CLIENT_SECRET,
+  redirectUri: YOUR_REDIRECT_URL,
+});
 
 const drive = google.drive({
   version: 'v2',
