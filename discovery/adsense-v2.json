@@ -1006,7 +1006,13 @@
                     "CUSTOM_SEARCH_STYLE_NAME",
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
-                    "WEBSEARCH_QUERY_STRING"
+                    "WEBSEARCH_QUERY_STRING",
+                    "OS_TYPE_NAME",
+                    "OS_TYPE_CODE",
+                    "BROWSER_TYPE_NAME",
+                    "BROWSER_TYPE_CODE",
+                    "WEBVIEW_TYPE_NAME",
+                    "WEBVIEW_TYPE_CODE"
                   ],
                   "enumDeprecated": [
                     false,
@@ -1025,6 +1031,12 @@
                     false,
                     false,
                     true,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
                     false,
                     false,
                     false,
@@ -1112,7 +1124,13 @@
                     "Custom search style name.",
                     "Custom search style id.",
                     "Domain registrants.",
-                    "Query strings for web searches."
+                    "Query strings for web searches.",
+                    "Localized operating system type name (e.g. \"Windows\", \"MacOS\", \"Android\"). For more information, see [Operating system breakdown](https://support.google.com/adsense/answer/16853822).",
+                    "Operating system type code (e.g. \"WINDOWS\", \"MAC\", \"ANDROID\"). For more information, see [Operating system breakdown](https://support.google.com/adsense/answer/16853822).",
+                    "Localized browser type name (e.g. \"Google Chrome\", \"Firefox\", \"Safari\"). For more information, see [Browser breakdown](https://support.google.com/adsense/answer/16851903).",
+                    "Browser type code (e.g. \"CHROME\", \"FIREFOX\", \"SAFARI\"). For more information, see [Browser breakdown](https://support.google.com/adsense/answer/16851903).",
+                    "Localized webview type name (e.g. \"Webview (Uncategorized)\", \"Non-webview\"). For more information, see [Hosting App breakdown](https://support.google.com/adsense/answer/16853515).",
+                    "Webview type code (e.g. \"UNCATEGORIZED\", \"NONE\"). For more information, see [Hosting App breakdown](https://support.google.com/adsense/answer/16853515)."
                   ],
                   "location": "query",
                   "repeated": true,
@@ -1385,7 +1403,13 @@
                     "CUSTOM_SEARCH_STYLE_NAME",
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
-                    "WEBSEARCH_QUERY_STRING"
+                    "WEBSEARCH_QUERY_STRING",
+                    "OS_TYPE_NAME",
+                    "OS_TYPE_CODE",
+                    "BROWSER_TYPE_NAME",
+                    "BROWSER_TYPE_CODE",
+                    "WEBVIEW_TYPE_NAME",
+                    "WEBVIEW_TYPE_CODE"
                   ],
                   "enumDeprecated": [
                     false,
@@ -1404,6 +1428,12 @@
                     false,
                     false,
                     true,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
                     false,
                     false,
                     false,
@@ -1491,7 +1521,13 @@
                     "Custom search style name.",
                     "Custom search style id.",
                     "Domain registrants.",
-                    "Query strings for web searches."
+                    "Query strings for web searches.",
+                    "Localized operating system type name (e.g. \"Windows\", \"MacOS\", \"Android\"). For more information, see [Operating system breakdown](https://support.google.com/adsense/answer/16853822).",
+                    "Operating system type code (e.g. \"WINDOWS\", \"MAC\", \"ANDROID\"). For more information, see [Operating system breakdown](https://support.google.com/adsense/answer/16853822).",
+                    "Localized browser type name (e.g. \"Google Chrome\", \"Firefox\", \"Safari\"). For more information, see [Browser breakdown](https://support.google.com/adsense/answer/16851903).",
+                    "Browser type code (e.g. \"CHROME\", \"FIREFOX\", \"SAFARI\"). For more information, see [Browser breakdown](https://support.google.com/adsense/answer/16851903).",
+                    "Localized webview type name (e.g. \"Webview (Uncategorized)\", \"Non-webview\"). For more information, see [Hosting App breakdown](https://support.google.com/adsense/answer/16853515).",
+                    "Webview type code (e.g. \"UNCATEGORIZED\", \"NONE\"). For more information, see [Hosting App breakdown](https://support.google.com/adsense/answer/16853515)."
                   ],
                   "location": "query",
                   "repeated": true,
@@ -2030,7 +2066,7 @@
       }
     }
   },
-  "revision": "20251002",
+  "revision": "20260209",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

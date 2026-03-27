@@ -57,6 +57,10 @@ import {
   VERSIONS as advisorynotificationsVersions,
   advisorynotifications,
 } from './advisorynotifications';
+import {
+  VERSIONS as agentregistryVersions,
+  agentregistry,
+} from './agentregistry';
 import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
 import {VERSIONS as airqualityVersions, airquality} from './airquality';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
@@ -172,6 +176,7 @@ import {
   VERSIONS as certificatemanagerVersions,
   certificatemanager,
 } from './certificatemanager';
+import {VERSIONS as cesVersions, ces} from './ces';
 import {VERSIONS as chatVersions, chat} from './chat';
 import {VERSIONS as checksVersions, checks} from './checks';
 import {
@@ -799,6 +804,7 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
+  agentregistry: agentregistryVersions,
   aiplatform: aiplatformVersions,
   airquality: airqualityVersions,
   alertcenter: alertcenterVersions,
@@ -845,6 +851,7 @@ export const APIS: APIList = {
   businessprofileperformance: businessprofileperformanceVersions,
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
+  ces: cesVersions,
   chat: chatVersions,
   checks: checksVersions,
   chromemanagement: chromemanagementVersions,
@@ -1123,6 +1130,7 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
+  agentregistry = agentregistry;
   aiplatform = aiplatform;
   airquality = airquality;
   alertcenter = alertcenter;
@@ -1169,6 +1177,7 @@ export class GeneratedAPIs {
   businessprofileperformance = businessprofileperformance;
   calendar = calendar;
   certificatemanager = certificatemanager;
+  ces = ces;
   chat = chat;
   checks = checks;
   chromemanagement = chromemanagement;

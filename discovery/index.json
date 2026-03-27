@@ -77,7 +77,7 @@
       "version": "v1"
     },
     {
-      "description": "Accesses the latest features for managing Authorized Buyers accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.",
+      "description": "Access the latest features for managing Authorized Buyers accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.",
       "discoveryRestUrl": "https://adexchangebuyer.googleapis.com/$discovery/rest?version=v2beta1",
       "documentationLink": "https://developers.google.com/authorized-buyers/apis/reference/rest/",
       "icons": {
@@ -240,6 +240,21 @@
       "preferred": true,
       "title": "Advisory Notifications API",
       "version": "v1"
+    },
+    {
+      "description": "Agent Registry is a centralized, unified catalog that lets you store, discover, and govern Model Context Protocol (MCP) servers, tools, and AI agents within Google Cloud.",
+      "discoveryRestUrl": "https://agentregistry.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://docs.cloud.google.com/agent-registry/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "agentregistry:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "agentregistry",
+      "preferred": true,
+      "title": "Agent Registry API",
+      "version": "v1alpha"
     },
     {
       "description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
@@ -1188,7 +1203,7 @@
     {
       "description": "",
       "discoveryRestUrl": "https://certificatemanager.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://cloud.google.com/certificate-manager",
+      "documentationLink": "https://docs.cloud.google.com/certificate-manager/docs/overview",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1198,6 +1213,36 @@
       "name": "certificatemanager",
       "preferred": true,
       "title": "Certificate Manager API",
+      "version": "v1"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://ces.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ces:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "ces",
+      "preferred": false,
+      "title": "Gemini Enterprise for Customer Experience API",
+      "version": "v1beta"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://ces.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ces:v1",
+      "kind": "discovery#directoryItem",
+      "name": "ces",
+      "preferred": true,
+      "title": "Gemini Enterprise for Customer Experience API",
       "version": "v1"
     },
     {
@@ -2644,6 +2689,21 @@
       "version": "v1"
     },
     {
+      "description": "The Developer Knowledge API provides access to Google's developer knowledge.",
+      "discoveryRestUrl": "https://developerknowledge.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://developers.google.com/knowledge",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "developerknowledge:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "developerknowledge",
+      "preferred": true,
+      "title": "Developer Knowledge API",
+      "version": "v1alpha"
+    },
+    {
       "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
       "discoveryRestUrl": "https://dfareporting.googleapis.com/$discovery/rest?version=v3.5",
       "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
@@ -3781,9 +3841,24 @@
       "id": "gmailpostmastertools:v1",
       "kind": "discovery#directoryItem",
       "name": "gmailpostmastertools",
-      "preferred": true,
+      "preferred": false,
       "title": "Gmail Postmaster Tools API",
       "version": "v1"
+    },
+    {
+      "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
+      "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "gmailpostmastertools:v2",
+      "kind": "discovery#directoryItem",
+      "name": "gmailpostmastertools",
+      "preferred": true,
+      "title": "Gmail Postmaster Tools API",
+      "version": "v2"
     },
     {
       "description": "The Groups Migration API allows domain administrators to archive emails into Google groups.",
@@ -4219,21 +4294,6 @@
       "preferred": true,
       "title": "Enterprise License Manager API",
       "version": "v1"
-    },
-    {
-      "description": "Cloud Life Sciences is a suite of services and tools for managing, processing, and transforming life sciences data.",
-      "discoveryRestUrl": "https://lifesciences.googleapis.com/$discovery/rest?version=v2beta",
-      "documentationLink": "https://cloud.google.com/life-sciences",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "lifesciences:v2beta",
-      "kind": "discovery#directoryItem",
-      "name": "lifesciences",
-      "preferred": true,
-      "title": "Cloud Life Sciences API",
-      "version": "v2beta"
     },
     {
       "description": "",
@@ -6167,9 +6227,24 @@
       "id": "saasservicemgmt:v1beta1",
       "kind": "discovery#directoryItem",
       "name": "saasservicemgmt",
-      "preferred": true,
+      "preferred": false,
       "title": "SaaS Runtime API",
       "version": "v1beta1"
+    },
+    {
+      "description": "Model, deploy, and operate your SaaS at scale.",
+      "discoveryRestUrl": "https://saasservicemgmt.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/saas-runtime/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "saasservicemgmt:v1",
+      "kind": "discovery#directoryItem",
+      "name": "saasservicemgmt",
+      "preferred": true,
+      "title": "SaaS Runtime API",
+      "version": "v1"
     },
     {
       "description": "Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.",
@@ -6879,7 +6954,7 @@
     {
       "description": "threatintelligence.googleapis.com API.",
       "discoveryRestUrl": "https://threatintelligence.googleapis.com/$discovery/rest?version=v1beta",
-      "documentationLink": "https://cloud.google.com/threatintelligence/docs/reference/rest",
+      "documentationLink": "https://docs.cloud.google.com/threatintelligence/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

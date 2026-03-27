@@ -111,7 +111,7 @@
     "accounts": {
       "methods": {
         "createAuthUri": {
-          "description": "If an email identifier is specified, checks and returns if any user account is registered with the email. If there is a registered account, fetches all providers associated with the account's email. If the provider ID of an Identity Provider (IdP) is specified, creates an authorization URI for the IdP. The user can be directed to this URI to sign in with the IdP. An [API key](https://cloud.google.com/docs/authentication/api-keys) is required in the request in order to identify the Google Cloud project.",
+          "description": "If an email identifier is specified, checks and returns if any user account is registered with the email. If there is a registered account, fetches all providers associated with the account's email. If [email enumeration protection](https://cloud.google.com/identity-platform/docs/admin/email-enumeration-protection) is enabled, this method returns an empty list. If the provider ID of an Identity Provider (IdP) is specified, creates an authorization URI for the IdP. The user can be directed to this URI to sign in with the IdP. An [API key](https://cloud.google.com/docs/authentication/api-keys) is required in the request in order to identify the Google Cloud project.",
           "flatPath": "v1/accounts:createAuthUri",
           "httpMethod": "POST",
           "id": "identitytoolkit.accounts.createAuthUri",
@@ -1239,7 +1239,7 @@
       }
     }
   },
-  "revision": "20251024",
+  "revision": "20260311",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -2500,7 +2500,7 @@
           "type": "string"
         },
         "safetyNetToken": {
-          "description": "Android only. Safety Net has been deprecated. Please use play_integrity_token instead.",
+          "description": "Android only. Safety Net has been deprecated. Use play_integrity_token instead.",
           "type": "string"
         },
         "tenantId": {

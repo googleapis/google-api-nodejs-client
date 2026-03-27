@@ -172,10 +172,6 @@
     "package": "@google-cloud/dataproc-metastore"
   },
   {
-    "api": "datastore",
-    "package": "@google-cloud/datastore"
-  },
-  {
     "api": "datastream",
     "package": "@google-cloud/datastream"
   },
@@ -220,10 +216,6 @@
     "package": "@google-cloud/domains"
   },
   {
-    "api": "clouderrorreporting",
-    "package": "@google-cloud/error-reporting"
-  },
-  {
     "api": "essentialcontacts",
     "package": "@google-cloud/essential-contacts"
   },
@@ -246,10 +238,6 @@
   {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
-  },
-  {
-    "api": "bigquery",
-    "package": "@google-cloud/bigquery"
   },
   {
     "api": "bigqueryconnection",
@@ -318,14 +306,6 @@
   {
     "api": "livestream",
     "package": "@google-cloud/livestream"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging-bunyan"
   },
   {
     "api": "logging",
@@ -442,14 +422,6 @@
   {
     "api": "policysimulator",
     "package": "@google-cloud/policysimulator"
-  },
-  {
-    "api": "cloudprofiler",
-    "package": "@google-cloud/profiler"
-  },
-  {
-    "api": "pubsub",
-    "package": "@google-cloud/pubsub"
   },
   {
     "api": "publicca",
@@ -728,6 +700,10 @@
     "package": "@google-cloud/gdchardwaremanagement"
   },
   {
+    "api": "ces",
+    "package": "@google-cloud/ces"
+  },
+  {
     "api": "generativelanguage",
     "package": "@google-ai/generativelanguage"
   },
@@ -824,6 +800,10 @@
     "package": "@google-cloud/modelarmor"
   },
   {
+    "api": "navigationconnect",
+    "package": "@google-cloud/navconnect"
+  },
+  {
     "api": "oracledatabase",
     "package": "@google-cloud/oracledatabase"
   },
@@ -886,5 +866,13 @@
   {
     "api": "vectorsearch",
     "package": "@google-cloud/vectorsearch"
+  },
+  {
+    "api": "visionai",
+    "package": "@google-cloud/visionai"
+  },
+  {
+    "api": "workloadmanager",
+    "package": "@google-cloud/workloadmanager"
   }
 ]

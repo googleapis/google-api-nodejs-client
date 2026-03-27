@@ -10384,6 +10384,21 @@
                   "pattern": "^organizations/[^/]+/securityMonitoringConditions/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security monitoring condition. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+name}",
@@ -10409,6 +10424,21 @@
                   "pattern": "^organizations/[^/]+/securityMonitoringConditions/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security monitoring condition. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/{+name}",
@@ -10429,7 +10459,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Filter for the monitoring conditions. For example: `profile=profile1 AND scope=env1`",
+                  "description": "Optional. Filter for the monitoring conditions. When RiskAssessmentType is APIGEE, monitoring conditions can be filtered by profile and scope. For example: `profile=profile1 AND scope=env1` When RiskAssessmentType is API_HUB, monitoring conditions can be filtered by profile and api_hub_gateway. For example: `profile=profile1 AND api_hub_gateway=gateway1`",
                   "location": "query",
                   "type": "string"
                 },
@@ -10449,6 +10479,21 @@
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "riskAssessmentType": {
+                  "description": "Optional. The risk assessment type of the security monitoring condition. Defaults to ADVANCED_API_SECURITY.",
+                  "enum": [
+                    "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+                    "APIGEE",
+                    "API_HUB"
+                  ],
+                  "enumDescriptions": [
+                    "Risk assessment type is not specified.",
+                    "Risk assessment type is Apigee.",
+                    "Risk assessment type is API Hub."
+                  ],
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -11914,9 +11959,84 @@
       }
     }
   },
-  "revision": "20260106",
+  "revision": "20260218",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
+    "ApiservingMcpMcpToolDataHandlingProfile": {
+      "description": "Profile describing the data handling characteristics of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: \"google.com/tool.profiles/data_handling\"",
+      "id": "ApiservingMcpMcpToolDataHandlingProfile",
+      "properties": {
+        "inputDataAccessLevel": {
+          "description": "// The data access level of the tool's inputs.",
+          "enum": [
+            "DATA_ACCESS_LEVEL_UNSPECIFIED",
+            "DATA_ACCESS_LEVEL_PUBLIC",
+            "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+            "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+            "DATA_ACCESS_LEVEL_PII",
+            "DATA_ACCESS_LEVEL_USER",
+            "DATA_ACCESS_LEVEL_NO_DATA_ACCESS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Public data.",
+            "Confidential data.",
+            "Need-to-know data.",
+            "Personally Identifiable Information (PII) data.",
+            "User data.",
+            "The tool does not access any data."
+          ],
+          "type": "string"
+        },
+        "outputDataAccessLevel": {
+          "description": "The data access level of the tool's outputs.",
+          "enum": [
+            "DATA_ACCESS_LEVEL_UNSPECIFIED",
+            "DATA_ACCESS_LEVEL_PUBLIC",
+            "DATA_ACCESS_LEVEL_CONFIDENTIAL",
+            "DATA_ACCESS_LEVEL_NEED_TO_KNOW",
+            "DATA_ACCESS_LEVEL_PII",
+            "DATA_ACCESS_LEVEL_USER",
+            "DATA_ACCESS_LEVEL_NO_DATA_ACCESS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "Public data.",
+            "Confidential data.",
+            "Need-to-know data.",
+            "Personally Identifiable Information (PII) data.",
+            "User data.",
+            "The tool does not access any data."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApiservingMcpMcpToolLifecycleProfile": {
+      "description": "Profile describing the lifecycle stage of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: \"google.com/tool.profiles/lifecycle\"",
+      "id": "ApiservingMcpMcpToolLifecycleProfile",
+      "properties": {
+        "launchState": {
+          "description": "Output only. The current launch state of the MCP tool.",
+          "enum": [
+            "LAUNCH_STATE_UNSPECIFIED",
+            "LAUNCH_STATE_DEVELOPMENT",
+            "LAUNCH_STATE_PRODUCTION_PREVIEW",
+            "LAUNCH_STATE_GENERAL_AVAILABILITY"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The tool is currently in development.",
+            "The tool is in production preview.",
+            "The tool is generally available."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EdgeConfigstoreBundleBadBundle": {
       "description": "Describes why a bundle is invalid. Intended for use in error details.",
       "id": "EdgeConfigstoreBundleBadBundle",
@@ -19075,7 +19195,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1RuntimeTraceConfig": {
-      "description": "NEXT ID: 8 RuntimeTraceConfig defines the configurations for distributed trace in an environment.",
+      "description": "NEXT ID: 9 RuntimeTraceConfig defines the configurations for distributed trace in an environment.",
       "id": "GoogleCloudApigeeV1RuntimeTraceConfig",
       "properties": {
         "endpoint": {
@@ -19087,18 +19207,24 @@
           "enum": [
             "EXPORTER_UNSPECIFIED",
             "JAEGER",
-            "CLOUD_TRACE"
+            "CLOUD_TRACE",
+            "OPEN_TELEMETRY_COLLECTOR"
           ],
           "enumDescriptions": [
             "Exporter unspecified",
             "Jaeger exporter",
-            "Cloudtrace exporter"
+            "Cloudtrace exporter",
+            "Open Telemetry Collector"
           ],
           "type": "string"
         },
         "name": {
           "description": "Name of the trace config in the following format: `organizations/{org}/environment/{env}/traceConfig`",
           "type": "string"
+        },
+        "openTelemetryProtocolEnabled": {
+          "description": "If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send trace data. Configuration Requirements (if `open_telemetry_protocol_enabled` is `true`): - Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`. - If `Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid OTLP collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a valid project ID",
+          "type": "boolean"
         },
         "overrides": {
           "description": "List of trace configuration overrides for spicific API proxies.",
@@ -19124,7 +19250,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1RuntimeTraceConfigOverride": {
-      "description": "NEXT ID: 7 Trace configuration override for a specific API proxy in an environment.",
+      "description": "NEXT ID: 8 Trace configuration override for a specific API proxy in an environment.",
       "id": "GoogleCloudApigeeV1RuntimeTraceConfigOverride",
       "properties": {
         "apiProxy": {
@@ -19134,6 +19260,10 @@
         "name": {
           "description": "Name of the trace config override in the following format: `organizations/{org}/environment/{env}/traceConfig/overrides/{override}`",
           "type": "string"
+        },
+        "openTelemetryProtocolEnabled": {
+          "description": "If `true`, the runtime uses OpenTelemetry Protocol (OTLP) to send trace data. Configuration Requirements (if `open_telemetry_protocol_enabled` is `true`): - Allowed `Exporter`s: `CLOUD_TRACE` or `OPEN_TELEMETRY_COLLECTOR`. - If `Exporter` is `OPEN_TELEMETRY_COLLECTOR`: - `endpoint` refers to a valid OTLP collector URL. - If `Exporter` is `CLOUD_TRACE`: - `endpoint` refers to a valid project ID",
+          "type": "boolean"
         },
         "revisionCreateTime": {
           "description": "The timestamp that the revision was created or updated.",
@@ -19631,6 +19761,24 @@
           "description": "Output only. Additional details for the API Hub deployment.",
           "readOnly": true
         },
+        "apiHubGatewayType": {
+          "description": "Optional. ",
+          "enum": [
+            "API_HUB_GATEWAY_TYPE_UNSPECIFIED",
+            "APIGEE_X",
+            "APIGEE_HYBRID",
+            "APIGEE_EDGE",
+            "APIGEE_OPDK"
+          ],
+          "enumDescriptions": [
+            "Gateway type is not specified.",
+            "Gateway is Apigee X for API Hub.",
+            "Gateway is Apigee Hybrid for API Hub.",
+            "Gateway is Apigee Edge for API Hub.",
+            "Gateway is Apigee OPDK for API Hub."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Required. Name of this resource. For an Apigee API Proxy, this should be the id of the API proxy. For an API Hub Deployment, this should be the id of the deployment.",
           "type": "string"
@@ -20011,6 +20159,10 @@
       "description": "Security monitoring condition for risk assessment version 2.",
       "id": "GoogleCloudApigeeV1SecurityMonitoringCondition",
       "properties": {
+        "apiHubGateway": {
+          "description": "Optional. The API Hub gateway monitored by the security monitoring condition. This should only be set if risk_assessment_type is API_HUB. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time of the security monitoring condition creation.",
           "format": "google-datetime",
@@ -20033,8 +20185,22 @@
           "description": "Required. ID of security profile of the security monitoring condition.",
           "type": "string"
         },
+        "riskAssessmentType": {
+          "description": "Optional. The risk assessment type of the security monitoring condition. Defaults to ADVANCED_API_SECURITY.",
+          "enum": [
+            "RISK_ASSESSMENT_TYPE_UNSPECIFIED",
+            "APIGEE",
+            "API_HUB"
+          ],
+          "enumDescriptions": [
+            "Risk assessment type is not specified.",
+            "Risk assessment type is Apigee.",
+            "Risk assessment type is API Hub."
+          ],
+          "type": "string"
+        },
         "scope": {
-          "description": "Optional. Scope of the security monitoring condition. For Apigee, the environment is the scope of the resources.",
+          "description": "Optional. Scope of the security monitoring condition. When RiskAssessmentType is APIGEE, the scope should be set to the environment of the resources. When RiskAssessmentType is API_HUB, the scope should not be set.",
           "type": "string"
         },
         "totalDeployedResources": {
@@ -21094,12 +21260,14 @@
           "enum": [
             "EXPORTER_UNSPECIFIED",
             "JAEGER",
-            "CLOUD_TRACE"
+            "CLOUD_TRACE",
+            "OPEN_TELEMETRY_COLLECTOR"
           ],
           "enumDescriptions": [
             "Exporter unspecified",
             "Jaeger exporter",
-            "Cloudtrace exporter"
+            "Cloudtrace exporter",
+            "Open Telemetry Collector"
           ],
           "type": "string"
         },
