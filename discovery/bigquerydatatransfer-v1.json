@@ -424,7 +424,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "bigquerydatatransfer.projects.locations.list",
@@ -1047,6 +1047,80 @@
                       }
                     }
                   }
+                },
+                "transferResources": {
+                  "methods": {
+                    "get": {
+                      "description": "Returns a transfer resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transferConfigs/{transferConfigsId}/transferResources/{transferResourcesId}",
+                      "httpMethod": "GET",
+                      "id": "bigquerydatatransfer.projects.locations.transferConfigs.transferResources.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the transfer resource in the form of: * `projects/{project}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}` * `projects/{project}/locations/{location}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/transferConfigs/[^/]+/transferResources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "TransferResource"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns information about transfer resources.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transferConfigs/{transferConfigsId}/transferResources",
+                      "httpMethod": "GET",
+                      "id": "bigquerydatatransfer.projects.locations.transferConfigs.transferResources.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name=\"*123\" AND (type=\"TABLE\" OR latest_status_detail.state=\"SUCCEEDED\")` * `update_time >= \"2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = \"table1\"`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id}/transferConfigs/{config_id}` * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/transferConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/transferResources",
+                      "response": {
+                        "$ref": "ListTransferResourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigquery",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1497,13 +1571,87 @@
                   }
                 }
               }
+            },
+            "transferResources": {
+              "methods": {
+                "get": {
+                  "description": "Returns a transfer resource.",
+                  "flatPath": "v1/projects/{projectsId}/transferConfigs/{transferConfigsId}/transferResources/{transferResourcesId}",
+                  "httpMethod": "GET",
+                  "id": "bigquerydatatransfer.projects.transferConfigs.transferResources.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the transfer resource in the form of: * `projects/{project}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}` * `projects/{project}/locations/{location}/transferConfigs/{transfer_config}/transferResources/{transfer_resource}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/transferConfigs/[^/]+/transferResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "TransferResource"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Returns information about transfer resources.",
+                  "flatPath": "v1/projects/{projectsId}/transferConfigs/{transferConfigsId}/transferResources",
+                  "httpMethod": "GET",
+                  "id": "bigquerydatatransfer.projects.transferConfigs.transferResources.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name=\"*123\" AND (type=\"TABLE\" OR latest_status_detail.state=\"SUCCEEDED\")` * `update_time >= \"2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = \"table1\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id}/transferConfigs/{config_id}` * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/transferConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/transferResources",
+                  "response": {
+                    "$ref": "ListTransferResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20260112",
+  "revision": "20260314",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1803,6 +1951,21 @@
       },
       "type": "object"
     },
+    "HierarchyDetail": {
+      "description": "Details about the hierarchy.",
+      "id": "HierarchyDetail",
+      "properties": {
+        "partitionDetail": {
+          "$ref": "PartitionDetail",
+          "description": "Optional. Partition details related to hierarchy."
+        },
+        "tableDetail": {
+          "$ref": "TableDetail",
+          "description": "Optional. Table details related to hierarchy."
+        }
+      },
+      "type": "object"
+    },
     "ListDataSourcesResponse": {
       "description": "Returns list of supported data sources and their metadata.",
       "id": "ListDataSourcesResponse",
@@ -1880,6 +2043,26 @@
       },
       "type": "object"
     },
+    "ListTransferResourcesResponse": {
+      "description": "Response for the ListTransferResources RPC.",
+      "id": "ListTransferResourcesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transferResources": {
+          "description": "Output only. The transfer resources.",
+          "items": {
+            "$ref": "TransferResource"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTransferRunsResponse": {
       "description": "The returned list of pipelines in the project.",
       "id": "ListTransferRunsResponse",
@@ -1938,6 +2121,17 @@
       "description": "Options customizing manual transfers schedule.",
       "id": "ManualSchedule",
       "properties": {},
+      "type": "object"
+    },
+    "PartitionDetail": {
+      "description": "Partition details related to hierarchy.",
+      "id": "PartitionDetail",
+      "properties": {
+        "table": {
+          "description": "Optional. Name of the table which has the partitions.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ScheduleOptions": {
@@ -2063,6 +2257,18 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableDetail": {
+      "description": "Table details related to hierarchy.",
+      "id": "TableDetail",
+      "properties": {
+        "partitionCount": {
+          "description": "Optional. Total number of partitions being tracked within the table.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -2269,6 +2475,115 @@
       },
       "type": "object"
     },
+    "TransferResource": {
+      "description": "Resource(table/partition) that is being transferred.",
+      "id": "TransferResource",
+      "properties": {
+        "destination": {
+          "description": "Optional. Resource destination.",
+          "enum": [
+            "RESOURCE_DESTINATION_UNSPECIFIED",
+            "RESOURCE_DESTINATION_BIGQUERY",
+            "RESOURCE_DESTINATION_DATAPROC_METASTORE",
+            "RESOURCE_DESTINATION_BIGLAKE_METASTORE",
+            "RESOURCE_DESTINATION_BIGLAKE_REST_CATALOG",
+            "RESOURCE_DESTINATION_BIGLAKE_HIVE_CATALOG"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "BigQuery.",
+            "Dataproc Metastore.",
+            "BigLake Metastore.",
+            "BigLake REST Catalog.",
+            "BigLake Hive Catalog."
+          ],
+          "type": "string"
+        },
+        "hierarchyDetail": {
+          "$ref": "HierarchyDetail",
+          "description": "Optional. Details about the hierarchy."
+        },
+        "lastSuccessfulRun": {
+          "$ref": "TransferRunBrief",
+          "description": "Output only. Run details for the last successful run.",
+          "readOnly": true
+        },
+        "latestRun": {
+          "$ref": "TransferRunBrief",
+          "description": "Optional. Run details for the latest run."
+        },
+        "latestStatusDetail": {
+          "$ref": "TransferResourceStatusDetail",
+          "description": "Optional. Status details for the latest run."
+        },
+        "name": {
+          "description": "Identifier. Resource name.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. Resource type.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "RESOURCE_TYPE_TABLE",
+            "RESOURCE_TYPE_PARTITION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Table resource type.",
+            "Partition resource type."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferResourceStatusDetail": {
+      "description": "Status details of the resource being transferred.",
+      "id": "TransferResourceStatusDetail",
+      "properties": {
+        "completedPercentage": {
+          "description": "Output only. Percentage of the transfer completed. Valid values: 0-100.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Optional. Transfer error details for the resource."
+        },
+        "state": {
+          "description": "Optional. Transfer state of the resource.",
+          "enum": [
+            "RESOURCE_TRANSFER_STATE_UNSPECIFIED",
+            "RESOURCE_TRANSFER_PENDING",
+            "RESOURCE_TRANSFER_RUNNING",
+            "RESOURCE_TRANSFER_SUCCEEDED",
+            "RESOURCE_TRANSFER_FAILED",
+            "RESOURCE_TRANSFER_CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Resource is waiting to be transferred.",
+            "Resource transfer is running.",
+            "Resource transfer is a success.",
+            "Resource transfer failed.",
+            "Resource transfer was cancelled."
+          ],
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "TransferStatusSummary",
+          "description": "Optional. Transfer status summary of the resource."
+        }
+      },
+      "type": "object"
+    },
     "TransferRun": {
       "description": "Represents a data transfer run.",
       "id": "TransferRun",
@@ -2366,6 +2681,91 @@
         "userId": {
           "description": "Deprecated. Unique ID of the user on whose behalf transfer is done.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferRunBrief": {
+      "description": "Basic information about a transfer run.",
+      "id": "TransferRunBrief",
+      "properties": {
+        "run": {
+          "description": "Optional. Run URI. Format projects/{project}/locations/{location}/transferConfigs/{config}/run/{run}",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Start time of the transfer run.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferStatusMetric": {
+      "description": "Metrics for tracking the transfer status.",
+      "id": "TransferStatusMetric",
+      "properties": {
+        "completed": {
+          "description": "Optional. Number of units transferred successfully.",
+          "format": "int64",
+          "type": "string"
+        },
+        "failed": {
+          "description": "Optional. Number of units that failed to transfer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pending": {
+          "description": "Optional. Number of units pending transfer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "total": {
+          "description": "Optional. Total number of units for the transfer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Optional. Unit for measuring progress (e.g., BYTES).",
+          "enum": [
+            "TRANSFER_STATUS_UNIT_UNSPECIFIED",
+            "TRANSFER_STATUS_UNIT_BYTES",
+            "TRANSFER_STATUS_UNIT_OBJECTS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Bytes.",
+            "Objects."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferStatusSummary": {
+      "description": "Status summary of the resource being transferred.",
+      "id": "TransferStatusSummary",
+      "properties": {
+        "metrics": {
+          "description": "Optional. List of transfer status metrics.",
+          "items": {
+            "$ref": "TransferStatusMetric"
+          },
+          "type": "array"
+        },
+        "progressUnit": {
+          "description": "Input only. Unit based on which transfer status progress should be calculated.",
+          "enum": [
+            "TRANSFER_STATUS_UNIT_UNSPECIFIED",
+            "TRANSFER_STATUS_UNIT_BYTES",
+            "TRANSFER_STATUS_UNIT_OBJECTS"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Bytes.",
+            "Objects."
+          ],
           "type": "string"
         }
       },

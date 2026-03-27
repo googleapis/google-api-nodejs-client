@@ -328,6 +328,19 @@ export namespace bigquerydatatransfer_v1 {
     pubsubSubscription?: string | null;
   }
   /**
+   * Details about the hierarchy.
+   */
+  export interface Schema$HierarchyDetail {
+    /**
+     * Optional. Partition details related to hierarchy.
+     */
+    partitionDetail?: Schema$PartitionDetail;
+    /**
+     * Optional. Table details related to hierarchy.
+     */
+    tableDetail?: Schema$TableDetail;
+  }
+  /**
    * Returns list of supported data sources and their metadata.
    */
   export interface Schema$ListDataSourcesResponse {
@@ -380,6 +393,19 @@ export namespace bigquerydatatransfer_v1 {
     transferMessages?: Schema$TransferMessage[];
   }
   /**
+   * Response for the ListTransferResources RPC.
+   */
+  export interface Schema$ListTransferResourcesResponse {
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. The transfer resources.
+     */
+    transferResources?: Schema$TransferResource[];
+  }
+  /**
    * The returned list of pipelines in the project.
    */
   export interface Schema$ListTransferRunsResponse {
@@ -421,6 +447,15 @@ export namespace bigquerydatatransfer_v1 {
    * Options customizing manual transfers schedule.
    */
   export interface Schema$ManualSchedule {}
+  /**
+   * Partition details related to hierarchy.
+   */
+  export interface Schema$PartitionDetail {
+    /**
+     * Optional. Name of the table which has the partitions.
+     */
+    table?: string | null;
+  }
   /**
    * Options customizing the data transfer schedule.
    */
@@ -515,6 +550,15 @@ export namespace bigquerydatatransfer_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Table details related to hierarchy.
+   */
+  export interface Schema$TableDetail {
+    /**
+     * Optional. Total number of partitions being tracked within the table.
+     */
+    partitionCount?: string | null;
   }
   /**
    * Options customizing the time based transfer schedule. Options are migrated from the original ScheduleOptions message.
@@ -653,6 +697,64 @@ export namespace bigquerydatatransfer_v1 {
     severity?: string | null;
   }
   /**
+   * Resource(table/partition) that is being transferred.
+   */
+  export interface Schema$TransferResource {
+    /**
+     * Optional. Resource destination.
+     */
+    destination?: string | null;
+    /**
+     * Optional. Details about the hierarchy.
+     */
+    hierarchyDetail?: Schema$HierarchyDetail;
+    /**
+     * Output only. Run details for the last successful run.
+     */
+    lastSuccessfulRun?: Schema$TransferRunBrief;
+    /**
+     * Optional. Run details for the latest run.
+     */
+    latestRun?: Schema$TransferRunBrief;
+    /**
+     * Optional. Status details for the latest run.
+     */
+    latestStatusDetail?: Schema$TransferResourceStatusDetail;
+    /**
+     * Identifier. Resource name.
+     */
+    name?: string | null;
+    /**
+     * Optional. Resource type.
+     */
+    type?: string | null;
+    /**
+     * Output only. Time when the resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Status details of the resource being transferred.
+   */
+  export interface Schema$TransferResourceStatusDetail {
+    /**
+     * Output only. Percentage of the transfer completed. Valid values: 0-100.
+     */
+    completedPercentage?: number | null;
+    /**
+     * Optional. Transfer error details for the resource.
+     */
+    error?: Schema$Status;
+    /**
+     * Optional. Transfer state of the resource.
+     */
+    state?: string | null;
+    /**
+     * Optional. Transfer status summary of the resource.
+     */
+    summary?: Schema$TransferStatusSummary;
+  }
+  /**
    * Represents a data transfer run.
    */
   export interface Schema$TransferRun {
@@ -716,6 +818,57 @@ export namespace bigquerydatatransfer_v1 {
      * Deprecated. Unique ID of the user on whose behalf transfer is done.
      */
     userId?: string | null;
+  }
+  /**
+   * Basic information about a transfer run.
+   */
+  export interface Schema$TransferRunBrief {
+    /**
+     * Optional. Run URI. Format projects/{project\}/locations/{location\}/transferConfigs/{config\}/run/{run\}
+     */
+    run?: string | null;
+    /**
+     * Optional. Start time of the transfer run.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Metrics for tracking the transfer status.
+   */
+  export interface Schema$TransferStatusMetric {
+    /**
+     * Optional. Number of units transferred successfully.
+     */
+    completed?: string | null;
+    /**
+     * Optional. Number of units that failed to transfer.
+     */
+    failed?: string | null;
+    /**
+     * Optional. Number of units pending transfer.
+     */
+    pending?: string | null;
+    /**
+     * Optional. Total number of units for the transfer.
+     */
+    total?: string | null;
+    /**
+     * Optional. Unit for measuring progress (e.g., BYTES).
+     */
+    unit?: string | null;
+  }
+  /**
+   * Status summary of the resource being transferred.
+   */
+  export interface Schema$TransferStatusSummary {
+    /**
+     * Optional. List of transfer status metrics.
+     */
+    metrics?: Schema$TransferStatusMetric[];
+    /**
+     * Input only. Unit based on which transfer status progress should be calculated.
+     */
+    progressUnit?: string | null;
   }
   /**
    * A request to unenroll a set of data sources so they are no longer visible in the BigQuery UI's `Transfer` tab.
@@ -1711,7 +1864,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2565,11 +2718,16 @@ export namespace bigquerydatatransfer_v1 {
   export class Resource$Projects$Locations$Transferconfigs {
     context: APIRequestContext;
     runs: Resource$Projects$Locations$Transferconfigs$Runs;
+    transferResources: Resource$Projects$Locations$Transferconfigs$Transferresources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.runs = new Resource$Projects$Locations$Transferconfigs$Runs(
         this.context
       );
+      this.transferResources =
+        new Resource$Projects$Locations$Transferconfigs$Transferresources(
+          this.context
+        );
     }
 
     /**
@@ -4510,12 +4668,357 @@ export namespace bigquerydatatransfer_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Transferconfigs$Transferresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a transfer resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.transferResources.get(
+     *       {
+     *         // Required. The name of the transfer resource in the form of: * `projects/{project\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}` * `projects/{project\}/locations/{location\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}`
+     *         name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/transferResources/my-transferResource',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "destination": "my_destination",
+     *   //   "hierarchyDetail": {},
+     *   //   "lastSuccessfulRun": {},
+     *   //   "latestRun": {},
+     *   //   "latestStatusDetail": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferResource>>;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferResource>,
+      callback: BodyResponseCallback<Schema$TransferResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get,
+      callback: BodyResponseCallback<Schema$TransferResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TransferResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferResource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TransferResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TransferResource>(parameters);
+      }
+    }
+
+    /**
+     * Returns information about transfer resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.transferResources.list(
+     *       {
+     *         // Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name="*123" AND (type="TABLE" OR latest_status_detail.state="SUCCEEDED")` * `update_time \>= "2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = "table1"`
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferResourcesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List,
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferResourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/transferResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTransferResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTransferResourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Transferresources$Get extends StandardParameters {
+    /**
+     * Required. The name of the transfer resource in the form of: * `projects/{project\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}` * `projects/{project\}/locations/{location\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Transferconfigs$Transferresources$List extends StandardParameters {
+    /**
+     * Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name="*123" AND (type="TABLE" OR latest_status_detail.state="SUCCEEDED")` * `update_time \>= "2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = "table1"`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Transferconfigs {
     context: APIRequestContext;
     runs: Resource$Projects$Transferconfigs$Runs;
+    transferResources: Resource$Projects$Transferconfigs$Transferresources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.runs = new Resource$Projects$Transferconfigs$Runs(this.context);
+      this.transferResources =
+        new Resource$Projects$Transferconfigs$Transferresources(this.context);
     }
 
     /**
@@ -6426,6 +6929,343 @@ export namespace bigquerydatatransfer_v1 {
     pageToken?: string;
     /**
      * Required. Transfer run name. If you are using the regionless method, the location must be `US` and the name should be in the following form: * `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` If you are using the regionalized method, the name should be in the following form: * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Transferconfigs$Transferresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a transfer resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatatransfer.projects.transferConfigs.transferResources.get({
+     *       // Required. The name of the transfer resource in the form of: * `projects/{project\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}` * `projects/{project\}/locations/{location\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}`
+     *       name: 'projects/my-project/transferConfigs/my-transferConfig/transferResources/my-transferResource',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "destination": "my_destination",
+     *   //   "hierarchyDetail": {},
+     *   //   "lastSuccessfulRun": {},
+     *   //   "latestRun": {},
+     *   //   "latestStatusDetail": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Transferconfigs$Transferresources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TransferResource>>;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TransferResource>,
+      callback: BodyResponseCallback<Schema$TransferResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$Get,
+      callback: BodyResponseCallback<Schema$TransferResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TransferResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Transferresources$Get
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TransferResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TransferResource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Transferresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Transferconfigs$Transferresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TransferResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TransferResource>(parameters);
+      }
+    }
+
+    /**
+     * Returns information about transfer resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigquerydatatransfer.projects.transferConfigs.transferResources.list({
+     *       // Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name="*123" AND (type="TABLE" OR latest_status_detail.state="SUCCEEDED")` * `update_time \>= "2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = "table1"`
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
+     *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transferResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Transferconfigs$Transferresources$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransferResourcesResponse>>;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Transferconfigs$Transferresources$List,
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTransferResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Transferconfigs$Transferresources$List
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransferResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransferResourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Transferconfigs$Transferresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Transferconfigs$Transferresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/transferResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTransferResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTransferResourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Transferconfigs$Transferresources$Get extends StandardParameters {
+    /**
+     * Required. The name of the transfer resource in the form of: * `projects/{project\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}` * `projects/{project\}/locations/{location\}/transferConfigs/{transfer_config\}/transferResources/{transfer_resource\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Transferconfigs$Transferresources$List extends StandardParameters {
+    /**
+     * Optional. Filter for the transfer resources. Currently supported filters include: * Resource name: `name` - Wildcard supported * Resource type: `type` * Resource destination: `destination` * Latest resource state: `latest_status_detail.state` * Last update time: `update_time` - RFC-3339 format * Parent table name: `hierarchy_detail.partition_detail.table` Multiple filters can be applied using the `AND/OR` operator. Examples: * `name="*123" AND (type="TABLE" OR latest_status_detail.state="SUCCEEDED")` * `update_time \>= "2012-04-21T11:30:00-04:00` * `hierarchy_detail.partition_detail.table = "table1"`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of transfer resources to return. The maximum value is 1000; values above 1000 will be coerced to 1000. The default page size is the maximum value of 1000 results.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListTransferResources` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTransferResources` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of transfer configuration for which transfer resources should be retrieved. The name should be in one of the following form: * `projects/{project_id\}/transferConfigs/{config_id\}` * `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     parent?: string;
   }
