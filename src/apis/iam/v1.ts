@@ -512,6 +512,10 @@ export namespace iam_v1 {
      * Optional. Rotation window percentage, the percentage of remaining lifetime after which certificate rotation is initiated. Must be between 50 and 80. If no value is specified, rotation window percentage is defaulted to 50.
      */
     rotationWindowPercentage?: number | null;
+    /**
+     * Optional. If set to true, the trust domain will utilize the GCP-provisioned default CA. A default CA in the same region as the workload will be selected to issue the certificate. Enabling this will clear any existing `ca_pools` configuration to provision the certificates. NOTE: This field is mutually exclusive with `ca_pools`. If this flag is enabled, certificates will be automatically provisioned from the default shared CAs. This flag should not be set if you want to use your own CA pools to provision the certificates.
+     */
+    useDefaultSharedCa?: boolean | null;
   }
   /**
    * Defines configuration for extending trust to additional trust domains. By establishing trust with another domain, the current domain will recognize and accept certificates issued by entities within the trusted domains. Note that a trust domain automatically trusts itself, eliminating the need for explicit configuration.
@@ -1413,6 +1417,10 @@ export namespace iam_v1 {
      * Required. List of trust anchors to be used while performing validation against a given TrustStore. The incoming end entity's certificate must be in the trust chain of one of the trust anchors here.
      */
     trustAnchors?: Schema$TrustAnchor[];
+    /**
+     * Optional. If set to True, the trust bundle will include the private ca managed identity regional root public certificates. Important: `trust_default_shared_ca` is only supported for managed identity trust domain resource.
+     */
+    trustDefaultSharedCa?: boolean | null;
   }
   /**
    * Request message for UndeleteOauthClient.
@@ -1449,10 +1457,6 @@ export namespace iam_v1 {
    * Gemini Enterprise only. Request message for UndeleteWorkforcePoolProviderScimTenant.
    */
   export interface Schema$UndeleteWorkforcePoolProviderScimTenantRequest {}
-  /**
-   * Gemini Enterprise only. Request message for UndeleteWorkforcePoolProviderScimToken.
-   */
-  export interface Schema$UndeleteWorkforcePoolProviderScimTokenRequest {}
   /**
    * Request message for UndeleteWorkforcePool.
    */
@@ -1568,7 +1572,7 @@ export namespace iam_v1 {
      */
     extendedAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
     /**
-     * Optional. The configuration for OAuth 2.0 client used to get the additional user attributes. This should be used when users can't get the desired claims in authentication credentials. Currently, this configuration is only supported with OIDC protocol.
+     * Optional. Defines the configuration for the OAuth 2.0 client that is used to get the additional user attributes in a separate backchannel call to the identity provider. This should be used when users can't get the required claims in authentication credentials. Currently, the OAuth 2.0 protocol is the only supported authorization method for this backchannel call.
      */
     extraAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
     /**
@@ -7727,160 +7731,6 @@ export namespace iam_v1 {
         );
       }
     }
-
-    /**
-     * Gemini Enterprise only. Undeletes a WorkforcePoolProviderScimToken,that was deleted fewer than 30 days ago.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const iam = google.iam('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await iam.locations.workforcePools.providers.scimTenants.tokens.undelete({
-     *       // Required. Gemini Enterprise only. The name of the SCIM token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
-     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "securityToken": "my_securityToken",
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    undelete(
-      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    undelete(
-      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
-    undelete(
-      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    undelete(
-      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
-      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-    ): void;
-    undelete(
-      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
-      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-    ): void;
-    undelete(
-      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-    ): void;
-    undelete(
-      paramsOrCallback?:
-        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete
-        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:undelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create extends StandardParameters {
@@ -7942,17 +7792,6 @@ export namespace iam_v1 {
      * Request body metadata
      */
     requestBody?: Schema$WorkforcePoolProviderScimToken;
-  }
-  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete extends StandardParameters {
-    /**
-     * Required. Gemini Enterprise only. The name of the SCIM token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UndeleteWorkforcePoolProviderScimTokenRequest;
   }
 
   export class Resource$Locations$Workforcepools$Subjects {
@@ -11409,6 +11248,158 @@ export namespace iam_v1 {
     }
 
     /**
+     * Add an AttestationRule on a WorkloadIdentityPoolManagedIdentity. The total attestation rules after addition must not exceed 50.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.addAttestationRule({
+     *       // Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
+     *       resource:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attestationRule": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    addAttestationRule(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    addAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addAttestationRule(callback: BodyResponseCallback<Schema$Operation>): void;
+    addAttestationRule(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:addAttestationRule').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a new WorkloadIdentityPool. You cannot reuse the name of a deleted pool until 30 days after deletion.
      * @example
      * ```js
@@ -12158,6 +12149,159 @@ export namespace iam_v1 {
     }
 
     /**
+     * List all AttestationRule on a WorkloadIdentityPoolManagedIdentity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.listAttestationRules({
+     *       // Optional. A query filter. Supports the following function: * `container_ids()`: Returns only the AttestationRules under the specific container ids. The function expects a comma-delimited list with only project numbers and must use the format `projects/`. For example: `container_ids(projects/, projects/,...)`.
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of AttestationRules to return. If unspecified, at most 50 AttestationRules are returned. The maximum value is 100; values above 100 are truncated to 100.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the managed identity or namespace resource to list attestation rules of.
+     *       resource:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attestationRules": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listAttestationRules(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAttestationRulesResponse>>;
+    listAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttestationRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListAttestationRulesResponse>
+    ): void;
+    listAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules,
+      callback: BodyResponseCallback<Schema$ListAttestationRulesResponse>
+    ): void;
+    listAttestationRules(
+      callback: BodyResponseCallback<Schema$ListAttestationRulesResponse>
+    ): void;
+    listAttestationRules(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules
+        | BodyResponseCallback<Schema$ListAttestationRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttestationRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttestationRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAttestationRulesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:listAttestationRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttestationRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttestationRulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing WorkloadIdentityPool.
      * @example
      * ```js
@@ -12302,6 +12446,312 @@ export namespace iam_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Remove an AttestationRule on a WorkloadIdentityPoolManagedIdentity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.removeAttestationRule({
+     *       // Required. The resource name of the managed identity or namespace resource to remove an attestation rule from.
+     *       resource:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attestationRule": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removeAttestationRule(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    removeAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeAttestationRule(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeAttestationRule(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    removeAttestationRule(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:removeAttestationRule').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Set all AttestationRule on a WorkloadIdentityPoolManagedIdentity. A maximum of 50 AttestationRules can be set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.setAttestationRules({
+     *       // Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
+     *       resource:
+     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attestationRules": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setAttestationRules(
+      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    setAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setAttestationRules(
+      params: Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setAttestationRules(callback: BodyResponseCallback<Schema$Operation>): void;
+    setAttestationRules(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setAttestationRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
         context: this.context,
       };
       if (callback) {
@@ -12766,6 +13216,17 @@ export namespace iam_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Addattestationrule extends StandardParameters {
+    /**
+     * Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddAttestationRuleRequest;
+  }
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Create extends StandardParameters {
     /**
      * Required. The parent resource to create the pool in. The only supported location is `global`.
@@ -12822,6 +13283,24 @@ export namespace iam_v1 {
      */
     showDeleted?: boolean;
   }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Listattestationrules extends StandardParameters {
+    /**
+     * Optional. A query filter. Supports the following function: * `container_ids()`: Returns only the AttestationRules under the specific container ids. The function expects a comma-delimited list with only project numbers and must use the format `projects/`. For example: `container_ids(projects/, projects/,...)`.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of AttestationRules to return. If unspecified, at most 50 AttestationRules are returned. The maximum value is 100; values above 100 are truncated to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the managed identity or namespace resource to list attestation rules of.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Patch extends StandardParameters {
     /**
      * Identifier. The resource name of the pool.
@@ -12836,6 +13315,28 @@ export namespace iam_v1 {
      * Request body metadata
      */
     requestBody?: Schema$WorkloadIdentityPool;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Removeattestationrule extends StandardParameters {
+    /**
+     * Required. The resource name of the managed identity or namespace resource to remove an attestation rule from.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveAttestationRuleRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Setattestationrules extends StandardParameters {
+    /**
+     * Required. The resource name of the managed identity or namespace resource to add an attestation rule to.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetAttestationRulesRequest;
   }
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Setiampolicy extends StandardParameters {
     /**
