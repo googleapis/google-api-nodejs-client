@@ -231,7 +231,7 @@ export namespace kmsinventory_v1 {
     protectedResources?: Schema$GoogleCloudKmsInventoryV1ProtectedResource[];
   }
   /**
-   * Warning message specifying various states of response data that might indicate incomplete or partial results.
+   * A warning message that indicates potential problems with the response data.
    */
   export interface Schema$GoogleCloudKmsInventoryV1Warning {
     /**
@@ -264,7 +264,7 @@ export namespace kmsinventory_v1 {
      */
     importOnly?: boolean | null;
     /**
-     * Optional. The policy used for Key Access Justifications Policy Enforcement. If this field is present and this key is enrolled in Key Access Justifications Policy Enforcement, the policy will be evaluated in encrypt, decrypt, and sign operations, and the operation will fail if rejected by the policy. The policy is defined by specifying zero or more allowed justification codes. https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes By default, this field is absent, and all justification codes are allowed.
+     * Optional. The policy used for Key Access Justifications Policy Enforcement. If this field is present and this key is enrolled in Key Access Justifications Policy Enforcement, the policy will be evaluated in encrypt, decrypt, and sign operations, and the operation will fail if rejected by the policy. The policy is defined by specifying zero or more allowed justification codes. https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes By default, this field is absent, and all justification codes are allowed. If the `key_access_justifications_policy.allowed_access_reasons` is empty (zero allowed justification code), all encrypt, decrypt, and sign operations will fail.
      */
     keyAccessJustificationsPolicy?: Schema$GoogleCloudKmsV1KeyAccessJustificationsPolicy;
     /**
@@ -392,11 +392,11 @@ export namespace kmsinventory_v1 {
     externalKeyUri?: string | null;
   }
   /**
-   * A KeyAccessJustificationsPolicy specifies zero or more allowed AccessReason values for encrypt, decrypt, and sign operations on a CryptoKey.
+   * A KeyAccessJustificationsPolicy specifies zero or more allowed AccessReason values for encrypt, decrypt, and sign operations on a CryptoKey or KeyAccessJustificationsPolicyConfig (the default Key Access Justifications policy).
    */
   export interface Schema$GoogleCloudKmsV1KeyAccessJustificationsPolicy {
     /**
-     * The list of allowed reasons for access to a CryptoKey. Zero allowed access reasons means all encrypt, decrypt, and sign operations for the CryptoKey associated with this policy will fail.
+     * The list of allowed reasons for access to a CryptoKey. Note that empty allowed_access_reasons has a different meaning depending on where this message appears. If this is under KeyAccessJustificationsPolicyConfig, it means allow-all. If this is under CryptoKey, it means deny-all.
      */
     allowedAccessReasons?: string[] | null;
   }
@@ -491,7 +491,7 @@ export namespace kmsinventory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
      *     resourceTypes: 'placeholder-value',
-     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      *     scope: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -627,7 +627,7 @@ export namespace kmsinventory_v1 {
      */
     resourceTypes?: string[];
     /**
-     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      */
     scope?: string;
   }
@@ -1063,7 +1063,7 @@ export namespace kmsinventory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
      *     resourceTypes: 'placeholder-value',
-     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      *     scope: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1199,7 +1199,7 @@ export namespace kmsinventory_v1 {
      */
     resourceTypes?: string[];
     /**
-     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      */
     scope?: string;
   }
