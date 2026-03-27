@@ -755,69 +755,6 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1CancelMetadataJobRequest {}
   /**
-   * Content represents a user-visible notebook or a sql script
-   */
-  export interface Schema$GoogleCloudDataplexV1Content {
-    /**
-     * Output only. Content creation time.
-     */
-    createTime?: string | null;
-    /**
-     * Required. Content data in string format.
-     */
-    dataText?: string | null;
-    /**
-     * Optional. Description of the content.
-     */
-    description?: string | null;
-    /**
-     * Optional. User defined labels for the content.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string | null;
-    /**
-     * Notebook related configurations.
-     */
-    notebook?: Schema$GoogleCloudDataplexV1ContentNotebook;
-    /**
-     * Required. The path for the Content file, represented as directory structure. Unique within a lake. Limited to alphanumerics, hyphens, underscores, dots and slashes.
-     */
-    path?: string | null;
-    /**
-     * Sql Script related configurations.
-     */
-    sqlScript?: Schema$GoogleCloudDataplexV1ContentSqlScript;
-    /**
-     * Output only. System generated globally unique ID for the content. This ID will be different if the content is deleted and re-created with the same name.
-     */
-    uid?: string | null;
-    /**
-     * Output only. The time when the content was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Configuration for Notebook content.
-   */
-  export interface Schema$GoogleCloudDataplexV1ContentNotebook {
-    /**
-     * Required. Kernel Type of the notebook.
-     */
-    kernelType?: string | null;
-  }
-  /**
-   * Configuration for the Sql Script content.
-   */
-  export interface Schema$GoogleCloudDataplexV1ContentSqlScript {
-    /**
-     * Required. Query Engine to be used for the Sql Query.
-     */
-    engine?: string | null;
-  }
-  /**
    * DataAccessSpec holds the access control configuration to be enforced on data stored within resources (eg: rows, columns in BigQuery Tables). When associated with data, the data is only accessible to principals explicitly granted access through the DataAccessSpec. Principals with access to the containing resource are not implicitly granted access.
    */
   export interface Schema$GoogleCloudDataplexV1DataAccessSpec {
@@ -1706,11 +1643,15 @@ export namespace dataplex_v1 {
      */
     column?: string | null;
     /**
+     * Optional. Specifies the debug queries for this rule. Currently, only one query is supported, but this may be expanded in the future.
+     */
+    debugQueries?: Schema$GoogleCloudDataplexV1DataQualityRuleDebugQuery[];
+    /**
      * Optional. Description of the rule. The maximum length is 1,024 characters.
      */
     description?: string | null;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
+     * Optional. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     dimension?: string | null;
     /**
@@ -1767,6 +1708,19 @@ export namespace dataplex_v1 {
     uniquenessExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation;
   }
   /**
+   * Specifies a SQL statement that is evaluated to return up to 10 scalar values that are used to debug rules. If the rule fails, the values can help diagnose the cause of the failure.The SQL statement must use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax), and must not contain any semicolons.You can use the data reference parameter ${data()\} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).You can also name results with an explicit alias using [AS] alias. For more information, see BigQuery explicit aliases (https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#explicit_alias_syntax).Example: SELECT MIN(col1) AS min_col1, MAX(col1) AS max_col1 FROM ${data()\}
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityRuleDebugQuery {
+    /**
+     * Optional. Specifies the description of the debug query. The maximum length is 1,024 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. Specifies the SQL statement to be executed.
+     */
+    sqlStatement?: string | null;
+  }
+  /**
    * Evaluates whether each column value is null.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityRuleNonNullExpectation {}
@@ -1809,6 +1763,10 @@ export namespace dataplex_v1 {
      */
     assertionRowCount?: string | null;
     /**
+     * Output only. Contains the results of all debug queries for this rule. The number of result sets will correspond to the number of debug_queries.
+     */
+    debugQueriesResultSets?: Schema$GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet[];
+    /**
      * Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
      */
     evaluatedCount?: string | null;
@@ -1836,6 +1794,32 @@ export namespace dataplex_v1 {
      * Output only. The rule specified in the DataQualitySpec, as is.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule;
+  }
+  /**
+   * Contains a single result from the debug query.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult {
+    /**
+     * Specifies the name of the result. Available if provided with an explicit alias using [AS] alias.
+     */
+    name?: string | null;
+    /**
+     * Indicates the data type of the result. For more information, see BigQuery data types (https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types).
+     */
+    type?: string | null;
+    /**
+     * Represents the value of the result as a string.
+     */
+    value?: string | null;
+  }
+  /**
+   * Contains all results from a debug query.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet {
+    /**
+     * Output only. Contains all results. Up to 10 results can be returned.
+     */
+    results?: Schema$GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult[];
   }
   /**
    * Evaluates whether each row passes the specified condition.The SQL expression needs to use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax) and should produce a boolean value per row as the result.Example: col1 \>= 0 AND col2 < 10
@@ -2825,6 +2809,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1EntryLink {
     /**
+     * Optional. The aspects that are attached to the entry link. The format of the aspect key has to be the following: {project_id_or_number\}.{location_id\}.{aspect_type_id\} Currently, only a single aspect of a Dataplex-owned Aspect Type is allowed.
+     */
+    aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
+    /**
      * Output only. The time when the Entry Link was created.
      */
     createTime?: string | null;
@@ -2833,7 +2821,7 @@ export namespace dataplex_v1 {
      */
     entryLinkType?: string | null;
     /**
-     * Required. Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.
+     * Required. Immutable. Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.
      */
     entryReferences?: Schema$GoogleCloudDataplexV1EntryLinkEntryReference[];
     /**
@@ -3008,145 +2996,6 @@ export namespace dataplex_v1 {
      * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Entries of Dataplex Universal Catalog owned Entry Types, only settable for Dataplex Universal Catalog owned Types.
      */
     alternateUsePermission?: string | null;
-  }
-  /**
-   * Environment represents a user-visible compute infrastructure for analytics within a lake.
-   */
-  export interface Schema$GoogleCloudDataplexV1Environment {
-    /**
-     * Output only. Environment creation time.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Description of the environment.
-     */
-    description?: string | null;
-    /**
-     * Optional. User friendly display name.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. URI Endpoints to access sessions associated with the Environment.
-     */
-    endpoints?: Schema$GoogleCloudDataplexV1EnvironmentEndpoints;
-    /**
-     * Required. Infrastructure specification for the Environment.
-     */
-    infrastructureSpec?: Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpec;
-    /**
-     * Optional. User defined labels for the environment.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Output only. The relative resource name of the environment, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
-     */
-    name?: string | null;
-    /**
-     * Optional. Configuration for sessions created for this environment.
-     */
-    sessionSpec?: Schema$GoogleCloudDataplexV1EnvironmentSessionSpec;
-    /**
-     * Output only. Status of sessions created for this environment.
-     */
-    sessionStatus?: Schema$GoogleCloudDataplexV1EnvironmentSessionStatus;
-    /**
-     * Output only. Current state of the environment.
-     */
-    state?: string | null;
-    /**
-     * Output only. System generated globally unique ID for the environment. This ID will be different if the environment is deleted and re-created with the same name.
-     */
-    uid?: string | null;
-    /**
-     * Output only. The time when the environment was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * URI Endpoints to access sessions associated with the Environment.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentEndpoints {
-    /**
-     * Output only. URI to serve notebook APIs
-     */
-    notebooks?: string | null;
-    /**
-     * Output only. URI to serve SQL APIs
-     */
-    sql?: string | null;
-  }
-  /**
-   * Configuration for the underlying infrastructure used to run workloads.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpec {
-    /**
-     * Optional. Compute resources needed for analyze interactive workloads.
-     */
-    compute?: Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpecComputeResources;
-    /**
-     * Required. Software Runtime Configuration for analyze interactive workloads.
-     */
-    osImage?: Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpecOsImageRuntime;
-  }
-  /**
-   * Compute resources associated with the analyze interactive workloads.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpecComputeResources {
-    /**
-     * Optional. Size in GB of the disk. Default is 100 GB.
-     */
-    diskSizeGb?: number | null;
-    /**
-     * Optional. Max configurable nodes. If max_node_count \> node_count, then auto-scaling is enabled.
-     */
-    maxNodeCount?: number | null;
-    /**
-     * Optional. Total number of nodes in the sessions created for this environment.
-     */
-    nodeCount?: number | null;
-  }
-  /**
-   * Software Runtime Configuration to run Analyze.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpecOsImageRuntime {
-    /**
-     * Required. Dataplex Universal Catalog Image version.
-     */
-    imageVersion?: string | null;
-    /**
-     * Optional. List of Java jars to be included in the runtime environment. Valid input includes Cloud Storage URIs to Jar binaries. For example, gs://bucket-name/my/path/to/file.jar
-     */
-    javaLibraries?: string[] | null;
-    /**
-     * Optional. Spark properties to provide configuration for use in sessions created for this environment. The properties to set on daemon config files. Property keys are specified in prefix:property format. The prefix must be "spark".
-     */
-    properties?: {[key: string]: string} | null;
-    /**
-     * Optional. A list of python packages to be installed. Valid formats include Cloud Storage URI to a PIP installable library. For example, gs://bucket-name/my/path/to/lib.tar.gz
-     */
-    pythonPackages?: string[] | null;
-  }
-  /**
-   * Configuration for sessions created for this environment.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentSessionSpec {
-    /**
-     * Optional. If True, this causes sessions to be pre-created and available for faster startup to enable interactive exploration use-cases. This defaults to False to avoid additional billed charges. These can only be set to True for the environment with name set to "default", and with default configuration.
-     */
-    enableFastStartup?: boolean | null;
-    /**
-     * Optional. The idle time configuration of the session. The session will be auto-terminated at the end of this period.
-     */
-    maxIdleDuration?: string | null;
-  }
-  /**
-   * Status of sessions created for this environment.
-   */
-  export interface Schema$GoogleCloudDataplexV1EnvironmentSessionStatus {
-    /**
-     * Output only. Queries over sessions to mark whether the environment is currently active or not
-     */
-    active?: boolean | null;
   }
   /**
    * Request details for generating data quality rule recommendations.
@@ -3556,19 +3405,6 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * List content response.
-   */
-  export interface Schema$GoogleCloudDataplexV1ListContentResponse {
-    /**
-     * Content under the given parent lake.
-     */
-    content?: Schema$GoogleCloudDataplexV1Content[];
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * Response message for listing data assets.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataAssetsResponse {
@@ -3757,19 +3593,6 @@ export namespace dataplex_v1 {
     unreachableLocations?: string[] | null;
   }
   /**
-   * List environments response.
-   */
-  export interface Schema$GoogleCloudDataplexV1ListEnvironmentsResponse {
-    /**
-     * Environments under the given parent lake.
-     */
-    environments?: Schema$GoogleCloudDataplexV1Environment[];
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * List Glossaries Response
    */
   export interface Schema$GoogleCloudDataplexV1ListGlossariesResponse {
@@ -3898,19 +3721,6 @@ export namespace dataplex_v1 {
     partitions?: Schema$GoogleCloudDataplexV1Partition[];
   }
   /**
-   * List sessions response.
-   */
-  export interface Schema$GoogleCloudDataplexV1ListSessionsResponse {
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Sessions under a given environment.
-     */
-    sessions?: Schema$GoogleCloudDataplexV1Session[];
-  }
-  /**
    * List tasks response.
    */
   export interface Schema$GoogleCloudDataplexV1ListTasksResponse {
@@ -3939,6 +3749,41 @@ export namespace dataplex_v1 {
      * Zones under the given parent lake.
      */
     zones?: Schema$GoogleCloudDataplexV1Zone[];
+  }
+  /**
+   * Lookup Context using permissions in the source system.
+   */
+  export interface Schema$GoogleCloudDataplexV1LookupContextRequest {
+    /**
+     * Optional. Allows to configure the context.
+     */
+    options?: {[key: string]: string} | null;
+    /**
+     * Required. The entry names to lookup context for. The request should have max 10 of those.Examples:projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}
+     */
+    resources?: string[] | null;
+  }
+  /**
+   * Lookup Context response.
+   */
+  export interface Schema$GoogleCloudDataplexV1LookupContextResponse {
+    /**
+     * LLM generated context for the resources.
+     */
+    context?: string | null;
+  }
+  /**
+   * Response message for LookupEntryLinks.
+   */
+  export interface Schema$GoogleCloudDataplexV1LookupEntryLinksResponse {
+    /**
+     * List of entry links that reference the specified entry.
+     */
+    entryLinks?: Schema$GoogleCloudDataplexV1EntryLink[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * MetadataFeed contains information related to the metadata feed.
@@ -4456,27 +4301,6 @@ export namespace dataplex_v1 {
      * Entry
      */
     dataplexEntry?: Schema$GoogleCloudDataplexV1Entry;
-  }
-  /**
-   * Represents an active analyze session running for a user.
-   */
-  export interface Schema$GoogleCloudDataplexV1Session {
-    /**
-     * Output only. Session start time.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}/sessions/{session_id\}
-     */
-    name?: string | null;
-    /**
-     * Output only. State of Session
-     */
-    state?: string | null;
-    /**
-     * Output only. Email of user running the session.
-     */
-    userId?: string | null;
   }
   /**
    * These messages contain information about sessions within an environment. The monitored resource is 'Environment'.
@@ -7269,6 +7093,7 @@ export namespace dataplex_v1 {
     metadataFeeds: Resource$Projects$Locations$Metadatafeeds;
     metadataJobs: Resource$Projects$Locations$Metadatajobs;
     operations: Resource$Projects$Locations$Operations;
+    policyIntents: Resource$Projects$Locations$Policyintents;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.aspectTypes = new Resource$Projects$Locations$Aspecttypes(
@@ -7309,6 +7134,9 @@ export namespace dataplex_v1 {
         this.context
       );
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.policyIntents = new Resource$Projects$Locations$Policyintents(
         this.context
       );
     }
@@ -7612,7 +7440,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up an entry by name using the permission on the source system. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
+     * Looks up LLM Context for the specified resources.
      * @example
      * ```js
      * // Before running the sample:
@@ -7633,7 +7461,172 @@ export namespace dataplex_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *       'https://www.googleapis.com/auth/dataplex.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lookupContext({
+     *     // Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     *     name: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {},
+     *       //   "resources": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "context": "my_context"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupContext(
+      params: Params$Resource$Projects$Locations$Lookupcontext,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    lookupContext(
+      params?: Params$Resource$Projects$Locations$Lookupcontext,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1LookupContextResponse>
+    >;
+    lookupContext(
+      params: Params$Resource$Projects$Locations$Lookupcontext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupContext(
+      params: Params$Resource$Projects$Locations$Lookupcontext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+    ): void;
+    lookupContext(
+      params: Params$Resource$Projects$Locations$Lookupcontext,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+    ): void;
+    lookupContext(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+    ): void;
+    lookupContext(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lookupcontext
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupContextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1LookupContextResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lookupcontext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lookupcontext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:lookupContext').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1LookupContextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1LookupContextResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Looks up an entry by name using the permission on the source system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *       'https://www.googleapis.com/auth/dataplex.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7768,7 +7761,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Searches for Entries matching the given query and scope.
+     * Looks up Entry Links referencing the specified Entry.
      * @example
      * ```js
      * // Before running the sample:
@@ -7790,6 +7783,168 @@ export namespace dataplex_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lookupEntryLinks({
+     *     // Required. The resource name of the referred Entry. Format: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}. Entry Links which references this entry will be returned in the response.
+     *     entry: 'placeholder-value',
+     *     // Entry link types to filter the response by. If empty, all entry link types will be returned. At most 10 entry link types can be specified.
+     *     entryLinkTypes: 'placeholder-value',
+     *     // Mode of entry reference.
+     *     entryMode: 'placeholder-value',
+     *     // Required. The project to which the request should be attributed to Format: projects/{project_id_or_number\}/locations/{location_id\}.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // Maximum number of EntryLinks to return. The service may return fewer than this value. If unspecified, at most 10 EntryLinks will be returned. The maximum value is 10; values above 10 will be coerced to 10.
+     *     pageSize: 'placeholder-value',
+     *     // Page token received from a previous LookupEntryLinks call. Provide this to retrieve the subsequent page. When paginating, all other parameters that are provided to the LookupEntryLinks request must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entryLinks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupEntryLinks(
+      params: Params$Resource$Projects$Locations$Lookupentrylinks,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    lookupEntryLinks(
+      params?: Params$Resource$Projects$Locations$Lookupentrylinks,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+    >;
+    lookupEntryLinks(
+      params: Params$Resource$Projects$Locations$Lookupentrylinks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupEntryLinks(
+      params: Params$Resource$Projects$Locations$Lookupentrylinks,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+    ): void;
+    lookupEntryLinks(
+      params: Params$Resource$Projects$Locations$Lookupentrylinks,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+    ): void;
+    lookupEntryLinks(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+    ): void;
+    lookupEntryLinks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lookupentrylinks
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lookupentrylinks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lookupentrylinks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:lookupEntryLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1LookupEntryLinksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Searches for Entries matching the given query and scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *       'https://www.googleapis.com/auth/dataplex.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7958,6 +8113,17 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Projects$Locations$Lookupcontext extends StandardParameters {
+    /**
+     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1LookupContextRequest;
+  }
   export interface Params$Resource$Projects$Locations$Lookupentry extends StandardParameters {
     /**
      * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
@@ -7979,6 +8145,32 @@ export namespace dataplex_v1 {
      * Optional. View to control which parts of an entry the service should return.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lookupentrylinks extends StandardParameters {
+    /**
+     * Required. The resource name of the referred Entry. Format: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}. Entry Links which references this entry will be returned in the response.
+     */
+    entry?: string;
+    /**
+     * Entry link types to filter the response by. If empty, all entry link types will be returned. At most 10 entry link types can be specified.
+     */
+    entryLinkTypes?: string[];
+    /**
+     * Mode of entry reference.
+     */
+    entryMode?: string;
+    /**
+     * Required. The project to which the request should be attributed to Format: projects/{project_id_or_number\}/locations/{location_id\}.
+     */
+    name?: string;
+    /**
+     * Maximum number of EntryLinks to return. The service may return fewer than this value. If unspecified, at most 10 EntryLinks will be returned. The maximum value is 10; values above 10 will be coerced to 10.
+     */
+    pageSize?: number;
+    /**
+     * Page token received from a previous LookupEntryLinks call. Provide this to retrieve the subsequent page. When paginating, all other parameters that are provided to the LookupEntryLinks request must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Searchentries extends StandardParameters {
     /**
@@ -20111,7 +20303,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an Entry. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
+     * Gets an Entry.
      * @example
      * ```js
      * // Before running the sample:
@@ -20263,7 +20455,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists Entries within an EntryGroup. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).
+     * Lists Entries within an EntryGroup.
      * @example
      * ```js
      * // Before running the sample:
@@ -20720,6 +20912,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "aspects": {},
      *       //   "createTime": "my_createTime",
      *       //   "entryLinkType": "my_entryLinkType",
      *       //   "entryReferences": [],
@@ -20732,6 +20925,7 @@ export namespace dataplex_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
      *   //   "entryLinkType": "my_entryLinkType",
      *   //   "entryReferences": [],
@@ -20880,6 +21074,7 @@ export namespace dataplex_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
      *   //   "entryLinkType": "my_entryLinkType",
      *   //   "entryReferences": [],
@@ -21025,6 +21220,7 @@ export namespace dataplex_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "aspects": {},
      *   //   "createTime": "my_createTime",
      *   //   "entryLinkType": "my_entryLinkType",
      *   //   "entryReferences": [],
@@ -21131,6 +21327,169 @@ export namespace dataplex_v1 {
         );
       }
     }
+
+    /**
+     * Updates an Entry Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entryLinks.patch({
+     *     // Optional. If set to true and the entry link doesn't exist, the service will create it.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. The map keys of the Aspects which the service should modify. It should be the aspect type reference in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     *     aspectKeys: 'placeholder-value',
+     *     // Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entryLinks/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aspects": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "entryLinkType": "my_entryLinkType",
+     *       //   "entryReferences": [],
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entryLinkType": "my_entryLinkType",
+     *   //   "entryReferences": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1EntryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1EntryLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1EntryLink>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Create extends StandardParameters {
@@ -21159,6 +21518,25 @@ export namespace dataplex_v1 {
      * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Patch extends StandardParameters {
+    /**
+     * Optional. If set to true and the entry link doesn't exist, the service will create it.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. The map keys of the Aspects which the service should modify. It should be the aspect type reference in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     */
+    aspectKeys?: string[];
+    /**
+     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1EntryLink;
   }
 
   export class Resource$Projects$Locations$Entrylinktypes {
@@ -27567,20 +27945,12 @@ export namespace dataplex_v1 {
   export class Resource$Projects$Locations$Lakes {
     context: APIRequestContext;
     actions: Resource$Projects$Locations$Lakes$Actions;
-    content: Resource$Projects$Locations$Lakes$Content;
-    contentitems: Resource$Projects$Locations$Lakes$Contentitems;
     environments: Resource$Projects$Locations$Lakes$Environments;
     tasks: Resource$Projects$Locations$Lakes$Tasks;
     zones: Resource$Projects$Locations$Lakes$Zones;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.actions = new Resource$Projects$Locations$Lakes$Actions(
-        this.context
-      );
-      this.content = new Resource$Projects$Locations$Lakes$Content(
-        this.context
-      );
-      this.contentitems = new Resource$Projects$Locations$Lakes$Contentitems(
         this.context
       );
       this.environments = new Resource$Projects$Locations$Lakes$Environments(
@@ -29100,3178 +29470,10 @@ export namespace dataplex_v1 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Lakes$Content {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.create({
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "dataText": "my_dataText",
-     *       //   "description": "my_description",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "notebook": {},
-     *       //   "path": "my_path",
-     *       //   "sqlScript": {},
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Create
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Lakes$Content$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/content').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Delete a content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.delete({
-     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Lakes$Content$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Get a content resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.get({
-     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *     // Optional. Specify content view to make a partial request.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Get
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Lakes$Content$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets the access control policy for a contentitem resource. A NOT_FOUND error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.Caller must have Google IAM dataplex.content.getIamPolicy permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
-     * List content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.list({
-     *     // Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
-     *     filter: 'placeholder-value',
-     *     // Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "content": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Content$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Content$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Content$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Content$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$List
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Lakes$Content$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/content').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1ListContentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1ListContentResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update a content. Only supports full resource update.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.patch({
-     *     // Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *     // Required. Mask of fields to update.
-     *     updateMask: 'placeholder-value',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "dataText": "my_dataText",
-     *       //   "description": "my_description",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "notebook": {},
-     *       //   "path": "my_path",
-     *       //   "sqlScript": {},
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Lakes$Content$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified contentitem resource. Replaces any existing policy.Caller must have Google IAM dataplex.content.setIamPolicy permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.content.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (a NOT_FOUND error is not returned).A caller is not required to have Google IAM permission to make this request.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataplex.projects.locations.lakes.content.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
-    >;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions,
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Create extends StandardParameters {
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     */
-    parent?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Content;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Delete extends StandardParameters {
-    /**
-     * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-    /**
-     * Optional. Specify content view to make a partial request.
-     */
-    view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Getiampolicy extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$List extends StandardParameters {
-    /**
-     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
-     */
-    filter?: string;
-    /**
-     * Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Patch extends StandardParameters {
-    /**
-     * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-    /**
-     * Required. Mask of fields to update.
-     */
-    updateMask?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Content;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Setiampolicy extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Content$Testiampermissions extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Locations$Lakes$Contentitems {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.create({
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "dataText": "my_dataText",
-     *       //   "description": "my_description",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "notebook": {},
-     *       //   "path": "my_path",
-     *       //   "sqlScript": {},
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Create
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/contentitems').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Delete a content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.delete({
-     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Get a content resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.get({
-     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *     // Optional. Specify content view to make a partial request.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Get
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets the access control policy for a contentitem resource. A NOT_FOUND error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.Caller must have Google IAM dataplex.content.getIamPolicy permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.getIamPolicy(
-     *     {
-     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
-     * List content.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.list({
-     *     // Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
-     *     filter: 'placeholder-value',
-     *     // Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "content": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$List
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListContentResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListContentResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/contentitems').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1ListContentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1ListContentResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update a content. Only supports full resource update.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.patch({
-     *     // Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *     // Required. Mask of fields to update.
-     *     updateMask: 'placeholder-value',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "dataText": "my_dataText",
-     *       //   "description": "my_description",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "notebook": {},
-     *       //   "path": "my_path",
-     *       //   "sqlScript": {},
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "dataText": "my_dataText",
-     *   //   "description": "my_description",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "notebook": {},
-     *   //   "path": "my_path",
-     *   //   "sqlScript": {},
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Content>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Content>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Content>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified contentitem resource. Replaces any existing policy.Caller must have Google IAM dataplex.content.setIamPolicy permission on the resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.contentitems.setIamPolicy(
-     *     {
-     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy,
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
-    ): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1Policy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (a NOT_FOUND error is not returned).A caller is not required to have Google IAM permission to make this request.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataplex.projects.locations.lakes.contentitems.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
-    >;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions,
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Create extends StandardParameters {
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     */
-    parent?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Content;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Delete extends StandardParameters {
-    /**
-     * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-    /**
-     * Optional. Specify content view to make a partial request.
-     */
-    view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Getiampolicy extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$List extends StandardParameters {
-    /**
-     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
-     */
-    filter?: string;
-    /**
-     * Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Patch extends StandardParameters {
-    /**
-     * Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
-     */
-    name?: string;
-    /**
-     * Required. Mask of fields to update.
-     */
-    updateMask?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Content;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Setiampolicy extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Contentitems$Testiampermissions extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
-  }
-
   export class Resource$Projects$Locations$Lakes$Environments {
     context: APIRequestContext;
-    sessions: Resource$Projects$Locations$Lakes$Environments$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.sessions =
-        new Resource$Projects$Locations$Lakes$Environments$Sessions(
-          this.context
-        );
-    }
-
-    /**
-     * Create an environment resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.environments.create({
-     *     // Required. Environment identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the lake.
-     *     environmentId: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "endpoints": {},
-     *       //   "infrastructureSpec": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "sessionSpec": {},
-     *       //   "sessionStatus": {},
-     *       //   "state": "my_state",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/environments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Delete the environment resource. All the child resources must have been deleted before environment deletion can be initiated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.environments.delete({
-     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Get environment resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.environments.get({
-     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endpoints": {},
-     *   //   "infrastructureSpec": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "sessionSpec": {},
-     *   //   "sessionStatus": {},
-     *   //   "state": "my_state",
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Environment>
-    >;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$Get
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1Environment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1Environment>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1Environment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1Environment>(
-          parameters
-        );
-      }
     }
 
     /**
@@ -32419,329 +29621,6 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
-      }
-    }
-
-    /**
-     * Lists environments under the given lake.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.environments.list({
-     *     // Optional. Filter request.
-     *     filter: 'placeholder-value',
-     *     // Optional. Order by fields for the result.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of environments to return. The service may return fewer than this value. If unspecified, at most 10 environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Page token received from a previous ListEnvironments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEnvironments must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
-     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "environments": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$List
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/environments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1ListEnvironmentsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update the environment resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataplex.projects.locations.lakes.environments.patch({
-     *     // Output only. The relative resource name of the environment, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
-     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
-     *     // Required. Mask of fields to update.
-     *     updateMask: 'placeholder-value',
-     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "endpoints": {},
-     *       //   "infrastructureSpec": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "sessionSpec": {},
-     *       //   "sessionStatus": {},
-     *       //   "state": "my_state",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -33059,37 +29938,6 @@ export namespace dataplex_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Create extends StandardParameters {
-    /**
-     * Required. Environment identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the lake.
-     */
-    environmentId?: string;
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
-     */
-    parent?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Environment;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Delete extends StandardParameters {
-    /**
-     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Lakes$Environments$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -33099,47 +29947,6 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$List extends StandardParameters {
-    /**
-     * Optional. Filter request.
-     */
-    filter?: string;
-    /**
-     * Optional. Order by fields for the result.
-     */
-    orderBy?: string;
-    /**
-     * Optional. Maximum number of environments to return. The service may return fewer than this value. If unspecified, at most 10 environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Page token received from a previous ListEnvironments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEnvironments must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Patch extends StandardParameters {
-    /**
-     * Output only. The relative resource name of the environment, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
-     */
-    name?: string;
-    /**
-     * Required. Mask of fields to update.
-     */
-    updateMask?: string;
-    /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
-     */
-    validateOnly?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDataplexV1Environment;
   }
   export interface Params$Resource$Projects$Locations$Lakes$Environments$Setiampolicy extends StandardParameters {
     /**
@@ -33162,189 +29969,6 @@ export namespace dataplex_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Locations$Lakes$Environments$Sessions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists session resources in an environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataplex = google.dataplex('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await dataplex.projects.locations.lakes.environments.sessions.list({
-     *       // Optional. Filter request. The following mode filter is supported to return only the sessions belonging to the requester when the mode is USER and return sessions of all the users when the mode is ADMIN. When no filter is sent default to USER mode. NOTE: When the mode is ADMIN, the requester should have dataplex.environments.listAllSessions permission to list all sessions, in absence of the permission, the request fails.mode = ADMIN | USER
-     *       filter: 'placeholder-value',
-     *       // Optional. Maximum number of sessions to return. The service may return fewer than this value. If unspecified, at most 10 sessions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous ListSessions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListSessions must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}.
-     *       parent:
-     *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "sessions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListSessionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/sessions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDataplexV1ListSessionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDataplexV1ListSessionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Lakes$Environments$Sessions$List extends StandardParameters {
-    /**
-     * Optional. Filter request. The following mode filter is supported to return only the sessions belonging to the requester when the mode is USER and return sessions of all the users when the mode is ADMIN. When no filter is sent default to USER mode. NOTE: When the mode is ADMIN, the requester should have dataplex.environments.listAllSessions permission to list all sessions, in absence of the permission, the request fails.mode = ADMIN | USER
-     */
-    filter?: string;
-    /**
-     * Optional. Maximum number of sessions to return. The service may return fewer than this value. If unspecified, at most 10 sessions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Page token received from a previous ListSessions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListSessions must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}.
-     */
-    parent?: string;
   }
 
   export class Resource$Projects$Locations$Lakes$Tasks {
@@ -42139,5 +38763,502 @@ export namespace dataplex_v1 {
      * When set to true, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field.This can only be true when reading across collections. For example, when parent is set to "projects/example/locations/-".This field is not supported by default and will result in an UNIMPLEMENTED error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Policyintents {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.policyIntents.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/policyIntents/my-policyIntent',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Policyintents$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Policyintents$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Policyintents$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Policyintents$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.policyIntents.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/policyIntents/my-policyIntent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Policyintents$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Policyintents$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Policyintents$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Policyintents$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Policyintents$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.policyIntents.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/policyIntents/my-policyIntent',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Policyintents$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Policyintents$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+    >;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Policyintents$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Policyintents$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Policyintents$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Policyintents$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleIamV1TestIamPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Policyintents$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Policyintents$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Policyintents$Getiampolicy extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Policyintents$Setiampolicy extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Policyintents$Testiampermissions extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
 }
