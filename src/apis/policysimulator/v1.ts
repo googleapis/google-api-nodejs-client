@@ -168,7 +168,7 @@ export namespace policysimulator_v1 {
      */
     methodTypes?: string[] | null;
     /**
-     * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 70 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/` is not counted.
+     * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
      */
     name?: string | null;
     /**
@@ -181,7 +181,7 @@ export namespace policysimulator_v1 {
     updateTime?: string | null;
   }
   /**
-   * Defines an organization policy which is used to specify constraints for configurations of Google Cloud resources.
+   * Defines an organization policy that is used to specify constraints for configurations of Google Cloud resources.
    */
   export interface Schema$GoogleCloudOrgpolicyV2Policy {
     /**
@@ -193,11 +193,11 @@ export namespace policysimulator_v1 {
      */
     dryRunSpec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
     /**
-     * Optional. An opaque tag indicating the current state of the policy, used for concurrency control. This 'etag' is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. An opaque tag indicating the current state of the policy, used for concurrency control. This entity tag (ETag) is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint which this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string | null;
     /**
@@ -206,15 +206,15 @@ export namespace policysimulator_v1 {
     spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
   }
   /**
-   * Defines a Google Cloud policy specification which is used to specify constraints for configurations of Google Cloud resources.
+   * Defines a Google Cloud policy specification that is used to specify constraints for configurations of Google Cloud resources.
    */
   export interface Schema$GoogleCloudOrgpolicyV2PolicySpec {
     /**
-     * An opaque tag indicating the current version of the policySpec, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy is returned from either a `GetPolicy` or a `ListPolicies` request, this `etag` indicates the version of the current policySpec to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the `etag` will be unset.
+     * An opaque tag indicating the current version of the policySpec, used for concurrency control. This field is ignored if used in a `CreatePolicy` request. When the policy is returned from either a `GetPolicy` or a `ListPolicies` request, this entity tag (ETag) indicates the version of the current policySpec to use when executing a read-modify-write loop. When the policy is returned from a `GetEffectivePolicy` request, the ETag will be unset.
      */
     etag?: string | null;
     /**
-     * Determines the inheritance behavior for this policy. If `inherit_from_parent` is true, policy rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the new root for evaluation. This field can be set only for policies which configure list constraints.
+     * Determines the inheritance behavior for this policy. If `inherit_from_parent` is true, policy rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the new root for evaluation. This field can be set only for policies that configure list constraints.
      */
     inheritFromParent?: boolean | null;
     /**
@@ -222,7 +222,7 @@ export namespace policysimulator_v1 {
      */
     reset?: boolean | null;
     /**
-     * In policies for boolean constraints, the following requirements apply: - There must be one and only one policy rule where condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.
+     * In policies for boolean constraints, the following requirements apply: - There must be exactly one policy rule where a condition is unset. - Boolean policy rules with conditions must set `enforced` to the opposite of the policy rule without a condition. - During policy evaluation, policy rules with conditions that are true for a target resource take precedence.
      */
     rules?: Schema$GoogleCloudOrgpolicyV2PolicySpecPolicyRule[];
     /**
