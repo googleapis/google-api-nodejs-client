@@ -210,6 +210,10 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$Artifacts {
     /**
+     * Optional. A list of generic artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. If any artifacts fail to be pushed, the build is marked FAILURE.
+     */
+    genericArtifacts?: Schema$GenericArtifact[];
+    /**
      * Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.
      */
     goModules?: Schema$GoModule[];
@@ -229,6 +233,10 @@ export namespace cloudbuild_v1 {
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ArtifactObjects;
+    /**
+     * Optional. A list of OCI images to be uploaded to Artifact Registry upon successful completion of all build steps. OCI images in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any images fail to be pushed, the build is marked FAILURE.
+     */
+    oci?: Schema$Oci[];
     /**
      * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
      */
@@ -897,6 +905,10 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The OCI media type of the artifact. Non-OCI images, such as Docker images, will have an unspecified value.
+     */
+    ociMediaType?: string | null;
+    /**
      * Output only. Stores timing information for pushing the specified image.
      */
     pushTiming?: Schema$TimeSpan;
@@ -1123,6 +1135,10 @@ export namespace cloudbuild_v1 {
      */
     empty?: boolean | null;
     /**
+     * Represents a generic artifact as a build dependency.
+     */
+    genericArtifact?: Schema$GenericArtifactDependency;
+    /**
      * Represents a git repository as a build dependency.
      */
     gitSource?: Schema$GitSourceDependency;
@@ -1190,6 +1206,32 @@ export namespace cloudbuild_v1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * Generic artifact to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$GenericArtifact {
+    /**
+     * Required. Path to the generic artifact in the build's workspace to be uploaded to Artifact Registry.
+     */
+    folder?: string | null;
+    /**
+     * Required. Registry path to upload the generic artifact to, in the form projects/$PROJECT/locations/$LOCATION/repositories/$REPO/packages/$PACKAGE/versions/$VERSION
+     */
+    registryPath?: string | null;
+  }
+  /**
+   * Represents a generic artifact as a build dependency.
+   */
+  export interface Schema$GenericArtifactDependency {
+    /**
+     * Required. Where the artifact files should be placed on the worker.
+     */
+    destPath?: string | null;
+    /**
+     * Required. The location to download the artifact files from. Ex: projects/p1/locations/us/repositories/r1/packages/p1/versions/v1
+     */
+    resource?: string | null;
   }
   /**
    * GitConfig is a configuration for git operations.
@@ -1816,6 +1858,23 @@ export namespace cloudbuild_v1 {
     repository?: string | null;
   }
   /**
+   * OCI image to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$Oci {
+    /**
+     * Required. Path on the local file system where to find the container to upload. e.g. /workspace/my-image.tar
+     */
+    file?: string | null;
+    /**
+     * Required. Registry path to upload the container to. e.g. us-east1-docker.pkg.dev/my-project/my-repo/my-image
+     */
+    registryPath?: string | null;
+    /**
+     * Optional. Tags to apply to the uploaded image. e.g. latest, 1.0.0
+     */
+    tags?: string[] | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -2101,6 +2160,10 @@ export namespace cloudbuild_v1 {
      * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored. Note that the `$BUILDER_OUTPUT` variable is read-only and can't be substituted.
      */
     buildStepOutputs?: string[] | null;
+    /**
+     * Output only. Generic artifacts uploaded to Artifact Registry at the end of the build.
+     */
+    genericArtifacts?: Schema$UploadedGenericArtifact[];
     /**
      * Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.
      */
@@ -2401,6 +2464,31 @@ export namespace cloudbuild_v1 {
      * The resource name of the `WorkerPool` being updated. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * A generic artifact uploaded to Artifact Registry using the GenericArtifact directive.
+   */
+  export interface Schema$UploadedGenericArtifact {
+    /**
+     * Output only. The hash of the whole artifact.
+     */
+    artifactFingerprint?: Schema$FileHashes;
+    /**
+     * Output only. Path to the artifact in Artifact Registry.
+     */
+    artifactRegistryPackage?: string | null;
+    /**
+     * Output only. The file hashes that make up the generic artifact.
+     */
+    fileHashes?: {[key: string]: Schema$FileHashes} | null;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * Output only. URI of the uploaded artifact. Ex: projects/p1/locations/us/repositories/r1/packages/p1/versions/v1
+     */
+    uri?: string | null;
   }
   /**
    * A Go module artifact uploaded to Artifact Registry using the GoModule directive.
