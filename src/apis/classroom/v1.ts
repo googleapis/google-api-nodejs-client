@@ -195,6 +195,10 @@ export namespace classroom_v1 {
      * Submission state of add-on attachment's parent post (i.e. assignment).
      */
     postSubmissionState?: string | null;
+    /**
+     * Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. Read-only.
+     */
+    userId?: string | null;
   }
   /**
    * Attachment-relevant metadata for Classroom add-ons in the context of a specific post.
@@ -8195,7 +8199,8 @@ export namespace classroom_v1 {
      *   // Example response
      *   // {
      *   //   "pointsEarned": {},
-     *   //   "postSubmissionState": "my_postSubmissionState"
+     *   //   "postSubmissionState": "my_postSubmissionState",
+     *   //   "userId": "my_userId"
      *   // }
      * }
      *
@@ -8356,7 +8361,8 @@ export namespace classroom_v1 {
      *           // request body parameters
      *           // {
      *           //   "pointsEarned": {},
-     *           //   "postSubmissionState": "my_postSubmissionState"
+     *           //   "postSubmissionState": "my_postSubmissionState",
+     *           //   "userId": "my_userId"
      *           // }
      *         },
      *       },
@@ -8366,7 +8372,8 @@ export namespace classroom_v1 {
      *   // Example response
      *   // {
      *   //   "pointsEarned": {},
-     *   //   "postSubmissionState": "my_postSubmissionState"
+     *   //   "postSubmissionState": "my_postSubmissionState",
+     *   //   "userId": "my_userId"
      *   // }
      * }
      *
@@ -13820,7 +13827,8 @@ export namespace classroom_v1 {
      *   // Example response
      *   // {
      *   //   "pointsEarned": {},
-     *   //   "postSubmissionState": "my_postSubmissionState"
+     *   //   "postSubmissionState": "my_postSubmissionState",
+     *   //   "userId": "my_userId"
      *   // }
      * }
      *
@@ -13980,7 +13988,8 @@ export namespace classroom_v1 {
      *         // request body parameters
      *         // {
      *         //   "pointsEarned": {},
-     *         //   "postSubmissionState": "my_postSubmissionState"
+     *         //   "postSubmissionState": "my_postSubmissionState",
+     *         //   "userId": "my_userId"
      *         // }
      *       },
      *     });
@@ -13989,7 +13998,8 @@ export namespace classroom_v1 {
      *   // Example response
      *   // {
      *   //   "pointsEarned": {},
-     *   //   "postSubmissionState": "my_postSubmissionState"
+     *   //   "postSubmissionState": "my_postSubmissionState",
+     *   //   "userId": "my_userId"
      *   // }
      * }
      *
