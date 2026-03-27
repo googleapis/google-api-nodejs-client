@@ -1034,7 +1034,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260223",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1304,6 +1304,13 @@
           "description": "The type of this aspect configuration.",
           "type": "string"
         },
+        "rules": {
+          "description": "Optional. Rules of the Configuration.",
+          "items": {
+            "$ref": "AspectRule"
+          },
+          "type": "array"
+        },
         "spec": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -1311,6 +1318,25 @@
           },
           "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AspectRule": {
+      "description": "Rule-based configuration for an aspect.",
+      "id": "AspectRule",
+      "properties": {
+        "config": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
+          "type": "object"
+        },
+        "selector": {
+          "description": "Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1809,6 +1835,11 @@
         },
         "consumerImportSubnetRoutesWithPublicIp": {
           "description": "Import subnet routes with public ip flag value for peering from consumer to producer.",
+          "type": "boolean"
+        },
+        "consumerPeeringActive": {
+          "description": "Output only. If this is true, consumer peering is active.",
+          "readOnly": true,
           "type": "boolean"
         },
         "producerExportCustomRoutes": {
