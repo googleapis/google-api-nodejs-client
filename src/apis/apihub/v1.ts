@@ -213,6 +213,15 @@ export namespace apihub_v1 {
     gatewayPluginAddonConfig?: Schema$GoogleCloudApihubV1GatewayPluginAddonConfig;
   }
   /**
+   * The configuration for Agent Registry sync.
+   */
+  export interface Schema$GoogleCloudApihubV1AgentRegistrySyncConfig {
+    /**
+     * Optional. If true, the MCP data sync to the Agent Registry will be disabled. The default value is false.
+     */
+    disabled?: boolean | null;
+  }
+  /**
    * Configuration for addons which act on all data in the API hub. This is used to specify if the addon is enabled for all data in the API hub.
    */
   export interface Schema$GoogleCloudApihubV1AllDataAddonConfig {
@@ -522,11 +531,11 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1ApiView {
     /**
-     * Output only. MCP server view.
+     * MCP server view.
      */
     mcpServerView?: Schema$GoogleCloudApihubV1FlattenedApiVersionDeploymentView;
     /**
-     * Output only. MCP tools view.
+     * MCP tools view.
      */
     mcpToolView?: Schema$GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView;
   }
@@ -680,6 +689,10 @@ export namespace apihub_v1 {
    * Available configurations to provision an ApiHub Instance.
    */
   export interface Schema$GoogleCloudApihubV1Config {
+    /**
+     * Optional. The configuration for syncing MCP data in the API Hub instance to the Agent Registry.
+     */
+    agentRegistrySyncConfig?: Schema$GoogleCloudApihubV1AgentRegistrySyncConfig;
     /**
      * Optional. The Customer Managed Encryption Key (CMEK) used for data encryption. The CMEK name should follow the format of `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`, where the location must match the instance location. If the CMEK is not provided, a GMEK will be created for the instance.
      */
@@ -1331,15 +1344,15 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1FlattenedApiVersionDeploymentView {
     /**
-     * The API.
+     * Optional. The API.
      */
     api?: Schema$GoogleCloudApihubV1Api;
     /**
-     * The deployment.
+     * Optional. The deployment.
      */
     deployment?: Schema$GoogleCloudApihubV1Deployment;
     /**
-     * The version.
+     * Optional. The version.
      */
     version?: Schema$GoogleCloudApihubV1Version;
   }
@@ -1348,19 +1361,19 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1FlattenedApiVersionOperationDeploymentView {
     /**
-     * The API.
+     * Optional. The API.
      */
     api?: Schema$GoogleCloudApihubV1Api;
     /**
-     * The API operation.
+     * Optional. The API operation.
      */
     apiOperation?: Schema$GoogleCloudApihubV1ApiOperation;
     /**
-     * The deployment.
+     * Optional. The deployment.
      */
     deployment?: Schema$GoogleCloudApihubV1Deployment;
     /**
-     * The version.
+     * Optional. The version.
      */
     version?: Schema$GoogleCloudApihubV1Version;
   }
@@ -2309,7 +2322,7 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1RetrieveApiViewsResponse {
     /**
-     * The list of API views.
+     * Output only. The list of API views.
      */
     apiViews?: Schema$GoogleCloudApihubV1ApiView[];
     /**
@@ -3239,7 +3252,7 @@ export namespace apihub_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5039,6 +5052,165 @@ export namespace apihub_v1 {
         );
       }
     }
+
+    /**
+     * Update an Api Hub instance. The following fields in the ApiHubInstance can be updated: * disable_search * vertex_location * agent_registry_sync_config The update_mask should be used to specify the fields being updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.apiHubInstances.patch({
+     *     // Identifier. Format: `projects/{project\}/locations/{location\}/apiHubInstances/{apiHubInstance\}`.
+     *     name: 'projects/my-project/locations/my-location/apiHubInstances/my-apiHubInstance',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "stateMessage": "my_stateMessage",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Apihubinstances$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Apihubinstances$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Apihubinstances$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Apihubinstances$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Apihubinstances$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apihubinstances$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apihubinstances$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Apihubinstances$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Apihubinstances$Create extends StandardParameters {
@@ -5073,6 +5245,21 @@ export namespace apihub_v1 {
      * Required. There will always be only one Api Hub instance for a Google Cloud project across all locations. The parent resource for the Api Hub instance resource. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Apihubinstances$Patch extends StandardParameters {
+    /**
+     * Identifier. Format: `projects/{project\}/locations/{location\}/apiHubInstances/{apiHubInstance\}`.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1ApiHubInstance;
   }
 
   export class Resource$Projects$Locations$Apis {
