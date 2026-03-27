@@ -126,6 +126,11 @@
               "location": "query",
               "type": "string"
             },
+            "applicationInfoFilter": {
+              "description": "Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId=\"clientId\" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```",
+              "location": "query",
+              "type": "string"
+            },
             "applicationName": {
               "description": "Application name for which the events are to be retrieved.",
               "enum": [
@@ -242,6 +247,11 @@
               "pattern": "(id:[a-z0-9]+(,id:[a-z0-9]+)*)",
               "type": "string"
             },
+            "includeSensitiveData": {
+              "description": "Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP) and Chat applications; using it with any other application will result in a permission error.",
+              "location": "query",
+              "type": "boolean"
+            },
             "maxResults": {
               "default": "1000",
               "description": "Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.",
@@ -250,6 +260,11 @@
               "maximum": "1000",
               "minimum": "1",
               "type": "integer"
+            },
+            "networkInfoFilter": {
+              "description": "Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode=\"IN\" GET...&networkInfoFilter=regionCode=%22IN%22 ```",
+              "location": "query",
+              "type": "string"
             },
             "orgUnitID": {
               "default": "",
@@ -272,6 +287,11 @@
               "description": "Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.",
               "location": "query",
               "pattern": "(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d)(?:\\.(\\d+))?(?:(Z)|([-+])(\\d\\d):(\\d\\d))",
+              "type": "string"
+            },
+            "statusFilter": {
+              "description": "Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode=\"200\" GET...&statusFilter=statusCode=%22200%22 ```",
+              "location": "query",
               "type": "string"
             },
             "userKey": {
@@ -666,7 +686,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260317",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -829,6 +849,80 @@
                 },
                 "type": "array"
               },
+              "sensitiveParameters": {
+                "description": "Includes sensitive parameter value pairs for various applications.",
+                "items": {
+                  "properties": {
+                    "boolValue": {
+                      "description": "Boolean value of the parameter.",
+                      "type": "boolean"
+                    },
+                    "intValue": {
+                      "description": "Integer value of the parameter.",
+                      "format": "int64",
+                      "type": "string"
+                    },
+                    "messageValue": {
+                      "description": "Nested parameter value pairs associated with this parameter. Complex value type for a parameter are returned as a list of parameter values. For example, the address parameter may have a value as `[{parameter: [{name: city, value: abc}]}]`",
+                      "properties": {
+                        "parameter": {
+                          "description": "Parameter values",
+                          "items": {
+                            "$ref": "NestedParameter"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "multiIntValue": {
+                      "description": "Integer values of the parameter.",
+                      "items": {
+                        "format": "int64",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "multiMessageValue": {
+                      "description": "List of `messageValue` objects.",
+                      "items": {
+                        "properties": {
+                          "parameter": {
+                            "description": "Parameter values",
+                            "items": {
+                              "$ref": "NestedParameter"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "multiValue": {
+                      "description": "String values of the parameter.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "description": "The name of the parameter.",
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "String value of the parameter.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "status": {
+                "$ref": "ActivityEventsStatus",
+                "description": "Status of the event. Note: Not all events have status."
+              },
               "type": {
                 "description": "Type of event. The Google Workspace service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`.",
                 "type": "string"
@@ -885,6 +979,30 @@
             "$ref": "ResourceDetails"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityEventsStatus": {
+      "description": "Status of the event. Note: Not all events have status.",
+      "id": "ActivityEventsStatus",
+      "properties": {
+        "errorCode": {
+          "description": "Error code of the event. Note: Field can be empty.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Error message of the event. Note: Field can be empty.",
+          "type": "string"
+        },
+        "eventStatus": {
+          "description": "Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED ",
+          "type": "string"
+        },
+        "httpStatusCode": {
+          "description": "Status code of the event. Note: Field can be empty.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -985,6 +1103,17 @@
         },
         "type": {
           "description": "The type of delivery mechanism used for this channel. The value should be set to `\"web_hook\"`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerIdentity": {
+      "description": "Identity of the Google Workspace customer who owns the resource.",
+      "id": "CustomerIdentity",
+      "properties": {
+        "id": {
+          "description": "Customer id.",
           "type": "string"
         }
       },
@@ -1148,6 +1277,21 @@
       },
       "type": "object"
     },
+    "GroupIdentity": {
+      "description": "Identity of the group who owns the resource.",
+      "id": "GroupIdentity",
+      "properties": {
+        "groupEmail": {
+          "description": "Group email.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Group gaia id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NestedParameter": {
       "description": "JSON template for a parameter used in various reports.",
       "id": "NestedParameter",
@@ -1194,6 +1338,43 @@
       },
       "type": "object"
     },
+    "OwnerDetails": {
+      "description": "Details of the owner of the resource.",
+      "id": "OwnerDetails",
+      "properties": {
+        "ownerIdentity": {
+          "description": "Identity details of the owner(s) of the resource.",
+          "items": {
+            "$ref": "OwnerIdentity"
+          },
+          "type": "array"
+        },
+        "ownerType": {
+          "description": "Type of the owner of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OwnerIdentity": {
+      "description": "Identity details of the owner of the resource.",
+      "id": "OwnerIdentity",
+      "properties": {
+        "customerIdentity": {
+          "$ref": "CustomerIdentity",
+          "description": "Identity of the Google Workspace customer who owns the resource."
+        },
+        "groupIdentity": {
+          "$ref": "GroupIdentity",
+          "description": "Identity of the group who owns the resource."
+        },
+        "userIdentity": {
+          "$ref": "UserIdentity",
+          "description": "Identity of the user who owns the resource."
+        }
+      },
+      "type": "object"
+    },
     "Reason": {
       "description": "The reason why the label/field was applied.",
       "id": "Reason",
@@ -1217,8 +1398,12 @@
           "type": "array"
         },
         "id": {
-          "description": "Identifier of the resource.",
+          "description": "Identifier of the resource, such as a doc_id for a Drive document, a conference_id for a Meet conference, or a \"gaia_id/rfc2822_message_id\" for an email.",
           "type": "string"
+        },
+        "ownerDetails": {
+          "$ref": "OwnerDetails",
+          "description": "Owner details of the resource."
         },
         "relation": {
           "description": "Defines relationship of the resource to the events",
@@ -1392,6 +1577,21 @@
             "type": "object"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UserIdentity": {
+      "description": "Identity of the user who owns the resource.",
+      "id": "UserIdentity",
+      "properties": {
+        "id": {
+          "description": "User gaia id.",
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "User email.",
+          "type": "string"
         }
       },
       "type": "object"

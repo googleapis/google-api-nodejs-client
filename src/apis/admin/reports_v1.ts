@@ -193,6 +193,17 @@ export namespace admin_reports_v1 {
         value?: string;
       }>;
       resourceIds?: string[];
+      sensitiveParameters?: Array<{
+        boolValue?: boolean;
+        intValue?: string;
+        messageValue?: {parameter?: Schema$NestedParameter[]};
+        multiIntValue?: string[];
+        multiMessageValue?: Array<{parameter?: Schema$NestedParameter[]}>;
+        multiValue?: string[];
+        name?: string;
+        value?: string;
+      }>;
+      status?: Schema$ActivityEventsStatus;
       type?: string;
     }> | null;
     /**
@@ -224,6 +235,27 @@ export namespace admin_reports_v1 {
      * Details of the resource on which the action was performed.
      */
     resourceDetails?: Schema$ResourceDetails[];
+  }
+  /**
+   * Status of the event. Note: Not all events have status.
+   */
+  export interface Schema$ActivityEventsStatus {
+    /**
+     * Error code of the event. Note: Field can be empty.
+     */
+    errorCode?: string | null;
+    /**
+     * Error message of the event. Note: Field can be empty.
+     */
+    errorMessage?: string | null;
+    /**
+     * Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED
+     */
+    eventStatus?: string | null;
+    /**
+     * Status code of the event. Note: Field can be empty.
+     */
+    httpStatusCode?: number | null;
   }
   /**
    * Network information of the user doing the action.
@@ -307,6 +339,15 @@ export namespace admin_reports_v1 {
      * The type of delivery mechanism used for this channel. The value should be set to `"web_hook"`.
      */
     type?: string | null;
+  }
+  /**
+   * Identity of the Google Workspace customer who owns the resource.
+   */
+  export interface Schema$CustomerIdentity {
+    /**
+     * Customer id.
+     */
+    id?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -440,6 +481,19 @@ export namespace admin_reports_v1 {
     email?: string | null;
   }
   /**
+   * Identity of the group who owns the resource.
+   */
+  export interface Schema$GroupIdentity {
+    /**
+     * Group email.
+     */
+    groupEmail?: string | null;
+    /**
+     * Group gaia id.
+     */
+    id?: string | null;
+  }
+  /**
    * JSON template for a parameter used in various reports.
    */
   export interface Schema$NestedParameter {
@@ -473,6 +527,36 @@ export namespace admin_reports_v1 {
     value?: string | null;
   }
   /**
+   * Details of the owner of the resource.
+   */
+  export interface Schema$OwnerDetails {
+    /**
+     * Identity details of the owner(s) of the resource.
+     */
+    ownerIdentity?: Schema$OwnerIdentity[];
+    /**
+     * Type of the owner of the resource.
+     */
+    ownerType?: string | null;
+  }
+  /**
+   * Identity details of the owner of the resource.
+   */
+  export interface Schema$OwnerIdentity {
+    /**
+     * Identity of the Google Workspace customer who owns the resource.
+     */
+    customerIdentity?: Schema$CustomerIdentity;
+    /**
+     * Identity of the group who owns the resource.
+     */
+    groupIdentity?: Schema$GroupIdentity;
+    /**
+     * Identity of the user who owns the resource.
+     */
+    userIdentity?: Schema$UserIdentity;
+  }
+  /**
    * The reason why the label/field was applied.
    */
   export interface Schema$Reason {
@@ -490,9 +574,13 @@ export namespace admin_reports_v1 {
      */
     appliedLabels?: Schema$AppliedLabel[];
     /**
-     * Identifier of the resource.
+     * Identifier of the resource, such as a doc_id for a Drive document, a conference_id for a Meet conference, or a "gaia_id/rfc2822_message_id" for an email.
      */
     id?: string | null;
+    /**
+     * Owner details of the resource.
+     */
+    ownerDetails?: Schema$OwnerDetails;
     /**
      * Defines relationship of the resource to the events
      */
@@ -570,6 +658,19 @@ export namespace admin_reports_v1 {
       message?: string;
     }> | null;
   }
+  /**
+   * Identity of the user who owns the resource.
+   */
+  export interface Schema$UserIdentity {
+    /**
+     * User gaia id.
+     */
+    id?: string | null;
+    /**
+     * User email.
+     */
+    userEmail?: string | null;
+  }
 
   export class Resource$Activities {
     context: APIRequestContext;
@@ -610,6 +711,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.activities.list({
      *     // The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      *     actorIpAddress: 'placeholder-value',
+     *     // Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
+     *     applicationInfoFilter: 'placeholder-value',
      *     // Application name for which the events are to be retrieved.
      *     applicationName:
      *       '(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)',
@@ -625,8 +728,12 @@ export namespace admin_reports_v1 {
      *       '(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+,)*(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+)',
      *     // Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
      *     groupIdFilter: '(id:[a-z0-9]+(,id:[a-z0-9]+)*)',
+     *     // Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP) and Chat applications; using it with any other application will result in a permission error.
+     *     includeSensitiveData: 'placeholder-value',
      *     // Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.
      *     maxResults: 'placeholder-value',
+     *     // Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ```
+     *     networkInfoFilter: 'placeholder-value',
      *     // ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      *     orgUnitID: '(id:[a-z0-9]+)',
      *     // The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string.
@@ -636,6 +743,8 @@ export namespace admin_reports_v1 {
      *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      *     startTime:
      *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *     // Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ```
+     *     statusFilter: 'placeholder-value',
      *     // Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      *     userKey: 'placeholder-value',
      *   });
@@ -939,6 +1048,10 @@ export namespace admin_reports_v1 {
      */
     actorIpAddress?: string;
     /**
+     * Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
+     */
+    applicationInfoFilter?: string;
+    /**
      * Application name for which the events are to be retrieved.
      */
     applicationName?: string;
@@ -963,9 +1076,17 @@ export namespace admin_reports_v1 {
      */
     groupIdFilter?: string;
     /**
+     * Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP) and Chat applications; using it with any other application will result in a permission error.
+     */
+    includeSensitiveData?: boolean;
+    /**
      * Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.
      */
     maxResults?: number;
+    /**
+     * Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ```
+     */
+    networkInfoFilter?: string;
     /**
      * ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
@@ -982,6 +1103,10 @@ export namespace admin_reports_v1 {
      * Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      */
     startTime?: string;
+    /**
+     * Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ```
+     */
+    statusFilter?: string;
     /**
      * Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      */

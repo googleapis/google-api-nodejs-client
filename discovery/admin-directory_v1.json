@@ -454,7 +454,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators",
+              "description": "Search string in the format given at [List query operators](https://developers.google.com/workspace/admin/directory/v1/list-query-operators).",
               "location": "query",
               "type": "string"
             },
@@ -639,6 +639,46 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/admin.directory.device.chromeos"
+                  ]
+                },
+                "countChromeOsDevices": {
+                  "description": "Counts ChromeOS devices matching the request.",
+                  "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos:countChromeOsDevices",
+                  "httpMethod": "GET",
+                  "id": "admin.customer.devices.chromeos.countChromeOsDevices",
+                  "parameterOrder": [
+                    "customerId"
+                  ],
+                  "parameters": {
+                    "customerId": {
+                      "description": "Required. Immutable ID of the Google Workspace account.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. Search string in the format given at [List query operators](https://developers.google.com/workspace/admin/directory/v1/list-query-operators).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "includeChildOrgunits": {
+                      "description": "Optional. Return devices from all child orgunits, as well as the specified org unit. If this is set to true, 'orgUnitPath' must be provided.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "orgUnitPath": {
+                      "description": "Optional. The full path of the organizational unit (minus the leading `/`) or its unique ID.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "admin/directory/v1/customer/{customerId}/devices/chromeos:countChromeOsDevices",
+                  "response": {
+                    "$ref": "CountChromeOsDevicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admin.directory.device.chromeos",
+                    "https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly"
                   ]
                 },
                 "issueCommand": {
@@ -3850,7 +3890,7 @@
     "users": {
       "methods": {
         "createGuest": {
-          "description": "Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545?hl=en). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.",
+          "description": "Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.",
           "flatPath": "admin/directory/v1/users:createGuest",
           "httpMethod": "POST",
           "id": "directory.users.createGuest",
@@ -4689,7 +4729,7 @@
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260227",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6085,6 +6125,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CountChromeOsDevicesResponse": {
+      "description": "A response for counting ChromeOS devices.",
+      "id": "CountChromeOsDevicesResponse",
+      "properties": {
+        "count": {
+          "description": "The total number of devices matching the request.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
