@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {saasservicemgmt_v1} from './v1';
 import {saasservicemgmt_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: saasservicemgmt_v1.Saasservicemgmt,
   v1beta1: saasservicemgmt_v1beta1.Saasservicemgmt,
 };
 
+export function saasservicemgmt(
+  version: 'v1'
+): saasservicemgmt_v1.Saasservicemgmt;
+export function saasservicemgmt(
+  options: saasservicemgmt_v1.Options
+): saasservicemgmt_v1.Saasservicemgmt;
 export function saasservicemgmt(
   version: 'v1beta1'
 ): saasservicemgmt_v1beta1.Saasservicemgmt;
 export function saasservicemgmt(
   options: saasservicemgmt_v1beta1.Options
 ): saasservicemgmt_v1beta1.Saasservicemgmt;
-export function saasservicemgmt<T = saasservicemgmt_v1beta1.Saasservicemgmt>(
+export function saasservicemgmt<
+  T =
+    | saasservicemgmt_v1.Saasservicemgmt
+    | saasservicemgmt_v1beta1.Saasservicemgmt,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | saasservicemgmt_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | saasservicemgmt_v1.Options
+    | 'v1beta1'
+    | saasservicemgmt_v1beta1.Options
 ) {
   return getAPI<T>('saasservicemgmt', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {saasservicemgmt_v1};
 export {saasservicemgmt_v1beta1};
 export {
   AuthPlus,

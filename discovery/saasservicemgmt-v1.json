@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "saasservicemgmt:v1beta1",
+  "id": "saasservicemgmt:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://saasservicemgmt.mtls.googleapis.com/",
   "name": "saasservicemgmt",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "saasservicemgmt.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "GoogleCloudLocationLocation"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "saasservicemgmt.projects.locations.list",
               "parameterOrder": [
@@ -173,7 +173,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -187,7 +187,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new release.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/releases",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/releases",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.releases.create",
                   "parameterOrder": [
@@ -217,7 +217,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/releases",
+                  "path": "v1/{+parent}/releases",
                   "request": {
                     "$ref": "Release"
                   },
@@ -230,7 +230,7 @@
                 },
                 "delete": {
                   "description": "Delete a single release.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.releases.delete",
                   "parameterOrder": [
@@ -260,7 +260,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -270,7 +270,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single release.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.releases.get",
                   "parameterOrder": [
@@ -285,7 +285,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Release"
                   },
@@ -295,7 +295,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of releases.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/releases",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/releases",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.releases.list",
                   "parameterOrder": [
@@ -331,7 +331,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/releases",
+                  "path": "v1/{+parent}/releases",
                   "response": {
                     "$ref": "ListReleasesResponse"
                   },
@@ -341,7 +341,7 @@
                 },
                 "patch": {
                   "description": "Update a single release.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/releases/{releasesId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.releases.patch",
                   "parameterOrder": [
@@ -372,7 +372,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Release"
                   },
@@ -389,7 +389,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new rollout kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rolloutKinds",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutKinds",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.rolloutKinds.create",
                   "parameterOrder": [
@@ -419,7 +419,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/rolloutKinds",
+                  "path": "v1/{+parent}/rolloutKinds",
                   "request": {
                     "$ref": "RolloutKind"
                   },
@@ -432,7 +432,7 @@
                 },
                 "delete": {
                   "description": "Delete a single rollout kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.rolloutKinds.delete",
                   "parameterOrder": [
@@ -462,7 +462,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -472,7 +472,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single rollout kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.rolloutKinds.get",
                   "parameterOrder": [
@@ -487,7 +487,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "RolloutKind"
                   },
@@ -497,7 +497,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of rollout kinds.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rolloutKinds",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutKinds",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.rolloutKinds.list",
                   "parameterOrder": [
@@ -533,7 +533,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/rolloutKinds",
+                  "path": "v1/{+parent}/rolloutKinds",
                   "response": {
                     "$ref": "ListRolloutKindsResponse"
                   },
@@ -543,7 +543,7 @@
                 },
                 "patch": {
                   "description": "Update a single rollout kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rolloutKinds/{rolloutKindsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.rolloutKinds.patch",
                   "parameterOrder": [
@@ -574,7 +574,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "RolloutKind"
                   },
@@ -591,7 +591,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new rollout.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rollouts",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.rollouts.create",
                   "parameterOrder": [
@@ -621,7 +621,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/rollouts",
+                  "path": "v1/{+parent}/rollouts",
                   "request": {
                     "$ref": "Rollout"
                   },
@@ -634,7 +634,7 @@
                 },
                 "delete": {
                   "description": "Delete a single rollout.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.rollouts.delete",
                   "parameterOrder": [
@@ -664,7 +664,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -674,7 +674,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single rollout.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.rollouts.get",
                   "parameterOrder": [
@@ -689,7 +689,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Rollout"
                   },
@@ -699,7 +699,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of rollouts.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rollouts",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.rollouts.list",
                   "parameterOrder": [
@@ -735,7 +735,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/rollouts",
+                  "path": "v1/{+parent}/rollouts",
                   "response": {
                     "$ref": "ListRolloutsResponse"
                   },
@@ -745,7 +745,7 @@
                 },
                 "patch": {
                   "description": "Update a single rollout.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/rollouts/{rolloutsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.rollouts.patch",
                   "parameterOrder": [
@@ -776,7 +776,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Rollout"
                   },
@@ -793,7 +793,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new saas.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saas",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/saas",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.saas.create",
                   "parameterOrder": [
@@ -823,7 +823,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/saas",
+                  "path": "v1/{+parent}/saas",
                   "request": {
                     "$ref": "Saas"
                   },
@@ -836,7 +836,7 @@
                 },
                 "delete": {
                   "description": "Delete a single saas.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.saas.delete",
                   "parameterOrder": [
@@ -866,7 +866,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -876,7 +876,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single saas.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.saas.get",
                   "parameterOrder": [
@@ -891,7 +891,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Saas"
                   },
@@ -901,7 +901,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of saas.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saas",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/saas",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.saas.list",
                   "parameterOrder": [
@@ -937,7 +937,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/saas",
+                  "path": "v1/{+parent}/saas",
                   "response": {
                     "$ref": "ListSaasResponse"
                   },
@@ -947,7 +947,7 @@
                 },
                 "patch": {
                   "description": "Update a single saas.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/saas/{saasId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.saas.patch",
                   "parameterOrder": [
@@ -978,7 +978,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Saas"
                   },
@@ -995,7 +995,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new tenant.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tenants",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tenants",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.tenants.create",
                   "parameterOrder": [
@@ -1025,7 +1025,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/tenants",
+                  "path": "v1/{+parent}/tenants",
                   "request": {
                     "$ref": "Tenant"
                   },
@@ -1038,7 +1038,7 @@
                 },
                 "delete": {
                   "description": "Delete a single tenant.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.tenants.delete",
                   "parameterOrder": [
@@ -1068,7 +1068,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1078,7 +1078,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single tenant.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.tenants.get",
                   "parameterOrder": [
@@ -1093,7 +1093,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Tenant"
                   },
@@ -1103,7 +1103,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of tenants.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tenants",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tenants",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.tenants.list",
                   "parameterOrder": [
@@ -1139,7 +1139,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/tenants",
+                  "path": "v1/{+parent}/tenants",
                   "response": {
                     "$ref": "ListTenantsResponse"
                   },
@@ -1149,7 +1149,7 @@
                 },
                 "patch": {
                   "description": "Update a single tenant.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tenants/{tenantsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.tenants.patch",
                   "parameterOrder": [
@@ -1180,7 +1180,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Tenant"
                   },
@@ -1197,7 +1197,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new unit kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitKinds",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitKinds",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.unitKinds.create",
                   "parameterOrder": [
@@ -1227,7 +1227,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/unitKinds",
+                  "path": "v1/{+parent}/unitKinds",
                   "request": {
                     "$ref": "UnitKind"
                   },
@@ -1240,7 +1240,7 @@
                 },
                 "delete": {
                   "description": "Delete a single unit kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.unitKinds.delete",
                   "parameterOrder": [
@@ -1270,7 +1270,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1280,7 +1280,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single unit kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.unitKinds.get",
                   "parameterOrder": [
@@ -1295,7 +1295,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "UnitKind"
                   },
@@ -1305,7 +1305,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of unit kinds.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitKinds",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitKinds",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.unitKinds.list",
                   "parameterOrder": [
@@ -1341,7 +1341,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/unitKinds",
+                  "path": "v1/{+parent}/unitKinds",
                   "response": {
                     "$ref": "ListUnitKindsResponse"
                   },
@@ -1351,7 +1351,7 @@
                 },
                 "patch": {
                   "description": "Update a single unit kind.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitKinds/{unitKindsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.unitKinds.patch",
                   "parameterOrder": [
@@ -1382,7 +1382,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "UnitKind"
                   },
@@ -1399,7 +1399,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new unit operation.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitOperations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitOperations",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.unitOperations.create",
                   "parameterOrder": [
@@ -1429,7 +1429,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/unitOperations",
+                  "path": "v1/{+parent}/unitOperations",
                   "request": {
                     "$ref": "UnitOperation"
                   },
@@ -1442,7 +1442,7 @@
                 },
                 "delete": {
                   "description": "Delete a single unit operation.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.unitOperations.delete",
                   "parameterOrder": [
@@ -1472,7 +1472,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1482,7 +1482,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single unit operation.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.unitOperations.get",
                   "parameterOrder": [
@@ -1497,7 +1497,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "UnitOperation"
                   },
@@ -1507,7 +1507,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of unit operations.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitOperations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitOperations",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.unitOperations.list",
                   "parameterOrder": [
@@ -1543,7 +1543,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/unitOperations",
+                  "path": "v1/{+parent}/unitOperations",
                   "response": {
                     "$ref": "ListUnitOperationsResponse"
                   },
@@ -1553,7 +1553,7 @@
                 },
                 "patch": {
                   "description": "Update a single unit operation.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/unitOperations/{unitOperationsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.unitOperations.patch",
                   "parameterOrder": [
@@ -1584,7 +1584,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "UnitOperation"
                   },
@@ -1601,7 +1601,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new unit.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/units",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/units",
                   "httpMethod": "POST",
                   "id": "saasservicemgmt.projects.locations.units.create",
                   "parameterOrder": [
@@ -1631,7 +1631,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/units",
+                  "path": "v1/{+parent}/units",
                   "request": {
                     "$ref": "Unit"
                   },
@@ -1644,7 +1644,7 @@
                 },
                 "delete": {
                   "description": "Delete a single unit.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
                   "httpMethod": "DELETE",
                   "id": "saasservicemgmt.projects.locations.units.delete",
                   "parameterOrder": [
@@ -1674,7 +1674,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1684,7 +1684,7 @@
                 },
                 "get": {
                   "description": "Retrieve a single unit.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.units.get",
                   "parameterOrder": [
@@ -1699,7 +1699,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Unit"
                   },
@@ -1709,7 +1709,7 @@
                 },
                 "list": {
                   "description": "Retrieve a collection of units.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/units",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/units",
                   "httpMethod": "GET",
                   "id": "saasservicemgmt.projects.locations.units.list",
                   "parameterOrder": [
@@ -1745,7 +1745,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/units",
+                  "path": "v1/{+parent}/units",
                   "response": {
                     "$ref": "ListUnitsResponse"
                   },
@@ -1755,7 +1755,7 @@
                 },
                 "patch": {
                   "description": "Update a single unit.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/units/{unitsId}",
                   "httpMethod": "PATCH",
                   "id": "saasservicemgmt.projects.locations.units.patch",
                   "parameterOrder": [
@@ -1786,7 +1786,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Unit"
                   },
@@ -3326,6 +3326,6 @@
   },
   "servicePath": "",
   "title": "SaaS Runtime API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }

@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace saasservicemgmt_v1beta1 {
+export namespace saasservicemgmt_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace saasservicemgmt_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+   * const saasservicemgmt = google.saasservicemgmt('v1');
    * ```
    */
   export class Saasservicemgmt {
@@ -1154,7 +1154,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1259,7 +1259,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1297,7 +1297,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1405,7 +1405,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1482,7 +1482,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1617,7 +1617,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+            url: (rootUrl + '/v1/{+parent}/releases').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1658,7 +1658,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1759,7 +1759,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1797,7 +1797,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1906,7 +1906,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1944,7 +1944,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2053,7 +2053,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/releases').replace(
+            url: (rootUrl + '/v1/{+parent}/releases').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2094,7 +2094,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2229,7 +2229,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -2367,7 +2367,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2500,7 +2500,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/rolloutKinds').replace(
+            url: (rootUrl + '/v1/{+parent}/rolloutKinds').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2541,7 +2541,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2642,7 +2642,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -2680,7 +2680,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2788,7 +2788,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -2826,7 +2826,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2935,7 +2935,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/rolloutKinds').replace(
+            url: (rootUrl + '/v1/{+parent}/rolloutKinds').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2976,7 +2976,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3109,7 +3109,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -3247,7 +3247,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3400,7 +3400,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/rollouts').replace(
+            url: (rootUrl + '/v1/{+parent}/rollouts').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3441,7 +3441,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3542,7 +3542,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -3580,7 +3580,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3698,7 +3698,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -3736,7 +3736,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3845,7 +3845,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/rollouts').replace(
+            url: (rootUrl + '/v1/{+parent}/rollouts').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3886,7 +3886,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4039,7 +4039,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -4177,7 +4177,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4302,10 +4302,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/saas').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/saas').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
           },
@@ -4343,7 +4340,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4444,7 +4441,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -4482,7 +4479,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4586,7 +4583,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4624,7 +4621,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4731,10 +4728,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/saas').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/saas').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -4772,7 +4766,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4897,7 +4891,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5035,7 +5029,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5162,7 +5156,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/tenants').replace(
+            url: (rootUrl + '/v1/{+parent}/tenants').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5203,7 +5197,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5304,7 +5298,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -5342,7 +5336,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5447,7 +5441,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -5485,7 +5479,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5592,7 +5586,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/tenants').replace(
+            url: (rootUrl + '/v1/{+parent}/tenants').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5633,7 +5627,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5760,7 +5754,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -5898,7 +5892,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6031,7 +6025,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/unitKinds').replace(
+            url: (rootUrl + '/v1/{+parent}/unitKinds').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6072,7 +6066,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6173,7 +6167,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -6211,7 +6205,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6319,7 +6313,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -6357,7 +6351,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6466,7 +6460,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/unitKinds').replace(
+            url: (rootUrl + '/v1/{+parent}/unitKinds').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6507,7 +6501,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6640,7 +6634,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -6778,7 +6772,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6927,7 +6921,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/unitOperations').replace(
+            url: (rootUrl + '/v1/{+parent}/unitOperations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6968,7 +6962,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7069,7 +7063,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -7107,7 +7101,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7223,7 +7217,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -7261,7 +7255,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7372,7 +7366,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/unitOperations').replace(
+            url: (rootUrl + '/v1/{+parent}/unitOperations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7413,7 +7407,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7562,7 +7556,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
@@ -7700,7 +7694,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7859,7 +7853,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/units').replace(
+            url: (rootUrl + '/v1/{+parent}/units').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7900,7 +7894,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8001,7 +7995,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -8039,7 +8033,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8160,7 +8154,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -8198,7 +8192,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8305,7 +8299,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/units').replace(
+            url: (rootUrl + '/v1/{+parent}/units').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8346,7 +8340,7 @@ export namespace saasservicemgmt_v1beta1 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const saasservicemgmt = google.saasservicemgmt('v1beta1');
+     * const saasservicemgmt = google.saasservicemgmt('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8505,7 +8499,7 @@ export namespace saasservicemgmt_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
           },
