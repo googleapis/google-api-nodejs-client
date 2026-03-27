@@ -369,7 +369,8 @@
           ]
         },
         "modifylinkedofferobjects": {
-          "description": "Modifies linked offer objects for the event ticket object with the given ID.",
+          "deprecated": true,
+          "description": "Deprecated: Use Auto Linked Passes instead. Modifies linked offer objects for the event ticket object with the given ID.",
           "flatPath": "walletobjects/v1/eventTicketObject/{resourceId}/modifyLinkedOfferObjects",
           "httpMethod": "POST",
           "id": "walletobjects.eventticketobject.modifylinkedofferobjects",
@@ -1812,7 +1813,8 @@
           ]
         },
         "modifylinkedofferobjects": {
-          "description": "Modifies linked offer objects for the loyalty object with the given ID.",
+          "deprecated": true,
+          "description": "Deprecated: Use Auto Linked Passes instead. Modifies linked offer objects for the loyalty object with the given ID.",
           "flatPath": "walletobjects/v1/loyaltyObject/{resourceId}/modifyLinkedOfferObjects",
           "httpMethod": "POST",
           "id": "walletobjects.loyaltyobject.modifylinkedofferobjects",
@@ -2711,7 +2713,7 @@
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260220",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -4142,7 +4144,7 @@
           "type": "array"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -4415,7 +4417,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -4928,7 +4930,7 @@
           "type": "array"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -5209,7 +5211,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -5370,7 +5372,7 @@
           "type": "array"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -5611,7 +5613,7 @@
           "description": "The time period this object will be considered valid or usable. When the time period is passed, the object will be considered expired, which will affect the rendering on user's devices."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -5892,7 +5894,7 @@
           "type": "array"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -6146,7 +6148,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -6403,10 +6405,11 @@
       "type": "object"
     },
     "JwtResource": {
+      "description": "A JWT representation of a pass.",
       "id": "JwtResource",
       "properties": {
         "jwt": {
-          "description": "A string representing a JWT of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt",
+          "description": "Required. A string representing a JWT of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt",
           "type": "string"
         }
       },
@@ -6786,7 +6789,7 @@
           "type": "array"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -7043,7 +7046,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -7829,7 +7832,7 @@
           "description": "The title image of the offer. This image is displayed in both the details and list views of the app."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -8062,7 +8065,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -9277,7 +9280,7 @@
           "type": "string"
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
@@ -9673,7 +9676,7 @@
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
         "valueAddedModuleData": {
-          "description": "Optional value added module data. Maximum of ten on the object.",
+          "description": "Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.",
           "items": {
             "$ref": "ValueAddedModuleData"
           },
