@@ -215,6 +215,10 @@ export namespace gkebackup_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The total number of user managed namespaces contained in the Backup.
+     */
+    namespaceCount?: number | null;
+    /**
      * Output only. If false, Backup will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Inherited from the parent BackupPlan's permissive_mode value.
      */
     permissiveMode?: boolean | null;
@@ -438,6 +442,10 @@ export namespace gkebackup_v1 {
      * Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/x/locations/x/backupPlans/x`
      */
     name?: string | null;
+    /**
+     * Output only. The number of user managed namespaces backed up in the last successful Backup created via this BackupPlan.
+     */
+    protectedNamespaceCount?: number | null;
     /**
      * Output only. The number of Kubernetes Pods backed up in the last successful Backup created via this BackupPlan.
      */
@@ -3618,6 +3626,7 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "lastSuccessfulBackupTime": "my_lastSuccessfulBackupTime",
      *       //   "name": "my_name",
+     *       //   "protectedNamespaceCount": 0,
      *       //   "protectedPodCount": 0,
      *       //   "retentionPolicy": {},
      *       //   "rpoRiskLevel": 0,
@@ -3933,6 +3942,7 @@ export namespace gkebackup_v1 {
      *   //   "labels": {},
      *   //   "lastSuccessfulBackupTime": "my_lastSuccessfulBackupTime",
      *   //   "name": "my_name",
+     *   //   "protectedNamespaceCount": 0,
      *   //   "protectedPodCount": 0,
      *   //   "retentionPolicy": {},
      *   //   "rpoRiskLevel": 0,
@@ -4519,6 +4529,7 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "lastSuccessfulBackupTime": "my_lastSuccessfulBackupTime",
      *       //   "name": "my_name",
+     *       //   "protectedNamespaceCount": 0,
      *       //   "protectedPodCount": 0,
      *       //   "retentionPolicy": {},
      *       //   "rpoRiskLevel": 0,
@@ -5278,6 +5289,7 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "manual": false,
      *       //   "name": "my_name",
+     *       //   "namespaceCount": 0,
      *       //   "permissiveMode": false,
      *       //   "podCount": 0,
      *       //   "resourceCount": 0,
@@ -5610,6 +5622,7 @@ export namespace gkebackup_v1 {
      *   //   "labels": {},
      *   //   "manual": false,
      *   //   "name": "my_name",
+     *   //   "namespaceCount": 0,
      *   //   "permissiveMode": false,
      *   //   "podCount": 0,
      *   //   "resourceCount": 0,
@@ -6226,6 +6239,7 @@ export namespace gkebackup_v1 {
      *       //   "labels": {},
      *       //   "manual": false,
      *       //   "name": "my_name",
+     *       //   "namespaceCount": 0,
      *       //   "permissiveMode": false,
      *       //   "podCount": 0,
      *       //   "resourceCount": 0,
