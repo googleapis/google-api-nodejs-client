@@ -437,6 +437,32 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "getProjectConfig": {
+              "description": "Retrieves the project configuration.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/projectConfig",
+              "httpMethod": "GET",
+              "id": "artifactregistry.projects.locations.getProjectConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the project's logging configuration: projects/{project}/locations/{location}/projectConfig",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/projectConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "ProjectConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
             "getVpcscConfig": {
               "description": "Retrieves the VPCSC Config for the Project.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vpcscConfig",
@@ -464,7 +490,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "artifactregistry.projects.locations.list",
@@ -511,6 +537,40 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "updateProjectConfig": {
+              "description": "Updates the project configuration.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/projectConfig",
+              "httpMethod": "PATCH",
+              "id": "artifactregistry.projects.locations.updateProjectConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the project's configuration. Always of the form: projects/{project}/locations/{location}/projectConfig",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/projectConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Field mask to support partial updates. See https://protobuf.dev/reference/protobuf/google.protobuf/#field-mask for more details.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "ProjectConfig"
+              },
+              "response": {
+                "$ref": "ProjectConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "updateVpcscConfig": {
               "description": "Updates the VPCSC Config for the Project.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vpcscConfig",
@@ -549,6 +609,34 @@
           "resources": {
             "operations": {
               "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "artifactregistry.projects.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
@@ -2493,7 +2581,7 @@
       }
     }
   },
-  "revision": "20260102",
+  "revision": "20260311",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2665,6 +2753,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
       "type": "object"
     },
     "CleanupPolicy": {
@@ -3284,12 +3378,14 @@
           "enum": [
             "HASH_TYPE_UNSPECIFIED",
             "SHA256",
-            "MD5"
+            "MD5",
+            "DIRSUM_SHA256"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "SHA256 hash.",
-            "MD5 hash."
+            "MD5 hash.",
+            "Dirsum SHA256 hash."
           ],
           "type": "string"
         },
@@ -4039,6 +4135,53 @@
       },
       "type": "object"
     },
+    "PlatformLogsConfig": {
+      "description": "The platform logs config for a project or a repository.",
+      "id": "PlatformLogsConfig",
+      "properties": {
+        "loggingState": {
+          "description": "Optional. The state of the platform logs: enabled or disabled.",
+          "enum": [
+            "LOGGING_STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Platform logs settings for the parent resource haven't been set. This is the default state or when the user clears the settings for the parent.",
+            "Platform logs are enabled.",
+            "Platform logs are disabled."
+          ],
+          "type": "string"
+        },
+        "severityLevel": {
+          "description": "Optional. The severity level for the logs. Logs will be generated if their severity level is >= than the value of the severity level mentioned here.",
+          "enum": [
+            "SEVERITY_LEVEL_UNSPECIFIED",
+            "DEBUG",
+            "INFO",
+            "NOTICE",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+            "ALERT",
+            "EMERGENCY"
+          ],
+          "enumDescriptions": [
+            "No severity level specified, meaning everything is being logged.",
+            "Debug or trace information.",
+            "Routine information, such as ongoing status or performance.",
+            "Normal but significant events, such as start up, shut down, or a configuration change.",
+            "Warning events that might cause problems.",
+            "Error events that are likely to cause problems.",
+            "Critical events that cause more severe problems or outages.",
+            "Alert events that require a person must take an action immediately.",
+            "One or more systems are unusable."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -4059,6 +4202,21 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectConfig": {
+      "description": "The Artifact Registry logging configurations that apply to a Project.",
+      "id": "ProjectConfig",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the project's configuration. Always of the form: projects/{project}/locations/{location}/projectConfig",
+          "type": "string"
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig",
+          "description": "Optional. Configuration for platform logs."
         }
       },
       "type": "object"
@@ -4315,6 +4473,10 @@
         "name": {
           "description": "The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. For each location in a project, repository names must be unique.",
           "type": "string"
+        },
+        "platformLogsConfig": {
+          "$ref": "PlatformLogsConfig",
+          "description": "Optional. Configuration for platform logs."
         },
         "registryUri": {
           "description": "Output only. The repository endpoint, for example: `us-docker.pkg.dev/my-proj/my-repo`.",
