@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20260104",
+  "revision": "20260323",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -435,6 +435,10 @@
       "description": "Request proto for AutocompletePlaces.",
       "id": "GoogleMapsPlacesV1AutocompletePlacesRequest",
       "properties": {
+        "includeFutureOpeningBusinesses": {
+          "description": "Optional. If true, include businesses that are not yet open but will open in the future.",
+          "type": "boolean"
+        },
         "includePureServiceAreaBusinesses": {
           "description": "Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.",
           "type": "boolean"
@@ -1046,13 +1050,15 @@
             "BUSINESS_STATUS_UNSPECIFIED",
             "OPERATIONAL",
             "CLOSED_TEMPORARILY",
-            "CLOSED_PERMANENTLY"
+            "CLOSED_PERMANENTLY",
+            "FUTURE_OPENING"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The establishment is operational, not necessarily open now.",
             "The establishment is temporarily closed.",
-            "The establishment is permanently closed."
+            "The establishment is permanently closed.",
+            "The establishment will open in the future."
           ],
           "type": "string"
         },
@@ -1134,6 +1140,10 @@
           "$ref": "GoogleMapsPlacesV1PlaceGoogleMapsLinks",
           "description": "Links to trigger different Google Maps actions."
         },
+        "googleMapsTypeLabel": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The type label of the place on Google Maps, localized to the request language if applicable, for example, \"Restaurant\", \"Cafe\", \"Airport\", etc. The type label may be different from the primary type display name and may not be a supported type in [Places API Place Types table](https://developers.google.com/maps/documentation/places/web-service/place-types)."
+        },
         "googleMapsUri": {
           "description": "A URL providing more information about this place.",
           "type": "string"
@@ -1185,6 +1195,10 @@
         "neighborhoodSummary": {
           "$ref": "GoogleMapsPlacesV1PlaceNeighborhoodSummary",
           "description": "A summary of points of interest near the place."
+        },
+        "openingDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The date this place will open in the future. This field is only populated if the business status is FUTURE_OPENING."
         },
         "outdoorSeating": {
           "description": "Place provides outdoor seating.",
@@ -2048,6 +2062,10 @@
           },
           "type": "array"
         },
+        "includeFutureOpeningBusinesses": {
+          "description": "Optional. If true, include businesses that are not yet open but will open in the future.",
+          "type": "boolean"
+        },
         "includedPrimaryTypes": {
           "description": "Included primary Place type (e.g. \"restaurant\" or \"gas_station\") from https://developers.google.com/maps/documentation/places/web-service/place-types. A place can only have a single primary type from the supported types table associated with it. Up to 50 types from [Table A](https://developers.google.com/maps/documentation/places/web-service/place-types#table-a) may be specified. If there are any conflicting primary types, i.e. a type appears in both included_primary_types and excluded_primary_types, an INVALID_ARGUMENT error is returned. If a Place type is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if we have {included_types = [\"restaurant\"], excluded_primary_types = [\"restaurant\"]}, the returned places provide \"restaurant\" related services but do not operate primarily as \"restaurants\".",
           "items": {
@@ -2139,6 +2157,10 @@
         "evOptions": {
           "$ref": "GoogleMapsPlacesV1SearchTextRequestEVOptions",
           "description": "Optional. Set the searchable EV options of a place search request."
+        },
+        "includeFutureOpeningBusinesses": {
+          "description": "Optional. If true, include businesses that are not yet open but will open in the future.",
+          "type": "boolean"
         },
         "includePureServiceAreaBusinesses": {
           "description": "Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.",
