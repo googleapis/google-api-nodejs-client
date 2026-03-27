@@ -140,7 +140,7 @@
           ]
         },
         "get": {
-          "description": "Lookup for a single organization.",
+          "description": "Looks up a single organization.",
           "flatPath": "v1alpha/organizations/{organizationsId}",
           "httpMethod": "GET",
           "id": "marketingplatformadmin.organizations.get",
@@ -194,7 +194,7 @@
           ]
         },
         "reportPropertyUsage": {
-          "description": "Get the usage and billing data for properties within the organization for the specified month. Per direct client org, user needs to be OrgAdmin/BillingAdmin on the organization in order to view the billing and usage data. Per sales partner client org, user needs to be OrgAdmin/BillingAdmin on the sales partner org in order to view the billing and usage data, or OrgAdmin/BillingAdmin on the sales partner client org in order to view the usage data only.",
+          "description": "Gets the usage and billing data for properties within the organization for the specified month. Per direct client org, user needs to be OrgAdmin/BillingAdmin on the organization in order to view the billing and usage data. Per sales partner client org, user needs to be OrgAdmin/BillingAdmin on the sales partner org in order to view the billing and usage data, or OrgAdmin/BillingAdmin on the sales partner client org in order to view the usage data only.",
           "flatPath": "v1alpha/organizations/{organizationsId}:reportPropertyUsage",
           "httpMethod": "POST",
           "id": "marketingplatformadmin.organizations.reportPropertyUsage",
@@ -349,7 +349,7 @@
       }
     }
   },
-  "revision": "20251029",
+  "revision": "20260303",
   "rootUrl": "https://marketingplatformadmin.googleapis.com/",
   "schemas": {
     "AnalyticsAccountLink": {
