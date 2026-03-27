@@ -163,7 +163,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networkconnectivity.projects.locations.list",
@@ -3718,7 +3718,7 @@
       }
     }
   },
-  "revision": "20260120",
+  "revision": "20260309",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -5018,6 +5018,27 @@
       "description": "A collection of VLAN attachment resources. These resources should be redundant attachments that all advertise the same prefixes to Google Cloud. Alternatively, in active/passive configurations, all attachments should be capable of advertising the same prefixes.",
       "id": "LinkedInterconnectAttachments",
       "properties": {
+        "excludeExportRanges": {
+          "description": "Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "excludeImportRanges": {
+          "description": "Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeExportRanges": {
+          "description": "Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "includeImportRanges": {
           "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
@@ -5102,6 +5123,27 @@
       "description": "A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.",
       "id": "LinkedRouterApplianceInstances",
       "properties": {
+        "excludeExportRanges": {
+          "description": "Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "excludeImportRanges": {
+          "description": "Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeExportRanges": {
+          "description": "Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "includeImportRanges": {
           "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
@@ -5181,6 +5223,27 @@
       "description": "A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.",
       "id": "LinkedVpnTunnels",
       "properties": {
+        "excludeExportRanges": {
+          "description": "Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "excludeImportRanges": {
+          "description": "Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeExportRanges": {
+          "description": "Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "includeImportRanges": {
           "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
@@ -5688,13 +5751,15 @@
               "LOCATION_FEATURE_UNSPECIFIED",
               "SITE_TO_CLOUD_SPOKES",
               "SITE_TO_SITE_SPOKES",
-              "GATEWAY_SPOKES"
+              "GATEWAY_SPOKES",
+              "TRANSPORTS"
             ],
             "enumDescriptions": [
               "No publicly supported feature in this location",
               "Site-to-cloud spokes are supported in this location",
               "Site-to-site spokes are supported in this location",
-              "Gateway spokes are supported in this location."
+              "Gateway spokes are supported in this location.",
+              "Supports transports in this location."
             ],
             "type": "string"
           },

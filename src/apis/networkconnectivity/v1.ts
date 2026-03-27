@@ -911,6 +911,18 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedInterconnectAttachments {
     /**
+     * Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.
+     */
+    excludeExportRanges?: string[] | null;
+    /**
+     * Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.
+     */
+    excludeImportRanges?: string[] | null;
+    /**
+     * Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.
+     */
+    includeExportRanges?: string[] | null;
+    /**
      * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
@@ -966,6 +978,18 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedRouterApplianceInstances {
     /**
+     * Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.
+     */
+    excludeExportRanges?: string[] | null;
+    /**
+     * Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.
+     */
+    excludeImportRanges?: string[] | null;
+    /**
+     * Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.
+     */
+    includeExportRanges?: string[] | null;
+    /**
      * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
@@ -1015,6 +1039,18 @@ export namespace networkconnectivity_v1 {
    * A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.
    */
   export interface Schema$LinkedVpnTunnels {
+    /**
+     * Optional. Dynamic routes overlapped/encompassed by exclude export ranges are excluded during export to hub.
+     */
+    excludeExportRanges?: string[] | null;
+    /**
+     * Optional. Hub routes overlapped/encompassed by exclude import ranges are excluded during import from hub.
+     */
+    excludeImportRanges?: string[] | null;
+    /**
+     * Optional. Dynamic routes fully encompassed by include export ranges are included during export to hub.
+     */
+    includeExportRanges?: string[] | null;
     /**
      * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
@@ -2770,7 +2806,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
