@@ -129,7 +129,7 @@ export namespace firebaseapphosting_v1 {
    */
   export interface Schema$ArchiveSource {
     /**
-     * Optional. The author contained in the metadata of a version control change.
+     * Optional. Deprecated: Not used. The author contained in the metadata of a version control change.
      */
     author?: Schema$SourceUserMetadata;
     /**
@@ -141,7 +141,7 @@ export namespace firebaseapphosting_v1 {
      */
     externalSignedUri?: string | null;
     /**
-     * Optional. Relative path in the archive.
+     * Optional. The directory relative to the root of the archive to use as the root for the deployed web app. Defaults to use the root of the repository if not provided. If deploying a [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that contains the `package.json` or `apphosting.yaml` file.
      */
     rootDirectory?: string | null;
     /**
@@ -333,7 +333,7 @@ export namespace firebaseapphosting_v1 {
      */
     repository?: string | null;
     /**
-     * Optional. If `repository` is provided, the directory relative to the root of the repository to use as the root for the deployed web app.
+     * Optional. If `repository` is provided, the directory relative to the root of the repository to use as the root for the deployed web app. Defaults to use the root of the repository if not provided. If deploying a [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that contains the `package.json` or `apphosting.yaml` file.
      */
     rootDirectory?: string | null;
   }
@@ -370,6 +370,10 @@ export namespace firebaseapphosting_v1 {
      */
     hash?: string | null;
     /**
+     * Output only. The resource name for the Developer Connect [`gitRepositoryLink`](https://cloud.google.com/developer-connect/docs/api/reference/rest/v1/projects.locations.connections.gitRepositoryLinks) used for this build, in the format: `projects/{project\}/locations/{location\}/connections/{connection\}/gitRepositoryLinks/{repositoryLink\}`
+     */
+    repository?: string | null;
+    /**
      * Output only. A URI linking to the codebase on an hosting provider's website. May not be valid if the commit has been rebased or force-pushed out of existence in the linked repository.
      */
     uri?: string | null;
@@ -383,7 +387,7 @@ export namespace firebaseapphosting_v1 {
      */
     effectiveEnv?: Schema$EnvironmentVariable[];
     /**
-     * Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_build_source) Attempts to set this for other build types will result in an error
+     * Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_built_source) Attempts to set this for other build types will result in an error
      */
     env?: Schema$EnvironmentVariable[];
     /**
@@ -644,7 +648,7 @@ export namespace firebaseapphosting_v1 {
      */
     value?: string | null;
     /**
-     * Required. The name of the environment variable. - Must be a valid environment variable name (e.g. A-Z or underscores). - May not start with "FIREBASE" or "GOOGLE". - May not be a reserved environment variable for KNative/Cloud Run
+     * Required. The name of the environment variable. The environment variables reserved by [Cloud Run](https://docs.cloud.google.com/run/docs/configuring/services/environment-variables#reserved) should not be set. Additionally, variable names cannot start with "X_FIREBASE_".
      */
     variable?: string | null;
   }
@@ -985,7 +989,7 @@ export namespace firebaseapphosting_v1 {
     requiredPaths?: Schema$Path[];
   }
   /**
-   * Additional configuration to apply to the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).
+   * Configuration applied to the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).
    */
   export interface Schema$RunConfig {
     /**
@@ -1028,19 +1032,19 @@ export namespace firebaseapphosting_v1 {
     redirect?: Schema$Redirect;
   }
   /**
-   * Metadata for the user who started the build.
+   * Deprecated: Not used. Metadata for the user who started the build.
    */
   export interface Schema$SourceUserMetadata {
     /**
-     * Output only. The user-chosen displayname. May be empty.
+     * Output only. Deprecated: Not used. The user-chosen displayname. May be empty.
      */
     displayName?: string | null;
     /**
-     * Output only. The account email linked to the EUC that created the build. May be a service account or other robot account.
+     * Output only. Deprecated: Not used. The account email linked to the EUC that created the build. May be a service account or other robot account.
      */
     email?: string | null;
     /**
-     * Output only. The URI of a profile photo associated with the user who created the build.
+     * Output only. Deprecated: Not used. The URI of a profile photo associated with the user who created the build.
      */
     imageUri?: string | null;
   }
@@ -1311,7 +1315,7 @@ export namespace firebaseapphosting_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
