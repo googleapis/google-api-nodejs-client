@@ -129,9 +129,48 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment {
     /**
+     * Output only. Account takeover risk assessment for this request.
+     */
+    accountTakeoverVerdict?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict;
+    /**
      * Output only. Labels for this request.
      */
     labels?: string[] | null;
+  }
+  /**
+   * Risk explainability reasons for account defender.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason {
+    /**
+     * Output only. A risk reason associated with this request.
+     */
+    reason?: string | null;
+  }
+  /**
+   * Account takeover risk assessment.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict {
+    /**
+     * Output only. Account takeover attempt probability. Values are from 0.0 (lowest risk) to 1.0 (highest risk).
+     */
+    risk?: number | null;
+    /**
+     * Output only. Unordered list. Reasons why the request appears risky. Risk reasons can be returned even if the risk is low, as trustworthy requests can still have some risk signals.
+     */
+    riskReasons?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason[];
+    /**
+     * Output only. Unordered list. Reasons why the request appears trustworthy. Trust reasons can be returned even if the risk is high, as risky requests can still have some trust signals.
+     */
+    trustReasons?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason[];
+  }
+  /**
+   * Trust explainability reasons for account defender.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason {
+    /**
+     * Output only. A trust reason associated with this request.
+     */
+    reason?: string | null;
   }
   /**
    * Information about account verification, used for identity verification.
@@ -912,7 +951,7 @@ export namespace recaptchaenterprise_v1 {
      */
     challenge?: string | null;
     /**
-     * Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.
+     * Output only. Advanced reasons contributing to the risk analysis verdict. These reasons are available to Enterprise tier projects only. Contact sales for more information. The set of possible reasons is subject to change.
      */
     extendedVerdictReasons?: string[] | null;
     /**

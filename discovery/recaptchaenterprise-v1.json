@@ -786,13 +786,18 @@
       }
     }
   },
-  "revision": "20251201",
+  "revision": "20260302",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
       "description": "Account defender risk assessment.",
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
       "properties": {
+        "accountTakeoverVerdict": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict",
+          "description": "Output only. Account takeover risk assessment for this request.",
+          "readOnly": true
+        },
         "labels": {
           "description": "Output only. Labels for this request.",
           "items": {
@@ -805,7 +810,7 @@
             ],
             "enumDescriptions": [
               "Default unspecified type.",
-              "The request matches a known good profile for the user.",
+              "The request matches a trusted profile associated with this account.",
               "The request is potentially a suspicious login event and must be further verified either through multi-factor authentication or another system.",
               "The request matched a profile that previously had suspicious account creation behavior. This can mean that this is a fake account.",
               "The account in the request has a high number of related accounts. It does not necessarily imply that the account is bad but can require further investigation."
@@ -814,6 +819,81 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason": {
+      "description": "Risk explainability reasons for account defender.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason",
+      "properties": {
+        "reason": {
+          "description": "Output only. A risk reason associated with this request.",
+          "enum": [
+            "RISK_REASON_UNSPECIFIED",
+            "CLIENT_HISTORICAL_BOT_ACTIVITY",
+            "ACCOUNT_IN_LARGE_RELATED_GROUP",
+            "CLIENT_ACCESSED_MANY_ACCOUNTS"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "The client has been observed sending bot-like traffic to this site in the past. This reason incorporates historical reputation and indicates that the client is known to use bots, even if the current request is being made by a human.",
+            "The account is part of a large group of related accounts, indicating that it may be part of a fraudulent network. Related accounts are identified based on having similar traffic patterns and request characteristics.",
+            "The client has been observed accessing many accounts on this site."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict": {
+      "description": "Account takeover risk assessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTakeoverVerdict",
+      "properties": {
+        "risk": {
+          "description": "Output only. Account takeover attempt probability. Values are from 0.0 (lowest risk) to 1.0 (highest risk).",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "riskReasons": {
+          "description": "Output only. Unordered list. Reasons why the request appears risky. Risk reasons can be returned even if the risk is low, as trustworthy requests can still have some risk signals.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "trustReasons": {
+          "description": "Output only. Unordered list. Reasons why the request appears trustworthy. Trust reasons can be returned even if the risk is high, as risky requests can still have some trust signals.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason": {
+      "description": "Trust explainability reasons for account defender.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason",
+      "properties": {
+        "reason": {
+          "description": "Output only. A trust reason associated with this request.",
+          "enum": [
+            "TRUST_REASON_UNSPECIFIED",
+            "PROFILE_MATCH",
+            "ACCOUNT_HISTORY_REPUTABLE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "The request matches a trusted profile associated with this account. Equivalent to `AccountDefenderLabel.PROFILE_MATCH`.",
+            "The account's historical activity is reputable. It is unlikely that the account has been compromised in the past."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1959,7 +2039,7 @@
           "type": "string"
         },
         "extendedVerdictReasons": {
-          "description": "Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.",
+          "description": "Output only. Advanced reasons contributing to the risk analysis verdict. These reasons are available to Enterprise tier projects only. Contact sales for more information. The set of possible reasons is subject to change.",
           "items": {
             "type": "string"
           },
