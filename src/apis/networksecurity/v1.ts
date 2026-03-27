@@ -2108,6 +2108,10 @@ export namespace networksecurity_v1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * The URL filtering configuration for the SecurityProfile.
+     */
+    urlFilteringProfile?: Schema$UrlFilteringProfile;
   }
   /**
    * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
@@ -2153,6 +2157,10 @@ export namespace networksecurity_v1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the UrlFiltering configuration.
+     */
+    urlFilteringProfile?: string | null;
   }
   /**
    * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by Application Load Balancers can be attached only to TargetHttpsProxy with an `EXTERNAL`, `EXTERNAL_MANAGED` or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
@@ -2312,6 +2320,32 @@ export namespace networksecurity_v1 {
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A URL filter defines an action to take for some URL match.
+   */
+  export interface Schema$UrlFilter {
+    /**
+     * Required. The action taken when this filter is applied.
+     */
+    filteringAction?: string | null;
+    /**
+     * Required. The priority of this filter within the URL Filtering Profile. Lower integers indicate higher priorities. The priority of a filter must be unique within a URL Filtering Profile.
+     */
+    priority?: number | null;
+    /**
+     * Required. The list of strings that a URL must match with for this filter to be applied.
+     */
+    urls?: string[] | null;
+  }
+  /**
+   * UrlFilteringProfile defines filters based on URL.
+   */
+  export interface Schema$UrlFilteringProfile {
+    /**
+     * Optional. The list of filtering configs in which each config defines an action to take for some URL match.
+     */
+    urlFilters?: Schema$UrlFilter[];
   }
   /**
    * UrlList proto helps users to set reusable, independently manageable lists of hosts, host patterns, URLs, URL patterns.
@@ -3906,7 +3940,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new FirewallEndpoint in a given project and location.
+     * Creates a new FirewallEndpoint in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4074,7 +4108,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single Endpoint.
+     * Deletes a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4217,7 +4251,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single Endpoint.
+     * Gets details of a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4366,7 +4400,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists FirewallEndpoints in a given project and location.
+     * Lists FirewallEndpoints in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4522,7 +4556,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single Endpoint.
+     * Update a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -5436,7 +5470,8 @@ export namespace networksecurity_v1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -5740,7 +5775,8 @@ export namespace networksecurity_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": "my_urlFilteringProfile"
      *   // }
      * }
      *
@@ -6045,7 +6081,8 @@ export namespace networksecurity_v1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -6273,7 +6310,8 @@ export namespace networksecurity_v1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -6577,7 +6615,8 @@ export namespace networksecurity_v1 {
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": {},
      *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": {}
      *   // }
      * }
      *
@@ -6876,7 +6915,8 @@ export namespace networksecurity_v1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -7066,7 +7106,6 @@ export namespace networksecurity_v1 {
     clientTlsPolicies: Resource$Projects$Locations$Clienttlspolicies;
     dnsThreatDetectors: Resource$Projects$Locations$Dnsthreatdetectors;
     firewallEndpointAssociations: Resource$Projects$Locations$Firewallendpointassociations;
-    firewallEndpoints: Resource$Projects$Locations$Firewallendpoints;
     gatewaySecurityPolicies: Resource$Projects$Locations$Gatewaysecuritypolicies;
     interceptDeploymentGroups: Resource$Projects$Locations$Interceptdeploymentgroups;
     interceptDeployments: Resource$Projects$Locations$Interceptdeployments;
@@ -7102,8 +7141,6 @@ export namespace networksecurity_v1 {
         new Resource$Projects$Locations$Firewallendpointassociations(
           this.context
         );
-      this.firewallEndpoints =
-        new Resource$Projects$Locations$Firewallendpoints(this.context);
       this.gatewaySecurityPolicies =
         new Resource$Projects$Locations$Gatewaysecuritypolicies(this.context);
       this.interceptDeploymentGroups =
@@ -15935,869 +15972,6 @@ export namespace networksecurity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$FirewallEndpointAssociation;
-  }
-
-  export class Resource$Projects$Locations$Firewallendpoints {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a new FirewallEndpoint in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await networksecurity.projects.locations.firewallEndpoints.create(
-     *     {
-     *       // Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
-     *       firewallEndpointId: 'placeholder-value',
-     *       // Required. Value for parent.
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "associatedNetworks": [],
-     *         //   "associations": [],
-     *         //   "billingProjectId": "my_billingProjectId",
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "endpointSettings": {},
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "reconciling": false,
-     *         //   "satisfiesPzi": false,
-     *         //   "satisfiesPzs": false,
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Firewallendpoints$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Firewallendpoints$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Firewallendpoints$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networksecurity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/firewallEndpoints').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a single Endpoint.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await networksecurity.projects.locations.firewallEndpoints.delete(
-     *     {
-     *       // Required. Name of the resource
-     *       name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Firewallendpoints$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Firewallendpoints$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Firewallendpoints$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networksecurity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Gets details of a single Endpoint.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await networksecurity.projects.locations.firewallEndpoints.get({
-     *     // Required. Name of the resource
-     *     name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "associatedNetworks": [],
-     *   //   "associations": [],
-     *   //   "billingProjectId": "my_billingProjectId",
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "endpointSettings": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "reconciling": false,
-     *   //   "satisfiesPzi": false,
-     *   //   "satisfiesPzs": false,
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Firewallendpoints$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpoint>>;
-    get(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$FirewallEndpoint>,
-      callback: BodyResponseCallback<Schema$FirewallEndpoint>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Get,
-      callback: BodyResponseCallback<Schema$FirewallEndpoint>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$FirewallEndpoint>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Firewallendpoints$Get
-        | BodyResponseCallback<Schema$FirewallEndpoint>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FirewallEndpoint>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FirewallEndpoint>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FirewallEndpoint>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Firewallendpoints$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networksecurity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FirewallEndpoint>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FirewallEndpoint>(parameters);
-      }
-    }
-
-    /**
-     * Lists FirewallEndpoints in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await networksecurity.projects.locations.firewallEndpoints.list({
-     *     // Optional. Filtering results
-     *     filter: 'placeholder-value',
-     *     // Hint for how to order the results
-     *     orderBy: 'placeholder-value',
-     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListEndpointsRequest
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firewallEndpoints": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Firewallendpoints$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointsResponse>>;
-    list(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>,
-      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$List,
-      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Firewallendpoints$List
-        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListFirewallEndpointsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListFirewallEndpointsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Firewallendpoints$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Firewallendpoints$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networksecurity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/firewallEndpoints').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListFirewallEndpointsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListFirewallEndpointsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update a single Endpoint.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await networksecurity.projects.locations.firewallEndpoints.patch({
-     *     // Immutable. Identifier. Name of resource.
-     *     name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "associatedNetworks": [],
-     *       //   "associations": [],
-     *       //   "billingProjectId": "my_billingProjectId",
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "endpointSettings": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "reconciling": false,
-     *       //   "satisfiesPzi": false,
-     *       //   "satisfiesPzs": false,
-     *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Firewallendpoints$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Firewallendpoints$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Firewallendpoints$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Firewallendpoints$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://networksecurity.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Firewallendpoints$Create extends StandardParameters {
-    /**
-     * Required. Id of the requesting object. If auto-generating Id server-side, remove this field and firewall_endpoint_id from the method_signature of Create RPC.
-     */
-    firewallEndpointId?: string;
-    /**
-     * Required. Value for parent.
-     */
-    parent?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$FirewallEndpoint;
-  }
-  export interface Params$Resource$Projects$Locations$Firewallendpoints$Delete extends StandardParameters {
-    /**
-     * Required. Name of the resource
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Firewallendpoints$Get extends StandardParameters {
-    /**
-     * Required. Name of the resource
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Firewallendpoints$List extends StandardParameters {
-    /**
-     * Optional. Filtering results
-     */
-    filter?: string;
-    /**
-     * Hint for how to order the results
-     */
-    orderBy?: string;
-    /**
-     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent value for ListEndpointsRequest
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Firewallendpoints$Patch extends StandardParameters {
-    /**
-     * Immutable. Identifier. Name of resource.
-     */
-    name?: string;
-    /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$FirewallEndpoint;
   }
 
   export class Resource$Projects$Locations$Gatewaysecuritypolicies {
