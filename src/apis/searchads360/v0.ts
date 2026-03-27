@@ -458,11 +458,11 @@ export namespace searchads360_v0 {
      */
     allConversionsByConversionDate?: number | null;
     /**
-     * The number of times people clicked the "Call" button to call a store during or after clicking an ad. This number doesn't include whether or not calls were connected, or the duration of any calls. This metric applies to feed items only.
+     * The number of times people clicked the "Call" button to call a business during or after clicking an ad. This number doesn't include whether or not calls were connected, or the duration of any calls. This metric applies to feed items only.
      */
     allConversionsFromClickToCall?: number | null;
     /**
-     * The number of times people clicked a "Get directions" button to navigate to a store after clicking an ad. This metric applies to feed items only.
+     * The number of times people clicked a "Get directions" button to navigate to a business after clicking an ad. This metric applies to feed items only.
      */
     allConversionsFromDirections?: number | null;
     /**
@@ -474,23 +474,23 @@ export namespace searchads360_v0 {
      */
     allConversionsFromInteractionsValuePerInteraction?: number | null;
     /**
-     * The number of times people clicked a link to view a store's menu after clicking an ad. This metric applies to feed items only.
+     * The number of times people clicked a link to view a business's menu after clicking an ad. This metric applies to feed items only.
      */
     allConversionsFromMenu?: number | null;
     /**
-     * The number of times people placed an order at a store after clicking an ad. This metric applies to feed items only.
+     * The number of times people placed an order at a business after clicking an ad. This metric applies to feed items only.
      */
     allConversionsFromOrder?: number | null;
     /**
-     * The number of other conversions (for example, posting a review or saving a location for a store) that occurred after people clicked an ad. This metric applies to feed items only.
+     * The number of other conversions (for example, posting a review or saving a location for a business) that occurred after people clicked an ad. This metric applies to feed items only.
      */
     allConversionsFromOtherEngagement?: number | null;
     /**
-     * Estimated number of times people visited a store after clicking an ad. This metric applies to feed items only.
+     * Estimated number of times people visited a business after clicking an ad. This metric applies to feed items only.
      */
     allConversionsFromStoreVisit?: number | null;
     /**
-     * The number of times that people were taken to a store's URL after clicking an ad. This metric applies to feed items only.
+     * The number of times that people were taken to a business's URL after clicking an ad. This metric applies to feed items only.
      */
     allConversionsFromStoreWebsite?: number | null;
     /**
@@ -998,6 +998,10 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Common__Segments {
     /**
+     * Ad Format type.
+     */
+    adFormatType?: string | null;
+    /**
      * Ad network type.
      */
     adNetworkType?: string | null;
@@ -1245,6 +1249,42 @@ export namespace searchads360_v0 {
      * The raw event conversion dimensions.
      */
     rawEventConversionDimensions?: Schema$GoogleAdsSearchads360V0Common__Value[];
+    /**
+     * The display names of participants in an event listing, like performers, speakers, or teams.
+     */
+    verticalAdsEventParticipantDisplayNames?: string | null;
+    /**
+     * The class of the hotel. Generally in the range of 1 to 5 stars, but fully customizable in the hotel feed.
+     */
+    verticalAdsHotelClass?: string | null;
+    /**
+     * The listing associated with a listing impression, click or conversion.
+     */
+    verticalAdsListing?: string | null;
+    /**
+     * The brand associated with a specific listing within a Vertical Ads context, for example, the brand of a car rental, a vacation home, or an event.
+     */
+    verticalAdsListingBrand?: string | null;
+    /**
+     * The city where the vertical ads listing is located.
+     */
+    verticalAdsListingCity?: string | null;
+    /**
+     * The country where the vertical ads listing is located.
+     */
+    verticalAdsListingCountry?: string | null;
+    /**
+     * The region where the vertical ads listing is located.
+     */
+    verticalAdsListingRegion?: string | null;
+    /**
+     * A specific partner account within a Partner Center (for example, Hotel Center) that supplies inventory feed data for Vertical Ads.
+     */
+    verticalAdsPartnerAccount?: string | null;
+    /**
+     * Type of vertical ad, such as Vacation Rentals, Car Rentals, or Events, used to categorize and segment data in the context of Vertical Ads.
+     */
+    verticalAdsVertical?: string | null;
     /**
      * Week as defined as Monday through Sunday, and represented by the date of Monday. Formatted as yyyy-MM-dd.
      */
@@ -1879,11 +1919,11 @@ export namespace searchads360_v0 {
      */
     targetGoogleSearch?: boolean | null;
     /**
-     * Whether ads will be served on the Google Partner Network. This is available only to some select Google partner accounts.
+     * Whether ads will be served on the partner network. This is available only to some select partner accounts. Unless you have been instructed to use this field, it likely does not apply to your account. This does not control whether ads will be served on Google Search Partners Network; use `target_search_network` for that instead.
      */
     targetPartnerSearchNetwork?: boolean | null;
     /**
-     * Whether ads will be served on partner sites in the Google Search Network (requires `target_google_search` to also be `true`).
+     * Whether ads will be served on sites in the Google Search Partners Network (requires `target_google_search` to also be `true`).
      */
     targetSearchNetwork?: boolean | null;
   }
@@ -2205,7 +2245,7 @@ export namespace searchads360_v0 {
      */
     adRotationMode?: string | null;
     /**
-     * The maximum CPC (cost-per-click) bid.
+     * The maximum CPC (cost-per-click) bid. This field is used when the ad group's effective bidding strategy is Manual CPC. This field is not applicable and will be ignored if the ad group's campaign is using a portfolio bidding strategy.
      */
     cpcBidMicros?: string | null;
     /**
@@ -3262,7 +3302,7 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__CampaignBudget {
     /**
-     * The amount of the budget, in the local currency for the account. Amount is specified in micros, where one million is equivalent to one currency unit. Monthly spend is capped at 30.4 times this amount.
+     * The average daily amount to be spent by the campaign. This field is used when the CampaignBudget `period` is set to `DAILY`, which is the default. Amount is specified in micros in the account's local currency. One million micros is equivalent to one currency unit. The effective monthly spend is capped at 30.4 times this daily amount. This field is mutually exclusive with 'total_amount_micros'. Only one of 'amount_micros' or 'total_amount_micros' should be set.
      */
     amountMicros?: string | null;
     /**
@@ -3394,7 +3434,7 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
-   * Cart data sales view.
+   * Cart data sales view. Provides information about the products which were purchased if conversions with cart data is implemented. Performance metrics like revenue, gross profit, lead/cross-sell metrics etc. and Merchant Center attributes such as brand, category etc. are available for products defined in an inventory feed and sold as a result of Google ads. For purchases attributed to clicks on Shopping ads, dimensions of both clicked and sold products can be viewed together.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__CartDataSalesView {
     /**
@@ -4215,7 +4255,7 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
-   * A user list. This is a list of users a customer may target.
+   * A user list. This is a list of users a customer may target. The unique key of a user list consists of the following fields: `id`. Note that the `name` must also be unique for user lists owned by a given customer, except in some cases where `access_reason` is set to `SHARED`. Violating the unique name constraint produces error: `UserListError.INVALID_NAME`.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__UserList {
     /**
@@ -4223,7 +4263,7 @@ export namespace searchads360_v0 {
      */
     id?: string | null;
     /**
-     * Name of this user list. Depending on its access_reason, the user list name may not be unique (for example, if access_reason=SHARED)
+     * Name of this user list. Unique per user list, except in some cases where a user list of the same name has `access_reason` set to `SHARED`.
      */
     name?: string | null;
     /**

@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20251211",
+  "revision": "20260307",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -448,7 +448,17 @@
             "AD_IMAGE",
             "LEAD_FORM",
             "BUSINESS_LOGO",
-            "DESCRIPTION_PREFIX"
+            "DESCRIPTION_PREFIX",
+            "APP_ICON",
+            "APP_TITLE",
+            "APP_SCREENSHOT",
+            "APP_COVER_PHOTO",
+            "APP_SHORT_DESCRIPTION",
+            "APP_DEVELOPER_NAME",
+            "HEADLINE_AS_SITELINK_POSITION_ONE",
+            "HEADLINE_AS_SITELINK_POSITION_TWO",
+            "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_ONE",
+            "DESCRIPTION_LINE_HEADLINE_AS_SITELINK_POSITION_TWO"
           ],
           "enumDescriptions": [
             "No value has been specified.",
@@ -483,7 +493,17 @@
             "This asset is used as an image.",
             "The asset is used as a lead form.",
             "The asset is used as a business logo.",
-            "The asset is used as a description prefix."
+            "The asset is used as a description prefix.",
+            "The asset is used as an app icon.",
+            "The asset is used as an app title.",
+            "The asset is used as an app screenshot.",
+            "The asset is used as an app cover photo.",
+            "The asset is used as an app short description.",
+            "The asset is used as an app developer name.",
+            "A headline asset used as a sitelink in position 1.",
+            "A headline asset used as a sitelink in position 2.",
+            "A description line asset used as a sitelink in position 1.",
+            "A description line asset used as a sitelink in position 2."
           ],
           "type": "string"
         }
@@ -978,12 +998,12 @@
           "type": "number"
         },
         "allConversionsFromClickToCall": {
-          "description": "The number of times people clicked the \"Call\" button to call a store during or after clicking an ad. This number doesn't include whether or not calls were connected, or the duration of any calls. This metric applies to feed items only.",
+          "description": "The number of times people clicked the \"Call\" button to call a business during or after clicking an ad. This number doesn't include whether or not calls were connected, or the duration of any calls. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
         "allConversionsFromDirections": {
-          "description": "The number of times people clicked a \"Get directions\" button to navigate to a store after clicking an ad. This metric applies to feed items only.",
+          "description": "The number of times people clicked a \"Get directions\" button to navigate to a business after clicking an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
@@ -998,27 +1018,27 @@
           "type": "number"
         },
         "allConversionsFromMenu": {
-          "description": "The number of times people clicked a link to view a store's menu after clicking an ad. This metric applies to feed items only.",
+          "description": "The number of times people clicked a link to view a business's menu after clicking an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
         "allConversionsFromOrder": {
-          "description": "The number of times people placed an order at a store after clicking an ad. This metric applies to feed items only.",
+          "description": "The number of times people placed an order at a business after clicking an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
         "allConversionsFromOtherEngagement": {
-          "description": "The number of other conversions (for example, posting a review or saving a location for a store) that occurred after people clicked an ad. This metric applies to feed items only.",
+          "description": "The number of other conversions (for example, posting a review or saving a location for a business) that occurred after people clicked an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
         "allConversionsFromStoreVisit": {
-          "description": "Estimated number of times people visited a store after clicking an ad. This metric applies to feed items only.",
+          "description": "Estimated number of times people visited a business after clicking an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
         "allConversionsFromStoreWebsite": {
-          "description": "The number of times that people were taken to a store's URL after clicking an ad. This metric applies to feed items only.",
+          "description": "The number of times that people were taken to a business's URL after clicking an ad. This metric applies to feed items only.",
           "format": "double",
           "type": "number"
         },
@@ -1716,6 +1736,24 @@
       "description": "Segment only fields.",
       "id": "GoogleAdsSearchads360V0Common__Segments",
       "properties": {
+        "adFormatType": {
+          "description": "Ad Format type.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "VERTICAL_ADS_PROMOTION",
+            "VERTICAL_ADS_BOOKING_LINK",
+            "TEXT"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "An ad format that promotes a specific entity within a vertical, for example, a hotel ad in the Travel vertical on Search.",
+            "An ad format for a booking link call-to-action within a vertical ad, for example a 'Book Now' link for a hotel ad.",
+            "A standard text ad format. This is currently only used for ads on the Search network."
+          ],
+          "type": "string"
+        },
         "adNetworkType": {
           "description": "Ad network type.",
           "enum": [
@@ -1774,7 +1812,8 @@
             "STORE_VISIT",
             "STORE_SALE",
             "QUALIFIED_LEAD",
-            "CONVERTED_LEAD"
+            "CONVERTED_LEAD",
+            "YOUTUBE_FOLLOW_ON_VIEWS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -1800,7 +1839,8 @@
             "A visit to a physical store location.",
             "A sale occurring in a physical store.",
             "A lead conversion imported from an external source into Google Ads, that has been further qualified by the advertiser (marketing/sales team). In the lead-to-sale journey, advertisers get leads, then act on them by reaching out to the consumer. If the consumer is interested and may end up buying their product, the advertiser marks such leads as \"qualified leads\".",
-            "A lead conversion imported from an external source into Google Ads, that has further completed a chosen stage as defined by the lead gen advertiser."
+            "A lead conversion imported from an external source into Google Ads, that has further completed a chosen stage as defined by the lead gen advertiser.",
+            "User watches an ad from a channel and later watches either the same video or a video from the same channel as the ad."
           ],
           "type": "string"
         },
@@ -2138,6 +2178,64 @@
             "$ref": "GoogleAdsSearchads360V0Common__Value"
           },
           "type": "array"
+        },
+        "verticalAdsEventParticipantDisplayNames": {
+          "description": "The display names of participants in an event listing, like performers, speakers, or teams.",
+          "type": "string"
+        },
+        "verticalAdsHotelClass": {
+          "description": "The class of the hotel. Generally in the range of 1 to 5 stars, but fully customizable in the hotel feed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verticalAdsListing": {
+          "description": "The listing associated with a listing impression, click or conversion.",
+          "type": "string"
+        },
+        "verticalAdsListingBrand": {
+          "description": "The brand associated with a specific listing within a Vertical Ads context, for example, the brand of a car rental, a vacation home, or an event.",
+          "type": "string"
+        },
+        "verticalAdsListingCity": {
+          "description": "The city where the vertical ads listing is located.",
+          "type": "string"
+        },
+        "verticalAdsListingCountry": {
+          "description": "The country where the vertical ads listing is located.",
+          "type": "string"
+        },
+        "verticalAdsListingRegion": {
+          "description": "The region where the vertical ads listing is located.",
+          "type": "string"
+        },
+        "verticalAdsPartnerAccount": {
+          "description": "A specific partner account within a Partner Center (for example, Hotel Center) that supplies inventory feed data for Vertical Ads.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verticalAdsVertical": {
+          "description": "Type of vertical ad, such as Vacation Rentals, Car Rentals, or Events, used to categorize and segment data in the context of Vertical Ads.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HOTELS",
+            "VACATION_RENTALS",
+            "RENTAL_CARS",
+            "EVENTS",
+            "THINGS_TO_DO",
+            "FLIGHTS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Hotels travel vertical.",
+            "Vacation rentals travel vertical.",
+            "Rental cars travel vertical.",
+            "Events travel vertical.",
+            "Things to do travel vertical.",
+            "Flights travel vertical."
+          ],
+          "type": "string"
         },
         "week": {
           "description": "Week as defined as Monday through Sunday, and represented by the date of Monday. Formatted as yyyy-MM-dd.",
@@ -2996,7 +3094,8 @@
             "UNRECOGNIZED_FIELD",
             "UNEXPECTED_INPUT",
             "REQUESTED_METRICS_FOR_MANAGER",
-            "FILTER_HAS_TOO_MANY_VALUES"
+            "FILTER_HAS_TOO_MANY_VALUES",
+            "REQUIRED_SEGMENT_FIELD_MISSING"
           ],
           "enumDescriptions": [
             "Name unspecified.",
@@ -3055,7 +3154,8 @@
             "Query contains one or more unrecognized fields.",
             "Query has an unexpected extra part.",
             "Metrics cannot be requested for a manager account. To retrieve metrics, issue separate requests against each client account under the manager account.",
-            "The number of values (right-hand-side operands) in a filter exceeds the limit."
+            "The number of values (right-hand-side operands) in a filter exceeds the limit.",
+            "Required segment field is missing."
           ],
           "type": "string"
         },
@@ -3476,11 +3576,11 @@
           "type": "boolean"
         },
         "targetPartnerSearchNetwork": {
-          "description": "Whether ads will be served on the Google Partner Network. This is available only to some select Google partner accounts.",
+          "description": "Whether ads will be served on the partner network. This is available only to some select partner accounts. Unless you have been instructed to use this field, it likely does not apply to your account. This does not control whether ads will be served on Google Search Partners Network; use `target_search_network` for that instead.",
           "type": "boolean"
         },
         "targetSearchNetwork": {
-          "description": "Whether ads will be served on partner sites in the Google Search Network (requires `target_google_search` to also be `true`).",
+          "description": "Whether ads will be served on sites in the Google Search Partners Network (requires `target_google_search` to also be `true`).",
           "type": "boolean"
         }
       },
@@ -4168,7 +4268,7 @@
           "type": "string"
         },
         "cpcBidMicros": {
-          "description": "The maximum CPC (cost-per-click) bid.",
+          "description": "The maximum CPC (cost-per-click) bid. This field is used when the ad group's effective bidding strategy is Manual CPC. This field is not applicable and will be ignored if the ad group's campaign is using a portfolio bidding strategy.",
           "format": "int64",
           "type": "string"
         },
@@ -6487,7 +6587,7 @@
       "id": "GoogleAdsSearchads360V0Resources__CampaignBudget",
       "properties": {
         "amountMicros": {
-          "description": "The amount of the budget, in the local currency for the account. Amount is specified in micros, where one million is equivalent to one currency unit. Monthly spend is capped at 30.4 times this amount.",
+          "description": "The average daily amount to be spent by the campaign. This field is used when the CampaignBudget `period` is set to `DAILY`, which is the default. Amount is specified in micros in the account's local currency. One million micros is equivalent to one currency unit. The effective monthly spend is capped at 30.4 times this daily amount. This field is mutually exclusive with 'total_amount_micros'. Only one of 'amount_micros' or 'total_amount_micros' should be set.",
           "format": "int64",
           "type": "string"
         },
@@ -6762,7 +6862,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources__CartDataSalesView": {
-      "description": "Cart data sales view.",
+      "description": "Cart data sales view. Provides information about the products which were purchased if conversions with cart data is implemented. Performance metrics like revenue, gross profit, lead/cross-sell metrics etc. and Merchant Center attributes such as brand, category etc. are available for products defined in an inventory feed and sold as a result of Google ads. For purchases attributed to clicks on Shopping ads, dimensions of both clicked and sold products can be viewed together.",
       "id": "GoogleAdsSearchads360V0Resources__CartDataSalesView",
       "properties": {
         "resourceName": {
@@ -7051,7 +7151,8 @@
             "STORE_VISIT",
             "STORE_SALE",
             "QUALIFIED_LEAD",
-            "CONVERTED_LEAD"
+            "CONVERTED_LEAD",
+            "YOUTUBE_FOLLOW_ON_VIEWS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -7077,7 +7178,8 @@
             "A visit to a physical store location.",
             "A sale occurring in a physical store.",
             "A lead conversion imported from an external source into Google Ads, that has been further qualified by the advertiser (marketing/sales team). In the lead-to-sale journey, advertisers get leads, then act on them by reaching out to the consumer. If the consumer is interested and may end up buying their product, the advertiser marks such leads as \"qualified leads\".",
-            "A lead conversion imported from an external source into Google Ads, that has further completed a chosen stage as defined by the lead gen advertiser."
+            "A lead conversion imported from an external source into Google Ads, that has further completed a chosen stage as defined by the lead gen advertiser.",
+            "User watches an ad from a channel and later watches either the same video or a video from the same channel as the ad."
           ],
           "type": "string"
         },
@@ -8463,7 +8565,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources__UserList": {
-      "description": "A user list. This is a list of users a customer may target.",
+      "description": "A user list. This is a list of users a customer may target. The unique key of a user list consists of the following fields: `id`. Note that the `name` must also be unique for user lists owned by a given customer, except in some cases where `access_reason` is set to `SHARED`. Violating the unique name constraint produces error: `UserListError.INVALID_NAME`.",
       "id": "GoogleAdsSearchads360V0Resources__UserList",
       "properties": {
         "id": {
@@ -8473,7 +8575,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Name of this user list. Depending on its access_reason, the user list name may not be unique (for example, if access_reason=SHARED)",
+          "description": "Name of this user list. Unique per user list, except in some cases where a user list of the same name has `access_reason` set to `SHARED`.",
           "type": "string"
         },
         "resourceName": {
