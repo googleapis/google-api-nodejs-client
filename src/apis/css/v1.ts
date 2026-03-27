@@ -331,6 +331,14 @@ export namespace css_v1 {
      */
     material?: string | null;
     /**
+     * Maximum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     */
+    maxRating?: string | null;
+    /**
+     * Minimum rating score of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     */
+    minRating?: string | null;
+    /**
      * Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
      */
     mpn?: string | null;
@@ -379,6 +387,14 @@ export namespace css_v1 {
      */
     productWidth?: Schema$ProductDimension;
     /**
+     * Average rating score of the product. The value must be within the range of [`min_rating`, `max_rating`], inclusive. When displayed on the product page, this rating is normalized to a scale of [1, 5] with one decimal place. If provided, `review_count`, `min_rating`, and `max_rating` are also required. This field is for an upcoming feature and is not yet used.
+     */
+    rating?: number | null;
+    /**
+     * Number of reviews of the product. Required if `rating` is provided. This field is for an upcoming feature and is not yet used.
+     */
+    reviewCount?: string | null;
+    /**
      * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value (see [https://support.google.com/merchants/answer/6324492](size definition)).
      */
     size?: string | null;
@@ -387,7 +403,7 @@ export namespace css_v1 {
      */
     sizeSystem?: string | null;
     /**
-     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided (see [https://support.google.com/merchants/answer/6324497](size type)).
+     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided (see [size type](https://support.google.com/merchants/answer/6324497).
      */
     sizeTypes?: string[] | null;
     /**
