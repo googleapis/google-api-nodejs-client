@@ -1798,7 +1798,7 @@
       }
     }
   },
-  "revision": "20260116",
+  "revision": "20260310",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -1810,7 +1810,7 @@
           "type": "string"
         },
         "serviceAccountEmail": {
-          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "description": "Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
           "type": "string"
         },
         "unstructuredInference": {
@@ -1894,7 +1894,8 @@
             "KINESIS_PERMISSION_DENIED",
             "PUBLISH_PERMISSION_DENIED",
             "STREAM_NOT_FOUND",
-            "CONSUMER_NOT_FOUND"
+            "CONSUMER_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1902,7 +1903,8 @@
             "Permission denied encountered while consuming data from Kinesis. This can happen if: - The provided `aws_role_arn` does not exist or does not have the appropriate permissions attached. - The provided `aws_role_arn` is not set up properly for Identity Federation using `gcp_service_account`. - The Pub/Sub SA is not granted the `iam.serviceAccounts.getOpenIdToken` permission on `gcp_service_account`.",
             "Permission denied encountered while publishing to the topic. This can happen if the Pub/Sub SA has not been granted the [appropriate publish permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)",
             "The Kinesis stream does not exist.",
-            "The Kinesis consumer does not exist."
+            "The Kinesis consumer does not exist.",
+            "Indicates an error state where the ingestion source cannot be processed. This occurs because there is no overlap between the regions allowed by the topic's `MessageStoragePolicy` and the regions permitted by the Regional Access Boundary (RAB) restrictions on the project's Pub/Sub service account. A common, allowed region is required to determine a valid ingestion region."
           ],
           "readOnly": true,
           "type": "string"
@@ -1938,7 +1940,8 @@
             "MSK_PERMISSION_DENIED",
             "PUBLISH_PERMISSION_DENIED",
             "CLUSTER_NOT_FOUND",
-            "TOPIC_NOT_FOUND"
+            "TOPIC_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1946,7 +1949,8 @@
             "Permission denied encountered while consuming data from Amazon MSK.",
             "Permission denied encountered while publishing to the topic.",
             "The provided MSK cluster wasn't found.",
-            "The provided topic wasn't found."
+            "The provided topic wasn't found.",
+            "Indicates an error state where the ingestion source cannot be processed. This occurs because there is no overlap between the regions allowed by the topic's `MessageStoragePolicy` and the regions permitted by the Regional Access Boundary (RAB) restrictions on the project's Pub/Sub service account. A common, allowed region is required to determine a valid ingestion region."
           ],
           "readOnly": true,
           "type": "string"
@@ -1992,7 +1996,8 @@
             "NAMESPACE_NOT_FOUND",
             "EVENT_HUB_NOT_FOUND",
             "SUBSCRIPTION_NOT_FOUND",
-            "RESOURCE_GROUP_NOT_FOUND"
+            "RESOURCE_GROUP_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2002,7 +2007,8 @@
             "The provided Event Hubs namespace couldn't be found.",
             "The provided Event Hub couldn't be found.",
             "The provided Event Hubs subscription couldn't be found.",
-            "The provided Event Hubs resource group couldn't be found."
+            "The provided Event Hubs resource group couldn't be found.",
+            "Indicates an error state where the ingestion source cannot be processed. This occurs because there is no overlap between the regions allowed by the topic's `MessageStoragePolicy` and the regions permitted by the Regional Access Boundary (RAB) restrictions on the project's Pub/Sub service account. A common, allowed region is required to determine a valid ingestion region."
           ],
           "readOnly": true,
           "type": "string"
@@ -2072,6 +2078,54 @@
       },
       "type": "object"
     },
+    "BigtableConfig": {
+      "description": "Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name and message ID delimited by #. - columns: message bytes written to a single column family \"data\" with an empty-string column qualifier. - cell timestamp: the message publish timestamp.",
+      "id": "BigtableConfig",
+      "properties": {
+        "appProfileId": {
+          "description": "Optional. The app profile to use for the Bigtable writes. If not specified, the \"default\" application profile will be used. The app profile must use single-cluster routing.",
+          "type": "string"
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates whether or not the subscription can receive messages.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "NOT_FOUND",
+            "APP_PROFILE_MISCONFIGURED",
+            "PERMISSION_DENIED",
+            "SCHEMA_MISMATCH",
+            "IN_TRANSIT_LOCATION_RESTRICTION",
+            "VERTEX_AI_LOCATION_RESTRICTION"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The subscription can actively send messages to Bigtable.",
+            "Cannot write to Bigtable because the instance, table, or app profile does not exist.",
+            "Cannot write to Bigtable because the app profile is not configured for single-cluster routing.",
+            "Cannot write to Bigtable because of permission denied errors. This can happen if: - The Pub/Sub service agent has not been granted the [appropriate Bigtable IAM permission bigtable.tables.mutateRows]({$universe.dns_names.final_documentation_domain}/bigtable/docs/access-control#permissions) - The bigtable.googleapis.com API is not enabled for the project ([instructions]({$universe.dns_names.final_documentation_domain}/service-usage/docs/enable-disable))",
+            "Cannot write to Bigtable because of a missing column family (\"data\") or if there is no structured row key for the subscription name + message ID.",
+            "Cannot write to the destination because enforce_in_transit is set to true and the destination locations are not in the allowed regions.",
+            "Cannot write to Bigtable because the table is not in the same location as where Vertex AI models used in `message_transform`s are deployed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "table": {
+          "description": "Optional. The unique name of the table to write messages to. Values are of the form `projects//instances//tables/`.",
+          "type": "string"
+        },
+        "writeMetadata": {
+          "description": "Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table under the pubsub_metadata column family. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -2127,7 +2181,8 @@
             "CLOUD_STORAGE_PERMISSION_DENIED",
             "PUBLISH_PERMISSION_DENIED",
             "BUCKET_NOT_FOUND",
-            "TOO_MANY_OBJECTS"
+            "TOO_MANY_OBJECTS",
+            "CONFLICTING_REGION_CONSTRAINTS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2135,7 +2190,8 @@
             "Permission denied encountered while calling the Cloud Storage API. This can happen if the Pub/Sub SA has not been granted the [appropriate permissions](https://cloud.google.com/storage/docs/access-control/iam-permissions): - storage.objects.list: to list the objects in a bucket. - storage.objects.get: to read the objects in a bucket. - storage.buckets.get: to verify the bucket exists.",
             "Permission denied encountered while publishing to the topic. This can happen if the Pub/Sub SA has not been granted the [appropriate publish permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)",
             "The provided Cloud Storage bucket doesn't exist.",
-            "The Cloud Storage bucket has too many objects, ingestion will be paused."
+            "The Cloud Storage bucket has too many objects, ingestion will be paused.",
+            "Indicates an error state where the ingestion source cannot be processed. This occurs because there is no overlap between the regions allowed by the topic's `MessageStoragePolicy` and the regions permitted by the Regional Access Boundary (RAB) restrictions on the project's Pub/Sub service account. A common, allowed region is required to determine a valid ingestion region."
           ],
           "readOnly": true,
           "type": "string"
@@ -2260,7 +2316,8 @@
             "PUBLISH_PERMISSION_DENIED",
             "UNREACHABLE_BOOTSTRAP_SERVER",
             "CLUSTER_NOT_FOUND",
-            "TOPIC_NOT_FOUND"
+            "TOPIC_NOT_FOUND",
+            "CONFLICTING_REGION_CONSTRAINTS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2269,7 +2326,8 @@
             "Permission denied encountered while publishing to the topic.",
             "The provided bootstrap server address is unreachable.",
             "The provided cluster wasn't found.",
-            "The provided topic wasn't found."
+            "The provided topic wasn't found.",
+            "Indicates an error state where the ingestion source cannot be processed. This occurs because there is no overlap between the regions allowed by the topic's `MessageStoragePolicy` and the regions permitted by the Regional Access Boundary (RAB) restrictions on the project's Pub/Sub service account. A common, allowed region is required to determine a valid ingestion region."
           ],
           "readOnly": true,
           "type": "string"
@@ -3021,6 +3079,10 @@
         "bigqueryConfig": {
           "$ref": "BigQueryConfig",
           "description": "Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it."
+        },
+        "bigtableConfig": {
+          "$ref": "BigtableConfig",
+          "description": "Optional. If delivery to Bigtable is used with this subscription, this field is used to configure it."
         },
         "cloudStorageConfig": {
           "$ref": "CloudStorageConfig",

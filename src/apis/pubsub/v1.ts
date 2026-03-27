@@ -142,7 +142,7 @@ export namespace pubsub_v1 {
      */
     endpoint?: string | null;
     /**
-     * Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent]({$universe.dns_names.final_documentation_domain\}/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * Optional. The service account to use to make prediction requests against endpoints. The resource creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      */
     serviceAccountEmail?: string | null;
     /**
@@ -297,6 +297,31 @@ export namespace pubsub_v1 {
     useTopicSchema?: boolean | null;
     /**
      * Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.
+     */
+    writeMetadata?: boolean | null;
+  }
+  /**
+   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name and message ID delimited by #. - columns: message bytes written to a single column family "data" with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   */
+  export interface Schema$BigtableConfig {
+    /**
+     * Optional. The app profile to use for the Bigtable writes. If not specified, the "default" application profile will be used. The app profile must use single-cluster routing.
+     */
+    appProfileId?: string | null;
+    /**
+     * Optional. The service account to use to write to Bigtable. The subscription creator or updater that specifies this field must have `iam.serviceAccounts.actAs` permission on the service account. If not specified, the Pub/Sub [service agent](https://cloud.google.com/iam/docs/service-agents), service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Output only. An output-only field that indicates whether or not the subscription can receive messages.
+     */
+    state?: string | null;
+    /**
+     * Optional. The unique name of the table to write messages to. Values are of the form `projects//instances//tables/`.
+     */
+    table?: string | null;
+    /**
+     * Optional. When true, write the subscription name, message_id, publish_time, attributes, and ordering_key to additional columns in the table under the pubsub_metadata column family. The subscription name, message_id, and publish_time fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.
      */
     writeMetadata?: boolean | null;
   }
@@ -988,6 +1013,10 @@ export namespace pubsub_v1 {
      * Optional. If delivery to BigQuery is used with this subscription, this field is used to configure it.
      */
     bigqueryConfig?: Schema$BigQueryConfig;
+    /**
+     * Optional. If delivery to Bigtable is used with this subscription, this field is used to configure it.
+     */
+    bigtableConfig?: Schema$BigtableConfig;
     /**
      * Optional. If delivery to Google Cloud Storage is used with this subscription, this field is used to configure it.
      */
@@ -4785,6 +4814,7 @@ export namespace pubsub_v1 {
      *       //   "ackDeadlineSeconds": 0,
      *       //   "analyticsHubSubscriptionInfo": {},
      *       //   "bigqueryConfig": {},
+     *       //   "bigtableConfig": {},
      *       //   "cloudStorageConfig": {},
      *       //   "deadLetterPolicy": {},
      *       //   "detached": false,
@@ -4813,6 +4843,7 @@ export namespace pubsub_v1 {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "analyticsHubSubscriptionInfo": {},
      *   //   "bigqueryConfig": {},
+     *   //   "bigtableConfig": {},
      *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
@@ -5250,6 +5281,7 @@ export namespace pubsub_v1 {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "analyticsHubSubscriptionInfo": {},
      *   //   "bigqueryConfig": {},
+     *   //   "bigtableConfig": {},
      *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
@@ -6005,6 +6037,7 @@ export namespace pubsub_v1 {
      *   //   "ackDeadlineSeconds": 0,
      *   //   "analyticsHubSubscriptionInfo": {},
      *   //   "bigqueryConfig": {},
+     *   //   "bigtableConfig": {},
      *   //   "cloudStorageConfig": {},
      *   //   "deadLetterPolicy": {},
      *   //   "detached": false,
