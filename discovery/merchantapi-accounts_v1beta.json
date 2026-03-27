@@ -125,6 +125,34 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "createTestAccount": {
+          "description": "Creates a Merchant Center test account. Test accounts are intended for development and testing purposes, such as validating API integrations or new feature behavior. Key characteristics and limitations of test accounts: - Immutable Type: A test account cannot be converted into a regular (live) Merchant Center account. Likewise, a regular account cannot be converted into a test account. - Non-Serving Products: Any products, offers, or data created within a test account will not be published or made visible to end-users on any Google surfaces. They are strictly for testing environments. - Separate Environment: Test accounts operate in a sandbox-like manner, isolated from live serving and real user traffic.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}:createTestAccount",
+          "httpMethod": "POST",
+          "id": "merchantapi.accounts.createTestAccount",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The account resource name to create the test account under. Format: accounts/{account}",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+parent}:createTestAccount",
+          "request": {
+            "$ref": "Account"
+          },
+          "response": {
+            "$ref": "Account"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "delete": {
           "description": "Deletes the specified account regardless of its type: standalone, advanced account or sub-account. Deleting an advanced account leads to the deletion of all of its sub-accounts. This also deletes the account's [developer registration entity](/merchant/api/reference/rest/accounts_v1beta/accounts.developerRegistration) and any associated GCP project to the account. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.",
           "flatPath": "accounts/v1beta/accounts/{accountsId}",
@@ -2104,7 +2132,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager\"",
+              "description": "Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.users.delete",
@@ -2338,7 +2366,7 @@
               ],
               "enumDescriptions": [
                 "Default value. This value is unused.",
-                "Merchant Center application."
+                "Terms of service for the Merchant Center application."
               ],
               "location": "query",
               "type": "string"
@@ -2360,7 +2388,7 @@
       }
     }
   },
-  "revision": "20251120",
+  "revision": "20260318",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2434,7 +2462,7 @@
           "type": "string"
         },
         "accountName": {
-          "description": "Required. A human-readable name of the account. See [store name](https://support.google.com/merchants/answer/160556) and [business name](https://support.google.com/merchants/answer/12159159) for more information.",
+          "description": "Required. A human-readable name of the account. Don't use punctuation, capitalization, or non-alphanumeric symbols such as the \"/\" or \"_\" symbols. See [Adding a business name](https://support.google.com/merchants/answer/12159159) for more information.",
           "type": "string"
         },
         "adultContent": {
@@ -3003,7 +3031,7 @@
           "readOnly": true
         },
         "eligibleDestinations": {
-          "description": "Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
+          "description": "Optional. Required for the create operation. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies. Valid destination values are `SHOPPING_ADS` and `FREE_LISTINGS`.",
           "items": {
             "enum": [
               "DESTINATION_ENUM_UNSPECIFIED",
@@ -3110,7 +3138,7 @@
           "description": "Required. The account to be created."
         },
         "service": {
-          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.",
+          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `products_management` services may be provided.",
           "items": {
             "$ref": "AddAccountService"
           },
@@ -3305,7 +3333,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Identifier. The `name` (ID) of the developer registration. Generated by the Content API upon creation of a new `DeveloperRegistration`. The `account` represents the merchant ID of the merchant that owns the registration.",
+          "description": "Identifier. The `name` (ID) of the developer registration. Generated upon creation of a new `DeveloperRegistration`. The `account` represents the merchant ID of the merchant that owns the registration.",
           "type": "string"
         }
       },
@@ -3648,6 +3676,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -3677,6 +3706,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3690,6 +3720,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -4620,6 +4651,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -4649,6 +4681,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4662,6 +4695,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -4748,7 +4782,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -4886,7 +4920,7 @@
       "type": "object"
     },
     "Region": {
-      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes or, in some countries, using predefined geotargets. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region) for more information.",
+      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes, radius areas or, in some countries, using predefined geotargets. A region must be defined by specifying exactly one of `postal_code_area`, `geotarget_area`, or `radius_area`. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region) for more information.",
       "id": "Region",
       "properties": {
         "displayName": {
@@ -4927,7 +4961,7 @@
       "id": "RegisterGcpRequest",
       "properties": {
         "developerEmail": {
-          "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference. Make sure the email used is associated with a Google Account (Google Workspace account or Gmail account) and is not a service account as service accounts can't receive emails.",
+          "description": "Immutable. Optional field. Developer role can be also added by using `users.update` method. If the developer email provided is associated with a user in the provided merchant account, the user will be updated to have `API_DEVELOPER` `access_rights` and the email preference corresponding to that user will be updated to have the new API notifications preference. If the developer email provided is not associated with any user, it is added as a contact. The email preference corresponding to that contact will have the new API notifications preference. Make sure the email used is associated with a Google Account and is not a service account as service accounts can't receive emails.",
           "type": "string"
         }
       },
@@ -5309,7 +5343,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Merchant Center application."
+            "Terms of service for the Merchant Center application."
           ],
           "type": "string"
         },
@@ -5352,7 +5386,7 @@
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "Merchant Center application."
+            "Terms of service for the Merchant Center application."
           ],
           "type": "string"
         }

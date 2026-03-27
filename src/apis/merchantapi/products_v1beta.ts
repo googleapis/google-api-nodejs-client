@@ -602,7 +602,7 @@ export namespace merchantapi_products_v1beta {
     value?: string | null;
   }
   /**
-   * The destination status of the product status.
+   * The destination status of the product status. Equivalent to `StatusPerReportingContext` in Reports API.
    */
   export interface Schema$DestinationStatus {
     /**

@@ -253,7 +253,7 @@ export namespace merchantapi_products_v1 {
     value?: string | null;
   }
   /**
-   * The destination status of the product status.
+   * The destination status of the product status. Equivalent to `StatusPerReportingContext` in Reports API.
    */
   export interface Schema$DestinationStatus {
     /**
@@ -783,6 +783,10 @@ export namespace merchantapi_products_v1 {
      */
     promotionIds?: string[] | null;
     /**
+     * The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
+     */
+    returnPolicyLabel?: string | null;
+    /**
      * Advertised sale price of the item.
      */
     salePrice?: Schema$Price;
@@ -807,7 +811,7 @@ export namespace merchantapi_products_v1 {
      */
     shippingHeight?: Schema$ShippingDimension;
     /**
-     * The shipping label of the product, used to group product in account-level shipping rules.
+     * The shipping label of the product, used to group products in account-level shipping rules. Max. 100 characters. For more information, see [Shipping label](https://support.google.com/merchants/answer/6324504).
      */
     shippingLabel?: string | null;
     /**
