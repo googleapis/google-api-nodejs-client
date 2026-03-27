@@ -1676,7 +1676,7 @@
       }
     }
   },
-  "revision": "20251128",
+  "revision": "20260312",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -2262,6 +2262,35 @@
       },
       "type": "object"
     },
+    "GetVersionOperationMetadata": {
+      "id": "GetVersionOperationMetadata",
+      "properties": {
+        "inlineSbomInfo": {
+          "$ref": "GetVersionOperationMetadataSbomInfo"
+        }
+      },
+      "type": "object"
+    },
+    "GetVersionOperationMetadataSbomInfo": {
+      "id": "GetVersionOperationMetadataSbomInfo",
+      "properties": {
+        "currentComponentVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "SBOM versions currently applied to the resource. The key is the component name and the value is the version.",
+          "type": "object"
+        },
+        "targetComponentVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "SBOM versions scheduled for the next maintenance. The key is the component name and the value is the version.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GlobalSetPolicyRequest": {
       "id": "GlobalSetPolicyRequest",
       "properties": {
@@ -2579,6 +2608,9 @@
         },
         "firewallPolicyRuleOperationMetadata": {
           "$ref": "FirewallPolicyRuleOperationMetadata"
+        },
+        "getVersionOperationMetadata": {
+          "$ref": "GetVersionOperationMetadata"
         },
         "httpErrorMessage": {
           "description": "[Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.",

@@ -518,6 +518,19 @@ export namespace deploymentmanager_v2beta {
      */
     allocatedPriority?: number | null;
   }
+  export interface Schema$GetVersionOperationMetadata {
+    inlineSbomInfo?: Schema$GetVersionOperationMetadataSbomInfo;
+  }
+  export interface Schema$GetVersionOperationMetadataSbomInfo {
+    /**
+     * SBOM versions currently applied to the resource. The key is the component name and the value is the version.
+     */
+    currentComponentVersions?: {[key: string]: string} | null;
+    /**
+     * SBOM versions scheduled for the next maintenance. The key is the component name and the value is the version.
+     */
+    targetComponentVersions?: {[key: string]: string} | null;
+  }
   export interface Schema$GlobalSetPolicyRequest {
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
@@ -705,6 +718,7 @@ export namespace deploymentmanager_v2beta {
       }>;
     } | null;
     firewallPolicyRuleOperationMetadata?: Schema$FirewallPolicyRuleOperationMetadata;
+    getVersionOperationMetadata?: Schema$GetVersionOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      */
@@ -1401,6 +1415,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -1744,6 +1759,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2091,6 +2107,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2281,6 +2298,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2572,6 +2590,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -2748,6 +2767,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -3251,6 +3271,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -3604,6 +3625,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -3942,6 +3964,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -4297,6 +4320,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -5067,6 +5091,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -5805,6 +5830,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -6308,6 +6334,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -6818,6 +6845,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -7010,6 +7038,7 @@ export namespace deploymentmanager_v2beta {
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "firewallPolicyRuleOperationMetadata": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
