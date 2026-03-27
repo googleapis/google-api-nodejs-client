@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "vmwareengine.projects.locations.list",
@@ -286,7 +286,7 @@
             "datastores": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `Datastore` resource in a given project and location. Datastores are regional resources",
+                  "description": "Creates a new `Datastore` resource in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores",
                   "httpMethod": "POST",
                   "id": "vmwareengine.projects.locations.datastores.create",
@@ -435,7 +435,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Modifies a Datastore resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied.",
+                  "description": "Modifies a Datastore resource. Only fields specified in `updateMask` are applied.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores/{datastoresId}",
                   "httpMethod": "PATCH",
                   "id": "vmwareengine.projects.locations.datastores.patch",
@@ -456,7 +456,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -562,6 +562,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/networkPeerings",
@@ -702,6 +707,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -791,6 +801,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/networkPolicies",
@@ -967,6 +982,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -1009,6 +1029,11 @@
                           "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/externalAccessRules",
@@ -1149,6 +1174,11 @@
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the// request. If set to `false`, validates and executes the request.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}",
@@ -1365,7 +1395,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. True if you want the request to be validated and not executed; false otherwise.",
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1575,6 +1605,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -1881,7 +1916,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. True if you want the request to be validated and not executed; false otherwise.",
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -2030,7 +2065,7 @@
                       ]
                     },
                     "mountDatastore": {
-                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "description": "Mounts a `Datastore` on a cluster resource",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:mountDatastore",
                       "httpMethod": "POST",
                       "id": "vmwareengine.projects.locations.privateClouds.clusters.mountDatastore",
@@ -2085,7 +2120,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. True if you want the request to be validated and not executed; false otherwise.",
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -2158,7 +2193,7 @@
                       ]
                     },
                     "unmountDatastore": {
-                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "description": "Unmounts a `Datastore` on a cluster resource",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:unmountDatastore",
                       "httpMethod": "POST",
                       "id": "vmwareengine.projects.locations.privateClouds.clusters.unmountDatastore",
@@ -2281,6 +2316,11 @@
                           "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/externalAddresses",
@@ -2421,6 +2461,11 @@
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+name}",
@@ -3260,6 +3305,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/privateConnections",
@@ -3400,6 +3450,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -3479,6 +3534,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "vmwareEngineNetworkId": {
                       "description": "Required. The user-provided identifier of the new VMware Engine network. This identifier must be unique among VMware Engine network resources within the parent and becomes the final token in the name URI. The identifier must meet the following requirements: * For networks of type LEGACY, adheres to the format: `{region-id}-default`. Replace `{region-id}` with the region where you want to create the VMware Engine network. For example, \"us-central1-default\". * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5)",
@@ -3629,6 +3689,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -3649,7 +3714,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20260319",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -4073,7 +4138,7 @@
       "id": "DatastoreMountConfig",
       "properties": {
         "accessMode": {
-          "description": "Optional. NFS is accessed by hosts in read mode Optional. Default value used will be READ_WRITE",
+          "description": "Optional. The access mode of the NFS volume. Optional. Default value used will be READ_WRITE",
           "enum": [
             "ACCESS_MODE_UNSPECIFIED",
             "READ_ONLY",
@@ -4087,7 +4152,7 @@
           "type": "string"
         },
         "datastore": {
-          "description": "Required. The resource name of the datastore to unmount. The datastore requested to be mounted should be in same region/zone as the cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
+          "description": "Required. The resource name of the datastore to mount. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
           "type": "string"
         },
         "datastoreNetwork": {
@@ -4111,16 +4176,6 @@
           ],
           "type": "string"
         },
-        "securityType": {
-          "description": "Optional. ONLY required when NFS 4.1 version is used",
-          "enum": [
-            "SECURITY_TYPE_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "The default value. This value should never be used."
-          ],
-          "type": "string"
-        },
         "servers": {
           "description": "Output only. Server IP addresses of the NFS volume. For NFS 3, you can only provide a single server IP address or DNS names.",
           "items": {
@@ -4137,12 +4192,12 @@
       "id": "DatastoreNetwork",
       "properties": {
         "connectionCount": {
-          "description": "Optional. The number of connections of the NFS volume. Spported from vsphere 8.0u1",
+          "description": "Optional. connection_count is used to set multiple connections from NFS client on ESXi host to NFS server. A higher number of connections results in better performance on datastores. In MountDatastore API by default max 4 connections are configured. User can set value of connection_count between 1 to 4. Connection_count is supported from vsphere 8.0u1 for earlier version 1 connection count is set on the ESXi hosts.",
           "format": "int32",
           "type": "integer"
         },
         "mtu": {
-          "description": "Optional. The Maximal Transmission Unit (MTU) of the datastore. System sets default MTU size. It prefers the VPC peering MTU, falling back to the VEN MTU if no peering MTU is found. when detected, and falling back to the VEN MTU otherwise.",
+          "description": "Optional. MTU value is set on the VMKernel adapter for the NFS traffic. By default standard 1500 MTU size is set in MountDatastore API which is good for typical setups. However google VPC networks supports jumbo MTU 8896. We recommend to tune this value based on the NFS traffic performance. Performance can be determined using benchmarking I/O tools like fio (Flexible I/O Tester) utility.",
           "format": "int32",
           "type": "integer"
         },
@@ -5316,6 +5371,10 @@
         "requestId": {
           "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5555,7 +5614,7 @@
       "properties": {
         "googleFileService": {
           "$ref": "GoogleFileService",
-          "description": "Google service file service configuration"
+          "description": "Google file service configuration"
         },
         "googleVmwareFileService": {
           "$ref": "GoogleVmwareFileService",
@@ -6545,6 +6604,10 @@
         "requestId": {
           "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set to `true`, only validates the request but doesn’t execute the request. If set to `false`, validates and executes the request.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6810,7 +6873,8 @@
             "KMS_VM",
             "WITNESS_VM",
             "NSXT",
-            "CLUSTER"
+            "CLUSTER",
+            "VM_TOOLS"
           ],
           "enumDescriptions": [
             "The default value. This value should never be used.",
@@ -6826,7 +6890,8 @@
             "KMS VM used for vsan encryption",
             "witness VM in case of stretch PC",
             "nsxt",
-            "Cluster is used in case of BM"
+            "Cluster is used in case of BM",
+            "VMware Tools."
           ],
           "readOnly": true,
           "type": "string"
