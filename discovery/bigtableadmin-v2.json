@@ -3061,7 +3061,7 @@
         "locations": {
           "methods": {
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v2/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "bigtableadmin.projects.locations.list",
@@ -3118,7 +3118,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260320",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3134,7 +3134,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Strongly validated etag for optimistic concurrency control. Preserve the value returned from `GetAppProfile` when calling `UpdateAppProfile` to fail the request if there has been a modification in the mean time. The `update_mask` of the request need not include `etag` for this protection to apply. See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more details.",
+          "description": "Strongly validated etag for optimistic concurrency control. Preserve the value returned from `GetAppProfile` when calling `UpdateAppProfile` to fail the request if there has been a modification in the meantime. The `update_mask` of the request need not include `etag` for this protection to apply. See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more details.",
           "type": "string"
         },
         "multiClusterRoutingUseAny": {
@@ -4326,6 +4326,17 @@
     "GoogleBigtableAdminV2TypeBool": {
       "description": "bool Values of type `Bool` are stored in `Value.bool_value`.",
       "id": "GoogleBigtableAdminV2TypeBool",
+      "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeBoolEncoding",
+          "description": "Specifies the encoding to use when converting to or from lower level types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeBoolEncoding": {
+      "description": "Defines rules used to convert to or from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeBoolEncoding",
       "properties": {},
       "type": "object"
     },
@@ -4392,6 +4403,12 @@
     "GoogleBigtableAdminV2TypeFloat64": {
       "description": "Float64 Values of type `Float64` are stored in `Value.float_value`.",
       "id": "GoogleBigtableAdminV2TypeFloat64",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeGeography": {
+      "description": "A geography type, representing a point or region on Earth. The value is stored in `Value.bytes_value` as Well-Known Binary (WKB) bytes.",
+      "id": "GoogleBigtableAdminV2TypeGeography",
       "properties": {},
       "type": "object"
     },
@@ -4665,6 +4682,20 @@
         },
         "displayName": {
           "description": "Required. The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.",
+          "type": "string"
+        },
+        "edition": {
+          "description": "Optional. The edition of the instance. See Edition for details.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "The edition is unspecified. This is treated as `ENTERPRISE`.",
+            "The Enterprise edition. This is the default offering that is designed to meet the needs of most enterprise workloads.",
+            "The Enterprise Plus edition. This is a premium tier that is designed for demanding, multi-tenant workloads requiring the highest levels of performance, scale, and global availability. The nodes in the Enterprise Plus tier come at a higher cost than the Enterprise tier. Any Enterprise Plus features must be disabled before downgrading to Enterprise."
+          ],
           "type": "string"
         },
         "labels": {
@@ -5535,13 +5566,13 @@
           "type": "boolean"
         },
         "granularity": {
-          "description": "Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.",
+          "description": "Immutable. The granularity at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.",
           "enum": [
             "TIMESTAMP_GRANULARITY_UNSPECIFIED",
             "MILLIS"
           ],
           "enumDescriptions": [
-            "The user did not specify a granularity. Should not be returned. When specified during table creation, MILLIS will be used.",
+            "The user did not specify a granularity. Should not be returned.",
             "The table keeps data versioned at a granularity of 1ms."
           ],
           "type": "string"
@@ -5718,6 +5749,10 @@
         "float64Type": {
           "$ref": "GoogleBigtableAdminV2TypeFloat64",
           "description": "Float64"
+        },
+        "geographyType": {
+          "$ref": "GoogleBigtableAdminV2TypeGeography",
+          "description": "Geography"
         },
         "int64Type": {
           "$ref": "GoogleBigtableAdminV2TypeInt64",

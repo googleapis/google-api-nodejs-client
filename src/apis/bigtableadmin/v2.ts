@@ -139,7 +139,7 @@ export namespace bigtableadmin_v2 {
      */
     description?: string | null;
     /**
-     * Strongly validated etag for optimistic concurrency control. Preserve the value returned from `GetAppProfile` when calling `UpdateAppProfile` to fail the request if there has been a modification in the mean time. The `update_mask` of the request need not include `etag` for this protection to apply. See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more details.
+     * Strongly validated etag for optimistic concurrency control. Preserve the value returned from `GetAppProfile` when calling `UpdateAppProfile` to fail the request if there has been a modification in the meantime. The `update_mask` of the request need not include `etag` for this protection to apply. See [Wikipedia](https://en.wikipedia.org/wiki/HTTP_ETag) and [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more details.
      */
     etag?: string | null;
     /**
@@ -995,7 +995,16 @@ export namespace bigtableadmin_v2 {
   /**
    * bool Values of type `Bool` are stored in `Value.bool_value`.
    */
-  export interface Schema$GoogleBigtableAdminV2TypeBool {}
+  export interface Schema$GoogleBigtableAdminV2TypeBool {
+    /**
+     * Specifies the encoding to use when converting to or from lower level types.
+     */
+    encoding?: Schema$GoogleBigtableAdminV2TypeBoolEncoding;
+  }
+  /**
+   * Defines rules used to convert to or from lower level types.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeBoolEncoding {}
   /**
    * Bytes Values of type `Bytes` are stored in `Value.bytes_value`.
    */
@@ -1048,6 +1057,10 @@ export namespace bigtableadmin_v2 {
    * Float64 Values of type `Float64` are stored in `Value.float_value`.
    */
   export interface Schema$GoogleBigtableAdminV2TypeFloat64 {}
+  /**
+   * A geography type, representing a point or region on Earth. The value is stored in `Value.bytes_value` as Well-Known Binary (WKB) bytes.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeGeography {}
   /**
    * Int64 Values of type `Int64` are stored in `Value.int_value`.
    */
@@ -1267,6 +1280,10 @@ export namespace bigtableadmin_v2 {
      * Required. The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.
      */
     displayName?: string | null;
+    /**
+     * Optional. The edition of the instance. See Edition for details.
+     */
+    edition?: string | null;
     /**
      * Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll\}\p{Lo\}{0,62\}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
@@ -1888,7 +1905,7 @@ export namespace bigtableadmin_v2 {
      */
     deletionProtection?: boolean | null;
     /**
-     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
+     * Immutable. The granularity at which timestamps are stored in this table. Timestamps not matching the granularity will be rejected. If unspecified at creation time, the value will be set to `MILLIS`. Views: `SCHEMA_VIEW`, `FULL`.
      */
     granularity?: string | null;
     /**
@@ -2019,6 +2036,10 @@ export namespace bigtableadmin_v2 {
      * Float64
      */
     float64Type?: Schema$GoogleBigtableAdminV2TypeFloat64;
+    /**
+     * Geography
+     */
+    geographyType?: Schema$GoogleBigtableAdminV2TypeGeography;
     /**
      * Int64
      */
@@ -2976,6 +2997,7 @@ export namespace bigtableadmin_v2 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "edition": "my_edition",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
@@ -3436,6 +3458,7 @@ export namespace bigtableadmin_v2 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
@@ -3914,6 +3937,7 @@ export namespace bigtableadmin_v2 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "edition": "my_edition",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "satisfiesPzi": false,
@@ -3930,6 +3954,7 @@ export namespace bigtableadmin_v2 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "edition": "my_edition",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "satisfiesPzi": false,
@@ -15520,7 +15545,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
