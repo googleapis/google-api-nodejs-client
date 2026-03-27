@@ -182,7 +182,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     hint?: string | null;
     /**
-     * Optional. A description of criteria the agent should use to determine if the goal has been successfully completed
+     * Optional. A visual description of the screen's expected state after the step has been successfully completed. This is referred to as the "final screen assertion" in the Firebase console and CLI tools. This field must be provided for the last step in a test case, and is optional for all other steps.
      */
     successCriteria?: string | null;
     /**
