@@ -673,7 +673,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1alpha/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "beyondcorp.projects.locations.list",
@@ -3332,7 +3332,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260228",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5223,12 +5223,14 @@
           "enum": [
             "SUBSCRIBER_TYPE_UNSPECIFIED",
             "ONLINE",
-            "OFFLINE"
+            "OFFLINE",
+            "CEP_TRIAL"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Represents an online subscription.",
-            "Represents an offline subscription."
+            "Represents an offline subscription.",
+            "Represents a trial subscription. This maps to the 'TRIAL' subscriber_type in the Entitler proto (google3/identity/cloud/contextawareaccess/billing/proto/enums.proto), but is named 'CEP_TRIAL' here to avoid a name collision with the 'Type' enum defined above."
           ],
           "readOnly": true,
           "type": "string"
@@ -5628,6 +5630,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig": {
+      "description": "Configuration for Cloud Logging.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig": {
       "description": "The configuration for the proxy.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig",
@@ -5702,6 +5710,10 @@
           },
           "description": "Optional. Map of Hubs that represents regional data path deployment with GCP region as a key.",
           "type": "object"
+        },
+        "logging": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaLoggingConfig",
+          "description": "Optional. Configuration for Cloud Logging. If this field is present, the logging will be enabled."
         },
         "name": {
           "description": "Identifier. Name of the resource.",

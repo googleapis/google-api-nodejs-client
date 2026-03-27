@@ -271,7 +271,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "beyondcorp.projects.locations.list",
@@ -1909,7 +1909,7 @@
       }
     }
   },
-  "revision": "20251210",
+  "revision": "20260228",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -3474,6 +3474,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig": {
+      "description": "Configuration for Cloud Logging.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig": {
       "description": "The configuration for the proxy.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig",
@@ -3548,6 +3554,10 @@
           },
           "description": "Optional. Map of Hubs that represents regional data path deployment with GCP region as a key.",
           "type": "object"
+        },
+        "logging": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig",
+          "description": "Optional. Configuration for Cloud Logging. If this field is present, the logging will be enabled."
         },
         "name": {
           "description": "Identifier. Name of the resource.",

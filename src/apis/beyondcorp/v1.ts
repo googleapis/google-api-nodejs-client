@@ -1237,6 +1237,10 @@ export namespace beyondcorp_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Configuration for Cloud Logging.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig {}
+  /**
    * The configuration for the proxy.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ProxyProtocolConfig {
@@ -1287,6 +1291,10 @@ export namespace beyondcorp_v1 {
     hubs?: {
       [key: string]: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Hub;
     } | null;
+    /**
+     * Optional. Configuration for Cloud Logging. If this field is present, the logging will be enabled.
+     */
+    logging?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1LoggingConfig;
     /**
      * Identifier. Name of the resource.
      */
@@ -2463,7 +2471,7 @@ export namespace beyondcorp_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -7759,6 +7767,7 @@ export namespace beyondcorp_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "externalIps": [],
      *       //   "hubs": {},
+     *       //   "logging": {},
      *       //   "name": "my_name",
      *       //   "proxyProtocolConfig": {},
      *       //   "serviceDiscovery": {},
@@ -8069,6 +8078,7 @@ export namespace beyondcorp_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "externalIps": [],
      *   //   "hubs": {},
+     *   //   "logging": {},
      *   //   "name": "my_name",
      *   //   "proxyProtocolConfig": {},
      *   //   "serviceDiscovery": {},
@@ -8531,6 +8541,7 @@ export namespace beyondcorp_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "externalIps": [],
      *       //   "hubs": {},
+     *       //   "logging": {},
      *       //   "name": "my_name",
      *       //   "proxyProtocolConfig": {},
      *       //   "serviceDiscovery": {},
