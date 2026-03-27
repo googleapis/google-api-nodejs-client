@@ -848,11 +848,15 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$BiddingStrategy {
     /**
+     * A bid strategy used by Demand Gen resources. It can only be used for a Demand Gen line item or ad group entity.
+     */
+    demandGenBid?: Schema$DemandGenBiddingStrategy;
+    /**
      * A strategy that uses a fixed bid price.
      */
     fixedBid?: Schema$FixedBidStrategy;
     /**
-     * * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
+     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, the performance_goal_type value assigned to an insertion order determines the possible line_item_type values available for line items under that insertion order: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
      */
     maximizeSpendAutoBid?: Schema$MaximizeSpendBidStrategy;
     /**
@@ -1686,6 +1690,10 @@ export namespace displayvideo_v2 {
      * The percentage of post-view conversions to count, in millis (1/1000 of a percent). Must be between 0 and 100000 inclusive. For example, to track 50% of the post-click conversions, set a value of 50000.
      */
     postViewCountPercentageMillis?: string | null;
+    /**
+     * Optional. The attribution model to use for conversion measurement. This attribution model will determine how conversions are counted. The Primary model can be set by you for a floodlight config or group. More details [here](https://support.google.com/displayvideo/answer/7409983). Only applicable to Demand Gen line items.
+     */
+    primaryAttributionModelId?: string | null;
   }
   /**
    * Counter event of the creative.
@@ -2169,7 +2177,7 @@ export namespace displayvideo_v2 {
      */
     startHour?: number | null;
     /**
-     * Required. The mechanism used to determine which timezone to use for this day and time targeting setting.
+     * Required. The mechanism used to determine which timezone to use for this day and time targeting setting. For demand gen line items, this field is always TIME_ZONE_RESOLUTION_ADVERTISER.
      */
     timeZoneResolution?: string | null;
   }
@@ -2189,6 +2197,44 @@ export namespace displayvideo_v2 {
      * Required. Identifies the type of this assigned targeting option.
      */
     targetingType?: string | null;
+  }
+  /**
+   * Settings that control the bid strategy for Demand Gen resources.
+   */
+  export interface Schema$DemandGenBiddingStrategy {
+    /**
+     * Output only. If AG doesn't set value for tCPA or tROAS, line item bidding value will be the effective_bidding_value, if the bidding strategy type is not tCPA or tROAS, effective_bidding_value is always 0. For line item, it will be the same as the value field.
+     */
+    effectiveBiddingValue?: string | null;
+    /**
+     * Output only. Source of the effective bidding value.
+     */
+    effectiveBiddingValueSource?: string | null;
+    /**
+     * Optional. The type of the bidding strategy. This can only be set at the line item level.
+     */
+    type?: string | null;
+    /**
+     * Optional. The value used by the bidding strategy. This can be set at the line item and ad group level. This field is only applicable for the following strategy types: * `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `DEMAND_GEN_BIDDING_STRATEGY_TYPE_TARGET_ROAS` Value of this field is in micros of the advertiser's currency or ROAS value. For example, 1000000 represents 1.0 standard units of the currency or 100% ROAS value. If not using an applicable strategy, the value of this field will be 0.
+     */
+    value?: string | null;
+  }
+  /**
+   * Settings for Demand Gen line items.
+   */
+  export interface Schema$DemandGenSettings {
+    /**
+     * Optional. Immutable. Whether location and language targeting can be set at the line item level. Otherwise, relevant targeting types must be assigned directly to the ad groups.
+     */
+    geoLanguageTargetingEnabled?: boolean | null;
+    /**
+     * Optional. The ID of the merchant which is linked to the line item for product feed.
+     */
+    linkedMerchantId?: string | null;
+    /**
+     * Optional. The third party measurement settings for the Demand Gen line item.
+     */
+    thirdPartyMeasurementConfigs?: Schema$ThirdPartyMeasurementConfigs;
   }
   /**
    * Assigned device make and model targeting option details. This will be populated in the device_make_model_details field when targeting_type is `TARGETING_TYPE_DEVICE_MAKE_MODEL`.
@@ -2911,15 +2957,19 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ImageAsset {
     /**
-     * File size of the image asset in bytes.
+     * Required. The unique ID of the asset.
+     */
+    assetId?: string | null;
+    /**
+     * Output only. File size of the image asset in bytes.
      */
     fileSize?: string | null;
     /**
-     * Metadata for this image at its original size.
+     * Output only. Metadata for this image at its original size.
      */
     fullSize?: Schema$Dimensions;
     /**
-     * MIME type of the image asset.
+     * Output only. MIME type of the image asset.
      */
     mimeType?: string | null;
   }
@@ -2932,7 +2982,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set.
+     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set. If the budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`, the insertion order will impose this bidding strategy on its line items. If an imposed bidding strategy is not compatible with a line item's enableOptimizedTargeting setting, the optimized targeting setting will be updated.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
@@ -3410,6 +3460,10 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$KeywordAssignedTargetingOptionDetails {
     /**
+     * Optional. The policy names to exempt the keyword from. This field is only applicable for Demand Gen keywords, which are positively targeted.
+     */
+    exemptedPolicyNames?: string[] | null;
+    /**
      * Required. The keyword, for example `car insurance`. Positive keyword cannot be offensive word. Must be UTF-8 encoded with a maximum size of 255 bytes. Maximum number of characters is 80. Maximum number of words is 10.
      */
     keyword?: string | null;
@@ -3477,6 +3531,10 @@ export namespace displayvideo_v2 {
      */
     creativeIds?: string[] | null;
     /**
+     * Optional. Settings specific to Demand Gen line items.
+     */
+    demandGenSettings?: Schema$DemandGenSettings;
+    /**
      * Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     displayName?: string | null;
@@ -3493,7 +3551,7 @@ export namespace displayvideo_v2 {
      */
     flight?: Schema$LineItemFlight;
     /**
-     * Required. The impression frequency cap settings of the line item. The max_impressions field in this settings object must be used if assigning a limited cap.
+     * Optional. The impression frequency cap settings of the line item. The max_impressions field in this settings object must be used if assigning a limited cap. This field is REQUIRED for all line item types excluding LINE_ITEM_TYPE_DEMAND_GEN.
      */
     frequencyCap?: Schema$FrequencyCap;
     /**
@@ -3571,7 +3629,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$LineItemBudget {
     /**
-     * Required. The type of the budget allocation. `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC` is only applicable when automatic budget allocation is enabled for the parent insertion order.
+     * Required. The type of the budget allocation. `LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC` is only applicable when automatic budget allocation is enabled for the parent insertion order. For demand gen line items, budget allocation type must be `LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED`. Demand Gen line items do not support other budget allocation types.
      */
     budgetAllocationType?: string | null;
     /**
@@ -4516,7 +4574,7 @@ export namespace displayvideo_v2 {
      */
     markupAmount?: string | null;
     /**
-     * Required. The markup type of the partner revenue model.
+     * Required. The markup type of the partner revenue model. Demand Gen line items only support `PARTNER_REVENUE_MODEL_MARKUP_TYPE_TOTAL_MEDIA_COST_MARKUP`.
      */
     markupType?: string | null;
   }
@@ -5026,6 +5084,10 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$TargetingExpansionConfig {
     /**
+     * Optional. Whether to exclude demographic expansion for Optimized Targeting. This field only applies to Demand Gen ad groups.
+     */
+    excludeDemographicExpansion?: boolean | null;
+    /**
      * Whether to exclude first-party audiences from use in targeting expansion. This field was deprecated with the launch of [optimized targeting](//support.google.com/displayvideo/answer/12060859). This field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences.
      */
     excludeFirstPartyAudience?: boolean | null;
@@ -5182,6 +5244,27 @@ export namespace displayvideo_v2 {
      * Viewability resource details.
      */
     viewabilityDetails?: Schema$ViewabilityTargetingOptionDetails;
+  }
+  /**
+   * Settings that control what third-party vendors are measuring specific line item metrics.
+   */
+  export interface Schema$ThirdPartyMeasurementConfigs {
+    /**
+     * Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_MACROMILL`
+     */
+    brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring brand safety. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_ZEFR`
+     */
+    brandSafetyVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring reach. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_VIDEO_RESEARCH` * `THIRD_PARTY_VENDOR_MEDIA_SCOPE` * `THIRD_PARTY_VENDOR_AUDIENCE_PROJECT` * `THIRD_PARTY_VENDOR_VIDEO_AMP` * `THIRD_PARTY_VENDOR_ISPOT_TV` * `THIRD_PARTY_VENDOR_GEMIUS`
+     */
+    reachVendorConfigs?: Schema$ThirdPartyVendorConfig[];
+    /**
+     * Optional. The third-party vendors measuring viewability. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_MOAT` * `THIRD_PARTY_VENDOR_DOUBLE_VERIFY` * `THIRD_PARTY_VENDOR_INTEGRAL_AD_SCIENCE` * `THIRD_PARTY_VENDOR_COMSCORE` * `THIRD_PARTY_VENDOR_TELEMETRY` * `THIRD_PARTY_VENDOR_MEETRICS`
+     */
+    viewabilityVendorConfigs?: Schema$ThirdPartyVendorConfig[];
   }
   /**
    * Settings for advertisers that use third-party ad servers only.
@@ -5835,13 +5918,17 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$YoutubeVideoDetails {
     /**
-     * The YouTube video ID which can be searched on YouTube webpage.
+     * Output only. The YouTube video ID which can be searched on YouTube webpage.
      */
     id?: string | null;
     /**
      * The reason why the video data is not available.
      */
     unavailableReason?: string | null;
+    /**
+     * Required. The YouTube video asset id. This is ad_asset.ad_asset_id.
+     */
+    videoAssetId?: string | null;
   }
 
   export class Resource$Advertisers {
@@ -12586,6 +12673,7 @@ export namespace displayvideo_v2 {
      *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "conversionCounting": {},
      *       //   "creativeIds": [],
+     *       //   "demandGenSettings": {},
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
      *       //   "excludeNewExchanges": false,
@@ -12619,6 +12707,7 @@ export namespace displayvideo_v2 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
+     *   //   "demandGenSettings": {},
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "excludeNewExchanges": false,
@@ -13071,6 +13160,7 @@ export namespace displayvideo_v2 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
+     *   //   "demandGenSettings": {},
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "excludeNewExchanges": false,
@@ -13384,6 +13474,7 @@ export namespace displayvideo_v2 {
      *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "conversionCounting": {},
      *       //   "creativeIds": [],
+     *       //   "demandGenSettings": {},
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
      *       //   "excludeNewExchanges": false,
@@ -13417,6 +13508,7 @@ export namespace displayvideo_v2 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
+     *   //   "demandGenSettings": {},
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "excludeNewExchanges": false,
