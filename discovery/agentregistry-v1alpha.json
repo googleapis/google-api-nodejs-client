@@ -1,0 +1,1560 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/agentregistry.read-only": {
+          "description": "See your Google Cloud Agent Registry data and the email address of your Google Account"
+        },
+        "https://www.googleapis.com/auth/agentregistry.read-write": {
+          "description": "See, edit, configure, and delete your Google Cloud Agent Registry data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/cloud-platform.read-only": {
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://agentregistry.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Agent Registry",
+  "description": "Agent Registry is a centralized, unified catalog that lets you store, discover, and govern Model Context Protocol (MCP) servers, tools, and AI agents within Google Cloud.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://docs.cloud.google.com/agent-registry/overview",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "agentregistry:v1alpha",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://agentregistry.mtls.googleapis.com/",
+  "name": "agentregistry",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "agentregistry.projects.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/agentregistry.read-write",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "agentregistry.projects.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/agentregistry.read-write",
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "agents": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single Agent.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.agents.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Agent"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Agents in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/agents",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.agents.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListAgentsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/agents",
+                  "response": {
+                    "$ref": "ListAgentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            },
+            "endpoints": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single Endpoint.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.endpoints.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the endpoint to retrieve. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Endpoint"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Endpoints in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/endpoints",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.endpoints.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A query string used to filter the list of endpoints returned. The filter expression must follow AIP-160 syntax. Filtering is supported on the `name`, `display_name`, `description`, `version`, and `interfaces` fields. Some examples: * `name = \"projects/p1/locations/l1/endpoints/e1\"` * `display_name = \"my-endpoint\"` * `description = \"my-endpoint-description\"` * `version = \"v1\"` * `interfaces.transport = \"HTTP_JSON\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location to list endpoints in. Expected format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/endpoints",
+                  "response": {
+                    "$ref": "ListEndpointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            },
+            "mcpServers": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single McpServer.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/mcpServers/{mcpServersId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.mcpServers.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/mcpServers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "McpServer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists McpServers in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/mcpServers",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.mcpServers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListMcpServersRequest. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/mcpServers",
+                  "response": {
+                    "$ref": "ListMcpServersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            },
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "agentregistry.projects.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "agentregistry.projects.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1alpha/{+name}/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "services": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Service in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services",
+                  "httpMethod": "POST",
+                  "id": "agentregistry.projects.locations.services.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location to create the Service in. Expected format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "serviceId": {
+                      "description": "Required. The ID to use for the service, which will become the final component of the service's resource name. This value should be 4-63 characters, and valid characters are `/a-z-/`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/services",
+                  "request": {
+                    "$ref": "Service"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "httpMethod": "DELETE",
+                  "id": "agentregistry.projects.locations.services.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.services.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Service"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Services in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.services.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A query string used to filter the list of services returned. The filter expression must follow AIP-160 syntax. Filtering is supported on the `name`, `display_name`, `description`, and `labels` fields. Some examples: * `name = \"projects/p1/locations/l1/services/s1\"` * `display_name = \"my-service\"` * `description : \"myservice description\"` * `labels.env = \"prod\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location to list services in. Expected format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/services",
+                  "response": {
+                    "$ref": "ListServicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
+                  "httpMethod": "PATCH",
+                  "id": "agentregistry.projects.locations.services.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Service resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Service"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20260318",
+  "rootUrl": "https://agentregistry.googleapis.com/",
+  "schemas": {
+    "Agent": {
+      "description": "Represents an Agent. \"A2A\" below refers to the Agent-to-Agent protocol.",
+      "id": "Agent",
+      "properties": {
+        "agentId": {
+          "description": "Output only. A stable, globally unique identifier for agents.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Output only. Attributes of the Agent. Valid values: * `agentregistry.googleapis.com/system/Framework`: {\"framework\": \"google-adk\"} - the agent framework used to develop the Agent. Example values: \"google-adk\", \"langchain\", \"custom\". * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the Agent. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Agent, for example, the Reasoning Engine URI.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "card": {
+          "$ref": "Card",
+          "description": "Output only. Full Agent Card payload, when available.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. The description of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the agent, often obtained from the A2A Agent Card.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "location": {
+          "description": "Output only. The location where agent is hosted. The value is defined by the hosting environment (i.e. cloud provider).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of an Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+          "type": "string"
+        },
+        "protocols": {
+          "description": "Output only. The connection details for the Agent.",
+          "items": {
+            "$ref": "Protocol"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "skills": {
+          "description": "Output only. Skills the agent possesses, often obtained from the A2A Agent Card.",
+          "items": {
+            "$ref": "Skill"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "uid": {
+          "description": "Output only. A universally unique identifier for the Agent.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The version of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no version or agent is not an A2A Agent.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentSpec": {
+      "description": "The spec of the agent.",
+      "id": "AgentSpec",
+      "properties": {
+        "content": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The content of the Agent spec in the JSON format. This payload is validated against the schema for the specified type. The content size is limited to `10KB`.",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The type of the agent spec content.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC",
+            "A2A_AGENT_CARD"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "There is no spec for the Agent. The `content` field must be empty.",
+            "The content is an A2A Agent Card following the A2A specification. The `interfaces` field must be empty."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Annotations": {
+      "description": "Annotations describing the characteristics and behavior of a tool or operation.",
+      "id": "Annotations",
+      "properties": {
+        "destructiveHint": {
+          "description": "Output only. If true, the tool may perform destructive updates to its environment. If false, the tool performs only additive updates. NOTE: This property is meaningful only when `read_only_hint == false` Default: true",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "idempotentHint": {
+          "description": "Output only. If true, calling the tool repeatedly with the same arguments will have no additional effect on its environment. NOTE: This property is meaningful only when `read_only_hint == false. Default: false",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "openWorldHint": {
+          "description": "Output only. If true, this tool may interact with an \"open world\" of external entities. If false, the tool's domain of interaction is closed. For example, the world of a web search tool is open, whereas that of a memory tool is not. Default: true",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "readOnlyHint": {
+          "description": "Output only. If true, the tool does not modify its environment. Default: false",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "title": {
+          "description": "Output only. A human-readable title for the tool.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "Card": {
+      "description": "Full Agent Card payload, often obtained from the A2A Agent Card.",
+      "id": "Card",
+      "properties": {
+        "content": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. The content of the agent card.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "type": {
+          "description": "Output only. The type of agent card.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A2A_AGENT_CARD"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Indicates that the card is an A2A Agent Card."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "Endpoint": {
+      "description": "Represents an Endpoint.",
+      "id": "Endpoint",
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Output only. Attributes of the Endpoint. Valid values: * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Endpoint, for example, the GKE Deployment.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Description of an Endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display name for the Endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endpointId": {
+          "description": "Output only. A stable, globally unique identifier for Endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "interfaces": {
+          "description": "Required. The connection details for the Endpoint.",
+          "items": {
+            "$ref": "Interface"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Endpoint. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndpointSpec": {
+      "description": "The spec of the endpoint.",
+      "id": "EndpointSpec",
+      "properties": {
+        "content": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The content of the endpoint spec. Reserved for future use.",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The type of the endpoint spec content.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "There is no spec for the Endpoint. The `content` field must be empty."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Interface": {
+      "description": "Represents the connection details for an Agent or MCP Server.",
+      "id": "Interface",
+      "properties": {
+        "protocolBinding": {
+          "description": "Required. The protocol binding of the interface.",
+          "enum": [
+            "PROTOCOL_BINDING_UNSPECIFIED",
+            "JSONRPC",
+            "GRPC",
+            "HTTP_JSON"
+          ],
+          "enumDescriptions": [
+            "Unspecified transport protocol.",
+            "JSON-RPC specification.",
+            "gRPC specification.",
+            "HTTP+JSON specification."
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The destination URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAgentsResponse": {
+      "description": "Message for response to listing Agents",
+      "id": "ListAgentsResponse",
+      "properties": {
+        "agents": {
+          "description": "The list of Agents.",
+          "items": {
+            "$ref": "Agent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListEndpointsResponse": {
+      "description": "Message for response to listing Endpoints",
+      "id": "ListEndpointsResponse",
+      "properties": {
+        "endpoints": {
+          "description": "The list of Endpoint resources matching the parent and filter criteria in the request. Each Endpoint resource follows the format: `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "items": {
+            "$ref": "Endpoint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return. Used in page_token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "ListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMcpServersResponse": {
+      "description": "Message for response to listing McpServers",
+      "id": "ListMcpServersResponse",
+      "properties": {
+        "mcpServers": {
+          "description": "The list of McpServers.",
+          "items": {
+            "$ref": "McpServer"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListServicesResponse": {
+      "description": "Message for response to listing Services",
+      "id": "ListServicesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return. Used in page_token.",
+          "type": "string"
+        },
+        "services": {
+          "description": "The list of Service resources matching the parent and filter criteria in the request. Each Service resource follows the format: `projects/{project}/locations/{location}/services/{service}`.",
+          "items": {
+            "$ref": "Service"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A resource that represents a Google Cloud location.",
+      "id": "Location",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "McpServer": {
+      "description": "Represents an MCP (Model Context Protocol) Server.",
+      "id": "McpServer",
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Output only. Attributes of the MCP Server. Valid values: * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the MCP Server. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the MCP Server, for example, the GKE Deployment.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. The description of the MCP Server.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the MCP Server.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "interfaces": {
+          "description": "Output only. The connection details for the MCP Server.",
+          "items": {
+            "$ref": "Interface"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "mcpServerId": {
+          "description": "Output only. A stable, globally unique identifier for MCP Servers.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the MCP Server. Format: `projects/{project}/locations/{location}/mcpServers/{mcp_server}`.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "Output only. Tools provided by the MCP Server.",
+          "items": {
+            "$ref": "Tool"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "McpServerSpec": {
+      "description": "The spec of the MCP Server.",
+      "id": "McpServerSpec",
+      "properties": {
+        "content": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The content of the MCP Server spec. This payload is validated against the schema for the specified type. The content size is limited to `10KB`.",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The type of the MCP Server spec content.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "NO_SPEC",
+            "TOOL_SPEC"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "There is no spec for the MCP Server. The `content` field must be empty.",
+            "The content is a MCP Tool Spec following the One MCP specification. The payload is the same as the `tools/list` response."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Protocol": {
+      "description": "Represents the protocol of an Agent.",
+      "id": "Protocol",
+      "properties": {
+        "interfaces": {
+          "description": "Output only. The connection details for the Agent.",
+          "items": {
+            "$ref": "Interface"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "protocolVersion": {
+          "description": "Output only. The version of the protocol, for example, the A2A Agent Card version.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the protocol.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A2A_AGENT",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "The interfaces point to an A2A Agent following the A2A specification.",
+            "Agent does not follow any standard protocol."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Service": {
+      "description": "Represents a user-defined Service.",
+      "id": "Service",
+      "properties": {
+        "agentSpec": {
+          "$ref": "AgentSpec",
+          "description": "Optional. The spec of the Agent. When `agent_spec` is set, the type of the service is Agent."
+        },
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-defined description of an Service. Can have a maximum length of `2048` characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. User-defined display name for the Service. Can have a maximum length of `63` characters.",
+          "type": "string"
+        },
+        "endpointSpec": {
+          "$ref": "EndpointSpec",
+          "description": "Optional. The spec of the Endpoint. When `endpoint_spec` is set, the type of the service is Endpoint."
+        },
+        "interfaces": {
+          "description": "Optional. The connection details for the Service.",
+          "items": {
+            "$ref": "Interface"
+          },
+          "type": "array"
+        },
+        "mcpServerSpec": {
+          "$ref": "McpServerSpec",
+          "description": "Optional. The spec of the MCP Server. When `mcp_server_spec` is set, the type of the service is MCP Server."
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Skill": {
+      "description": "Represents the skills of an Agent.",
+      "id": "Skill",
+      "properties": {
+        "description": {
+          "description": "Output only. A more detailed description of the skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "examples": {
+          "description": "Output only. Example prompts or scenarios this skill can handle.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. A unique identifier for the agent's skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. A human-readable name for the agent's skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "description": "Output only. Keywords describing the skill.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Tool": {
+      "description": "Represents a single tool provided by an MCP Server.",
+      "id": "Tool",
+      "properties": {
+        "annotations": {
+          "$ref": "Annotations",
+          "description": "Output only. Annotations associated with the tool.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Output only. Description of what the tool does.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Human-readable name of the tool.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Agent Registry API",
+  "version": "v1alpha",
+  "version_module": true
+}
