@@ -825,6 +825,10 @@ export namespace run_v1 {
      */
     objects?: Schema$GoogleDevtoolsCloudbuildV1ArtifactObjects;
     /**
+     * Optional. A list of OCI images to be uploaded to Artifact Registry upon successful completion of all build steps. OCI images in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any images fail to be pushed, the build is marked FAILURE.
+     */
+    oci?: Schema$GoogleDevtoolsCloudbuildV1Oci[];
+    /**
      * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
      */
     pythonPackages?: Schema$GoogleDevtoolsCloudbuildV1PythonPackage[];
@@ -1151,6 +1155,10 @@ export namespace run_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The OCI media type of the artifact. Non-OCI images, such as Docker images, will have an unspecified value.
+     */
+    ociMediaType?: string | null;
+    /**
      * Output only. Stores timing information for pushing the specified image.
      */
     pushTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
@@ -1393,6 +1401,23 @@ export namespace run_v1 {
      * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
      */
     repository?: string | null;
+  }
+  /**
+   * OCI image to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV1Oci {
+    /**
+     * Required. Path on the local file system where to find the container to upload. e.g. /workspace/my-image.tar
+     */
+    file?: string | null;
+    /**
+     * Required. Registry path to upload the container to. e.g. us-east1-docker.pkg.dev/my-project/my-repo/my-image
+     */
+    registryPath?: string | null;
+    /**
+     * Optional. Tags to apply to the uploaded image. e.g. latest, 1.0.0
+     */
+    tags?: string[] | null;
   }
   /**
    * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
@@ -1919,6 +1944,10 @@ export namespace run_v1 {
      */
     serviceAccountName?: string | null;
     /**
+     * Optional. Duration the instance may be active before the system will shut it down.
+     */
+    timeout?: string | null;
+    /**
      * Optional. List of volumes that can be mounted by containers belonging to the Instance.
      */
     volumes?: Schema$Volume[];
@@ -1956,6 +1985,10 @@ export namespace run_v1 {
      * Output only. The 'generation' of the Instance that was last processed by the controller.
      */
     observedGeneration?: number | null;
+    /**
+     * Output only. All URLs serving traffic for this Instance.
+     */
+    urls?: string[] | null;
   }
   /**
    * Job represents the configuration of a single job, which references a container image which is run to completion.
@@ -2386,7 +2419,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service, Instance. * `run.googleapis.com/invoker-iam-disabled`: Service, Instance. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -2410,7 +2443,7 @@ export namespace run_v1 {
      */
     finalizers?: string[] | null;
     /**
-     * Not supported by Cloud Run
+     * Optional. A prefix for the resource name if not provided in the create request. Must be less than 31 characters to allow for a random suffix.
      */
     generateName?: string | null;
     /**
@@ -2422,7 +2455,7 @@ export namespace run_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The name of the resource. Name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created.
+     * Optional. The name of the resource. A name for creating top-level resources (Service, Job, WorkerPool). Must be unique within a Cloud Run project/region, and cannot be changed once created. If omitted, a default name will be generated.
      */
     name?: string | null;
     /**
@@ -2585,7 +2618,7 @@ export namespace run_v1 {
     requests?: {[key: string]: string} | null;
   }
   /**
-   * Revision is an immutable snapshot of code and configuration. A revision references a container image. Revisions are created by updates to a Configuration. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#revision
+   * Revision is an immutable snapshot of code and configuration. A revision references one or more container images. Revisions are created by updates to a Service.
    */
   export interface Schema$Revision {
     /**
@@ -2618,7 +2651,7 @@ export namespace run_v1 {
      */
     containerConcurrency?: number | null;
     /**
-     * Required. Containers holds the list which define the units of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.
+     * Required. Containers holds the list which define the units of execution for this Revision.
      */
     containers?: Schema$Container[];
     /**
@@ -3212,7 +3245,7 @@ export namespace run_v1 {
      */
     readOnly?: boolean | null;
     /**
-     * Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
+     * Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root). This field is currently ignored for Secret volumes.
      */
     subPath?: string | null;
   }
@@ -3343,7 +3376,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3513,7 +3550,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3654,7 +3695,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3860,7 +3905,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4014,7 +4062,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4164,7 +4215,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4305,7 +4360,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4548,7 +4607,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4694,7 +4756,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4842,7 +4907,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4983,7 +5052,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5216,7 +5289,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5368,7 +5444,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5516,7 +5595,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5657,7 +5740,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5813,7 +5900,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5959,7 +6049,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6205,7 +6298,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6357,7 +6453,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6505,7 +6604,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6646,7 +6749,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6800,7 +6907,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6953,7 +7063,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7201,7 +7314,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7351,7 +7467,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7492,7 +7612,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7718,7 +7842,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7859,7 +7987,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8061,7 +8193,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8215,7 +8350,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8365,7 +8503,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8506,7 +8648,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8662,7 +8808,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8917,7 +9066,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9058,7 +9211,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9260,7 +9417,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9414,7 +9574,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9558,7 +9721,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9699,7 +9866,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9847,7 +10018,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10087,7 +10261,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10265,7 +10443,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -10286,7 +10464,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10464,7 +10646,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10635,7 +10821,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10773,7 +10963,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10980,7 +11174,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11135,7 +11332,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11282,7 +11482,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11420,7 +11624,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11664,7 +11872,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11807,7 +12019,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11957,7 +12172,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12147,7 +12366,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12289,7 +12512,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12438,7 +12664,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12628,7 +12858,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12760,7 +12993,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12902,7 +13139,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13059,7 +13300,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13262,7 +13507,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13409,7 +13657,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13547,7 +13799,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13774,7 +14030,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13912,7 +14172,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14115,7 +14379,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14270,7 +14537,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14417,7 +14687,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14555,7 +14829,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14697,7 +14975,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14854,7 +15136,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15007,7 +15292,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15156,7 +15444,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15438,7 +15730,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15582,7 +15878,10 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15733,7 +16032,11 @@ export namespace run_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/run',
+     *       'https://www.googleapis.com/auth/run.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
