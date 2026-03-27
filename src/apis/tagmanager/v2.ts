@@ -1778,6 +1778,14 @@ export namespace tagmanager_v2 {
      */
     convertNullToValue?: Schema$Parameter;
     /**
+     * The option to convert a variable value to a boolean.
+     */
+    convertToBoolean?: boolean | null;
+    /**
+     * The option to convert a variable value to a number.
+     */
+    convertToNumber?: string | null;
+    /**
      * The value to convert if a variable value is true.
      */
     convertTrueToValue?: Schema$Parameter;

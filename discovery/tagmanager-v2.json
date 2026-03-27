@@ -3986,7 +3986,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260304",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6452,6 +6452,24 @@
         "convertNullToValue": {
           "$ref": "Parameter",
           "description": "The value to convert if a variable value is null."
+        },
+        "convertToBoolean": {
+          "description": "The option to convert a variable value to a boolean.",
+          "type": "boolean"
+        },
+        "convertToNumber": {
+          "description": "The option to convert a variable value to a number.",
+          "enum": [
+            "decimalSeparatorTypeUnspecified",
+            "period",
+            "comma"
+          ],
+          "enumDescriptions": [
+            "",
+            "The option to convert a variable value to a number with a period as the decimal separator.",
+            "The option to convert a variable value to a number with a comma as the decimal separator."
+          ],
+          "type": "string"
         },
         "convertTrueToValue": {
           "$ref": "Parameter",
