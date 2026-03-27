@@ -2937,7 +2937,16 @@ export namespace cloudsearch_v1 {
   /**
    * This field does not contain anything as of now and is just used as an indicator that the suggest result was a phrase completion.
    */
-  export interface Schema$QuerySuggestion {}
+  export interface Schema$QuerySuggestion {
+    /**
+     * Last query time of the suggestion for query history suggestions.
+     */
+    lastQueryTime?: string | null;
+    /**
+     * Source corpus of the suggestion.
+     */
+    sourceCorpus?: string | null;
+  }
   /**
    * Remove Logged Activity Request.
    */
@@ -3243,7 +3252,7 @@ export namespace cloudsearch_v1 {
     quality?: number | null;
   }
   /**
-   * The search API request. NEXT ID: 24
+   * The search API request. NEXT ID: 25
    */
   export interface Schema$SearchRequest {
     /**

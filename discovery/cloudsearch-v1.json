@@ -2101,7 +2101,7 @@
       }
     }
   },
-  "revision": "20260114",
+  "revision": "20260318",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -6790,7 +6790,31 @@
     "QuerySuggestion": {
       "description": "This field does not contain anything as of now and is just used as an indicator that the suggest result was a phrase completion.",
       "id": "QuerySuggestion",
-      "properties": {},
+      "properties": {
+        "lastQueryTime": {
+          "description": "Last query time of the suggestion for query history suggestions.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceCorpus": {
+          "description": "Source corpus of the suggestion.",
+          "enum": [
+            "SOURCE_CORPUS_UNSPECIFIED",
+            "GMAIL",
+            "DRIVE",
+            "CHAT",
+            "CALENDAR"
+          ],
+          "enumDescriptions": [
+            "Source corpus is unspecified.",
+            "Source corpus is Gmail.",
+            "Source corpus is Drive.",
+            "Source corpus is Chat.",
+            "Source corpus is Calendar."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RemoveActivityRequest": {
@@ -7250,7 +7274,7 @@
       "type": "object"
     },
     "SearchRequest": {
-      "description": "The search API request. NEXT ID: 24",
+      "description": "The search API request. NEXT ID: 25",
       "id": "SearchRequest",
       "properties": {
         "contextAttributes": {
