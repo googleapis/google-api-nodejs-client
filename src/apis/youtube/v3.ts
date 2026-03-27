@@ -2347,6 +2347,43 @@ export namespace youtube_v3 {
      */
     userComment?: string | null;
   }
+  /**
+   * Details about the gift event, this is only set if the type is 'giftEvent'.
+   */
+  export interface Schema$LiveChatGiftDetails {
+    /**
+     * The alternative text to be used for accessibility.
+     */
+    altText?: string | null;
+    /**
+     * The number of times the gift has been sent in a row.
+     */
+    comboCount?: number | null;
+    /**
+     * The duration of the gift.
+     */
+    giftDuration?: string | null;
+    /**
+     * The name of the gift.
+     */
+    giftName?: string | null;
+    /**
+     * The URL of the gift image.
+     */
+    giftUrl?: string | null;
+    /**
+     * Whether the gift involves a visual effect.
+     */
+    hasVisualEffect?: boolean | null;
+    /**
+     * The value of the gift in jewels.
+     */
+    jewelsAmount?: number | null;
+    /**
+     * The BCP-47 language code of the gift.
+     */
+    language?: string | null;
+  }
   export interface Schema$LiveChatGiftMembershipReceivedDetails {
     /**
      * The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is 'membershipGiftingEvent'.
@@ -2488,7 +2525,7 @@ export namespace youtube_v3 {
     retractedMessageId?: string | null;
   }
   /**
-   * Next ID: 34
+   * Next ID: 35
    */
   export interface Schema$LiveChatMessageSnippet {
     /**
@@ -2503,6 +2540,10 @@ export namespace youtube_v3 {
      * Details about the funding event, this is only set if the type is 'fanFundingEvent'.
      */
     fanFundingEventDetails?: Schema$LiveChatFanFundingEventDetails;
+    /**
+     * Details about the gift event, this is only set if the type is 'giftEvent'.
+     */
+    giftDetails?: Schema$LiveChatGiftDetails;
     /**
      * Details about the Gift Membership Received event, this is only set if the type is 'giftMembershipReceivedEvent'.
      */
@@ -16052,6 +16093,8 @@ export namespace youtube_v3 {
      *   const res = await youtube.tests.insert({
      *     externalChannelId: 'placeholder-value',
      *
+     *     onBehalfOfContentOwnerChannel: 'placeholder-value',
+     *
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -16175,6 +16218,10 @@ export namespace youtube_v3 {
      *
      */
     externalChannelId?: string;
+    /**
+     *
+     */
+    onBehalfOfContentOwnerChannel?: string;
     /**
      *
      */
