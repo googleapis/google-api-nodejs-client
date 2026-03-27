@@ -533,6 +533,15 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$ArchiveSubscriptionRequest {}
   /**
+   * Summary of an artifact.
+   */
+  export interface Schema$ArtifactSummary {
+    /**
+     * Artifact's version code
+     */
+    versionCode?: number | null;
+  }
+  /**
    * Metadata of an asset module.
    */
   export interface Schema$AssetModuleMetadata {
@@ -2526,6 +2535,15 @@ export namespace androidpublisher_v3 {
     oneTimeProducts?: Schema$OneTimeProduct[];
   }
   /**
+   * Response listing all releases for a given track that are either ready to be sent for review, in review, approved, not approved or available.
+   */
+  export interface Schema$ListReleaseSummariesResponse {
+    /**
+     * List of releases for this track. A maximum of 20 releases can be returned.
+     */
+    releases?: Schema$ReleaseSummary[];
+  }
+  /**
    * Response message for ListSubscriptionOffers.
    */
   export interface Schema$ListSubscriptionOffersResponse {
@@ -3868,6 +3886,27 @@ export namespace androidpublisher_v3 {
      * Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
      */
     version?: string | null;
+  }
+  /**
+   * Summary of a release.
+   */
+  export interface Schema$ReleaseSummary {
+    /**
+     * List of active artifacts on this release
+     */
+    activeArtifacts?: Schema$ArtifactSummary[];
+    /**
+     * The lifecycle state of a release.
+     */
+    releaseLifecycleState?: string | null;
+    /**
+     * Name of the release.
+     */
+    releaseName?: string | null;
+    /**
+     * Identifier for the track. [Learn more about track names.](https://developers.google.com/android-publisher/tracks).
+     */
+    track?: string | null;
   }
   /**
    * Object representation for Remote in-app update action type.
@@ -5412,11 +5451,13 @@ export namespace androidpublisher_v3 {
   export class Resource$Applications {
     context: APIRequestContext;
     deviceTierConfigs: Resource$Applications$Devicetierconfigs;
+    tracks: Resource$Applications$Tracks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.deviceTierConfigs = new Resource$Applications$Devicetierconfigs(
         this.context
       );
+      this.tracks = new Resource$Applications$Tracks(this.context);
     }
 
     /**
@@ -6071,6 +6112,173 @@ export namespace androidpublisher_v3 {
      * A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Applications$Tracks {
+    context: APIRequestContext;
+    releases: Resource$Applications$Tracks$Releases;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.releases = new Resource$Applications$Tracks$Releases(this.context);
+    }
+  }
+
+  export class Resource$Applications$Tracks$Releases {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the list of all releases for a given track. This excludes any releases that are obsolete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.tracks.releases.list({
+     *     // Required. The parent track, which owns this collection of releases. Format: applications/{package_name\}/tracks/{track\}
+     *     parent: 'applications/my-application/tracks/my-track',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "releases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Applications$Tracks$Releases$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Applications$Tracks$Releases$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListReleaseSummariesResponse>>;
+    list(
+      params: Params$Resource$Applications$Tracks$Releases$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Tracks$Releases$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReleaseSummariesResponse>,
+      callback: BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Tracks$Releases$List,
+      callback: BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Tracks$Releases$List
+        | BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReleaseSummariesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListReleaseSummariesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Tracks$Releases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Tracks$Releases$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/releases').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReleaseSummariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReleaseSummariesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Applications$Tracks$Releases$List extends StandardParameters {
+    /**
+     * Required. The parent track, which owns this collection of releases. Format: applications/{package_name\}/tracks/{track\}
+     */
+    parent?: string;
   }
 
   export class Resource$Apprecovery {
@@ -6951,6 +7159,8 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.commit({
+     *     // Optional. Specify how the API should behave if there are changes currently in review. If this value is not set, it will default to "CANCEL_IN_REVIEW_AND_SUBMIT", which will cancel the changes in review and then send all the changes for publishing.
+     *     changesInReviewBehavior: 'placeholder-value',
      *     // When a rejection happens, the parameter will make sure that the changes in this edit won't be reviewed until they are explicitly sent for review from within the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.
      *     changesNotSentForReview: 'placeholder-value',
      *     // Identifier of the edit.
@@ -7622,6 +7832,10 @@ export namespace androidpublisher_v3 {
   }
 
   export interface Params$Resource$Edits$Commit extends StandardParameters {
+    /**
+     * Optional. Specify how the API should behave if there are changes currently in review. If this value is not set, it will default to "CANCEL_IN_REVIEW_AND_SUBMIT", which will cancel the changes in review and then send all the changes for publishing.
+     */
+    changesInReviewBehavior?: string;
     /**
      * When a rejection happens, the parameter will make sure that the changes in this edit won't be reviewed until they are explicitly sent for review from within the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.
      */
