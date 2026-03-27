@@ -170,7 +170,7 @@ export namespace drive_v2 {
      */
     canCreateTeamDrives?: boolean | null;
     /**
-     * The domain sharing policy for the current user. Possible values are: * `allowed` * `allowedWithWarning` * `incomingOnly` * `disallowed`
+     * Deprecated: Does not granularly represent allowlisted domains or Trust Rules. The domain sharing policy for the current user. Possible values are: * `allowed` * `allowedWithWarning` * `incomingOnly` * `disallowed` Note that if the user is enrolled in Trust Rules, `disallowed` will always be returned. If sharing is restricted to allowlisted domains, either `incomingOnly` or `allowedWithWarning` will be returned, depending on whether receiving files from outside the allowlisted domains is permitted.
      */
     domainSharingPolicy?: string | null;
     /**
@@ -5886,7 +5886,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/workspace/drive/api/guides/search-shareddrives) guide.
+     *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](https://developers.google.com/workspace/drive/api/guides/search-shareddrives) guide.
      * @example
      * ```js
      * // Before running the sample:
@@ -7310,7 +7310,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v2/files/export) instead. For more information, see [Download & export files](/workspace/drive/api/guides/manage-downloads).
+     *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](https://developers.google.com/workspace/drive/api/reference/rest/v2/files/export) instead. For more information, see [Download & export files](https://developers.google.com/workspace/drive/api/guides/manage-downloads).
      * @example
      * ```js
      * // Before running the sample:
@@ -7546,7 +7546,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Inserts a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.insert` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `title` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"title": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
+     *  Inserts a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](https://developers.google.com/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.insert` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `title` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"title": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
      * @example
      * ```js
      * // Before running the sample:
@@ -7874,7 +7874,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Lists the user's files. For more information, see [Search for files and folders](/workspace/drive/api/guides/search-files). This method accepts the `q` parameter, which is a search query combining one or more search terms. This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
+     *  Lists the user's files. For more information, see [Search for files and folders](https://developers.google.com/workspace/drive/api/guides/search-files). This method accepts the `q` parameter, which is a search query combining one or more search terms. This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
      * @example
      * ```js
      * // Before running the sample:
@@ -9367,7 +9367,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Updates a file's metadata, content, or both. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:* `x/x` (Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information, see [Google Workspace and Google Drive supported MIME types](/workspace/drive/api/guides/mime-types).) For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).
+     *  Updates a file's metadata, content, or both. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:* `x/x` (Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information, see [Google Workspace and Google Drive supported MIME types](https://developers.google.com/workspace/drive/api/guides/mime-types).) For more information on uploading files, see [Upload file data](https://developers.google.com/workspace/drive/api/guides/manage-uploads).
      * @example
      * ```js
      * // Before running the sample:
@@ -11200,7 +11200,7 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.permissions.delete({
-     *     // Whether the request should enforce expansive access rules.
+     *     // Deprecated: All requests use the expansive access rules.
      *     enforceExpansiveAccess: 'placeholder-value',
      *     // The ID for the file or shared drive.
      *     fileId: 'placeholder-value',
@@ -11662,7 +11662,7 @@ export namespace drive_v2 {
      *   const res = await drive.permissions.insert({
      *     // A plain text custom message to include in notification emails.
      *     emailMessage: 'placeholder-value',
-     *     // Whether the request should enforce expansive access rules.
+     *     // Deprecated: All requests use the expansive access rules.
      *     enforceExpansiveAccess: 'placeholder-value',
      *     // Deprecated: See `moveToNewOwnersRoot` for details.
      *     enforceSingleParent: 'placeholder-value',
@@ -12024,7 +12024,7 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.permissions.patch({
-     *     // Whether the request should enforce expansive access rules.
+     *     // Deprecated: All requests use the expansive access rules.
      *     enforceExpansiveAccess: 'placeholder-value',
      *     // The ID for the file or shared drive.
      *     fileId: 'placeholder-value',
@@ -12225,7 +12225,7 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.permissions.update({
-     *     // Whether the request should enforce expansive access rules.
+     *     // Deprecated: All requests use the expansive access rules.
      *     enforceExpansiveAccess: 'placeholder-value',
      *     // The ID for the file or shared drive.
      *     fileId: 'placeholder-value',
@@ -12395,7 +12395,7 @@ export namespace drive_v2 {
 
   export interface Params$Resource$Permissions$Delete extends StandardParameters {
     /**
-     * Whether the request should enforce expansive access rules.
+     * Deprecated: All requests use the expansive access rules.
      */
     enforceExpansiveAccess?: boolean;
     /**
@@ -12453,7 +12453,7 @@ export namespace drive_v2 {
      */
     emailMessage?: string;
     /**
-     * Whether the request should enforce expansive access rules.
+     * Deprecated: All requests use the expansive access rules.
      */
     enforceExpansiveAccess?: boolean;
     /**
@@ -12522,7 +12522,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Permissions$Patch extends StandardParameters {
     /**
-     * Whether the request should enforce expansive access rules.
+     * Deprecated: All requests use the expansive access rules.
      */
     enforceExpansiveAccess?: boolean;
     /**
@@ -12561,7 +12561,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Permissions$Update extends StandardParameters {
     /**
-     * Whether the request should enforce expansive access rules.
+     * Deprecated: All requests use the expansive access rules.
      */
     enforceExpansiveAccess?: boolean;
     /**
