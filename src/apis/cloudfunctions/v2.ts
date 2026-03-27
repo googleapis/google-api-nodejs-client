@@ -265,6 +265,23 @@ export namespace cloudfunctions_v2 {
    */
   export interface Schema$DetachFunctionRequest {}
   /**
+   * The Direct VPC network interface. This is mutually exclusive with VPC Connector.
+   */
+  export interface Schema$DirectVpcNetworkInterface {
+    /**
+     * Optional. The name of the VPC network to which the function will be connected. Specify either a VPC network or a subnet, or both. If you specify only a network, the subnet uses the same name as the network.
+     */
+    network?: string | null;
+    /**
+     * Optional. The name of the VPC subnetwork that the Cloud Function resource will get IPs from. Specify either a VPC network or a subnet, or both. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.
+     */
+    subnetwork?: string | null;
+    /**
+     * Optional. Network tags applied to this Cloud Function resource.
+     */
+    tags?: string[] | null;
+  }
+  /**
    * Filters events based on exact matches on the CloudEvents attributes.
    */
   export interface Schema$EventFilter {
@@ -882,6 +899,14 @@ export namespace cloudfunctions_v2 {
      */
     binaryAuthorizationPolicy?: string | null;
     /**
+     * Optional. Egress settings for direct VPC. If not provided, it defaults to VPC_EGRESS_PRIVATE_RANGES_ONLY.
+     */
+    directVpcEgress?: string | null;
+    /**
+     * Optional. The Direct VPC network interface for the Cloud Function. Currently only a single Direct VPC is supported.
+     */
+    directVpcNetworkInterface?: Schema$DirectVpcNetworkInterface[];
+    /**
      * Environment variables that shall be available during function execution.
      */
     environmentVariables?: {[key: string]: string} | null;
@@ -1117,7 +1142,7 @@ export namespace cloudfunctions_v2 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
