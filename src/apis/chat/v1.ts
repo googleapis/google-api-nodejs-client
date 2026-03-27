@@ -383,7 +383,7 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * A [card](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards) in a Google Chat message. Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the message can't contain cards. [Card builder](https://addons.gsuite.google.com/uikit/builder)
+   * A [card](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards) in a Google Chat message. Chat apps can create cards with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). As part of the [Developer Preview Program](https://developers.google.com/workspace/preview), if your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), it can create card messages. If your Chat app is not part of Developer Preview Program, it can't create cards with user authentication. To learn how to create a message that contains cards, see [Send a message](https://developers.google.com/workspace/chat/create-messages). [Card builder](https://addons.gsuite.google.com/uikit/builder)
    */
   export interface Schema$CardWithId {
     /**
@@ -1083,6 +1083,10 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1DataSourceConfig {
     /**
+     * The minimum number of characters the user must enter before this data provider is triggered (i.e., before it starts returning results).
+     */
+    minCharactersTrigger?: number | null;
+    /**
      * The data is from a Google Workspace application.
      */
     platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
@@ -1519,7 +1523,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
+     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps. For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
      */
     dataSourceConfigs?: Schema$GoogleAppsCardV1DataSourceConfig[];
     /**
@@ -1832,6 +1836,27 @@ export namespace chat_v1 {
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
   /**
+   * Represents a [section](https://support.google.com/chat/answer/16059854) in Google Chat. Sections help users organize their spaces. There are two types of sections: 1. **System Sections:** These are predefined sections managed by Google Chat. Their resource names are fixed, and they cannot be created, deleted, or have their `display_name` modified. Examples include: * `users/{user\}/sections/default-direct-messages` * `users/{user\}/sections/default-spaces` * `users/{user\}/sections/default-apps` 2. **Custom Sections:** These are sections created and managed by the user. Creating a custom section using `CreateSection` **requires** a `display_name`. Custom sections can be updated using `UpdateSection` and deleted using `DeleteSection`. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$GoogleChatV1Section {
+    /**
+     * Optional. The section's display name. Only populated for sections of type `CUSTOM_SECTION`. Supports up to 80 characters. Required when creating a `CUSTOM_SECTION`.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. Resource name of the section. For system sections, the section ID is a constant string: - DEFAULT_DIRECT_MESSAGES: `users/{user\}/sections/default-direct-messages` - DEFAULT_SPACES: `users/{user\}/sections/default-spaces` - DEFAULT_APPS: `users/{user\}/sections/default-apps` Format: `users/{user\}/sections/{section\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The order of the section in relation to other sections. Sections with a lower `sort_order` value appear before sections with a higher value.
+     */
+    sortOrder?: number | null;
+    /**
+     * Required. The type of the section.
+     */
+    type?: string | null;
+  }
+  /**
    * A Google Group in Google Chat.
    */
   export interface Schema$Group {
@@ -2000,6 +2025,32 @@ export namespace chat_v1 {
      * List of reactions in the requested (or first) page.
      */
     reactions?: Schema$Reaction[];
+  }
+  /**
+   * Response message for listing section items. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ListSectionItemsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The section items from the specified section.
+     */
+    sectionItems?: Schema$SectionItem[];
+  }
+  /**
+   * Response message for listing sections. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ListSectionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The sections from the specified user.
+     */
+    sections?: Schema$GoogleChatV1Section[];
   }
   /**
    * Response message for listing space events.
@@ -2195,7 +2246,7 @@ export namespace chat_v1 {
      */
     cards?: Schema$Card[];
     /**
-     * Optional. An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards). Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the messages can't contain cards. To learn how to create a message that contains cards, see [Send a message](https://developers.google.com/workspace/chat/create-messages). [Card builder](https://addons.gsuite.google.com/uikit/builder)
+     * Optional. An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards). Chat apps can create cards with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). As part of the [Developer Preview Program](https://developers.google.com/workspace/preview), if your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), it can create card messages. If your Chat app is not part of Developer Preview Program, it can't create cards with user authentication. To learn how to create a message that contains cards, see [Send a message](https://developers.google.com/workspace/chat/create-messages). [Card builder](https://addons.gsuite.google.com/uikit/builder)
      */
     cardsV2?: Schema$CardWithId[];
     /**
@@ -2223,7 +2274,7 @@ export namespace chat_v1 {
      */
     fallbackText?: string | null;
     /**
-     * Output only. Contains the message `text` with markups added to communicate formatting. This field might not capture all formatting visible in the UI, but includes the following: * [Markup syntax](https://developers.google.com/workspace/chat/format-messages) for bold, italic, strikethrough, monospace, monospace block, and bulleted list. * [User mentions](https://developers.google.com/workspace/chat/format-messages#messages-@mention) using the format ``. * Custom hyperlinks using the format `<{url\}|{rendered_text\}\>` where the first string is the URL and the second is the rendered text—for example, ``. * Custom emoji using the format `:{emoji_name\}:`—for example, `:smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. * Bullet list items using asterisks (`*`)—for example, `* item`. For more information, see [View text formatting sent in a message](https://developers.google.com/workspace/chat/format-messages#view_text_formatting_sent_in_a_message)
+     * Output only. Contains the message `text` with markups added to communicate formatting. This field might not capture all formatting visible in the UI, but includes the following: * [Markup syntax](https://developers.google.com/workspace/chat/format-messages) for bold, italic, strikethrough, monospace, monospace block, bulleted list, and block quote. * [User mentions](https://developers.google.com/workspace/chat/format-messages#messages-@mention) using the format ``. * Custom hyperlinks using the format `<{url\}|{rendered_text\}\>` where the first string is the URL and the second is the rendered text—for example, ``. * Custom emoji using the format `:{emoji_name\}:`—for example, `:smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. * Bullet list items using asterisks (`*`)—for example, `* item`. For more information, see [View text formatting sent in a message](https://developers.google.com/workspace/chat/format-messages#view_text_formatting_sent_in_a_message)
      */
     formattedText?: string | null;
     /**
@@ -2231,7 +2282,7 @@ export namespace chat_v1 {
      */
     lastUpdateTime?: string | null;
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/workspace/chat/preview-links).
+     * Output only. A URL in the Chat message `text` field that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/workspace/chat/preview-links).
      */
     matchedUrl?: Schema$MatchedUrl;
     /**
@@ -2326,6 +2377,24 @@ export namespace chat_v1 {
     message?: Schema$Message;
   }
   /**
+   * Request message for moving a section item across sections. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$MoveSectionItemRequest {
+    /**
+     * Required. The resource name of the section to move the section item to. Format: `users/{user\}/sections/{section\}`
+     */
+    targetSection?: string | null;
+  }
+  /**
+   * Response message for moving a section item. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$MoveSectionItemResponse {
+    /**
+     * The updated section item.
+     */
+    sectionItem?: Schema$SectionItem;
+  }
+  /**
    * An `onclick` action (for example, open a link).
    */
   export interface Schema$OnClick {
@@ -2400,6 +2469,28 @@ export namespace chat_v1 {
      * Optional. Setting for using @all in a space.
      */
     useAtMentionAll?: Schema$PermissionSetting;
+  }
+  /**
+   * Request message for positioning a section. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PositionSectionRequest {
+    /**
+     * Optional. The relative position of the section in the list of sections.
+     */
+    relativePosition?: string | null;
+    /**
+     * Optional. The absolute position of the section in the list of sections. The position must be greater than 0. If the position is greater than the number of sections, the section will be appended to the end of the list. This operation inserts the section at the given position and shifts the original section at that position, and those below it, to the next position.
+     */
+    sortOrder?: number | null;
+  }
+  /**
+   * Response message for positioning a section. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$PositionSectionResponse {
+    /**
+     * The updated section.
+     */
+    section?: Schema$GoogleChatV1Section;
   }
   /**
    * Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
@@ -2562,6 +2653,19 @@ export namespace chat_v1 {
      * A section must contain at least one widget.
      */
     widgets?: Schema$WidgetMarkup[];
+  }
+  /**
+   * A user's defined section item. This is used to represent section items, such as spaces, grouped under a section. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SectionItem {
+    /**
+     * Identifier. The resource name of the section item. Format: `users/{user\}/sections/{section\}/items/{item\}`
+     */
+    name?: string | null;
+    /**
+     * Optional. The space resource name. Format: `spaces/{space\}`
+     */
+    space?: string | null;
   }
   /**
    * List of widget autocomplete results.
@@ -8634,11 +8738,1140 @@ export namespace chat_v1 {
 
   export class Resource$Users {
     context: APIRequestContext;
+    sections: Resource$Users$Sections;
     spaces: Resource$Users$Spaces;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sections = new Resource$Users$Sections(this.context);
       this.spaces = new Resource$Users$Spaces(this.context);
     }
+  }
+
+  export class Resource$Users$Sections {
+    context: APIRequestContext;
+    items: Resource$Users$Sections$Items;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.items = new Resource$Users$Sections$Items(this.context);
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Creates a section in Google Chat. Sections help users group conversations and customize the list of spaces displayed in Chat navigation panel. Only sections of type `CUSTOM_SECTION` can be created. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.sections'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.create({
+     *     // Required. The parent resource name where the section is created. Format: `users/{user\}`
+     *     parent: 'users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sortOrder": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sortOrder": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Users$Sections$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Users$Sections$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleChatV1Section>>;
+    create(
+      params: Params$Resource$Users$Sections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Sections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleChatV1Section>,
+      callback: BodyResponseCallback<Schema$GoogleChatV1Section>
+    ): void;
+    create(
+      params: Params$Resource$Users$Sections$Create,
+      callback: BodyResponseCallback<Schema$GoogleChatV1Section>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$GoogleChatV1Section>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Create
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleChatV1Section>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/sections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChatV1Section>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChatV1Section>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Deletes a section of type `CUSTOM_SECTION`. If the section contains items, such as spaces, the items are moved to Google Chat's default sections and are not deleted. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.sections'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.delete({
+     *     // Required. The name of the section to delete. Format: `users/{user\}/sections/{section\}`
+     *     name: 'users/my-user/sections/my-section',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Users$Sections$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Users$Sections$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Users$Sections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Sections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Sections$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Lists sections available to the Chat user. Sections help users group their conversations and customize the list of spaces displayed in Chat navigation panel. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections` - `https://www.googleapis.com/auth/chat.users.sections.readonly`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.users.sections',
+     *       'https://www.googleapis.com/auth/chat.users.sections.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.list({
+     *     // Optional. The maximum number of sections to return. The service may return fewer than this value. If unspecified, at most 10 sections will be returned. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100. Negative values return an `INVALID_ARGUMENT` error.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous list sections call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which is the user resource name that owns this collection of sections. Only supports listing sections for the calling user. To refer to the calling user, set one of the following: - The `me` alias. For example, `users/me`. - Their Workspace email address. For example, `users/user@example.com`. - Their user id. For example, `users/123456789`. Format: `users/{user\}`
+     *     parent: 'users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sections": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$Sections$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Users$Sections$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSectionsResponse>>;
+    list(
+      params: Params$Resource$Users$Sections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$Sections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Sections$List,
+      callback: BodyResponseCallback<Schema$ListSectionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSectionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$List
+        | BodyResponseCallback<Schema$ListSectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSectionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/sections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSectionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Updates a section. Only sections of type `CUSTOM_SECTION` can be updated. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.sections'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.patch({
+     *     // Identifier. Resource name of the section. For system sections, the section ID is a constant string: - DEFAULT_DIRECT_MESSAGES: `users/{user\}/sections/default-direct-messages` - DEFAULT_SPACES: `users/{user\}/sections/default-spaces` - DEFAULT_APPS: `users/{user\}/sections/default-apps` Format: `users/{user\}/sections/{section\}`
+     *     name: 'users/my-user/sections/my-section',
+     *     // Required. The mask to specify which fields to update. Currently supported field paths: - `display_name`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "sortOrder": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "sortOrder": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Users$Sections$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Users$Sections$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleChatV1Section>>;
+    patch(
+      params: Params$Resource$Users$Sections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Sections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleChatV1Section>,
+      callback: BodyResponseCallback<Schema$GoogleChatV1Section>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Sections$Patch,
+      callback: BodyResponseCallback<Schema$GoogleChatV1Section>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$GoogleChatV1Section>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Patch
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChatV1Section>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleChatV1Section>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChatV1Section>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChatV1Section>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Changes the sort order of a section. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.sections'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.position({
+     *     // Required. The resource name of the section to position. Format: `users/{user\}/sections/{section\}`
+     *     name: 'users/my-user/sections/my-section',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "relativePosition": "my_relativePosition",
+     *       //   "sortOrder": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "section": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    position(
+      params: Params$Resource$Users$Sections$Position,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    position(
+      params?: Params$Resource$Users$Sections$Position,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PositionSectionResponse>>;
+    position(
+      params: Params$Resource$Users$Sections$Position,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    position(
+      params: Params$Resource$Users$Sections$Position,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$PositionSectionResponse>,
+      callback: BodyResponseCallback<Schema$PositionSectionResponse>
+    ): void;
+    position(
+      params: Params$Resource$Users$Sections$Position,
+      callback: BodyResponseCallback<Schema$PositionSectionResponse>
+    ): void;
+    position(
+      callback: BodyResponseCallback<Schema$PositionSectionResponse>
+    ): void;
+    position(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Position
+        | BodyResponseCallback<Schema$PositionSectionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PositionSectionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PositionSectionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PositionSectionResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Position;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Position;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:position').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PositionSectionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PositionSectionResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Sections$Create extends StandardParameters {
+    /**
+     * Required. The parent resource name where the section is created. Format: `users/{user\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChatV1Section;
+  }
+  export interface Params$Resource$Users$Sections$Delete extends StandardParameters {
+    /**
+     * Required. The name of the section to delete. Format: `users/{user\}/sections/{section\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Sections$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of sections to return. The service may return fewer than this value. If unspecified, at most 10 sections will be returned. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100. Negative values return an `INVALID_ARGUMENT` error.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous list sections call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which is the user resource name that owns this collection of sections. Only supports listing sections for the calling user. To refer to the calling user, set one of the following: - The `me` alias. For example, `users/me`. - Their Workspace email address. For example, `users/user@example.com`. - Their user id. For example, `users/123456789`. Format: `users/{user\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Users$Sections$Patch extends StandardParameters {
+    /**
+     * Identifier. Resource name of the section. For system sections, the section ID is a constant string: - DEFAULT_DIRECT_MESSAGES: `users/{user\}/sections/default-direct-messages` - DEFAULT_SPACES: `users/{user\}/sections/default-spaces` - DEFAULT_APPS: `users/{user\}/sections/default-apps` Format: `users/{user\}/sections/{section\}`
+     */
+    name?: string;
+    /**
+     * Required. The mask to specify which fields to update. Currently supported field paths: - `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChatV1Section;
+  }
+  export interface Params$Resource$Users$Sections$Position extends StandardParameters {
+    /**
+     * Required. The resource name of the section to position. Format: `users/{user\}/sections/{section\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PositionSectionRequest;
+  }
+
+  export class Resource$Users$Sections$Items {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Lists items in a section. Only spaces can be section items. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections` - `https://www.googleapis.com/auth/chat.users.sections.readonly`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.users.sections',
+     *       'https://www.googleapis.com/auth/chat.users.sections.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.items.list({
+     *     // Optional. A query filter. Currently only supports filtering by space. For example, `space = spaces/{space\}`. Invalid queries are rejected with an `INVALID_ARGUMENT` error.
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of section items to return. The service may return fewer than this value. If unspecified, at most 10 section items will be returned. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100. Negative values return an `INVALID_ARGUMENT` error.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous list section items call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which is the section resource name that owns this collection of section items. Only supports listing section items for the calling user. When you're filtering by space, use the wildcard `-` to search across all sections. For example, `users/{user\}/sections/-`. Format: `users/{user\}/sections/{section\}`
+     *     parent: 'users/my-user/sections/my-section',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sectionItems": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$Sections$Items$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Users$Sections$Items$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSectionItemsResponse>>;
+    list(
+      params: Params$Resource$Users$Sections$Items$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$Sections$Items$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSectionItemsResponse>,
+      callback: BodyResponseCallback<Schema$ListSectionItemsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Sections$Items$List,
+      callback: BodyResponseCallback<Schema$ListSectionItemsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSectionItemsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Items$List
+        | BodyResponseCallback<Schema$ListSectionItemsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSectionItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSectionItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSectionItemsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Items$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Items$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/items').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSectionItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSectionItemsResponse>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Moves an item from one section to another. For example, if a section contains spaces, this method can be used to move a space to a different section. For details, see [Create and organize sections in Google Chat](https://support.google.com/chat/answer/16059854). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with the [authorization scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): - `https://www.googleapis.com/auth/chat.users.sections`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chat.users.sections'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.users.sections.items.move({
+     *     // Required. The resource name of the section item to move. Format: `users/{user\}/sections/{section\}/items/{item\}`
+     *     name: 'users/my-user/sections/my-section/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetSection": "my_targetSection"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sectionItem": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Users$Sections$Items$Move,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    move(
+      params?: Params$Resource$Users$Sections$Items$Move,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MoveSectionItemResponse>>;
+    move(
+      params: Params$Resource$Users$Sections$Items$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Users$Sections$Items$Move,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$MoveSectionItemResponse>,
+      callback: BodyResponseCallback<Schema$MoveSectionItemResponse>
+    ): void;
+    move(
+      params: Params$Resource$Users$Sections$Items$Move,
+      callback: BodyResponseCallback<Schema$MoveSectionItemResponse>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$MoveSectionItemResponse>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sections$Items$Move
+        | BodyResponseCallback<Schema$MoveSectionItemResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MoveSectionItemResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MoveSectionItemResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MoveSectionItemResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sections$Items$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sections$Items$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:move').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MoveSectionItemResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MoveSectionItemResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Sections$Items$List extends StandardParameters {
+    /**
+     * Optional. A query filter. Currently only supports filtering by space. For example, `space = spaces/{space\}`. Invalid queries are rejected with an `INVALID_ARGUMENT` error.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of section items to return. The service may return fewer than this value. If unspecified, at most 10 section items will be returned. The maximum value is 100. If you use a value more than 100, it's automatically changed to 100. Negative values return an `INVALID_ARGUMENT` error.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous list section items call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which is the section resource name that owns this collection of section items. Only supports listing section items for the calling user. When you're filtering by space, use the wildcard `-` to search across all sections. For example, `users/{user\}/sections/-`. Format: `users/{user\}/sections/{section\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Users$Sections$Items$Move extends StandardParameters {
+    /**
+     * Required. The resource name of the section item to move. Format: `users/{user\}/sections/{section\}/items/{item\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveSectionItemRequest;
   }
 
   export class Resource$Users$Spaces {
