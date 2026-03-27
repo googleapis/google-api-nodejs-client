@@ -187,7 +187,7 @@ export namespace cloudidentity_v1beta1 {
      */
     ownershipPrivilege?: string | null;
     /**
-     * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the "Enforce Work Profile" policy.
+     * Whether the device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the "Enforce Work Profile" policy.
      */
     supportsWorkProfile?: boolean | null;
     /**
@@ -236,11 +236,11 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
-   * Contains information about browser profiles reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
+   * Contains information about browser profiles reported by the clients on the device (e.g. [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1)).
    */
   export interface Schema$BrowserAttributes {
     /**
-     * Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
+     * Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the clients on the device, such as [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
      */
     chromeBrowserInfo?: Schema$BrowserInfo;
     /**
@@ -253,7 +253,7 @@ export namespace cloudidentity_v1beta1 {
     lastProfileSyncTime?: string | null;
   }
   /**
-   * Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
+   * Browser-specific fields reported by clients on the device, such as [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
    */
   export interface Schema$BrowserInfo {
     /**
@@ -308,6 +308,10 @@ export namespace cloudidentity_v1beta1 {
      * Current state of [password protection trigger](https://chromeenterprise.google/policies/#PasswordProtectionWarningTrigger).
      */
     passwordProtectionWarningTrigger?: string | null;
+    /**
+     * Output only. Chrome policies information for the browser as can be seen in chrome://policy. Full possibilities of policies can be consulted in [Chrome Enterprise Policy List](https://chromeenterprise.google/policies/).
+     */
+    policies?: Schema$ChromePolicy[];
     /**
      * Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).
      */
@@ -419,6 +423,31 @@ export namespace cloudidentity_v1beta1 {
      * Response does not include the possible roles of a member since the behavior of this rpc is not all-or-nothing unlike the other rpcs. So, it may not be possible to list all the roles definitively, due to possible lack of authorization in some of the paths.
      */
     hasMembership?: boolean | null;
+  }
+  /**
+   * Represents a Chrome policy and its current state.
+   */
+  export interface Schema$ChromePolicy {
+    /**
+     * Output only. A list of other policy values for the same policy name that were not applied due to lower precedence. This field is empty if there were no conflicts.
+     */
+    conflicts?: Schema$PolicyConflict[];
+    /**
+     * Output only. The unique name of the Chrome policy. These names correspond to the policy names listed in [Chrome Enterprise Policy List](https://chromeenterprise.google/policies/)
+     */
+    name?: string | null;
+    /**
+     * Output only. The scope at which the *applied* policy value is set (USER or MACHINE).
+     */
+    scope?: string | null;
+    /**
+     * Output only. The source from which the *applied* policy value originated.
+     */
+    source?: string | null;
+    /**
+     * Output only. The currently applied value of the policy. The format depends on the policy type (e.g., boolean, string, JSON array/object).
+     */
+    value?: string | null;
   }
   /**
    * Represents the state associated with an API client calling the Devices API. Resource representing ClientState and supports updates from API users
@@ -565,6 +594,10 @@ export namespace cloudidentity_v1beta1 {
      * Output only. Device brand. Example: Samsung.
      */
     brand?: string | null;
+    /**
+     * Browser profiles on the device. This is a copy of the BrowserAttributes message defined in EndpointVerificationSpecificAttributes. We are replicating it here since EndpointVerification isn't the only client reporting browser profiles.
+     */
+    browserProfiles?: Schema$BrowserAttributes[];
     /**
      * Output only. Build number of the device.
      */
@@ -2049,6 +2082,23 @@ export namespace cloudidentity_v1beta1 {
      * Output only. The type of the policy.
      */
     type?: string | null;
+  }
+  /**
+   * Represents a policy value from a source that was not applied because a higher-priority source took precedence.
+   */
+  export interface Schema$PolicyConflict {
+    /**
+     * Output only. The scope at which this lower-priority policy is set (USER or MACHINE).
+     */
+    scope?: string | null;
+    /**
+     * Output only. The source from which this lower-priority policy value originated.
+     */
+    source?: string | null;
+    /**
+     * Output only. The policy value from this lower-priority source.
+     */
+    value?: string | null;
   }
   /**
    * PolicyQuery
@@ -3665,6 +3715,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "basebandVersion": "my_basebandVersion",
      *   //   "bootloaderVersion": "my_bootloaderVersion",
      *   //   "brand": "my_brand",
+     *   //   "browserProfiles": [],
      *   //   "buildNumber": "my_buildNumber",
      *   //   "clientTypes": [],
      *   //   "compromisedState": "my_compromisedState",

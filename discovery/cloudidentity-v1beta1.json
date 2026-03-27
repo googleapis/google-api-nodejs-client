@@ -2349,7 +2349,7 @@
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260317",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2411,7 +2411,7 @@
           "type": "string"
         },
         "supportsWorkProfile": {
-          "description": "Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the \"Enforce Work Profile\" policy.",
+          "description": "Whether the device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the \"Enforce Work Profile\" policy.",
           "type": "boolean"
         },
         "verifiedBoot": {
@@ -2470,12 +2470,12 @@
       "type": "object"
     },
     "BrowserAttributes": {
-      "description": "Contains information about browser profiles reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).",
+      "description": "Contains information about browser profiles reported by the clients on the device (e.g. [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1)).",
       "id": "BrowserAttributes",
       "properties": {
         "chromeBrowserInfo": {
           "$ref": "BrowserInfo",
-          "description": "Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1)."
+          "description": "Represents the current state of the [Chrome browser attributes](https://cloud.google.com/access-context-manager/docs/browser-attributes) sent by the clients on the device, such as [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1)."
         },
         "chromeProfileId": {
           "description": "Chrome profile ID that is exposed by the Chrome API. It is unique for each device.",
@@ -2490,7 +2490,7 @@
       "type": "object"
     },
     "BrowserInfo": {
-      "description": "Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).",
+      "description": "Browser-specific fields reported by clients on the device, such as [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).",
       "id": "BrowserInfo",
       "properties": {
         "browserManagementState": {
@@ -2572,6 +2572,14 @@
             "Warning is shown when the user reuses their protected password on a phishing site."
           ],
           "type": "string"
+        },
+        "policies": {
+          "description": "Output only. Chrome policies information for the browser as can be seen in chrome://policy. Full possibilities of policies can be consulted in [Chrome Enterprise Policy List](https://chromeenterprise.google/policies/).",
+          "items": {
+            "$ref": "ChromePolicy"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "safeBrowsingProtectionLevel": {
           "description": "Current state of [Safe Browsing protection level](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel).",
@@ -2725,6 +2733,77 @@
         "hasMembership": {
           "description": "Response does not include the possible roles of a member since the behavior of this rpc is not all-or-nothing unlike the other rpcs. So, it may not be possible to list all the roles definitively, due to possible lack of authorization in some of the paths.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ChromePolicy": {
+      "description": "Represents a Chrome policy and its current state.",
+      "id": "ChromePolicy",
+      "properties": {
+        "conflicts": {
+          "description": "Output only. A list of other policy values for the same policy name that were not applied due to lower precedence. This field is empty if there were no conflicts.",
+          "items": {
+            "$ref": "PolicyConflict"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The unique name of the Chrome policy. These names correspond to the policy names listed in [Chrome Enterprise Policy List](https://chromeenterprise.google/policies/)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scope": {
+          "description": "Output only. The scope at which the *applied* policy value is set (USER or MACHINE).",
+          "enum": [
+            "SCOPE_UNKNOWN",
+            "USER",
+            "MACHINE"
+          ],
+          "enumDescriptions": [
+            "Default value. The policy scope is unknown or not specified.",
+            "User-level policy. This scope indicates the policy applies to the specific user session or profile. For cloud policies, this is typically the signed-in Chrome profile. On some platforms like Windows, this can also refer to the OS user.",
+            "Machine-level policy. This scope indicates the policy applies system-wide to all users on the current machine or device."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "description": "Output only. The source from which the *applied* policy value originated.",
+          "enum": [
+            "SOURCE_UNKNOWN",
+            "ENTERPRISE_DEFAULT",
+            "CLOUD",
+            "ACTIVE_DIRECTORY",
+            "DEVICE_LOCAL_ACCOUNT_OVERRIDE_DEPRECATED",
+            "PLATFORM",
+            "PRIORITY_CLOUD_DEPRECATED",
+            "MERGED",
+            "COMMAND_LINE",
+            "CLOUD_FROM_ASH",
+            "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "Default value. The policy source is unknown or not specified.",
+            "The policy is provided by Chrome's default settings when running in an enterprise environment.",
+            "The policy is managed and pushed from a cloud-based administration console, such as the Google Admin console.",
+            "The policy is sourced from Active Directory, primarily for Active Directory-managed ChromeOS devices.",
+            "Deprecated: Formerly used when a policy was overridden by ChromeOS for public sessions or kiosk mode.",
+            "The policy is set by OS built-in tool on desktop.",
+            "Deprecated: Formerly used for cloud policies with higher priority.",
+            "The applied policy value is the result of a merge from multiple policy sources.",
+            "The policy is set using a command line argument passed to the Chrome executable, usually intended for development or testing.",
+            "For ChromeOS, this indicates a policy set by cloud management in the Ash browser and then made available to the Lacros browser.",
+            "The policy is set by the restricted managed guest session override."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The currently applied value of the policy. The format depends on the policy type (e.g., boolean, string, JSON array/object).",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2957,6 +3036,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "browserProfiles": {
+          "description": "Browser profiles on the device. This is a copy of the BrowserAttributes message defined in EndpointVerificationSpecificAttributes. We are replicating it here since EndpointVerification isn't the only client reporting browser profiles.",
+          "items": {
+            "$ref": "BrowserAttributes"
+          },
+          "type": "array"
+        },
         "buildNumber": {
           "description": "Output only. Build number of the device.",
           "readOnly": true,
@@ -3102,7 +3188,7 @@
             "Device is approved.",
             "Device is blocked.",
             "Device is pending approval.",
-            "The device is not provisioned. Device will start from this state until some action is taken (i.e. a user starts using the device).",
+            "The device is not provisioned. The device will start from this state until some action is taken (i.e. a user starts using the device).",
             "Data and settings on the device are being removed.",
             "All data and settings on the device are removed."
           ],
@@ -5310,6 +5396,64 @@
             "Policy type denoting the system-configured policies.",
             "Policy type denoting the admin-configurable policies."
           ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyConflict": {
+      "description": "Represents a policy value from a source that was not applied because a higher-priority source took precedence.",
+      "id": "PolicyConflict",
+      "properties": {
+        "scope": {
+          "description": "Output only. The scope at which this lower-priority policy is set (USER or MACHINE).",
+          "enum": [
+            "SCOPE_UNKNOWN",
+            "USER",
+            "MACHINE"
+          ],
+          "enumDescriptions": [
+            "Default value. The policy scope is unknown or not specified.",
+            "User-level policy. This scope indicates the policy applies to the specific user session or profile. For cloud policies, this is typically the signed-in Chrome profile. On some platforms like Windows, this can also refer to the OS user.",
+            "Machine-level policy. This scope indicates the policy applies system-wide to all users on the current machine or device."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "source": {
+          "description": "Output only. The source from which this lower-priority policy value originated.",
+          "enum": [
+            "SOURCE_UNKNOWN",
+            "ENTERPRISE_DEFAULT",
+            "CLOUD",
+            "ACTIVE_DIRECTORY",
+            "DEVICE_LOCAL_ACCOUNT_OVERRIDE_DEPRECATED",
+            "PLATFORM",
+            "PRIORITY_CLOUD_DEPRECATED",
+            "MERGED",
+            "COMMAND_LINE",
+            "CLOUD_FROM_ASH",
+            "RESTRICTED_MANAGED_GUEST_SESSION_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "Default value. The policy source is unknown or not specified.",
+            "The policy is provided by Chrome's default settings when running in an enterprise environment.",
+            "The policy is managed and pushed from a cloud-based administration console, such as the Google Admin console.",
+            "The policy is sourced from Active Directory, primarily for Active Directory-managed ChromeOS devices.",
+            "Deprecated: Formerly used when a policy was overridden by ChromeOS for public sessions or kiosk mode.",
+            "The policy is set by OS built-in tool on desktop.",
+            "Deprecated: Formerly used for cloud policies with higher priority.",
+            "The applied policy value is the result of a merge from multiple policy sources.",
+            "The policy is set using a command line argument passed to the Chrome executable, usually intended for development or testing.",
+            "For ChromeOS, this indicates a policy set by cloud management in the Ash browser and then made available to the Lacros browser.",
+            "The policy is set by the restricted managed guest session override."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The policy value from this lower-priority source.",
           "readOnly": true,
           "type": "string"
         }
