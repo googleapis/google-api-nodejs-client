@@ -2722,7 +2722,7 @@
       }
     }
   },
-  "revision": "20260126",
+  "revision": "20260310",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2953,6 +2953,31 @@
           "description": "Generic asset attributes.",
           "type": "object"
         },
+        "awsApiGatewayRestApiDetails": {
+          "$ref": "AwsApiGatewayRestApiDetails",
+          "description": "Output only. Asset information specific for AWS API Gateway REST APIs.",
+          "readOnly": true
+        },
+        "awsAppSyncGraphqlApiDetails": {
+          "$ref": "AwsAppSyncGraphqlApiDetails",
+          "description": "Output only. Asset information specific for AWS AppSync GraphQL APIs.",
+          "readOnly": true
+        },
+        "awsApplicationLoadBalancerDetails": {
+          "$ref": "AwsApplicationLoadBalancerDetails",
+          "description": "Output only. Asset information specific for AWS Application Load Balancers.",
+          "readOnly": true
+        },
+        "awsAutoscalingGroupDetails": {
+          "$ref": "AwsAutoscalingGroupDetails",
+          "description": "Output only. Asset information specific for AwsAutoscalingGroupDetails",
+          "readOnly": true
+        },
+        "awsBatchComputeEnvironmentDetails": {
+          "$ref": "AwsBatchComputeEnvironmentDetails",
+          "description": "Output only. Asset information specific for AWS Batch Compute Environments.",
+          "readOnly": true
+        },
         "awsCloudFrontDistributionDetails": {
           "$ref": "AwsCloudFrontDistributionDetails",
           "description": "Output only. Asset information specific for AWS CloudFront distributions.",
@@ -2961,6 +2986,16 @@
         "awsDynamodbTableDetails": {
           "$ref": "AwsDynamoDBTableDetails",
           "description": "Output only. Asset information specific for AWS DynamoDB tables.",
+          "readOnly": true
+        },
+        "awsEbsVolumeDetails": {
+          "$ref": "AwsEbsVolumeDetails",
+          "description": "Output only. Asset information specific for AWS EBS Volumes.",
+          "readOnly": true
+        },
+        "awsEcrRepositoryDetails": {
+          "$ref": "AwsEcrRepositoryDetails",
+          "description": "Output only. Asset information specific for AwsEcrRepositoryDetails",
           "readOnly": true
         },
         "awsEcsClusterDetails": {
@@ -2978,9 +3013,24 @@
           "description": "Output only. Asset information specific for AWS EKS clusters.",
           "readOnly": true
         },
+        "awsElasticIpAddressDetails": {
+          "$ref": "AwsElasticIpAddressDetails",
+          "description": "Output only. Asset information specific for AWS Elastic IP Addresses.",
+          "readOnly": true
+        },
+        "awsElasticNetworkInterfaceDetails": {
+          "$ref": "AwsElasticNetworkInterfaceDetails",
+          "description": "Output only. Asset information specific for AWS Elastic Network Interfaces.",
+          "readOnly": true
+        },
         "awsElbLoadBalancerDetails": {
           "$ref": "AwsElbLoadBalancerDetails",
           "description": "Output only. Asset information specific for AWS Load Balancers.",
+          "readOnly": true
+        },
+        "awsInternetGatewayDetails": {
+          "$ref": "AwsInternetGatewayDetails",
+          "description": "Output only. Asset information specific for AWS Internet Gateways.",
           "readOnly": true
         },
         "awsLambdaFunctionDetails": {
@@ -3006,6 +3056,11 @@
         "awsS3BucketDetails": {
           "$ref": "AwsS3BucketDetails",
           "description": "Output only. Asset information specific for AWS S3 buckets.",
+          "readOnly": true
+        },
+        "awsSnsTopicDetails": {
+          "$ref": "AwsSnsTopicDetails",
+          "description": "Output only. Asset information specific for AWS SNS Topics.",
           "readOnly": true
         },
         "awsVpcDetails": {
@@ -3120,6 +3175,26 @@
           "description": "Generic asset attributes.",
           "type": "object"
         },
+        "awsApiGatewayRestApiDetails": {
+          "$ref": "AwsApiGatewayRestApiDetails",
+          "description": "Optional. Asset information specific for AWS API Gateway REST APIs."
+        },
+        "awsAppSyncGraphqlApiDetails": {
+          "$ref": "AwsAppSyncGraphqlApiDetails",
+          "description": "Optional. Asset information specific for AWS AppSync GraphQL APIs."
+        },
+        "awsApplicationLoadBalancerDetails": {
+          "$ref": "AwsApplicationLoadBalancerDetails",
+          "description": "Optional. Asset information specific for AWS Application Load Balancers."
+        },
+        "awsAutoscalingGroupDetails": {
+          "$ref": "AwsAutoscalingGroupDetails",
+          "description": "Optional. Asset information specific for AwsAutoscalingGroupDetails"
+        },
+        "awsBatchComputeEnvironmentDetails": {
+          "$ref": "AwsBatchComputeEnvironmentDetails",
+          "description": "Optional. Asset information specific for AWS Batch Compute Environments."
+        },
         "awsCloudFrontDistributionDetails": {
           "$ref": "AwsCloudFrontDistributionDetails",
           "description": "Asset information specific for AWS CloudFront distributions."
@@ -3127,6 +3202,14 @@
         "awsDynamodbTableDetails": {
           "$ref": "AwsDynamoDBTableDetails",
           "description": "Asset information specific for AWS DynamoDB tables."
+        },
+        "awsEbsVolumeDetails": {
+          "$ref": "AwsEbsVolumeDetails",
+          "description": "Optional. Asset information specific for AWS EBS Volumes."
+        },
+        "awsEcrRepositoryDetails": {
+          "$ref": "AwsEcrRepositoryDetails",
+          "description": "Asset information specific for AwsEcrRepositoryDetails"
         },
         "awsEcsClusterDetails": {
           "$ref": "AwsEcsClusterDetails",
@@ -3140,9 +3223,21 @@
           "$ref": "AwsEksClusterDetails",
           "description": "Asset information specific for AWS EKS clusters."
         },
+        "awsElasticIpAddressDetails": {
+          "$ref": "AwsElasticIpAddressDetails",
+          "description": "Optional. Asset information specific for AWS Elastic IP Addresses."
+        },
+        "awsElasticNetworkInterfaceDetails": {
+          "$ref": "AwsElasticNetworkInterfaceDetails",
+          "description": "Optional. Asset information specific for AWS Elastic Network Interfaces."
+        },
         "awsElbLoadBalancerDetails": {
           "$ref": "AwsElbLoadBalancerDetails",
           "description": "Asset information specific for AWS Load Balancers."
+        },
+        "awsInternetGatewayDetails": {
+          "$ref": "AwsInternetGatewayDetails",
+          "description": "Optional. Asset information specific for AWS Internet Gateways."
         },
         "awsLambdaFunctionDetails": {
           "$ref": "AwsLambdaFunctionDetails",
@@ -3163,6 +3258,10 @@
         "awsS3BucketDetails": {
           "$ref": "AwsS3BucketDetails",
           "description": "Asset information specific for AWS S3 buckets."
+        },
+        "awsSnsTopicDetails": {
+          "$ref": "AwsSnsTopicDetails",
+          "description": "Optional. Asset information specific for AWS SNS Topics."
         },
         "awsVpcDetails": {
           "$ref": "AwsVpcDetails",
@@ -3431,6 +3530,36 @@
       },
       "type": "object"
     },
+    "AwsApiGatewayRestApiDetails": {
+      "description": "Asset information specific for AWS API Gateway REST APIs.",
+      "id": "AwsApiGatewayRestApiDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsAppSyncGraphqlApiDetails": {
+      "description": "Asset information specific for AWS AppSync GraphQL APIs.",
+      "id": "AwsAppSyncGraphqlApiDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsApplicationLoadBalancerDetails": {
+      "description": "Asset information specific for AWS Application Load Balancers.",
+      "id": "AwsApplicationLoadBalancerDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsAutoscalingGroupDetails": {
+      "description": "Asset information specific for AWS Autoscaling Group.",
+      "id": "AwsAutoscalingGroupDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsBatchComputeEnvironmentDetails": {
+      "description": "Asset information specific for AWS Batch Compute Environments.",
+      "id": "AwsBatchComputeEnvironmentDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsCloudFrontDistributionDetails": {
       "description": "Details of an AWS CloudFront distribution.",
       "id": "AwsCloudFrontDistributionDetails",
@@ -3440,6 +3569,12 @@
     "AwsDynamoDBTableDetails": {
       "description": "Details of an AWS DynamoDB table.",
       "id": "AwsDynamoDBTableDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsEbsVolumeDetails": {
+      "description": "Asset information specific for AWS EBS Volumes.",
+      "id": "AwsEbsVolumeDetails",
       "properties": {},
       "type": "object"
     },
@@ -3472,6 +3607,12 @@
       },
       "type": "object"
     },
+    "AwsEcrRepositoryDetails": {
+      "description": "Asset information specific for AWS ECR Repository.",
+      "id": "AwsEcrRepositoryDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsEcsClusterDetails": {
       "description": "Details of an AWS ECS cluster.",
       "id": "AwsEcsClusterDetails",
@@ -3490,9 +3631,27 @@
       "properties": {},
       "type": "object"
     },
+    "AwsElasticIpAddressDetails": {
+      "description": "Asset information specific for AWS Elastic IP Addresses.",
+      "id": "AwsElasticIpAddressDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsElasticNetworkInterfaceDetails": {
+      "description": "Asset information specific for AWS Elastic Network Interfaces.",
+      "id": "AwsElasticNetworkInterfaceDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsElbLoadBalancerDetails": {
       "description": "Asset information specific for AWS Load Balancers.",
       "id": "AwsElbLoadBalancerDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsInternetGatewayDetails": {
+      "description": "Asset information specific for AWS Internet Gateways.",
+      "id": "AwsInternetGatewayDetails",
       "properties": {},
       "type": "object"
     },
@@ -3620,6 +3779,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "AwsSnsTopicDetails": {
+      "description": "Asset information specific for AWS SNS Topics.",
+      "id": "AwsSnsTopicDetails",
+      "properties": {},
       "type": "object"
     },
     "AwsVpcDetails": {
@@ -5274,6 +5439,28 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EstimatedUsage": {
+      "description": "Estimated usage data.",
+      "id": "EstimatedUsage",
+      "properties": {
+        "estimatedCpuPercentage": {
+          "description": "Optional. Estimated CPU utilization percentage. Must be in the range [1, 100].",
+          "format": "float",
+          "type": "number"
+        },
+        "estimatedDiskPercentage": {
+          "description": "Optional. Estimated disk utilization percentage. Must be in the range [1, 100].",
+          "format": "float",
+          "type": "number"
+        },
+        "estimatedMemoryPercentage": {
+          "description": "Optional. Estimated memory utilization percentage. Must be in the range [1, 100].",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -8103,6 +8290,11 @@
           "description": "Output only. Count of assets grouped by database type. Keys here are taken from DatabaseType enum. Only present for databases.",
           "readOnly": true
         },
+        "estimatedUsageStats": {
+          "$ref": "ReportSummaryAssetAggregateStatsEstimatedUsageStats",
+          "description": "Output only. Estimated usage stats for the assets in this collection.",
+          "readOnly": true
+        },
         "memoryBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
           "description": "Histogram showing a distribution of memory sizes."
@@ -8156,6 +8348,25 @@
         "totalStorageBytes": {
           "description": "Sum of persistent storage in bytes of all the assets in this collection.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSummaryAssetAggregateStatsEstimatedUsageStats": {
+      "description": "Estimated usage stats for the assets in this collection.",
+      "id": "ReportSummaryAssetAggregateStatsEstimatedUsageStats",
+      "properties": {
+        "totalAssetsUsingEstimatedUsage": {
+          "description": "Output only. The number of assets that are using at least one estimated usage metric for rightsizing.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalVirtualMachinesUsingEstimatedUsage": {
+          "description": "Output only. The number of virtual machines in this finding that are using at least one estimated usage metric for rightsizing.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -9589,6 +9800,10 @@
         "computeEnginePreferences": {
           "$ref": "ComputeEnginePreferences",
           "description": "Optional. Compute Engine preferences concern insights and recommendations for Compute Engine target."
+        },
+        "estimatedUsage": {
+          "$ref": "EstimatedUsage",
+          "description": "Optional. Estimated usage data for missing usage data. If performance data is available, it overrides this field. If not set, default values will be used for the usage data."
         },
         "networkCostParameters": {
           "$ref": "VirtualMachinePreferencesNetworkCostParameters",

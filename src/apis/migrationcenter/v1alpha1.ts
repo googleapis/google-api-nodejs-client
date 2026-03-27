@@ -280,6 +280,26 @@ export namespace migrationcenter_v1alpha1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * Output only. Asset information specific for AWS API Gateway REST APIs.
+     */
+    awsApiGatewayRestApiDetails?: Schema$AwsApiGatewayRestApiDetails;
+    /**
+     * Output only. Asset information specific for AWS Application Load Balancers.
+     */
+    awsApplicationLoadBalancerDetails?: Schema$AwsApplicationLoadBalancerDetails;
+    /**
+     * Output only. Asset information specific for AWS AppSync GraphQL APIs.
+     */
+    awsAppSyncGraphqlApiDetails?: Schema$AwsAppSyncGraphqlApiDetails;
+    /**
+     * Output only. Asset information specific for AwsAutoscalingGroupDetails
+     */
+    awsAutoscalingGroupDetails?: Schema$AwsAutoscalingGroupDetails;
+    /**
+     * Output only. Asset information specific for AWS Batch Compute Environments.
+     */
+    awsBatchComputeEnvironmentDetails?: Schema$AwsBatchComputeEnvironmentDetails;
+    /**
      * Output only. Asset information specific for AWS CloudFront distributions.
      */
     awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
@@ -287,6 +307,14 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Asset information specific for AWS DynamoDB tables.
      */
     awsDynamodbTableDetails?: Schema$AwsDynamoDBTableDetails;
+    /**
+     * Output only. Asset information specific for AWS EBS Volumes.
+     */
+    awsEbsVolumeDetails?: Schema$AwsEbsVolumeDetails;
+    /**
+     * Output only. Asset information specific for AwsEcrRepositoryDetails
+     */
+    awsEcrRepositoryDetails?: Schema$AwsEcrRepositoryDetails;
     /**
      * Output only. Asset information specific for AWS ECS clusters.
      */
@@ -300,9 +328,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsEksClusterDetails?: Schema$AwsEksClusterDetails;
     /**
+     * Output only. Asset information specific for AWS Elastic IP Addresses.
+     */
+    awsElasticIpAddressDetails?: Schema$AwsElasticIpAddressDetails;
+    /**
+     * Output only. Asset information specific for AWS Elastic Network Interfaces.
+     */
+    awsElasticNetworkInterfaceDetails?: Schema$AwsElasticNetworkInterfaceDetails;
+    /**
      * Output only. Asset information specific for AWS Load Balancers.
      */
     awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
+    /**
+     * Output only. Asset information specific for AWS Internet Gateways.
+     */
+    awsInternetGatewayDetails?: Schema$AwsInternetGatewayDetails;
     /**
      * Output only. Asset information specific for AWS Lambda functions.
      */
@@ -323,6 +363,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Asset information specific for AWS S3 buckets.
      */
     awsS3BucketDetails?: Schema$AwsS3BucketDetails;
+    /**
+     * Output only. Asset information specific for AWS SNS Topics.
+     */
+    awsSnsTopicDetails?: Schema$AwsSnsTopicDetails;
     /**
      * Output only. Asset information specific for AWS VPCs.
      */
@@ -405,6 +449,26 @@ export namespace migrationcenter_v1alpha1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * Optional. Asset information specific for AWS API Gateway REST APIs.
+     */
+    awsApiGatewayRestApiDetails?: Schema$AwsApiGatewayRestApiDetails;
+    /**
+     * Optional. Asset information specific for AWS Application Load Balancers.
+     */
+    awsApplicationLoadBalancerDetails?: Schema$AwsApplicationLoadBalancerDetails;
+    /**
+     * Optional. Asset information specific for AWS AppSync GraphQL APIs.
+     */
+    awsAppSyncGraphqlApiDetails?: Schema$AwsAppSyncGraphqlApiDetails;
+    /**
+     * Optional. Asset information specific for AwsAutoscalingGroupDetails
+     */
+    awsAutoscalingGroupDetails?: Schema$AwsAutoscalingGroupDetails;
+    /**
+     * Optional. Asset information specific for AWS Batch Compute Environments.
+     */
+    awsBatchComputeEnvironmentDetails?: Schema$AwsBatchComputeEnvironmentDetails;
+    /**
      * Asset information specific for AWS CloudFront distributions.
      */
     awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
@@ -412,6 +476,14 @@ export namespace migrationcenter_v1alpha1 {
      * Asset information specific for AWS DynamoDB tables.
      */
     awsDynamodbTableDetails?: Schema$AwsDynamoDBTableDetails;
+    /**
+     * Optional. Asset information specific for AWS EBS Volumes.
+     */
+    awsEbsVolumeDetails?: Schema$AwsEbsVolumeDetails;
+    /**
+     * Asset information specific for AwsEcrRepositoryDetails
+     */
+    awsEcrRepositoryDetails?: Schema$AwsEcrRepositoryDetails;
     /**
      * Asset information specific for AWS ECS clusters.
      */
@@ -425,9 +497,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsEksClusterDetails?: Schema$AwsEksClusterDetails;
     /**
+     * Optional. Asset information specific for AWS Elastic IP Addresses.
+     */
+    awsElasticIpAddressDetails?: Schema$AwsElasticIpAddressDetails;
+    /**
+     * Optional. Asset information specific for AWS Elastic Network Interfaces.
+     */
+    awsElasticNetworkInterfaceDetails?: Schema$AwsElasticNetworkInterfaceDetails;
+    /**
      * Asset information specific for AWS Load Balancers.
      */
     awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
+    /**
+     * Optional. Asset information specific for AWS Internet Gateways.
+     */
+    awsInternetGatewayDetails?: Schema$AwsInternetGatewayDetails;
     /**
      * Asset information specific for AWS Lambda functions.
      */
@@ -448,6 +532,10 @@ export namespace migrationcenter_v1alpha1 {
      * Asset information specific for AWS S3 buckets.
      */
     awsS3BucketDetails?: Schema$AwsS3BucketDetails;
+    /**
+     * Optional. Asset information specific for AWS SNS Topics.
+     */
+    awsSnsTopicDetails?: Schema$AwsSnsTopicDetails;
     /**
      * Asset information specific for AWS VPCs.
      */
@@ -637,6 +725,26 @@ export namespace migrationcenter_v1alpha1 {
     maxDays?: number | null;
   }
   /**
+   * Asset information specific for AWS API Gateway REST APIs.
+   */
+  export interface Schema$AwsApiGatewayRestApiDetails {}
+  /**
+   * Asset information specific for AWS Application Load Balancers.
+   */
+  export interface Schema$AwsApplicationLoadBalancerDetails {}
+  /**
+   * Asset information specific for AWS AppSync GraphQL APIs.
+   */
+  export interface Schema$AwsAppSyncGraphqlApiDetails {}
+  /**
+   * Asset information specific for AWS Autoscaling Group.
+   */
+  export interface Schema$AwsAutoscalingGroupDetails {}
+  /**
+   * Asset information specific for AWS Batch Compute Environments.
+   */
+  export interface Schema$AwsBatchComputeEnvironmentDetails {}
+  /**
    * Details of an AWS CloudFront distribution.
    */
   export interface Schema$AwsCloudFrontDistributionDetails {}
@@ -644,6 +752,10 @@ export namespace migrationcenter_v1alpha1 {
    * Details of an AWS DynamoDB table.
    */
   export interface Schema$AwsDynamoDBTableDetails {}
+  /**
+   * Asset information specific for AWS EBS Volumes.
+   */
+  export interface Schema$AwsEbsVolumeDetails {}
   /**
    * AWS EC2 specific details.
    */
@@ -662,6 +774,10 @@ export namespace migrationcenter_v1alpha1 {
     machineTypeLabel?: string | null;
   }
   /**
+   * Asset information specific for AWS ECR Repository.
+   */
+  export interface Schema$AwsEcrRepositoryDetails {}
+  /**
    * Details of an AWS ECS cluster.
    */
   export interface Schema$AwsEcsClusterDetails {}
@@ -674,9 +790,21 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AwsEksClusterDetails {}
   /**
+   * Asset information specific for AWS Elastic IP Addresses.
+   */
+  export interface Schema$AwsElasticIpAddressDetails {}
+  /**
+   * Asset information specific for AWS Elastic Network Interfaces.
+   */
+  export interface Schema$AwsElasticNetworkInterfaceDetails {}
+  /**
    * Asset information specific for AWS Load Balancers.
    */
   export interface Schema$AwsElbLoadBalancerDetails {}
+  /**
+   * Asset information specific for AWS Internet Gateways.
+   */
+  export interface Schema$AwsInternetGatewayDetails {}
   /**
    * Asset information specific for AWS Lambda functions.
    */
@@ -754,6 +882,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     enabled?: boolean | null;
   }
+  /**
+   * Asset information specific for AWS SNS Topics.
+   */
+  export interface Schema$AwsSnsTopicDetails {}
   /**
    * Asset information specific for AWS VPCs.
    */
@@ -1810,6 +1942,23 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. All the violations that were detected for the frame.
      */
     violations?: Schema$FrameViolationEntry[];
+  }
+  /**
+   * Estimated usage data.
+   */
+  export interface Schema$EstimatedUsage {
+    /**
+     * Optional. Estimated CPU utilization percentage. Must be in the range [1, 100].
+     */
+    estimatedCpuPercentage?: number | null;
+    /**
+     * Optional. Estimated disk utilization percentage. Must be in the range [1, 100].
+     */
+    estimatedDiskPercentage?: number | null;
+    /**
+     * Optional. Estimated memory utilization percentage. Must be in the range [1, 100].
+     */
+    estimatedMemoryPercentage?: number | null;
   }
   /**
    * A resource that reports result of the import job execution.
@@ -3749,6 +3898,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     databaseTypes?: Schema$ReportSummaryChartData;
     /**
+     * Output only. Estimated usage stats for the assets in this collection.
+     */
+    estimatedUsageStats?: Schema$ReportSummaryAssetAggregateStatsEstimatedUsageStats;
+    /**
      * Histogram showing a distribution of memory sizes.
      */
     memoryBytesHistogram?: Schema$ReportSummaryHistogramChartData;
@@ -3796,6 +3949,19 @@ export namespace migrationcenter_v1alpha1 {
      * Sum of persistent storage in bytes of all the assets in this collection.
      */
     totalStorageBytes?: string | null;
+  }
+  /**
+   * Estimated usage stats for the assets in this collection.
+   */
+  export interface Schema$ReportSummaryAssetAggregateStatsEstimatedUsageStats {
+    /**
+     * Output only. The number of assets that are using at least one estimated usage metric for rightsizing.
+     */
+    totalAssetsUsingEstimatedUsage?: string | null;
+    /**
+     * Output only. The number of virtual machines in this finding that are using at least one estimated usage metric for rightsizing.
+     */
+    totalVirtualMachinesUsingEstimatedUsage?: string | null;
   }
   /**
    * Describes a collection of data points rendered as a Chart.
@@ -4776,6 +4942,10 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. Compute Engine preferences concern insights and recommendations for Compute Engine target.
      */
     computeEnginePreferences?: Schema$ComputeEnginePreferences;
+    /**
+     * Optional. Estimated usage data for missing usage data. If performance data is available, it overrides this field. If not set, default values will be used for the usage data.
+     */
+    estimatedUsage?: Schema$EstimatedUsage;
     /**
      * Optional. Parameters that affect network cost estimations. If not set, default values will be used for the parameters.
      */
@@ -6247,17 +6417,28 @@ export namespace migrationcenter_v1alpha1 {
      *   // {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
+     *   //   "awsApiGatewayRestApiDetails": {},
+     *   //   "awsAppSyncGraphqlApiDetails": {},
+     *   //   "awsApplicationLoadBalancerDetails": {},
+     *   //   "awsAutoscalingGroupDetails": {},
+     *   //   "awsBatchComputeEnvironmentDetails": {},
      *   //   "awsCloudFrontDistributionDetails": {},
      *   //   "awsDynamodbTableDetails": {},
+     *   //   "awsEbsVolumeDetails": {},
+     *   //   "awsEcrRepositoryDetails": {},
      *   //   "awsEcsClusterDetails": {},
      *   //   "awsEfsFileSystemDetails": {},
      *   //   "awsEksClusterDetails": {},
+     *   //   "awsElasticIpAddressDetails": {},
+     *   //   "awsElasticNetworkInterfaceDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsInternetGatewayDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
      *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},
      *   //   "awsRoute53HostedZoneDetails": {},
      *   //   "awsS3BucketDetails": {},
+     *   //   "awsSnsTopicDetails": {},
      *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseDeploymentDetails": {},
@@ -6568,17 +6749,28 @@ export namespace migrationcenter_v1alpha1 {
      *       // {
      *       //   "assignedGroups": [],
      *       //   "attributes": {},
+     *       //   "awsApiGatewayRestApiDetails": {},
+     *       //   "awsAppSyncGraphqlApiDetails": {},
+     *       //   "awsApplicationLoadBalancerDetails": {},
+     *       //   "awsAutoscalingGroupDetails": {},
+     *       //   "awsBatchComputeEnvironmentDetails": {},
      *       //   "awsCloudFrontDistributionDetails": {},
      *       //   "awsDynamodbTableDetails": {},
+     *       //   "awsEbsVolumeDetails": {},
+     *       //   "awsEcrRepositoryDetails": {},
      *       //   "awsEcsClusterDetails": {},
      *       //   "awsEfsFileSystemDetails": {},
      *       //   "awsEksClusterDetails": {},
+     *       //   "awsElasticIpAddressDetails": {},
+     *       //   "awsElasticNetworkInterfaceDetails": {},
      *       //   "awsElbLoadBalancerDetails": {},
+     *       //   "awsInternetGatewayDetails": {},
      *       //   "awsLambdaFunctionDetails": {},
      *       //   "awsNatGatewayDetails": {},
      *       //   "awsRedshiftDetails": {},
      *       //   "awsRoute53HostedZoneDetails": {},
      *       //   "awsS3BucketDetails": {},
+     *       //   "awsSnsTopicDetails": {},
      *       //   "awsVpcDetails": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseDeploymentDetails": {},
@@ -6606,17 +6798,28 @@ export namespace migrationcenter_v1alpha1 {
      *   // {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
+     *   //   "awsApiGatewayRestApiDetails": {},
+     *   //   "awsAppSyncGraphqlApiDetails": {},
+     *   //   "awsApplicationLoadBalancerDetails": {},
+     *   //   "awsAutoscalingGroupDetails": {},
+     *   //   "awsBatchComputeEnvironmentDetails": {},
      *   //   "awsCloudFrontDistributionDetails": {},
      *   //   "awsDynamodbTableDetails": {},
+     *   //   "awsEbsVolumeDetails": {},
+     *   //   "awsEcrRepositoryDetails": {},
      *   //   "awsEcsClusterDetails": {},
      *   //   "awsEfsFileSystemDetails": {},
      *   //   "awsEksClusterDetails": {},
+     *   //   "awsElasticIpAddressDetails": {},
+     *   //   "awsElasticNetworkInterfaceDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsInternetGatewayDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
      *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},
      *   //   "awsRoute53HostedZoneDetails": {},
      *   //   "awsS3BucketDetails": {},
+     *   //   "awsSnsTopicDetails": {},
      *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseDeploymentDetails": {},
