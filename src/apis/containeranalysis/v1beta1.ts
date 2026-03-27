@@ -593,6 +593,10 @@ export namespace containeranalysis_v1beta1 {
      */
     objects?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects;
     /**
+     * Optional. A list of OCI images to be uploaded to Artifact Registry upon successful completion of all build steps. OCI images in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any images fail to be pushed, the build is marked FAILURE.
+     */
+    oci?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci[];
+    /**
      * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
      */
     pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage[];
@@ -684,6 +688,23 @@ export namespace containeranalysis_v1beta1 {
      * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
      */
     repository?: string | null;
+  }
+  /**
+   * OCI image to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci {
+    /**
+     * Required. Path on the local file system where to find the container to upload. e.g. /workspace/my-image.tar
+     */
+    file?: string | null;
+    /**
+     * Required. Registry path to upload the container to. e.g. us-east1-docker.pkg.dev/my-project/my-repo/my-image
+     */
+    registryPath?: string | null;
+    /**
+     * Optional. Tags to apply to the uploaded image. e.g. latest, 1.0.0
+     */
+    tags?: string[] | null;
   }
   /**
    * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
@@ -1047,6 +1068,10 @@ export namespace containeranalysis_v1beta1 {
      * Name used to push the container image to Google Container Registry, as presented to `docker push`.
      */
     name?: string | null;
+    /**
+     * Output only. The OCI media type of the artifact. Non-OCI images, such as Docker images, will have an unspecified value.
+     */
+    ociMediaType?: string | null;
     /**
      * Output only. Stores timing information for pushing the specified image.
      */
@@ -2524,10 +2549,6 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Note {
     /**
-     * The timestamp when the advisory was first published by the source.
-     */
-    advisoryPublishTime?: string | null;
-    /**
      * A note describing an attestation role.
      */
     attestationAuthority?: Schema$Authority;
@@ -3485,6 +3506,10 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$Vulnerability {
     /**
+     * The time this advisory was published by the source.
+     */
+    advisoryPublishTime?: string | null;
+    /**
      * The CVSS score for this vulnerability.
      */
     cvssScore?: number | null;
@@ -3833,7 +3858,6 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -3865,7 +3889,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -4160,7 +4183,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -4617,7 +4639,6 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -4649,7 +4670,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -6183,7 +6203,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -7751,7 +7770,6 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -7783,7 +7801,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -8078,7 +8095,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -8535,7 +8551,6 @@ export namespace containeranalysis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "build": {},
@@ -8567,7 +8582,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},
@@ -10091,7 +10105,6 @@ export namespace containeranalysis_v1beta1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "build": {},

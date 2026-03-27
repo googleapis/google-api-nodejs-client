@@ -231,6 +231,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     name?: string | null;
     /**
+     * The registry of the base image.
+     */
+    registry?: string | null;
+    /**
      * The repository name in which the base image is from.
      */
     repository?: string | null;
@@ -675,6 +679,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     objects?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects;
     /**
+     * Optional. A list of OCI images to be uploaded to Artifact Registry upon successful completion of all build steps. OCI images in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any images fail to be pushed, the build is marked FAILURE.
+     */
+    oci?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci[];
+    /**
      * A list of Python packages to be uploaded to Artifact Registry upon successful completion of all build steps. The build service account credentials will be used to perform the upload. If any objects fail to be pushed, the build is marked FAILURE.
      */
     pythonPackages?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage[];
@@ -766,6 +774,23 @@ export namespace containeranalysis_v1alpha1 {
      * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
      */
     repository?: string | null;
+  }
+  /**
+   * OCI image to upload to Artifact Registry upon successful completion of all build steps.
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsOci {
+    /**
+     * Required. Path on the local file system where to find the container to upload. e.g. /workspace/my-image.tar
+     */
+    file?: string | null;
+    /**
+     * Required. Registry path to upload the container to. e.g. us-east1-docker.pkg.dev/my-project/my-repo/my-image
+     */
+    registryPath?: string | null;
+    /**
+     * Optional. Tags to apply to the uploaded image. e.g. latest, 1.0.0
+     */
+    tags?: string[] | null;
   }
   /**
    * Python package to upload to Artifact Registry upon successful completion of all build steps. A package can encapsulate multiple objects to be uploaded to a single repository.
@@ -1129,6 +1154,10 @@ export namespace containeranalysis_v1alpha1 {
      * Name used to push the container image to Google Container Registry, as presented to `docker push`.
      */
     name?: string | null;
+    /**
+     * Output only. The OCI media type of the artifact. Non-OCI images, such as Docker images, will have an unspecified value.
+     */
+    ociMediaType?: string | null;
     /**
      * Output only. Stores timing information for pushing the specified image.
      */
@@ -2105,6 +2134,10 @@ export namespace containeranalysis_v1alpha1 {
      * Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package).
      */
     layerDetails?: Schema$LayerDetails;
+    /**
+     * Line number in the file where the package is found. Optional field that only applies to source repository scanning.
+     */
+    lineNumber?: number | null;
   }
   /**
    * FileNote represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/
@@ -4084,6 +4117,10 @@ export namespace containeranalysis_v1alpha1 {
    * VulnerabilityType provides metadata about a security vulnerability.
    */
   export interface Schema$VulnerabilityType {
+    /**
+     * Time this advisory was published by the source.
+     */
+    advisoryPublishTime?: string | null;
     /**
      * The CVSS score for this Vulnerability.
      */
