@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1alpha1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "vmmigration.projects.locations.list",
@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20260129",
+  "revision": "20260319",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3311,14 +3311,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3516,14 +3518,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3663,14 +3667,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3835,14 +3841,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -6030,14 +6038,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -6509,14 +6519,16 @@
             "STANDARD",
             "BALANCED",
             "SSD",
-            "HYPERDISK_BALANCED"
+            "HYPERDISK_BALANCED",
+            "HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
             "SSD hard disk type.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
