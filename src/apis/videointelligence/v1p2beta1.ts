@@ -705,6 +705,10 @@ export namespace videointelligence_v1p2beta1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -1298,6 +1302,10 @@ export namespace videointelligence_v1p2beta1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -1799,6 +1807,10 @@ export namespace videointelligence_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_SpeechTranscriptionConfig {
     /**
+     * Optional. Legacy field. This field must be a Cloud Storage URI prefix. (e.g., `gs://bucket/path/`).
+     */
+    audioOutputUriPrefix?: string | null;
+    /**
      * Optional. For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.
      */
     audioTracks?: number[] | null;
@@ -2109,6 +2121,10 @@ export namespace videointelligence_v1p2beta1 {
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
     endTime?: string | null;
+    /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
@@ -2805,6 +2821,10 @@ export namespace videointelligence_v1p2beta1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -3397,6 +3417,10 @@ export namespace videointelligence_v1p2beta1 {
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
     endTime?: string | null;
+    /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */

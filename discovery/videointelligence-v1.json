@@ -311,6 +311,11 @@
                       "description": "The standard list page token.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}/operations",
@@ -350,7 +355,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20260304",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -1053,6 +1058,10 @@
       "description": "Config for SPEECH_TRANSCRIPTION.",
       "id": "GoogleCloudVideointelligenceV1_SpeechTranscriptionConfig",
       "properties": {
+        "audioOutputUriPrefix": {
+          "description": "Optional. Legacy field. This field must be a Cloud Storage URI prefix. (e.g., `gs://bucket/path/`).",
+          "type": "string"
+        },
         "audioTracks": {
           "description": "Optional. For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.",
           "items": {
@@ -1493,6 +1502,11 @@
         "endTime": {
           "description": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {
@@ -2354,6 +2368,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
+          "type": "string"
+        },
         "speakerTag": {
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.",
           "format": "int32",
@@ -3213,6 +3232,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
+          "type": "string"
+        },
         "speakerTag": {
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.",
           "format": "int32",
@@ -4070,6 +4094,11 @@
         "endTime": {
           "description": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {
@@ -5064,6 +5093,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
+          "type": "string"
+        },
         "speakerTag": {
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.",
           "format": "int32",
@@ -5100,6 +5134,13 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "GoogleLongrunning_Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

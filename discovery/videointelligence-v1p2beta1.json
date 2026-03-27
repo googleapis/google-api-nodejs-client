@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20260304",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -970,6 +970,11 @@
         "endTime": {
           "description": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {
@@ -1831,6 +1836,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
+          "type": "string"
+        },
         "speakerTag": {
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.",
           "format": "int32",
@@ -2690,6 +2700,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
+          "type": "string"
+        },
         "speakerTag": {
           "description": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.",
           "format": "int32",
@@ -3408,6 +3423,10 @@
       "description": "Config for SPEECH_TRANSCRIPTION.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_SpeechTranscriptionConfig",
       "properties": {
+        "audioOutputUriPrefix": {
+          "description": "Optional. Legacy field. This field must be a Cloud Storage URI prefix. (e.g., `gs://bucket/path/`).",
+          "type": "string"
+        },
         "audioTracks": {
           "description": "Optional. For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.",
           "items": {
@@ -3848,6 +3867,11 @@
         "endTime": {
           "description": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {
@@ -4840,6 +4864,11 @@
         "endTime": {
           "description": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "speakerLabel": {
+          "description": "Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.",
+          "readOnly": true,
           "type": "string"
         },
         "speakerTag": {

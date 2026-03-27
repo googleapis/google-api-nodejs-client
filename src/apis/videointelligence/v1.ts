@@ -709,6 +709,10 @@ export namespace videointelligence_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -1302,6 +1306,10 @@ export namespace videointelligence_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -1894,6 +1902,10 @@ export namespace videointelligence_v1 {
      * Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary.
      */
     endTime?: string | null;
+    /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
     /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
@@ -2590,6 +2602,10 @@ export namespace videointelligence_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -3091,6 +3107,10 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechTranscriptionConfig {
     /**
+     * Optional. Legacy field. This field must be a Cloud Storage URI prefix. (e.g., `gs://bucket/path/`).
+     */
+    audioOutputUriPrefix?: string | null;
+    /**
      * Optional. For file formats, such as MXF or MKV, supporting multiple audio tracks, specify up to two tracks. Default: track 0.
      */
     audioTracks?: number[] | null;
@@ -3402,6 +3422,10 @@ export namespace videointelligence_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. A distinct string value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word.
+     */
+    speakerLabel?: string | null;
+    /**
      * Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from 1 up to diarization_speaker_count, and is only set if speaker diarization is enabled.
      */
     speakerTag?: number | null;
@@ -3430,6 +3454,10 @@ export namespace videointelligence_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$GoogleLongrunning_Operation[];
+    /**
+     * Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -4445,13 +4473,16 @@ export namespace videointelligence_v1 {
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
      *     pageToken: 'placeholder-value',
+     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "operations": [],
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -4602,6 +4633,10 @@ export namespace videointelligence_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+    /**
+     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Videos {
