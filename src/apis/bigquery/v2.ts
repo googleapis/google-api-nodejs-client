@@ -911,7 +911,7 @@ export namespace bigquery_v2 {
     dataMaskingApplied?: boolean | null;
   }
   /**
-   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).
+   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://docs.cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column).
    */
   export interface Schema$DataPolicyOption {
     /**
@@ -938,6 +938,10 @@ export namespace bigquery_v2 {
       userByEmail?: string;
       view?: Schema$TableReference;
     }> | null;
+    /**
+     * Output only. The origin of the dataset, one of: * (Unset) - Native BigQuery Dataset * BIGLAKE - Dataset is backed by a namespace stored natively in Biglake
+     */
+    catalogSource?: string | null;
     /**
      * Output only. The time when this dataset was created, in milliseconds since the epoch.
      */
@@ -1051,7 +1055,7 @@ export namespace bigquery_v2 {
      */
     tags?: Array<{tagKey?: string; tagValue?: string}> | null;
     /**
-     * Output only. Same as `type` in `ListFormatDataset`. The type of the dataset, one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with definition in external metadata catalog.
+     * Output only. Same as `type` in `ListFormatDataset`. The type of the dataset, one of: * DEFAULT - only accessible by owner and authorized accounts, * PUBLIC - accessible by everyone, * LINKED - linked dataset, * EXTERNAL - dataset with definition in external metadata catalog, * BIGLAKE_ICEBERG - a Biglake dataset accessible through the Iceberg API, * BIGLAKE_HIVE - a Biglake dataset accessible through the Hive API.
      */
     type?: string | null;
   }
@@ -1076,6 +1080,7 @@ export namespace bigquery_v2 {
      * An array of the dataset resources in the project. Each resource contains basic information. For full information about a particular dataset resource, use the Datasets: get method. This property is omitted when there are no datasets in the project.
      */
     datasets?: Array<{
+      catalogSource?: string;
       datasetReference?: Schema$DatasetReference;
       externalDatasetReference?: Schema$ExternalDatasetReference;
       friendlyName?: string;
@@ -1083,6 +1088,7 @@ export namespace bigquery_v2 {
       kind?: string;
       labels?: {[key: string]: string};
       location?: string;
+      type?: string;
     }> | null;
     /**
      * Output only. A hash value of the results page. You can use this property to determine if the page has changed since the last request.
@@ -1206,6 +1212,14 @@ export namespace bigquery_v2 {
      * Output only. Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
      */
     deletedRowCount?: string | null;
+    /**
+     * Output only. DML mode used.
+     */
+    dmlMode?: string | null;
+    /**
+     * Output only. Reason for disabling fine-grained DML if applicable.
+     */
+    fineGrainedDmlUnusedReason?: string | null;
     /**
      * Output only. Number of inserted Rows. Populated by DML INSERT and MERGE statements
      */
@@ -1647,7 +1661,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV. For the CSV Format, Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
      */
     timestampTargetPrecision?: number[] | null;
     /**
@@ -1760,6 +1774,109 @@ export namespace bigquery_v2 {
      * Required. The query that defines the view.
      */
     query?: string | null;
+  }
+  /**
+   * Provides error statistics for the query job across all AI function calls.
+   */
+  export interface Schema$GenAiErrorStats {
+    /**
+     * A list of unique errors at query level (up to 5, truncated to 100 chars)
+     */
+    errors?: string[] | null;
+  }
+  /**
+   * Provides cost optimization statistics for a GenAi function call.
+   */
+  export interface Schema$GenAiFunctionCostOptimizationStats {
+    /**
+     * System generated message to provide insights into cost optimization state.
+     */
+    message?: string | null;
+    /**
+     * Number of rows inferred via cost optimized workflow.
+     */
+    numCostOptimizedRows?: string | null;
+  }
+  /**
+   * Provides error statistics for a GenAi function call.
+   */
+  export interface Schema$GenAiFunctionErrorStats {
+    /**
+     * A list of unique errors at function level (up to 5, truncated to 100 chars).
+     */
+    errors?: string[] | null;
+    /**
+     * Number of failed rows processed by the function
+     */
+    numFailedRows?: string | null;
+  }
+  /**
+   * Provides statistics for each Ai function call within a query.
+   */
+  export interface Schema$GenAiFunctionStats {
+    /**
+     * Cost optimization stats if applied on the rows processed by the function.
+     */
+    costOptimizationStats?: Schema$GenAiFunctionCostOptimizationStats;
+    /**
+     * Error stats for the function.
+     */
+    errorStats?: Schema$GenAiFunctionErrorStats;
+    /**
+     * Name of the function.
+     */
+    functionName?: string | null;
+    /**
+     * Number of rows processed by this GenAi function. This includes all cost_optimized, llm_inferred and failed_rows.
+     */
+    numProcessedRows?: string | null;
+    /**
+     * User input prompt of the function (truncated to 20 chars).
+     */
+    prompt?: string | null;
+  }
+  /**
+   * GenAi stats for the query job.
+   */
+  export interface Schema$GenAiStats {
+    /**
+     * Job level error stats across all GenAi functions
+     */
+    errorStats?: Schema$GenAiErrorStats;
+    /**
+     * Function level stats for GenAi Functions. See https://docs.cloud.google.com/bigquery/docs/generative-ai-overview
+     */
+    functionStats?: Schema$GenAiFunctionStats[];
+  }
+  /**
+   * Optional. Definition of how values are generated for the field. Only valid for top-level schema fields (not nested fields).
+   */
+  export interface Schema$GeneratedColumn {
+    /**
+     * Definition of the expression used to generate the field.
+     */
+    generatedExpressionInfo?: Schema$GeneratedExpressionInfo;
+    /**
+     * Optional. Dictates when system generated values are used to populate the field.
+     */
+    generatedMode?: string | null;
+  }
+  /**
+   * Definition of the expression used to generate the field.
+   */
+  export interface Schema$GeneratedExpressionInfo {
+    /**
+     * Optional. Whether the column generation is done asynchronously.
+     */
+    asynchronous?: boolean | null;
+    /**
+     * Optional. The generation expression (e.g. AI.EMBED(...)) used to generated the field.
+     */
+    generationExpression?: string | null;
+    /**
+     * Optional. Whether the generated column is stored in the table.
+     */
+    stored?: boolean | null;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -2059,6 +2176,22 @@ export namespace bigquery_v2 {
      * Output only. Reason why incremental query results are/were not written by the query.
      */
     disabledReason?: string | null;
+    /**
+     * Output only. Additional human-readable clarification, if available, for DisabledReason.
+     */
+    disabledReasonDetails?: string | null;
+    /**
+     * Output only. The time at which the first incremental result was written. If the query needed to restart internally, this only describes the final attempt.
+     */
+    firstIncrementalRowTime?: string | null;
+    /**
+     * Output only. Number of rows that were in the latest result set before query completion.
+     */
+    incrementalRowCount?: string | null;
+    /**
+     * Output only. The time at which the last incremental result was written. Does not include the final result written after query completion.
+     */
+    lastIncrementalRowTime?: string | null;
     /**
      * Output only. The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.
      */
@@ -2524,7 +2657,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV. For the CSV Format, Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
      */
     timestampTargetPrecision?: number[] | null;
     /**
@@ -2926,6 +3059,10 @@ export namespace bigquery_v2 {
      */
     externalServiceCosts?: Schema$ExternalServiceCost[];
     /**
+     * Output only. Statistics related to GenAI usage in the query.
+     */
+    genAiStats?: Schema$GenAiStats;
+    /**
      * Output only. Statistics related to incremental query results, if enabled for the query. This feature is not yet available.
      */
     incrementalResultStats?: Schema$IncrementalResultStats;
@@ -2973,6 +3110,10 @@ export namespace bigquery_v2 {
      * Output only. Describes execution plan for the query.
      */
     queryPlan?: Schema$ExplainQueryStage[];
+    /**
+     * Output only. Referenced property graphs for the job. Queries that reference more than 50 property graphs will not have a complete list.
+     */
+    referencedPropertyGraphs?: Schema$PropertyGraphReference[];
     /**
      * Output only. Referenced routines for the job.
      */
@@ -3619,7 +3760,7 @@ export namespace bigquery_v2 {
      */
     nextPageToken?: string | null;
     /**
-     * Projects to which the user has at least READ access.
+     * Projects to which the user has at least READ access. This field can be omitted if `totalItems` is 0.
      */
     projects?: Array<{
       friendlyName?: string;
@@ -3641,6 +3782,23 @@ export namespace bigquery_v2 {
      * Required. ID of the project. Can be either the numeric ID or the assigned ID of the project.
      */
     projectId?: string | null;
+  }
+  /**
+   * Id path of a property graph.
+   */
+  export interface Schema$PropertyGraphReference {
+    /**
+     * Required. The ID of the dataset containing this property graph.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The ID of the project containing this property graph.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The ID of the property graph. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 256 characters.
+     */
+    propertyGraphId?: string | null;
   }
   /**
    * The column metadata index pruning statistics.
@@ -4106,6 +4264,10 @@ export namespace bigquery_v2 {
      */
     arguments?: Schema$Argument[];
     /**
+     * Output only. The build status of the routine. This field is only applicable to Python UDFs. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     */
+    buildStatus?: Schema$RoutineBuildStatus;
+    /**
      * Output only. The time when this routine was created, in milliseconds since the epoch.
      */
     creationTime?: string | null;
@@ -4181,6 +4343,31 @@ export namespace bigquery_v2 {
      * Optional. Use this option to catch many common errors. Error checking is not exhaustive, and successfully creating a procedure doesn't guarantee that the procedure will successfully execute at runtime. If `strictMode` is set to `TRUE`, the procedure body is further checked for errors such as non-existent tables or columns. The `CREATE PROCEDURE` statement fails if the body fails any of these checks. If `strictMode` is set to `FALSE`, the procedure body is checked only for syntax. For procedures that invoke themselves recursively, specify `strictMode=FALSE` to avoid non-existent procedure errors during validation. Default value is `TRUE`.
      */
     strictMode?: boolean | null;
+  }
+  /**
+   * The status of a routine build.
+   */
+  export interface Schema$RoutineBuildStatus {
+    /**
+     * Output only. The time taken for the image build. Populated only after the build succeeds or fails.
+     */
+    buildDuration?: string | null;
+    /**
+     * Output only. The current build state of the routine.
+     */
+    buildState?: string | null;
+    /**
+     * Output only. The time when the build state was updated last.
+     */
+    buildStateUpdateTime?: string | null;
+    /**
+     * Output only. A result object that will be present only if the build has failed.
+     */
+    errorResult?: Schema$ErrorProto;
+    /**
+     * Output only. The size of the image in bytes. Populated only after the build succeeds.
+     */
+    imageSizeBytes?: string | null;
   }
   /**
    * Id path of a routine.
@@ -5010,6 +5197,10 @@ export namespace bigquery_v2 {
      * Optional. Definition of the foreign data type. Only valid for top-level schema fields (not nested fields). If the type is FOREIGN, this field is required.
      */
     foreignTypeDefinition?: string | null;
+    /**
+     * Optional. Definition of how values are generated for the field. Only valid for top-level schema fields (not nested fields).
+     */
+    generatedColumn?: Schema$GeneratedColumn;
     /**
      * Optional. Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = "STRING", then max_length represents the maximum UTF-8 length of strings in this field. If type = "BYTES", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
      */
@@ -5953,6 +6144,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "access": [],
+     *   //   "catalogSource": "my_catalogSource",
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
      *   //   "defaultCollation": "my_defaultCollation",
@@ -6123,6 +6315,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "access": [],
+     *       //   "catalogSource": "my_catalogSource",
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
      *       //   "defaultCollation": "my_defaultCollation",
@@ -6160,6 +6353,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "access": [],
+     *   //   "catalogSource": "my_catalogSource",
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
      *   //   "defaultCollation": "my_defaultCollation",
@@ -6484,6 +6678,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "access": [],
+     *       //   "catalogSource": "my_catalogSource",
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
      *       //   "defaultCollation": "my_defaultCollation",
@@ -6521,6 +6716,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "access": [],
+     *   //   "catalogSource": "my_catalogSource",
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
      *   //   "defaultCollation": "my_defaultCollation",
@@ -6699,6 +6895,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "access": [],
+     *   //   "catalogSource": "my_catalogSource",
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
      *   //   "defaultCollation": "my_defaultCollation",
@@ -6874,6 +7071,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "access": [],
+     *       //   "catalogSource": "my_catalogSource",
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
      *       //   "defaultCollation": "my_defaultCollation",
@@ -6911,6 +7109,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "access": [],
+     *   //   "catalogSource": "my_catalogSource",
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
      *   //   "defaultCollation": "my_defaultCollation",
@@ -9681,6 +9880,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "arguments": [],
+     *   //   "buildStatus": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "dataGovernanceType": "my_dataGovernanceType",
      *   //   "definitionBody": "my_definitionBody",
@@ -9993,6 +10193,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "arguments": [],
+     *       //   "buildStatus": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "dataGovernanceType": "my_dataGovernanceType",
      *       //   "definitionBody": "my_definitionBody",
@@ -10020,6 +10221,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "arguments": [],
+     *   //   "buildStatus": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "dataGovernanceType": "my_dataGovernanceType",
      *   //   "definitionBody": "my_definitionBody",
@@ -10639,6 +10841,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "arguments": [],
+     *       //   "buildStatus": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "dataGovernanceType": "my_dataGovernanceType",
      *       //   "definitionBody": "my_definitionBody",
@@ -10666,6 +10869,7 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "arguments": [],
+     *   //   "buildStatus": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "dataGovernanceType": "my_dataGovernanceType",
      *   //   "definitionBody": "my_definitionBody",
