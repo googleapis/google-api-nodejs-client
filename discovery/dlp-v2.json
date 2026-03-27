@@ -5128,7 +5128,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260307",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5238,7 +5238,7 @@
           "type": "array"
         },
         "matchingType": {
-          "description": "How the adjustment rule is applied. Only MATCHING_TYPE_PARTIAL_MATCH is supported: - Partial match: adjusts the findings of infoTypes specified in the inspection rule when they have a nonempty intersection with a finding of an infoType specified in this adjustment rule.",
+          "description": "How the adjustment rule is applied. Only `MATCHING_TYPE_PARTIAL_MATCH` is supported: - Partial match: adjusts the findings of infoTypes specified in the inspection rule when they have a nonempty intersection with a finding of an infoType specified in this adjustment rule.",
           "enum": [
             "MATCHING_TYPE_UNSPECIFIED",
             "MATCHING_TYPE_FULL_MATCH",
@@ -6793,7 +6793,7 @@
       "id": "GooglePrivacyDlpV2CustomInfoType",
       "properties": {
         "detectionRules": {
-          "description": "Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type` CustomInfoType.",
+          "description": "Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in the order that they are specified. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.",
           "items": {
             "$ref": "GooglePrivacyDlpV2DetectionRule"
           },
@@ -6804,7 +6804,7 @@
           "description": "A list of phrases to detect as a CustomInfoType."
         },
         "exclusionType": {
-          "description": "If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.",
+          "description": "If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.",
           "enum": [
             "EXCLUSION_TYPE_UNSPECIFIED",
             "EXCLUSION_TYPE_EXCLUDE"
@@ -6838,6 +6838,10 @@
             "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
+        },
+        "metadataKeyValueExpression": {
+          "$ref": "GooglePrivacyDlpV2MetadataKeyValueExpression",
+          "description": "Key-value pair to detect in the metadata."
         },
         "regex": {
           "$ref": "GooglePrivacyDlpV2Regex",
@@ -8446,6 +8450,7 @@
               "SIGNAL_UNSPECIFIED",
               "MODEL",
               "TEXT_EMBEDDING",
+              "EMBEDDING",
               "VERTEX_PLUGIN",
               "VECTOR_PLUGIN",
               "SOURCE_CODE",
@@ -8454,7 +8459,8 @@
             "enumDescriptions": [
               "Unused.",
               "One or more machine learning models are present.",
-              "A table appears to be a text embedding.",
+              "A table appears to contain text embeddings.",
+              "A table appears to contain embeddings of any type (for example, text, image, multimodal). The `TEXT_EMBEDDING` signal might also be present if the table contains text embeddings.",
               "The [Cloud SQL Vertex AI](https://cloud.google.com/sql/docs/postgres/integrate-cloud-sql-with-vertex-ai) plugin is installed on the database.",
               "Support for [Cloud SQL vector embeddings](https://cloud.google.com/sql/docs/mysql/enable-vector-search) is enabled on the database.",
               "Source code is present.",
@@ -9858,7 +9864,7 @@
           "type": "array"
         },
         "ruleSet": {
-          "description": "Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.",
+          "description": "Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type. Not supported for the `metadata_key_value_expression` CustomInfoType.",
           "items": {
             "$ref": "GooglePrivacyDlpV2InspectionRuleSet"
           },
@@ -10305,6 +10311,17 @@
             "$ref": "GooglePrivacyDlpV2PathElement"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2KeyValueMetadataLabel": {
+      "description": "The metadata key that contains a finding.",
+      "id": "GooglePrivacyDlpV2KeyValueMetadataLabel",
+      "properties": {
+        "key": {
+          "description": "The metadata key. The format depends on the source of the metadata. Example: - `MSIP_Label_122709e3-8f6b-4860-985f-7f722a94f61e_Enabled` (a Microsoft Purview Information Protection key example)",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10774,10 +10791,29 @@
       "properties": {},
       "type": "object"
     },
+    "GooglePrivacyDlpV2MetadataKeyValueExpression": {
+      "description": "Configuration for a custom infoType that detects key-value pairs in the metadata matching the specified regular expressions.",
+      "id": "GooglePrivacyDlpV2MetadataKeyValueExpression",
+      "properties": {
+        "keyRegex": {
+          "description": "The regular expression for the key. Key should be non-empty.",
+          "type": "string"
+        },
+        "valueRegex": {
+          "description": "The regular expression for the value. Value should be non-empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2MetadataLocation": {
       "description": "Metadata Location",
       "id": "GooglePrivacyDlpV2MetadataLocation",
       "properties": {
+        "keyValueMetadataLabel": {
+          "$ref": "GooglePrivacyDlpV2KeyValueMetadataLabel",
+          "description": "Metadata key that contains the finding."
+        },
         "storageLabel": {
           "$ref": "GooglePrivacyDlpV2StorageMetadataLabel",
           "description": "Storage metadata."
@@ -10786,11 +10822,13 @@
           "description": "Type of metadata containing the finding.",
           "enum": [
             "METADATATYPE_UNSPECIFIED",
-            "STORAGE_METADATA"
+            "STORAGE_METADATA",
+            "CONTENT_METADATA"
           ],
           "enumDescriptions": [
             "Unused",
-            "General file metadata provided by Cloud Storage."
+            "General file metadata provided by Cloud Storage.",
+            "Metadata extracted from the files."
           ],
           "type": "string"
         }

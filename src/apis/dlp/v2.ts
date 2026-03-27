@@ -206,7 +206,7 @@ export namespace dlp_v2 {
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
-     * How the adjustment rule is applied. Only MATCHING_TYPE_PARTIAL_MATCH is supported: - Partial match: adjusts the findings of infoTypes specified in the inspection rule when they have a nonempty intersection with a finding of an infoType specified in this adjustment rule.
+     * How the adjustment rule is applied. Only `MATCHING_TYPE_PARTIAL_MATCH` is supported: - Partial match: adjusts the findings of infoTypes specified in the inspection rule when they have a nonempty intersection with a finding of an infoType specified in this adjustment rule.
      */
     matchingType?: string | null;
     /**
@@ -1242,7 +1242,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CustomInfoType {
     /**
-     * Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type` CustomInfoType.
+     * Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in the order that they are specified. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      */
     detectionRules?: Schema$GooglePrivacyDlpV2DetectionRule[];
     /**
@@ -1250,7 +1250,7 @@ export namespace dlp_v2 {
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
     /**
-     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Only supported for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      */
     exclusionType?: string | null;
     /**
@@ -1261,6 +1261,10 @@ export namespace dlp_v2 {
      * Likelihood to return for this CustomInfoType. This base value can be altered by a detection rule if the finding meets the criteria specified by the rule. Defaults to `VERY_LIKELY` if not specified.
      */
     likelihood?: string | null;
+    /**
+     * Key-value pair to detect in the metadata.
+     */
+    metadataKeyValueExpression?: Schema$GooglePrivacyDlpV2MetadataKeyValueExpression;
     /**
      * Regular expression based CustomInfoType.
      */
@@ -3198,7 +3202,7 @@ export namespace dlp_v2 {
      */
     minLikelihoodPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLikelihood[];
     /**
-     * Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.
+     * Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type. Not supported for the `metadata_key_value_expression` CustomInfoType.
      */
     ruleSet?: Schema$GooglePrivacyDlpV2InspectionRuleSet[];
   }
@@ -3459,6 +3463,15 @@ export namespace dlp_v2 {
      * The entity path. An entity path consists of one or more elements composed of a kind and a string or numerical identifier, which identify entities. The first element identifies a _root entity_, the second element identifies a _child_ of the root entity, the third element identifies a child of the second entity, and so forth. The entities identified by all prefixes of the path are called the element's _ancestors_. A path can never be empty, and a path can have at most 100 elements.
      */
     path?: Schema$GooglePrivacyDlpV2PathElement[];
+  }
+  /**
+   * The metadata key that contains a finding.
+   */
+  export interface Schema$GooglePrivacyDlpV2KeyValueMetadataLabel {
+    /**
+     * The metadata key. The format depends on the source of the metadata. Example: - `MSIP_Label_122709e3-8f6b-4860-985f-7f722a94f61e_Enabled` (a Microsoft Purview Information Protection key example)
+     */
+    key?: string | null;
   }
   /**
    * A representation of a Datastore kind.
@@ -3848,9 +3861,26 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Manual {}
   /**
+   * Configuration for a custom infoType that detects key-value pairs in the metadata matching the specified regular expressions.
+   */
+  export interface Schema$GooglePrivacyDlpV2MetadataKeyValueExpression {
+    /**
+     * The regular expression for the key. Key should be non-empty.
+     */
+    keyRegex?: string | null;
+    /**
+     * The regular expression for the value. Value should be non-empty.
+     */
+    valueRegex?: string | null;
+  }
+  /**
    * Metadata Location
    */
   export interface Schema$GooglePrivacyDlpV2MetadataLocation {
+    /**
+     * Metadata key that contains the finding.
+     */
+    keyValueMetadataLabel?: Schema$GooglePrivacyDlpV2KeyValueMetadataLabel;
     /**
      * Storage metadata.
      */
