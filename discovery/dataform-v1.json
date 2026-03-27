@@ -164,7 +164,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "dataform.projects.locations.list",
@@ -2095,6 +2095,21 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "view": {
+                          "description": "Optional. Specifies the metadata to return for each directory entry. If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`. Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by CMEK-protected workspaces.",
+                          "enum": [
+                            "DIRECTORY_CONTENTS_VIEW_UNSPECIFIED",
+                            "DIRECTORY_CONTENTS_VIEW_BASIC",
+                            "DIRECTORY_CONTENTS_VIEW_METADATA"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. Defaults to DIRECTORY_CONTENTS_VIEW_BASIC.",
+                            "Includes only the file or directory name. This is the default behavior.",
+                            "Includes all metadata for each file or directory. Currently not supported by CMEK-protected workspaces."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
                         "workspace": {
                           "description": "Required. The workspace's name.",
                           "location": "path",
@@ -2467,7 +2482,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260317",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -2981,13 +2996,15 @@
             "TOKEN_STATUS_UNSPECIFIED",
             "NOT_FOUND",
             "INVALID",
-            "VALID"
+            "VALID",
+            "PERMISSION_DENIED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The token could not be found in Secret Manager (or the Dataform Service Account did not have permission to access it).",
             "The token could not be used to authenticate against the Git remote.",
-            "The token was used successfully to authenticate against the Git remote."
+            "The token was used successfully to authenticate against the Git remote.",
+            "The token is not accessible due to permission issues."
           ],
           "type": "string"
         }
@@ -3112,6 +3129,10 @@
         "file": {
           "description": "A file in the directory.",
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "FilesystemEntryMetadata",
+          "description": "Entry with metadata."
         }
       },
       "type": "object"
@@ -3267,6 +3288,25 @@
       "properties": {
         "path": {
           "description": "File system path relative to the workspace root.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilesystemEntryMetadata": {
+      "description": "Represents metadata for a single entry in a filesystem.",
+      "id": "FilesystemEntryMetadata",
+      "properties": {
+        "sizeBytes": {
+          "description": "Output only. Provides the size of the entry in bytes. For directories, this will be 0.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Represents the time of the last modification of the entry.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4156,7 +4196,7 @@
           "type": "array"
         },
         "connection": {
-          "description": "Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project}.{location}.{connection_id}` or `projects/{project}/locations/{location}/connections/{connection_id}\", or be set to DEFAULT.",
+          "description": "Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project}.{location}.{connection_id}` or `projects/{project}/locations/{location}/connections/{connection_id}`, or be set to DEFAULT.",
           "type": "string"
         },
         "dependencyTargets": {

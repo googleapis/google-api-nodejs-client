@@ -640,6 +640,10 @@ export namespace dataform_v1 {
      * A file in the directory.
      */
     file?: string | null;
+    /**
+     * Entry with metadata.
+     */
+    metadata?: Schema$FilesystemEntryMetadata;
   }
   /**
    * Client-facing representation of a directory entry in search results.
@@ -762,6 +766,19 @@ export namespace dataform_v1 {
      * File system path relative to the workspace root.
      */
     path?: string | null;
+  }
+  /**
+   * Represents metadata for a single entry in a filesystem.
+   */
+  export interface Schema$FilesystemEntryMetadata {
+    /**
+     * Output only. Provides the size of the entry in bytes. For directories, this will be 0.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Output only. Represents the time of the last modification of the entry.
+     */
+    updateTime?: string | null;
   }
   /**
    * Controls Git remote configuration for a repository.
@@ -1408,7 +1425,7 @@ export namespace dataform_v1 {
      */
     clusterExpressions?: string[] | null;
     /**
-     * Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}", or be set to DEFAULT.
+     * Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}`, or be set to DEFAULT.
      */
     connection?: string | null;
     /**
@@ -2304,7 +2321,7 @@ export namespace dataform_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -11783,6 +11800,8 @@ export namespace dataform_v1 {
      *         pageToken: 'placeholder-value',
      *         // Optional. The directory's full path including directory name, relative to the workspace root. If left unset, the workspace root is used.
      *         path: 'placeholder-value',
+     *         // Optional. Specifies the metadata to return for each directory entry. If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`. Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by CMEK-protected workspaces.
+     *         view: 'placeholder-value',
      *         // Required. The workspace's name.
      *         workspace:
      *           'projects/my-project/locations/my-location/repositories/my-repositorie/workspaces/my-workspace',
@@ -13287,6 +13306,10 @@ export namespace dataform_v1 {
      * Optional. The directory's full path including directory name, relative to the workspace root. If left unset, the workspace root is used.
      */
     path?: string;
+    /**
+     * Optional. Specifies the metadata to return for each directory entry. If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`. Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by CMEK-protected workspaces.
+     */
+    view?: string;
     /**
      * Required. The workspace's name.
      */
