@@ -322,6 +322,8 @@
     "src/apis/chromewebstore": {},
     "src/apis/appsmarket": {},
     "src/apis/threatintelligence": {},
-    "src/apis/hypercomputecluster": {}
+    "src/apis/hypercomputecluster": {},
+    "src/apis/agentregistry": {},
+    "src/apis/ces": {}
   }
 }
