@@ -641,6 +641,15 @@ export namespace appengine_v1beta {
     staticFile?: string | null;
   }
   /**
+   * Request message for Versions.ExportAppImage.
+   */
+  export interface Schema$ExportAppImageRequest {
+    /**
+     * Optional. The full resource name of the AR repository to export to. Format: projects/{project\}/locations/{location\}/repositories/{repository\} If not specified, defaults to projects/{project\}/locations/{location\}/repositories/gae-standard in the same region as the app. The default repository will be created if it does not exist.
+     */
+    destinationRepository?: string | null;
+  }
+  /**
    * The feature specific settings to be used in the application. These define behaviors that are user configurable.
    */
   export interface Schema$FeatureSettings {
@@ -1644,19 +1653,6 @@ export namespace appengine_v1beta {
     message?: string | null;
   }
   /**
-   * Subnetwork key message.
-   */
-  export interface Schema$SubnetworkKey {
-    /**
-     * Project id (name not number) of the project that hosts the network
-     */
-    hostProjectId?: string | null;
-    /**
-     * Short name of the subnetwork. e.g. SUBNET instead of projects/{PROJECT_NAME\}/regions/{REGION\}/subnetworks/{SUBNET\}
-     */
-    subnet?: string | null;
-  }
-  /**
    * Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.
    */
   export interface Schema$TrafficSplit {
@@ -1900,10 +1896,6 @@ export namespace appengine_v1beta {
      */
     vpcAccessConnector?: Schema$VpcAccessConnector;
     /**
-     * Deprecated: Use vpc_access instead. Enables VPC egress connectivity for standard apps.
-     */
-    vpcEgress?: Schema$VpcEgress;
-    /**
      * The Google Compute Engine zones that are supported by this version in the App Engine flexible environment. Deprecated.
      */
     zones?: string[] | null;
@@ -1952,23 +1944,6 @@ export namespace appengine_v1beta {
     name?: string | null;
   }
   /**
-   * Deprecated: Use VpcAccess instead. Vpc Egress configuration.
-   */
-  export interface Schema$VpcEgress {
-    /**
-     * The egress setting for the subnetwork, controlling what traffic is diverted through it.
-     */
-    egressSetting?: string | null;
-    /**
-     * The network tags to apply to the instance.
-     */
-    networkTags?: Schema$VpcNetworkTag[];
-    /**
-     * The subnetwork key.
-     */
-    subnetworkKey?: Schema$SubnetworkKey;
-  }
-  /**
    * Network interface key message.
    */
   export interface Schema$VpcNetworkInterface {
@@ -1984,15 +1959,6 @@ export namespace appengine_v1beta {
      * Optional. The network tags that will be applied to this App Engine resource.
      */
     tags?: string[] | null;
-  }
-  /**
-   * Network tag message.
-   */
-  export interface Schema$VpcNetworkTag {
-    /**
-     * value for the tag name
-     */
-    value?: string | null;
   }
   /**
    * The zip file information for a zip deployment.
@@ -7142,7 +7108,6 @@ export namespace appengine_v1beta {
      *       //   "vm": false,
      *       //   "vpcAccess": {},
      *       //   "vpcAccessConnector": {},
-     *       //   "vpcEgress": {},
      *       //   "zones": []
      *       // }
      *     },
@@ -7399,6 +7364,159 @@ export namespace appengine_v1beta {
     }
 
     /**
+     * Exports a user image to Artifact Registry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await appengine.apps.services.versions.exportAppImage({
+     *     // Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app\}/services/{service\}/versions/{version\}
+     *     appsId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     servicesId: 'placeholder-value',
+     *     // Part of `name`. See documentation of `appsId`.
+     *     versionsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationRepository": "my_destinationRepository"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportAppImage(
+      params: Params$Resource$Apps$Services$Versions$Exportappimage,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportAppImage(
+      params?: Params$Resource$Apps$Services$Versions$Exportappimage,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    exportAppImage(
+      params: Params$Resource$Apps$Services$Versions$Exportappimage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportAppImage(
+      params: Params$Resource$Apps$Services$Versions$Exportappimage,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportAppImage(
+      params: Params$Resource$Apps$Services$Versions$Exportappimage,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportAppImage(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAppImage(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Services$Versions$Exportappimage
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Services$Versions$Exportappimage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Exportappimage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/apps/{appsId}/services/{servicesId}/versions/{versionsId}:exportAppImage'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appsId', 'servicesId', 'versionsId'],
+        pathParams: ['appsId', 'servicesId', 'versionsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.
      * @example
      * ```js
@@ -7491,7 +7609,6 @@ export namespace appengine_v1beta {
      *   //   "vm": false,
      *   //   "vpcAccess": {},
      *   //   "vpcAccessConnector": {},
-     *   //   "vpcEgress": {},
      *   //   "zones": []
      *   // }
      * }
@@ -7829,7 +7946,6 @@ export namespace appengine_v1beta {
      *       //   "vm": false,
      *       //   "vpcAccess": {},
      *       //   "vpcAccessConnector": {},
-     *       //   "vpcEgress": {},
      *       //   "zones": []
      *       // }
      *     },
@@ -7970,6 +8086,25 @@ export namespace appengine_v1beta {
      * Part of `name`. See documentation of `appsId`.
      */
     versionsId?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Exportappimage extends StandardParameters {
+    /**
+     * Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app\}/services/{service\}/versions/{version\}
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportAppImageRequest;
   }
   export interface Params$Resource$Apps$Services$Versions$Get extends StandardParameters {
     /**
@@ -11972,6 +12107,179 @@ export namespace appengine_v1beta {
     }
 
     /**
+     * Exports a user image to Artifact Registry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await appengine.projects.locations.applications.services.versions.exportAppImage(
+     *       {
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         applicationsId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         locationsId: 'placeholder-value',
+     *         // Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app\}/services/{service\}/versions/{version\}
+     *         projectsId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         servicesId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         versionsId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "destinationRepository": "my_destinationRepository"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportAppImage(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportAppImage(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    exportAppImage(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportAppImage(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportAppImage(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    exportAppImage(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAppImage(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}:exportAppImage'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+          'versionsId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+          'versionsId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)
      * @example
      * ```js
@@ -12063,7 +12371,6 @@ export namespace appengine_v1beta {
      *         //   "vm": false,
      *         //   "vpcAccess": {},
      *         //   "vpcAccessConnector": {},
-     *         //   "vpcEgress": {},
      *         //   "zones": []
      *         // }
      *       },
@@ -12210,6 +12517,33 @@ export namespace appengine_v1beta {
      * Part of `name`. See documentation of `projectsId`.
      */
     versionsId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Exportappimage extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Required. Name of the App Engine version resource. Format: apps/{app\}/services/{service\}/versions/{version\}
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    versionsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportAppImageRequest;
   }
   export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Patch extends StandardParameters {
     /**
@@ -12425,6 +12759,175 @@ export namespace appengine_v1beta {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see "How Instances are Managed" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const appengine = google.appengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await appengine.projects.locations.applications.services.versions.instances.delete(
+     *       {
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         applicationsId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         instancesId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         locationsId: 'placeholder-value',
+     *         // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *         projectsId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         servicesId: 'placeholder-value',
+     *         // Part of `name`. See documentation of `projectsId`.
+     *         versionsId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}/instances/{instancesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+          'versionsId',
+          'instancesId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'instancesId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+          'versionsId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Debug extends StandardParameters {
@@ -12457,6 +12960,32 @@ export namespace appengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$DebugInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Instances$Delete extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    instancesId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    versionsId?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
