@@ -1773,7 +1773,7 @@ export namespace monitoring_v3 {
      */
     notificationChannelNames?: string[] | null;
     /**
-     * The frequency at which to send reminder notifications for open incidents.
+     * The frequency at which to send reminder notifications for open incidents. The value must be between 30 minutes and 24 hours.
      */
     renotifyInterval?: string | null;
   }
