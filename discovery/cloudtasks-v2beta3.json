@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v2beta3/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "cloudtasks.projects.locations.list",
@@ -207,7 +207,7 @@
               ]
             },
             "updateCmekConfig": {
-              "description": "Creates or Updates a CMEK config. Updates the Customer Managed Encryption Key assotiated with the Cloud Tasks location (Creates if the key does not already exist). All new tasks created in the location will be encrypted at-rest with the KMS-key provided in the config.",
+              "description": "Creates or Updates a CMEK config. Updates the Customer Managed Encryption Key associated with the Cloud Tasks location (Creates if the key does not already exist). All new tasks created in the location will be encrypted at-rest with the KMS-key provided in the config.",
               "flatPath": "v2beta3/projects/{projectsId}/locations/{locationsId}/cmekConfig",
               "httpMethod": "PATCH",
               "id": "cloudtasks.projects.locations.updateCmekConfig",
@@ -797,7 +797,7 @@
       }
     }
   },
-  "revision": "20260115",
+  "revision": "20260306",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
