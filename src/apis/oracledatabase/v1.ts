@@ -1119,7 +1119,7 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$Database {
     /**
-     * Required. The password for the default ADMIN user.
+     * Optional. The password for the default ADMIN user.
      */
     adminPassword?: string | null;
     /**
@@ -1166,6 +1166,14 @@ export namespace oracledatabase_v1 {
      * Output only. The Status of Operations Insights for this Database.
      */
     opsInsightsStatus?: string | null;
+    /**
+     * Optional. The ID of the pluggable database associated with the Database. The ID must be unique within the project and location.
+     */
+    pluggableDatabaseId?: string | null;
+    /**
+     * Optional. The pluggable database associated with the Database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters.
+     */
+    pluggableDatabaseName?: string | null;
     /**
      * Optional. The properties of the Database.
      */
@@ -3117,7 +3125,7 @@ export namespace oracledatabase_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -7788,6 +7796,8 @@ export namespace oracledatabase_v1 {
      *   //   "ncharacterSet": "my_ncharacterSet",
      *   //   "ociUrl": "my_ociUrl",
      *   //   "opsInsightsStatus": "my_opsInsightsStatus",
+     *   //   "pluggableDatabaseId": "my_pluggableDatabaseId",
+     *   //   "pluggableDatabaseName": "my_pluggableDatabaseName",
      *   //   "properties": {},
      *   //   "tdeWalletPassword": "my_tdeWalletPassword"
      *   // }
