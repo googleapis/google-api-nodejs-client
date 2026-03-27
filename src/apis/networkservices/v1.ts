@@ -155,7 +155,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$AuthzExtension {
     /**
-     * Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. It is required when the `service` field points to a backend service or a wasm plugin.
      */
     authority?: string | null;
     /**
@@ -171,6 +171,10 @@ export namespace networkservices_v1 {
      */
     failOpen?: boolean | null;
     /**
+     * Optional. List of the Envoy attributes to forward to the extension server. The attributes provided here are included as part of the `ProcessingRequest.attributes` field (of type `map`), where the keys are the attribute names. Refer to the [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes) for the names of attributes that can be forwarded. If omitted, no attributes are sent. Each element is a string indicating the attribute name.
+     */
+    forwardAttributes?: string[] | null;
+    /**
      * Optional. List of the HTTP headers to forward to the extension (from the client). If omitted, all headers are sent. Each element is a string indicating the header name.
      */
     forwardHeaders?: string[] | null;
@@ -179,7 +183,7 @@ export namespace networkservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     * Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions that do not reference a backend service. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
@@ -367,6 +371,10 @@ export namespace networkservices_v1 {
      */
     failOpen?: boolean | null;
     /**
+     * Optional. List of the Envoy attributes to forward to the extension server. The attributes provided here are included as part of the `ProcessingRequest.attributes` field (of type `map`), where the keys are the attribute names. Refer to the [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes) for the names of attributes that can be forwarded. If omitted, no attributes are sent. Each element is a string indicating the attribute name.
+     */
+    forwardAttributes?: string[] | null;
+    /**
      * Optional. List of the HTTP headers to forward to the extension (from the client or backend). If omitted, all headers are sent. Each element is a string indicating the header name.
      */
     forwardHeaders?: string[] | null;
@@ -379,7 +387,7 @@ export namespace networkservices_v1 {
      */
     name?: string | null;
     /**
-     * Optional. When set to `TRUE`, enables `observability_mode` on the `ext_proc` filter. This makes `ext_proc` calls asynchronous. Envoy doesn't check for the response from `ext_proc` calls. For more information about the filter, see: https://www.envoyproxy.io/docs/envoy/v1.32.3/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto#extensions-filters-http-ext-proc-v3-externalprocessor This field is helpful when you want to try out the extension in async log-only mode. Supported by regional `LbTrafficExtension` and `LbRouteExtension` resources. Only `STREAMED` (default) body processing mode is supported.
+     * Optional. When set to `true`, the calls to the extension backend are performed asynchronously, without pausing the processing of the ongoing request. In this mode, only `STREAMED` (default) body processing is supported. Responses, if any, are ignored. Supported by regional `LbTrafficExtension` and `LbRouteExtension` resources.
      */
     observabilityMode?: boolean | null;
     /**
@@ -420,6 +428,10 @@ export namespace networkservices_v1 {
      * Optional. Zero or one IPv4 or IPv6 address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated This field only applies to gateways of type 'SECURE_WEB_GATEWAY'. Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
      */
     addresses?: string[] | null;
+    /**
+     * Optional. If true, the gateway will allow traffic from clients outside of the region where the gateway is located. This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     */
+    allowGlobalAccess?: boolean | null;
     /**
      * Optional. A fully-qualified Certificates URL reference. The proxy presents a Certificate (selected based on SNI) when establishing a TLS connection. This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
      */
@@ -2063,6 +2075,10 @@ export namespace networkservices_v1 {
      */
     selfLink?: string | null;
     /**
+     * Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is attached to, as one of the routing rules to route the requests served by the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern: `projects/x/locations/x/targetTcpProxies/`
+     */
+    targetProxies?: string[] | null;
+    /**
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
@@ -2497,7 +2513,7 @@ export namespace networkservices_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2727,6 +2743,7 @@ export namespace networkservices_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "failOpen": false,
+     *       //   "forwardAttributes": [],
      *       //   "forwardHeaders": [],
      *       //   "labels": {},
      *       //   "loadBalancingScheme": "my_loadBalancingScheme",
@@ -3032,6 +3049,7 @@ export namespace networkservices_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "failOpen": false,
+     *   //   "forwardAttributes": [],
      *   //   "forwardHeaders": [],
      *   //   "labels": {},
      *   //   "loadBalancingScheme": "my_loadBalancingScheme",
@@ -3335,6 +3353,7 @@ export namespace networkservices_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "failOpen": false,
+     *       //   "forwardAttributes": [],
      *       //   "forwardHeaders": [],
      *       //   "labels": {},
      *       //   "loadBalancingScheme": "my_loadBalancingScheme",
@@ -5891,6 +5910,7 @@ export namespace networkservices_v1 {
      *       // request body parameters
      *       // {
      *       //   "addresses": [],
+     *       //   "allowGlobalAccess": false,
      *       //   "certificateUrls": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -6197,6 +6217,7 @@ export namespace networkservices_v1 {
      *   // Example response
      *   // {
      *   //   "addresses": [],
+     *   //   "allowGlobalAccess": false,
      *   //   "certificateUrls": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -6497,6 +6518,7 @@ export namespace networkservices_v1 {
      *       // request body parameters
      *       // {
      *       //   "addresses": [],
+     *       //   "allowGlobalAccess": false,
      *       //   "certificateUrls": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -15425,6 +15447,7 @@ export namespace networkservices_v1 {
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
+     *       //   "targetProxies": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -15722,6 +15745,7 @@ export namespace networkservices_v1 {
      *   //   "name": "my_name",
      *   //   "rules": [],
      *   //   "selfLink": "my_selfLink",
+     *   //   "targetProxies": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -16015,6 +16039,7 @@ export namespace networkservices_v1 {
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
+     *       //   "targetProxies": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },

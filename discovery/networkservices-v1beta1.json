@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networkservices.projects.locations.list",
@@ -3100,7 +3100,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260312",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -3108,7 +3108,7 @@
       "id": "AuthzExtension",
       "properties": {
         "authority": {
-          "description": "Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.",
+          "description": "Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. It is required when the `service` field points to a backend service or a wasm plugin.",
           "type": "string"
         },
         "createTime": {
@@ -3125,6 +3125,13 @@
           "description": "Optional. Determines how the proxy behaves if the call to the extension fails or times out. When set to `TRUE`, request or response processing continues without error. Any subsequent extensions in the extension chain are also executed. When set to `FALSE` or the default setting of `FALSE` is used, one of the following happens: * If response headers have not been delivered to the downstream client, a generic 500 error is returned to the client. The error response can be tailored by configuring a custom error response in the load balancer. * If response headers have been delivered, then the HTTP stream to the downstream client is reset.",
           "type": "boolean"
         },
+        "forwardAttributes": {
+          "description": "Optional. List of the Envoy attributes to forward to the extension server. The attributes provided here are included as part of the `ProcessingRequest.attributes` field (of type `map`), where the keys are the attribute names. Refer to the [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes) for the names of attributes that can be forwarded. If omitted, no attributes are sent. Each element is a string indicating the attribute name.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "forwardHeaders": {
           "description": "Optional. List of the HTTP headers to forward to the extension (from the client). If omitted, all headers are sent. Each element is a string indicating the header name.",
           "items": {
@@ -3140,7 +3147,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions that do not reference a backend service. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -3330,6 +3337,13 @@
           "description": "Optional. Determines how the proxy behaves if the call to the extension fails or times out. When set to `TRUE`, request or response processing continues without error. Any subsequent extensions in the extension chain are also executed. When set to `FALSE` or the default setting of `FALSE` is used, one of the following happens: * If response headers have not been delivered to the downstream client, a generic 500 error is returned to the client. The error response can be tailored by configuring a custom error response in the load balancer. * If response headers have been delivered, then the HTTP stream to the downstream client is reset.",
           "type": "boolean"
         },
+        "forwardAttributes": {
+          "description": "Optional. List of the Envoy attributes to forward to the extension server. The attributes provided here are included as part of the `ProcessingRequest.attributes` field (of type `map`), where the keys are the attribute names. Refer to the [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes) for the names of attributes that can be forwarded. If omitted, no attributes are sent. Each element is a string indicating the attribute name.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "forwardHeaders": {
           "description": "Optional. List of the HTTP headers to forward to the extension (from the client or backend). If omitted, all headers are sent. Each element is a string indicating the header name.",
           "items": {
@@ -3350,7 +3364,7 @@
           "type": "string"
         },
         "observabilityMode": {
-          "description": "Optional. When set to `TRUE`, enables `observability_mode` on the `ext_proc` filter. This makes `ext_proc` calls asynchronous. Envoy doesn't check for the response from `ext_proc` calls. For more information about the filter, see: https://www.envoyproxy.io/docs/envoy/v1.32.3/api-v3/extensions/filters/http/ext_proc/v3/ext_proc.proto#extensions-filters-http-ext-proc-v3-externalprocessor This field is helpful when you want to try out the extension in async log-only mode. Supported by regional `LbTrafficExtension` and `LbRouteExtension` resources. Only `STREAMED` (default) body processing mode is supported.",
+          "description": "Optional. When set to `true`, the calls to the extension backend are performed asynchronously, without pausing the processing of the ongoing request. In this mode, only `STREAMED` (default) body processing is supported. Responses, if any, are ignored. Supported by regional `LbTrafficExtension` and `LbRouteExtension` resources.",
           "type": "boolean"
         },
         "requestBodySendMode": {
@@ -3439,6 +3453,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "allowGlobalAccess": {
+          "description": "Optional. If true, the gateway will allow traffic from clients outside of the region where the gateway is located. This field is configurable only for gateways of type SECURE_WEB_GATEWAY.",
+          "type": "boolean"
         },
         "certificateUrls": {
           "description": "Optional. A fully-qualified Certificates URL reference. The proxy presents a Certificate (selected based on SNI) when establishing a TLS connection. This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.",
@@ -5877,6 +5895,13 @@
           "description": "Output only. Server-defined URL of this resource",
           "readOnly": true,
           "type": "string"
+        },
+        "targetProxies": {
+          "description": "Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is attached to, as one of the routing rules to route the requests served by the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern: `projects/*/locations/*/targetTcpProxies/`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",
