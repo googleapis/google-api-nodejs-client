@@ -125,6 +125,44 @@ export namespace redis_v1beta1 {
   }
 
   /**
+   * The ACL policy resource.
+   */
+  export interface Schema$AclPolicy {
+    /**
+     * Output only. Etag for the ACL policy.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. Full resource path of the ACL policy.
+     */
+    name?: string | null;
+    /**
+     * Required. The ACL rules within the ACL policy.
+     */
+    rules?: Schema$AclRule[];
+    /**
+     * Output only. The state of the ACL policy.
+     */
+    state?: string | null;
+    /**
+     * Output only. The version of the ACL policy. Used in drift resolution.
+     */
+    version?: string | null;
+  }
+  /**
+   * A single ACL rule which defines the policy for a user.
+   */
+  export interface Schema$AclRule {
+    /**
+     * Required. The rule to be applied to the username. Ex: "on \>password123 ~* +@all" The format of the rule is defined by Redis OSS: https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/
+     */
+    rule?: string | null;
+    /**
+     * Required. Specifies the IAM user or service account to be added to the ACL policy. This username will be directly set on the Redis OSS.
+     */
+    username?: string | null;
+  }
+  /**
    * Configuration of the AOF based persistence.
    */
   export interface Schema$AOFConfig {
@@ -402,6 +440,14 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$Cluster {
     /**
+     * Optional. The ACL policy to be applied to the cluster.
+     */
+    aclPolicy?: string | null;
+    /**
+     * Optional. Output only. Indicates whether the ACL rules applied to the cluster are in sync with the latest ACL policy rules. This field is only applicable if the ACL policy is set for the cluster.
+     */
+    aclPolicyInSync?: boolean | null;
+    /**
      * Optional. Immutable. Deprecated, do not use.
      */
     allowFewerZonesDeployment?: boolean | null;
@@ -522,6 +568,10 @@ export namespace redis_v1beta1 {
      */
     replicaCount?: number | null;
     /**
+     * Optional. Input only. Rotate the server certificates.
+     */
+    rotateServerCertificate?: boolean | null;
+    /**
      * Optional. Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -529,6 +579,14 @@ export namespace redis_v1beta1 {
      * Optional. Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
+    /**
+     * Optional. Server CA mode for the cluster.
+     */
+    serverCaMode?: string | null;
+    /**
+     * Optional. Customer-managed CA pool for the cluster. Only applicable for BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA. Format: "projects/{project\}/locations/{region\}/caPools/{ca_pool\}".
+     */
+    serverCaPool?: string | null;
     /**
      * Optional. Number of shards for the Redis cluster.
      */
@@ -837,7 +895,7 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 30
+   * Common model for database resource instance metadata. Next ID: 32
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -909,6 +967,10 @@ export namespace redis_v1beta1 {
      */
     maintenanceInfo?: Schema$ResourceMaintenanceInfo;
     /**
+     * Optional. The modes of the database resource.
+     */
+    modes?: string[] | null;
+    /**
      * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
      */
     primaryResourceId?: Schema$DatabaseResourceId;
@@ -924,6 +986,10 @@ export namespace redis_v1beta1 {
      * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
+    /**
+     * Optional. List of resource flags for the database resource.
+     */
+    resourceFlags?: Schema$ResourceFlags[];
     /**
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
@@ -987,9 +1053,13 @@ export namespace redis_v1beta1 {
     signalType?: string | null;
   }
   /**
-   * Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 7
+   * Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 10
    */
   export interface Schema$DatabaseResourceSignalData {
+    /**
+     * Deprecated: Use signal_metadata_list instead.
+     */
+    backupRun?: Schema$BackupRun;
     /**
      * Required. Full Resource name of the source resource.
      */
@@ -999,13 +1069,21 @@ export namespace redis_v1beta1 {
      */
     lastRefreshTime?: string | null;
     /**
+     * Resource location.
+     */
+    location?: string | null;
+    /**
      * Database resource id.
      */
     resourceId?: Schema$DatabaseResourceId;
     /**
-     * Signal data for boolean signals.
+     * Deprecated: Use signal_metadata_list instead.
      */
     signalBoolValue?: boolean | null;
+    /**
+     * This will support array of OneOf signal metadata information for a given signal type.
+     */
+    signalMetadataList?: Schema$SignalMetadata[];
     /**
      * Required. Output only. Signal state of the signal
      */
@@ -1326,7 +1404,7 @@ export namespace redis_v1beta1 {
      */
     readReplicasMode?: string | null;
     /**
-     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries
+     * Optional. Redis configuration parameters, according to [Redis configuration](https://redis.io/docs/latest/operate/oss_and_stack/management/config/). Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries
      */
     redisConfigs?: {[key: string]: string} | null;
     /**
@@ -1413,6 +1491,23 @@ export namespace redis_v1beta1 {
      * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
      */
     resourceName?: string | null;
+  }
+  /**
+   * Response for ListAclPolicies.
+   */
+  export interface Schema$ListAclPoliciesResponse {
+    /**
+     * A list of ACL policies in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is "-", all regions available to the project are queried, and the results aggregated.
+     */
+    aclPolicies?: Schema$AclPolicy[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for [ListBackupCollections].
@@ -1918,6 +2013,24 @@ export namespace redis_v1beta1 {
     exclusiveAction?: string | null;
   }
   /**
+   * The certificates that form the CA chain, from leaf to root order.
+   */
+  export interface Schema$RegionalCertChain {
+    /**
+     * The certificates that form the CA chain, from leaf to root order.
+     */
+    certificates?: string[] | null;
+  }
+  /**
+   * CA certificate chains for redis managed server authentication.
+   */
+  export interface Schema$RegionalManagedCertificateAuthority {
+    /**
+     * The PEM encoded CA certificate chains for redis managed server authentication
+     */
+    caCerts?: Schema$RegionalCertChain[];
+  }
+  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1957,6 +2070,19 @@ export namespace redis_v1beta1 {
     scheduleTime?: string | null;
   }
   /**
+   * Message type for storing resource flags.
+   */
+  export interface Schema$ResourceFlags {
+    /**
+     * Optional. Key of the resource flag.
+     */
+    key?: string | null;
+    /**
+     * Optional. Value of the resource flag.
+     */
+    value?: string | null;
+  }
+  /**
    * Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.
    */
   export interface Schema$ResourceMaintenanceDenySchedule {
@@ -1978,17 +2104,33 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$ResourceMaintenanceInfo {
     /**
+     * Optional. The date when the current maintenance version was released.
+     */
+    currentVersionReleaseDate?: Schema$Date;
+    /**
      * Optional. List of Deny maintenance period for the database resource.
      */
     denyMaintenanceSchedules?: Schema$ResourceMaintenanceDenySchedule[];
+    /**
+     * Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.
+     */
+    isInstanceStopped?: boolean | null;
     /**
      * Optional. Maintenance window for the database resource.
      */
     maintenanceSchedule?: Schema$ResourceMaintenanceSchedule;
     /**
+     * Output only. Current state of maintenance on the database resource.
+     */
+    maintenanceState?: string | null;
+    /**
      * Optional. Current Maintenance version of the database resource. Example: "MYSQL_8_0_41.R20250531.01_15"
      */
     maintenanceVersion?: string | null;
+    /**
+     * Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
   }
   /**
    * Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.
@@ -2022,6 +2164,32 @@ export namespace redis_v1beta1 {
      * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
      */
     timestampBasedRetentionTime?: string | null;
+  }
+  /**
+   * Shared regional certificate authority
+   */
+  export interface Schema$SharedRegionalCertificateAuthority {
+    /**
+     * CA certificate chains for redis managed server authentication.
+     */
+    managedServerCa?: Schema$RegionalManagedCertificateAuthority;
+    /**
+     * Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project\}/locations/{location\}/sharedRegionalCertificateAuthority`
+     */
+    name?: string | null;
+  }
+  /**
+   * SignalMetadata contains one of the signal metadata proto messages associated with a SignalType. This proto will be mapped to SignalMetadata message in storage.proto. Next ID: 3
+   */
+  export interface Schema$SignalMetadata {
+    /**
+     * Signal data for backup runs.
+     */
+    backupRun?: Schema$BackupRun;
+    /**
+     * Signal data for boolean signals.
+     */
+    signalBoolValue?: boolean | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -2126,6 +2294,19 @@ export namespace redis_v1beta1 {
     stringValue?: string | null;
   }
   /**
+   * Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.
+   */
+  export interface Schema$UpcomingMaintenance {
+    /**
+     * Optional. The end time of the upcoming maintenance.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. The start time of the upcoming maintenance.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Represents information about an updating cluster.
    */
   export interface Schema$UpdateInfo {
@@ -2199,12 +2380,16 @@ export namespace redis_v1beta1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    aclPolicies: Resource$Projects$Locations$Aclpolicies;
     backupCollections: Resource$Projects$Locations$Backupcollections;
     clusters: Resource$Projects$Locations$Clusters;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.aclPolicies = new Resource$Projects$Locations$Aclpolicies(
+        this.context
+      );
       this.backupCollections =
         new Resource$Projects$Locations$Backupcollections(this.context);
       this.clusters = new Resource$Projects$Locations$Clusters(this.context);
@@ -2353,7 +2538,154 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Gets the details of regional certificate authority information for Redis cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await redis.projects.locations.getSharedRegionalCertificateAuthority({
+     *       // Required. Regional certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.
+     *       name: 'projects/my-project/locations/my-location/sharedRegionalCertificateAuthority',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "managedServerCa": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getSharedRegionalCertificateAuthority(
+      params?: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SharedRegionalCertificateAuthority>
+    >;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>,
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SharedRegionalCertificateAuthority>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SharedRegionalCertificateAuthority>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SharedRegionalCertificateAuthority>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -2507,6 +2839,12 @@ export namespace redis_v1beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority extends StandardParameters {
+    /**
+     * Required. Regional certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
      * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
@@ -2528,6 +2866,822 @@ export namespace redis_v1beta1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Aclpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an ACL Policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.create({
+     *     // Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     *     aclPolicyId: 'placeholder-value',
+     *     // Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Idempotent request UUID. .
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "rules": [],
+     *       //   "state": "my_state",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "state": "my_state",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>;
+    create(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AclPolicy>,
+      callback: BodyResponseCallback<Schema$AclPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Create,
+      callback: BodyResponseCallback<Schema$AclPolicy>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AclPolicy>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Create
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aclpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/aclPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AclPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AclPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a specific Acl Policy. This action will delete the Acl Policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.delete({
+     *     // Optional. Etag of the ACL policy. If this is different from the server's etag, the request will fail with an ABORTED error.
+     *     etag: 'placeholder-value',
+     *     // Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
+     *     // Optional. Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aclpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific Redis Cluster ACL Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.get({
+     *     // Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "rules": [],
+     *   //   "state": "my_state",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AclPolicy>,
+      callback: BodyResponseCallback<Schema$AclPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Get,
+      callback: BodyResponseCallback<Schema$AclPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AclPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Get
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AclPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$AclPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aclpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AclPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AclPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists all ACL Policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id\}/locations/{location_id\}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.list({
+     *     // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more ACL policies left to be queried. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The `next_page_token` value returned from a previous ListAclPolicies request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclPolicies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListAclPoliciesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAclPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListAclPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Aclpolicies$List,
+      callback: BodyResponseCallback<Schema$ListAclPoliciesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAclPoliciesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$List
+        | BodyResponseCallback<Schema$ListAclPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAclPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAclPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListAclPoliciesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aclpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/aclPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAclPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAclPoliciesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL Policy object in the response field.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.aclPolicies.patch({
+     *     // Identifier. Full resource path of the ACL policy.
+     *     name: 'projects/my-project/locations/my-location/aclPolicies/my-aclPolicie',
+     *     // Optional. Idempotent request UUID.
+     *     requestId: 'placeholder-value',
+     *     // Optional. Mask of fields to be updated. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from AclPolicy: * `rules`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "rules": [],
+     *       //   "state": "my_state",
+     *       //   "version": "my_version"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Aclpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Aclpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Aclpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Aclpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Aclpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Create extends StandardParameters {
+    /**
+     * Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location
+     */
+    aclPolicyId?: string;
+    /**
+     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     */
+    parent?: string;
+    /**
+     * Optional. Idempotent request UUID. .
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AclPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Delete extends StandardParameters {
+    /**
+     * Optional. Etag of the ACL policy. If this is different from the server's etag, the request will fail with an ABORTED error.
+     */
+    etag?: string;
+    /**
+     * Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Get extends StandardParameters {
+    /**
+     * Required. Redis ACL Policy resource name using the form: `projects/{project_id\}/locations/{location_id\}/aclPolicies/{acl_policy_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aclpolicies$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more ACL policies left to be queried. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The `next_page_token` value returned from a previous ListAclPolicies request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the cluster location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a Google Cloud region.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Aclpolicies$Patch extends StandardParameters {
+    /**
+     * Identifier. Full resource path of the ACL policy.
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+    /**
+     * Optional. Mask of fields to be updated. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from AclPolicy: * `rules`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AclPolicy;
   }
 
   export class Resource$Projects$Locations$Backupcollections {
@@ -3686,6 +4840,8 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "aclPolicy": "my_aclPolicy",
+     *       //   "aclPolicyInSync": false,
      *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
@@ -3716,8 +4872,11 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "rotateServerCertificate": false,
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serverCaMode": "my_serverCaMode",
+     *       //   "serverCaPool": "my_serverCaPool",
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,
@@ -4014,6 +5173,8 @@ export namespace redis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "aclPolicy": "my_aclPolicy",
+     *   //   "aclPolicyInSync": false,
      *   //   "allowFewerZonesDeployment": false,
      *   //   "asyncClusterEndpointsDeletionEnabled": false,
      *   //   "authorizationMode": "my_authorizationMode",
@@ -4044,8 +5205,11 @@ export namespace redis_v1beta1 {
      *   //   "pscServiceAttachments": [],
      *   //   "redisConfigs": {},
      *   //   "replicaCount": 0,
+     *   //   "rotateServerCertificate": false,
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "serverCaMode": "my_serverCaMode",
+     *   //   "serverCaPool": "my_serverCaPool",
      *   //   "shardCount": 0,
      *   //   "simulateMaintenanceEvent": false,
      *   //   "sizeGb": 0,
@@ -4476,6 +5640,8 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "aclPolicy": "my_aclPolicy",
+     *       //   "aclPolicyInSync": false,
      *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
@@ -4506,8 +5672,11 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "rotateServerCertificate": false,
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serverCaMode": "my_serverCaMode",
+     *       //   "serverCaPool": "my_serverCaPool",
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,

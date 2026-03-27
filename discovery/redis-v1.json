@@ -134,8 +134,33 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getSharedRegionalCertificateAuthority": {
+              "description": "Gets the details of regional certificate authority information for Redis cluster.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sharedRegionalCertificateAuthority",
+              "httpMethod": "GET",
+              "id": "redis.projects.locations.getSharedRegionalCertificateAuthority",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Regional certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/sharedRegionalCertificateAuthority$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "SharedRegionalCertificateAuthority"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "redis.projects.locations.list",
@@ -183,6 +208,183 @@
             }
           },
           "resources": {
+            "aclPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates an ACL Policy. The creation is executed synchronously and the policy is available for use immediately after the RPC returns.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aclPolicies",
+                  "httpMethod": "POST",
+                  "id": "redis.projects.locations.aclPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "aclPolicyId": {
+                      "description": "Required. The logical name of the ACL Policy in the customer project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the customer project / location",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Idempotent request UUID. .",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/aclPolicies",
+                  "request": {
+                    "$ref": "AclPolicy"
+                  },
+                  "response": {
+                    "$ref": "AclPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a specific Acl Policy. This action will delete the Acl Policy and all the rules associated with it. An ACL policy cannot be deleted if it is attached to a cluster.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "redis.projects.locations.aclPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the ACL policy. If this is different from the server's etag, the request will fail with an ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. Redis ACL Policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a specific Redis Cluster ACL Policy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.aclPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis ACL Policy resource name using the form: `projects/{project_id}/locations/{location_id}/aclPolicies/{acl_policy_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AclPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all ACL Policies owned by a project in either the specified location (region) or all locations. The location should have the following format: * `projects/{project_id}/locations/{location_id}` If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aclPolicies",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.aclPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more ACL policies left to be queried. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The `next_page_token` value returned from a previous ListAclPolicies request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the cluster location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a Google Cloud region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/aclPolicies",
+                  "response": {
+                    "$ref": "ListAclPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the ACL policy. The operation applies the updated ACL policy to all of the linked clusters. If Memorystore can apply the policy to all clusters, then the operation returns a SUCCESS status. If Memorystore can't apply the policy to all clusters, then to ensure eventual consistency, Memorystore uses reconciliation to apply the policy to the failed clusters. Completed longrunning.Operation will contain the new ACL Policy object in the response field.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aclPolicies/{aclPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "redis.projects.locations.aclPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Full resource path of the ACL policy.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/aclPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask of fields to be updated. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from AclPolicy: * `rules`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AclPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "backupCollections": {
               "methods": {
                 "get": {
@@ -1078,7 +1280,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260324",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1099,6 +1301,67 @@
             "fsync every second. Fast enough, and you may lose 1 second of data if there is a disaster",
             "fsync every time new write commands are appended to the AOF. It has the best data loss protection at the cost of performance"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AclPolicy": {
+      "description": "The ACL policy resource.",
+      "id": "AclPolicy",
+      "properties": {
+        "etag": {
+          "description": "Output only. Etag for the ACL policy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Full resource path of the ACL policy.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "Required. The ACL rules within the ACL policy.",
+          "items": {
+            "$ref": "AclRule"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the ACL policy.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "ACL Policy has been created and is fully usable. Since ACL Policy creation is synchronous and not an LRO, there is no CREATING state.",
+            "ACL Policy is being updated.",
+            "ACL Policy is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The version of the ACL policy. Used in drift resolution.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AclRule": {
+      "description": "A single ACL rule which defines the policy for a user.",
+      "id": "AclRule",
+      "properties": {
+        "rule": {
+          "description": "Required. The rule to be applied to the username. Ex: \"on >password123 ~* +@all\" The format of the rule is defined by Redis OSS: https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/",
+          "type": "string"
+        },
+        "username": {
+          "description": "Required. Specifies the IAM user or service account to be added to the ACL policy. This username will be directly set on the Redis OSS.",
           "type": "string"
         }
       },
@@ -1523,6 +1786,15 @@
       "description": "A cluster instance.",
       "id": "Cluster",
       "properties": {
+        "aclPolicy": {
+          "description": "Optional. The ACL policy to be applied to the cluster.",
+          "type": "string"
+        },
+        "aclPolicyInSync": {
+          "description": "Optional. Output only. Indicates whether the ACL rules applied to the cluster are in sync with the latest ACL policy rules. This field is only applicable if the ACL policy is set for the cluster.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "allowFewerZonesDeployment": {
           "deprecated": true,
           "description": "Optional. Immutable. Deprecated, do not use.",
@@ -1706,6 +1978,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "rotateServerCertificate": {
+          "description": "Optional. Input only. Rotate the server certificates.",
+          "type": "boolean"
+        },
         "satisfiesPzi": {
           "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
@@ -1715,6 +1991,26 @@
           "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "serverCaMode": {
+          "description": "Optional. Server CA mode for the cluster.",
+          "enum": [
+            "SERVER_CA_MODE_UNSPECIFIED",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
+            "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA"
+          ],
+          "enumDescriptions": [
+            "Server CA mode not specified.",
+            "Each cluster has its own Google managed CA.",
+            "The cluster uses Google managed shared CA in the region.",
+            "The cluster uses customer managed CA from CAS."
+          ],
+          "type": "string"
+        },
+        "serverCaPool": {
+          "description": "Optional. Customer-managed CA pool for the cluster. Only applicable for BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA. Format: \"projects/{project}/locations/{region}/caPools/{ca_pool}\".",
+          "type": "string"
         },
         "shardCount": {
           "description": "Optional. Number of shards for the Redis cluster.",
@@ -1952,7 +2248,10 @@
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
-            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -1962,7 +2261,10 @@
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
             "Represents if a resource version is in extended support.",
-            "Represents if a resource has no automated backup policy."
+            "Represents if a resource has no automated backup policy.",
+            "Represents if a resource version is nearing end of life.",
+            "Represents if the last backup of a resource is older than 24 hours.",
+            "Represents if a resource is not protected by automatic failover."
           ],
           "type": "string"
         }
@@ -2333,7 +2635,8 @@
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
-            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
           ],
           "enumDeprecated": [
             false,
@@ -2435,6 +2738,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -2549,7 +2853,8 @@
             "Databoost is disabled.",
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
-            "Change in performance KPIs."
+            "Change in performance KPIs.",
+            "Database version nearing end of life."
           ],
           "type": "string"
         },
@@ -2613,7 +2918,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 30",
+      "description": "Common model for database resource instance metadata. Next ID: 32",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2645,7 +2950,8 @@
             "UNHEALTHY",
             "SUSPENDED",
             "DELETED",
-            "STATE_OTHER"
+            "STATE_OTHER",
+            "STOPPED"
           ],
           "enumDescriptions": [
             "",
@@ -2653,7 +2959,8 @@
             "Instance being created, updated, deleted or under maintenance",
             "When instance is suspended",
             "Instance is deleted.",
-            "For rest of the other category"
+            "For rest of the other category",
+            "Instance is in STOPPED state."
           ],
           "type": "string"
         },
@@ -2692,7 +2999,8 @@
             "UNHEALTHY",
             "SUSPENDED",
             "DELETED",
-            "STATE_OTHER"
+            "STATE_OTHER",
+            "STOPPED"
           ],
           "enumDescriptions": [
             "",
@@ -2700,7 +3008,8 @@
             "Instance being created, updated, deleted or under maintenance",
             "When instance is suspended",
             "Instance is deleted.",
-            "For rest of the other category"
+            "For rest of the other category",
+            "Instance is in STOPPED state."
           ],
           "type": "string"
         },
@@ -2726,6 +3035,9 @@
             "SUB_RESOURCE_TYPE_SECONDARY",
             "SUB_RESOURCE_TYPE_READ_REPLICA",
             "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
+            "SUB_RESOURCE_TYPE_READ_POOL",
+            "SUB_RESOURCE_TYPE_RESERVATION",
+            "SUB_RESOURCE_TYPE_DATASET",
             "SUB_RESOURCE_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -2735,6 +3047,9 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -2752,6 +3067,9 @@
             "A cluster or an instance acting as a secondary.",
             "An instance acting as a read-replica.",
             "An instance acting as an external primary.",
+            "An instance acting as Read Pool.",
+            "Represents a reservation resource.",
+            "Represents a dataset resource.",
             "For rest of the other categories."
           ],
           "type": "string"
@@ -2772,6 +3090,23 @@
           "$ref": "ResourceMaintenanceInfo",
           "description": "Optional. Maintenance info for the resource."
         },
+        "modes": {
+          "description": "Optional. The modes of the database resource.",
+          "items": {
+            "enum": [
+              "MODE_UNSPECIFIED",
+              "MODE_NATIVE",
+              "MODE_MONGODB_COMPATIBLE"
+            ],
+            "enumDescriptions": [
+              "Default mode.",
+              "Native mode.",
+              "MongoDB compatible mode."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "primaryResourceId": {
           "$ref": "DatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
@@ -2787,6 +3122,13 @@
         "resourceContainer": {
           "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
+        },
+        "resourceFlags": {
+          "description": "Optional. List of resource flags for the database resource.",
+          "items": {
+            "$ref": "ResourceFlags"
+          },
+          "type": "array"
         },
         "resourceName": {
           "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
@@ -2995,7 +3337,8 @@
             "SIGNAL_TYPE_DATABOOST_DISABLED",
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
-            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE"
+            "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
           ],
           "enumDeprecated": [
             false,
@@ -3097,6 +3440,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3211,7 +3555,8 @@
             "Databoost is disabled.",
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
-            "Change in performance KPIs."
+            "Change in performance KPIs.",
+            "Database version nearing end of life."
           ],
           "type": "string"
         }
@@ -3219,9 +3564,14 @@
       "type": "object"
     },
     "DatabaseResourceSignalData": {
-      "description": "Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 7",
+      "description": "Database resource signal data. This is used to send signals to Condor which are based on the DB/Instance/Fleet level configurations. These will be used to send signals for all inventory types. Next ID: 10",
       "id": "DatabaseResourceSignalData",
       "properties": {
+        "backupRun": {
+          "$ref": "BackupRun",
+          "deprecated": true,
+          "description": "Deprecated: Use signal_metadata_list instead."
+        },
         "fullResourceName": {
           "description": "Required. Full Resource name of the source resource.",
           "type": "string"
@@ -3231,13 +3581,25 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "location": {
+          "description": "Resource location.",
+          "type": "string"
+        },
         "resourceId": {
           "$ref": "DatabaseResourceId",
           "description": "Database resource id."
         },
         "signalBoolValue": {
-          "description": "Signal data for boolean signals.",
+          "deprecated": true,
+          "description": "Deprecated: Use signal_metadata_list instead.",
           "type": "boolean"
+        },
+        "signalMetadataList": {
+          "description": "This will support array of OneOf signal metadata information for a given signal type.",
+          "items": {
+            "$ref": "SignalMetadata"
+          },
+          "type": "array"
         },
         "signalState": {
           "description": "Required. Output only. Signal state of the signal",
@@ -3266,7 +3628,10 @@
             "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
             "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
-            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY"
+            "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_LAST_BACKUP_OLD",
+            "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER"
           ],
           "enumDescriptions": [
             "Unspecified signal type.",
@@ -3276,7 +3641,10 @@
             "Represents if a resource is exposed to public access.",
             "Represents if a resources requires all incoming connections to use SSL or not.",
             "Represents if a resource version is in extended support.",
-            "Represents if a resource has no automated backup policy."
+            "Represents if a resource has no automated backup policy.",
+            "Represents if a resource version is nearing end of life.",
+            "Represents if the last backup of a resource is older than 24 hours.",
+            "Represents if a resource is not protected by automatic failover."
           ],
           "type": "string"
         }
@@ -3767,7 +4135,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries",
+          "description": "Optional. Redis configuration parameters, according to [Redis configuration](https://redis.io/docs/latest/operate/oss_and_stack/management/config/). Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries",
           "type": "object"
         },
         "redisVersion": {
@@ -3926,6 +4294,31 @@
         "resourceName": {
           "description": "Required. internal resource name for spanner this will be database name e.g.\"spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1\"",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAclPoliciesResponse": {
+      "description": "Response for ListAclPolicies.",
+      "id": "ListAclPoliciesResponse",
+      "properties": {
+        "aclPolicies": {
+          "description": "A list of ACL policies in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is \"-\", all regions available to the project are queried, and the results aggregated.",
+          "items": {
+            "$ref": "AclPolicy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4878,6 +5271,34 @@
       },
       "type": "object"
     },
+    "RegionalCertChain": {
+      "description": "The certificates that form the CA chain, from leaf to root order.",
+      "id": "RegionalCertChain",
+      "properties": {
+        "certificates": {
+          "description": "The certificates that form the CA chain, from leaf to root order.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalManagedCertificateAuthority": {
+      "description": "CA certificate chains for redis managed server authentication.",
+      "id": "RegionalManagedCertificateAuthority",
+      "properties": {
+        "caCerts": {
+          "description": "The PEM encoded CA certificate chains for redis managed server authentication",
+          "items": {
+            "$ref": "RegionalCertChain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RemoteCluster": {
       "description": "Details of the remote cluster associated with this cluster in a cross cluster replication setup.",
       "id": "RemoteCluster",
@@ -4949,6 +5370,21 @@
       },
       "type": "object"
     },
+    "ResourceFlags": {
+      "description": "Message type for storing resource flags.",
+      "id": "ResourceFlags",
+      "properties": {
+        "key": {
+          "description": "Optional. Key of the resource flag.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. Value of the resource flag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResourceMaintenanceDenySchedule": {
       "description": "Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.",
       "id": "ResourceMaintenanceDenySchedule",
@@ -4972,6 +5408,10 @@
       "description": "MaintenanceInfo to capture the maintenance details of database resource.",
       "id": "ResourceMaintenanceInfo",
       "properties": {
+        "currentVersionReleaseDate": {
+          "$ref": "Date",
+          "description": "Optional. The date when the current maintenance version was released."
+        },
         "denyMaintenanceSchedules": {
           "description": "Optional. List of Deny maintenance period for the database resource.",
           "items": {
@@ -4979,13 +5419,44 @@
           },
           "type": "array"
         },
+        "isInstanceStopped": {
+          "description": "Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.",
+          "type": "boolean"
+        },
         "maintenanceSchedule": {
           "$ref": "ResourceMaintenanceSchedule",
           "description": "Optional. Maintenance window for the database resource."
         },
+        "maintenanceState": {
+          "description": "Output only. Current state of maintenance on the database resource.",
+          "enum": [
+            "MAINTENANCE_STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "REPAIRING",
+            "DELETING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Database resource is being created.",
+            "Database resource has been created and is ready to use.",
+            "Database resource is being updated.",
+            "Database resource is unheathy and under repair.",
+            "Database resource is being deleted.",
+            "Database resource encountered an error and is in indeterministic state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "maintenanceVersion": {
           "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
           "type": "string"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window."
         }
       },
       "type": "object"
@@ -5083,6 +5554,36 @@
           "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SharedRegionalCertificateAuthority": {
+      "description": "Shared regional certificate authority",
+      "id": "SharedRegionalCertificateAuthority",
+      "properties": {
+        "managedServerCa": {
+          "$ref": "RegionalManagedCertificateAuthority",
+          "description": "CA certificate chains for redis managed server authentication."
+        },
+        "name": {
+          "description": "Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project}/locations/{location}/sharedRegionalCertificateAuthority`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SignalMetadata": {
+      "description": "SignalMetadata contains one of the signal metadata proto messages associated with a SignalType. This proto will be mapped to SignalMetadata message in storage.proto. Next ID: 3",
+      "id": "SignalMetadata",
+      "properties": {
+        "backupRun": {
+          "$ref": "BackupRun",
+          "description": "Signal data for backup runs."
+        },
+        "signalBoolValue": {
+          "description": "Signal data for boolean signals.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5217,6 +5718,23 @@
         },
         "stringValue": {
           "description": "For string value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpcomingMaintenance": {
+      "description": "Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.",
+      "id": "UpcomingMaintenance",
+      "properties": {
+        "endTime": {
+          "description": "Optional. The end time of the upcoming maintenance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the upcoming maintenance.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
