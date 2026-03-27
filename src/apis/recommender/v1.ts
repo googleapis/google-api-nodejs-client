@@ -160,10 +160,6 @@ export namespace recommender_v1 {
      */
     costProjection?: Schema$GoogleCloudRecommenderV1CostProjection;
     /**
-     * If populated, the impact contains multiple components. In this case, the top-level impact contains aggregated values and each component contains per-service details.
-     */
-    impactComponents?: Schema$GoogleCloudRecommenderV1Impact[];
-    /**
      * Use with CategoryType.RELIABILITY
      */
     reliabilityProjection?: Schema$GoogleCloudRecommenderV1ReliabilityProjection;
