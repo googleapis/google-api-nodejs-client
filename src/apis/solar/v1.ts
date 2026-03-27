@@ -239,7 +239,7 @@ export namespace solar_v1 {
      */
     monthlyFluxUrl?: string | null;
     /**
-     * The URL for an image of RGB data (aerial photo) of the region.
+     * The URL for an image of RGB data (aerial or satellite photo) of the region.
      */
     rgbUrl?: string | null;
   }
