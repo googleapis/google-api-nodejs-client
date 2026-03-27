@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260202",
+  "revision": "20260323",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -518,6 +518,10 @@
         },
         "name": {
           "description": "The name of the base image.",
+          "type": "string"
+        },
+        "registry": {
+          "description": "The registry in which the base image is from.",
           "type": "string"
         },
         "repository": {
@@ -1349,6 +1353,11 @@
         "layerDetails": {
           "$ref": "GrafeasV1LayerDetails",
           "description": "Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package)."
+        },
+        "lineNumber": {
+          "description": "Line number in the file where the package was found. Optional field that only applies to source repository scanning.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1890,6 +1899,11 @@
       "description": "An instance of an analysis type that has been found on a resource.",
       "id": "Occurrence",
       "properties": {
+        "advisoryPublishTime": {
+          "description": "The time this advisory was published by the source.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "attestation": {
           "$ref": "AttestationOccurrence",
           "description": "Describes an attestation of an artifact."

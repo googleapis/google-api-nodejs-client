@@ -251,6 +251,10 @@ export namespace ondemandscanning_v1 {
      */
     name?: string | null;
     /**
+     * The registry in which the base image is from.
+     */
+    registry?: string | null;
+    /**
      * The repository name in which the base image is from.
      */
     repository?: string | null;
@@ -716,6 +720,10 @@ export namespace ondemandscanning_v1 {
      * Each package found in a file should have its own layer metadata (that is, information from the origin layer of the package).
      */
     layerDetails?: Schema$GrafeasV1LayerDetails;
+    /**
+     * Line number in the file where the package was found. Optional field that only applies to source repository scanning.
+     */
+    lineNumber?: number | null;
   }
   /**
    * Details about the layer a package was found in.
@@ -1057,6 +1065,10 @@ export namespace ondemandscanning_v1 {
    * An instance of an analysis type that has been found on a resource.
    */
   export interface Schema$Occurrence {
+    /**
+     * The time this advisory was published by the source.
+     */
+    advisoryPublishTime?: string | null;
     /**
      * Describes an attestation of an artifact.
      */
