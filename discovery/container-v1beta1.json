@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20260120",
+  "revision": "20260310",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3112,6 +3112,10 @@
       "description": "Autopilot is the configuration for Autopilot settings on the cluster.",
       "id": "Autopilot",
       "properties": {
+        "clusterPolicyConfig": {
+          "$ref": "ClusterPolicyConfig",
+          "description": "ClusterPolicyConfig denotes cluster level policies that are enforced for the cluster."
+        },
         "conversionStatus": {
           "$ref": "AutopilotConversionStatus",
           "description": "Output only. ConversionStatus shows conversion status.",
@@ -3660,7 +3664,8 @@
         },
         "compliancePostureConfig": {
           "$ref": "CompliancePostureConfig",
-          "description": "Enable/Disable Compliance Posture features for the cluster."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster."
         },
         "conditions": {
           "description": "Which conditions caused the current cluster state.",
@@ -3825,6 +3830,10 @@
           "$ref": "MaintenancePolicy",
           "description": "Configure the maintenance policy for this cluster."
         },
+        "managedMachineLearningDiagnosticsConfig": {
+          "$ref": "ManagedMachineLearningDiagnosticsConfig",
+          "description": "Configuration for managed machine learning diagnostics."
+        },
         "managedOpentelemetryConfig": {
           "$ref": "ManagedOpenTelemetryConfig",
           "description": "Configuration for Managed OpenTelemetry pipeline."
@@ -3964,6 +3973,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "scheduleUpgradeConfig": {
+          "$ref": "ScheduleUpgradeConfig",
+          "description": "Optional. Configuration for scheduled upgrades."
+        },
         "secretManagerConfig": {
           "$ref": "SecretManagerConfig",
           "description": "Secret CSI driver configuration."
@@ -3974,7 +3987,7 @@
         },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
-          "description": "Enable/Disable Security Posture API features for the cluster."
+          "description": "Optional. Enable/Disable Security Posture API features for the cluster."
         },
         "selfLink": {
           "description": "Output only. Server-defined URL for the resource.",
@@ -4071,11 +4084,13 @@
           "description": "Autopilot general profile for the cluster, which defines the configuration for the cluster.",
           "enum": [
             "AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED",
-            "NO_PERFORMANCE"
+            "NO_PERFORMANCE",
+            "NONE"
           ],
           "enumDescriptions": [
             "Use default configuration.",
-            "Avoid extra IP consumption."
+            "Avoid extra IP consumption.",
+            "Use default configuration."
           ],
           "type": "string"
         },
@@ -4141,6 +4156,29 @@
       },
       "type": "object"
     },
+    "ClusterPolicyConfig": {
+      "description": "ClusterPolicyConfig stores the configuration for cluster wide policies.",
+      "id": "ClusterPolicyConfig",
+      "properties": {
+        "noStandardNodePools": {
+          "description": "Denotes preventing standard node pools and requiring only autopilot node pools.",
+          "type": "boolean"
+        },
+        "noSystemImpersonation": {
+          "description": "Denotes preventing impersonation and CSRs for GKE System users.",
+          "type": "boolean"
+        },
+        "noSystemMutation": {
+          "description": "Denotes that preventing creation and mutation of resources in GKE managed namespaces and cluster-scoped GKE managed resources .",
+          "type": "boolean"
+        },
+        "noUnsafeWebhooks": {
+          "description": "Denotes preventing unsafe webhooks.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ClusterTelemetry": {
       "description": "Telemetry integration for the cluster.",
       "id": "ClusterTelemetry",
@@ -4192,6 +4230,10 @@
           "$ref": "AutoIpamConfig",
           "description": "AutoIpamConfig contains all information related to Auto IPAM"
         },
+        "desiredAutopilotClusterPolicyConfig": {
+          "$ref": "ClusterPolicyConfig",
+          "description": "The desired autopilot cluster policies that to be enforced in the cluster."
+        },
         "desiredAutopilotWorkloadPolicyConfig": {
           "$ref": "WorkloadPolicyConfig",
           "description": "WorkloadPolicyConfig is the configuration related to GCW workload policy"
@@ -4210,7 +4252,8 @@
         },
         "desiredCompliancePostureConfig": {
           "$ref": "CompliancePostureConfig",
-          "description": "Enable/Disable Compliance Posture features for the cluster."
+          "deprecated": true,
+          "description": "Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster."
         },
         "desiredContainerdConfig": {
           "$ref": "ContainerdConfig",
@@ -4344,6 +4387,10 @@
         "desiredLoggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
+        },
+        "desiredManagedMachineLearningDiagnosticsConfig": {
+          "$ref": "ManagedMachineLearningDiagnosticsConfig",
+          "description": "The desired managed machine learning diagnostics configuration."
         },
         "desiredManagedOpentelemetryConfig": {
           "$ref": "ManagedOpenTelemetryConfig",
@@ -4479,6 +4526,10 @@
         "desiredRollbackSafeUpgrade": {
           "$ref": "RollbackSafeUpgrade",
           "description": "The desired rollback safe upgrade configuration."
+        },
+        "desiredScheduleUpgradeConfig": {
+          "$ref": "ScheduleUpgradeConfig",
+          "description": "Optional. The desired scheduled upgrades configuration for the cluster."
         },
         "desiredSecretManagerConfig": {
           "$ref": "SecretManagerConfig",
@@ -4708,7 +4759,8 @@
       "type": "object"
     },
     "CompliancePostureConfig": {
-      "description": "CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
+      "deprecated": true,
+      "description": "Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
       "id": "CompliancePostureConfig",
       "properties": {
         "complianceStandards": {
@@ -4839,6 +4891,17 @@
         "enabled": {
           "description": "Whether the feature is enabled or not.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CrashLoopBackOffConfig": {
+      "description": "Contains config to modify node-level parameters for container restart behavior.",
+      "id": "CrashLoopBackOffConfig",
+      "properties": {
+        "maxContainerRestartPeriod": {
+          "description": "Optional. The maximum duration the backoff delay can accrue to for container restarts, minimum 1 second, maximum 300 seconds. If not set, defaults to the internal crashloopbackoff maximum. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". See https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#configurable-container-restart-delay for more details.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4996,7 +5059,10 @@
             "CURRENT_STATE_ENCRYPTION_PENDING",
             "CURRENT_STATE_ENCRYPTION_ERROR",
             "CURRENT_STATE_DECRYPTION_PENDING",
-            "CURRENT_STATE_DECRYPTION_ERROR"
+            "CURRENT_STATE_DECRYPTION_ERROR",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING",
+            "CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR"
           ],
           "enumDescriptions": [
             "Should never be set",
@@ -5005,7 +5071,10 @@
             "Encryption (or re-encryption with a different CloudKMS key) of Secrets is in progress.",
             "Encryption (or re-encryption with a different CloudKMS key) of Secrets in etcd encountered an error.",
             "De-crypting Secrets to plain text in etcd is in progress.",
-            "De-crypting Secrets to plain text in etcd encountered an error."
+            "De-crypting Secrets to plain text in etcd encountered an error.",
+            "Encryption of all objects in the storage is enabled. It does not guarantee that all objects in the storage are encrypted, but eventually they will be.",
+            "Enablement of the encryption of all objects in storage is pending.",
+            "Enabling encryption of all objects in storage encountered an error."
           ],
           "readOnly": true,
           "type": "string"
@@ -5035,12 +5104,14 @@
           "enum": [
             "UNKNOWN",
             "ENCRYPTED",
-            "DECRYPTED"
+            "DECRYPTED",
+            "ALL_OBJECTS_ENCRYPTION_ENABLED"
           ],
           "enumDescriptions": [
             "Should never be set",
             "Secrets in etcd are encrypted.",
-            "Secrets in etcd are stored in plain text (at etcd level) - this is unrelated to Compute Engine level full disk encryption."
+            "Secrets in etcd are stored in plain text (at etcd level) - this is unrelated to Compute Engine level full disk encryption.",
+            "Encryption of all objects in the storage is enabled. There is no guarantee that all objects in the storage are encrypted, but eventually they will be."
           ],
           "type": "string"
         }
@@ -5134,6 +5205,35 @@
             "STANDARD indicates a standard GKE cluster.",
             "ENTERPRISE indicates a GKE Enterprise cluster."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DisruptionBudget": {
+      "description": "DisruptionBudget defines the upgrade disruption budget for the cluster control plane.",
+      "id": "DisruptionBudget",
+      "properties": {
+        "lastDisruptionTime": {
+          "description": "Output only. The last time a disruption was performed on the control plane.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastMinorVersionDisruptionTime": {
+          "description": "Output only. The last time a minor version upgrade was performed on the control plane.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "minorVersionDisruptionInterval": {
+          "description": "Optional. The minimum duration between two minor version upgrades of the control plane.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "patchVersionDisruptionInterval": {
+          "description": "Optional. The minimum duration between two patch version upgrades of the control plane.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -6464,6 +6564,10 @@
       "description": "Configuration for the Lustre CSI driver.",
       "id": "LustreCsiDriverConfig",
       "properties": {
+        "disableMultiNic": {
+          "description": "When set to true, this disables multi-NIC support for the Lustre CSI driver. By default, GKE enables multi-NIC support, which allows the Lustre CSI driver to automatically detect and configure all suitable network interfaces on a node to maximize I/O performance for demanding workloads.",
+          "type": "boolean"
+        },
         "enableLegacyLustrePort": {
           "deprecated": true,
           "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag. Deprecated: This flag is no longer required as of GKE node version 1.33.2-gke.4655000, unless you are connecting to a Lustre instance that has the `gke-support-enabled` flag.",
@@ -6513,6 +6617,10 @@
       "description": "MaintenancePolicy defines the maintenance policy to be used for the cluster.",
       "id": "MaintenancePolicy",
       "properties": {
+        "disruptionBudget": {
+          "$ref": "DisruptionBudget",
+          "description": "Optional. The upgrade disruption budget for the cluster control plane."
+        },
         "resourceVersion": {
           "description": "A hash identifying the version of this policy, so that updates to fields of the policy won't accidentally undo intermediate changes (and so that users of the API unaware of some fields won't accidentally remove other fields). Make a `get()` request to the cluster to get the current resource version and include it with requests to set the policy.",
           "type": "string"
@@ -6542,6 +6650,17 @@
         "recurringWindow": {
           "$ref": "RecurringTimeWindow",
           "description": "RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time."
+        }
+      },
+      "type": "object"
+    },
+    "ManagedMachineLearningDiagnosticsConfig": {
+      "description": "ManagedMachineLearningDiagnosticsConfig is the configuration for the GKE Managed Machine Learning Diagnostics pipeline.",
+      "id": "ManagedMachineLearningDiagnosticsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enable/Disable Managed Machine Learning Diagnostics.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7282,6 +7401,10 @@
           },
           "type": "array"
         },
+        "taintConfig": {
+          "$ref": "TaintConfig",
+          "description": "Optional. The taint configuration for the node pool."
+        },
         "taints": {
           "description": "List of kubernetes taints to be applied to each node. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
           "items": {
@@ -7391,6 +7514,10 @@
           "description": "Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * \"none\": the default, which represents the existing scheduling behavior. * \"static\": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.",
           "type": "string"
         },
+        "crashLoopBackOff": {
+          "$ref": "CrashLoopBackOffConfig",
+          "description": "Optional. Contains configuration options to modify node-level parameters for container restart behavior."
+        },
         "evictionMaxPodGracePeriodSeconds": {
           "description": "Optional. eviction_max_pod_grace_period_seconds is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met. This value effectively caps the Pod's terminationGracePeriodSeconds value during soft evictions. Default: 0. Range: [0, 300].",
           "format": "int32",
@@ -7443,6 +7570,16 @@
           "description": "Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.",
           "format": "int64",
           "type": "string"
+        },
+        "shutdownGracePeriodCriticalPodsSeconds": {
+          "description": "Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shutdownGracePeriodSeconds": {
+          "description": "Optional. shutdown_grace_period_seconds is the maximum allowed grace period (in seconds) the total duration that the node should delay the shutdown during a graceful shutdown. This is the total grace period for pod termination for both regular and critical pods. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ If set to 0, node will not enable the graceful node shutdown functionality. This field is only valid for Spot VMs. Allowed values: 0, 30, 120.",
+          "format": "int32",
+          "type": "integer"
         },
         "singleProcessOomKill": {
           "description": "Optional. Defines whether to enable single process OOM killer. If true, will prevent the memory.oom.group flag from being set for container cgroups in cgroups v2. This causes processes in the container to be OOM killed individually instead of as a group.",
@@ -7546,7 +7683,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: 1. A user supplied subnetwork name/full path during node pool creation. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet 2. A subnetwork path picked based on the IP utilization during node pool creation and is immutable.",
+          "description": "Optional. The subnetwork name/path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork can be either: - A user supplied subnetwork name during node pool creation (e.g., `my-subnet`). The name must be between 1 and 63 characters long, start with a letter, contain only letters, numbers, and hyphens, and end with a letter or a number. - A full subnetwork path during node pool creation, such as `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A subnetwork path picked based on the IP utilization during node pool creation and is immutable.",
           "type": "string"
         }
       },
@@ -8856,6 +8993,17 @@
       },
       "type": "object"
     },
+    "ScheduleUpgradeConfig": {
+      "description": "Configuration for scheduled upgrades on the cluster.",
+      "id": "ScheduleUpgradeConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether or not scheduled upgrades are enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SecondaryBootDisk": {
       "description": "SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.",
       "id": "SecondaryBootDisk",
@@ -8990,11 +9138,17 @@
             "BASIC",
             "ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables Security Posture features on the cluster.",
             "Applies Security Posture features on the cluster.",
-            "Applies the Security Posture off cluster Enterprise level features."
+            "Deprecated: Security Posture Enterprise features are no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies the Security Posture off cluster Enterprise level features."
           ],
           "type": "string"
         },
@@ -9006,10 +9160,16 @@
             "VULNERABILITY_BASIC",
             "VULNERABILITY_ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables vulnerability scanning on the cluster.",
-            "Applies basic vulnerability scanning on the cluster.",
+            "Deprecated: Basic vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies basic vulnerability scanning on the cluster.",
             "Applies the Security Posture's vulnerability on cluster Enterprise level features."
           ],
           "type": "string"
@@ -9746,6 +9906,27 @@
       },
       "type": "object"
     },
+    "TaintConfig": {
+      "description": "TaintConfig contains the configuration for the taints of the node pool.",
+      "id": "TaintConfig",
+      "properties": {
+        "architectureTaintBehavior": {
+          "description": "Optional. Controls architecture tainting behavior.",
+          "enum": [
+            "ARCHITECTURE_TAINT_BEHAVIOR_UNSPECIFIED",
+            "NONE",
+            "ARM"
+          ],
+          "enumDescriptions": [
+            "Specifies that the behavior is unspecified, defaults to ARM.",
+            "Disables default architecture taints on the node pool.",
+            "Taints all the nodes in the node pool with the default ARM taint."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TimeWindow": {
       "description": "Represents an arbitrary window of time.",
       "id": "TimeWindow",
@@ -10281,6 +10462,7 @@
           "description": "Output only. The state of the upgrade.",
           "enum": [
             "STATE_UNSPECIFIED",
+            "SCHEDULED",
             "STARTED",
             "SUCCEEDED",
             "FAILED",
@@ -10288,6 +10470,7 @@
           ],
           "enumDescriptions": [
             "STATE_UNSPECIFIED indicates the state is unspecified.",
+            "SCHEDULED indicates the upgrade was scheduled.",
             "STARTED indicates the upgrade has started.",
             "SUCCEEDED indicates the upgrade has completed successfully.",
             "FAILED indicates the upgrade has failed.",

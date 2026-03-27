@@ -381,6 +381,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Autopilot {
     /**
+     * ClusterPolicyConfig denotes cluster level policies that are enforced for the cluster.
+     */
+    clusterPolicyConfig?: Schema$ClusterPolicyConfig;
+    /**
      * Output only. ConversionStatus shows conversion status.
      */
     conversionStatus?: Schema$AutopilotConversionStatus;
@@ -788,7 +792,7 @@ export namespace container_v1beta1 {
      */
     clusterTelemetry?: Schema$ClusterTelemetry;
     /**
-     * Enable/Disable Compliance Posture features for the cluster.
+     * Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster.
      */
     compliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
@@ -928,6 +932,10 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
+     * Configuration for managed machine learning diagnostics.
+     */
+    managedMachineLearningDiagnosticsConfig?: Schema$ManagedMachineLearningDiagnosticsConfig;
+    /**
      * Configuration for Managed OpenTelemetry pipeline.
      */
     managedOpentelemetryConfig?: Schema$ManagedOpenTelemetryConfig;
@@ -1052,6 +1060,10 @@ export namespace container_v1beta1 {
      */
     satisfiesPzs?: boolean | null;
     /**
+     * Optional. Configuration for scheduled upgrades.
+     */
+    scheduleUpgradeConfig?: Schema$ScheduleUpgradeConfig;
+    /**
      * Secret CSI driver configuration.
      */
     secretManagerConfig?: Schema$SecretManagerConfig;
@@ -1060,7 +1072,7 @@ export namespace container_v1beta1 {
      */
     secretSyncConfig?: Schema$SecretSyncConfig;
     /**
-     * Enable/Disable Security Posture API features for the cluster.
+     * Optional. Enable/Disable Security Posture API features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
     /**
@@ -1163,6 +1175,27 @@ export namespace container_v1beta1 {
     totalEgressBandwidthTier?: string | null;
   }
   /**
+   * ClusterPolicyConfig stores the configuration for cluster wide policies.
+   */
+  export interface Schema$ClusterPolicyConfig {
+    /**
+     * Denotes preventing standard node pools and requiring only autopilot node pools.
+     */
+    noStandardNodePools?: boolean | null;
+    /**
+     * Denotes preventing impersonation and CSRs for GKE System users.
+     */
+    noSystemImpersonation?: boolean | null;
+    /**
+     * Denotes that preventing creation and mutation of resources in GKE managed namespaces and cluster-scoped GKE managed resources .
+     */
+    noSystemMutation?: boolean | null;
+    /**
+     * Denotes preventing unsafe webhooks.
+     */
+    noUnsafeWebhooks?: boolean | null;
+  }
+  /**
    * Telemetry integration for the cluster.
    */
   export interface Schema$ClusterTelemetry {
@@ -1200,6 +1233,10 @@ export namespace container_v1beta1 {
      */
     desiredAutoIpamConfig?: Schema$AutoIpamConfig;
     /**
+     * The desired autopilot cluster policies that to be enforced in the cluster.
+     */
+    desiredAutopilotClusterPolicyConfig?: Schema$ClusterPolicyConfig;
+    /**
      * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
     desiredAutopilotWorkloadPolicyConfig?: Schema$WorkloadPolicyConfig;
@@ -1216,7 +1253,7 @@ export namespace container_v1beta1 {
      */
     desiredClusterTelemetry?: Schema$ClusterTelemetry;
     /**
-     * Enable/Disable Compliance Posture features for the cluster.
+     * Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster.
      */
     desiredCompliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
@@ -1327,6 +1364,10 @@ export namespace container_v1beta1 {
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
+    /**
+     * The desired managed machine learning diagnostics configuration.
+     */
+    desiredManagedMachineLearningDiagnosticsConfig?: Schema$ManagedMachineLearningDiagnosticsConfig;
     /**
      * The desired managed open telemetry configuration.
      */
@@ -1447,6 +1488,10 @@ export namespace container_v1beta1 {
      * The desired rollback safe upgrade configuration.
      */
     desiredRollbackSafeUpgrade?: Schema$RollbackSafeUpgrade;
+    /**
+     * Optional. The desired scheduled upgrades configuration for the cluster.
+     */
+    desiredScheduleUpgradeConfig?: Schema$ScheduleUpgradeConfig;
     /**
      * Enable/Disable Secret Manager Config.
      */
@@ -1605,7 +1650,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CompleteNodePoolUpgradeRequest {}
   /**
-   * CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
+   * Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
    */
   export interface Schema$CompliancePostureConfig {
     /**
@@ -1695,6 +1740,15 @@ export namespace container_v1beta1 {
      * Whether the feature is enabled or not.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Contains config to modify node-level parameters for container restart behavior.
+   */
+  export interface Schema$CrashLoopBackOffConfig {
+    /**
+     * Optional. The maximum duration the backoff delay can accrue to for container restarts, minimum 1 second, maximum 300 seconds. If not set, defaults to the internal crashloopbackoff maximum. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". See https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#configurable-container-restart-delay for more details.
+     */
+    maxContainerRestartPeriod?: string | null;
   }
   /**
    * CreateClusterRequest creates a cluster.
@@ -1841,6 +1895,27 @@ export namespace container_v1beta1 {
      * desired_tier specifies the desired tier of the cluster.
      */
     desiredTier?: string | null;
+  }
+  /**
+   * DisruptionBudget defines the upgrade disruption budget for the cluster control plane.
+   */
+  export interface Schema$DisruptionBudget {
+    /**
+     * Output only. The last time a disruption was performed on the control plane.
+     */
+    lastDisruptionTime?: string | null;
+    /**
+     * Output only. The last time a minor version upgrade was performed on the control plane.
+     */
+    lastMinorVersionDisruptionTime?: string | null;
+    /**
+     * Optional. The minimum duration between two minor version upgrades of the control plane.
+     */
+    minorVersionDisruptionInterval?: string | null;
+    /**
+     * Optional. The minimum duration between two patch version upgrades of the control plane.
+     */
+    patchVersionDisruptionInterval?: string | null;
   }
   /**
    * DisruptionEvent is a notification sent to customers about the disruption event of a resource.
@@ -2760,6 +2835,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$LustreCsiDriverConfig {
     /**
+     * When set to true, this disables multi-NIC support for the Lustre CSI driver. By default, GKE enables multi-NIC support, which allows the Lustre CSI driver to automatically detect and configure all suitable network interfaces on a node to maximize I/O performance for demanding workloads.
+     */
+    disableMultiNic?: boolean | null;
+    /**
      * Whether the Lustre CSI driver is enabled for this cluster.
      */
     enabled?: boolean | null;
@@ -2786,6 +2865,10 @@ export namespace container_v1beta1 {
    */
   export interface Schema$MaintenancePolicy {
     /**
+     * Optional. The upgrade disruption budget for the cluster control plane.
+     */
+    disruptionBudget?: Schema$DisruptionBudget;
+    /**
      * A hash identifying the version of this policy, so that updates to fields of the policy won't accidentally undo intermediate changes (and so that users of the API unaware of some fields won't accidentally remove other fields). Make a `get()` request to the cluster to get the current resource version and include it with requests to set the policy.
      */
     resourceVersion?: string | null;
@@ -2810,6 +2893,15 @@ export namespace container_v1beta1 {
      * RecurringWindow specifies some number of recurring time periods for maintenance to occur. The time windows may be overlapping. If no maintenance windows are set, maintenance can occur at any time.
      */
     recurringWindow?: Schema$RecurringTimeWindow;
+  }
+  /**
+   * ManagedMachineLearningDiagnosticsConfig is the configuration for the GKE Managed Machine Learning Diagnostics pipeline.
+   */
+  export interface Schema$ManagedMachineLearningDiagnosticsConfig {
+    /**
+     * Enable/Disable Managed Machine Learning Diagnostics.
+     */
+    enabled?: boolean | null;
   }
   /**
    * ManagedOpenTelemetryConfig is the configuration for the GKE Managed OpenTelemetry pipeline.
@@ -3298,6 +3390,10 @@ export namespace container_v1beta1 {
      */
     tags?: string[] | null;
     /**
+     * Optional. The taint configuration for the node pool.
+     */
+    taintConfig?: Schema$TaintConfig;
+    /**
      * List of kubernetes taints to be applied to each node. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      */
     taints?: Schema$NodeTaint[];
@@ -3382,6 +3478,10 @@ export namespace container_v1beta1 {
      */
     cpuManagerPolicy?: string | null;
     /**
+     * Optional. Contains configuration options to modify node-level parameters for container restart behavior.
+     */
+    crashLoopBackOff?: Schema$CrashLoopBackOffConfig;
+    /**
      * Optional. eviction_max_pod_grace_period_seconds is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met. This value effectively caps the Pod's terminationGracePeriodSeconds value during soft evictions. Default: 0. Range: [0, 300].
      */
     evictionMaxPodGracePeriodSeconds?: number | null;
@@ -3429,6 +3529,14 @@ export namespace container_v1beta1 {
      * Set the Pod PID limits. See https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits Controls the maximum number of processes allowed to run in a pod. The value must be greater than or equal to 1024 and less than 4194304.
      */
     podPidsLimit?: string | null;
+    /**
+     * Optional. shutdown_grace_period_critical_pods_seconds is the maximum allowed grace period (in seconds) used to terminate critical pods during a node shutdown. This value should be <= shutdown_grace_period_seconds, and is only valid if shutdown_grace_period_seconds is set. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ Range: [0, 120].
+     */
+    shutdownGracePeriodCriticalPodsSeconds?: number | null;
+    /**
+     * Optional. shutdown_grace_period_seconds is the maximum allowed grace period (in seconds) the total duration that the node should delay the shutdown during a graceful shutdown. This is the total grace period for pod termination for both regular and critical pods. https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/ If set to 0, node will not enable the graceful node shutdown functionality. This field is only valid for Spot VMs. Allowed values: 0, 30, 120.
+     */
+    shutdownGracePeriodSeconds?: number | null;
     /**
      * Optional. Defines whether to enable single process OOM killer. If true, will prevent the memory.oom.group flag from being set for container cgroups in cgroups v2. This causes processes in the container to be OOM killed individually instead of as a group.
      */
@@ -3513,7 +3621,7 @@ export namespace container_v1beta1 {
      */
     podRange?: string | null;
     /**
-     * Optional. The subnetwork name/path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork can be either: 1. A user supplied subnetwork name/full path during node pool creation. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet 2. A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
+     * Optional. The subnetwork name/path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork can be either: - A user supplied subnetwork name during node pool creation (e.g., `my-subnet`). The name must be between 1 and 63 characters long, start with a letter, contain only letters, numbers, and hyphens, and end with a letter or a number. - A full subnetwork path during node pool creation, such as `projects/gke-project/regions/us-central1/subnetworks/my-subnet` - A subnetwork path picked based on the IP utilization during node pool creation and is immutable.
      */
     subnetwork?: string | null;
   }
@@ -4363,6 +4471,15 @@ export namespace container_v1beta1 {
     type?: string | null;
   }
   /**
+   * Configuration for scheduled upgrades on the cluster.
+   */
+  export interface Schema$ScheduleUpgradeConfig {
+    /**
+     * Optional. Whether or not scheduled upgrades are enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * SecondaryBootDisk represents a persistent disk attached to a node with special configurations based on its mode.
    */
   export interface Schema$SecondaryBootDisk {
@@ -4995,6 +5112,15 @@ export namespace container_v1beta1 {
      * The interval between two consecutive rotations. Default rotation interval is 2 minutes.
      */
     rotationInterval?: string | null;
+  }
+  /**
+   * TaintConfig contains the configuration for the taints of the node pool.
+   */
+  export interface Schema$TaintConfig {
+    /**
+     * Optional. Controls architecture tainting behavior.
+     */
+    architectureTaintBehavior?: string | null;
   }
   /**
    * Represents an arbitrary window of time.
@@ -7218,6 +7344,7 @@ export namespace container_v1beta1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedMachineLearningDiagnosticsConfig": {},
      *   //   "managedOpentelemetryConfig": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
@@ -7249,6 +7376,7 @@ export namespace container_v1beta1 {
      *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "scheduleUpgradeConfig": {},
      *   //   "secretManagerConfig": {},
      *   //   "secretSyncConfig": {},
      *   //   "securityPostureConfig": {},
@@ -13683,6 +13811,7 @@ export namespace container_v1beta1 {
      *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
+     *   //   "managedMachineLearningDiagnosticsConfig": {},
      *   //   "managedOpentelemetryConfig": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
@@ -13714,6 +13843,7 @@ export namespace container_v1beta1 {
      *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "scheduleUpgradeConfig": {},
      *   //   "secretManagerConfig": {},
      *   //   "secretSyncConfig": {},
      *   //   "securityPostureConfig": {},
