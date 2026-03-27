@@ -442,6 +442,18 @@ export namespace iap_v1 {
    */
   export interface Schema$OAuthSettings {
     /**
+     * Optional. OAuth 2.0 client ID used in the OAuth flow. This allows for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Input only. OAuth secret paired with client ID.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. OAuth secret SHA256 paired with client ID.
+     */
+    clientSecretSha256?: string | null;
+    /**
      * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies.
      */
     loginHint?: string | null;
