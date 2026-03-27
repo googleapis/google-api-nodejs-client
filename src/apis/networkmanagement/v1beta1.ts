@@ -827,6 +827,36 @@ export namespace networkmanagement_v1beta1 {
     internalIp?: string | null;
   }
   /**
+   * For display only. Metadata associated with a GKE Network Policy.
+   */
+  export interface Schema$GkeNetworkPolicyInfo {
+    /**
+     * Possible values: ALLOW, DENY
+     */
+    action?: string | null;
+    /**
+     * Possible values: INGRESS, EGRESS
+     */
+    direction?: string | null;
+    /**
+     * The name of the Network Policy.
+     */
+    displayName?: string | null;
+    /**
+     * The URI of the Network Policy. Format for a Network Policy in a zonal cluster: `projects//zones//clusters//k8s/namespaces//networking.k8s.io/networkpolicies/` Format for a Network Policy in a regional cluster: `projects//locations//clusters//k8s/namespaces//networking.k8s.io/networkpolicies/`
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Contains information about why GKE Network Policy evaluation was skipped.
+   */
+  export interface Schema$GkeNetworkPolicySkippedInfo {
+    /**
+     * Reason why Network Policy evaluation was skipped.
+     */
+    reason?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Google Kubernetes Engine (GKE) Pod.
    */
   export interface Schema$GkePodInfo {
@@ -1259,6 +1289,15 @@ export namespace networkmanagement_v1beta1 {
      * URI of a Compute Engine network.
      */
     uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a layer 7 packet inspection by the firewall.
+   */
+  export interface Schema$NgfwPacketInspectionInfo {
+    /**
+     * URI of the security profile group associated with this firewall packet inspection.
+     */
+    securityProfileGroupUri?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1797,6 +1836,14 @@ export namespace networkmanagement_v1beta1 {
      */
     gkeMaster?: Schema$GKEMasterInfo;
     /**
+     * Display information of a GKE Network Policy.
+     */
+    gkeNetworkPolicy?: Schema$GkeNetworkPolicyInfo;
+    /**
+     * Display information of the reason why GKE Network Policy evaluation was skipped.
+     */
+    gkeNetworkPolicySkipped?: Schema$GkeNetworkPolicySkippedInfo;
+    /**
      * Display information of a Google Kubernetes Engine Pod.
      */
     gkePod?: Schema$GkePodInfo;
@@ -1836,6 +1883,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Google Cloud network.
      */
     network?: Schema$NetworkInfo;
+    /**
+     * Display information of a layer 7 packet inspection by the firewall.
+     */
+    ngfwPacketInspection?: Schema$NgfwPacketInspectionInfo;
     /**
      * Project ID that contains the configuration this step is validating.
      */

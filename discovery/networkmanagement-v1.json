@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260225",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1926,6 +1926,7 @@
             "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
             "HYBRID_SUBNET_REGION_MISMATCH",
             "HYBRID_SUBNET_NO_ROUTE",
+            "GKE_NETWORK_POLICY",
             "NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION"
           ],
           "enumDescriptions": [
@@ -2032,6 +2033,7 @@
             "Packet could be dropped because it matches a route associated with an NCC spoke in the hybrid subnet context, but such a configuration is not supported.",
             "Packet is dropped because the region of the hybrid subnet is different from the region of the next hop of the route matched within this hybrid subnet.",
             "Packet is dropped because no matching route was found in the hybrid subnet.",
+            "Packet is dropped by GKE Network Policy.",
             "Packet is dropped because there is no valid matching route from the network of the Google-managed service to the destination."
           ],
           "type": "string"
@@ -2650,6 +2652,56 @@
         },
         "internalIp": {
           "description": "Internal IP address of a GKE cluster control plane.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNetworkPolicyInfo": {
+      "description": "For display only. Metadata associated with a GKE Network Policy.",
+      "id": "GkeNetworkPolicyInfo",
+      "properties": {
+        "action": {
+          "description": "Possible values: ALLOW, DENY",
+          "type": "string"
+        },
+        "direction": {
+          "description": "Possible values: INGRESS, EGRESS",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The name of the Network Policy.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the Network Policy. Format for a Network Policy in a zonal cluster: `projects//zones//clusters//k8s/namespaces//networking.k8s.io/networkpolicies/` Format for a Network Policy in a regional cluster: `projects//locations//clusters//k8s/namespaces//networking.k8s.io/networkpolicies/`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GkeNetworkPolicySkippedInfo": {
+      "description": "For display only. Contains information about why GKE Network Policy evaluation was skipped.",
+      "id": "GkeNetworkPolicySkippedInfo",
+      "properties": {
+        "reason": {
+          "description": "Reason why Network Policy evaluation was skipped.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "NETWORK_POLICY_DISABLED",
+            "INGRESS_SOURCE_ON_SAME_NODE",
+            "EGRESS_FROM_NODE_NETWORK_NAMESPACE_POD",
+            "NETWORK_POLICY_NOT_APPLIED_TO_RESPONSE_TRAFFIC",
+            "NETWORK_POLICY_ANALYSIS_UNSUPPORTED"
+          ],
+          "enumDescriptions": [
+            "Unused default value.",
+            "Network Policy is disabled on the cluster.",
+            "Ingress traffic to a Pod from a source on the same Node is always allowed.",
+            "Egress traffic from a Pod that uses the Node's network namespace is not subject to Network Policy.",
+            "Network Policy is not applied to response traffic. This is because GKE Network Policy evaluation is stateful in both GKE Dataplane V2 (eBPF) and legacy (iptables) implementations.",
+            "Network Policy evaluation is currently not supported for clusters with FQDN Network Policies enabled."
+          ],
           "type": "string"
         }
       },
@@ -3321,6 +3373,17 @@
         },
         "uri": {
           "description": "URI of a Compute Engine network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NgfwPacketInspectionInfo": {
+      "description": "For display only. Metadata associated with a layer 7 packet inspection by the firewall.",
+      "id": "NgfwPacketInspectionInfo",
+      "properties": {
+        "securityProfileGroupUri": {
+          "description": "URI of the security profile group associated with this firewall packet inspection.",
           "type": "string"
         }
       },
@@ -4083,6 +4146,14 @@
           "$ref": "GKEMasterInfo",
           "description": "Display information of a Google Kubernetes Engine cluster master."
         },
+        "gkeNetworkPolicy": {
+          "$ref": "GkeNetworkPolicyInfo",
+          "description": "Display information of a GKE Network Policy."
+        },
+        "gkeNetworkPolicySkipped": {
+          "$ref": "GkeNetworkPolicySkippedInfo",
+          "description": "Display information of the reason why GKE Network Policy evaluation was skipped."
+        },
         "gkePod": {
           "$ref": "GkePodInfo",
           "description": "Display information of a Google Kubernetes Engine Pod."
@@ -4123,6 +4194,10 @@
         "network": {
           "$ref": "NetworkInfo",
           "description": "Display information of a Google Cloud network."
+        },
+        "ngfwPacketInspection": {
+          "$ref": "NgfwPacketInspectionInfo",
+          "description": "Display information of a layer 7 packet inspection by the firewall."
         },
         "projectId": {
           "description": "Project ID that contains the configuration this step is validating.",
@@ -4185,10 +4260,16 @@
             "ARRIVE_AT_VPN_TUNNEL",
             "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
             "ARRIVE_AT_VPC_CONNECTOR",
+            "ARRIVE_AT_GKE_POD",
             "DIRECT_VPC_EGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
+            "NGFW_PACKET_INSPECTION",
             "NAT",
             "SKIP_GKE_POD_IP_MASQUERADING",
+            "SKIP_GKE_INGRESS_NETWORK_POLICY",
+            "SKIP_GKE_EGRESS_NETWORK_POLICY",
+            "APPLY_INGRESS_GKE_NETWORK_POLICY",
+            "APPLY_EGRESS_GKE_NETWORK_POLICY",
             "PROXY_CONNECTION",
             "DELIVER",
             "DROP",
@@ -4236,6 +4317,12 @@
             false,
             false,
             false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4269,10 +4356,16 @@
             "Forwarding state: arriving at a Cloud VPN tunnel.",
             "Forwarding state: arriving at an interconnect attachment.",
             "Forwarding state: arriving at a VPC connector.",
+            "Forwarding state: arriving at a GKE Pod.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
+            "Forwarding state: Layer 7 packet inspection by the firewall endpoint based on the configured security profile group.",
             "Transition state: packet header translated. The `nat` field is populated with the translation information.",
             "Transition state: GKE Pod IP masquerading is skipped. The `ip_masquerading_skipped` field is populated with the reason.",
+            "Transition state: GKE Ingress Network Policy is skipped. The `gke_network_policy_skipped` field is populated with the reason.",
+            "Transition state: GKE Egress Network Policy is skipped. The `gke_network_policy_skipped` field is populated with the reason.",
+            "Config checking state: verify ingress GKE network policy.",
+            "Config checking state: verify egress GKE network policy.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
             "Final state: packet could be delivered.",
             "Final state: packet could be dropped.",
