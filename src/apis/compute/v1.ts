@@ -176,10 +176,14 @@ export namespace compute_v1 {
     regionAutoscalers: Resource$Regionautoscalers;
     regionBackendServices: Resource$Regionbackendservices;
     regionCommitments: Resource$Regioncommitments;
+    regionCompositeHealthChecks: Resource$Regioncompositehealthchecks;
     regionDisks: Resource$Regiondisks;
     regionDiskTypes: Resource$Regiondisktypes;
+    regionHealthAggregationPolicies: Resource$Regionhealthaggregationpolicies;
     regionHealthChecks: Resource$Regionhealthchecks;
     regionHealthCheckServices: Resource$Regionhealthcheckservices;
+    regionHealthSources: Resource$Regionhealthsources;
+    regionInstanceGroupManagerResizeRequests: Resource$Regioninstancegroupmanagerresizerequests;
     regionInstanceGroupManagers: Resource$Regioninstancegroupmanagers;
     regionInstanceGroups: Resource$Regioninstancegroups;
     regionInstances: Resource$Regioninstances;
@@ -228,6 +232,7 @@ export namespace compute_v1 {
     wireGroups: Resource$Wiregroups;
     zoneOperations: Resource$Zoneoperations;
     zones: Resource$Zones;
+    zoneVmExtensionPolicies: Resource$Zonevmextensionpolicies;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -321,12 +326,19 @@ export namespace compute_v1 {
         this.context
       );
       this.regionCommitments = new Resource$Regioncommitments(this.context);
+      this.regionCompositeHealthChecks =
+        new Resource$Regioncompositehealthchecks(this.context);
       this.regionDisks = new Resource$Regiondisks(this.context);
       this.regionDiskTypes = new Resource$Regiondisktypes(this.context);
+      this.regionHealthAggregationPolicies =
+        new Resource$Regionhealthaggregationpolicies(this.context);
       this.regionHealthChecks = new Resource$Regionhealthchecks(this.context);
       this.regionHealthCheckServices = new Resource$Regionhealthcheckservices(
         this.context
       );
+      this.regionHealthSources = new Resource$Regionhealthsources(this.context);
+      this.regionInstanceGroupManagerResizeRequests =
+        new Resource$Regioninstancegroupmanagerresizerequests(this.context);
       this.regionInstanceGroupManagers =
         new Resource$Regioninstancegroupmanagers(this.context);
       this.regionInstanceGroups = new Resource$Regioninstancegroups(
@@ -397,6 +409,9 @@ export namespace compute_v1 {
       this.wireGroups = new Resource$Wiregroups(this.context);
       this.zoneOperations = new Resource$Zoneoperations(this.context);
       this.zones = new Resource$Zones(this.context);
+      this.zoneVmExtensionPolicies = new Resource$Zonevmextensionpolicies(
+        this.context
+      );
     }
   }
 
@@ -1111,7 +1126,7 @@ export namespace compute_v1 {
   }
   /**
    * Properties of the SKU instances being reserved.
-   * Next ID: 9
+   * Next ID: 10
    */
   export interface Schema$AllocationSpecificSKUAllocationReservedInstanceProperties {
     /**
@@ -1415,7 +1430,7 @@ export namespace compute_v1 {
      */
     replicaZones?: string[] | null;
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -2301,6 +2316,10 @@ export namespace compute_v1 {
      */
     maxUtilization?: number | null;
     /**
+     * Information about the resource or system that manages the backend.
+     */
+    orchestrationInfo?: Schema$BackendBackendOrchestrationInfo;
+    /**
      * This field indicates whether this backend should be fully utilized before
      * sending traffic to backends with default preference. The possible values
      * are:
@@ -2313,6 +2332,16 @@ export namespace compute_v1 {
      *    default
      */
     preference?: string | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend.
+   */
+  export interface Schema$BackendBackendOrchestrationInfo {
+    /**
+     * The URI of the resource or system that manages the backend.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Represents a Cloud Storage Bucket resource.
@@ -3070,6 +3099,10 @@ export namespace compute_v1 {
      */
     networkPassThroughLbTrafficPolicy?: Schema$BackendServiceNetworkPassThroughLbTrafficPolicy;
     /**
+     * Information about the resource or system that manages the backend service.
+     */
+    orchestrationInfo?: Schema$BackendServiceOrchestrationInfo;
+    /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
      * traffic for the given backend service. If not set, this feature is
@@ -3554,7 +3587,7 @@ export namespace compute_v1 {
    */
   export interface Schema$BackendServiceFailoverPolicy {
     /**
-     * This can be set to true only if the protocol isTCP.
+     * This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      *
      * The default is false.
      */
@@ -3973,6 +4006,17 @@ export namespace compute_v1 {
      * connections to all healthy endpoints across all zones.
      */
     spilloverRatio?: number | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend service.
+   */
+  export interface Schema$BackendServiceOrchestrationInfo {
+    /**
+     * The resource URI of the resource or system that manages the backend
+     * service.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Additional Backend Service parameters.
@@ -4955,6 +4999,172 @@ export namespace compute_v1 {
     commitments?: Schema$Commitment[];
     /**
      * [Output Only] Informational warning which replaces the list of commitments
+     * when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
+   * Represents a composite health check.
+   *
+   * A composite health check resource specifies the health source resources and
+   * the health destination resource to which the aggregated health result from
+   * the health source resources is delivered.
+   */
+  export interface Schema$CompositeHealthCheck {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a CompositeHealthCheck. An up-to-date fingerprint
+     * must be provided in order to patch the CompositeHealthCheck; Otherwise,
+     * the request will fail with error 412 conditionNotMet. To see
+     * the latest fingerprint, make a get() request to retrieve the
+     * CompositeHealthCheck.
+     */
+    fingerprint?: string | null;
+    /**
+     * URL to the destination resource. Must be set. Must be aForwardingRule. The ForwardingRule must have
+     * load balancing scheme INTERNAL orINTERNAL_MANAGED and must be regional and in the same region
+     * as the CompositeHealthCheck (cross-region deployment forINTERNAL_MANAGED is not supported). Can be mutated.
+     */
+    healthDestination?: string | null;
+    /**
+     * URLs to the HealthSource resources whose results are AND'ed.
+     * I.e. he aggregated result is is HEALTHY only if all sources
+     * are HEALTHY. Must have at least 1. Must not have more than 10.
+     * Must be regional and in the same region as theCompositeHealthCheck. Can be mutated.
+     */
+    healthSources?: string[] | null;
+    /**
+     * Output only. [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#compositeHealthCheck for composite health checks.
+     */
+    kind?: string | null;
+    /**
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] URL of the region where the composite health check resides.
+     * This field applies only to the regional resource. You must specify this
+     * field as part of the HTTP request URL. It is not settable as a field in
+     * the request body.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL with id for the resource.
+     */
+    selfLinkWithId?: string | null;
+  }
+  /**
+   * Contains a list of CompositeHealthChecksScopedList.
+   */
+  export interface Schema$CompositeHealthCheckAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of CompositeHealthChecksScopedList resources.
+     */
+    items?: {[key: string]: Schema$CompositeHealthChecksScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$CompositeHealthCheckList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of CompositeHealthCheck resources.
+     */
+    items?: Schema$CompositeHealthCheck[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#compositeHealthCheck for composite health checks.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$CompositeHealthChecksScopedList {
+    /**
+     * A list of CompositeHealthChecks contained in this scope.
+     */
+    compositeHealthChecks?: Schema$CompositeHealthCheck[];
+    /**
+     * Informational warning which replaces the list of composite health checks
      * when the list is empty.
      */
     warning?: {
@@ -6005,7 +6215,7 @@ export namespace compute_v1 {
    */
   export interface Schema$DiskParams {
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -6292,6 +6502,11 @@ export namespace compute_v1 {
     /**
      * Zones where the regional managed instance group will create and manage
      * its instances.
+     * By default, a regional MIG doesn't automatically select an AI zone to create
+     * instances, even if an AI zone is available in the specified region. To
+     * create instances in an AI zone in the selected region, you must explicitly
+     * specify it in the distribution policy together with the other preferred
+     * zones.
      */
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
@@ -6568,6 +6783,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ExternalVpnGatewayParams;
+    /**
      * Indicates the user-supplied redundancy type of this external VPN gateway.
      */
     redundancyType?: string | null;
@@ -6644,6 +6864,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ExternalVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$FileContentBuffer {
     /**
@@ -7967,6 +8206,7 @@ export namespace compute_v1 {
      * existing commitment.
      */
     commitmentInfo?: Schema$FutureReservationCommitmentInfo;
+    confidentialComputeType?: string | null;
     /**
      * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
@@ -8480,6 +8720,21 @@ export namespace compute_v1 {
     aggregateResources?: Schema$FutureResourcesSpecAggregateResources;
     specificSkuResources?: Schema$FutureResourcesSpecSpecificSKUResources;
   }
+  export interface Schema$GetVersionOperationMetadata {
+    inlineSbomInfo?: Schema$GetVersionOperationMetadataSbomInfo;
+  }
+  export interface Schema$GetVersionOperationMetadataSbomInfo {
+    /**
+     * SBOM versions currently applied to the resource. The key is the component
+     * name and the value is the version.
+     */
+    currentComponentVersions?: {[key: string]: string} | null;
+    /**
+     * SBOM versions scheduled for the next maintenance. The key is the
+     * component name and the value is the version.
+     */
+    targetComponentVersions?: {[key: string]: string} | null;
+  }
   export interface Schema$GlobalAddressesMoveRequest {
     /**
      * An optional destination address description if intended to be different
@@ -8783,6 +9038,194 @@ export namespace compute_v1 {
      * Enabling guest operating system features.
      */
     type?: string | null;
+  }
+  export interface Schema$HealthAggregationPoliciesScopedList {
+    /**
+     * A list of HealthAggregationPolicys contained in this scope.
+     */
+    healthAggregationPolicies?: Schema$HealthAggregationPolicy[];
+    /**
+     * Informational warning which replaces the list of health aggregation
+     * policies when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
+   * Represents a health aggregation policy.
+   *
+   * A health aggregation policy resource defines a policy to aggregate health.
+   *
+   * For more information, see
+   * Health checks overview.
+   */
+  export interface Schema$HealthAggregationPolicy {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a HealthAggregationPolicy. An up-to-date fingerprint
+     * must be provided in order to patch the HealthAggregationPolicy; Otherwise,
+     * the request will fail with error 412 conditionNotMet. To see
+     * the latest fingerprint, make a get() request to retrieve the
+     * HealthAggregationPolicy.
+     */
+    fingerprint?: string | null;
+    /**
+     * Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the threshold (as a
+     * percentage) of healthy endpoints required in order to consider the
+     * aggregated health result HEALTHY. Defaults to 60. Must be in
+     * range [0, 100]. Not applicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,
+     * and will be set to the default if unspecified. Note that both this
+     * threshold and minHealthyThreshold must be satisfied in order
+     * for HEALTHY to be the aggregated result. "Endpoints" refers to network
+     * endpoints within a Network Endpoint Group or instances within an Instance
+     * Group.
+     */
+    healthyPercentThreshold?: number | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation
+     * policies.
+     */
+    kind?: string | null;
+    /**
+     * Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the minimum number of
+     * healthy endpoints required in order to consider the aggregated health
+     * result HEALTHY. Defaults to 1. Must be positive. Not
+     * applicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,
+     * and will be set to the default if unspecified. Note that both this
+     * threshold and healthyPercentThreshold must be satisfied in
+     * order for HEALTHY to be the aggregated result. "Endpoints" refers to
+     * network endpoints within a Network Endpoint Group or instances within an
+     * Instance Group.
+     */
+    minHealthyThreshold?: number | null;
+    /**
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Specifies the type of the healthAggregationPolicy. The only allowed value
+     * for global resources is DNS_PUBLIC_IP_POLICY. The only allowed
+     * value for regional resources is BACKEND_SERVICE_POLICY. Must
+     * be specified when the healthAggregationPolicy is created, and cannot be
+     * mutated.
+     */
+    policyType?: string | null;
+    /**
+     * Output only. [Output Only] URL of the region where the health aggregation policy
+     * resides. This field applies only to the regional resource. You must specify
+     * this field as part of the HTTP request URL. It is not settable as a field
+     * in the request body.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL with id for the resource.
+     */
+    selfLinkWithId?: string | null;
+  }
+  /**
+   * Contains a list of HealthAggregationPoliciesScopedList.
+   */
+  export interface Schema$HealthAggregationPolicyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthAggregationPoliciesScopedList resources.
+     */
+    items?: {[key: string]: Schema$HealthAggregationPoliciesScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$HealthAggregationPolicyList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthAggregationPolicy resources.
+     */
+    items?: Schema$HealthAggregationPolicy[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation
+     * policies.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
   }
   /**
    * Represents a health check resource.
@@ -9098,6 +9541,47 @@ export namespace compute_v1 {
     selfLink?: string | null;
   }
   /**
+   * Contains a list of HealthCheckServicesScopedList.
+   */
+  export interface Schema$HealthCheckServiceAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthCheckServicesScopedList resources.
+     */
+    items?: {[key: string]: Schema$HealthCheckServicesScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * A full or valid partial URL to a health check service. For example, the
    * following are valid URLs:
    *
@@ -9143,6 +9627,21 @@ export namespace compute_v1 {
       message?: string;
     } | null;
   }
+  export interface Schema$HealthCheckServicesScopedList {
+    /**
+     * A list of HealthCheckServices contained in this scope.
+     */
+    resources?: Schema$HealthCheckService[];
+    /**
+     * Informational warning which replaces the list of
+     * backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   export interface Schema$HealthChecksScopedList {
     /**
      * A list of HealthChecks contained in this scope.
@@ -9151,6 +9650,178 @@ export namespace compute_v1 {
     /**
      * Informational warning which replaces the list of
      * backend services when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
+   * Represents a health source.
+   *
+   * A health source resource specifies the source resources and the health
+   * aggregation policy applied to the source resources to determine the
+   * aggregated health status.
+   */
+  export interface Schema$HealthSource {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a HealthSource. An up-to-date fingerprint
+     * must be provided in order to patch the HealthSource; Otherwise, the request
+     * will fail with error 412 conditionNotMet. To see the latest
+     * fingerprint, make a get() request to retrieve the
+     * HealthSource.
+     */
+    fingerprint?: string | null;
+    /**
+     * URL to the HealthAggregationPolicy resource. Must be set. Must
+     * be regional and in the same region as the HealthSource. Can be
+     * mutated.
+     */
+    healthAggregationPolicy?: string | null;
+    /**
+     * Output only. [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthSource for health sources.
+     */
+    kind?: string | null;
+    /**
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] URL of the region where the health source resides.
+     * This field applies only to the regional resource. You must specify this
+     * field as part of the HTTP request URL. It is not settable as a field in
+     * the request body.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL with id for the resource.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * URLs to the source resources. Must be size 1. Must be aBackendService if
+     * the sourceType is BACKEND_SERVICE. TheBackendService must have load balancing schemeINTERNAL or INTERNAL_MANAGED and must be regional
+     * and in the same region as the HealthSource (cross-region
+     * deployment for INTERNAL_MANAGED is not supported). TheBackendService may use only IGs, MIGs, or NEGs of typeGCE_VM_IP or GCE_VM_IP_PORT. TheBackendService may not use haPolicy. Can be
+     * mutated.
+     */
+    sources?: string[] | null;
+    /**
+     * Specifies the type of the HealthSource. The only allowed value
+     * is BACKEND_SERVICE. Must be specified when theHealthSource is created, and cannot be mutated.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * Contains a list of HealthSourcesScopedList.
+   */
+  export interface Schema$HealthSourceAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthSourcesScopedList resources.
+     */
+    items?: {[key: string]: Schema$HealthSourcesScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$HealthSourceList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthSource resources.
+     */
+    items?: Schema$HealthSource[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthSource for health sources.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$HealthSourcesScopedList {
+    /**
+     * A list of HealthSources contained in this scope.
+     */
+    healthSources?: Schema$HealthSource[];
+    /**
+     * Informational warning which replaces the list of
+     * health sources when the list is empty.
      */
     warning?: {
       code?: string;
@@ -10718,7 +11389,7 @@ export namespace compute_v1 {
    */
   export interface Schema$ImageParams {
     /**
-     * Resource manager tags to be bound to the image. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the image. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -10935,6 +11606,11 @@ export namespace compute_v1 {
      */
     params?: Schema$InstanceParams;
     /**
+     * Partner Metadata assigned to the instance. A map from a subdomain
+     * (namespace) to entries map.
+     */
+    partnerMetadata?: {[key: string]: Schema$StructuredEntries} | null;
+    /**
      * The private IPv6 google access type for the VM.
      * If not specified, use  INHERIT_FROM_SUBNETWORK as default.
      */
@@ -11014,6 +11690,7 @@ export namespace compute_v1 {
      * Multiple tags can be specified via the 'tags.items' field.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
      * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
@@ -11469,6 +12146,11 @@ export namespace compute_v1 {
      */
     targetSize?: number | null;
     /**
+     * The policy that specifies how the MIG creates its VMs to achieve the target
+     * size.
+     */
+    targetSizePolicy?: Schema$InstanceGroupManagerTargetSizePolicy;
+    /**
      * The target number of stopped instances for this managed instance group.
      * This number changes when you:
      *
@@ -11713,6 +12395,20 @@ export namespace compute_v1 {
      *      during repair.
      */
     forceUpdateOnRepair?: string | null;
+    /**
+     * The action that a MIG performs on an unhealthy VM. A VM is marked as
+     * unhealthy when the application running on that VM fails a health check.
+     * Valid values are:
+     *
+     *    - DEFAULT_ACTION (default): MIG uses the same action
+     *    configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *    - REPAIR: MIG automatically repairs an unhealthy VM by
+     *    recreating it.
+     *    - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *    For more information, see
+     *    About repairing VMs in a MIG.
+     */
+    onFailedHealthCheck?: string | null;
   }
   /**
    * [Output Only] A list of managed instance groups.
@@ -11784,6 +12480,12 @@ export namespace compute_v1 {
      * long, and comply withRFC1035.
      */
     name?: string | null;
+    /**
+     * Output only. [Output Only] The URL of aregion
+     * where the resize request is located. Populated only for regional resize
+     * requests.
+     */
+    region?: string | null;
     /**
      * Requested run duration for instances that will be created by this request.
      * At the end of the run duration instance will be deleted.
@@ -12190,10 +12892,25 @@ export namespace compute_v1 {
      */
     allInstancesConfig?: Schema$InstanceGroupManagerStatusAllInstancesConfig;
     /**
+     * Output only. [Output Only] The accelerator topology applied to this MIG.
+     * Currently only one accelerator topology is supported.
+     */
+    appliedAcceleratorTopologies?: Schema$InstanceGroupManagerStatusAcceleratorTopology[];
+    /**
      * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      */
     autoscaler?: string | null;
+    /**
+     * Output only. [Output Only] The status of bulk instance operation.
+     */
+    bulkInstanceOperation?: Schema$InstanceGroupManagerStatusBulkInstanceOperation;
+    /**
+     * Output only. [Output Only] The list of instance statuses and the number of instances
+     * in this managed instance group that have the status. Currently only shown
+     * for TPU MIGs
+     */
+    currentInstanceStatuses?: Schema$InstanceGroupManagerStatusInstanceStatusSummary;
     /**
      * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
@@ -12214,6 +12931,46 @@ export namespace compute_v1 {
      */
     versionTarget?: Schema$InstanceGroupManagerStatusVersionTarget;
   }
+  export interface Schema$InstanceGroupManagerStatusAcceleratorTopology {
+    /**
+     * Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     * The value is the same as configured in the WorkloadPolicy.
+     */
+    acceleratorTopology?: string | null;
+    /**
+     * Output only. [Output Only] The state of the accelerator topology.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output Only] The result of the latest accelerator topology state
+     * check.
+     */
+    stateDetails?: Schema$InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails;
+  }
+  export interface Schema$InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails {
+    /**
+     * Output only. [Output Only] Encountered errors.
+     */
+    error?: {
+      errors?: Array<{
+        code?: string;
+        errorDetails?: Array<{
+          errorInfo?: Schema$ErrorInfo;
+          help?: Schema$Help;
+          localizedMessage?: Schema$LocalizedMessage;
+          quotaInfo?: Schema$QuotaExceededInfo;
+        }>;
+        location?: string;
+        message?: string;
+      }>;
+    } | null;
+    /**
+     * Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     * has // RFC3339 //
+     * text format.
+     */
+    timestamp?: string | null;
+  }
   export interface Schema$InstanceGroupManagerStatusAllInstancesConfig {
     /**
      * Output only. [Output Only] Current all-instances configuration revision.
@@ -12225,6 +12982,123 @@ export namespace compute_v1 {
      * been applied to all managed instances in the group.
      */
     effective?: boolean | null;
+  }
+  /**
+   * Bulk instance operation is the creation of VMs in a MIG when the
+   * targetSizePolicy.mode is set to BULK.
+   */
+  export interface Schema$InstanceGroupManagerStatusBulkInstanceOperation {
+    /**
+     * Output only. [Output Only] Informs whether bulk instance operation is in progress.
+     */
+    inProgress?: boolean | null;
+    /**
+     * Output only. [Output Only] Information from the last progress check of bulk instance
+     * operation.
+     */
+    lastProgressCheck?: Schema$InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck;
+  }
+  export interface Schema$InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck {
+    /**
+     * Output only. [Output Only] Errors encountered during bulk instance operation.
+     */
+    error?: {
+      errors?: Array<{
+        code?: string;
+        errorDetails?: Array<{
+          errorInfo?: Schema$ErrorInfo;
+          help?: Schema$Help;
+          localizedMessage?: Schema$LocalizedMessage;
+          quotaInfo?: Schema$QuotaExceededInfo;
+        }>;
+        location?: string;
+        message?: string;
+      }>;
+    } | null;
+    /**
+     * Output only. [Output Only] Timestamp of the last progress check of bulk instance
+     * operation. Timestamp is in RFC3339 text format.
+     */
+    timestamp?: string | null;
+  }
+  /**
+   * The list of instance statuses and the number of instances in this managed
+   * instance group that have the status. For more information about how to
+   * interpret each status check the instance lifecycle documentation.
+   * Currently only shown for TPU MIGs.
+   */
+  export interface Schema$InstanceGroupManagerStatusInstanceStatusSummary {
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have DEPROVISIONING status.
+     */
+    deprovisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances that have not been created yet or
+     * have been deleted. Includes only instances that would be shown in the
+     * listManagedInstances method and not all instances that have been
+     * deleted in the lifetime of the MIG.
+     * Does not include FlexStart instances that are waiting for the resources
+     * availability, they are considered as 'pending'.
+     */
+    nonExistent?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING status, that is FlexStart instances that are waiting
+     * for resources. Instances that do not exist because of the other reasons
+     * are counted as 'non_existent'.
+     */
+    pending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING_STOP status.
+     */
+    pendingStop?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PROVISIONING status.
+     */
+    provisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have REPAIRING status.
+     */
+    repairing?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have RUNNING status.
+     */
+    running?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STAGING status.
+     */
+    staging?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPED status.
+     */
+    stopped?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPING status.
+     */
+    stopping?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDED status.
+     */
+    suspended?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDING status.
+     */
+    suspending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have TERMINATED status.
+     */
+    terminated?: number | null;
   }
   export interface Schema$InstanceGroupManagerStatusStateful {
     /**
@@ -12266,6 +13140,13 @@ export namespace compute_v1 {
      * instance group.
      */
     perInstanceConfigs?: Schema$PerInstanceConfig[];
+  }
+  export interface Schema$InstanceGroupManagerTargetSizePolicy {
+    /**
+     * The mode of target size policy based on which the MIG creates its VMs
+     * individually or all at once.
+     */
+    mode?: string | null;
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
     /**
@@ -12624,7 +13505,7 @@ export namespace compute_v1 {
      */
     requestValidForDuration?: Schema$Duration;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -12711,6 +13592,11 @@ export namespace compute_v1 {
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
     /**
+     * Partner Metadata assigned to the instance properties. A map from a
+     * subdomain (namespace) to entries map.
+     */
+    partnerMetadata?: {[key: string]: Schema$StructuredEntries} | null;
+    /**
      * The private IPv6 google access type for VMs.
      * If not specified, use  INHERIT_FROM_SUBNETWORK as default.
      * Note that for MachineImage, this is not supported yet.
@@ -12722,7 +13608,7 @@ export namespace compute_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -12758,6 +13644,7 @@ export namespace compute_v1 {
      * the list must comply with RFC1035.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
   }
   /**
    * Represents the change that you want to make to the instance properties.
@@ -13241,6 +14128,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$InstantSnapshotParams;
+    /**
      * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -13384,6 +14276,21 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional instant snapshot params.
+   */
+  export interface Schema$InstantSnapshotParams {
+    /**
+     * Input only. Resource manager tags to be bound to the instant snapshot. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$InstantSnapshotResourceStatus {
     /**
@@ -13662,8 +14569,7 @@ export namespace compute_v1 {
      */
     state?: string | null;
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      */
     subzone?: string | null;
     /**
@@ -16160,12 +17066,25 @@ export namespace compute_v1 {
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      */
     locations?: {[key: string]: Schema$LocationPolicyLocation} | null;
     /**
      * Strategy for distributing VMs across zones in a region.
      */
     targetShape?: string | null;
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     */
+    zones?: Schema$LocationPolicyZoneConfiguration[];
   }
   export interface Schema$LocationPolicyLocation {
     /**
@@ -16187,6 +17106,15 @@ export namespace compute_v1 {
      * The value must be non-negative.
      */
     maxCount?: number | null;
+  }
+  export interface Schema$LocationPolicyZoneConfiguration {
+    /**
+     * The URL of the zone.
+     * The zone must exist in the region where the request is called.
+     * Zones must be represented as valid partial URLs,
+     * such as zones/us-central1-a.
+     */
+    zone?: string | null;
   }
   /**
    * Represents a machine image resource.
@@ -17347,6 +18275,20 @@ export namespace compute_v1 {
    * A network endpoint group (NEG) defines how a set of endpoints should be
    * reached, whether they are reachable, and where they are located.
    * For more information about using NEGs for different use cases, seeNetwork endpoint groups overview.
+   *
+   * Note: Use the following APIs to manage network endpoint groups:
+   *
+   *    -
+   *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+   *    NEGs): zonal
+   *    API
+   *    -
+   *    To manage NEGs with regional scope (such as regional internet NEGs,
+   *    serverless NEGs, Private Service Connect NEGs): regional
+   *    API
+   *    -
+   *    To manage NEGs with global scope (such as global internet NEGs):global
+   *    API
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -17801,6 +18743,11 @@ export namespace compute_v1 {
      * You can only specify this field for network interfaces in VPC networks.
      */
     aliasIpRanges?: Schema$AliasIpRange[];
+    /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     */
+    enableVpcScopedDns?: boolean | null;
     /**
      * Fingerprint hash of contents stored in this network interface.
      * This field will be ignored when inserting an Instance or
@@ -19279,6 +20226,47 @@ export namespace compute_v1 {
     selfLink?: string | null;
   }
   /**
+   * Contains a list of NotificationEndpointsScopedList.
+   */
+  export interface Schema$NotificationEndpointAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of NotificationEndpointsScopedList resources.
+     */
+    items?: {[key: string]: Schema$NotificationEndpointsScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * Represents a gRPC setting that describes one gRPC notification endpoint and
    * the retry duration attempting to send notification to this endpoint.
    */
@@ -19341,6 +20329,21 @@ export namespace compute_v1 {
     selfLink?: string | null;
     /**
      * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$NotificationEndpointsScopedList {
+    /**
+     * A list of NotificationEndpoints contained in this scope.
+     */
+    resources?: Schema$NotificationEndpoint[];
+    /**
+     * Informational warning which replaces the list of
+     * notification endpoints when the list is empty.
      */
     warning?: {
       code?: string;
@@ -19415,6 +20418,7 @@ export namespace compute_v1 {
         message?: string;
       }>;
     } | null;
+    getVersionOperationMetadata?: Schema$GetVersionOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as `NOT FOUND`.
@@ -20034,6 +21038,26 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Model definition of partner_metadata field.
+   * To be used in dedicated Partner Metadata methods and to be inlined in
+   * the Instance and InstanceTemplate resources.
+   */
+  export interface Schema$PartnerMetadata {
+    /**
+     * Instance-level hash to be used for optimistic
+     * locking.
+     */
+    fingerprint?: string | null;
+    /**
+     * Partner Metadata assigned to the instance. A map from a subdomain to
+     * entries map. Subdomain name must be compliant withRFC1035
+     * definition. The total size of all keys and values must be less than 2MB.
+     * Subdomain 'metadata.compute.googleapis.com' is reserverd for instance's
+     * metadata.
+     */
+    partnerMetadata?: {[key: string]: Schema$StructuredEntries} | null;
   }
   /**
    * A matcher for the path portion of the URL. The BackendService
@@ -21580,6 +22604,47 @@ export namespace compute_v1 {
      */
     perInstanceConfigs?: Schema$PerInstanceConfig[];
   }
+  export interface Schema$RegionInstanceGroupManagerResizeRequestsListResponse {
+    etag?: string | null;
+    /**
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of Resize Request resources.
+     */
+    items?: Schema$InstanceGroupManagerResizeRequest[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#regionInstanceGroupManagerResizeRequestList for
+     * a list of Resize Requests.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * Output only. [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   export interface Schema$RegionInstanceGroupManagersAbandonInstancesRequest {
     /**
      * The URLs of one or more instances to abandon. This can be a full URL or
@@ -22037,6 +23102,7 @@ export namespace compute_v1 {
      * displays for reservations that are tied to a commitment.
      */
     commitment?: string | null;
+    confidentialComputeType?: string | null;
     /**
      * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
@@ -22061,6 +23127,12 @@ export namespace compute_v1 {
      * create the resource.
      */
     description?: string | null;
+    /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     */
+    earlyAccessMaintenance?: string | null;
     /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
@@ -22091,6 +23163,11 @@ export namespace compute_v1 {
      * be a dash.
      */
     name?: string | null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ReservationParams;
     /**
      * Protection tier for the workload which specifies the workload expectations
      * in the event of infrastructure failures at data center (e.g. power
@@ -22448,6 +23525,21 @@ export namespace compute_v1 {
       message?: string;
     } | null;
   }
+  /**
+   * Additional reservation params.
+   */
+  export interface Schema$ReservationParams {
+    /**
+     * Input only. Resource manager tags to be bound to the reservation. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
+  }
   export interface Schema$ReservationsBlocksPerformMaintenanceRequest {
     /**
      * Specifies if all, running or unused hosts are in scope for this request.
@@ -22526,6 +23618,12 @@ export namespace compute_v1 {
   }
   export interface Schema$ReservationSlotsGetResponse {
     resource?: Schema$ReservationSlot;
+  }
+  export interface Schema$ReservationSlotsGetVersionRequest {
+    /**
+     * The SBOM selection to return. Duplicate values in the list will be ignored.
+     */
+    sbomSelections?: string[] | null;
   }
   /**
    * A list of reservation slots within a single reservation.
@@ -22721,6 +23819,12 @@ export namespace compute_v1 {
   }
   export interface Schema$ReservationSubBlocksGetResponse {
     resource?: Schema$ReservationSubBlock;
+  }
+  export interface Schema$ReservationSubBlocksGetVersionRequest {
+    /**
+     * The SBOM selection to return.
+     */
+    sbomSelections?: string[] | null;
   }
   /**
    * A list of reservation subBlocks under a single reservation.
@@ -23239,6 +24343,11 @@ export namespace compute_v1 {
      */
     acceleratorTopology?: string | null;
     /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     */
+    acceleratorTopologyMode?: string | null;
+    /**
      * Specifies the maximum distance between instances.
      */
     maxTopologyDistance?: string | null;
@@ -23302,6 +24411,10 @@ export namespace compute_v1 {
      * Effective enable-oslogin value at Instance level.
      */
     enableOsloginMetadataValue?: boolean | null;
+    /**
+     * Effective gce-container-declaration value at Instance level.
+     */
+    gceContainerDeclarationMetadataValue?: boolean | null;
     /**
      * Effective serial-port-enable value at Instance level.
      */
@@ -26357,6 +27470,10 @@ export namespace compute_v1 {
      */
     endpoint?: string | null;
     /**
+     * The url of a connected endpoint with resource id.
+     */
+    endpointWithId?: string | null;
+    /**
      * NAT IPs of the connected PSC endpoint and those of other endpoints
      * propagated from it.
      */
@@ -26381,6 +27498,10 @@ export namespace compute_v1 {
      * more than 1.
      */
     connectionLimit?: number | null;
+    /**
+     * The URL for the PSC endpoint to accept
+     */
+    endpointUrl?: string | null;
     /**
      * The network URL for the network to set the limit for.
      */
@@ -26864,7 +27985,7 @@ export namespace compute_v1 {
    */
   export interface Schema$SnapshotParams {
     /**
-     * Resource manager tags to be bound to the snapshot. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -27481,8 +28602,9 @@ export namespace compute_v1 {
     name?: string | null;
     /**
      * Profile specifies the set of SSL features that can be used by the load
-     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     * to enable must be specified in the customFeatures field.
+     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     * the customFeatures field. If using FIPS_202205,
+     * the min_tls_version field must be set to TLS_1_2.
      */
     profile?: string | null;
     /**
@@ -28165,6 +29287,13 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$StructuredEntries {
+    /**
+     * Map of a partner metadata that belong to the same subdomain.
+     * It accepts any value including google.protobuf.Struct.
+     */
+    entries?: {[key: string]: any} | null;
   }
   /**
    * Represents a Subnetwork resource.
@@ -30127,6 +31256,11 @@ export namespace compute_v1 {
      */
     network?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$TargetVpnGatewayParams;
+    /**
      * [Output Only] URL of the region where the target VPN gateway resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -30222,6 +31356,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$TargetVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
@@ -31116,6 +32269,177 @@ export namespace compute_v1 {
     } | null;
   }
   /**
+   * Represents a VM extension policy.
+   */
+  export interface Schema$VmExtensionPolicy {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Required. A map of extension names (for example, "ops-agent") to their corresponding
+     * policy configurations.
+     */
+    extensionPolicies?: {
+      [key: string]: Schema$VmExtensionPolicyExtensionPolicy;
+    } | null;
+    /**
+     * Optional. Output only. [Output Only] Link to the global policy that manages this zone policy, if
+     * applicable.
+     */
+    globalResourceLink?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Optional. Selectors to target VMs for this policy. VMs are selected if they match
+     * *any* of the provided selectors (logical OR). If this list is empty, the
+     * policy applies to all VMs.
+     */
+    instanceSelectors?: Schema$VmExtensionPolicyInstanceSelector[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#vmExtensionPolicy.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Output only. [Output Only] Indicates if this policy is managed by a global policy.
+     */
+    managedByGlobal?: boolean | null;
+    /**
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`
+     * which means the first character must be a lowercase letter, and all
+     * following characters must be a dash, lowercase letter, or digit, except
+     * the last character, which cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Optional. Priority of this policy. Used to resolve conflicts when multiple policies
+     * apply to the same extension.
+     * The policy priority is an integer from 0 to 65535, inclusive. Lower
+     * integers indicate higher priorities. If you do not specify a priority when
+     * creating a rule, it is assigned a priority of 1000. If priorities are
+     * equal, the policy with the most recent creation timestamp takes precedence.
+     */
+    priority?: number | null;
+    /**
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * Optional. Output only. [Output Only] Current state of the policy: ACTIVE or DELETING.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output Only] Update timestamp inRFC3339
+     * text format.
+     */
+    updateTimestamp?: string | null;
+  }
+  /**
+   * Configuration for a specific VM extension.
+   */
+  export interface Schema$VmExtensionPolicyExtensionPolicy {
+    /**
+     * Optional. The specific version of the extension to install. If not set, the latest
+     * version is used.
+     */
+    pinnedVersion?: string | null;
+    /**
+     * Optional. String-based configuration data for the extension.
+     */
+    stringConfig?: string | null;
+  }
+  /**
+   * Defines how to select VMs to apply a zone VM extension policy.
+   */
+  export interface Schema$VmExtensionPolicyInstanceSelector {
+    /**
+     * Optional. LabelSelector selects VMs based on their labels.
+     */
+    labelSelector?: Schema$VmExtensionPolicyLabelSelector;
+  }
+  /**
+   * A LabelSelector is applied to a VM only if it matches all the specified
+   * labels.
+   */
+  export interface Schema$VmExtensionPolicyLabelSelector {
+    /**
+     * Optional. A map of key-value pairs representing VM labels.
+     * VMs must have all of the labels specified in this map to be selected
+     * (logical AND).
+     *
+     * e.g. If the `inclusion_labels` are {("key1", "value1"), ("key2",
+     * "value2")\}, the VM labels must contain both ("key1", "value1") and
+     * ("key2", "value2") to be selected. If the VM labels are ("key1",
+     * "value1") and ("something", "else"), it will not be selected.
+     *
+     * If the map is empty, it's considered a match.
+     */
+    inclusionLabels?: {[key: string]: string} | null;
+  }
+  export interface Schema$VmExtensionPolicyList {
+    /**
+     * Output only. [Output Only] Fingerprint of this resource. A hash of the contents stored
+     * in this object. This field is used in optimistic locking. This field will
+     * be ignored when inserting a VmExtensionPolicy. An up-to-date
+     * fingerprint must be provided in order to update the VmExtensionPolicy.
+     *
+     * To see the latest value of the fingerprint, make a get() request to
+     * retrieve a VmExtensionPolicy.
+     */
+    etag?: string | null;
+    /**
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] A list of VM extension policy resources.
+     */
+    items?: Schema$VmExtensionPolicy[];
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * Output only. [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
    * Represents a HA VPN gateway.
    *
    * HA VPN is a high-availability (HA) Cloud VPN solution that lets you securely
@@ -31182,6 +32506,11 @@ export namespace compute_v1 {
      * client when the VPN gateway is created.
      */
     network?: string | null;
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnGatewayParams;
     /**
      * Output only. [Output Only] URL of the region where the VPN gateway resides.
      */
@@ -31276,6 +32605,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnGatewaysGetStatusResponse {
     result?: Schema$VpnGatewayStatus;
@@ -31481,6 +32829,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnTunnelParams;
+    /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is
      * connected.
      * Provided by the client when the VPN tunnel is created.
@@ -31674,6 +33027,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnTunnelParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnTunnelPhase1Algorithms {
     dh?: string[] | null;
@@ -32045,6 +33417,10 @@ export namespace compute_v1 {
      *    pseudowires.
      */
     faultResponse?: string | null;
+  }
+  export interface Schema$WorkloadIdentityConfig {
+    identity?: string | null;
+    identityCertificateEnabled?: boolean | null;
   }
   export interface Schema$XpnHostList {
     /**
@@ -33462,6 +34838,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -33837,6 +35214,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -34266,6 +35644,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -34459,6 +35838,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -35634,6 +37014,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -35996,6 +37377,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -36441,6 +37823,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -36805,6 +38188,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -37397,6 +38781,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -37579,6 +38964,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -37765,6 +39151,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -38276,6 +39663,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -38717,6 +40105,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -38908,6 +40297,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -39428,6 +40818,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -39997,6 +41388,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -40436,6 +41828,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -40622,6 +42015,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -40820,6 +42214,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -41480,6 +42875,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -41509,6 +42905,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -42197,6 +43594,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -42226,6 +43624,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -42417,6 +43816,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -42769,6 +44169,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -43138,6 +44539,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -43167,6 +44569,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -44006,6 +45409,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -44352,6 +45756,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -44794,6 +46199,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45209,6 +46615,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45650,6 +47057,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45842,6 +47250,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -46077,6 +47486,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -46265,6 +47675,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -46855,6 +48266,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47281,6 +48693,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47476,6 +48889,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47828,6 +49242,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48020,6 +49435,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48207,6 +49623,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48401,6 +49818,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48683,7 +50101,7 @@ export namespace compute_v1 {
     /**
      * Updates the specified disk with the data included in the request.
      * The update is performed only on selected fields included as part
-     * of update-mask. Only the following fields can be modified: user_license.
+     * of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -48808,6 +50226,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -50638,6 +52057,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -50811,6 +52231,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "redundancyType": "my_redundancyType",
      *   //   "selfLink": "my_selfLink"
      *   // }
@@ -50976,6 +52397,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "redundancyType": "my_redundancyType",
      *       //   "selfLink": "my_selfLink"
      *       // }
@@ -50990,6 +52412,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -51408,6 +52831,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -51964,6 +53388,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52165,6 +53590,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52346,6 +53772,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52525,6 +53952,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -53343,6 +54771,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -53731,6 +55160,10 @@ export namespace compute_v1 {
      *
      *   // Do the magic
      *   const res = await compute.firewallPolicies.listAssociations({
+     *     // If set to "true", the response will contain a list of all associations for
+     *     // the containing folders and the containing organization of the target. The
+     *     // parameter has no effect if the target is an organization.
+     *     includeInheritedPolicies: 'placeholder-value',
      *     // The target resource to list associations. It is an organization, or a
      *     // folder.
      *     targetResource: 'placeholder-value',
@@ -53913,6 +55346,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54116,6 +55550,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54319,6 +55754,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54500,6 +55936,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54681,6 +56118,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55389,6 +56827,12 @@ export namespace compute_v1 {
   }
   export interface Params$Resource$Firewallpolicies$Listassociations extends StandardParameters {
     /**
+     * If set to "true", the response will contain a list of all associations for
+     * the containing folders and the containing organization of the target. The
+     * parameter has no effect if the target is an organization.
+     */
+    includeInheritedPolicies?: boolean;
+    /**
      * The target resource to list associations. It is an organization, or a
      * folder.
      */
@@ -55624,6 +57068,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55993,6 +57438,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -56437,6 +57883,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -56804,6 +58251,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -57495,6 +58943,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -57906,6 +59355,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58377,6 +59827,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58572,6 +60023,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58765,6 +60217,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59625,6 +61078,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59809,6 +61263,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59980,6 +61435,7 @@ export namespace compute_v1 {
      *   //   "autoCreatedReservationsDuration": {},
      *   //   "autoDeleteAutoCreatedReservations": false,
      *   //   "commitmentInfo": {},
+     *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
@@ -60161,6 +61617,7 @@ export namespace compute_v1 {
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
      *       //   "commitmentInfo": {},
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
@@ -60193,6 +61650,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -60625,6 +62083,7 @@ export namespace compute_v1 {
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
      *       //   "commitmentInfo": {},
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
@@ -60657,6 +62116,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -61218,6 +62678,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -61591,6 +63052,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62015,6 +63477,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62193,6 +63656,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62767,6 +64231,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63175,6 +64640,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63640,6 +65106,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63819,6 +65286,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -64010,6 +65478,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -64453,6 +65922,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -64640,6 +66110,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -64831,6 +66302,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -65120,6 +66592,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -65205,6 +66691,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -66600,6 +68087,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -67020,6 +68508,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -67589,6 +69078,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68139,6 +69629,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68508,6 +69999,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68957,6 +70449,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -69599,6 +71092,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -69971,6 +71465,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70418,6 +71913,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70785,6 +72281,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -71338,6 +72835,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -71695,6 +73193,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72134,6 +73633,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72493,6 +73993,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72927,6 +74428,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -73284,6 +74786,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -73727,6 +75230,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74086,6 +75590,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74689,6 +76194,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74883,6 +76389,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -75614,6 +77121,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -76077,6 +77585,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -76410,6 +77919,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77068,6 +78578,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77270,6 +78781,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77457,6 +78969,7 @@ export namespace compute_v1 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "region": "my_region",
      *   //   "requestedRunDuration": {},
      *   //   "resizeBy": 0,
      *   //   "selfLink": "my_selfLink",
@@ -77652,6 +79165,7 @@ export namespace compute_v1 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "region": "my_region",
      *       //   "requestedRunDuration": {},
      *       //   "resizeBy": 0,
      *       //   "selfLink": "my_selfLink",
@@ -77671,6 +79185,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -78385,6 +79900,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -78828,6 +80344,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79028,6 +80545,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79216,6 +80734,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79424,6 +80943,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79607,6 +81127,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79804,6 +81325,7 @@ export namespace compute_v1 {
      *   //   "status": {},
      *   //   "targetPools": [],
      *   //   "targetSize": 0,
+     *   //   "targetSizePolicy": {},
      *   //   "targetStoppedSize": 0,
      *   //   "targetSuspendedSize": 0,
      *   //   "updatePolicy": {},
@@ -80005,6 +81527,7 @@ export namespace compute_v1 {
      *       //   "status": {},
      *       //   "targetPools": [],
      *       //   "targetSize": 0,
+     *       //   "targetSizePolicy": {},
      *       //   "targetStoppedSize": 0,
      *       //   "targetSuspendedSize": 0,
      *       //   "updatePolicy": {},
@@ -80022,6 +81545,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81241,6 +82765,7 @@ export namespace compute_v1 {
      *       //   "status": {},
      *       //   "targetPools": [],
      *       //   "targetSize": 0,
+     *       //   "targetSizePolicy": {},
      *       //   "targetStoppedSize": 0,
      *       //   "targetSuspendedSize": 0,
      *       //   "updatePolicy": {},
@@ -81258,6 +82783,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81455,6 +82981,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81663,6 +83190,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81874,6 +83402,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82082,6 +83611,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82277,6 +83807,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82477,6 +84008,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82685,6 +84217,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82903,6 +84436,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -83121,6 +84655,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -83318,6 +84853,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -84728,6 +86264,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -85170,6 +86707,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -85538,6 +87076,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -86237,6 +87776,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -86431,6 +87971,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87353,6 +88894,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87535,6 +89077,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -87564,6 +89107,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87758,6 +89302,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88231,6 +89776,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88430,6 +89976,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88615,6 +90162,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88802,6 +90350,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88999,6 +90548,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -89188,6 +90738,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -89347,6 +90898,8 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // View of the instance.
+     *     view: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -89382,6 +90935,7 @@ export namespace compute_v1 {
      *   //   "networkInterfaces": [],
      *   //   "networkPerformanceConfig": {},
      *   //   "params": {},
+     *   //   "partnerMetadata": {},
      *   //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
      *   //   "reservationAffinity": {},
      *   //   "resourcePolicies": [],
@@ -89399,6 +90953,7 @@ export namespace compute_v1 {
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
      *   //   "tags": {},
+     *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
      *   // }
      * }
@@ -89962,6 +91517,157 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Gets partner metadata of the specified instance and namespaces.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instances.getPartnerMetadata({
+     *     // Name of the instance scoping this request.
+     *     instance: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Comma separated partner metadata namespaces.
+     *     namespaces: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "partnerMetadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getPartnerMetadata(
+      params: Params$Resource$Instances$Getpartnermetadata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getPartnerMetadata(
+      params?: Params$Resource$Instances$Getpartnermetadata,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PartnerMetadata>>;
+    getPartnerMetadata(
+      params: Params$Resource$Instances$Getpartnermetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getPartnerMetadata(
+      params: Params$Resource$Instances$Getpartnermetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$PartnerMetadata>,
+      callback: BodyResponseCallback<Schema$PartnerMetadata>
+    ): void;
+    getPartnerMetadata(
+      params: Params$Resource$Instances$Getpartnermetadata,
+      callback: BodyResponseCallback<Schema$PartnerMetadata>
+    ): void;
+    getPartnerMetadata(
+      callback: BodyResponseCallback<Schema$PartnerMetadata>
+    ): void;
+    getPartnerMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Getpartnermetadata
+        | BodyResponseCallback<Schema$PartnerMetadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartnerMetadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartnerMetadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PartnerMetadata>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Getpartnermetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Getpartnermetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getPartnerMetadata'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PartnerMetadata>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PartnerMetadata>(parameters);
       }
     }
 
@@ -90545,6 +92251,7 @@ export namespace compute_v1 {
      *       //   "networkInterfaces": [],
      *       //   "networkPerformanceConfig": {},
      *       //   "params": {},
+     *       //   "partnerMetadata": {},
      *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
      *       //   "reservationAffinity": {},
      *       //   "resourcePolicies": [],
@@ -90562,6 +92269,7 @@ export namespace compute_v1 {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -90575,6 +92283,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -90819,6 +92528,8 @@ export namespace compute_v1 {
      *     // single zone scope either returns all resources in the zone or no resources,
      *     // with an error code.
      *     returnPartialSuccess: 'placeholder-value',
+     *     // View of the instance.
+     *     view: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -91177,6 +92888,202 @@ export namespace compute_v1 {
     }
 
     /**
+     * Patches partner metadata of the specified instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.instances.patchPartnerMetadata({
+     *     // Name of the instance scoping this request.
+     *     instance: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "partnerMetadata": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patchPartnerMetadata(
+      params: Params$Resource$Instances$Patchpartnermetadata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patchPartnerMetadata(
+      params?: Params$Resource$Instances$Patchpartnermetadata,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patchPartnerMetadata(
+      params: Params$Resource$Instances$Patchpartnermetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patchPartnerMetadata(
+      params: Params$Resource$Instances$Patchpartnermetadata,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchPartnerMetadata(
+      params: Params$Resource$Instances$Patchpartnermetadata,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchPartnerMetadata(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchPartnerMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Patchpartnermetadata
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Patchpartnermetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Patchpartnermetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/patchPartnerMetadata'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Perform a manual maintenance on the instance.
      * @example
      * ```js
@@ -91241,6 +93148,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91433,6 +93341,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91628,6 +93537,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91814,6 +93724,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91998,6 +93909,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -92321,6 +94233,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -92512,6 +94425,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -92871,6 +94785,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93064,6 +94979,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93257,6 +95173,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93452,6 +95369,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93647,6 +95565,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93840,6 +95759,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94050,6 +95970,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94246,6 +96167,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94441,6 +96363,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94636,6 +96559,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94833,6 +96757,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95021,6 +96946,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95209,6 +97135,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95402,6 +97329,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95597,6 +97525,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95791,6 +97720,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96105,6 +98035,9 @@ export namespace compute_v1 {
      *
      *   // Do the magic
      *   const res = await compute.instances.update({
+     *     // Whether to discard local SSDs from the instance during restart
+     *     // default value is false.
+     *     discardLocalSsd: 'placeholder-value',
      *     // Name of the instance resource to update.
      *     instance: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
      *     // Specifies the action to take when updating an instance even if the
@@ -96170,6 +98103,7 @@ export namespace compute_v1 {
      *       //   "networkInterfaces": [],
      *       //   "networkPerformanceConfig": {},
      *       //   "params": {},
+     *       //   "partnerMetadata": {},
      *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
      *       //   "reservationAffinity": {},
      *       //   "resourcePolicies": [],
@@ -96187,6 +98121,7 @@ export namespace compute_v1 {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -96200,6 +98135,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96405,6 +98341,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96600,6 +98537,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96788,6 +98726,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -96817,6 +98756,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -97016,6 +98956,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -97587,6 +99528,10 @@ export namespace compute_v1 {
      */
     project?: string;
     /**
+     * View of the instance.
+     */
+    view?: string;
+    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -97644,6 +99589,24 @@ export namespace compute_v1 {
      * Name or id of the resource for this request.
      */
     resource?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Instances$Getpartnermetadata extends StandardParameters {
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Comma separated partner metadata namespaces.
+     */
+    namespaces?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
     /**
      * The name of the zone for this request.
      */
@@ -97874,6 +99837,10 @@ export namespace compute_v1 {
      */
     returnPartialSuccess?: boolean;
     /**
+     * View of the instance.
+     */
+    view?: string;
+    /**
      * The name of the zone for this request.
      */
     zone?: string;
@@ -97990,6 +99957,41 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Instances$Patchpartnermetadata extends StandardParameters {
+    /**
+     * Name of the instance scoping this request.
+     */
+    instance?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PartnerMetadata;
   }
   export interface Params$Resource$Instances$Performmaintenance extends StandardParameters {
     /**
@@ -98836,6 +100838,11 @@ export namespace compute_v1 {
   }
   export interface Params$Resource$Instances$Update extends StandardParameters {
     /**
+     * Whether to discard local SSDs from the instance during restart
+     * default value is false.
+     */
+    discardLocalSsd?: boolean;
+    /**
      * Name of the instance resource to update.
      */
     instance?: string;
@@ -99262,6 +101269,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99755,6 +101763,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99914,6 +101923,8 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // View of the instance template.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -100259,6 +102270,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100505,6 +102517,8 @@ export namespace compute_v1 {
      *     // single zone scope either returns all resources in the zone or no resources,
      *     // with an error code.
      *     returnPartialSuccess: 'placeholder-value',
+     *     // View of the instance template.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -101084,6 +103098,10 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+    /**
+     * View of the instance template.
+     */
+    view?: string;
   }
   export interface Params$Resource$Instancetemplates$Getiampolicy extends StandardParameters {
     /**
@@ -101229,6 +103247,10 @@ export namespace compute_v1 {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+    /**
+     * View of the instance template.
+     */
+    view?: string;
   }
   export interface Params$Resource$Instancetemplates$Setiampolicy extends StandardParameters {
     /**
@@ -101595,6 +103617,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -101770,6 +103793,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -102097,6 +104121,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -102119,6 +104144,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -102711,6 +104737,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -103454,6 +105481,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -104125,6 +106153,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -104580,6 +106609,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -105607,6 +107637,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106041,6 +108072,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106525,6 +108557,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106720,6 +108753,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -107281,6 +109315,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -107464,6 +109499,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -108124,6 +110160,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -108573,6 +110610,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -110410,6 +112448,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111133,6 +113172,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111594,6 +113634,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111773,6 +113814,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112546,6 +114588,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113080,6 +115123,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113855,6 +115899,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114291,6 +116336,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114819,6 +116865,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -115388,6 +117435,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -117124,6 +119172,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -117642,6 +119691,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -118091,6 +120141,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -119260,6 +121311,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -119622,6 +121674,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -119828,6 +121881,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -120531,6 +122585,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -120723,6 +122778,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -120918,6 +122974,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -121210,6 +123267,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -121299,6 +123370,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -122683,6 +124755,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -122893,6 +124966,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -123106,6 +125180,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -123552,6 +125627,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -123734,6 +125810,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -124726,6 +126803,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125164,6 +127242,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125370,6 +127449,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125579,6 +127659,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125763,6 +127844,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125948,6 +128030,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -126135,6 +128218,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -127878,6 +129962,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -128060,6 +130145,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -128584,6 +130670,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129273,6 +131360,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129462,6 +131550,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129653,6 +131742,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129837,6 +131927,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -130029,6 +132120,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -130708,6 +132800,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -131146,6 +133239,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -131338,6 +133432,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -131863,6 +133958,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -132545,6 +134641,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -132737,6 +134834,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -133088,6 +135186,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -133281,6 +135380,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -134572,6 +136672,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -135091,6 +137192,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137113,6 +139215,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137315,6 +139418,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137501,6 +139605,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137684,6 +139789,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -138377,6 +140483,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -139199,6 +141306,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -139409,6 +141517,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -139613,6 +141722,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -139799,6 +141909,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -139986,6 +142097,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -140948,6 +143060,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -141309,6 +143422,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -141754,6 +143868,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -142862,6 +144977,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143195,6 +145311,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143383,6 +145500,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143562,6 +145680,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143751,6 +145870,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -144746,6 +146866,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -144941,6 +147062,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -145131,6 +147253,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -145321,6 +147444,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -145513,6 +147637,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -145708,6 +147833,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146384,6 +148510,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146567,6 +148694,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146931,6 +149059,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -147378,6 +149507,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -147560,6 +149690,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148264,6 +150395,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148448,6 +150580,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148821,6 +150954,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149274,6 +151408,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149459,6 +151594,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -150050,6 +152186,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -150413,6 +152550,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -150861,6 +152999,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151225,6 +153364,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151689,6 +153829,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151889,6 +154030,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -152411,6 +154553,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -152440,6 +154583,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153138,6 +155282,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -153167,6 +155312,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153521,6 +155667,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153895,6 +156042,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -153924,6 +156072,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155039,6 +157188,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155497,6 +157647,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155933,6 +158084,1783 @@ export namespace compute_v1 {
     requestBody?: Schema$Commitment;
   }
 
+  export class Resource$Regioncompositehealthchecks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the list of all CompositeHealthCheck resources (all
+     * regional) available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regioncompositehealthchecks$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regioncompositehealthchecks$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckAggregatedList>
+    >;
+    aggregatedList(
+      params: Params$Resource$Regioncompositehealthchecks$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regioncompositehealthchecks$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regioncompositehealthchecks$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Aggregatedlist
+        | BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CompositeHealthCheckAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckAggregatedList>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioncompositehealthchecks$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/compositeHealthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CompositeHealthCheckAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CompositeHealthCheckAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified CompositeHealthCheck in the given region
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.delete({
+     *     // Name of the CompositeHealthCheck resource to delete.
+     *     compositeHealthCheck: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regioncompositehealthchecks$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regioncompositehealthchecks$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regioncompositehealthchecks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regioncompositehealthchecks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regioncompositehealthchecks$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'compositeHealthCheck'],
+        pathParams: ['compositeHealthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified CompositeHealthCheck resource in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.get({
+     *     // Name of the CompositeHealthCheck resource to return.
+     *     compositeHealthCheck: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "healthDestination": "my_healthDestination",
+     *   //   "healthSources": [],
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regioncompositehealthchecks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regioncompositehealthchecks$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheck>>;
+    get(
+      params: Params$Resource$Regioncompositehealthchecks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regioncompositehealthchecks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheck>,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheck>
+    ): void;
+    get(
+      params: Params$Resource$Regioncompositehealthchecks$Get,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheck>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CompositeHealthCheck>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Get
+        | BodyResponseCallback<Schema$CompositeHealthCheck>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheck>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CompositeHealthCheck>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheck>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'compositeHealthCheck'],
+        pathParams: ['compositeHealthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CompositeHealthCheck>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CompositeHealthCheck>(parameters);
+      }
+    }
+
+    /**
+     * Create a CompositeHealthCheck in the specified project in the given region
+     * using the parameters that are included in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthDestination": "my_healthDestination",
+     *       //   "healthSources": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regioncompositehealthchecks$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regioncompositehealthchecks$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regioncompositehealthchecks$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regioncompositehealthchecks$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regioncompositehealthchecks$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists the CompositeHealthChecks for a project in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regioncompositehealthchecks$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regioncompositehealthchecks$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckList>>;
+    list(
+      params: Params$Resource$Regioncompositehealthchecks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regioncompositehealthchecks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheckList>,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckList>
+    ): void;
+    list(
+      params: Params$Resource$Regioncompositehealthchecks$List,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$CompositeHealthCheckList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$List
+        | BodyResponseCallback<Schema$CompositeHealthCheckList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CompositeHealthCheckList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CompositeHealthCheckList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CompositeHealthCheckList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CompositeHealthCheckList>(parameters);
+      }
+    }
+
+    /**
+     * Updates the specified regional CompositeHealthCheck resource
+     * with the data included in the request.  This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.patch({
+     *     // Name of the CompositeHealthCheck to update. The name
+     *     // must be 1-63 characters long, and comply with RFC1035.
+     *     compositeHealthCheck: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthDestination": "my_healthDestination",
+     *       //   "healthSources": [],
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Regioncompositehealthchecks$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Regioncompositehealthchecks$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Regioncompositehealthchecks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Regioncompositehealthchecks$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regioncompositehealthchecks$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regioncompositehealthchecks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'compositeHealthCheck'],
+        pathParams: ['compositeHealthCheck', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionCompositeHealthChecks.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regioncompositehealthchecks$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regioncompositehealthchecks$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioncompositehealthchecks$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioncompositehealthchecks$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/compositeHealthChecks/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regioncompositehealthchecks$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Delete extends StandardParameters {
+    /**
+     * Name of the CompositeHealthCheck resource to delete.
+     */
+    compositeHealthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Get extends StandardParameters {
+    /**
+     * Name of the CompositeHealthCheck resource to return.
+     */
+    compositeHealthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompositeHealthCheck;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Patch extends StandardParameters {
+    /**
+     * Name of the CompositeHealthCheck to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
+     */
+    compositeHealthCheck?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompositeHealthCheck;
+  }
+  export interface Params$Resource$Regioncompositehealthchecks$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Regiondisks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -156014,6 +159942,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -156204,6 +160133,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -156436,6 +160366,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -156624,6 +160555,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157212,6 +161144,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157639,6 +161572,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157833,6 +161767,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -158185,6 +162120,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -158378,6 +162314,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -158565,6 +162502,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -158759,6 +162697,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -159040,8 +162979,7 @@ export namespace compute_v1 {
 
     /**
      * Update the specified disk with the data included in the request. Update is
-     * performed only on selected fields included as part of update-mask. Only the
-     * following fields can be modified: user_license.
+     * performed only on selected fields included as part of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -159166,6 +163104,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -160399,6 +164338,1790 @@ export namespace compute_v1 {
     returnPartialSuccess?: boolean;
   }
 
+  export class Resource$Regionhealthaggregationpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the list of all HealthAggregationPolicy resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyAggregatedList>
+    >;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyAggregatedList>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicyAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicyAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified HealthAggregationPolicy in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.delete({
+     *     // Name of the HealthAggregationPolicy resource to delete.
+     *     healthAggregationPolicy:
+     *       '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified HealthAggregationPolicy resource in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.get({
+     *     // Name of the HealthAggregationPolicy resource to return.
+     *     healthAggregationPolicy:
+     *       '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "healthyPercentThreshold": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "minHealthyThreshold": 0,
+     *   //   "name": "my_name",
+     *   //   "policyType": "my_policyType",
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicy>>;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$HealthAggregationPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Get
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Create a HealthAggregationPolicy in the specified project in the given
+     * region using the parameters that are included in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthyPercentThreshold": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "minHealthyThreshold": 0,
+     *       //   "name": "my_name",
+     *       //   "policyType": "my_policyType",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists the HealthAggregationPolicies for a project in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regionhealthaggregationpolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyList>>;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$List
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicyList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicyList>(parameters);
+      }
+    }
+
+    /**
+     * Updates the specified regional HealthAggregationPolicy
+     * resource with the data included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.patch({
+     *     // Name of the HealthAggregationPolicy to update. The name
+     *     // must be 1-63 characters long, and comply with RFC1035.
+     *     healthAggregationPolicy: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthyPercentThreshold": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "minHealthyThreshold": 0,
+     *       //   "name": "my_name",
+     *       //   "policyType": "my_policyType",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionhealthaggregationpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Delete extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy resource to delete.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Get extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy resource to return.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthAggregationPolicy;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Patch extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthAggregationPolicy;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Regionhealthchecks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -160470,6 +166193,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -160847,6 +166571,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -161300,6 +167025,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -161671,6 +167397,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -162071,6 +167798,267 @@ export namespace compute_v1 {
     }
 
     /**
+     * Retrieves the list of all HealthCheckService resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthCheckServices.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regionhealthcheckservices$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regionhealthcheckservices$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$HealthCheckServiceAggregatedList>
+    >;
+    aggregatedList(
+      params: Params$Resource$Regionhealthcheckservices$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthcheckservices$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>,
+      callback: BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthcheckservices$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthcheckservices$Aggregatedlist
+        | BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthCheckServiceAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$HealthCheckServiceAggregatedList>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthcheckservices$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthcheckservices$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/healthCheckServices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthCheckServiceAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthCheckServiceAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes the specified regional HealthCheckService.
      * @example
      * ```js
@@ -162136,6 +168124,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -162496,6 +168485,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -162943,6 +168933,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -163222,6 +169213,125 @@ export namespace compute_v1 {
     }
   }
 
+  export interface Params$Resource$Regionhealthcheckservices$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
   export interface Params$Resource$Regionhealthcheckservices$Delete extends StandardParameters {
     /**
      * Name of the HealthCheckService to delete. The name
@@ -163463,6 +169573,3081 @@ export namespace compute_v1 {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Regionhealthsources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the list of all HealthSource resources (all
+     * regional) available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regionhealthsources$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regionhealthsources$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceAggregatedList>>;
+    aggregatedList(
+      params: Params$Resource$Regionhealthsources$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthsources$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthSourceAggregatedList>,
+      callback: BodyResponseCallback<Schema$HealthSourceAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthsources$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$HealthSourceAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$HealthSourceAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Aggregatedlist
+        | BodyResponseCallback<Schema$HealthSourceAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthSourceAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthSourceAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceAggregatedList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/healthSources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthSourceAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthSourceAggregatedList>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified HealthSource in the given region
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.delete({
+     *     // Name of the HealthSource resource to delete.
+     *     healthSource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regionhealthsources$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regionhealthsources$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regionhealthsources$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthsources$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthsources$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthSource'],
+        pathParams: ['healthSource', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified HealthSource resource in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.get({
+     *     // Name of the HealthSource resource to return.
+     *     healthSource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "healthAggregationPolicy": "my_healthAggregationPolicy",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "sourceType": "my_sourceType",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regionhealthsources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regionhealthsources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthSource>>;
+    get(
+      params: Params$Resource$Regionhealthsources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthsources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$HealthSource>,
+      callback: BodyResponseCallback<Schema$HealthSource>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthsources$Get,
+      callback: BodyResponseCallback<Schema$HealthSource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$HealthSource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Get
+        | BodyResponseCallback<Schema$HealthSource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthSource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthSource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthSource'],
+        pathParams: ['healthSource', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthSource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthSource>(parameters);
+      }
+    }
+
+    /**
+     * Create a HealthSource in the specified project in the given region
+     * using the parameters that are included in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthAggregationPolicy": "my_healthAggregationPolicy",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "sourceType": "my_sourceType",
+     *       //   "sources": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regionhealthsources$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regionhealthsources$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regionhealthsources$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthsources$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthsources$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists the HealthSources for a project in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regionhealthsources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regionhealthsources$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceList>>;
+    list(
+      params: Params$Resource$Regionhealthsources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthsources$List,
+      options: MethodOptions | BodyResponseCallback<Schema$HealthSourceList>,
+      callback: BodyResponseCallback<Schema$HealthSourceList>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthsources$List,
+      callback: BodyResponseCallback<Schema$HealthSourceList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$HealthSourceList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$List
+        | BodyResponseCallback<Schema$HealthSourceList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthSourceList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthSourceList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthSourceList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthSourceList>(parameters);
+      }
+    }
+
+    /**
+     * Updates the specified regional HealthSource resource
+     * with the data included in the request.  This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.patch({
+     *     // Name of the HealthSource to update. The name
+     *     // must be 1-63 characters long, and comply with RFC1035.
+     *     healthSource: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthAggregationPolicy": "my_healthAggregationPolicy",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "sourceType": "my_sourceType",
+     *       //   "sources": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Regionhealthsources$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Regionhealthsources$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Regionhealthsources$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthsources$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthsources$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources/{healthSource}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthSource'],
+        pathParams: ['healthSource', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regionhealthsources$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regionhealthsources$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthsources$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthsources$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthsources$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthSources/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionhealthsources$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
+  export interface Params$Resource$Regionhealthsources$Delete extends StandardParameters {
+    /**
+     * Name of the HealthSource resource to delete.
+     */
+    healthSource?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regionhealthsources$Get extends StandardParameters {
+    /**
+     * Name of the HealthSource resource to return.
+     */
+    healthSource?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionhealthsources$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthSource;
+  }
+  export interface Params$Resource$Regionhealthsources$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Regionhealthsources$Patch extends StandardParameters {
+    /**
+     * Name of the HealthSource to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
+     */
+    healthSource?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthSource;
+  }
+  export interface Params$Resource$Regionhealthsources$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
+  export class Resource$Regioninstancegroupmanagerresizerequests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels the specified resize request.
+     * Cancelled resize request no longer waits for the resources to be
+     * provisioned. Cancel is only possible for requests that are in accepted
+     * state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstanceGroupManagerResizeRequests.cancel({
+     *     // The name of the managed instance group.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     instanceGroupManager: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region
+     *     // scoping this request. Name should conform to RFC1035.
+     *     region: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the resize request to cancel.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     resizeRequest: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    cancel(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'project',
+          'region',
+          'instanceGroupManager',
+          'resizeRequest',
+        ],
+        pathParams: [
+          'instanceGroupManager',
+          'project',
+          'region',
+          'resizeRequest',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified, inactive resize request. Requests that are still
+     * active cannot be deleted. Deleting request does not delete instances that
+     * were provisioned previously.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstanceGroupManagerResizeRequests.delete({
+     *     // The name of the managed instance group.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     instanceGroupManager: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region
+     *     // scoping this request. Name should conform to RFC1035.
+     *     region: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the resize request to delete.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     resizeRequest: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regioninstancegroupmanagerresizerequests$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagerresizerequests$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagerresizerequests$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstancegroupmanagerresizerequests$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'project',
+          'region',
+          'instanceGroupManager',
+          'resizeRequest',
+        ],
+        pathParams: [
+          'instanceGroupManager',
+          'project',
+          'region',
+          'resizeRequest',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns all of the details about the specified resize request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstanceGroupManagerResizeRequests.get({
+     *     // The name of the managed instance group.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     instanceGroupManager: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region
+     *     // scoping this request. Name should conform to RFC1035.
+     *     region: 'placeholder-value',
+     *     // The name of the resize request.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     resizeRequest: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "region": "my_region",
+     *   //   "requestedRunDuration": {},
+     *   //   "resizeBy": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regioninstancegroupmanagerresizerequests$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$InstanceGroupManagerResizeRequest>
+    >;
+    get(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>,
+      callback: BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+    ): void;
+    get(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Get,
+      callback: BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagerresizerequests$Get
+        | BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstanceGroupManagerResizeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$InstanceGroupManagerResizeRequest>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagerresizerequests$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstancegroupmanagerresizerequests$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests/{resizeRequest}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'project',
+          'region',
+          'instanceGroupManager',
+          'resizeRequest',
+        ],
+        pathParams: [
+          'instanceGroupManager',
+          'project',
+          'region',
+          'resizeRequest',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstanceGroupManagerResizeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstanceGroupManagerResizeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new Resize Request that starts provisioning VMs immediately
+     * or queues VM creation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstanceGroupManagerResizeRequests.insert({
+     *     // Name of the managed instance group to which the resize request is scoped.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     instanceGroupManager: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region
+     *     // scoping this request. Name should conform to RFC1035.
+     *     region: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "region": "my_region",
+     *       //   "requestedRunDuration": {},
+     *       //   "resizeBy": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regioninstancegroupmanagerresizerequests$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagerresizerequests$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagerresizerequests$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstancegroupmanagerresizerequests$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of Resize Requests that are contained in the
+     * managed instance group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionInstanceGroupManagerResizeRequests.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The name of the managed instance group. The name should conform to RFC1035.
+     *     instanceGroupManager: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region
+     *     // scoping this request. Name should conform to RFC1035.
+     *     region: 'placeholder-value',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regioninstancegroupmanagerresizerequests$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+    >;
+    list(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>,
+      callback: BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Regioninstancegroupmanagerresizerequests$List,
+      callback: BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regioninstancegroupmanagerresizerequests$List
+        | BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regioninstancegroupmanagerresizerequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regioninstancegroupmanagerresizerequests$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RegionInstanceGroupManagerResizeRequestsListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Regioninstancegroupmanagerresizerequests$Cancel extends StandardParameters {
+    /**
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region
+     * scoping this request. Name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the resize request to cancel.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    resizeRequest?: string;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagerresizerequests$Delete extends StandardParameters {
+    /**
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region
+     * scoping this request. Name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the resize request to delete.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    resizeRequest?: string;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagerresizerequests$Get extends StandardParameters {
+    /**
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region
+     * scoping this request. Name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * The name of the resize request.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    resizeRequest?: string;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagerresizerequests$Insert extends StandardParameters {
+    /**
+     * Name of the managed instance group to which the resize request is scoped.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region
+     * scoping this request. Name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManagerResizeRequest;
+  }
+  export interface Params$Resource$Regioninstancegroupmanagerresizerequests$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The name of the managed instance group. The name should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region
+     * scoping this request. Name should conform to RFC1035.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+
   export class Resource$Regioninstancegroupmanagers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -163556,6 +172741,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -163740,6 +172926,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -163942,6 +173129,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164128,6 +173316,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164335,6 +173524,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164516,6 +173706,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164712,6 +173903,7 @@ export namespace compute_v1 {
      *   //   "status": {},
      *   //   "targetPools": [],
      *   //   "targetSize": 0,
+     *   //   "targetSizePolicy": {},
      *   //   "targetStoppedSize": 0,
      *   //   "targetSuspendedSize": 0,
      *   //   "updatePolicy": {},
@@ -164910,6 +174102,7 @@ export namespace compute_v1 {
      *       //   "status": {},
      *       //   "targetPools": [],
      *       //   "targetSize": 0,
+     *       //   "targetSizePolicy": {},
      *       //   "targetStoppedSize": 0,
      *       //   "targetSuspendedSize": 0,
      *       //   "updatePolicy": {},
@@ -164927,6 +174120,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166140,6 +175334,7 @@ export namespace compute_v1 {
      *       //   "status": {},
      *       //   "targetPools": [],
      *       //   "targetSize": 0,
+     *       //   "targetSizePolicy": {},
      *       //   "targetStoppedSize": 0,
      *       //   "targetSuspendedSize": 0,
      *       //   "updatePolicy": {},
@@ -166157,6 +175352,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166354,6 +175550,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166561,6 +175758,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166761,6 +175959,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166968,6 +176167,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -167162,6 +176362,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -167357,6 +176558,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -167565,6 +176767,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -167783,6 +176986,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168001,6 +177205,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168198,6 +177403,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170117,6 +179323,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170775,6 +179982,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170999,6 +180207,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -171160,6 +180369,8 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // The name of the region for this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // View of the instance template.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -171354,6 +180565,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -171602,6 +180814,8 @@ export namespace compute_v1 {
      *     // single zone scope either returns all resources in the zone or no resources,
      *     // with an error code.
      *     returnPartialSuccess: 'placeholder-value',
+     *     // View of the instance template.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -171757,6 +180971,10 @@ export namespace compute_v1 {
      * The name of the region for this request.
      */
     region?: string;
+    /**
+     * View of the instance template.
+     */
+    view?: string;
   }
   export interface Params$Resource$Regioninstancetemplates$Insert extends StandardParameters {
     /**
@@ -171896,6 +181114,10 @@ export namespace compute_v1 {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+    /**
+     * View of the instance template.
+     */
+    view?: string;
   }
 
   export class Resource$Regioninstantsnapshots {
@@ -171976,6 +181198,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -172151,6 +181374,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -172478,6 +181702,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -172500,6 +181725,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -173092,6 +182318,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -173728,6 +182955,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -173918,6 +183146,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -174114,6 +183343,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -174406,6 +183636,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -174495,6 +183739,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -175575,6 +184820,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -175788,6 +185034,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -175974,6 +185221,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -176158,6 +185406,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177158,6 +186407,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177603,6 +186853,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177811,6 +187062,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177997,6 +187249,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -178184,6 +187437,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -179182,6 +188436,265 @@ export namespace compute_v1 {
     }
 
     /**
+     * Retrieves the list of all NotificationEndpoint resources,
+     * regional and global, available to the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionNotificationEndpoints.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regionnotificationendpoints$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regionnotificationendpoints$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$NotificationEndpointAggregatedList>
+    >;
+    aggregatedList(
+      params: Params$Resource$Regionnotificationendpoints$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionnotificationendpoints$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NotificationEndpointAggregatedList>,
+      callback: BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionnotificationendpoints$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regionnotificationendpoints$Aggregatedlist
+        | BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NotificationEndpointAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$NotificationEndpointAggregatedList>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionnotificationendpoints$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionnotificationendpoints$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/notificationEndpoints'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NotificationEndpointAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NotificationEndpointAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Deletes the specified NotificationEndpoint in the given region
      * @example
      * ```js
@@ -179246,6 +188759,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -179599,6 +189113,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -180117,6 +189632,125 @@ export namespace compute_v1 {
     }
   }
 
+  export interface Params$Resource$Regionnotificationendpoints$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
   export interface Params$Resource$Regionnotificationendpoints$Delete extends StandardParameters {
     /**
      * Name of the NotificationEndpoint resource to delete.
@@ -180518,6 +190152,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -180943,6 +190578,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -181838,6 +191474,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -182022,6 +191659,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -182557,6 +192195,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183011,6 +192650,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183206,6 +192846,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183378,6 +193019,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183573,6 +193215,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -184116,6 +193759,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -184481,6 +194125,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -185097,6 +194742,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -185459,6 +195105,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -186145,6 +195792,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -186666,6 +196314,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -187023,6 +196672,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -187453,6 +197103,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -187863,6 +197514,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188234,6 +197886,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188686,6 +198339,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188879,6 +198533,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -189072,6 +198727,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -189553,6 +199209,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -189908,6 +199565,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190510,6 +200168,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190866,6 +200525,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191303,6 +200963,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191500,6 +201161,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -192998,6 +202660,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194010,6 +203673,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194179,16 +203843,19 @@ export namespace compute_v1 {
      *   //   "advancedDeploymentControl": {},
      *   //   "aggregateReservation": {},
      *   //   "commitment": "my_commitment",
+     *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "deleteAfterDuration": {},
      *   //   "deleteAtTime": "my_deleteAtTime",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
+     *   //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *   //   "enableEmergentMaintenance": false,
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "linkedCommitments": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationSharingPolicy": {},
      *   //   "resourcePolicies": {},
@@ -194512,16 +204179,19 @@ export namespace compute_v1 {
      *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "commitment": "my_commitment",
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deleteAfterDuration": {},
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
      *       //   "resourcePolicies": {},
@@ -194546,6 +204216,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194976,6 +204647,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -195170,6 +204842,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -195672,16 +205345,19 @@ export namespace compute_v1 {
      *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "commitment": "my_commitment",
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deleteAfterDuration": {},
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
      *       //   "resourcePolicies": {},
@@ -195706,6 +205382,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -196460,6 +206137,203 @@ export namespace compute_v1 {
     }
 
     /**
+     * Allows customers to get SBOM versions of a reservation slot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.getVersion({
+     *     // The name of the parent reservation and parent block. In the format of
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the reservation slot.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     reservationSlot: 'placeholder-value',
+     *     // Name of the zone for this request. Zone name should conform to RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sbomSelections": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVersion(
+      params?: Params$Resource$Reservationslots$Getversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(callback: BodyResponseCallback<Schema$Operation>): void;
+    getVersion(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Getversion
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Getversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Getversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves a list of reservation slots under a single reservation.
      * @example
      * ```js
@@ -196778,6 +206652,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -196917,6 +206792,47 @@ export namespace compute_v1 {
      * The name of the zone for this request, formatted as RFC1035.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$Getversion extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the reservation slot.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    reservationSlot?: string;
+    /**
+     * Name of the zone for this request. Zone name should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSlotsGetVersionRequest;
   }
   export interface Params$Resource$Reservationslots$List extends StandardParameters {
     /**
@@ -197102,7 +207018,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.get({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // The name of the reservation subBlock.
@@ -197198,7 +207115,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197359,7 +207276,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197378,6 +207295,208 @@ export namespace compute_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Allows customers to get SBOM versions of a reservation subBlock.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSubBlocks.getVersion({
+     *     // The name of the parent reservation and parent block. In the format of
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the reservation subBlock.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     reservationSubBlock: 'placeholder-value',
+     *     // Name of the zone for this request. Zone name should conform to RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sbomSelections": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVersion(
+      params?: Params$Resource$Reservationsubblocks$Getversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(callback: BodyResponseCallback<Schema$Operation>): void;
+    getVersion(
+      paramsOrCallback?:
+        | Params$Resource$Reservationsubblocks$Getversion
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationsubblocks$Getversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationsubblocks$Getversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/getVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'project',
+          'zone',
+          'parentName',
+          'reservationSubBlock',
+        ],
+        pathParams: ['parentName', 'project', 'reservationSubBlock', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -197499,7 +207618,8 @@ export namespace compute_v1 {
      *     pageToken: 'placeholder-value',
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // Opt-in for partial success behavior which provides partial results in case
@@ -197606,7 +207726,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197666,7 +207786,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.performMaintenance({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -197698,6 +207819,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -197795,7 +207917,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -197858,7 +207980,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.reportFaulty({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -197900,6 +208023,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -197997,7 +208121,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -198163,7 +208287,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -198323,7 +208447,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -198391,6 +208515,47 @@ export namespace compute_v1 {
      * The name of the zone for this request.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Reservationsubblocks$Getversion extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
+     */
+    parentName?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    reservationSubBlock?: string;
+    /**
+     * Name of the zone for this request. Zone name should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSubBlocksGetVersionRequest;
   }
   export interface Params$Resource$Reservationsubblocks$List extends StandardParameters {
     /**
@@ -198957,6 +209122,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -199471,6 +209637,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -199917,6 +210084,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -201076,6 +211244,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -201261,6 +211430,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -202332,6 +212502,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203282,6 +213453,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203477,6 +213649,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203858,6 +214031,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -204053,6 +214227,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205160,6 +215335,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205541,6 +215717,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206306,6 +216483,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206746,6 +216924,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207275,6 +217454,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207964,6 +218144,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -208157,6 +218338,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -208327,6 +218509,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -208506,6 +218689,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -209473,6 +219657,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -210004,6 +220189,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -210459,6 +220645,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -211371,6 +221558,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -211929,6 +222117,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -212496,6 +222685,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -213217,6 +223407,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -213700,6 +223891,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -214059,6 +224251,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -215027,6 +225220,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -215383,6 +225577,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -216060,6 +226255,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -216934,6 +227130,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -217463,6 +227660,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -218483,6 +228681,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -220347,6 +230546,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -220539,6 +230739,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -221097,6 +231298,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -221825,6 +232027,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -222177,6 +232380,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -223136,6 +233340,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -223487,6 +233692,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -223924,6 +234130,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224568,6 +234775,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224921,6 +235129,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -225360,6 +235569,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -225550,6 +235760,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -226345,6 +236556,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -226712,6 +236924,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227160,6 +237373,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227351,6 +237565,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227542,6 +237757,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227733,6 +237949,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227927,6 +238144,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -228118,6 +238336,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -229043,6 +239262,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -229400,6 +239620,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -229833,6 +240054,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -230548,6 +240770,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -230740,6 +240963,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231177,6 +241401,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231697,6 +241922,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232126,6 +242352,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232318,6 +242545,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232512,6 +242740,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232707,6 +242936,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -233610,6 +243840,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -233963,6 +244194,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234388,6 +244620,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234579,6 +244812,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234769,6 +245003,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234960,6 +245195,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -235154,6 +245390,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -236098,6 +246335,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -236449,6 +246687,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -236874,6 +247113,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -237064,6 +247304,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -238032,6 +248273,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -238207,6 +248449,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -238377,6 +248620,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
@@ -238393,6 +248637,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -238827,6 +249072,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -239608,6 +249854,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -239967,6 +250214,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -240161,6 +250409,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -240603,6 +250852,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -240963,6 +251213,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -241972,6 +252223,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -242147,6 +252399,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "stackType": "my_stackType",
@@ -242468,6 +252721,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "stackType": "my_stackType",
@@ -242484,6 +252738,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -242915,6 +253170,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -243888,6 +254144,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -244065,6 +254322,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "localTrafficSelector": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "peerExternalGateway": "my_peerExternalGateway",
      *   //   "peerExternalGatewayInterface": 0,
      *   //   "peerGcpGateway": "my_peerGcpGateway",
@@ -244246,6 +254504,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "localTrafficSelector": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "peerExternalGateway": "my_peerExternalGateway",
      *       //   "peerExternalGatewayInterface": 0,
      *       //   "peerGcpGateway": "my_peerGcpGateway",
@@ -244272,6 +254531,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -244703,6 +254963,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -245232,6 +255493,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -245591,6 +255853,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -246038,6 +256301,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -246589,6 +256853,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -247012,6 +257277,7 @@ export namespace compute_v1 {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -247792,5 +258058,1226 @@ export namespace compute_v1 {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Zonevmextensionpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a specified zone VM extension policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.zoneVmExtensionPolicies.delete({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the zone VM extension policy to delete.
+     *     vmExtensionPolicy: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Zonevmextensionpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Zonevmextensionpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Zonevmextensionpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Zonevmextensionpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Zonevmextensionpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Zonevmextensionpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Zonevmextensionpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zonevmextensionpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'vmExtensionPolicy'],
+        pathParams: ['project', 'vmExtensionPolicy', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves details of a specific zone VM extension policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.zoneVmExtensionPolicies.get({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the VM extension policy resource to return.
+     *     vmExtensionPolicy: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "extensionPolicies": {},
+     *   //   "globalResourceLink": "my_globalResourceLink",
+     *   //   "id": "my_id",
+     *   //   "instanceSelectors": [],
+     *   //   "kind": "my_kind",
+     *   //   "managedByGlobal": false,
+     *   //   "name": "my_name",
+     *   //   "priority": 0,
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "state": "my_state",
+     *   //   "updateTimestamp": "my_updateTimestamp"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Zonevmextensionpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Zonevmextensionpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmExtensionPolicy>>;
+    get(
+      params: Params$Resource$Zonevmextensionpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Zonevmextensionpolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VmExtensionPolicy>,
+      callback: BodyResponseCallback<Schema$VmExtensionPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Zonevmextensionpolicies$Get,
+      callback: BodyResponseCallback<Schema$VmExtensionPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$VmExtensionPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Zonevmextensionpolicies$Get
+        | BodyResponseCallback<Schema$VmExtensionPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VmExtensionPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VmExtensionPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmExtensionPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Zonevmextensionpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zonevmextensionpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'vmExtensionPolicy'],
+        pathParams: ['project', 'vmExtensionPolicy', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmExtensionPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VmExtensionPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new zone-level VM extension policy within a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.zoneVmExtensionPolicies.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "extensionPolicies": {},
+     *       //   "globalResourceLink": "my_globalResourceLink",
+     *       //   "id": "my_id",
+     *       //   "instanceSelectors": [],
+     *       //   "kind": "my_kind",
+     *       //   "managedByGlobal": false,
+     *       //   "name": "my_name",
+     *       //   "priority": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "state": "my_state",
+     *       //   "updateTimestamp": "my_updateTimestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Zonevmextensionpolicies$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Zonevmextensionpolicies$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Zonevmextensionpolicies$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Zonevmextensionpolicies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Zonevmextensionpolicies$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Zonevmextensionpolicies$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Zonevmextensionpolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zonevmextensionpolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists all VM extension policies within a specific zone for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.zoneVmExtensionPolicies.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Zonevmextensionpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Zonevmextensionpolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VmExtensionPolicyList>>;
+    list(
+      params: Params$Resource$Zonevmextensionpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Zonevmextensionpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VmExtensionPolicyList>,
+      callback: BodyResponseCallback<Schema$VmExtensionPolicyList>
+    ): void;
+    list(
+      params: Params$Resource$Zonevmextensionpolicies$List,
+      callback: BodyResponseCallback<Schema$VmExtensionPolicyList>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$VmExtensionPolicyList>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Zonevmextensionpolicies$List
+        | BodyResponseCallback<Schema$VmExtensionPolicyList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VmExtensionPolicyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VmExtensionPolicyList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VmExtensionPolicyList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Zonevmextensionpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zonevmextensionpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VmExtensionPolicyList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VmExtensionPolicyList>(parameters);
+      }
+    }
+
+    /**
+     * Modifies an existing zone VM extension policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.zoneVmExtensionPolicies.update({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the zone VM extension policy to update.
+     *     vmExtensionPolicy: 'placeholder-value',
+     *     // Name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "extensionPolicies": {},
+     *       //   "globalResourceLink": "my_globalResourceLink",
+     *       //   "id": "my_id",
+     *       //   "instanceSelectors": [],
+     *       //   "kind": "my_kind",
+     *       //   "managedByGlobal": false,
+     *       //   "name": "my_name",
+     *       //   "priority": 0,
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "state": "my_state",
+     *       //   "updateTimestamp": "my_updateTimestamp"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Zonevmextensionpolicies$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Zonevmextensionpolicies$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    update(
+      params: Params$Resource$Zonevmextensionpolicies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Zonevmextensionpolicies$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Zonevmextensionpolicies$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Zonevmextensionpolicies$Update
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Zonevmextensionpolicies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zonevmextensionpolicies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/zones/{zone}/vmExtensionPolicies/{vmExtensionPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'vmExtensionPolicy'],
+        pathParams: ['project', 'vmExtensionPolicy', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Zonevmextensionpolicies$Delete extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone VM extension policy to delete.
+     */
+    vmExtensionPolicy?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zonevmextensionpolicies$Get extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the VM extension policy resource to return.
+     */
+    vmExtensionPolicy?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zonevmextensionpolicies$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VmExtensionPolicy;
+  }
+  export interface Params$Resource$Zonevmextensionpolicies$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zonevmextensionpolicies$Update extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the zone VM extension policy to update.
+     */
+    vmExtensionPolicy?: string;
+    /**
+     * Name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VmExtensionPolicy;
   }
 }

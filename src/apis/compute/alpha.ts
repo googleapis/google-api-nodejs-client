@@ -1253,7 +1253,7 @@ export namespace compute_alpha {
   }
   /**
    * Properties of the SKU instances being reserved.
-   * Next ID: 9
+   * Next ID: 10
    */
   export interface Schema$AllocationSpecificSKUAllocationReservedInstanceProperties {
     /**
@@ -1480,12 +1480,6 @@ export namespace compute_alpha {
      * Specifies the type of the disk, either SCRATCH orPERSISTENT. If not specified, the default isPERSISTENT.
      */
     type?: string | null;
-    /**
-     * Output only. [Output Only] A list of user provided licenses. It represents a list of
-     * URLs to the license resource. Unlike regular licenses, user provided
-     * licenses can be modified after the disk is created.
-     */
-    userLicenses?: string[] | null;
   }
   /**
    * [Input Only] Specifies the parameters for a new disk that will be created
@@ -1610,7 +1604,7 @@ export namespace compute_alpha {
      */
     replicaZones?: string[] | null;
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -2603,6 +2597,10 @@ export namespace compute_alpha {
      */
     maxUtilization?: number | null;
     /**
+     * Information about the resource or system that manages the backend.
+     */
+    orchestrationInfo?: Schema$BackendBackendOrchestrationInfo;
+    /**
      * This field indicates whether this backend should be fully utilized before
      * sending traffic to backends with default preference. The possible values
      * are:
@@ -2626,6 +2624,16 @@ export namespace compute_alpha {
      */
     service?: string | null;
     trafficDuration?: string | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend.
+   */
+  export interface Schema$BackendBackendOrchestrationInfo {
+    /**
+     * The URI of the resource or system that manages the backend.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Represents a Cloud Storage Bucket resource.
@@ -3489,6 +3497,10 @@ export namespace compute_alpha {
      */
     networkPassThroughLbTrafficPolicy?: Schema$BackendServiceNetworkPassThroughLbTrafficPolicy;
     /**
+     * Information about the resource or system that manages the backend service.
+     */
+    orchestrationInfo?: Schema$BackendServiceOrchestrationInfo;
+    /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
      * traffic for the given backend service. If not set, this feature is
@@ -3654,19 +3666,6 @@ export namespace compute_alpha {
      * Output only. [Output Only] List of resources referencing given backend service.
      */
     usedBy?: Schema$BackendServiceUsedBy[];
-    /**
-     * The network scope of the backends that can be added to the backend
-     * service. This field can be either GLOBAL_VPC_NETWORK orREGIONAL_VPC_NETWORK.
-     *
-     * A backend service with the VPC scope set to GLOBAL_VPC_NETWORK
-     * is only allowed to have backends in global VPC networks.
-     *
-     * When the VPC scope is set to REGIONAL_VPC_NETWORK the backend
-     * service is only allowed to have backends in regional networks in the same
-     * scope as the backend service.
-     * Note: if not specified then GLOBAL_VPC_NETWORK will be used.
-     */
-    vpcNetworkScope?: string | null;
   }
   /**
    * Contains a list of BackendServicesScopedList.
@@ -4027,7 +4026,7 @@ export namespace compute_alpha {
    */
   export interface Schema$BackendServiceFailoverPolicy {
     /**
-     * This can be set to true only if the protocol isTCP.
+     * This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      *
      * The default is false.
      */
@@ -4475,6 +4474,17 @@ export namespace compute_alpha {
      * connections to all healthy endpoints across all zones.
      */
     spilloverRatio?: number | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend service.
+   */
+  export interface Schema$BackendServiceOrchestrationInfo {
+    /**
+     * The resource URI of the resource or system that manages the backend
+     * service.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Additional Backend Service parameters.
@@ -5548,6 +5558,12 @@ export namespace compute_alpha {
    */
   export interface Schema$CapacityAdviceRequestInstanceProperties {
     /**
+     * Input only. Specifies the topology required to create a partition for
+     * VMs that have interconnected GPUs or TPUs.
+     * Example values: 2x2 for ct5l-hightpu-4t.
+     */
+    acceleratorTopology?: string | null;
+    /**
      * Specifies the scheduling options.
      */
     scheduling?: Schema$CapacityAdviceRequestInstancePropertiesScheduling;
@@ -5556,6 +5572,11 @@ export namespace compute_alpha {
    * Defines the instance scheduling options.
    */
   export interface Schema$CapacityAdviceRequestInstancePropertiesScheduling {
+    /**
+     * The maximum time that instances can run before Compute Engine
+     * terminates them.
+     */
+    maxRunDuration?: string | null;
     /**
      * Specifies the provisioning model of the instance.
      */
@@ -5585,6 +5606,11 @@ export namespace compute_alpha {
      * history data and current conditions.
      */
     estimatedUptime?: string | null;
+    /**
+     * Output only. The likely maximum time that you will have to wait until
+     * Compute Engine provisions your instances.
+     */
+    estimatedWaitDuration?: string | null;
     /**
      * The obtainability score indicates the likelihood of successfully
      * obtaining (provisioning) the requested number of VMs.
@@ -5810,6 +5836,11 @@ export namespace compute_alpha {
      */
     name?: string | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$CommitmentParams;
+    /**
      * The minimum time duration that you commit to purchasing resources.
      * The plan that you choose determines the preset term length of the
      * commitment (which is 1 year or 3 years) and affects the discount rate that
@@ -5965,6 +5996,21 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional commitment params.
+   */
+  export interface Schema$CommitmentParams {
+    /**
+     * Input only. Resource manager tags to be bound to the commitment. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * [Output Only] Contains output only fields.
@@ -6138,6 +6184,24 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
+  /**
+   * Response message for RegionCompositeHealthChecks.GetHealth
+   */
+  export interface Schema$CompositeHealthCheckHealth {
+    /**
+     * Health sources and their corresponding health states.
+     */
+    healthSources?: Schema$CompositeHealthChecksGetHealthResponseHealthSourceHealth[];
+    /**
+     * Health state of the CompositeHealthCheck.
+     */
+    healthState?: string | null;
+    /**
+     * Output only. [Output Only] Type of resource. Alwayscompute#compositeHealthCheckHealth for the health of
+     * composite health checks.
+     */
+    kind?: string | null;
+  }
   export interface Schema$CompositeHealthCheckList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -6172,26 +6236,13 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
-  /**
-   * Response message for RegionCompositeHealthChecks.GetHealth
-   */
-  export interface Schema$CompositeHealthChecksGetHealthResponse {
-    /**
-     * Health sources and their corresponding health states.
-     */
-    healthSources?: Schema$CompositeHealthChecksGetHealthResponseHealthSourceHealth[];
-    /**
-     * Health state of the CompositeHealthCheck.
-     */
-    healthState?: string | null;
-  }
   export interface Schema$CompositeHealthChecksGetHealthResponseHealthSourceHealth {
     /**
      * Health state of the associated HealthSource resource.
      */
     healthState?: string | null;
     /**
-     * URL of the associated HealthSource resource.
+     * Fully qualified URL of the associated HealthSource resource.
      */
     source?: string | null;
   }
@@ -6634,6 +6685,79 @@ export namespace compute_alpha {
     /**
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
      * a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents civil time (or occasionally physical time).
+   *
+   * This type can represent a civil time in one of a few possible ways:
+   *
+   *  * When utc_offset is set and time_zone is unset: a civil time on a calendar
+   *    day with a particular offset from UTC.
+   *  * When time_zone is set and utc_offset is unset: a civil time on a calendar
+   *    day in a particular time zone.
+   *  * When neither time_zone nor utc_offset is set: a civil time on a calendar
+   *    day in local time.
+   *
+   * The date is relative to the Proleptic Gregorian Calendar.
+   *
+   * If year, month, or day are 0, the DateTime is considered not to have a
+   * specific year, month, or day respectively.
+   *
+   * This type may also be used to represent a physical time if all the date and
+   * time fields are set and either case of the `time_offset` oneof is set.
+   * Consider using `Timestamp` message for physical time instead. If your use
+   * case also would like to store the user's timezone, that can be done in
+   * another field.
+   *
+   * This type is more flexible than some applications may want. Make sure to
+   * document and validate your application's limitations.
+   */
+  export interface Schema$DateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and
+     * month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults
+     * to 0 (midnight). An API may choose to allow the value "24:00:00" for
+     * scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a
+     * datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to
+     * 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59,
+     * defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours.
+     * For example, a UTC offset of -4:00 would be represented as
+     * { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a
+     * datetime without a year.
      */
     year?: number | null;
   }
@@ -7169,15 +7293,6 @@ export namespace compute_alpha {
      */
     type?: string | null;
     /**
-     * A list of publicly visible user-licenses. Unlike regular licenses, user
-     * provided licenses can be modified after the disk is created. This includes
-     * a list of URLs to the license resource. For example, to provide a debian
-     * license:
-     *
-     * https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch
-     */
-    userLicenses?: string[] | null;
-    /**
      * Output only. [Output Only] Links to the users of the disk (attached instances)
      * in form:projects/project/zones/zone/instances/instance
      */
@@ -7262,6 +7377,14 @@ export namespace compute_alpha {
   }
   export interface Schema$DiskAsyncReplicationList {
     asyncReplicationDisk?: Schema$DiskAsyncReplication;
+  }
+  export interface Schema$DiskConvertParams {
+    forceStopInProgressSnapshot?: boolean | null;
+    provisionedIops?: string | null;
+    provisionedThroughput?: string | null;
+    quickConversionOnly?: boolean | null;
+    resetSupportedVmFamilies?: boolean | null;
+    targetDiskType?: string | null;
   }
   /**
    * A specification of the desired way to instantiate a disk in the instance
@@ -7405,7 +7528,7 @@ export namespace compute_alpha {
    */
   export interface Schema$DiskParams {
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -7438,6 +7561,9 @@ export namespace compute_alpha {
      * can only specify one resource policy.
      */
     resourcePolicies?: string[] | null;
+  }
+  export interface Schema$DisksConvertRequest {
+    params?: Schema$DiskConvertParams;
   }
   export interface Schema$DiskSettings {
     /**
@@ -7767,6 +7893,23 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
+  export interface Schema$DiskUpdateKmsKeyRequest {
+    /**
+     * Optional. The new KMS key to replace the current one on the disk. If empty, the disk
+     * will be re-encrypted using the primary version of the disk's current KMS
+     * key.
+     *
+     * The KMS key can be provided in the following formats:
+     *
+     *
+     *      - projects/project_id/locations/location/keyRings/key_ring/cryptoKeys/key
+     *
+     *
+     * Where project is the project ID or
+     * project number.
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * A set of Display Device options
    */
@@ -7785,6 +7928,11 @@ export namespace compute_alpha {
     /**
      * Zones where the regional managed instance group will create and manage
      * its instances.
+     * By default, a regional MIG doesn't automatically select an AI zone to create
+     * instances, even if an AI zone is available in the specified region. To
+     * create instances in an AI zone in the selected region, you must explicitly
+     * specify it in the distribution policy together with the other preferred
+     * zones.
      */
     zones?: Schema$DistributionPolicyZoneConfiguration[];
   }
@@ -9651,6 +9799,11 @@ export namespace compute_alpha {
   }
   export interface Schema$FutureReservation {
     /**
+     * Advanced control for cluster management, applicable only to DENSE
+     * deployment type future reservations.
+     */
+    advancedDeploymentControl?: Schema$ReservationAdvancedDeploymentControl;
+    /**
      * Aggregate reservation details for the future reservation.
      */
     aggregateReservation?: Schema$AllocationAggregateReservation;
@@ -9684,6 +9837,7 @@ export namespace compute_alpha {
      * existing commitment.
      */
     commitmentInfo?: Schema$FutureReservationCommitmentInfo;
+    confidentialComputeType?: string | null;
     /**
      * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
@@ -9729,6 +9883,11 @@ export namespace compute_alpha {
      * reservations name format will be -date-####.
      */
     namePrefix?: string | null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$FutureReservationParams;
     /**
      * Planning state before being submitted for evaluation
      */
@@ -9807,6 +9966,21 @@ export namespace compute_alpha {
      * this commitment.
      */
     previousCommitmentTerms?: string | null;
+  }
+  /**
+   * Additional future reservation params.
+   */
+  export interface Schema$FutureReservationParams {
+    /**
+     * Input only. Resource manager tags to be bound to the future reservation. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   /**
    * Contains a list of future reservations.
@@ -10214,6 +10388,21 @@ export namespace compute_alpha {
      */
     instance?: string | null;
   }
+  export interface Schema$GetVersionOperationMetadata {
+    inlineSbomInfo?: Schema$GetVersionOperationMetadataSbomInfo;
+  }
+  export interface Schema$GetVersionOperationMetadataSbomInfo {
+    /**
+     * SBOM versions currently applied to the resource. The key is the component
+     * name and the value is the version.
+     */
+    currentComponentVersions?: {[key: string]: string} | null;
+    /**
+     * SBOM versions scheduled for the next maintenance. The key is the
+     * component name and the value is the version.
+     */
+    targetComponentVersions?: {[key: string]: string} | null;
+  }
   export interface Schema$GlobalAddressesMoveRequest {
     /**
      * An optional destination address description if intended to be different
@@ -10525,12 +10714,14 @@ export namespace compute_alpha {
      * methods.
      *
      * A conflict occurs in the following cases:
+     *
      * * `insert` method: If the zonal policy already exists when the insert
      *   happens.
      * * `update` method: If the zonal policy was modified by a zonal API call
      *   outside of this rollout.
      *
      * Possible values are the following:
+     *
      * * `""` (empty string): If a conflict occurs, the local value is not
      *   overwritten. This is the default behavior.
      * * `"overwrite"`: If a conflict occurs, the local value is overwritten
@@ -10544,7 +10735,10 @@ export namespace compute_alpha {
      */
     name?: string | null;
     /**
-     * Optional. Predefined rollout plan.
+     * Optional. Specifies the predefined rollout plan for the policy. Valid values
+     * are `SLOW_ROLLOUT` and `FAST_ROLLOUT`. The recommended value is
+     * `SLOW_ROLLOUT` for progressive rollout. For more information, see Rollout
+     * plans for global policies.
      */
     predefinedRolloutPlan?: string | null;
     /**
@@ -10576,6 +10770,15 @@ export namespace compute_alpha {
   }
   export interface Schema$GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadata {
     /**
+     * Output only. [Output Only] The rollout status for each location. The list of the
+     * locations is the same as the list of locations in the rollout plan.
+     */
+    locationRolloutStatus?: {
+      [
+        key: string
+      ]: Schema$GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus;
+    } | null;
+    /**
      * Output only. [Output Only] The name of the rollout.
      * Ex. projects//locations/global/rollouts/.
      */
@@ -10588,6 +10791,12 @@ export namespace compute_alpha {
     rolloutPlan?: string | null;
     /**
      * Output only. [Output Only] The overall state of the rollout.
+     */
+    state?: string | null;
+  }
+  export interface Schema$GlobalVmExtensionPolicyRolloutOperationRolloutStatusRolloutMetadataLocationRolloutStatus {
+    /**
+     * Output only. [Output Only] The state of the location rollout.
      */
     state?: string | null;
   }
@@ -10835,7 +11044,10 @@ export namespace compute_alpha {
   export interface Schema$HaController {
     /**
      * Advanced configuration option. If specified, these Backend Services need to
-     * be pre-created and configured as managed.
+     * be pre-created.
+     *
+     * Currently, only one backend service can be specified, and it must be L4
+     * Internal Load Balancer (ILB).
      */
     backendServices?: string[] | null;
     /**
@@ -12016,6 +12228,23 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
+  /**
+   * Response message for RegionHealthSources.GetHealth
+   */
+  export interface Schema$HealthSourceHealth {
+    /**
+     * Health state of the HealthSource.
+     */
+    healthState?: string | null;
+    /**
+     * Output only. [Output Only] Type of resource. Alwayscompute#healthSourceHealth for the health of health sources.
+     */
+    kind?: string | null;
+    /**
+     * Health state details of the sources.
+     */
+    sources?: Schema$HealthSourcesGetHealthResponseSourceInfo[];
+  }
   export interface Schema$HealthSourceList {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
@@ -12049,6 +12278,41 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$HealthSourcesGetHealthResponseSourceInfo {
+    /**
+     * Represents an instance group or network endpoint group behind the source
+     * backend service. Only used if the sourceType of the regionHealthSource
+     * is BACKEND_SERVICE.
+     */
+    backends?: Schema$HealthSourcesGetHealthResponseSourceInfoBackendInfo[];
+    /**
+     * Fully qualified URL of the forwarding rule associated with the source
+     * resource if it is a L4ILB backend service.
+     */
+    forwardingRule?: string | null;
+    /**
+     * Fully qualified URL of the associated source resource. This is always a
+     * backend service URL.
+     */
+    source?: string | null;
+  }
+  export interface Schema$HealthSourcesGetHealthResponseSourceInfoBackendInfo {
+    /**
+     * Total number of endpoints when determining the health of the
+     * regionHealthSource.
+     */
+    endpointCount?: number | null;
+    /**
+     * Fully qualified URL of an instance group or network endpoint group
+     * behind the source backend service.
+     */
+    group?: string | null;
+    /**
+     * Number of endpoints considered healthy when determining health of the
+     * regionHealthSource.
+     */
+    healthyEndpointCount?: number | null;
   }
   export interface Schema$HealthSourcesScopedList {
     /**
@@ -12871,6 +13135,13 @@ export namespace compute_alpha {
      * balancing: Routing and traffic management features.
      */
     faultInjectionPolicy?: Schema$HttpFaultInjection;
+    /**
+     * Image optimization policy for this URL Map’s route. Available only for
+     * Global EXTERNAL_MANAGED load balancer schemes.
+     * Either Cloud CDN must be enabled on the backend service or backend bucket
+     * serving the route, or cache policy must be configured on the same route
+     */
+    imageOptimizationPolicy?: Schema$ImageOptimizationPolicy;
     /**
      * Specifies the maximum duration (timeout) for streams on the selected route.
      * Unlike the timeout field where the timeout duration starts
@@ -13698,15 +13969,6 @@ export namespace compute_alpha {
      * multi-regional).
      */
     storageLocations?: string[] | null;
-    /**
-     * A list of publicly visible user-licenses. Unlike regular licenses, user
-     * provided licenses can be modified after the disk is created. This includes
-     * a list of URLs to the license resource. For example, to provide a debian
-     * license:
-     *
-     * https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch
-     */
-    userLicenses?: string[] | null;
   }
   export interface Schema$ImageFamilyView {
     /**
@@ -13753,11 +14015,25 @@ export namespace compute_alpha {
     } | null;
   }
   /**
+   * The configuration for Cloud CDN's image optimization feature. This feature
+   * dynamically processes and delivers images from the network edge.
+   * Image Optimization is only available for Global External Application Load
+   * Balancers.
+   * Either Cloud CDN must be enabled on the backend service or backend bucket
+   * serving the route, or cache policy must be configured on the same route.
+   */
+  export interface Schema$ImageOptimizationPolicy {
+    /**
+     * Specifies whether to interpret query parameters for image optimization.
+     */
+    queryParameterInterpretation?: string | null;
+  }
+  /**
    * Additional image params.
    */
   export interface Schema$ImageParams {
     /**
-     * Resource manager tags to be bound to the image. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the image. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -14714,6 +14990,11 @@ export namespace compute_alpha {
     restarting?: number | null;
     /**
      * Output only. [Output Only] The number of instances in the managed instance group that
+     * are scheduled to be restarted or are currently being restarted.
+     */
+    restartingInPlace?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group that
      * are scheduled to be resumed or are currently being resumed.
      */
     resuming?: number | null;
@@ -15032,7 +15313,7 @@ export namespace compute_alpha {
    */
   export interface Schema$InstanceGroupManagerParams {
     /**
-     * Resource manager tags to bind to the managed instance group. The tags are
+     * Input only. Resource manager tags to bind to the managed instance group. The tags are
      * key-value pairs. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
      * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
@@ -15261,6 +15542,10 @@ export namespace compute_alpha {
      */
     allInstances?: boolean | null;
     /**
+     * Whether the boot disk is allowed to be updated with restart.
+     */
+    disruptionMode?: string | null;
+    /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      */
@@ -15309,6 +15594,42 @@ export namespace compute_alpha {
      * the update request will fail.
      */
     mostDisruptiveAllowedAction?: string | null;
+  }
+  /**
+   * InstanceGroupManagers.ConfigureAcceleratorTopologies
+   */
+  export interface Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequest {
+    /**
+     * Map of accelerator topologies that should have their state changed to
+     * the specified value. The key is the hashed topology locus id. It can be
+     * obtained from the GetAvailableAcceleratorTopologies rpc.
+     */
+    acceleratorTopologyActions?: {[key: string]: string} | null;
+    /**
+     * Map of accelerator topologies that should have their state changed to
+     * the specified configuration. The map key is the hashed topology locus id.
+     * It can be obtained from the GetAvailableAcceleratorTopologies rpc.
+     */
+    acceleratorTopologyConfigurations?: {
+      [
+        key: string
+      ]: Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyConfiguration;
+    } | null;
+  }
+  /**
+   * Configuration for a single accelerator topology.
+   */
+  export interface Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequestAcceleratorTopologyConfiguration {
+    action?: string | null;
+    /**
+     * Identifier of the accelerator topology assigned externally to
+     * differentiate who is the owner of the topology. The format needs to
+     * conform to RFC1035 and be unique. The uniqueness is guaranteed by the
+     * requestor. If it is provided on activating the sub-slice it will have to
+     * be provided on deactivating as well. This identifier is cleared on
+     * successful deform of a sub-slice.
+     */
+    externalId?: string | null;
   }
   /**
    * InstanceGroupManagers.createInstances
@@ -15364,6 +15685,10 @@ export namespace compute_alpha {
         key: string
       ]: Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfo;
     } | null;
+    /**
+     * URL to MMIG this MIG belongs to.
+     */
+    multiMig?: string | null;
   }
   export interface Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfo {
     /**
@@ -15371,6 +15696,47 @@ export namespace compute_alpha {
      */
     acceleratorTopology?: string | null;
     acceleratorTopologyHealth?: string | null;
+    acceleratorTopologyState?: Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState;
+    instancesHealth?: string | null;
+    /**
+     * Identified by the topology Id in the accelerator_topology_info map. Empty
+     * for the top-level topology
+     */
+    parent?: string | null;
+  }
+  /**
+   * Specifies the topology state
+   */
+  export interface Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState {
+    currentState?: string | null;
+    /**
+     * Reason why the topology state change failed
+     */
+    error?: {
+      errors?: Array<{
+        code?: string;
+        errorDetails?: Array<{
+          errorInfo?: Schema$ErrorInfo;
+          help?: Schema$Help;
+          localizedMessage?: Schema$LocalizedMessage;
+          quotaInfo?: Schema$QuotaExceededInfo;
+        }>;
+        location?: string;
+        message?: string;
+      }>;
+    } | null;
+    /**
+     * Timestamp when the last error happened
+     */
+    errorTimestamp?: string | null;
+    /**
+     * Identifier of the accelerator topology assigned externally to
+     * differentiate who is the owner of the topology. This is set in
+     * ConfigureAcceleratorTopologies. If it is provided on activating the
+     * sub-slice it will have to be provided on deactivating as well.
+     * This identifier is cleared on successful deform of a sub-slice.
+     */
+    externalId?: string | null;
   }
   export interface Schema$InstanceGroupManagersListErrorsResponse {
     /**
@@ -15462,6 +15828,11 @@ export namespace compute_alpha {
      * the get or listManagedInstances API.
      */
     noCreationRetries?: boolean | null;
+    /**
+     * If this flag is enabled within a request to decrease a MIG's target size,
+     * then the MIG declines that request.
+     */
+    scaleInProtection?: boolean | null;
     /**
      * The number of running instances that the managed instance group should
      * maintain at any given time. The group automatically adds or removes
@@ -15842,6 +16213,10 @@ export namespace compute_alpha {
   }
   export interface Schema$InstanceGroupManagerUpdatePolicy {
     /**
+     * Whether the boot disk is allowed to be updated with restart.
+     */
+    disruptionMode?: string | null;
+    /**
      * The
      * instance redistribution policy for regional managed instance groups.
      * Valid values are:
@@ -16208,7 +16583,7 @@ export namespace compute_alpha {
      */
     requestValidForDuration?: Schema$Duration;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -16324,7 +16699,7 @@ export namespace compute_alpha {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -17482,8 +17857,7 @@ export namespace compute_alpha {
      */
     state?: string | null;
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      */
     subzone?: string | null;
     /**
@@ -20693,6 +21067,13 @@ export namespace compute_alpha {
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      */
     locations?: {[key: string]: Schema$LocationPolicyLocation} | null;
     /**
@@ -20700,7 +21081,9 @@ export namespace compute_alpha {
      */
     targetShape?: string | null;
     /**
-     * List with zones where bulk will create instances.
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
      */
     zones?: Schema$LocationPolicyZoneConfiguration[];
   }
@@ -20733,9 +21116,9 @@ export namespace compute_alpha {
   }
   export interface Schema$LocationPolicyZoneConfiguration {
     /**
-     * The URL of thezone.
+     * The URL of the zone.
      * The zone must exist in the region where the request is called.
-     * Zones must be represented as valid internal URLs,
+     * Zones must be represented as valid partial URLs,
      * such as zones/us-central1-a.
      */
     zone?: string | null;
@@ -22355,6 +22738,20 @@ export namespace compute_alpha {
    * A network endpoint group (NEG) defines how a set of endpoints should be
    * reached, whether they are reachable, and where they are located.
    * For more information about using NEGs for different use cases, seeNetwork endpoint groups overview.
+   *
+   * Note: Use the following APIs to manage network endpoint groups:
+   *
+   *    -
+   *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+   *    NEGs): zonal
+   *    API
+   *    -
+   *    To manage NEGs with regional scope (such as regional internet NEGs,
+   *    serverless NEGs, Private Service Connect NEGs): regional
+   *    API
+   *    -
+   *    To manage NEGs with global scope (such as global internet NEGs):global
+   *    API
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -22926,6 +23323,11 @@ export namespace compute_alpha {
      * You can only specify this field for network interfaces in VPC networks.
      */
     aliasIpRanges?: Schema$AliasIpRange[];
+    /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     */
+    aliasIpv6Ranges?: Schema$AliasIpRange[];
     /**
      * Optional. If true, DNS resolution will be enabled over this interface. Only valid
      * with network_attachment.
@@ -24990,6 +25392,7 @@ export namespace compute_alpha {
         message?: string;
       }>;
     } | null;
+    getVersionOperationMetadata?: Schema$GetVersionOperationMetadata;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as `NOT FOUND`.
@@ -25910,6 +26313,33 @@ export namespace compute_alpha {
     status?: string | null;
   }
   /**
+   * The periodic partial maintenance schedule includes 52 weeks worth of
+   * maintenance windows.
+   * LINT.IfChange(PeriodicPartialMaintenanceSchedule)
+   */
+  export interface Schema$PeriodicPartialMaintenanceSchedule {
+    /**
+     * The maintenance type in which the zone is during the given window.
+     */
+    subType?: string | null;
+    /**
+     * The target resource that the maintenance window is for.
+     * For example, "projects/my-project/zones/us-central1-a".
+     */
+    targetResource?: string | null;
+    type?: string | null;
+    /**
+     * The end civil timestamp of the window (not inclusive).
+     * This contains a time zone.
+     */
+    windowEndTime?: Schema$DateTime;
+    /**
+     * The start civil timestamp of the window.
+     * This contains a time zone.
+     */
+    windowStartTime?: Schema$DateTime;
+  }
+  /**
    * [Deprecated] All fields defined in a permission are ANDed.
    */
   export interface Schema$Permission {
@@ -26592,6 +27022,12 @@ export namespace compute_alpha {
      */
     name?: string | null;
     /**
+     * Network tier to be used for this prefix. All child delegated prefixes will
+     * inherit this field. If this field is not specified, it defaults to the
+     * network tier of the project that the PublicAdvertisedPrefix belongs to.
+     */
+    networkTier?: string | null;
+    /**
      * Specifies how child public delegated prefix will be scoped. It could
      * be one of following values:
      *
@@ -26781,6 +27217,12 @@ export namespace compute_alpha {
      * cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Network tier of the public delegated prefix. If populated, it must match
+     * the network tier of the parent public advertised prefix. If not populated,
+     * it defaults to the network tier of the parent public advertised prefix.
+     */
+    networkTier?: string | null;
     /**
      * The URL of parent prefix. Either PublicAdvertisedPrefix or
      * PublicDelegatedPrefix.
@@ -27655,11 +28097,6 @@ export namespace compute_alpha {
      * multi-regional).
      */
     storageLocations?: string[] | null;
-    /**
-     * [Output Only] A list of user provided licenses represented by a list of
-     * URLs to the license resource.
-     */
-    userLicenses?: string[] | null;
   }
   export interface Schema$RecoverableSnapshotsScopedList {
     /**
@@ -27912,6 +28349,23 @@ export namespace compute_alpha {
       message?: string;
     } | null;
   }
+  export interface Schema$RegionDiskUpdateKmsKeyRequest {
+    /**
+     * Optional. The new KMS key to replace the current one on the disk. If empty, the disk
+     * will be re-encrypted using the primary version of the disk's current KMS
+     * key.
+     *
+     * The KMS key can be provided in the following formats:
+     *
+     *
+     *      - projects/project_id/locations/location/keyRings/key_ring/cryptoKeys/key
+     *
+     *
+     * Where project is the project ID or
+     * project number.
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * Contains a list of InstanceGroup resources.
    */
@@ -28073,6 +28527,10 @@ export namespace compute_alpha {
      */
     allInstances?: boolean | null;
     /**
+     * Whether the boot disk is allowed to be updated with restart.
+     */
+    disruptionMode?: string | null;
+    /**
      * The list of URLs of one or more instances for which you want to apply
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      */
@@ -28228,6 +28686,11 @@ export namespace compute_alpha {
      * the get or listManagedInstances API.
      */
     noCreationRetries?: boolean | null;
+    /**
+     * If this flag is enabled within a request to decrease a MIG's target size,
+     * then the MIG declines that request.
+     */
+    scaleInProtection?: boolean | null;
     /**
      * The number of running instances that the managed instance group should
      * maintain at any given time. The group automatically adds or removes
@@ -28493,6 +28956,19 @@ export namespace compute_alpha {
      */
     policy?: Schema$Policy;
   }
+  export interface Schema$RegionSnapshotUpdateKmsKeyRequest {
+    /**
+     * Optional. The new KMS key to replace the current one on the snapshot. If empty, the
+     * snapshot will be re-encrypted using the primary version of the snapshot's
+     * current KMS key.
+     *
+     * The KMS key can be provided in the following formats:
+     *
+     *
+     *      - projects/project_id/locations/region/keyRings/region/cryptoKeys/key
+     */
+    kmsKeyName?: string | null;
+  }
   export interface Schema$RegionTargetHttpsProxiesSetSslCertificatesRequest {
     /**
      * New set of SslCertificate resources to associate
@@ -28659,6 +29135,7 @@ export namespace compute_alpha {
      * displays for reservations that are tied to a commitment.
      */
     commitment?: string | null;
+    confidentialComputeType?: string | null;
     /**
      * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
@@ -28683,6 +29160,12 @@ export namespace compute_alpha {
      * create the resource.
      */
     description?: string | null;
+    /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     */
+    earlyAccessMaintenance?: string | null;
     /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
@@ -29184,6 +29667,12 @@ export namespace compute_alpha {
   export interface Schema$ReservationSlotsGetResponse {
     resource?: Schema$ReservationSlot;
   }
+  export interface Schema$ReservationSlotsGetVersionRequest {
+    /**
+     * The SBOM selection to return. Duplicate values in the list will be ignored.
+     */
+    sbomSelections?: string[] | null;
+  }
   /**
    * A list of reservation slots within a single reservation.
    */
@@ -29378,6 +29867,12 @@ export namespace compute_alpha {
   }
   export interface Schema$ReservationSubBlocksGetResponse {
     resource?: Schema$ReservationSubBlock;
+  }
+  export interface Schema$ReservationSubBlocksGetVersionRequest {
+    /**
+     * The SBOM selection to return.
+     */
+    sbomSelections?: string[] | null;
   }
   /**
    * A list of reservation subBlocks under a single reservation.
@@ -30090,6 +30585,10 @@ export namespace compute_alpha {
      */
     enableOsloginMetadataValue?: boolean | null;
     /**
+     * Effective gce-container-declaration value at Instance level.
+     */
+    gceContainerDeclarationMetadataValue?: boolean | null;
+    /**
      * Effective serial-port-enable value at Instance level.
      */
     serialPortEnableMetadataValue?: boolean | null;
@@ -30326,6 +30825,14 @@ export namespace compute_alpha {
      * the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was paused.
+     */
+    pauseTime?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     */
+    resumeTime?: string | null;
     /**
      * Required. The resource being rolled out.
      */
@@ -30722,6 +31229,11 @@ export namespace compute_alpha {
      */
     completedResourcesCount?: string | null;
     /**
+     * Output only. Estimated timestamp at which the wave will complete. Extrapolated from
+     * current progress.
+     */
+    estimatedCompletionTime?: string | null;
+    /**
      * Output only. Estimated total count of resources.
      */
     estimatedTotalResourcesCount?: string | null;
@@ -30735,6 +31247,24 @@ export namespace compute_alpha {
      * Output only. Resources failed.
      */
     failedResourcesCount?: string | null;
+    /**
+     * Output only. Status of each location in the wave. Map keys (locations) must be
+     * specified like "us-east1" or "asia-west1-a".
+     */
+    locationStatus?: {
+      [
+        key: string
+      ]: Schema$RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus;
+    } | null;
+  }
+  /**
+   * Represents the status of a location in a wave.
+   */
+  export interface Schema$RolloutWaveDetailsOrchestratedWaveDetailsLocationStatus {
+    /**
+     * Output only. Location state of the wave.
+     */
+    state?: string | null;
   }
   /**
    * Represents a Route resource.
@@ -33093,20 +33623,20 @@ export namespace compute_alpha {
     ddosAdaptiveProtection?: string | null;
     /**
      * DDoS Protection for Network Load Balancers (and VMs with public IPs)
-     * builds DDos mitigations that minimize collateral damage. It quantifies
+     * builds DDoS mitigations that minimize collateral damage. It quantifies
      * this as the fraction of a non-abuse baseline that's inadvertently
      * blocked.
      *
      * Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will
      * not be deployed. Using a lower value will prioritize keeping collateral
      * damage low, possibly at the cost of its effectiveness in rate limiting
-     * some or all of the attack. It should typically be unset, so Advanced DDos
+     * some or all of the attack. It should typically be unset, so Advanced DDoS
      * (and Adaptive Protection) uses the best mitigation it can find. Setting
      * the threshold is advised if there are logs for false positive detections
-     * with high collateral damage, and will cause Advanced DDos to attempt to
-     * find a less aggressive rule that satisfies the constraint; Failing that,
-     * it will fall back to no mitigation (smaller attack) or to broader network
-     * throttles (larger attack).
+     * with high collateral damage, and will cause Advanced DDoS to attempt to
+     * find a less aggressive rule that satisfies the constraint. If a suitable
+     * rule cannot be found, the system falls back to either no mitigation for
+     * smaller attacks or broader network throttles for larger ones.
      */
     ddosImpactedBaselineThreshold?: number | null;
     ddosProtection?: string | null;
@@ -34810,11 +35340,6 @@ export namespace compute_alpha {
      * multi-regional).
      */
     storageLocations?: string[] | null;
-    /**
-     * [Output Only] A list of user provided licenses represented by a list of
-     * URLs to the license resource.
-     */
-    userLicenses?: string[] | null;
   }
   export interface Schema$SnapshotAggregatedList {
     etag?: string | null;
@@ -34992,7 +35517,7 @@ export namespace compute_alpha {
    */
   export interface Schema$SnapshotParams {
     /**
-     * Resource manager tags to be bound to the snapshot. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -35133,6 +35658,19 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$SnapshotUpdateKmsKeyRequest {
+    /**
+     * Optional. The new KMS key to replace the current one on the snapshot. If empty, the
+     * snapshot will be re-encrypted using the primary version of the snapshot's
+     * current KMS key.
+     *
+     * The KMS key can be provided in the following formats:
+     *
+     *
+     *      - projects/project_id/locations/region/keyRings/key_ring/cryptoKeys/key
+     */
+    kmsKeyName?: string | null;
   }
   export interface Schema$SourceDiskEncryptionKey {
     /**
@@ -35711,9 +36249,21 @@ export namespace compute_alpha {
      */
     name?: string | null;
     /**
+     * One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer allows
+     * negotiating X25519MLKEM768 key exchange when clients advertise support for
+     * it. When set to DEFAULT, or if no SSL Policy is
+     * attached to the target proxy, the load balancer disallows X25519MLKEM768
+     * key exchange until it is enabled by default on load balancers. When set toENABLED, the load balancer can negotiate X25519MLKEM768 key
+     * exchange. When set to DEFERRED, temporarily opts out the load
+     * balancer from negotiating X25519MLKEM768 beyond the point where it is
+     * enabled by default on load balancers.
+     */
+    postQuantumKeyExchange?: string | null;
+    /**
      * Profile specifies the set of SSL features that can be used by the load
-     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     * to enable must be specified in the customFeatures field.
+     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     * the customFeatures field. If using FIPS_202205,
+     * the min_tls_version field must be set to TLS_1_2.
      */
     profile?: string | null;
     /**
@@ -36611,6 +37161,13 @@ export namespace compute_alpha {
      */
     ipv6GceEndpoint?: string | null;
     /**
+     * Specifies the network tier for EXTERNAL IPv6. Can only be set when
+     * ipv6_access_type is EXTERNAL. Defaults to project defaultNetworkTier if not
+     * specified during the creation of the subnetwork. This field is IMMUTABLE
+     * once set with EXTERNAL IPv6.
+     */
+    ipv6NetworkTier?: string | null;
+    /**
      * Output only. [Output Only] Type of the resource. Always compute#subnetwork
      * for Subnetwork resources.
      */
@@ -36907,6 +37464,17 @@ export namespace compute_alpha {
      * field.
      */
     ipCidrRange?: string | null;
+    /**
+     * Reference to a Public Delegated Prefix (PDP) for BYOIP.
+     * This field should be specified for configuring BYOGUA internal IPv6
+     * secondary range.
+     * When specified along with the ip_cidr_range, the ip_cidr_range must lie
+     * within the PDP referenced by the `ipCollection` field.
+     * When specified without the ip_cidr_range, the range is auto-allocated
+     * from the PDP referenced by the `ipCollection` field.
+     */
+    ipCollection?: string | null;
+    ipVersion?: string | null;
     /**
      * The name associated with this subnetwork secondary range, used when adding
      * an alias IP/IPv6 range to a VM instance.
@@ -38794,6 +39362,20 @@ export namespace compute_alpha {
     permissions?: string[] | null;
   }
   /**
+   * Represents a time zone from the
+   * [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$TimeZone {
+    /**
+     * IANA Time Zone Database time zone. For example "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number. For example "2019a".
+     */
+    version?: string | null;
+  }
+  /**
    * [Deprecated] Defines the mechanism to obtain the client or server
    * certificate.
    * Defines the mechanism to obtain the client or server certificate.
@@ -38910,6 +39492,10 @@ export namespace compute_alpha {
      * This timestamp value is in RFC3339 text format.
      */
     latestWindowStartTime?: string | null;
+    /**
+     * Output only. Maintenance method for the upcoming maintenance.
+     */
+    maintenanceMethod?: string | null;
     /**
      * Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
      */
@@ -39732,8 +40318,8 @@ export namespace compute_alpha {
      */
     description?: string | null;
     /**
-     * Required. A map of extension names (e.g., "cloudops") to their corresponding policy
-     * configurations.
+     * Required. A map of extension names (for example, "ops-agent") to their corresponding
+     * policy configurations.
      */
     extensionPolicies?: {
       [key: string]: Schema$VmExtensionPolicyExtensionPolicy;
@@ -39778,7 +40364,7 @@ export namespace compute_alpha {
      * The policy priority is an integer from 0 to 65535, inclusive. Lower
      * integers indicate higher priorities. If you do not specify a priority when
      * creating a rule, it is assigned a priority of 1000. If priorities are
-     * equal, the policy with the more recent creation timestamp takes precedence.
+     * equal, the policy with the most recent creation timestamp takes precedence.
      */
     priority?: number | null;
     /**
@@ -39947,6 +40533,10 @@ export namespace compute_alpha {
      */
     enforcementState?: string | null;
     /**
+     * The health status message of the extension.
+     */
+    healthMsg?: string | null;
+    /**
      * The health status of the extension.
      */
     healthStatus?: string | null;
@@ -39958,11 +40548,6 @@ export namespace compute_alpha {
      * The id of the policy that is enforced on the extension.
      */
     policyId?: string | null;
-    /**
-     * The status message of the extension if the extension is in unhealthy
-     * state.
-     */
-    unhealthyMsg?: string | null;
     /**
      * The version of the extension.
      */
@@ -41144,6 +41729,7 @@ export namespace compute_alpha {
      * [Output Only] Full URL reference to the region which hosts the zone.
      */
     region?: string | null;
+    resourceStatus?: Schema$ZoneResourceStatus;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -41193,6 +41779,12 @@ export namespace compute_alpha {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ZoneResourceStatus {
+    /**
+     * Output only. [Output Only] The upcoming maintenance schedule.
+     */
+    upcomingMaintenances?: Schema$PeriodicPartialMaintenanceSchedule[];
   }
   export interface Schema$ZoneSetLabelsRequest {
     /**
@@ -42450,6 +43042,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -42828,6 +43421,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -43258,6 +43852,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -43452,6 +44047,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -44803,6 +45399,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45168,6 +45765,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45615,6 +46213,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -45981,6 +46580,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -46574,6 +47174,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47011,6 +47612,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47198,6 +47800,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -47714,6 +48317,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48399,6 +49003,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -48591,6 +49196,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -49114,6 +49720,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -49907,6 +50514,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -50347,6 +50955,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -50534,6 +51143,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -50735,6 +51345,7 @@ export namespace compute_alpha {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -50752,8 +51363,7 @@ export namespace compute_alpha {
      *   //   "subsetting": {},
      *   //   "timeoutSec": 0,
      *   //   "tlsSettings": {},
-     *   //   "usedBy": [],
-     *   //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *   //   "usedBy": []
      *   // }
      * }
      *
@@ -51416,6 +52026,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -51433,8 +52044,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -51447,6 +52057,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52140,6 +52751,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -52157,8 +52769,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -52171,6 +52782,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52363,6 +52975,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -52716,6 +53329,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -53088,6 +53702,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -53105,8 +53720,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -53119,6 +53733,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -53959,6 +54574,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54308,6 +54924,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -54752,6 +55369,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55168,6 +55786,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55612,6 +56231,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55805,6 +56425,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -55926,6 +56547,199 @@ export namespace compute_alpha {
     }
 
     /**
+     * Converts a persistent disk to support Gen4+ VMs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.disks.convert({
+     *     // Name of the Disk resource, should conform to RFC1035.
+     *     disk: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the zone for this request.
+     *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "params": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    convert(
+      params: Params$Resource$Disks$Convert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    convert(
+      params?: Params$Resource$Disks$Convert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    convert(
+      params: Params$Resource$Disks$Convert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    convert(
+      params: Params$Resource$Disks$Convert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    convert(
+      params: Params$Resource$Disks$Convert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    convert(callback: BodyResponseCallback<Schema$Operation>): void;
+    convert(
+      paramsOrCallback?:
+        | Params$Resource$Disks$Convert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Disks$Convert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Disks$Convert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}/convert'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'disk'],
+        pathParams: ['disk', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a snapshot of a specified persistent disk. For regular snapshot
      * creation, consider using snapshots.insert
      * instead, as that method supports more features, such as creating snapshots
@@ -56034,8 +56848,7 @@ export namespace compute_alpha {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -56048,6 +56861,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -56237,6 +57051,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -56461,7 +57276,6 @@ export namespace compute_alpha {
      *   //   "storagePool": "my_storagePool",
      *   //   "storageType": "my_storageType",
      *   //   "type": "my_type",
-     *   //   "userLicenses": [],
      *   //   "users": [],
      *   //   "zone": "my_zone"
      *   // }
@@ -56993,7 +57807,6 @@ export namespace compute_alpha {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -57008,6 +57821,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -57435,6 +58249,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -57631,6 +58446,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -57984,6 +58800,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58177,6 +58994,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58365,6 +59183,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58560,6 +59379,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -58843,7 +59663,7 @@ export namespace compute_alpha {
     /**
      * Updates the specified disk with the data included in the request.
      * The update is performed only on selected fields included as part
-     * of update-mask. Only the following fields can be modified: user_license.
+     * of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -58964,7 +59784,6 @@ export namespace compute_alpha {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -58979,6 +59798,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59154,6 +59974,14 @@ export namespace compute_alpha {
      *     requestId: 'placeholder-value',
      *     // The name of the zone for this request.
      *     zone: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -59164,6 +59992,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59358,6 +60187,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -59700,6 +60530,41 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$BulkZoneSetLabelsRequest;
+  }
+  export interface Params$Resource$Disks$Convert extends StandardParameters {
+    /**
+     * Name of the Disk resource, should conform to RFC1035.
+     */
+    disk?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the zone for this request.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisksConvertRequest;
   }
   export interface Params$Resource$Disks$Createsnapshot extends StandardParameters {
     /**
@@ -60273,6 +61138,11 @@ export namespace compute_alpha {
      * The name of the zone for this request.
      */
     zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiskUpdateKmsKeyRequest;
   }
   export interface Params$Resource$Disks$Waitforreplicationcatchup extends StandardParameters {
     /**
@@ -60535,6 +61405,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -61666,6 +62537,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62021,6 +62893,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62440,6 +63313,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -62998,6 +63872,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63202,6 +64077,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63408,6 +64284,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63590,6 +64467,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63770,6 +64648,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -63937,6 +64816,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -64929,6 +65809,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -65504,6 +66385,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -65711,6 +66593,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -65917,6 +66800,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -66126,6 +67010,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -66308,6 +67193,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -66490,6 +67376,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -66675,6 +67562,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -67725,6 +68613,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68099,6 +68988,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68546,6 +69436,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -68916,6 +69807,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -69608,6 +70500,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70032,6 +70925,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70509,6 +71403,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70705,6 +71600,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -70899,6 +71795,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -71941,6 +72838,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72126,6 +73024,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72293,11 +73192,13 @@ export namespace compute_alpha {
      *
      *   // Example response
      *   // {
+     *   //   "advancedDeploymentControl": {},
      *   //   "aggregateReservation": {},
      *   //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *   //   "autoCreatedReservationsDuration": {},
      *   //   "autoDeleteAutoCreatedReservations": false,
      *   //   "commitmentInfo": {},
+     *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
@@ -72306,6 +73207,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "namePrefix": "my_namePrefix",
+     *   //   "params": {},
      *   //   "planningStatus": "my_planningStatus",
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationMode": "my_reservationMode",
@@ -72475,11 +73377,13 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
      *       //   "commitmentInfo": {},
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
@@ -72488,6 +73392,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "namePrefix": "my_namePrefix",
+     *       //   "params": {},
      *       //   "planningStatus": "my_planningStatus",
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
@@ -72513,6 +73418,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -72943,11 +73849,13 @@ export namespace compute_alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
      *       //   "autoDeleteAutoCreatedReservations": false,
      *       //   "commitmentInfo": {},
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
@@ -72956,6 +73864,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "namePrefix": "my_namePrefix",
+     *       //   "params": {},
      *       //   "planningStatus": "my_planningStatus",
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
@@ -72981,6 +73890,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -73547,6 +74457,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74071,6 +74982,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74496,6 +75408,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -74675,6 +75588,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -75246,6 +76160,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -75784,6 +76699,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -76205,6 +77121,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -76678,6 +77595,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -76858,6 +77776,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77050,6 +77969,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77669,6 +78589,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -77857,6 +78778,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -78049,6 +78971,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -78343,6 +79266,20 @@ export namespace compute_alpha {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -78432,6 +79369,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -79829,6 +80767,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -80250,6 +81189,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -80820,6 +81760,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81370,6 +82311,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -81548,6 +82490,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
      *   //   "purpose": "my_purpose",
@@ -81725,6 +82668,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -81744,6 +82688,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82177,6 +83122,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -82196,6 +83142,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -82863,6 +83810,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -83369,6 +84317,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -84057,6 +85006,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -84929,6 +85879,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -85114,6 +86065,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -85471,6 +86423,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -85909,6 +86862,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -86691,6 +87645,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87068,6 +88023,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87518,6 +88474,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -87888,6 +88845,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88442,6 +89400,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -88802,6 +89761,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -89245,6 +90205,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -89606,6 +90567,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -90041,6 +91003,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -90401,6 +91364,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -90846,6 +91810,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91207,6 +92172,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -91811,6 +92777,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -92008,6 +92975,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -92209,8 +93177,7 @@ export namespace compute_alpha {
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
      *   //   "sourceType": "my_sourceType",
      *   //   "status": "my_status",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -92393,8 +93360,7 @@ export namespace compute_alpha {
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
      *   //   "sourceType": "my_sourceType",
      *   //   "status": "my_status",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -92739,8 +93705,7 @@ export namespace compute_alpha {
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
      *       //   "sourceType": "my_sourceType",
      *       //   "status": "my_status",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -92753,6 +93718,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93209,8 +94175,7 @@ export namespace compute_alpha {
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
      *       //   "sourceType": "my_sourceType",
      *       //   "status": "my_status",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -93223,6 +94188,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -93558,6 +94524,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94221,6 +95188,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94424,6 +95392,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -94834,6 +95803,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95549,6 +96519,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -95978,6 +96949,7 @@ export namespace compute_alpha {
      *       // request body parameters
      *       // {
      *       //   "allInstances": false,
+     *       //   "disruptionMode": "my_disruptionMode",
      *       //   "instances": [],
      *       //   "maximalAction": "my_maximalAction",
      *       //   "minimalAction": "my_minimalAction",
@@ -95994,6 +96966,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96118,6 +97091,207 @@ export namespace compute_alpha {
     }
 
     /**
+     * Updates the accelerator topologies configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await compute.instanceGroupManagers.configureAcceleratorTopologies({
+     *       // The name of the managed instance group.
+     *       // It should conform to RFC1035.
+     *       instanceGroupManager: 'placeholder-value',
+     *       // Project ID for this request.
+     *       project:
+     *         '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       // An optional request ID to identify requests. Specify a unique request ID so
+     *       // that if you must retry your request, the server will know to ignore the
+     *       // request if it has already been completed.
+     *       //
+     *       // For example, consider a situation where you make an initial request and
+     *       // the request times out. If you make the request again with the same
+     *       // request ID, the server can check if original operation with the same
+     *       // request ID was received, and if so, will ignore the second request.
+     *       //
+     *       // The request ID must be
+     *       // a valid UUID with the exception that zero UUID is not supported
+     *       // (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // The name of thezone
+     *       // where the managed instance group is located.
+     *       // It should conform to RFC1035.
+     *       zone: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "acceleratorTopologyActions": {},
+     *         //   "acceleratorTopologyConfigurations": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    configureAcceleratorTopologies(
+      params?: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      paramsOrCallback?:
+        | Params$Resource$Instancegroupmanagers$Configureacceleratortopologies
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instancegroupmanagers$Configureacceleratortopologies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Instancegroupmanagers$Configureacceleratortopologies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/configureAcceleratorTopologies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates instances with per-instance configurations in this managed instance
      * group. Instances are created using the current instance template. Thecreate instances operation is marked DONE if thecreateInstances request is successful. The underlying actions
      * take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
@@ -96195,6 +97369,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96384,6 +97559,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96594,6 +97770,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -96778,6 +97955,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -97139,7 +98317,8 @@ export namespace compute_alpha {
      *
      *   // Example response
      *   // {
-     *   //   "acceleratorTopologiesInfo": {}
+     *   //   "acceleratorTopologiesInfo": {},
+     *   //   "multiMig": "my_multiMig"
      *   // }
      * }
      *
@@ -97369,6 +98548,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -98613,6 +99793,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -98811,6 +99992,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99020,6 +100202,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99232,6 +100415,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99429,6 +100613,7 @@ export namespace compute_alpha {
      *       // request body parameters
      *       // {
      *       //   "noCreationRetries": false,
+     *       //   "scaleInProtection": false,
      *       //   "targetSize": 0
      *       // }
      *     },
@@ -99442,6 +100627,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99651,6 +100837,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -99847,6 +101034,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100046,6 +101234,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100247,6 +101436,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100456,6 +101646,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100675,6 +101866,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -100894,6 +102086,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -101295,6 +102488,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -101493,6 +102687,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -101791,6 +102986,43 @@ export namespace compute_alpha {
      * Request body metadata
      */
     requestBody?: Schema$InstanceGroupManagersApplyUpdatesRequest;
+  }
+  export interface Params$Resource$Instancegroupmanagers$Configureacceleratortopologies extends StandardParameters {
+    /**
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of thezone
+     * where the managed instance group is located.
+     * It should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequest;
   }
   export interface Params$Resource$Instancegroupmanagers$Createinstances extends StandardParameters {
     /**
@@ -103048,6 +104280,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -103491,6 +104724,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -103862,6 +105096,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -104562,6 +105797,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -104757,6 +105993,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -105682,6 +106919,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -105865,6 +107103,7 @@ export namespace compute_alpha {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "aliasIpv6Ranges": [],
      *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
@@ -105898,6 +107137,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106093,6 +107333,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106555,8 +107796,7 @@ export namespace compute_alpha {
      *       //   "savedState": "my_savedState",
      *       //   "shieldedInstanceInitialState": {},
      *       //   "source": "my_source",
-     *       //   "type": "my_type",
-     *       //   "userLicenses": []
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -106569,6 +107809,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106769,6 +108010,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -106957,6 +108199,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -107145,6 +108388,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -107343,6 +108587,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -107533,6 +108778,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -109153,10 +110399,10 @@ export namespace compute_alpha {
      *   // {
      *   //   "enforcementMsg": "my_enforcementMsg",
      *   //   "enforcementState": "my_enforcementState",
+     *   //   "healthMsg": "my_healthMsg",
      *   //   "healthStatus": "my_healthStatus",
      *   //   "name": "my_name",
      *   //   "policyId": "my_policyId",
-     *   //   "unhealthyMsg": "my_unhealthyMsg",
      *   //   "version": "my_version"
      *   // }
      * }
@@ -109408,6 +110654,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -110336,6 +111583,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -110523,6 +111771,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -110716,6 +111965,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -110913,6 +112163,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111100,6 +112351,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111294,6 +112546,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111618,6 +112871,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -111810,6 +113064,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112170,6 +113425,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112364,6 +113620,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112558,6 +113815,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112754,6 +114012,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -112950,6 +114209,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113144,6 +114404,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113364,6 +114625,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113561,6 +114823,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113757,6 +115020,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -113953,6 +115217,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114152,6 +115417,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114349,6 +115615,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114538,6 +115805,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114727,6 +115995,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -114922,6 +116191,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -115120,6 +116390,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -115315,6 +116586,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -115745,6 +117017,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -115953,6 +117226,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -116149,6 +117423,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -116338,6 +117613,7 @@ export namespace compute_alpha {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "aliasIpv6Ranges": [],
      *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
@@ -116371,6 +117647,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -116571,6 +117848,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -116771,6 +118049,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -119319,6 +120598,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -119813,6 +121093,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -120322,6 +121603,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -121406,6 +122688,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -121921,6 +123204,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -123181,6 +124465,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -123714,6 +124999,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -124307,6 +125593,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125045,6 +126332,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125231,6 +126519,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -125903,6 +127192,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -126359,6 +127649,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -127402,6 +128693,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -127993,6 +129285,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -128480,6 +129773,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -128835,6 +130129,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129612,6 +130907,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -129796,6 +131092,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -130457,6 +131754,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -130907,6 +132205,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -132747,6 +134046,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -133625,6 +134925,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -134089,6 +135390,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -134426,6 +135728,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -135752,6 +137055,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -136287,6 +137591,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137063,6 +138368,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -137500,6 +138806,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -138031,6 +139338,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -138601,6 +139909,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -140339,6 +141648,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -140858,6 +142168,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -141308,6 +142619,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -142478,6 +143790,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -142841,6 +144154,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143048,6 +144362,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143752,6 +145067,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -143945,6 +145261,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -144141,6 +145458,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -144438,6 +145756,20 @@ export namespace compute_alpha {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -144531,6 +145863,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -145923,6 +147256,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146136,6 +147470,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146352,6 +147687,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146799,6 +148135,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -146982,6 +148319,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -147986,6 +149324,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148430,6 +149769,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148626,6 +149966,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -148835,6 +150176,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149047,6 +150389,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149232,6 +150575,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149418,6 +150762,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -149606,6 +150951,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151390,6 +152736,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151583,6 +152930,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -151768,6 +153116,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -152296,6 +153645,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153477,6 +154827,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153667,6 +155018,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -153859,6 +155211,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -154044,6 +155397,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -154393,6 +155747,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155360,6 +156715,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155800,6 +157156,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -155993,6 +157350,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -156521,6 +157879,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157207,6 +158566,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157400,6 +158760,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157752,6 +159113,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -157946,6 +159308,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -159238,6 +160601,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -159760,6 +161124,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -161785,6 +163150,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -161996,6 +163362,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -162183,6 +163550,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -162367,6 +163735,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -163077,6 +164446,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -163902,6 +165272,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164119,6 +165490,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164334,6 +165706,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164521,6 +165894,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -164709,6 +166083,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -165572,6 +166947,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166059,6 +167435,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166423,6 +167800,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -166870,6 +168248,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -167980,6 +169359,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168314,6 +169694,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168503,6 +169884,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168683,6 +170065,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -168873,6 +170256,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -169872,6 +171256,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170067,6 +171452,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170258,6 +171644,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170449,6 +171836,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170642,6 +172030,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -170835,6 +172224,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -171029,6 +172419,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -171226,6 +172617,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -171957,6 +173349,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -172141,6 +173534,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -172317,6 +173711,7 @@ export namespace compute_alpha {
      *   //   "ipv6AccessType": "my_ipv6AccessType",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "pdpScope": "my_pdpScope",
      *   //   "publicDelegatedPrefixs": [],
      *   //   "selfLink": "my_selfLink",
@@ -172490,6 +173885,7 @@ export namespace compute_alpha {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "pdpScope": "my_pdpScope",
      *       //   "publicDelegatedPrefixs": [],
      *       //   "selfLink": "my_selfLink",
@@ -172508,6 +173904,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -172939,6 +174336,7 @@ export namespace compute_alpha {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "pdpScope": "my_pdpScope",
      *       //   "publicDelegatedPrefixs": [],
      *       //   "selfLink": "my_selfLink",
@@ -172957,6 +174355,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -173140,6 +174539,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -173845,6 +175245,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -174030,6 +175431,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -174210,6 +175612,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
+     *   //   "networkTier": "my_networkTier",
      *   //   "parentPrefix": "my_parentPrefix",
      *   //   "publicDelegatedSubPrefixs": [],
      *   //   "purpose": "my_purpose",
@@ -174389,6 +175792,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -174408,6 +175812,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -174845,6 +176250,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
+     *       //   "networkTier": "my_networkTier",
      *       //   "parentPrefix": "my_parentPrefix",
      *       //   "publicDelegatedSubPrefixs": [],
      *       //   "purpose": "my_purpose",
@@ -174864,6 +176270,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -175050,6 +176457,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -175900,6 +177308,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -176635,6 +178044,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177480,6 +178890,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -177846,6 +179257,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -178296,6 +179708,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -178662,6 +180075,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -179132,6 +180546,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -179654,6 +181069,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -180348,6 +181764,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -181249,6 +182666,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -181452,6 +182870,7 @@ export namespace compute_alpha {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -181469,8 +182888,7 @@ export namespace compute_alpha {
      *   //   "subsetting": {},
      *   //   "timeoutSec": 0,
      *   //   "tlsSettings": {},
-     *   //   "usedBy": [],
-     *   //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *   //   "usedBy": []
      *   // }
      * }
      *
@@ -181978,6 +183396,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -181995,8 +183414,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -182009,6 +183427,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -182710,6 +184129,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -182727,8 +184147,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -182741,6 +184160,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183096,6 +184516,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -183473,6 +184894,7 @@ export namespace compute_alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -183490,8 +184912,7 @@ export namespace compute_alpha {
      *       //   "subsetting": {},
      *       //   "timeoutSec": 0,
      *       //   "tlsSettings": {},
-     *       //   "usedBy": [],
-     *       //   "vpcNetworkScope": "my_vpcNetworkScope"
+     *       //   "usedBy": []
      *       // }
      *     },
      *   });
@@ -183504,6 +184925,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -184424,6 +185846,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -184612,6 +186035,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -184791,6 +186215,7 @@ export namespace compute_alpha {
      *   //   "licenseResource": {},
      *   //   "mergeSourceCommitments": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "plan": "my_plan",
      *   //   "region": "my_region",
      *   //   "reservations": [],
@@ -184972,6 +186397,7 @@ export namespace compute_alpha {
      *       //   "licenseResource": {},
      *       //   "mergeSourceCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "plan": "my_plan",
      *       //   "region": "my_region",
      *       //   "reservations": [],
@@ -184996,6 +186422,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -185590,6 +187017,7 @@ export namespace compute_alpha {
      *       //   "licenseResource": {},
      *       //   "mergeSourceCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "plan": "my_plan",
      *       //   "region": "my_region",
      *       //   "reservations": [],
@@ -185614,6 +187042,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -185808,6 +187237,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -186692,6 +188122,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -187019,7 +188450,8 @@ export namespace compute_alpha {
      *   // Example response
      *   // {
      *   //   "healthSources": [],
-     *   //   "healthState": "my_healthState"
+     *   //   "healthState": "my_healthState",
+     *   //   "kind": "my_kind"
      *   // }
      * }
      *
@@ -187042,9 +188474,7 @@ export namespace compute_alpha {
     getHealth(
       params?: Params$Resource$Regioncompositehealthchecks$Gethealth,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$CompositeHealthChecksGetHealthResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckHealth>>;
     getHealth(
       params: Params$Resource$Regioncompositehealthchecks$Gethealth,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -187054,34 +188484,32 @@ export namespace compute_alpha {
       params: Params$Resource$Regioncompositehealthchecks$Gethealth,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>,
-      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Schema$CompositeHealthCheckHealth>,
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckHealth>
     ): void;
     getHealth(
       params: Params$Resource$Regioncompositehealthchecks$Gethealth,
-      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckHealth>
     ): void;
     getHealth(
-      callback: BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+      callback: BodyResponseCallback<Schema$CompositeHealthCheckHealth>
     ): void;
     getHealth(
       paramsOrCallback?:
         | Params$Resource$Regioncompositehealthchecks$Gethealth
-        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Schema$CompositeHealthCheckHealth>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Schema$CompositeHealthCheckHealth>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CompositeHealthChecksGetHealthResponse>
+        | BodyResponseCallback<Schema$CompositeHealthCheckHealth>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$CompositeHealthChecksGetHealthResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$CompositeHealthCheckHealth>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Regioncompositehealthchecks$Gethealth;
@@ -187117,14 +188545,12 @@ export namespace compute_alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$CompositeHealthChecksGetHealthResponse>(
+        createAPIRequest<Schema$CompositeHealthCheckHealth>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$CompositeHealthChecksGetHealthResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$CompositeHealthCheckHealth>(parameters);
       }
     }
 
@@ -187210,6 +188636,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -187656,6 +189083,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188389,6 +189817,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188582,6 +190011,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -188811,8 +190241,7 @@ export namespace compute_alpha {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -188825,6 +190254,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -189014,6 +190444,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -189239,7 +190670,6 @@ export namespace compute_alpha {
      *   //   "storagePool": "my_storagePool",
      *   //   "storageType": "my_storageType",
      *   //   "type": "my_type",
-     *   //   "userLicenses": [],
      *   //   "users": [],
      *   //   "zone": "my_zone"
      *   // }
@@ -189768,7 +191198,6 @@ export namespace compute_alpha {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -189783,6 +191212,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190213,6 +191643,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190408,6 +191839,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190761,6 +192193,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -190955,6 +192388,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191143,6 +192577,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191338,6 +192773,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191620,8 +193056,7 @@ export namespace compute_alpha {
 
     /**
      * Update the specified disk with the data included in the request. Update is
-     * performed only on selected fields included as part of update-mask. Only the
-     * following fields can be modified: user_license.
+     * performed only on selected fields included as part of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -191742,7 +193177,6 @@ export namespace compute_alpha {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -191757,6 +193191,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -191933,6 +193368,14 @@ export namespace compute_alpha {
      *     // a valid UUID with the exception that zero UUID is not supported
      *     // (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -191943,6 +193386,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -192137,6 +193581,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -192898,6 +194343,11 @@ export namespace compute_alpha {
      * (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionDiskUpdateKmsKeyRequest;
   }
   export interface Params$Resource$Regiondisks$Waitforreplicationcatchup extends StandardParameters {
     /**
@@ -193161,6 +194611,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194186,6 +195637,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194549,6 +196001,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -194998,6 +196451,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -195707,6 +197161,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -196089,6 +197544,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -196545,6 +198001,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -196919,6 +198376,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -197646,6 +199104,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -198011,6 +199470,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -198461,6 +199921,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -199427,6 +200888,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -199705,6 +201167,155 @@ export namespace compute_alpha {
     }
 
     /**
+     * Gets the most recent health check results for this
+     * regional HealthSource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthSources.getHealth({
+     *     // Name of the HealthSource resource to get health for.
+     *     healthSource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "healthState": "my_healthState",
+     *   //   "kind": "my_kind",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getHealth(
+      params: Params$Resource$Regionhealthsources$Gethealth,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getHealth(
+      params?: Params$Resource$Regionhealthsources$Gethealth,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceHealth>>;
+    getHealth(
+      params: Params$Resource$Regionhealthsources$Gethealth,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getHealth(
+      params: Params$Resource$Regionhealthsources$Gethealth,
+      options: MethodOptions | BodyResponseCallback<Schema$HealthSourceHealth>,
+      callback: BodyResponseCallback<Schema$HealthSourceHealth>
+    ): void;
+    getHealth(
+      params: Params$Resource$Regionhealthsources$Gethealth,
+      callback: BodyResponseCallback<Schema$HealthSourceHealth>
+    ): void;
+    getHealth(callback: BodyResponseCallback<Schema$HealthSourceHealth>): void;
+    getHealth(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthsources$Gethealth
+        | BodyResponseCallback<Schema$HealthSourceHealth>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthSourceHealth>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthSourceHealth>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthSourceHealth>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthsources$Gethealth;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthsources$Gethealth;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/regions/{region}/healthSources/{healthSource}/getHealth'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthSource'],
+        pathParams: ['healthSource', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthSourceHealth>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthSourceHealth>(parameters);
+      }
+    }
+
+    /**
      * Create a HealthSource in the specified project in the given region
      * using the parameters that are included in the request.
      * @example
@@ -199787,6 +201398,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -200232,6 +201844,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -200674,6 +202287,20 @@ export namespace compute_alpha {
      */
     region?: string;
   }
+  export interface Params$Resource$Regionhealthsources$Gethealth extends StandardParameters {
+    /**
+     * Name of the HealthSource resource to get health for.
+     */
+    healthSource?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
   export interface Params$Resource$Regionhealthsources$Insert extends StandardParameters {
     /**
      * Project ID for this request.
@@ -200948,6 +202575,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -201151,6 +202779,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -201560,6 +203189,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -202275,6 +203905,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -202477,6 +204108,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -202646,6 +204278,7 @@ export namespace compute_alpha {
      *         // request body parameters
      *         // {
      *         //   "allInstances": false,
+     *         //   "disruptionMode": "my_disruptionMode",
      *         //   "instances": [],
      *         //   "maximalAction": "my_maximalAction",
      *         //   "minimalAction": "my_minimalAction",
@@ -202663,6 +204296,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -202866,6 +204500,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203053,6 +204688,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203261,6 +204897,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203443,6 +205080,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -203869,6 +205507,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205107,6 +206746,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205305,6 +206945,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205513,6 +207154,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205714,6 +207356,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -205912,6 +207555,7 @@ export namespace compute_alpha {
      *       // request body parameters
      *       // {
      *       //   "noCreationRetries": false,
+     *       //   "scaleInProtection": false,
      *       //   "targetSize": 0
      *       // }
      *     },
@@ -205925,6 +207569,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206134,6 +207779,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206330,6 +207976,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206527,6 +208174,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206723,6 +208371,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -206932,6 +208581,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207151,6 +208801,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207370,6 +209021,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207772,6 +209424,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -207969,6 +209622,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -210052,6 +211706,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -210711,6 +212366,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -210936,6 +212592,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -211296,6 +212953,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -211922,6 +213580,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -212438,6 +214097,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -213443,6 +215103,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -213976,6 +215637,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -214569,6 +216231,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -215731,6 +217394,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -216084,6 +217748,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -216708,6 +218373,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -216899,6 +218565,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -217096,6 +218763,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -217393,6 +219061,20 @@ export namespace compute_alpha {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -217486,6 +219168,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -218573,6 +220256,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -218789,6 +220473,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -218976,6 +220661,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -219161,6 +220847,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -220171,6 +221858,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -220620,6 +222308,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -220818,6 +222507,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -221030,6 +222720,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -221217,6 +222908,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -221405,6 +223097,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -222518,6 +224211,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -222720,6 +224414,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -223162,6 +224857,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -223841,6 +225537,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224282,6 +225979,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224488,6 +226186,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224678,6 +226377,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -224866,6 +226566,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -225872,6 +227573,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -226226,6 +227928,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227265,6 +228968,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -227691,6 +229395,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -228038,6 +229743,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -228782,6 +230488,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -230099,6 +231806,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -230284,6 +231992,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -230836,6 +232545,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231298,6 +233008,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231502,6 +233213,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231675,6 +233387,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -231871,6 +233584,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232426,6 +234140,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -232636,8 +234351,7 @@ export namespace compute_alpha {
      *   //   "status": "my_status",
      *   //   "storageBytes": "my_storageBytes",
      *   //   "storageBytesStatus": "my_storageBytesStatus",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -232990,8 +234704,7 @@ export namespace compute_alpha {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -233004,6 +234717,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -233597,6 +235311,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -233931,6 +235646,14 @@ export namespace compute_alpha {
      *     requestId: 'placeholder-value',
      *     // Name of the snapshot resource to update. Should conform to RFC1035.
      *     snapshot: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -233941,6 +235664,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234365,6 +236089,11 @@ export namespace compute_alpha {
      * Name of the snapshot resource to update. Should conform to RFC1035.
      */
     snapshot?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RegionSnapshotUpdateKmsKeyRequest;
   }
 
   export class Resource$Regionsnapshotsettings {
@@ -234592,6 +236321,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -234830,6 +236560,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -235198,6 +236929,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -235992,6 +237724,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -236169,6 +237902,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "minTlsVersion": "my_minTlsVersion",
      *   //   "name": "my_name",
+     *   //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *   //   "profile": "my_profile",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
@@ -236341,6 +238075,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "minTlsVersion": "my_minTlsVersion",
      *       //   "name": "my_name",
+     *       //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *       //   "profile": "my_profile",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -236359,6 +238094,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -237030,6 +238766,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "minTlsVersion": "my_minTlsVersion",
      *       //   "name": "my_name",
+     *       //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *       //   "profile": "my_profile",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -237048,6 +238785,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -237747,6 +239485,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -238109,6 +239848,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -238540,6 +240280,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -239129,6 +240870,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -239509,6 +241251,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -239966,6 +241709,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -240160,6 +241904,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -240354,6 +242099,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -241014,6 +242760,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -241372,6 +243119,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -242153,6 +243901,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -242510,6 +244259,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -242701,6 +244451,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -243139,6 +244890,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -243495,6 +245247,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -245400,6 +247153,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -246025,6 +247779,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -246195,11 +247950,13 @@ export namespace compute_alpha {
      *   //   "advancedDeploymentControl": {},
      *   //   "aggregateReservation": {},
      *   //   "commitment": "my_commitment",
+     *   //   "confidentialComputeType": "my_confidentialComputeType",
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "deleteAfterDuration": {},
      *   //   "deleteAtTime": "my_deleteAtTime",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
+     *   //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *   //   "enableEmergentMaintenance": false,
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
@@ -246531,11 +248288,13 @@ export namespace compute_alpha {
      *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "commitment": "my_commitment",
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deleteAfterDuration": {},
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
@@ -246568,6 +248327,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -246999,6 +248759,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -247194,6 +248955,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -247697,11 +249459,13 @@ export namespace compute_alpha {
      *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "commitment": "my_commitment",
+     *       //   "confidentialComputeType": "my_confidentialComputeType",
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "deleteAfterDuration": {},
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
@@ -247734,6 +249498,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -248489,6 +250254,204 @@ export namespace compute_alpha {
     }
 
     /**
+     * Allows customers to get SBOM versions of a reservation slot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.getVersion({
+     *     // The name of the parent reservation and parent block. In the format of
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the reservation slot.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     reservationSlot: 'placeholder-value',
+     *     // Name of the zone for this request. Zone name should conform to RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sbomSelections": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVersion(
+      params?: Params$Resource$Reservationslots$Getversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationslots$Getversion,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(callback: BodyResponseCallback<Schema$Operation>): void;
+    getVersion(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Getversion
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Getversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Getversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves a list of reservation slots under a single reservation.
      * @example
      * ```js
@@ -248733,6 +250696,200 @@ export namespace compute_alpha {
         );
       }
     }
+
+    /**
+     * Update a reservation slot in the specified sub-block.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSlots.update({
+     *     // The name of the sub-block resource.
+     *     parentName:
+     *       'reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})',
+     *     // The project ID for this request.
+     *     project: 'placeholder-value',
+     *     // The name of the slot resource.
+     *     reservationSlot: 'placeholder-value',
+     *     // The fields to be updated as part of this request.
+     *     updateMask: 'placeholder-value',
+     *     // The name of the zone for this request, formatted as RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "physicalTopology": {},
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "shareSettings": {},
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Reservationslots$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(
+      params: Params$Resource$Reservationslots$Update,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Reservationslots$Update
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationslots$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationslots$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'parentName', 'reservationSlot'],
+        pathParams: ['parentName', 'project', 'reservationSlot', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Reservationslots$Get extends StandardParameters {
@@ -248754,6 +250911,47 @@ export namespace compute_alpha {
      * The name of the zone for this request, formatted as RFC1035.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Reservationslots$Getversion extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}/reservationSubBlocks/{reservation_sub_block_name\}
+     */
+    parentName?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the reservation slot.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    reservationSlot?: string;
+    /**
+     * Name of the zone for this request. Zone name should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSlotsGetVersionRequest;
   }
   export interface Params$Resource$Reservationslots$List extends StandardParameters {
     /**
@@ -248868,6 +251066,33 @@ export namespace compute_alpha {
      */
     zone?: string;
   }
+  export interface Params$Resource$Reservationslots$Update extends StandardParameters {
+    /**
+     * The name of the sub-block resource.
+     */
+    parentName?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the slot resource.
+     */
+    reservationSlot?: string;
+    /**
+     * The fields to be updated as part of this request.
+     */
+    updateMask?: string;
+    /**
+     * The name of the zone for this request, formatted as RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSlot;
+  }
 
   export class Resource$Reservationsubblocks {
     context: APIRequestContext;
@@ -248912,7 +251137,8 @@ export namespace compute_alpha {
      *   const res = await compute.reservationSubBlocks.get({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // The name of the reservation subBlock.
@@ -249008,7 +251234,7 @@ export namespace compute_alpha {
           {
             url: (
               rootUrl +
-              '/compute/alpha/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}'
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -249034,6 +251260,209 @@ export namespace compute_alpha {
         return createAPIRequest<Schema$ReservationSubBlocksGetResponse>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Allows customers to get SBOM versions of a reservation subBlock.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.reservationSubBlocks.getVersion({
+     *     // The name of the parent reservation and parent block. In the format of
+     *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
+     *     // Project ID for this request.
+     *     project: 'placeholder-value',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // The name of the reservation subBlock.
+     *     // Name should conform to RFC1035 or be a resource ID.
+     *     reservationSubBlock: 'placeholder-value',
+     *     // Name of the zone for this request. Zone name should conform to RFC1035.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sbomSelections": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVersion(
+      params?: Params$Resource$Reservationsubblocks$Getversion,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(
+      params: Params$Resource$Reservationsubblocks$Getversion,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    getVersion(callback: BodyResponseCallback<Schema$Operation>): void;
+    getVersion(
+      paramsOrCallback?:
+        | Params$Resource$Reservationsubblocks$Getversion
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reservationsubblocks$Getversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reservationsubblocks$Getversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/getVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'project',
+          'zone',
+          'parentName',
+          'reservationSubBlock',
+        ],
+        pathParams: ['parentName', 'project', 'reservationSubBlock', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -249155,7 +251584,8 @@ export namespace compute_alpha {
      *     pageToken: 'placeholder-value',
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // Opt-in for partial success behavior which provides partial results in case
@@ -249262,7 +251692,7 @@ export namespace compute_alpha {
           {
             url: (
               rootUrl +
-              '/compute/alpha/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks'
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -249322,7 +251752,8 @@ export namespace compute_alpha {
      *   const res = await compute.reservationSubBlocks.performMaintenance({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -249354,6 +251785,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -249452,7 +251884,7 @@ export namespace compute_alpha {
           {
             url: (
               rootUrl +
-              '/compute/alpha/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -249515,7 +251947,8 @@ export namespace compute_alpha {
      *   const res = await compute.reservationSubBlocks.reportFaulty({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -249557,6 +251990,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -249655,7 +252089,7 @@ export namespace compute_alpha {
           {
             url: (
               rootUrl +
-              '/compute/alpha/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
+              '/compute/alpha/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -249706,6 +252140,47 @@ export namespace compute_alpha {
      * Name of the zone for this request. Zone name should conform to RFC1035.
      */
     zone?: string;
+  }
+  export interface Params$Resource$Reservationsubblocks$Getversion extends StandardParameters {
+    /**
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
+     */
+    parentName?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
+     */
+    reservationSubBlock?: string;
+    /**
+     * Name of the zone for this request. Zone name should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationSubBlocksGetVersionRequest;
   }
   export interface Params$Resource$Reservationsubblocks$List extends StandardParameters {
     /**
@@ -250226,6 +252701,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -250745,6 +253221,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -251195,6 +253672,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -252104,6 +254582,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -252452,6 +254931,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -253051,6 +255531,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -253233,6 +255714,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -253406,6 +255888,8 @@ export namespace compute_alpha {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pauseTime": "my_pauseTime",
+     *   //   "resumeTime": "my_resumeTime",
      *   //   "rolloutEntity": {},
      *   //   "rolloutPlan": "my_rolloutPlan",
      *   //   "selfLink": "my_selfLink",
@@ -253744,6 +256228,380 @@ export namespace compute_alpha {
         return createAPIRequest<Schema$RolloutsListResponse>(parameters);
       }
     }
+
+    /**
+     * Pauses a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.pause({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to pause.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pause(
+      params?: Params$Resource$Rollouts$Pause,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Pause
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/rollouts/{rollout}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resumes a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.resume({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to resume.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resume(
+      params?: Params$Resource$Rollouts$Resume,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Resume
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/alpha/projects/{project}/global/rollouts/{rollout}/resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Rollouts$Cancel extends StandardParameters {
@@ -253918,6 +256776,70 @@ export namespace compute_alpha {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Rollouts$Pause extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to pause.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Rollouts$Resume extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to resume.
+     */
+    rollout?: string;
   }
 
   export class Resource$Routers {
@@ -254244,6 +257166,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -254430,6 +257353,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -254617,6 +257541,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -255848,6 +258773,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -257048,6 +259974,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -257244,6 +260171,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -257441,6 +260369,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -257985,6 +260914,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -258181,6 +261111,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -258378,6 +261309,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -259741,6 +262673,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -260131,6 +263064,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -260905,6 +263839,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -261346,6 +264281,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -261892,6 +264828,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -262591,6 +265528,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -262793,6 +265731,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -262964,6 +265903,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -263144,6 +266084,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -264287,6 +267228,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -264821,6 +267763,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -265278,6 +268221,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -266184,6 +269128,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -266688,6 +269633,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -267793,6 +270739,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -268283,6 +271230,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -268490,8 +271438,7 @@ export namespace compute_alpha {
      *   //   "status": "my_status",
      *   //   "storageBytes": "my_storageBytes",
      *   //   "storageBytesStatus": "my_storageBytesStatus",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -268998,8 +271945,7 @@ export namespace compute_alpha {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -269012,6 +271958,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -269580,6 +272527,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -269910,6 +272858,14 @@ export namespace compute_alpha {
      *     requestId: 'placeholder-value',
      *     // Name of the snapshot resource to update. Should conform to RFC1035.
      *     snapshot: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kmsKeyName": "my_kmsKeyName"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -269920,6 +272876,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -270421,6 +273378,11 @@ export namespace compute_alpha {
      * Name of the snapshot resource to update. Should conform to RFC1035.
      */
     snapshot?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotUpdateKmsKeyRequest;
   }
 
   export class Resource$Snapshotsettings {
@@ -270644,6 +273606,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -271129,6 +274092,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -271491,6 +274455,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -272634,6 +275599,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -272809,6 +275775,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "minTlsVersion": "my_minTlsVersion",
      *   //   "name": "my_name",
+     *   //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *   //   "profile": "my_profile",
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
@@ -272977,6 +275944,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "minTlsVersion": "my_minTlsVersion",
      *       //   "name": "my_name",
+     *       //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *       //   "profile": "my_profile",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -272995,6 +275963,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -273657,6 +276626,7 @@ export namespace compute_alpha {
      *       //   "kind": "my_kind",
      *       //   "minTlsVersion": "my_minTlsVersion",
      *       //   "name": "my_name",
+     *       //   "postQuantumKeyExchange": "my_postQuantumKeyExchange",
      *       //   "profile": "my_profile",
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
@@ -273675,6 +276645,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -274722,6 +277693,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -275258,6 +278230,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -276097,6 +279070,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -276477,6 +279451,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -278378,6 +281353,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -278571,6 +281547,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -278762,6 +281739,7 @@ export namespace compute_alpha {
      *   //   "ipv6AccessType": "my_ipv6AccessType",
      *   //   "ipv6CidrRange": "my_ipv6CidrRange",
      *   //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *   //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *   //   "kind": "my_kind",
      *   //   "logConfig": {},
      *   //   "metadata": "my_metadata",
@@ -279110,6 +282088,7 @@ export namespace compute_alpha {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6CidrRange": "my_ipv6CidrRange",
      *       //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *       //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *       //   "kind": "my_kind",
      *       //   "logConfig": {},
      *       //   "metadata": "my_metadata",
@@ -279144,6 +282123,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -279846,6 +282826,7 @@ export namespace compute_alpha {
      *       //   "ipv6AccessType": "my_ipv6AccessType",
      *       //   "ipv6CidrRange": "my_ipv6CidrRange",
      *       //   "ipv6GceEndpoint": "my_ipv6GceEndpoint",
+     *       //   "ipv6NetworkTier": "my_ipv6NetworkTier",
      *       //   "kind": "my_kind",
      *       //   "logConfig": {},
      *       //   "metadata": "my_metadata",
@@ -279880,6 +282861,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -280233,6 +283215,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -281193,6 +284176,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -281545,6 +284529,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -281983,6 +284968,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -282800,6 +285786,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -283158,6 +286145,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -283600,6 +286588,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -283791,6 +286780,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -284758,6 +287748,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -285134,6 +288125,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -285587,6 +288579,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -285779,6 +288772,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -285971,6 +288965,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -286163,6 +289158,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -286358,6 +289354,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -286550,6 +289547,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -287647,6 +290645,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -288007,6 +291006,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -288441,6 +291441,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -289157,6 +292158,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -289350,6 +292352,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -289789,6 +292792,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -290312,6 +293316,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -290742,6 +293747,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -290935,6 +293941,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -291130,6 +294137,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -291326,6 +294334,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -292230,6 +295239,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -292584,6 +295594,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -293012,6 +296023,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -293204,6 +296216,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -293395,6 +296408,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -293587,6 +296601,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -293782,6 +296797,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -294727,6 +297743,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -295081,6 +298098,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -295509,6 +298527,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -295700,6 +298719,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -296669,6 +299689,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -297033,6 +300054,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -297468,6 +300490,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -298427,6 +301450,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -298789,6 +301813,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -298987,6 +302012,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -299430,6 +302456,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -299792,6 +302819,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -300804,6 +303832,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -301319,6 +304348,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -301751,6 +304781,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -302726,6 +305757,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -303115,6 +306147,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -303547,6 +306580,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -304254,6 +307288,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -304622,6 +307657,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -305074,6 +308110,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -305485,6 +308522,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -306163,6 +309201,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -306588,6 +309627,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -306921,6 +309961,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -307731,6 +310772,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -307920,6 +310962,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -308279,6 +311322,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -309030,6 +312074,7 @@ export namespace compute_alpha {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "region": "my_region",
+     *   //   "resourceStatus": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "supportsPzs": false
@@ -309550,6 +312595,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -310059,6 +313105,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
@@ -310750,6 +313797,7 @@ export namespace compute_alpha {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
      *   //   "httpErrorMessage": "my_httpErrorMessage",
      *   //   "httpErrorStatusCode": 0,
      *   //   "id": "my_id",
