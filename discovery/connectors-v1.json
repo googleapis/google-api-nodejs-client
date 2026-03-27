@@ -185,7 +185,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "connectors.projects.locations.list",
@@ -327,6 +327,62 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchToolspecOverride": {
+                  "description": "Fetches Toolspec Override for a connection for the given list of tools. Returns results from the db if the tool is already present.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:fetchToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.fetchToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:fetchToolspecOverride",
+                  "request": {
+                    "$ref": "FetchConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "FetchConnectionToolspecOverrideResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateToolspecOverride": {
+                  "description": "Generates Toolspec Override for a connection for the given list of entityTypes and operations. Returns results from the db if the entityType and operation are already present.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:generateToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.generateToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateToolspecOverride",
+                  "request": {
+                    "$ref": "GenerateConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateConnectionToolspecOverrideResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -517,6 +573,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "modifyToolspecOverride": {
+                  "description": "Updates Toolspec Override for a connection with the admin provided descriptions.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:modifyToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.modifyToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:modifyToolspecOverride",
+                  "request": {
+                    "$ref": "ModifyConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "ModifyConnectionToolspecOverrideResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates the parameters of a single Connection.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
@@ -546,6 +630,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeToolspecOverride": {
+                  "description": "Deletes all Toolspec Override for a connection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:removeToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.removeToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:removeToolspecOverride",
+                  "request": {
+                    "$ref": "RemoveConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2762,7 +2874,7 @@
       }
     }
   },
-  "revision": "20251216",
+  "revision": "20260316",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3148,15 +3260,15 @@
       "id": "ConfigVariable",
       "properties": {
         "boolValue": {
-          "description": "Value is a bool.",
+          "description": "Optional. Value is a bool.",
           "type": "boolean"
         },
         "encryptionKeyValue": {
           "$ref": "EncryptionKey",
-          "description": "Value is a Encryption Key."
+          "description": "Optional. Value is a Encryption Key."
         },
         "intValue": {
-          "description": "Value is an integer",
+          "description": "Optional. Value is an integer",
           "format": "int64",
           "type": "string"
         },
@@ -3166,10 +3278,10 @@
         },
         "secretValue": {
           "$ref": "Secret",
-          "description": "Value is a secret."
+          "description": "Optional. Value is a secret."
         },
         "stringValue": {
-          "description": "Value is a string.",
+          "description": "Optional. Value is a string.",
           "type": "string"
         }
       },
@@ -4429,7 +4541,7 @@
           "type": "string"
         },
         "port": {
-          "description": "The port is the target port number that is accepted by the destination.",
+          "description": "Optional. The port is the target port number that is accepted by the destination.",
           "format": "int32",
           "type": "integer"
         },
@@ -4446,14 +4558,14 @@
       "id": "DestinationConfig",
       "properties": {
         "destinations": {
-          "description": "The destinations for the key.",
+          "description": "Optional. The destinations for the key.",
           "items": {
             "$ref": "Destination"
           },
           "type": "array"
         },
         "key": {
-          "description": "The key is the destination identifier that is supported by the Connector.",
+          "description": "Optional. The key is the destination identifier that is supported by the Connector.",
           "type": "string"
         }
       },
@@ -4636,7 +4748,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Type.",
+          "description": "Optional. Specifies the type of the encryption key.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "GOOGLE_MANAGED",
@@ -5204,6 +5316,10 @@
           "description": "Optional. Event type id of the event of current EventSubscription.",
           "type": "string"
         },
+        "filter": {
+          "description": "Optional. Filter for the event subscription. Incoming events are filtered based on the filter expression.",
+          "type": "string"
+        },
         "jms": {
           "$ref": "JMS",
           "description": "Optional. JMS is the source for the event listener."
@@ -5358,13 +5474,20 @@
       "type": "object"
     },
     "EventingConfig": {
-      "description": "Eventing Configuration of a connection next: 19",
+      "description": "Eventing Configuration of a connection next: 20",
       "id": "EventingConfig",
       "properties": {
         "additionalVariables": {
           "description": "Optional. Additional eventing related field values",
           "items": {
             "$ref": "ConfigVariable"
+          },
+          "type": "array"
+        },
+        "allowedEventTypes": {
+          "description": "Optional. List of allowed event types for the connection.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -5385,7 +5508,8 @@
           "type": "boolean"
         },
         "eventsListenerIngressEndpoint": {
-          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "description": "Output only. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "readOnly": true,
           "type": "string"
         },
         "listenerAuthConfig": {
@@ -5710,6 +5834,31 @@
       },
       "type": "object"
     },
+    "FetchConnectionToolspecOverrideRequest": {
+      "description": "Request message for FetchConnectionToolspecOverride API.",
+      "id": "FetchConnectionToolspecOverrideRequest",
+      "properties": {
+        "toolNames": {
+          "description": "Required. List of tools for which the tool spec override is to be generated.",
+          "items": {
+            "$ref": "ToolName"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FetchConnectionToolspecOverrideResponse": {
+      "description": "Response message for FetchConnectionToolspecOverride API.",
+      "id": "FetchConnectionToolspecOverrideResponse",
+      "properties": {
+        "toolspecOverride": {
+          "$ref": "ToolspecOverride",
+          "description": "Toolspec overrides for the connection."
+        }
+      },
+      "type": "object"
+    },
     "Field": {
       "description": "Metadata of an entity field.",
       "id": "Field",
@@ -5932,6 +6081,31 @@
         "stringValue": {
           "description": "String value",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateConnectionToolspecOverrideRequest": {
+      "description": "Request message for GenerateConnectionToolspecOverride API.",
+      "id": "GenerateConnectionToolspecOverrideRequest",
+      "properties": {
+        "toolNames": {
+          "description": "Required. List of tools for which the tool spec override is to be generated.",
+          "items": {
+            "$ref": "ToolName"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateConnectionToolspecOverrideResponse": {
+      "description": "Response message for GenerateConnectionToolspecOverride API.",
+      "id": "GenerateConnectionToolspecOverrideResponse",
+      "properties": {
+        "toolspecOverride": {
+          "$ref": "ToolspecOverride",
+          "description": "Toolspec overrides for the connection."
         }
       },
       "type": "object"
@@ -6339,6 +6513,14 @@
           },
           "type": "array"
         },
+        "exclusiveMaximum": {
+          "description": "Whether the maximum number value is exclusive.",
+          "type": "boolean"
+        },
+        "exclusiveMinimum": {
+          "description": "Whether the minimum number value is exclusive.",
+          "type": "boolean"
+        },
         "format": {
           "description": "Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format",
           "type": "string"
@@ -6492,6 +6674,38 @@
           ],
           "type": "string"
         },
+        "maxItems": {
+          "description": "Maximum number of items in the array field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxLength": {
+          "description": "Maximum length of the string field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maximum": {
+          "description": "Maximum value of the number field.",
+          "type": "any"
+        },
+        "minItems": {
+          "description": "Minimum number of items in the array field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minLength": {
+          "description": "Minimum length of the string field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimum": {
+          "description": "Minimum value of the number field.",
+          "type": "any"
+        },
+        "pattern": {
+          "description": "Regex pattern of the string field. This is a string value that describes the regular expression that the string value should match.",
+          "type": "string"
+        },
         "properties": {
           "additionalProperties": {
             "$ref": "JsonSchema"
@@ -6512,6 +6726,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "uniqueItems": {
+          "description": "Whether the items in the array field are unique.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7211,6 +7429,28 @@
       },
       "type": "object"
     },
+    "ModifyConnectionToolspecOverrideRequest": {
+      "description": "Request message for ModifyConnectionToolspecOverride API.",
+      "id": "ModifyConnectionToolspecOverrideRequest",
+      "properties": {
+        "toolspecOverride": {
+          "$ref": "ToolspecOverride",
+          "description": "Required. Toolspec overrides to be modified."
+        }
+      },
+      "type": "object"
+    },
+    "ModifyConnectionToolspecOverrideResponse": {
+      "description": "Response message for ModifyConnectionToolspecOverride API.",
+      "id": "ModifyConnectionToolspecOverrideResponse",
+      "properties": {
+        "toolspecOverrides": {
+          "$ref": "ToolspecOverride",
+          "description": "Toolspec overrides for the connection."
+        }
+      },
+      "type": "object"
+    },
     "MultipleSelectConfig": {
       "description": "MultipleSelectConfig represents the multiple options for a config variable.",
       "id": "MultipleSelectConfig",
@@ -7888,6 +8128,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "RemoveConnectionToolspecOverrideRequest": {
+      "description": "Request message for RemoveConnectionToolspecOverride API.",
+      "id": "RemoveConnectionToolspecOverrideRequest",
+      "properties": {},
       "type": "object"
     },
     "RepairEventingRequest": {
@@ -8876,12 +9122,77 @@
       },
       "type": "object"
     },
+    "ToolName": {
+      "description": "Tool name for which the tool spec override is to be generated.",
+      "id": "ToolName",
+      "properties": {
+        "entityType": {
+          "description": "Optional. Entity type name for which the tool was generated.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Tool name that was generated in the list tools call.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Optional. Operation for which the tool was generated.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "LIST",
+            "GET",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Operation unspecified.",
+            "LIST entities.",
+            "GET entity.",
+            "CREATE entity.",
+            "UPDATE entity.",
+            "DELETE entity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToolspecOverride": {
+      "description": "Toolspec overrides for a connection only holds the information that is to be displayed in the UI for admins.",
+      "id": "ToolspecOverride",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tools": {
+          "description": "Required. List of tools defined in the tool spec. Marking this field as required as this is the only field that is editable by the user in modify API so we should have at least one tool in the list.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TrafficShapingConfig": {
       "description": "* TrafficShapingConfig defines the configuration for shaping API traffic by specifying a quota limit and the duration over which this limit is enforced. This configuration helps to control and manage the rate at which API calls are made on the client side, preventing service overload on the backend. For example: - if the quota limit is 100 calls per 10 seconds, then the message would be: { quota_limit: 100 duration: { seconds: 10 } } - if the quota limit is 100 calls per 5 minutes, then the message would be: { quota_limit: 100 duration: { seconds: 300 } } - if the quota limit is 10000 calls per day, then the message would be: { quota_limit: 10000 duration: { seconds: 86400 } and so on.",
       "id": "TrafficShapingConfig",
       "properties": {
         "duration": {
-          "description": "Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
+          "description": "Required. Specifies the duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
           "format": "google-duration",
           "type": "string"
         },

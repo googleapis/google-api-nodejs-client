@@ -376,15 +376,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConfigVariable {
     /**
-     * Value is a bool.
+     * Optional. Value is a bool.
      */
     boolValue?: boolean | null;
     /**
-     * Value is a Encryption Key.
+     * Optional. Value is a Encryption Key.
      */
     encryptionKeyValue?: Schema$EncryptionKey;
     /**
-     * Value is an integer
+     * Optional. Value is an integer
      */
     intValue?: string | null;
     /**
@@ -392,11 +392,11 @@ export namespace connectors_v1 {
      */
     key?: string | null;
     /**
-     * Value is a secret.
+     * Optional. Value is a secret.
      */
     secretValue?: Schema$Secret;
     /**
-     * Value is a string.
+     * Optional. Value is a string.
      */
     stringValue?: string | null;
   }
@@ -1165,7 +1165,7 @@ export namespace connectors_v1 {
      */
     host?: string | null;
     /**
-     * The port is the target port number that is accepted by the destination.
+     * Optional. The port is the target port number that is accepted by the destination.
      */
     port?: number | null;
     /**
@@ -1178,11 +1178,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$DestinationConfig {
     /**
-     * The destinations for the key.
+     * Optional. The destinations for the key.
      */
     destinations?: Schema$Destination[];
     /**
-     * The key is the destination identifier that is supported by the Connector.
+     * Optional. The key is the destination identifier that is supported by the Connector.
      */
     key?: string | null;
   }
@@ -1286,7 +1286,7 @@ export namespace connectors_v1 {
      */
     kmsKeyName?: string | null;
     /**
-     * Type.
+     * Optional. Specifies the type of the encryption key.
      */
     type?: string | null;
   }
@@ -1690,13 +1690,17 @@ export namespace connectors_v1 {
     secretVersion?: string | null;
   }
   /**
-   * Eventing Configuration of a connection next: 19
+   * Eventing Configuration of a connection next: 20
    */
   export interface Schema$EventingConfig {
     /**
      * Optional. Additional eventing related field values
      */
     additionalVariables?: Schema$ConfigVariable[];
+    /**
+     * Optional. List of allowed event types for the connection.
+     */
+    allowedEventTypes?: string[] | null;
     /**
      * Optional. Auth details for the webhook adapter.
      */
@@ -1714,7 +1718,7 @@ export namespace connectors_v1 {
      */
     enrichmentEnabled?: boolean | null;
     /**
-     * Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.
+     * Output only. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.
      */
     eventsListenerIngressEndpoint?: string | null;
     /**
@@ -1891,6 +1895,10 @@ export namespace connectors_v1 {
      */
     eventTypeId?: string | null;
     /**
+     * Optional. Filter for the event subscription. Incoming events are filtered based on the filter expression.
+     */
+    filter?: string | null;
+    /**
      * Optional. JMS is the source for the event listener.
      */
     jms?: Schema$JMS;
@@ -2051,6 +2059,24 @@ export namespace connectors_v1 {
     jsonSchema?: Schema$JsonAuthSchema;
   }
   /**
+   * Request message for FetchConnectionToolspecOverride API.
+   */
+  export interface Schema$FetchConnectionToolspecOverrideRequest {
+    /**
+     * Required. List of tools for which the tool spec override is to be generated.
+     */
+    toolNames?: Schema$ToolName[];
+  }
+  /**
+   * Response message for FetchConnectionToolspecOverride API.
+   */
+  export interface Schema$FetchConnectionToolspecOverrideResponse {
+    /**
+     * Toolspec overrides for the connection.
+     */
+    toolspecOverride?: Schema$ToolspecOverride;
+  }
+  /**
    * Metadata of an entity field.
    */
   export interface Schema$Field {
@@ -2115,6 +2141,24 @@ export namespace connectors_v1 {
      * String value
      */
     stringValue?: string | null;
+  }
+  /**
+   * Request message for GenerateConnectionToolspecOverride API.
+   */
+  export interface Schema$GenerateConnectionToolspecOverrideRequest {
+    /**
+     * Required. List of tools for which the tool spec override is to be generated.
+     */
+    toolNames?: Schema$ToolName[];
+  }
+  /**
+   * Response message for GenerateConnectionToolspecOverride API.
+   */
+  export interface Schema$GenerateConnectionToolspecOverrideResponse {
+    /**
+     * Toolspec overrides for the connection.
+     */
+    toolspecOverride?: Schema$ToolspecOverride;
   }
   /**
    * Header details for a given header to be added to Endpoint.
@@ -2297,6 +2341,14 @@ export namespace connectors_v1 {
      */
     enum?: any[] | null;
     /**
+     * Whether the maximum number value is exclusive.
+     */
+    exclusiveMaximum?: boolean | null;
+    /**
+     * Whether the minimum number value is exclusive.
+     */
+    exclusiveMinimum?: boolean | null;
+    /**
      * Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format
      */
     format?: string | null;
@@ -2309,6 +2361,34 @@ export namespace connectors_v1 {
      */
     jdbcType?: string | null;
     /**
+     * Maximum value of the number field.
+     */
+    maximum?: any | null;
+    /**
+     * Maximum number of items in the array field.
+     */
+    maxItems?: number | null;
+    /**
+     * Maximum length of the string field.
+     */
+    maxLength?: number | null;
+    /**
+     * Minimum value of the number field.
+     */
+    minimum?: any | null;
+    /**
+     * Minimum number of items in the array field.
+     */
+    minItems?: number | null;
+    /**
+     * Minimum length of the string field.
+     */
+    minLength?: number | null;
+    /**
+     * Regex pattern of the string field. This is a string value that describes the regular expression that the string value should match.
+     */
+    pattern?: string | null;
+    /**
      * The child schemas, applicable only if this is of type `object`. The key is the name of the property and the value is the json schema that describes that property
      */
     properties?: {[key: string]: Schema$JsonSchema} | null;
@@ -2320,6 +2400,10 @@ export namespace connectors_v1 {
      * JSON Schema Validation: A Vocabulary for Structural Validation of JSON
      */
     type?: string[] | null;
+    /**
+     * Whether the items in the array field are unique.
+     */
+    uniqueItems?: boolean | null;
   }
   /**
    * JWT claims used for the jwt-bearer authorization grant.
@@ -2816,6 +2900,24 @@ export namespace connectors_v1 {
      * The name of the partner.
      */
     partner?: string | null;
+  }
+  /**
+   * Request message for ModifyConnectionToolspecOverride API.
+   */
+  export interface Schema$ModifyConnectionToolspecOverrideRequest {
+    /**
+     * Required. Toolspec overrides to be modified.
+     */
+    toolspecOverride?: Schema$ToolspecOverride;
+  }
+  /**
+   * Response message for ModifyConnectionToolspecOverride API.
+   */
+  export interface Schema$ModifyConnectionToolspecOverrideResponse {
+    /**
+     * Toolspec overrides for the connection.
+     */
+    toolspecOverrides?: Schema$ToolspecOverride;
   }
   /**
    * MultipleSelectConfig represents the multiple options for a config variable.
@@ -3320,6 +3422,10 @@ export namespace connectors_v1 {
      */
     provisioned?: boolean | null;
   }
+  /**
+   * Request message for RemoveConnectionToolspecOverride API.
+   */
+  export interface Schema$RemoveConnectionToolspecOverrideRequest {}
   /**
    * Request message for ConnectorsService.RepairEventing
    */
@@ -3861,11 +3967,45 @@ export namespace connectors_v1 {
     seconds?: number | null;
   }
   /**
+   * Tool name for which the tool spec override is to be generated.
+   */
+  export interface Schema$ToolName {
+    /**
+     * Optional. Entity type name for which the tool was generated.
+     */
+    entityType?: string | null;
+    /**
+     * Required. Tool name that was generated in the list tools call.
+     */
+    name?: string | null;
+    /**
+     * Optional. Operation for which the tool was generated.
+     */
+    operation?: string | null;
+  }
+  /**
+   * Toolspec overrides for a connection only holds the information that is to be displayed in the UI for admins.
+   */
+  export interface Schema$ToolspecOverride {
+    /**
+     * Output only. Created time.
+     */
+    createTime?: string | null;
+    /**
+     * Required. List of tools defined in the tool spec. Marking this field as required as this is the only field that is editable by the user in modify API so we should have at least one tool in the list.
+     */
+    tools?: Array<{[key: string]: any}> | null;
+    /**
+     * Output only. Updated time.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * * TrafficShapingConfig defines the configuration for shaping API traffic by specifying a quota limit and the duration over which this limit is enforced. This configuration helps to control and manage the rate at which API calls are made on the client side, preventing service overload on the backend. For example: - if the quota limit is 100 calls per 10 seconds, then the message would be: { quota_limit: 100 duration: { seconds: 10 \} \} - if the quota limit is 100 calls per 5 minutes, then the message would be: { quota_limit: 100 duration: { seconds: 300 \} \} - if the quota limit is 10000 calls per day, then the message would be: { quota_limit: 10000 duration: { seconds: 86400 \} and so on.
    */
   export interface Schema$TrafficShapingConfig {
     /**
-     * Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.
+     * Required. Specifies the duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.
      */
     duration?: string | null;
     /**
@@ -4451,7 +4591,7 @@ export namespace connectors_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5162,6 +5302,320 @@ export namespace connectors_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Fetches Toolspec Override for a connection for the given list of tools. Returns results from the db if the tool is already present.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.fetchToolspecOverride({
+     *       // Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "toolNames": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "toolspecOverride": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchToolspecOverride(
+      params?: Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchConnectionToolspecOverrideResponse>
+    >;
+    fetchToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>,
+      callback: BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+    ): void;
+    fetchToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride,
+      callback: BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+    ): void;
+    fetchToolspecOverride(
+      callback: BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+    ): void;
+    fetchToolspecOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride
+        | BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchConnectionToolspecOverrideResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchToolspecOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchConnectionToolspecOverrideResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchConnectionToolspecOverrideResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generates Toolspec Override for a connection for the given list of entityTypes and operations. Returns results from the db if the entityType and operation are already present.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.generateToolspecOverride({
+     *       // Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "toolNames": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "toolspecOverride": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateToolspecOverride(
+      params?: Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateConnectionToolspecOverrideResponse>
+    >;
+    generateToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>,
+      callback: BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+    ): void;
+    generateToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride,
+      callback: BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+    ): void;
+    generateToolspecOverride(
+      callback: BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+    ): void;
+    generateToolspecOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride
+        | BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateConnectionToolspecOverrideResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateToolspecOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateConnectionToolspecOverrideResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateConnectionToolspecOverrideResponse>(
+          parameters
+        );
       }
     }
 
@@ -5926,6 +6380,163 @@ export namespace connectors_v1 {
     }
 
     /**
+     * Updates Toolspec Override for a connection with the admin provided descriptions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.modifyToolspecOverride({
+     *       // Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "toolspecOverride": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "toolspecOverrides": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    modifyToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    modifyToolspecOverride(
+      params?: Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ModifyConnectionToolspecOverrideResponse>
+    >;
+    modifyToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>,
+      callback: BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+    ): void;
+    modifyToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride,
+      callback: BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+    ): void;
+    modifyToolspecOverride(
+      callback: BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+    ): void;
+    modifyToolspecOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride
+        | BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModifyConnectionToolspecOverrideResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ModifyConnectionToolspecOverrideResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:modifyToolspecOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModifyConnectionToolspecOverrideResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ModifyConnectionToolspecOverrideResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the parameters of a single Connection.
      * @example
      * ```js
@@ -6104,6 +6715,149 @@ export namespace connectors_v1 {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes all Toolspec Override for a connection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await connectors.projects.locations.connections.removeToolspecOverride({
+     *       // Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Removetoolspecoverride,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removeToolspecOverride(
+      params?: Params$Resource$Projects$Locations$Connections$Removetoolspecoverride,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    removeToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Removetoolspecoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Removetoolspecoverride,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeToolspecOverride(
+      params: Params$Resource$Projects$Locations$Connections$Removetoolspecoverride,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeToolspecOverride(callback: BodyResponseCallback<Schema$Empty>): void;
+    removeToolspecOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Removetoolspecoverride
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Removetoolspecoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Removetoolspecoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:removeToolspecOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
       }
     }
 
@@ -6730,6 +7484,28 @@ export namespace connectors_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Fetchtoolspecoverride extends StandardParameters {
+    /**
+     * Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FetchConnectionToolspecOverrideRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Generatetoolspecoverride extends StandardParameters {
+    /**
+     * Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateConnectionToolspecOverrideRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Get extends StandardParameters {
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x`
@@ -6793,6 +7569,17 @@ export namespace connectors_v1 {
      */
     requestBody?: Schema$ListenEventRequest;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Modifytoolspecoverride extends StandardParameters {
+    /**
+     * Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModifyConnectionToolspecOverrideRequest;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Patch extends StandardParameters {
     /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
@@ -6807,6 +7594,17 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Connection;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Removetoolspecoverride extends StandardParameters {
+    /**
+     * Required. Resource name format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveConnectionToolspecOverrideRequest;
   }
   export interface Params$Resource$Projects$Locations$Connections$Repaireventing extends StandardParameters {
     /**
@@ -8603,6 +9401,7 @@ export namespace connectors_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "destinations": {},
      *         //   "eventTypeId": "my_eventTypeId",
+     *         //   "filter": "my_filter",
      *         //   "jms": {},
      *         //   "name": "my_name",
      *         //   "status": {},
@@ -8903,6 +9702,7 @@ export namespace connectors_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "destinations": {},
      *   //   "eventTypeId": "my_eventTypeId",
+     *   //   "filter": "my_filter",
      *   //   "jms": {},
      *   //   "name": "my_name",
      *   //   "status": {},
@@ -9206,6 +10006,7 @@ export namespace connectors_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "destinations": {},
      *         //   "eventTypeId": "my_eventTypeId",
+     *         //   "filter": "my_filter",
      *         //   "jms": {},
      *         //   "name": "my_name",
      *         //   "status": {},
