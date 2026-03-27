@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "backupdr.projects.locations.list",
@@ -2177,7 +2177,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id}/locations/{location}/serviceConfig`.",
+                      "description": "Required. The resource name of the serviceConfig used to initialize the service. The location must be the location of the BackupVault. Format: `projects/{project_id}/locations/{location}/serviceConfig`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/serviceConfig$",
                       "required": true,
@@ -2262,7 +2262,7 @@
       }
     }
   },
-  "revision": "20260116",
+  "revision": "20260318",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2814,6 +2814,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "filestoreInstanceBackupProperties": {
+          "$ref": "FilestoreInstanceBackupProperties",
+          "description": "Output only. Filestore specific backup properties.",
+          "readOnly": true
+        },
         "gcpBackupPlanInfo": {
           "$ref": "GCPBackupPlanInfo",
           "description": "Output only. Configuration for a Google Cloud resource.",
@@ -3278,6 +3283,10 @@
         "description": {
           "description": "Optional. The description of the `BackupPlan` resource. The description allows for additional details about `BackupPlan` and its use cases to be provided. An example description is the following: \"This is a backup plan that performs a daily backup at 6pm and retains data for 3 months\". The description must be at most 2048 characters.",
           "type": "string"
+        },
+        "diskBackupPlanProperties": {
+          "$ref": "DiskBackupPlanProperties",
+          "description": "Optional. Defines optional properties specific to backups of disk-based resources, such as Compute Engine Persistent Disks. This includes settings like whether to perform a guest flush."
         },
         "etag": {
           "description": "Optional. `etag` is returned from the service in the response. As a user of the service, you may provide an etag value in this field to prevent stale resources.",
@@ -4334,6 +4343,11 @@
           "$ref": "DiskDataSourceProperties",
           "description": "DiskDataSourceProperties has a subset of Disk properties that are useful at the Datasource level."
         },
+        "filestoreInstanceDatasourceProperties": {
+          "$ref": "FilestoreInstanceDataSourceProperties",
+          "description": "Output only. FilestoreInstanceDataSourceProperties has a subset of FileStore instance properties that are useful at the Datasource level.",
+          "readOnly": true
+        },
         "gcpResourcename": {
           "description": "Output only. Full resource pathname URL of the source Google Cloud resource.",
           "readOnly": true,
@@ -4362,6 +4376,11 @@
         "cloudSqlInstanceProperties": {
           "$ref": "CloudSqlInstanceDataSourceReferenceProperties",
           "description": "Output only. The properties of the Cloud SQL instance.",
+          "readOnly": true
+        },
+        "filestoreInstanceProperties": {
+          "$ref": "FilestoreInstanceDataSourceReferenceProperties",
+          "description": "Output only. The properties of the Filestore instance.",
           "readOnly": true
         },
         "gcpResourcename": {
@@ -4441,6 +4460,17 @@
       },
       "type": "object"
     },
+    "DiskBackupPlanProperties": {
+      "description": "--- DiskBackupPlanProperties Message ---",
+      "id": "DiskBackupPlanProperties",
+      "properties": {
+        "guestFlush": {
+          "description": "Optional. Indicates whether to perform a guest flush operation before taking a disk backup. When set to false, the system will create crash-consistent backups. Default value is false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DiskBackupProperties": {
       "description": "DiskBackupProperties represents the properties of a Disk backup.",
       "id": "DiskBackupProperties",
@@ -4469,6 +4499,10 @@
         },
         "enableConfidentialCompute": {
           "description": "Indicates whether the source disk is using confidential compute mode.",
+          "type": "boolean"
+        },
+        "guestFlush": {
+          "description": "Optional. Defines if the guest flush is enabled for the source disk. Default value is false.",
           "type": "boolean"
         },
         "guestOsFeature": {
@@ -4934,6 +4968,54 @@
       },
       "type": "object"
     },
+    "FilestoreInstanceBackupProperties": {
+      "description": "FilestoreInstanceBackupProperties represents the properties of a Filestore instance that are backed up by the datasource. .",
+      "id": "FilestoreInstanceBackupProperties",
+      "properties": {
+        "sourceInstance": {
+          "description": "Output only. The source instance of the backup.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilestoreInstanceDataSourceProperties": {
+      "description": "FilestoreInstanceDataSourceProperties represents the properties of a Filestore resource that are stored in the DataSource. .",
+      "id": "FilestoreInstanceDataSourceProperties",
+      "properties": {
+        "instanceCreateTime": {
+          "description": "Output only. The instance creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Filestore instance backed up by the datasource.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilestoreInstanceDataSourceReferenceProperties": {
+      "description": "FilestoreInstanceDataSourceReferenceProperties represents the properties of a Filestore resource that are stored in the DataSourceReference. .",
+      "id": "FilestoreInstanceDataSourceReferenceProperties",
+      "properties": {
+        "instanceCreateTime": {
+          "description": "Output only. The instance creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the Filestore instance backed up by the datasource. Format: projects/{project}/instances/{instance}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FinalizeBackupRequest": {
       "description": "Message for finalizing a Backup.",
       "id": "FinalizeBackupRequest",
@@ -5049,6 +5131,58 @@
       },
       "type": "object"
     },
+    "GoogleCloudBackupdrV1OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "GoogleCloudBackupdrV1OperationMetadata",
+      "properties": {
+        "additionalInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. AdditionalInfo contains additional Info related to backup plan association resource.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GuestOsFeature": {
       "description": "Feature type of the Guest OS.",
       "id": "GuestOsFeature",
@@ -5116,6 +5250,10 @@
       "description": "Request message for initializing the service.",
       "id": "InitializeServiceRequest",
       "properties": {
+        "backupPlanLocation": {
+          "description": "Optional. The location where the BackupPlan will be created. This field is required for multi-region BackupVaults and is optional for regional BackupVaults. It is useful when creating a Backup Vault in a multi-region, allowing the BackupPlan to reside in a specific region within that multi-region. If this field is not provided, the BackupPlan will be created in the same location as specified in the `name` field.",
+          "type": "string"
+        },
         "cloudSqlInstanceInitializationConfig": {
           "$ref": "CloudSqlInstanceInitializationConfig",
           "description": "Optional. The configuration for initializing a Cloud SQL instance."
@@ -5480,14 +5618,27 @@
       "id": "LocationMetadata",
       "properties": {
         "unsupportedFeatures": {
+          "description": "List of features that are not supported in the location.",
           "items": {
             "enum": [
               "FEATURE_UNSPECIFIED",
               "MANAGEMENT_SERVER",
               "COMPUTE_INSTANCE",
-              "PROTECTION_SUMMARY"
+              "PROTECTION_SUMMARY",
+              "DISK",
+              "CLOUD_SQL",
+              "ALLOY_DB",
+              "FILESTORE",
+              "CEP_MONITORING_COMPUTE_INSTANCE",
+              "CEP_MONITORING_DISK"
             ],
             "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
               "",
               "",
               "",
@@ -5868,58 +6019,6 @@
       },
       "type": "object"
     },
-    "OperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "additionalInfo": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Output only. AdditionalInfo contains additional Info related to backup plan association resource.",
-          "readOnly": true,
-          "type": "object"
-        },
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PitrSettings": {
       "description": "Point in time recovery settings of the backup configuration resource.",
       "id": "PitrSettings",
@@ -6041,14 +6140,16 @@
             "CLOUD_SQL_INSTANCE",
             "COMPUTE_ENGINE_VM",
             "COMPUTE_ENGINE_DISK",
-            "COMPUTE_ENGINE_REGIONAL_DISK"
+            "COMPUTE_ENGINE_REGIONAL_DISK",
+            "FILESTORE_INSTANCE"
           ],
           "enumDescriptions": [
             "Resource type not set.",
             "Cloud SQL instance.",
             "Compute Engine VM.",
             "Compute Engine Disk.",
-            "Compute Engine Regional Disk."
+            "Compute Engine Regional Disk.",
+            "Filestore Instance."
           ],
           "readOnly": true,
           "type": "string"
@@ -6059,7 +6160,7 @@
           "type": "string"
         },
         "vaulted": {
-          "description": "Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set. set.",
+          "description": "Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set.",
           "readOnly": true,
           "type": "boolean"
         }

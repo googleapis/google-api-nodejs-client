@@ -467,6 +467,10 @@ export namespace backupdr_v1 {
      */
     expireTime?: string | null;
     /**
+     * Output only. Filestore specific backup properties.
+     */
+    filestoreInstanceBackupProperties?: Schema$FilestoreInstanceBackupProperties;
+    /**
      * Output only. Configuration for a Google Cloud resource.
      */
     gcpBackupPlanInfo?: Schema$GCPBackupPlanInfo;
@@ -774,6 +778,10 @@ export namespace backupdr_v1 {
      * Optional. The description of the `BackupPlan` resource. The description allows for additional details about `BackupPlan` and its use cases to be provided. An example description is the following: "This is a backup plan that performs a daily backup at 6pm and retains data for 3 months". The description must be at most 2048 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Defines optional properties specific to backups of disk-based resources, such as Compute Engine Persistent Disks. This includes settings like whether to perform a guest flush.
+     */
+    diskBackupPlanProperties?: Schema$DiskBackupPlanProperties;
     /**
      * Optional. `etag` is returned from the service in the response. As a user of the service, you may provide an etag value in this field to prevent stale resources.
      */
@@ -1480,6 +1488,10 @@ export namespace backupdr_v1 {
      */
     diskDatasourceProperties?: Schema$DiskDataSourceProperties;
     /**
+     * Output only. FilestoreInstanceDataSourceProperties has a subset of FileStore instance properties that are useful at the Datasource level.
+     */
+    filestoreInstanceDatasourceProperties?: Schema$FilestoreInstanceDataSourceProperties;
+    /**
      * Output only. Full resource pathname URL of the source Google Cloud resource.
      */
     gcpResourcename?: string | null;
@@ -1504,6 +1516,10 @@ export namespace backupdr_v1 {
      * Output only. The properties of the Cloud SQL instance.
      */
     cloudSqlInstanceProperties?: Schema$CloudSqlInstanceDataSourceReferenceProperties;
+    /**
+     * Output only. The properties of the Filestore instance.
+     */
+    filestoreInstanceProperties?: Schema$FilestoreInstanceDataSourceReferenceProperties;
     /**
      * Output only. The resource name of the Google Cloud resource. Ex: projects/{project\}/zones/{zone\}/instances/{instance\}
      */
@@ -1555,6 +1571,15 @@ export namespace backupdr_v1 {
     totalStoredBytes?: string | null;
   }
   /**
+   * --- DiskBackupPlanProperties Message ---
+   */
+  export interface Schema$DiskBackupPlanProperties {
+    /**
+     * Optional. Indicates whether to perform a guest flush operation before taking a disk backup. When set to false, the system will create crash-consistent backups. Default value is false.
+     */
+    guestFlush?: boolean | null;
+  }
+  /**
    * DiskBackupProperties represents the properties of a Disk backup.
    */
   export interface Schema$DiskBackupProperties {
@@ -1574,6 +1599,10 @@ export namespace backupdr_v1 {
      * Indicates whether the source disk is using confidential compute mode.
      */
     enableConfidentialCompute?: boolean | null;
+    /**
+     * Optional. Defines if the guest flush is enabled for the source disk. Default value is false.
+     */
+    guestFlush?: boolean | null;
     /**
      * A list of guest OS features that are applicable to this backup.
      */
@@ -1913,6 +1942,41 @@ export namespace backupdr_v1 {
     instanceCreateTime?: string | null;
   }
   /**
+   * FilestoreInstanceBackupProperties represents the properties of a Filestore instance that are backed up by the datasource. .
+   */
+  export interface Schema$FilestoreInstanceBackupProperties {
+    /**
+     * Output only. The source instance of the backup.
+     */
+    sourceInstance?: string | null;
+  }
+  /**
+   * FilestoreInstanceDataSourceProperties represents the properties of a Filestore resource that are stored in the DataSource. .
+   */
+  export interface Schema$FilestoreInstanceDataSourceProperties {
+    /**
+     * Output only. The instance creation timestamp.
+     */
+    instanceCreateTime?: string | null;
+    /**
+     * Output only. Name of the Filestore instance backed up by the datasource.
+     */
+    name?: string | null;
+  }
+  /**
+   * FilestoreInstanceDataSourceReferenceProperties represents the properties of a Filestore resource that are stored in the DataSourceReference. .
+   */
+  export interface Schema$FilestoreInstanceDataSourceReferenceProperties {
+    /**
+     * Output only. The instance creation timestamp.
+     */
+    instanceCreateTime?: string | null;
+    /**
+     * Output only. Name of the Filestore instance backed up by the datasource. Format: projects/{project\}/instances/{instance\}
+     */
+    name?: string | null;
+  }
+  /**
    * Message for finalizing a Backup.
    */
   export interface Schema$FinalizeBackupRequest {
@@ -2013,6 +2077,43 @@ export namespace backupdr_v1 {
     type?: string | null;
   }
   /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBackupdrV1OperationMetadata {
+    /**
+     * Output only. AdditionalInfo contains additional Info related to backup plan association resource.
+     */
+    additionalInfo?: {[key: string]: string} | null;
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * Feature type of the Guest OS.
    */
   export interface Schema$GuestOsFeature {
@@ -2038,6 +2139,10 @@ export namespace backupdr_v1 {
    * Request message for initializing the service.
    */
   export interface Schema$InitializeServiceRequest {
+    /**
+     * Optional. The location where the BackupPlan will be created. This field is required for multi-region BackupVaults and is optional for regional BackupVaults. It is useful when creating a Backup Vault in a multi-region, allowing the BackupPlan to reside in a specific region within that multi-region. If this field is not provided, the BackupPlan will be created in the same location as specified in the `name` field.
+     */
+    backupPlanLocation?: string | null;
     /**
      * Optional. The configuration for initializing a Cloud SQL instance.
      */
@@ -2295,6 +2400,9 @@ export namespace backupdr_v1 {
     name?: string | null;
   }
   export interface Schema$LocationMetadata {
+    /**
+     * List of features that are not supported in the location.
+     */
     unsupportedFeatures?: string[] | null;
   }
   /**
@@ -2514,43 +2622,6 @@ export namespace backupdr_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. AdditionalInfo contains additional Info related to backup plan association resource.
-     */
-    additionalInfo?: {[key: string]: string} | null;
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * Point in time recovery settings of the backup configuration resource.
    */
   export interface Schema$PitrSettings {
@@ -2643,7 +2714,7 @@ export namespace backupdr_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set. set.
+     * Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set.
      */
     vaulted?: boolean | null;
   }
@@ -3318,7 +3389,7 @@ export namespace backupdr_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4769,6 +4840,7 @@ export namespace backupdr_v1 {
      *       //   "backupVaultServiceAccount": "my_backupVaultServiceAccount",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "diskBackupPlanProperties": {},
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
@@ -5073,6 +5145,7 @@ export namespace backupdr_v1 {
      *   //   "backupVaultServiceAccount": "my_backupVaultServiceAccount",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "diskBackupPlanProperties": {},
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "logRetentionDays": "my_logRetentionDays",
@@ -5375,6 +5448,7 @@ export namespace backupdr_v1 {
      *       //   "backupVaultServiceAccount": "my_backupVaultServiceAccount",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "diskBackupPlanProperties": {},
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "logRetentionDays": "my_logRetentionDays",
@@ -9045,6 +9119,7 @@ export namespace backupdr_v1 {
      *   //   "enforcedRetentionEndTime": "my_enforcedRetentionEndTime",
      *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
+     *   //   "filestoreInstanceBackupProperties": {},
      *   //   "gcpBackupPlanInfo": {},
      *   //   "gcpResource": {},
      *   //   "kmsKeyVersions": [],
@@ -9361,6 +9436,7 @@ export namespace backupdr_v1 {
      *         //   "enforcedRetentionEndTime": "my_enforcedRetentionEndTime",
      *         //   "etag": "my_etag",
      *         //   "expireTime": "my_expireTime",
+     *         //   "filestoreInstanceBackupProperties": {},
      *         //   "gcpBackupPlanInfo": {},
      *         //   "gcpResource": {},
      *         //   "kmsKeyVersions": [],
@@ -12428,13 +12504,14 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.serviceConfig.initialize({
-     *     // Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
+     *     // Required. The resource name of the serviceConfig used to initialize the service. The location must be the location of the BackupVault. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
      *     name: 'projects/my-project/locations/my-location/serviceConfig',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backupPlanLocation": "my_backupPlanLocation",
      *       //   "cloudSqlInstanceInitializationConfig": {},
      *       //   "requestId": "my_requestId",
      *       //   "resourceType": "my_resourceType"
@@ -12552,7 +12629,7 @@ export namespace backupdr_v1 {
 
   export interface Params$Resource$Projects$Locations$Serviceconfig$Initialize extends StandardParameters {
     /**
-     * Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
+     * Required. The resource name of the serviceConfig used to initialize the service. The location must be the location of the BackupVault. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
      */
     name?: string;
 
