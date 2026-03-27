@@ -623,7 +623,7 @@ export namespace notebooks_v2 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached. For example, ['us-west1-a', 'us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,
+     * Unordered list. Locations that could not be reached. For example, ['projects/{project_id\}/locations/us-west1-a', 'projects/{project_id\}/locations/us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,
      */
     unreachable?: string[] | null;
   }
@@ -1191,7 +1191,7 @@ export namespace notebooks_v2 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2766,7 +2766,7 @@ export namespace notebooks_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A previous returned page token that can be used to continue listing from the last result.
      *     pageToken: 'placeholder-value',
-     *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     *     // Required. The parent of the instance. Formats: - `projects/{project_id\}/locations/{location\}` to list instances in a specific zone. - `projects/{project_id\}/locations/-` to list instances in all locations.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -4782,7 +4782,7 @@ export namespace notebooks_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     * Required. The parent of the instance. Formats: - `projects/{project_id\}/locations/{location\}` to list instances in a specific zone. - `projects/{project_id\}/locations/-` to list instances in all locations.
      */
     parent?: string;
   }
