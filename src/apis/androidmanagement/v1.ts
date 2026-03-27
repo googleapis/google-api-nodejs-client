@@ -611,7 +611,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ApplicationSigningKeyCert {
     /**
-     * Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes. Otherwise, the policy is rejected.
+     * Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes.
      */
     signingKeyCertFingerprintSha256?: string | null;
   }
@@ -1305,6 +1305,10 @@ export namespace androidmanagement_v1 {
      */
     preferentialNetworkServiceSettings?: Schema$PreferentialNetworkServiceSettings;
     /**
+     * Optional. The global private DNS settings.
+     */
+    privateDnsSettings?: Schema$PrivateDnsSettings;
+    /**
      * Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
      */
     tetheringSettings?: string | null;
@@ -1731,7 +1735,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$GoogleAuthenticationSettings {
     /**
-     * Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url.
+     * Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url. This value is overridden by EnrollmentToken.googleAuthenticationOptions and SigninDetail.googleAuthenticationOptions, if they are set.
      */
     googleAuthenticationRequired?: string | null;
   }
@@ -2363,7 +2367,7 @@ export namespace androidmanagement_v1 {
      */
     networkOperatorName?: string | null;
     /**
-     * Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android API level 23.
+     * Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android 6.
      */
     telephonyInfos?: Schema$TelephonyInfo[];
     /**
@@ -2653,7 +2657,7 @@ export namespace androidmanagement_v1 {
      */
     privateSpacePolicy?: string | null;
     /**
-     * If true, screen capture is disabled for all users.
+     * If true, screen capture is disabled for all users. This also blocks Circle to Search (https://support.google.com/android/answer/14508957).
      */
     screenCaptureDisabled?: boolean | null;
   }
@@ -2710,7 +2714,7 @@ export namespace androidmanagement_v1 {
      */
     autoTimeRequired?: boolean | null;
     /**
-     * Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.
+     * This field has no effect.
      */
     blockApplicationsEnabled?: boolean | null;
     /**
@@ -2750,7 +2754,7 @@ export namespace androidmanagement_v1 {
      */
     createWindowsDisabled?: boolean | null;
     /**
-     * Controls which apps are allowed to act as credential providers on Android 14 and above. These apps store credentials, see this (https://developer.android.com/training/sign-in/passkeys) and this (https://developer.android.com/reference/androidx/credentials/CredentialManager) for details. See also credentialProviderPolicy.
+     * Optional. Controls which apps are allowed to act as credential providers on Android 14 and above. These apps store credentials, see this (https://developer.android.com/training/sign-in/passkeys) and this (https://developer.android.com/reference/androidx/credentials/CredentialManager) for details. See also credentialProviderPolicy.
      */
     credentialProviderPolicyDefault?: string | null;
     /**
@@ -2882,7 +2886,7 @@ export namespace androidmanagement_v1 {
      */
     networkEscapeHatchEnabled?: boolean | null;
     /**
-     * Whether resetting network settings is disabled.
+     * Whether resetting network settings is disabled. This applies only on fully managed devices. A NonComplianceDetail with MANAGEMENT_MODE is reported for other management modes.
      */
     networkResetDisabled?: boolean | null;
     /**
@@ -2962,7 +2966,7 @@ export namespace androidmanagement_v1 {
      */
     safeBootDisabled?: boolean | null;
     /**
-     * Whether screen capture is disabled.
+     * Whether screen capture is disabled. This also blocks Circle to Search (https://support.google.com/android/answer/14508957).
      */
     screenCaptureDisabled?: boolean | null;
     /**
@@ -3134,6 +3138,19 @@ export namespace androidmanagement_v1 {
      * Required. Preferential network service configurations which enables having multiple enterprise slices. There must not be multiple configurations with the same preferentialNetworkId. If a configuration is not referenced by any application by setting ApplicationPolicy.preferentialNetworkId or by setting defaultPreferentialNetworkId, it will be ignored. For devices on 4G networks, enterprise APN needs to be configured additionally to set up data call for preferential network service. These APNs can be added using apnPolicy.
      */
     preferentialNetworkServiceConfigs?: Schema$PreferentialNetworkServiceConfig[];
+  }
+  /**
+   * Controls the device's private DNS settings.
+   */
+  export interface Schema$PrivateDnsSettings {
+    /**
+     * Optional. The hostname of the DNS server. This must be set if and only if private_dns_mode is set to PRIVATE_DNS_SPECIFIED_HOST. Supported on Android 10 and above on fully managed devices. A NonComplianceDetail with MANAGEMENT_MODE is reported on other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A NonComplianceDetail with PENDING is reported if the device is not connected to a network. A NonComplianceDetail with nonComplianceReason INVALID_VALUE and specificNonComplianceReason PRIVATE_DNS_HOST_NOT_SERVING is reported if the specified host is not a DNS server or not supported on Android. A NonComplianceDetail with INVALID_VALUE is reported if applying this setting fails for any other reason.
+     */
+    privateDnsHost?: string | null;
+    /**
+     * Optional. The configuration mode for device's global private DNS settings. If this is set to PRIVATE_DNS_SPECIFIED_HOST, then private_dns_host must be set.
+     */
+    privateDnsMode?: string | null;
   }
   /**
    * Information about a device that is available during setup.
@@ -3575,10 +3592,6 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$SystemUpdate {
     /**
-     * If this is greater than zero, then this is the number of days after a pending update becoming available that a device can remain compliant, without taking the update. Has no effect otherwise.
-     */
-    allowedDaysWithoutUpdate?: number | null;
-    /**
      * If the type is WINDOWED, the end of the maintenance window, measured as the number of minutes after midnight in device's local time. This value must be between 0 and 1439, inclusive. If this value is less than start_minutes, then the maintenance window spans midnight. If the maintenance window specified is smaller than 30 minutes, the actual window is extended to 30 minutes beyond the start time.
      */
     endMinutes?: number | null;
@@ -3609,11 +3622,11 @@ export namespace androidmanagement_v1 {
     updateStatus?: string | null;
   }
   /**
-   * Telephony information associated with a given SIM card on the device. Only supported on fully managed devices starting from Android API level 23.
+   * Telephony information associated with a given SIM card on the device. This is supported for all SIM cards on fully managed devices on Android 6 and above. In addition, this is supported for admin-added eSIMs on all devices for Android 15 and above.
    */
   export interface Schema$TelephonyInfo {
     /**
-     * Output only. Activation state of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always ACTIVATION_STATE_UNSPECIFIED for physical SIMs and for devices below API level 35.
+     * Output only. Activation state of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for Android 15 and above. This is always ACTIVATION_STATE_UNSPECIFIED for physical SIMs and for devices below Android 15.
      */
     activationState?: string | null;
     /**
@@ -3621,7 +3634,7 @@ export namespace androidmanagement_v1 {
      */
     carrierName?: string | null;
     /**
-     * Output only. The configuration mode of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always CONFIG_MODE_UNSPECIFIED for physical SIMs and for devices below API level 35.
+     * Output only. The configuration mode of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for Android 15 and above. This is always CONFIG_MODE_UNSPECIFIED for physical SIMs and for devices below Android 15.
      */
     configMode?: string | null;
     /**
