@@ -187,7 +187,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "developerconnect.projects.locations.list",
@@ -320,6 +320,47 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetchUserRepositories": {
+                  "description": "FetchUserRepositories returns a list of UserRepos that are available for an account connector resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/accountConnectors/{accountConnectorsId}:fetchUserRepositories",
+                  "httpMethod": "GET",
+                  "id": "developerconnect.projects.locations.accountConnectors.fetchUserRepositories",
+                  "parameterOrder": [
+                    "accountConnector"
+                  ],
+                  "parameters": {
+                    "accountConnector": {
+                      "description": "Required. The name of the Account Connector resource in the format: `projects/*/locations/*/accountConnectors/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/accountConnectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of results to return in the list. Defaults to 20.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page start.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "repository": {
+                      "description": "Optional. The name of the repository. When specified, only the UserRepository with this name will be returned if the repository is accessible under this Account Connector for the calling user.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+accountConnector}:fetchUserRepositories",
+                  "response": {
+                    "$ref": "FetchUserRepositoriesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1754,7 +1795,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260319",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1773,6 +1814,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "customOauthConfig": {
+          "$ref": "CustomOAuthConfig",
+          "description": "Custom OAuth config."
         },
         "etag": {
           "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
@@ -1797,6 +1842,10 @@
         "providerOauthConfig": {
           "$ref": "ProviderOAuthConfig",
           "description": "Optional. Provider OAuth config."
+        },
+        "proxyConfig": {
+          "$ref": "ProxyConfig",
+          "description": "Optional. Configuration for the http and git proxy features."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the accountConnector was updated.",
@@ -2053,7 +2102,7 @@
         },
         "gitProxyConfig": {
           "$ref": "GitProxyConfig",
-          "description": "Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection."
+          "description": "Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy)."
         },
         "githubConfig": {
           "$ref": "GitHubConfig",
@@ -2120,6 +2169,73 @@
       "properties": {
         "keyReference": {
           "description": "Required. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomOAuthConfig": {
+      "description": "Message for a customized OAuth config.",
+      "id": "CustomOAuthConfig",
+      "properties": {
+        "authUri": {
+          "description": "Required. Immutable. The OAuth2 authorization server URL.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Required. The client ID of the OAuth application.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Required. Input only. The client secret of the OAuth application. It will be provided as plain text, but encrypted and stored in developer connect. As INPUT_ONLY field, it will not be included in the output.",
+          "type": "string"
+        },
+        "hostUri": {
+          "description": "Required. The host URI of the OAuth application.",
+          "type": "string"
+        },
+        "pkceDisabled": {
+          "description": "Optional. Disable PKCE for this OAuth config. PKCE is enabled by default.",
+          "type": "boolean"
+        },
+        "scmProvider": {
+          "description": "Required. The type of the SCM provider.",
+          "enum": [
+            "SCM_PROVIDER_UNKNOWN",
+            "GITHUB_ENTERPRISE",
+            "GITLAB_ENTERPRISE",
+            "BITBUCKET_DATA_CENTER"
+          ],
+          "enumDescriptions": [
+            "The SCM is not specified or BYO Account Connector is not an SCM.",
+            "BYO Account Connector is an instance of GitHub Enterprise.",
+            "BYO Account Connector is an instance of GitLab Enterprise.",
+            "BYO Account Connector is an instance of Bitbucket Data Center."
+          ],
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Required. The scopes to be requested during OAuth.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "serverVersion": {
+          "description": "Output only. SCM server version installed at the host URI.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceDirectoryConfig": {
+          "$ref": "ServiceDirectoryConfig",
+          "description": "Optional. Configuration for using Service Directory to connect to a private service."
+        },
+        "sslCaCertificate": {
+          "description": "Optional. SSL certificate to use for requests to a private service.",
+          "type": "string"
+        },
+        "tokenUri": {
+          "description": "Required. Immutable. The OAuth2 token request URL.",
           "type": "string"
         }
       },
@@ -2349,6 +2465,24 @@
       },
       "type": "object"
     },
+    "FetchUserRepositoriesResponse": {
+      "description": "Response message for FetchUserRepositories.",
+      "id": "FetchUserRepositoriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "userRepos": {
+          "description": "The repositories that the user can access with this account connector.",
+          "items": {
+            "$ref": "UserRepository"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "FinishOAuthResponse": {
       "description": "Message for responding to finishing an OAuth flow.",
       "id": "FinishOAuthResponse",
@@ -2422,13 +2556,15 @@
             "GIT_HUB_APP_UNSPECIFIED",
             "DEVELOPER_CONNECT",
             "FIREBASE",
-            "GEMINI_CODE_ASSIST"
+            "GEMINI_CODE_ASSIST",
+            "DATAFORM"
           ],
           "enumDescriptions": [
             "GitHub App not specified.",
             "The Developer Connect GitHub Application.",
             "The Firebase GitHub Application.",
-            "The Gemini Code Assist Application."
+            "The Gemini Code Assist Application.",
+            "The Dataform GitHub Application."
           ],
           "type": "string"
         },
@@ -3266,29 +3402,29 @@
             "DATASTAX",
             "DYNATRACE"
           ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
           "enumDescriptions": [
             "No system provider specified.",
             "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
             "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
-            "Deprecated: This provider is no longer supported. Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
-            "Deprecated: This provider is no longer supported. Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
-            "Deprecated: This provider is no longer supported. Rovo provider. Must select the \"rovo\" scope.",
-            "Deprecated: This provider is no longer supported. New Relic provider. No scopes are allowed.",
-            "Deprecated: This provider is no longer supported. Datastax provider. No scopes are allowed.",
-            "Deprecated: This provider is no longer supported. Dynatrace provider."
+            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Rovo provider. Must select the \"rovo\" scope.",
+            "New Relic provider. No scopes are allowed.",
+            "Datastax provider. No scopes are allowed.",
+            "Dynatrace provider."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProxyConfig": {
+      "description": "The proxy configuration.",
+      "id": "ProxyConfig",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Setting this to true allows the git and http proxies to perform actions on behalf of the user configured under the account connector.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3340,11 +3476,11 @@
       "type": "object"
     },
     "SecureSourceManagerInstanceConfig": {
-      "description": "Configuration for connections to SSM instance",
+      "description": "Configuration for connections to Secure Source Manager instance",
       "id": "SecureSourceManagerInstanceConfig",
       "properties": {
         "instance": {
-          "description": "Required. Immutable. SSM instance resource, formatted as `projects/*/locations/*/instances/*`",
+          "description": "Required. Immutable. Secure Source Manager instance resource, formatted as `projects/*/locations/*/instances/*`",
           "type": "string"
         }
       },
@@ -3401,27 +3537,16 @@
             "DATASTAX",
             "DYNATRACE"
           ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true
-          ],
           "enumDescriptions": [
             "No system provider specified.",
             "GitHub provider. Scopes can be found at https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes",
             "GitLab provider. Scopes can be found at https://docs.gitlab.com/user/profile/personal_access_tokens/#personal-access-token-scopes",
-            "Deprecated: This provider is no longer supported. Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
-            "Deprecated: This provider is no longer supported. Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
-            "Deprecated: This provider is no longer supported. Rovo provider. Must select the \"rovo\" scope.",
-            "Deprecated: This provider is no longer supported. New Relic provider. No scopes are allowed.",
-            "Deprecated: This provider is no longer supported. Datastax provider. No scopes are allowed.",
-            "Deprecated: This provider is no longer supported. Dynatrace provider."
+            "Google provider. Recommended scopes: \"https://www.googleapis.com/auth/drive.readonly\", \"https://www.googleapis.com/auth/documents.readonly\"",
+            "Sentry provider. Scopes can be found at https://docs.sentry.io/api/permissions/",
+            "Rovo provider. Must select the \"rovo\" scope.",
+            "New Relic provider. No scopes are allowed.",
+            "Datastax provider. No scopes are allowed.",
+            "Dynatrace provider."
           ],
           "type": "string"
         },
@@ -3497,6 +3622,28 @@
         },
         "username": {
           "description": "Output only. The username associated with this token.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserRepository": {
+      "description": "A user repository that can be linked to the account connector. Consists of the repo name and the git proxy URL to forward requests to this repo.",
+      "id": "UserRepository",
+      "properties": {
+        "cloneUri": {
+          "description": "Output only. The git clone URL of the repo. For example: https://github.com/myuser/myrepo.git",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The user friendly repo name (e.g., myuser/myrepo)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gitProxyUri": {
+          "description": "Output only. The Git proxy URL for this repo. For example: https://us-west1-git.developerconnect.dev/a/my-proj/my-ac/myuser/myrepo.git. Populated only when `proxy_config.enabled` is set to `true` in the Account Connector. This URL is used by other Google services that integrate with Developer Connect.",
           "readOnly": true,
           "type": "string"
         }

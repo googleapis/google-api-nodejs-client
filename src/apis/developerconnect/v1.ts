@@ -137,6 +137,10 @@ export namespace developerconnect_v1 {
      */
     createTime?: string | null;
     /**
+     * Custom OAuth config.
+     */
+    customOauthConfig?: Schema$CustomOAuthConfig;
+    /**
      * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -156,6 +160,10 @@ export namespace developerconnect_v1 {
      * Optional. Provider OAuth config.
      */
     providerOauthConfig?: Schema$ProviderOAuthConfig;
+    /**
+     * Optional. Configuration for the http and git proxy features.
+     */
+    proxyConfig?: Schema$ProxyConfig;
     /**
      * Output only. The timestamp when the accountConnector was updated.
      */
@@ -378,7 +386,7 @@ export namespace developerconnect_v1 {
      */
     gitlabEnterpriseConfig?: Schema$GitLabEnterpriseConfig;
     /**
-     * Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection.
+     * Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy).
      */
     gitProxyConfig?: Schema$GitProxyConfig;
     /**
@@ -422,6 +430,55 @@ export namespace developerconnect_v1 {
      * Required. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     keyReference?: string | null;
+  }
+  /**
+   * Message for a customized OAuth config.
+   */
+  export interface Schema$CustomOAuthConfig {
+    /**
+     * Required. Immutable. The OAuth2 authorization server URL.
+     */
+    authUri?: string | null;
+    /**
+     * Required. The client ID of the OAuth application.
+     */
+    clientId?: string | null;
+    /**
+     * Required. Input only. The client secret of the OAuth application. It will be provided as plain text, but encrypted and stored in developer connect. As INPUT_ONLY field, it will not be included in the output.
+     */
+    clientSecret?: string | null;
+    /**
+     * Required. The host URI of the OAuth application.
+     */
+    hostUri?: string | null;
+    /**
+     * Optional. Disable PKCE for this OAuth config. PKCE is enabled by default.
+     */
+    pkceDisabled?: boolean | null;
+    /**
+     * Required. The type of the SCM provider.
+     */
+    scmProvider?: string | null;
+    /**
+     * Required. The scopes to be requested during OAuth.
+     */
+    scopes?: string[] | null;
+    /**
+     * Output only. SCM server version installed at the host URI.
+     */
+    serverVersion?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to connect to a private service.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * Optional. SSL certificate to use for requests to a private service.
+     */
+    sslCaCertificate?: string | null;
+    /**
+     * Required. Immutable. The OAuth2 token request URL.
+     */
+    tokenUri?: string | null;
   }
   /**
    * The DeploymentEvent resource represents the deployment of the artifact within the InsightsConfig resource.
@@ -582,6 +639,19 @@ export namespace developerconnect_v1 {
      * The token content.
      */
     token?: string | null;
+  }
+  /**
+   * Response message for FetchUserRepositories.
+   */
+  export interface Schema$FetchUserRepositoriesResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The repositories that the user can access with this account connector.
+     */
+    userRepos?: Schema$UserRepository[];
   }
   /**
    * Message for responding to finishing an OAuth flow.
@@ -1252,6 +1322,15 @@ export namespace developerconnect_v1 {
     systemProviderId?: string | null;
   }
   /**
+   * The proxy configuration.
+   */
+  export interface Schema$ProxyConfig {
+    /**
+     * Optional. Setting this to true allows the git and http proxies to perform actions on behalf of the user configured under the account connector.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * RuntimeConfig represents the runtimes where the application is deployed.
    */
   export interface Schema$RuntimeConfig {
@@ -1281,11 +1360,11 @@ export namespace developerconnect_v1 {
     uri?: string | null;
   }
   /**
-   * Configuration for connections to SSM instance
+   * Configuration for connections to Secure Source Manager instance
    */
   export interface Schema$SecureSourceManagerInstanceConfig {
     /**
-     * Required. Immutable. SSM instance resource, formatted as `projects/x/locations/x/instances/x`
+     * Required. Immutable. Secure Source Manager instance resource, formatted as `projects/x/locations/x/instances/x`
      */
     instance?: string | null;
   }
@@ -1381,6 +1460,23 @@ export namespace developerconnect_v1 {
      * Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/x/secrets/x/versions/x` or `projects/x/locations/x/secrets/x/versions/x` (if regional secrets are supported in that location).
      */
     userTokenSecretVersion?: string | null;
+  }
+  /**
+   * A user repository that can be linked to the account connector. Consists of the repo name and the git proxy URL to forward requests to this repo.
+   */
+  export interface Schema$UserRepository {
+    /**
+     * Output only. The git clone URL of the repo. For example: https://github.com/myuser/myrepo.git
+     */
+    cloneUri?: string | null;
+    /**
+     * Output only. The user friendly repo name (e.g., myuser/myrepo)
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The Git proxy URL for this repo. For example: https://us-west1-git.developerconnect.dev/a/my-proj/my-ac/myuser/myrepo.git. Populated only when `proxy_config.enabled` is set to `true` in the Account Connector. This URL is used by other Google services that integrate with Developer Connect.
+     */
+    gitProxyUri?: string | null;
   }
 
   export class Resource$Projects {
@@ -1553,7 +1649,7 @@ export namespace developerconnect_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -1788,11 +1884,13 @@ export namespace developerconnect_v1 {
      *         // {
      *         //   "annotations": {},
      *         //   "createTime": "my_createTime",
+     *         //   "customOauthConfig": {},
      *         //   "etag": "my_etag",
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "oauthStartUri": "my_oauthStartUri",
      *         //   "providerOauthConfig": {},
+     *         //   "proxyConfig": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2056,6 +2154,161 @@ export namespace developerconnect_v1 {
     }
 
     /**
+     * FetchUserRepositories returns a list of UserRepos that are available for an account connector resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/developerconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const developerconnect = google.developerconnect('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await developerconnect.projects.locations.accountConnectors.fetchUserRepositories(
+     *       {
+     *         // Required. The name of the Account Connector resource in the format: `projects/x/locations/x/accountConnectors/x`.
+     *         accountConnector:
+     *           'projects/my-project/locations/my-location/accountConnectors/my-accountConnector',
+     *         // Optional. Number of results to return in the list. Defaults to 20.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Page start.
+     *         pageToken: 'placeholder-value',
+     *         // Optional. The name of the repository. When specified, only the UserRepository with this name will be returned if the repository is accessible under this Account Connector for the calling user.
+     *         repository: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userRepos": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchUserRepositories(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchUserRepositories(
+      params?: Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchUserRepositoriesResponse>>;
+    fetchUserRepositories(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchUserRepositories(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchUserRepositoriesResponse>,
+      callback: BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+    ): void;
+    fetchUserRepositories(
+      params: Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories,
+      callback: BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+    ): void;
+    fetchUserRepositories(
+      callback: BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+    ): void;
+    fetchUserRepositories(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories
+        | BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchUserRepositoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchUserRepositoriesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+accountConnector}:fetchUserRepositories'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountConnector'],
+        pathParams: ['accountConnector'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchUserRepositoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchUserRepositoriesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets details of a single AccountConnector.
      * @example
      * ```js
@@ -2095,11 +2348,13 @@ export namespace developerconnect_v1 {
      *   // {
      *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
+     *   //   "customOauthConfig": {},
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "oauthStartUri": "my_oauthStartUri",
      *   //   "providerOauthConfig": {},
+     *   //   "proxyConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2401,11 +2656,13 @@ export namespace developerconnect_v1 {
      *         // {
      *         //   "annotations": {},
      *         //   "createTime": "my_createTime",
+     *         //   "customOauthConfig": {},
      *         //   "etag": "my_etag",
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "oauthStartUri": "my_oauthStartUri",
      *         //   "providerOauthConfig": {},
+     *         //   "proxyConfig": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2562,6 +2819,24 @@ export namespace developerconnect_v1 {
      * Optional. If set, validate the request, but do not actually post it.
      */
     validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Accountconnectors$Fetchuserrepositories extends StandardParameters {
+    /**
+     * Required. The name of the Account Connector resource in the format: `projects/x/locations/x/accountConnectors/x`.
+     */
+    accountConnector?: string;
+    /**
+     * Optional. Number of results to return in the list. Defaults to 20.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page start.
+     */
+    pageToken?: string;
+    /**
+     * Optional. The name of the repository. When specified, only the UserRepository with this name will be returned if the repository is accessible under this Account Connector for the calling user.
+     */
+    repository?: string;
   }
   export interface Params$Resource$Projects$Locations$Accountconnectors$Get extends StandardParameters {
     /**
