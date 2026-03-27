@@ -323,7 +323,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260312",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -339,7 +339,7 @@
           "type": "boolean"
         },
         "relaxSafetyFilters": {
-          "description": "Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only supported for accounts linked to Invoiced (Offline) Cloud billing accounts. Otherwise, will return result google.rpc.Code.INVALID_ARGUMENT.",
+          "description": "Optional. Input only. If true, relaxes safety filters for Gemini TTS.",
           "type": "boolean"
         }
       },
