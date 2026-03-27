@@ -169,6 +169,7 @@
               "type": "integer"
             },
             "view": {
+              "description": "Unspecified is interpreted as READER.",
               "enum": [
                 "VIEW_TYPE_UNSPECIFIED",
                 "READER",
@@ -209,6 +210,7 @@
               "type": "string"
             },
             "view": {
+              "description": "Unspecified is interpreted as READER.",
               "enum": [
                 "VIEW_TYPE_UNSPECIFIED",
                 "READER",
@@ -285,6 +287,7 @@
               "type": "string"
             },
             "view": {
+              "description": "Unspecified is interpreted as the user's role on the blog.",
               "enum": [
                 "VIEW_TYPE_UNSPECIFIED",
                 "READER",
@@ -1710,7 +1713,7 @@
       }
     }
   },
-  "revision": "20250524",
+  "revision": "20260309",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {

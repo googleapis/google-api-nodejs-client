@@ -664,7 +664,7 @@ export namespace blogger_v3 {
      *     blogId: 'placeholder-value',
      *
      *     maxPosts: 'placeholder-value',
-     *
+     *     // Unspecified is interpreted as READER.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -813,7 +813,7 @@ export namespace blogger_v3 {
      *   // Do the magic
      *   const res = await blogger.blogs.getByUrl({
      *     url: 'placeholder-value',
-     *
+     *     // Unspecified is interpreted as READER.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -968,7 +968,7 @@ export namespace blogger_v3 {
      *     status: 'placeholder-value',
      *
      *     userId: 'placeholder-value',
-     *
+     *     // Unspecified is interpreted as the user's role on the blog.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1086,7 +1086,7 @@ export namespace blogger_v3 {
      */
     maxPosts?: number;
     /**
-     *
+     * Unspecified is interpreted as READER.
      */
     view?: string;
   }
@@ -1096,7 +1096,7 @@ export namespace blogger_v3 {
      */
     url?: string;
     /**
-     *
+     * Unspecified is interpreted as READER.
      */
     view?: string;
   }
@@ -1118,7 +1118,7 @@ export namespace blogger_v3 {
      */
     userId?: string;
     /**
-     *
+     * Unspecified is interpreted as the user's role on the blog.
      */
     view?: string;
   }
