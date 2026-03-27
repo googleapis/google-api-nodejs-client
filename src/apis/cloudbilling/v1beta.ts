@@ -115,6 +115,7 @@ export namespace cloudbilling_v1beta {
     billingAccounts: Resource$Billingaccounts;
     skuGroups: Resource$Skugroups;
     skus: Resource$Skus;
+    v1beta: Resource$V1beta;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -125,9 +126,117 @@ export namespace cloudbilling_v1beta {
       this.billingAccounts = new Resource$Billingaccounts(this.context);
       this.skuGroups = new Resource$Skugroups(this.context);
       this.skus = new Resource$Skus(this.context);
+      this.v1beta = new Resource$V1beta(this.context);
     }
   }
 
+  /**
+   * A local representation of the query used to fetch the data. This is used instead of the raw QueryBillingDataRequest to avoid pulling in Cloud Policy Enforcement (CPE) resource_type annotations into the response payload, which causes ESF validation failures.
+   */
+  export interface Schema$AgenticQueryInfo {
+    /**
+     * The columns queried.
+     */
+    columns?: string | null;
+    /**
+     * The filter applied to the query.
+     */
+    filter?: string | null;
+    /**
+     * The group-by clause applied to the query.
+     */
+    groupBy?: string | null;
+    /**
+     * The row limit applied to the query.
+     */
+    limit?: number | null;
+    /**
+     * The order-by clause applied to the query.
+     */
+    orderBy?: string | null;
+    /**
+     * The parents (e.g. projects, billing accounts) queried.
+     */
+    parents?: string[] | null;
+    /**
+     * The view queried.
+     */
+    view?: string | null;
+  }
+  /**
+   * An ordered collection of elements of arbitrary count.
+   */
+  export interface Schema$Array {
+    /**
+     * The elements of the array.
+     */
+    element?: Schema$ValueProto[];
+  }
+  /**
+   * Encapsulates billing data.
+   */
+  export interface Schema$BillingData {
+    /**
+     * Information about columns.
+     */
+    columnInfo?: Schema$ColumnInfo[];
+    /**
+     * Rows.
+     */
+    rows?: Schema$Row[];
+  }
+  /**
+   * Specifies a Billing data resource that can be used for authorization to access billing data.
+   */
+  export interface Schema$BillingDataResource {
+    /**
+     * Optional. If not provided the billing account currently associated with the resource will be used.
+     */
+    billingAccount?: string | null;
+    /**
+     * Required. Resource name for an entitity that can be used for authorization to access billing data such as `projects/{project\}` or `billingAccounts/{billing_account\}`
+     */
+    resource?: string | null;
+  }
+  /**
+   * Represents a column header.
+   */
+  export interface Schema$ColumnInfo {
+    /**
+     * Name of the column.
+     */
+    column?: string | null;
+  }
+  /**
+   * A dataset used to support an insight, suitable for UI rendering (tables/charts).
+   */
+  export interface Schema$DataSet {
+    /**
+     * Output only. Actual billing data returned from the Data Mart. Uses the formal message from the Billing Data Service.
+     */
+    billingData?: Schema$BillingData;
+    /**
+     * Output only. The query used to fetch this data.
+     */
+    queryInfo?: Schema$AgenticQueryInfo;
+    /**
+     * Output only. A suggested chart for the data set, used for UI rendering.
+     */
+    suggestedChart?: Schema$SuggestedChart;
+  }
+  /**
+   * A datetime value.
+   */
+  export interface Schema$Datetime {
+    /**
+     * Represents bit field encoding of year/month/day/hour/minute/second. See class DatetimeValue in civil_time.h for details of encoding.
+     */
+    bitFieldDatetimeSeconds?: string | null;
+    /**
+     * Non-negative fractions of a second at nanosecond resolution.
+     */
+    nanos?: number | null;
+  }
   /**
    * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).
    */
@@ -136,6 +245,81 @@ export namespace cloudbilling_v1beta {
      * The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits ("the integer"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -\> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -\> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -\> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -\> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-\> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' \}; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.
      */
     value?: string | null;
+  }
+  /**
+   * Encapsulates all structured data and the completed summary.
+   */
+  export interface Schema$FinalResult {
+    /**
+     * Output only. Data sets used to support the insights, suitable for UI rendering (tables/charts).
+     */
+    dataSets?: Schema$DataSet[];
+    /**
+     * Output only. Contains the full natural language analysis, including thoughts, reasoning, and references.
+     */
+    fullAnalysis?: string | null;
+    /**
+     * Output only. A list of discrete insights gleaned from the data.
+     */
+    insights?: Schema$Insight[];
+    /**
+     * Output only. Links to interoperable tools (e.g., pre-filtered Cost Reports or BQE queries).
+     */
+    interopLinks?: Schema$InteropLink[];
+    /**
+     * Output only. A list of suggested follow-up queries for the user.
+     */
+    suggestedQueries?: Schema$SuggestedQuery[];
+    /**
+     * Output only. The full natural language summary (re-sent for consistency).
+     */
+    summary?: string | null;
+  }
+  /**
+   * Request for GenerateInsights.
+   */
+  export interface Schema$GenerateInsightsRequest {
+    /**
+     * Optional. Filters cost data by service id. Follows https://google.aip.dev/160 for the filter syntax. eg. filter: "service = 'C7E2-9256-1C43'"
+     */
+    filter?: string | null;
+    /**
+     * Optional. Overrides the maximum iterations for any selected strategy.
+     */
+    overriddenMaxIterationCounts?: number | null;
+    /**
+     * Optional. The billing account or projects to analyze.
+     */
+    parents?: Schema$BillingDataResource[];
+    /**
+     * Required. The natural language prompt from the user.
+     */
+    prompt?: string | null;
+    /**
+     * Optional. Additional context for personalization (e.g., user persona, role).
+     */
+    userContext?: Schema$UserContext;
+  }
+  /**
+   * Response for GenerateInsights.
+   */
+  export interface Schema$GenerateInsightsResponse {
+    /**
+     * Output only. The final structured results and metadata. Usually sent as the final message in the stream.
+     */
+    finalResult?: Schema$FinalResult;
+    /**
+     * Output only. The request was rejected (e.g. out of scope).
+     */
+    rejection?: Schema$Rejection;
+    /**
+     * Output only. A chunk of the natural language summary (customer-facing). The UI can append these chunks to provide a real-time "typing" effect.
+     */
+    summaryChunk?: string | null;
+    /**
+     * Output only. A chunk of the agent's internal reasoning process. The UI can use this to render a "Thinking..." log or status.
+     */
+    thoughtChunk?: string | null;
   }
   /**
    * Encapsulates the aggregation information such as aggregation level and interval for a billing account price.
@@ -856,6 +1040,62 @@ export namespace cloudbilling_v1beta {
     name?: string | null;
   }
   /**
+   * e.g. insight: title: "Cost Increase (The Explanation)" description: "Your cost increase was driven by Vertex AI Online Prediction in us-central1..." severity: INFO
+   */
+  export interface Schema$Insight {
+    /**
+     * Output only. The description of the insight.
+     */
+    description?: string | null;
+    /**
+     * Output only. The severity of the insight, used for UI rendering (e.g., color-coding).
+     */
+    severity?: string | null;
+    /**
+     * Output only. The title of the insight.
+     */
+    title?: string | null;
+  }
+  /**
+   * A link to interoperable tools (e.g., pre-filtered Cost Reports, BQE queries).
+   */
+  export interface Schema$InteropLink {
+    /**
+     * Output only. The label of the link, suitable for UI rendering.
+     */
+    label?: string | null;
+    /**
+     * Output only. The type of the interop link, e.g., "COST_REPORT", "BQE_QUERY", etc.
+     */
+    linkType?: string | null;
+    /**
+     * Output only. The URL of the link.
+     */
+    url?: string | null;
+  }
+  /**
+   * An unordered mapping from key to value, represented as a collection of map entries.
+   */
+  export interface Schema$Map {
+    /**
+     * Represents the map entries in the map.
+     */
+    entry?: Schema$MapEntry[];
+  }
+  /**
+   * A single entry in a Map, representing the mapping between `key` and `value`.
+   */
+  export interface Schema$MapEntry {
+    /**
+     * Represents the serialized map key for the entry.
+     */
+    key?: Schema$ValueProto;
+    /**
+     * Represents the serialized map value of the entry.
+     */
+    value?: Schema$ValueProto;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -871,6 +1111,222 @@ export namespace cloudbilling_v1beta {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * A range of values, bounded by the values 'start' (inclusive) and 'end' (exclusive). A range has an element type, and values must be of this element type. A range is contiguous, ie it contains all values of the given element type starting at 'start' and ending before 'end'. A "null" value on start or end represents an unbounded start or end value respectively. Start and end values must always be present.
+   */
+  export interface Schema$Range {
+    /**
+     * Represents the end of the range.
+     */
+    end?: Schema$ValueProto;
+    /**
+     * Represents the start of the range.
+     */
+    start?: Schema$ValueProto;
+  }
+  /**
+   * Encapsulates details about why a request was rejected.
+   */
+  export interface Schema$Rejection {
+    /**
+     * Output only. A user-facing message explaining the rejection.
+     */
+    displayMessage?: string | null;
+    /**
+     * Output only. The reason for the rejection.
+     */
+    reason?: string | null;
+  }
+  /**
+   * Represents a row in the query result.
+   */
+  export interface Schema$Row {
+    /**
+     * Values for a row in the column order.
+     */
+    values?: Schema$ValueProto[];
+  }
+  /**
+   * A collection of fields. The count, order, and type of the fields is determined by the type associated with this value.
+   */
+  export interface Schema$Struct {
+    /**
+     * The fields in the struct
+     */
+    field?: Schema$ValueProto[];
+  }
+  /**
+   * A suggested chart for the data set, used for UI rendering.
+   */
+  export interface Schema$SuggestedChart {
+    /**
+     * The title of the chart.
+     */
+    chartTitle?: string | null;
+    /**
+     * The type of the chart.
+     */
+    chartType?: string | null;
+    /**
+     * The field used for the series (e.g., color-coding). Optional, but recommended for time-series data.
+     */
+    seriesField?: string | null;
+    /**
+     * The field used for the x-axis.
+     */
+    xAxisField?: string | null;
+    /**
+     * The label of the x-axis.
+     */
+    xAxisLabel?: string | null;
+    /**
+     * The field used for the y-axis.
+     */
+    yAxisField?: string | null;
+    /**
+     * The label of the y-axis.
+     */
+    yAxisLabel?: string | null;
+  }
+  /**
+   * A suggested follow-up query for the user.
+   */
+  export interface Schema$SuggestedQuery {
+    /**
+     * The natural language query.
+     */
+    query?: string | null;
+  }
+  /**
+   * Additional context for personalization (e.g., user persona, role).
+   */
+  export interface Schema$UserContext {
+    /**
+     * Optional. The user's persona (e.g., FinOps Manager, Developer).
+     */
+    persona?: string | null;
+    /**
+     * Optional. The user's role (e.g., Billing Admin, Project Owner, etc.).
+     */
+    role?: string | null;
+  }
+  /**
+   * This is a copy of storage/googlesql/public/value.proto. ValueProto represents the serialized form of the googlesql::Value. The intention is to support multiple languages including Java and C++, so we must be sensitive to the distinction between Java Strings and byte arrays or ByteStrings. We also want to support use-cases which do not want to serialize a copy of the GoogleSQL type for every instance (which might be very repetitive). Therefore, unlike googlesql::Value, ValueProto does not carry full type information with every instance, and can only be fully interpreted with an associated TypeProto.
+   */
+  export interface Schema$ValueProto {
+    /**
+     * An array of value
+     */
+    arrayValue?: Schema$Array;
+    /**
+     * Encoded bignumeric value. For the encoding format see documentation for BigNumericValue::SerializeAsProtoBytes().
+     */
+    bignumericValue?: string | null;
+    /**
+     * Primitive for bool.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Primitive for bytes.
+     */
+    bytesValue?: string | null;
+    /**
+     * primitive for datetime
+     */
+    datetimeValue?: Schema$Datetime;
+    /**
+     * Primitive for date.
+     */
+    dateValue?: number | null;
+    /**
+     * Primitive for double.
+     */
+    doubleValue?: number | null;
+    /**
+     * Tag 11 was used for specifying micros timestamps as int64, now obsolete.
+     */
+    enumValue?: number | null;
+    /**
+     * Primitive for float.
+     */
+    floatValue?: number | null;
+    /**
+     * Geography encoded using ::stlib::STGeographyEncoder
+     */
+    geographyValue?: string | null;
+    /**
+     * Primitive value for int32.
+     */
+    int32Value?: number | null;
+    /**
+     * Primitive for int64.
+     */
+    int64Value?: string | null;
+    /**
+     * Encoded interval value. For the encoding format see documentation for IntervalValue::SerializeAsBytes().
+     */
+    intervalValue?: string | null;
+    /**
+     * Tag 22 was used for json value as bytes, now obsolete. Json value represented as a string document.
+     */
+    jsonValue?: string | null;
+    /**
+     * Encoded map value. See go/googlesql_map.
+     */
+    mapValue?: Schema$Map;
+    /**
+     * Encoded numeric value. For the encoding format see documentation for NumericValue::SerializeAsProtoBytes().
+     */
+    numericValue?: string | null;
+    /**
+     * Stores a serialized protocol message.
+     */
+    protoValue?: string | null;
+    /**
+     * Encoded range value. See go/googlesql_range.
+     */
+    rangeValue?: Schema$Range;
+    /**
+     * Primitive for string.
+     */
+    stringValue?: string | null;
+    /**
+     * A struct of values
+     */
+    structValue?: Schema$Struct;
+    /**
+     * Encoded timestamp_pico value. For the encoding format see documentation for googlesql::TimestampPico::SerializeAsBytes().
+     */
+    timestampPicoValue?: string | null;
+    /**
+     * primitive for timestamp
+     */
+    timestampValue?: string | null;
+    /**
+     * Bit field encoding of hour/minute/second/nanos. See TimeValue class for details.
+     */
+    timeValue?: string | null;
+    /**
+     * Encoded tokenlist value. copybara:strip_begin(internal-comment) See //search/tokens:token_list. copybara:strip_end
+     */
+    tokenlistValue?: string | null;
+    /**
+     * Primitive for uint32.
+     */
+    uint32Value?: number | null;
+    /**
+     * Primitive for uint64.
+     */
+    uint64Value?: string | null;
+    /**
+     * Encoded uuid value. For the encoding format see documentation for UuidValue::SerializeAsBytes().
+     */
+    uuidValue?: string | null;
+    /**
+     * User code that switches on this oneoff enum must have a default case so builds won't break when new fields are added.
+     */
+    ValueProtoSwitchMustHaveADefault?: boolean | null;
   }
 
   export class Resource$Billingaccounts {
@@ -3618,5 +4074,176 @@ export namespace cloudbilling_v1beta {
      * Required. To list the prices for all SKUs, use `-` as the SKU ID. Format: `skus/-` Specifying a specific SKU ID returns a collection with one Price object for the SKU.
      */
     parent?: string;
+  }
+
+  export class Resource$V1beta {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Analyzes cost data for a billing account and/or specific projects. Returns a natural language summary and supporting datasets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbilling.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudbilling = google.cloudbilling('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-billing',
+     *       'https://www.googleapis.com/auth/cloud-billing.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbilling.generateInsights({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "overriddenMaxIterationCounts": 0,
+     *       //   "parents": [],
+     *       //   "prompt": "my_prompt",
+     *       //   "userContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "finalResult": {},
+     *   //   "rejection": {},
+     *   //   "summaryChunk": "my_summaryChunk",
+     *   //   "thoughtChunk": "my_thoughtChunk"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateInsights(
+      params: Params$Resource$V1beta$Generateinsights,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateInsights(
+      params?: Params$Resource$V1beta$Generateinsights,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateInsightsResponse>>;
+    generateInsights(
+      params: Params$Resource$V1beta$Generateinsights,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateInsights(
+      params: Params$Resource$V1beta$Generateinsights,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GenerateInsightsResponse>
+    ): void;
+    generateInsights(
+      params: Params$Resource$V1beta$Generateinsights,
+      callback: BodyResponseCallback<Schema$GenerateInsightsResponse>
+    ): void;
+    generateInsights(
+      callback: BodyResponseCallback<Schema$GenerateInsightsResponse>
+    ): void;
+    generateInsights(
+      paramsOrCallback?:
+        | Params$Resource$V1beta$Generateinsights
+        | BodyResponseCallback<Schema$GenerateInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateInsightsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1beta$Generateinsights;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1beta$Generateinsights;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbilling.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta:generateInsights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateInsightsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1beta$Generateinsights extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateInsightsRequest;
   }
 }

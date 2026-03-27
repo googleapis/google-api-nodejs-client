@@ -700,17 +700,287 @@
           }
         }
       }
+    },
+    "v1beta": {
+      "methods": {
+        "generateInsights": {
+          "description": "Analyzes cost data for a billing account and/or specific projects. Returns a natural language summary and supporting datasets.",
+          "flatPath": "v1beta:generateInsights",
+          "httpMethod": "POST",
+          "id": "cloudbilling.generateInsights",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1beta:generateInsights",
+          "request": {
+            "$ref": "GenerateInsightsRequest"
+          },
+          "response": {
+            "$ref": "GenerateInsightsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-billing",
+            "https://www.googleapis.com/auth/cloud-billing.readonly",
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20250711",
+  "revision": "20260320",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
+    "AgenticQueryInfo": {
+      "description": "A local representation of the query used to fetch the data. This is used instead of the raw QueryBillingDataRequest to avoid pulling in Cloud Policy Enforcement (CPE) resource_type annotations into the response payload, which causes ESF validation failures.",
+      "id": "AgenticQueryInfo",
+      "properties": {
+        "columns": {
+          "description": "The columns queried.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "The filter applied to the query.",
+          "type": "string"
+        },
+        "groupBy": {
+          "description": "The group-by clause applied to the query.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "The row limit applied to the query.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderBy": {
+          "description": "The order-by clause applied to the query.",
+          "type": "string"
+        },
+        "parents": {
+          "description": "The parents (e.g. projects, billing accounts) queried.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "view": {
+          "description": "The view queried.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Array": {
+      "description": "An ordered collection of elements of arbitrary count.",
+      "id": "Array",
+      "properties": {
+        "element": {
+          "description": "The elements of the array.",
+          "items": {
+            "$ref": "ValueProto"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BillingData": {
+      "description": "Encapsulates billing data.",
+      "id": "BillingData",
+      "properties": {
+        "columnInfo": {
+          "description": "Information about columns.",
+          "items": {
+            "$ref": "ColumnInfo"
+          },
+          "type": "array"
+        },
+        "rows": {
+          "description": "Rows.",
+          "items": {
+            "$ref": "Row"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BillingDataResource": {
+      "description": "Specifies a Billing data resource that can be used for authorization to access billing data.",
+      "id": "BillingDataResource",
+      "properties": {
+        "billingAccount": {
+          "description": "Optional. If not provided the billing account currently associated with the resource will be used.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "Required. Resource name for an entitity that can be used for authorization to access billing data such as `projects/{project}` or `billingAccounts/{billing_account}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ColumnInfo": {
+      "description": "Represents a column header.",
+      "id": "ColumnInfo",
+      "properties": {
+        "column": {
+          "description": "Name of the column.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataSet": {
+      "description": "A dataset used to support an insight, suitable for UI rendering (tables/charts).",
+      "id": "DataSet",
+      "properties": {
+        "billingData": {
+          "$ref": "BillingData",
+          "description": "Output only. Actual billing data returned from the Data Mart. Uses the formal message from the Billing Data Service.",
+          "readOnly": true
+        },
+        "queryInfo": {
+          "$ref": "AgenticQueryInfo",
+          "description": "Output only. The query used to fetch this data.",
+          "readOnly": true
+        },
+        "suggestedChart": {
+          "$ref": "SuggestedChart",
+          "description": "Output only. A suggested chart for the data set, used for UI rendering.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "Datetime": {
+      "description": "A datetime value.",
+      "id": "Datetime",
+      "properties": {
+        "bitFieldDatetimeSeconds": {
+          "description": "Represents bit field encoding of year/month/day/hour/minute/second. See class DatetimeValue in civil_time.h for details of encoding.",
+          "format": "int64",
+          "type": "string"
+        },
+        "nanos": {
+          "description": "Non-negative fractions of a second at nanosecond resolution.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Decimal": {
       "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).",
       "id": "Decimal",
       "properties": {
         "value": {
           "description": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FinalResult": {
+      "description": "Encapsulates all structured data and the completed summary.",
+      "id": "FinalResult",
+      "properties": {
+        "dataSets": {
+          "description": "Output only. Data sets used to support the insights, suitable for UI rendering (tables/charts).",
+          "items": {
+            "$ref": "DataSet"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fullAnalysis": {
+          "description": "Output only. Contains the full natural language analysis, including thoughts, reasoning, and references.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "insights": {
+          "description": "Output only. A list of discrete insights gleaned from the data.",
+          "items": {
+            "$ref": "Insight"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "interopLinks": {
+          "description": "Output only. Links to interoperable tools (e.g., pre-filtered Cost Reports or BQE queries).",
+          "items": {
+            "$ref": "InteropLink"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "suggestedQueries": {
+          "description": "Output only. A list of suggested follow-up queries for the user.",
+          "items": {
+            "$ref": "SuggestedQuery"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "summary": {
+          "description": "Output only. The full natural language summary (re-sent for consistency).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateInsightsRequest": {
+      "description": "Request for GenerateInsights.",
+      "id": "GenerateInsightsRequest",
+      "properties": {
+        "filter": {
+          "description": "Optional. Filters cost data by service id. Follows https://google.aip.dev/160 for the filter syntax. eg. filter: \"service = 'C7E2-9256-1C43'\"",
+          "type": "string"
+        },
+        "overriddenMaxIterationCounts": {
+          "description": "Optional. Overrides the maximum iterations for any selected strategy.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parents": {
+          "description": "Optional. The billing account or projects to analyze.",
+          "items": {
+            "$ref": "BillingDataResource"
+          },
+          "type": "array"
+        },
+        "prompt": {
+          "description": "Required. The natural language prompt from the user.",
+          "type": "string"
+        },
+        "userContext": {
+          "$ref": "UserContext",
+          "description": "Optional. Additional context for personalization (e.g., user persona, role)."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateInsightsResponse": {
+      "description": "Response for GenerateInsights.",
+      "id": "GenerateInsightsResponse",
+      "properties": {
+        "finalResult": {
+          "$ref": "FinalResult",
+          "description": "Output only. The final structured results and metadata. Usually sent as the final message in the stream.",
+          "readOnly": true
+        },
+        "rejection": {
+          "$ref": "Rejection",
+          "description": "Output only. The request was rejected (e.g. out of scope).",
+          "readOnly": true
+        },
+        "summaryChunk": {
+          "description": "Output only. A chunk of the natural language summary (customer-facing). The UI can append these chunks to provide a real-time \"typing\" effect.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "thoughtChunk": {
+          "description": "Output only. A chunk of the agent's internal reasoning process. The UI can use this to render a \"Thinking...\" log or status.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1665,6 +1935,103 @@
       },
       "type": "object"
     },
+    "Insight": {
+      "description": "e.g. insight: title: \"Cost Increase (The Explanation)\" description: \"Your cost increase was driven by Vertex AI Online Prediction in us-central1...\" severity: INFO",
+      "id": "Insight",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the insight.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "severity": {
+          "description": "Output only. The severity of the insight, used for UI rendering (e.g., color-coding).",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "INFO",
+            "WARNING",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "The insight is useful, but no action is required.",
+            "The insight is useful, and some action may be required.",
+            "The insight is useful, and immediate action is required."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Output only. The title of the insight.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InteropLink": {
+      "description": "A link to interoperable tools (e.g., pre-filtered Cost Reports, BQE queries).",
+      "id": "InteropLink",
+      "properties": {
+        "label": {
+          "description": "Output only. The label of the link, suitable for UI rendering.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "linkType": {
+          "description": "Output only. The type of the interop link, e.g., \"COST_REPORT\", \"BQE_QUERY\", etc.",
+          "enum": [
+            "LINK_TYPE_UNSPECIFIED",
+            "COST_REPORT",
+            "BQE_QUERY",
+            "FINOPS_HUB"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "A link to a Cost Report in Google Cloud Console.",
+            "A link to a BigQuery Export query.",
+            "A link to a FinOps Hub page."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "description": "Output only. The URL of the link.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Map": {
+      "description": "An unordered mapping from key to value, represented as a collection of map entries.",
+      "id": "Map",
+      "properties": {
+        "entry": {
+          "description": "Represents the map entries in the map.",
+          "items": {
+            "$ref": "MapEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MapEntry": {
+      "description": "A single entry in a Map, representing the mapping between `key` and `value`.",
+      "id": "MapEntry",
+      "properties": {
+        "key": {
+          "$ref": "ValueProto",
+          "description": "Represents the serialized map key for the entry."
+        },
+        "value": {
+          "$ref": "ValueProto",
+          "description": "Represents the serialized map value of the entry."
+        }
+      },
+      "type": "object"
+    },
     "Money": {
       "description": "Represents an amount of money with its currency type.",
       "id": "Money",
@@ -1681,6 +2048,297 @@
         "units": {
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Range": {
+      "description": "A range of values, bounded by the values 'start' (inclusive) and 'end' (exclusive). A range has an element type, and values must be of this element type. A range is contiguous, ie it contains all values of the given element type starting at 'start' and ending before 'end'. A \"null\" value on start or end represents an unbounded start or end value respectively. Start and end values must always be present.",
+      "id": "Range",
+      "properties": {
+        "end": {
+          "$ref": "ValueProto",
+          "description": "Represents the end of the range."
+        },
+        "start": {
+          "$ref": "ValueProto",
+          "description": "Represents the start of the range."
+        }
+      },
+      "type": "object"
+    },
+    "Rejection": {
+      "description": "Encapsulates details about why a request was rejected.",
+      "id": "Rejection",
+      "properties": {
+        "displayMessage": {
+          "description": "Output only. A user-facing message explaining the rejection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reason": {
+          "description": "Output only. The reason for the rejection.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "EXPLICIT_OUT_OF_SCOPE"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "The user explicitly asked about a service that is not Gemini or Vertex AI."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Row": {
+      "description": "Represents a row in the query result.",
+      "id": "Row",
+      "properties": {
+        "values": {
+          "description": "Values for a row in the column order.",
+          "items": {
+            "$ref": "ValueProto"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Struct": {
+      "description": "A collection of fields. The count, order, and type of the fields is determined by the type associated with this value.",
+      "id": "Struct",
+      "properties": {
+        "field": {
+          "description": "The fields in the struct",
+          "items": {
+            "$ref": "ValueProto"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SuggestedChart": {
+      "description": "A suggested chart for the data set, used for UI rendering.",
+      "id": "SuggestedChart",
+      "properties": {
+        "chartTitle": {
+          "description": "The title of the chart.",
+          "type": "string"
+        },
+        "chartType": {
+          "description": "The type of the chart.",
+          "enum": [
+            "CHART_TYPE_UNSPECIFIED",
+            "BAR_CHART",
+            "UNCHARTABLE",
+            "LINE_CHART",
+            "AREA_CHART"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "Represents a bar chart.",
+            "The data set cannot be rendered as a chart.",
+            "Represents a line chart. Suitable for quantitative and temporal data on the x-axis.",
+            "Represents an area chart."
+          ],
+          "type": "string"
+        },
+        "seriesField": {
+          "description": "The field used for the series (e.g., color-coding). Optional, but recommended for time-series data.",
+          "type": "string"
+        },
+        "xAxisField": {
+          "description": "The field used for the x-axis.",
+          "type": "string"
+        },
+        "xAxisLabel": {
+          "description": "The label of the x-axis.",
+          "type": "string"
+        },
+        "yAxisField": {
+          "description": "The field used for the y-axis.",
+          "type": "string"
+        },
+        "yAxisLabel": {
+          "description": "The label of the y-axis.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuggestedQuery": {
+      "description": "A suggested follow-up query for the user.",
+      "id": "SuggestedQuery",
+      "properties": {
+        "query": {
+          "description": "The natural language query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserContext": {
+      "description": "Additional context for personalization (e.g., user persona, role).",
+      "id": "UserContext",
+      "properties": {
+        "persona": {
+          "description": "Optional. The user's persona (e.g., FinOps Manager, Developer).",
+          "enum": [
+            "PERSONA_UNSPECIFIED",
+            "FINOPS_MANAGER",
+            "DEVELOPER"
+          ],
+          "enumDescriptions": [
+            "Default value. Should not be used.",
+            "The user is a FinOps Manager.",
+            "The user is a Developer."
+          ],
+          "type": "string"
+        },
+        "role": {
+          "description": "Optional. The user's role (e.g., Billing Admin, Project Owner, etc.).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValueProto": {
+      "description": "This is a copy of storage/googlesql/public/value.proto. ValueProto represents the serialized form of the googlesql::Value. The intention is to support multiple languages including Java and C++, so we must be sensitive to the distinction between Java Strings and byte arrays or ByteStrings. We also want to support use-cases which do not want to serialize a copy of the GoogleSQL type for every instance (which might be very repetitive). Therefore, unlike googlesql::Value, ValueProto does not carry full type information with every instance, and can only be fully interpreted with an associated TypeProto.",
+      "id": "ValueProto",
+      "properties": {
+        "ValueProtoSwitchMustHaveADefault": {
+          "description": "User code that switches on this oneoff enum must have a default case so builds won't break when new fields are added.",
+          "type": "boolean"
+        },
+        "arrayValue": {
+          "$ref": "Array",
+          "description": "An array of value"
+        },
+        "bignumericValue": {
+          "description": "Encoded bignumeric value. For the encoding format see documentation for BigNumericValue::SerializeAsProtoBytes().",
+          "format": "byte",
+          "type": "string"
+        },
+        "boolValue": {
+          "description": "Primitive for bool.",
+          "type": "boolean"
+        },
+        "bytesValue": {
+          "description": "Primitive for bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dateValue": {
+          "description": "Primitive for date.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "datetimeValue": {
+          "$ref": "Datetime",
+          "description": "primitive for datetime"
+        },
+        "doubleValue": {
+          "description": "Primitive for double.",
+          "format": "double",
+          "type": "number"
+        },
+        "enumValue": {
+          "description": "Tag 11 was used for specifying micros timestamps as int64, now obsolete.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "floatValue": {
+          "description": "Primitive for float.",
+          "format": "float",
+          "type": "number"
+        },
+        "geographyValue": {
+          "description": "Geography encoded using ::stlib::STGeographyEncoder",
+          "format": "byte",
+          "type": "string"
+        },
+        "int32Value": {
+          "description": "Primitive value for int32.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "int64Value": {
+          "description": "Primitive for int64.",
+          "format": "int64",
+          "type": "string"
+        },
+        "intervalValue": {
+          "description": "Encoded interval value. For the encoding format see documentation for IntervalValue::SerializeAsBytes().",
+          "format": "byte",
+          "type": "string"
+        },
+        "jsonValue": {
+          "description": "Tag 22 was used for json value as bytes, now obsolete. Json value represented as a string document.",
+          "type": "string"
+        },
+        "mapValue": {
+          "$ref": "Map",
+          "description": "Encoded map value. See go/googlesql_map."
+        },
+        "numericValue": {
+          "description": "Encoded numeric value. For the encoding format see documentation for NumericValue::SerializeAsProtoBytes().",
+          "format": "byte",
+          "type": "string"
+        },
+        "protoValue": {
+          "description": "Stores a serialized protocol message.",
+          "format": "byte",
+          "type": "string"
+        },
+        "rangeValue": {
+          "$ref": "Range",
+          "description": "Encoded range value. See go/googlesql_range."
+        },
+        "stringValue": {
+          "description": "Primitive for string.",
+          "type": "string"
+        },
+        "structValue": {
+          "$ref": "Struct",
+          "description": "A struct of values"
+        },
+        "timeValue": {
+          "description": "Bit field encoding of hour/minute/second/nanos. See TimeValue class for details.",
+          "format": "int64",
+          "type": "string"
+        },
+        "timestampPicoValue": {
+          "description": "Encoded timestamp_pico value. For the encoding format see documentation for googlesql::TimestampPico::SerializeAsBytes().",
+          "format": "byte",
+          "type": "string"
+        },
+        "timestampValue": {
+          "description": "primitive for timestamp",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "tokenlistValue": {
+          "description": "Encoded tokenlist value. copybara:strip_begin(internal-comment) See //search/tokens:token_list. copybara:strip_end",
+          "format": "byte",
+          "type": "string"
+        },
+        "uint32Value": {
+          "description": "Primitive for uint32.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "uint64Value": {
+          "description": "Primitive for uint64.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "uuidValue": {
+          "description": "Encoded uuid value. For the encoding format see documentation for UuidValue::SerializeAsBytes().",
+          "format": "byte",
           "type": "string"
         }
       },
