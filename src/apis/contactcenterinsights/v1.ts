@@ -237,6 +237,10 @@ export namespace contactcenterinsights_v1 {
      */
     qaConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig;
     /**
+     * Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.
+     */
+    runAutoLabelingAnnotator?: boolean | null;
+    /**
      * Whether to run the entity annotator.
      */
     runEntityAnnotator?: boolean | null;
@@ -383,6 +387,10 @@ export namespace contactcenterinsights_v1 {
      */
     partialErrors?: Schema$GoogleRpcStatus[];
     /**
+     * Output only. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
+    /**
      * The original request for bulk analyze.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest;
@@ -411,6 +419,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource to create analyses in.
      */
     parent?: string | null;
+    /**
+     * Optional. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
   }
   /**
    * The response for a bulk analyze conversations operation.
@@ -761,6 +773,23 @@ export namespace contactcenterinsights_v1 {
      * Cloud Storage URI that points to a file that contains the conversation metadata.
      */
     metadataUri?: string | null;
+    /**
+     * Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.
+     */
+    turnLevelAudios?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio[];
+  }
+  /**
+   * A wrapper for holding the audio for any given turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio {
+    /**
+     * The duration of the audio.
+     */
+    audioDuration?: string | null;
+    /**
+     * The Cloud Storage URI of the audio for any given turn.
+     */
+    audioGcsUri?: string | null;
   }
   /**
    * One channel of conversation-level sentiment data.
@@ -965,6 +994,10 @@ export namespace contactcenterinsights_v1 {
      * The text of this segment.
      */
     text?: string | null;
+    /**
+     * Turn level audio for this transcript segment.
+     */
+    turnLevelAudio?: Schema$GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio;
     /**
      * A list of the word-specific information for each word in the segment.
      */
@@ -3457,6 +3490,10 @@ export namespace contactcenterinsights_v1 {
      */
     qaConfig?: Schema$GoogleCloudContactcenterinsightsV1AnnotatorSelectorQaConfig;
     /**
+     * Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.
+     */
+    runAutoLabelingAnnotator?: boolean | null;
+    /**
      * Whether to run the entity annotator.
      */
     runEntityAnnotator?: boolean | null;
@@ -3765,6 +3802,10 @@ export namespace contactcenterinsights_v1 {
      */
     partialErrors?: Schema$GoogleRpcStatus[];
     /**
+     * Output only. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
+    /**
      * The original request for bulk analyze.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest;
@@ -3793,6 +3834,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource to create analyses in.
      */
     parent?: string | null;
+    /**
+     * Optional. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
   }
   /**
    * The response for a bulk analyze conversations operation.
@@ -4499,6 +4544,10 @@ export namespace contactcenterinsights_v1 {
      * Cloud Storage URI that points to a file that contains the conversation metadata.
      */
     metadataUri?: string | null;
+    /**
+     * Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.
+     */
+    turnLevelAudios?: Schema$GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio[];
   }
   /**
    * A wrapper for holding the audio for any given turn.
@@ -4716,6 +4765,10 @@ export namespace contactcenterinsights_v1 {
      * The text of this segment.
      */
     text?: string | null;
+    /**
+     * Turn level audio for this transcript segment.
+     */
+    turnLevelAudio?: Schema$GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio;
     /**
      * A list of the word-specific information for each word in the segment.
      */
@@ -6722,6 +6775,10 @@ export namespace contactcenterinsights_v1 {
      */
     qaConfig?: Schema$GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig;
     /**
+     * Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.
+     */
+    runAutoLabelingAnnotator?: boolean | null;
+    /**
      * Whether to run the entity annotator.
      */
     runEntityAnnotator?: boolean | null;
@@ -6868,6 +6925,10 @@ export namespace contactcenterinsights_v1 {
      */
     partialErrors?: Schema$GoogleRpcStatus[];
     /**
+     * Output only. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
+    /**
      * The original request for bulk analyze.
      */
     request?: Schema$GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest;
@@ -6896,6 +6957,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource to create analyses in.
      */
     parent?: string | null;
+    /**
+     * Optional. If true, the labeling rules will be re-evaluated for the conversations.
+     */
+    relabel?: boolean | null;
   }
   /**
    * The response for a bulk analyze conversations operation.
@@ -7371,6 +7436,23 @@ export namespace contactcenterinsights_v1 {
      * Cloud Storage URI that points to a file that contains the conversation metadata.
      */
     metadataUri?: string | null;
+    /**
+     * Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.
+     */
+    turnLevelAudios?: Schema$GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio[];
+  }
+  /**
+   * A wrapper for holding the audio for any given turn.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio {
+    /**
+     * The duration of the audio.
+     */
+    audioDuration?: string | null;
+    /**
+     * The Cloud Storage URI of the audio for any given turn.
+     */
+    audioGcsUri?: string | null;
   }
   /**
    * One channel of conversation-level sentiment data.
@@ -7575,6 +7657,10 @@ export namespace contactcenterinsights_v1 {
      * The text of this segment.
      */
     text?: string | null;
+    /**
+     * Turn level audio for this transcript segment.
+     */
+    turnLevelAudio?: Schema$GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio;
     /**
      * A list of the word-specific information for each word in the segment.
      */
@@ -11173,6 +11259,10 @@ export namespace contactcenterinsights_v1 {
      */
     speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
     /**
+     * Optional. The time zone applied to the project. This is a string representation of the time zone, for example, "America/New_York". This field follows the IANA TZ database format. See https://www.iana.org/time-zones for a list of valid values. If no value is set the user time zone will be used.
+     */
+    timeZone?: string | null;
+    /**
      * Output only. The time at which the settings were last updated.
      */
     updateTime?: string | null;
@@ -12831,6 +12921,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "redactionConfig": {},
      *   //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *   //   "speechConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -13780,6 +13871,7 @@ export namespace contactcenterinsights_v1 {
      *       //   "redactionConfig": {},
      *       //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *       //   "speechConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -13797,6 +13889,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "redactionConfig": {},
      *   //   "screenRecordingBucketUri": "my_screenRecordingBucketUri",
      *   //   "speechConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -23873,7 +23966,8 @@ export namespace contactcenterinsights_v1 {
      *         //   "analysisPercentage": {},
      *         //   "annotatorSelector": {},
      *         //   "filter": "my_filter",
-     *         //   "parent": "my_parent"
+     *         //   "parent": "my_parent",
+     *         //   "relabel": false
      *         // }
      *       },
      *     });
@@ -29430,7 +29524,8 @@ export namespace contactcenterinsights_v1 {
      *           //   "analysisPercentage": {},
      *           //   "annotatorSelector": {},
      *           //   "filter": "my_filter",
-     *           //   "parent": "my_parent"
+     *           //   "parent": "my_parent",
+     *           //   "relabel": false
      *           // }
      *         },
      *       },
@@ -30221,7 +30316,7 @@ export namespace contactcenterinsights_v1 {
      *   const res = await contactcenterinsights.projects.locations.dashboards.patch({
      *     // Identifier. Dashboard resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}
      *     name: 'projects/my-project/locations/my-location/dashboards/my-dashboard',
-     *     // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     *     // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -30415,7 +30510,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
     /**
-     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`
      */
     updateMask?: string;
 

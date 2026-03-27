@@ -3555,7 +3555,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`",
+                      "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -6101,7 +6101,7 @@
       }
     }
   },
-  "revision": "20260202",
+  "revision": "20260313",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -6291,6 +6291,10 @@
         "qaConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1AnnotatorSelectorQaConfig",
           "description": "Configuration for the QA annotator."
+        },
+        "runAutoLabelingAnnotator": {
+          "description": "Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.",
+          "type": "boolean"
         },
         "runEntityAnnotator": {
           "description": "Whether to run the entity annotator.",
@@ -6714,6 +6718,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "relabel": {
+          "description": "Output only. If true, the labeling rules will be re-evaluated for the conversations.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "request": {
           "$ref": "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest",
           "description": "The original request for bulk analyze."
@@ -6746,6 +6755,10 @@
         "parent": {
           "description": "Required. The parent resource to create analyses in.",
           "type": "string"
+        },
+        "relabel": {
+          "description": "Optional. If true, the labeling rules will be re-evaluated for the conversations.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7720,6 +7733,13 @@
         "metadataUri": {
           "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
           "type": "string"
+        },
+        "turnLevelAudios": {
+          "description": "Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8013,6 +8033,10 @@
         "text": {
           "description": "The text of this segment.",
           "type": "string"
+        },
+        "turnLevelAudio": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio",
+          "description": "Turn level audio for this transcript segment."
         },
         "words": {
           "description": "A list of the word-specific information for each word in the segment.",
@@ -12400,6 +12424,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
           "description": "Optional. Default Speech-to-Text resources to use while ingesting audio files. Optional, CCAI Insights will create a default if not provided. This applies to conversations ingested from the `UploadConversation` and `IngestConversations` endpoints, including conversations coming from CCAI Platform."
         },
+        "timeZone": {
+          "description": "Optional. The time zone applied to the project. This is a string representation of the time zone, for example, \"America/New_York\". This field follows the IANA TZ database format. See https://www.iana.org/time-zones for a list of valid values. If no value is set the user time zone will be used.",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. The time at which the settings were last updated.",
           "format": "google-datetime",
@@ -13073,6 +13101,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorQaConfig",
           "description": "Configuration for the QA annotator."
         },
+        "runAutoLabelingAnnotator": {
+          "description": "Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.",
+          "type": "boolean"
+        },
         "runEntityAnnotator": {
           "description": "Whether to run the entity annotator.",
           "type": "boolean"
@@ -13273,6 +13305,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "relabel": {
+          "description": "Output only. If true, the labeling rules will be re-evaluated for the conversations.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "request": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest",
           "description": "The original request for bulk analyze."
@@ -13305,6 +13342,10 @@
         "parent": {
           "description": "Required. The parent resource to create analyses in.",
           "type": "string"
+        },
+        "relabel": {
+          "description": "Optional. If true, the labeling rules will be re-evaluated for the conversations.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13760,6 +13801,29 @@
         "metadataUri": {
           "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
           "type": "string"
+        },
+        "turnLevelAudios": {
+          "description": "Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio": {
+      "description": "A wrapper for holding the audio for any given turn.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio",
+      "properties": {
+        "audioDuration": {
+          "description": "The duration of the audio.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "audioGcsUri": {
+          "description": "The Cloud Storage URI of the audio for any given turn.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -14037,6 +14101,10 @@
         "text": {
           "description": "The text of this segment.",
           "type": "string"
+        },
+        "turnLevelAudio": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceTurnLevelAudio",
+          "description": "Turn level audio for this transcript segment."
         },
         "words": {
           "description": "A list of the word-specific information for each word in the segment.",
@@ -17397,6 +17465,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1mainAnnotatorSelectorQaConfig",
           "description": "Configuration for the QA annotator."
         },
+        "runAutoLabelingAnnotator": {
+          "description": "Optional. Whether to run the auto-labeling annotator. If true, the auto-labeling annotator will be run. This is a non-billable operation designed for fixing or backfilling custom labels.",
+          "type": "boolean"
+        },
         "runEntityAnnotator": {
           "description": "Whether to run the entity annotator.",
           "type": "boolean"
@@ -17597,6 +17669,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "relabel": {
+          "description": "Output only. If true, the labeling rules will be re-evaluated for the conversations.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "request": {
           "$ref": "GoogleCloudContactcenterinsightsV1mainBulkAnalyzeConversationsRequest",
           "description": "The original request for bulk analyze."
@@ -17629,6 +17706,10 @@
         "parent": {
           "description": "Required. The parent resource to create analyses in.",
           "type": "string"
+        },
+        "relabel": {
+          "description": "Optional. If true, the labeling rules will be re-evaluated for the conversations.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -18264,6 +18345,29 @@
         "metadataUri": {
           "description": "Cloud Storage URI that points to a file that contains the conversation metadata.",
           "type": "string"
+        },
+        "turnLevelAudios": {
+          "description": "Cloud Storage URIs that points to files that contain the conversation audio for each turn. Assume the order of the URIs is the same as the order of the transcript turns.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio": {
+      "description": "A wrapper for holding the audio for any given turn.",
+      "id": "GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio",
+      "properties": {
+        "audioDuration": {
+          "description": "The duration of the audio.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "audioGcsUri": {
+          "description": "The Cloud Storage URI of the audio for any given turn.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18541,6 +18645,10 @@
         "text": {
           "description": "The text of this segment.",
           "type": "string"
+        },
+        "turnLevelAudio": {
+          "$ref": "GoogleCloudContactcenterinsightsV1mainConversationDataSourceTurnLevelAudio",
+          "description": "Turn level audio for this transcript segment."
         },
         "words": {
           "description": "A list of the word-specific information for each word in the segment.",
