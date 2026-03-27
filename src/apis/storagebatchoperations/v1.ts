@@ -210,6 +210,10 @@ export namespace storagebatchoperations_v1 {
      * Output only. State of the BucketOperation.
      */
     state?: string | null;
+    /**
+     * Update object custom context.
+     */
+    updateObjectCustomContext?: Schema$UpdateObjectCustomContext;
   }
   /**
    * Message for Job to Cancel
@@ -248,6 +252,19 @@ export namespace storagebatchoperations_v1 {
      * Output only. Number of objects listed.
      */
     totalObjectCount?: string | null;
+  }
+  /**
+   * Describes a collection of updates to apply to custom contexts identified by key.
+   */
+  export interface Schema$CustomContextUpdates {
+    /**
+     * Optional. Custom contexts to clear by key. A key cannot be present in both `updates` and `keys_to_clear`.
+     */
+    keysToClear?: string[] | null;
+    /**
+     * Optional. Insert or update the existing custom contexts.
+     */
+    updates?: {[key: string]: Schema$ObjectCustomContextPayload} | null;
   }
   /**
    * Describes options to delete an object.
@@ -329,6 +346,10 @@ export namespace storagebatchoperations_v1 {
      */
     errorSummaries?: Schema$ErrorSummary[];
     /**
+     * Output only. If true, this Job operates on multiple buckets. Multibucket jobs are subject to different quota limits than single-bucket jobs.
+     */
+    isMultiBucketJob?: boolean | null;
+    /**
      * Optional. Logging configuration.
      */
     loggingConfig?: Schema$LoggingConfig;
@@ -356,6 +377,10 @@ export namespace storagebatchoperations_v1 {
      * Output only. State of the job.
      */
     state?: string | null;
+    /**
+     * Update object custom context.
+     */
+    updateObjectCustomContext?: Schema$UpdateObjectCustomContext;
   }
   /**
    * Message for response to listing BucketOperations
@@ -467,6 +492,15 @@ export namespace storagebatchoperations_v1 {
      * Required. `manifest_location` must contain the manifest source file that is a CSV file in a Google Cloud Storage bucket. Each row in the file must include the object details i.e. BucketId and Name. Generation may optionally be specified. When it is not specified the live object is acted upon. `manifest_location` should either be 1) An absolute path to the object in the format of `gs://bucket_name/path/file_name.csv`. 2) An absolute path with a single wildcard character in the file name, for example `gs://bucket_name/path/file_name*.csv`. If manifest location is specified with a wildcard, objects in all manifest files matching the pattern will be acted upon.
      */
     manifestLocation?: string | null;
+  }
+  /**
+   * Describes the payload of a user defined object custom context.
+   */
+  export interface Schema$ObjectCustomContextPayload {
+    /**
+     * The value of the object custom context. If set, `value` must NOT be an empty string since it is a required field in custom context. If unset, `value` will be ignored and no changes will be made to the `value` field of the custom context payload.
+     */
+    value?: string | null;
   }
   /**
    * Describes options for object retention update.
@@ -619,6 +653,19 @@ export namespace storagebatchoperations_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Describes options to update object custom contexts.
+   */
+  export interface Schema$UpdateObjectCustomContext {
+    /**
+     * If set, must be set to true and all existing object custom contexts will be deleted.
+     */
+    clearAll?: boolean | null;
+    /**
+     * A collection of updates to apply to specific custom contexts. Use this to add, update or delete individual contexts by key.
+     */
+    customContextUpdates?: Schema$CustomContextUpdates;
   }
 
   export class Resource$Projects {
@@ -1160,13 +1207,15 @@ export namespace storagebatchoperations_v1 {
      *       //   "description": "my_description",
      *       //   "dryRun": false,
      *       //   "errorSummaries": [],
+     *       //   "isMultiBucketJob": false,
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "putMetadata": {},
      *       //   "putObjectHold": {},
      *       //   "rewriteObject": {},
      *       //   "scheduleTime": "my_scheduleTime",
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "updateObjectCustomContext": {}
      *       // }
      *     },
      *   });
@@ -1458,13 +1507,15 @@ export namespace storagebatchoperations_v1 {
      *   //   "description": "my_description",
      *   //   "dryRun": false,
      *   //   "errorSummaries": [],
+     *   //   "isMultiBucketJob": false,
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
      *   //   "putMetadata": {},
      *   //   "putObjectHold": {},
      *   //   "rewriteObject": {},
      *   //   "scheduleTime": "my_scheduleTime",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "updateObjectCustomContext": {}
      *   // }
      * }
      *
@@ -1838,7 +1889,8 @@ export namespace storagebatchoperations_v1 {
      *   //   "putObjectHold": {},
      *   //   "rewriteObject": {},
      *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "updateObjectCustomContext": {}
      *   // }
      * }
      *

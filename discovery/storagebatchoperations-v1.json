@@ -569,7 +569,7 @@
       }
     }
   },
-  "revision": "20260128",
+  "revision": "20260218",
   "rootUrl": "https://storagebatchoperations.googleapis.com/",
   "schemas": {
     "Bucket": {
@@ -692,6 +692,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "updateObjectCustomContext": {
+          "$ref": "UpdateObjectCustomContext",
+          "description": "Update object custom context."
         }
       },
       "type": "object"
@@ -746,6 +750,27 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomContextUpdates": {
+      "description": "Describes a collection of updates to apply to custom contexts identified by key.",
+      "id": "CustomContextUpdates",
+      "properties": {
+        "keysToClear": {
+          "description": "Optional. Custom contexts to clear by key. A key cannot be present in both `updates` and `keys_to_clear`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updates": {
+          "additionalProperties": {
+            "$ref": "ObjectCustomContextPayload"
+          },
+          "description": "Optional. Insert or update the existing custom contexts.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -893,6 +918,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "isMultiBucketJob": {
+          "description": "Output only. If true, this Job operates on multiple buckets. Multibucket jobs are subject to different quota limits than single-bucket jobs.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "loggingConfig": {
           "$ref": "LoggingConfig",
           "description": "Optional. Logging configuration."
@@ -926,17 +956,23 @@
             "RUNNING",
             "SUCCEEDED",
             "CANCELED",
-            "FAILED"
+            "FAILED",
+            "QUEUED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "In progress.",
             "Completed successfully.",
             "Cancelled by the user.",
-            "Terminated due to an unrecoverable failure."
+            "Terminated due to an unrecoverable failure.",
+            "Queued but not yet started."
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "updateObjectCustomContext": {
+          "$ref": "UpdateObjectCustomContext",
+          "description": "Update object custom context."
         }
       },
       "type": "object"
@@ -1113,6 +1149,17 @@
       "properties": {
         "manifestLocation": {
           "description": "Required. `manifest_location` must contain the manifest source file that is a CSV file in a Google Cloud Storage bucket. Each row in the file must include the object details i.e. BucketId and Name. Generation may optionally be specified. When it is not specified the live object is acted upon. `manifest_location` should either be 1) An absolute path to the object in the format of `gs://bucket_name/path/file_name.csv`. 2) An absolute path with a single wildcard character in the file name, for example `gs://bucket_name/path/file_name*.csv`. If manifest location is specified with a wildcard, objects in all manifest files matching the pattern will be acted upon.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ObjectCustomContextPayload": {
+      "description": "Describes the payload of a user defined object custom context.",
+      "id": "ObjectCustomContextPayload",
+      "properties": {
+        "value": {
+          "description": "The value of the object custom context. If set, `value` must NOT be an empty string since it is a required field in custom context. If unset, `value` will be ignored and no changes will be made to the `value` field of the custom context payload.",
           "type": "string"
         }
       },
@@ -1342,6 +1389,21 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateObjectCustomContext": {
+      "description": "Describes options to update object custom contexts.",
+      "id": "UpdateObjectCustomContext",
+      "properties": {
+        "clearAll": {
+          "description": "If set, must be set to true and all existing object custom contexts will be deleted.",
+          "type": "boolean"
+        },
+        "customContextUpdates": {
+          "$ref": "CustomContextUpdates",
+          "description": "A collection of updates to apply to specific custom contexts. Use this to add, update or delete individual contexts by key."
         }
       },
       "type": "object"
