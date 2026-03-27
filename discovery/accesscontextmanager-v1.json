@@ -1244,6 +1244,37 @@
         }
       }
     },
+    "permissions": {
+      "methods": {
+        "list": {
+          "description": "Lists all supported permissions in VPCSC Granular Controls.",
+          "flatPath": "v1/permissions",
+          "httpMethod": "GET",
+          "id": "accesscontextmanager.permissions.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. This flag specifies the maximum number of services to return per page. Default is 100.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. Token to start on a later page. Default is the first page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/permissions",
+          "response": {
+            "$ref": "ListSupportedPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "services": {
       "methods": {
         "get": {
@@ -1300,7 +1331,7 @@
       }
     }
   },
-  "revision": "20251112",
+  "revision": "20260311",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1755,7 +1786,7 @@
       "id": "EgressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For third-party identity, only single identities are supported and other identity types are not supported. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, and `principal` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.",
+          "description": "A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For the list of supported identity types, see https://docs.cloud.google.com/vpc-service-controls/docs/supported-identities.",
           "items": {
             "type": "string"
           },
@@ -1980,7 +2011,7 @@
       "id": "IngressFrom",
       "properties": {
         "identities": {
-          "description": "A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For third-party identity, only single identities are supported and other identity types are not supported. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, and `principal` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.",
+          "description": "A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For the list of supported identity types, see https://docs.cloud.google.com/vpc-service-controls/docs/supported-identities.",
           "items": {
             "type": "string"
           },
@@ -2183,6 +2214,24 @@
           "description": "List of the Service Perimeter instances.",
           "items": {
             "$ref": "ServicePerimeter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSupportedPermissionsResponse": {
+      "description": "A response to `ListSupportedPermissionsRequest`.",
+      "id": "ListSupportedPermissionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain.",
+          "type": "string"
+        },
+        "supportedPermissions": {
+          "description": "List of VPC-SC supported permissions.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
