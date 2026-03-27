@@ -641,7 +641,7 @@ export namespace calendar_v3 {
      */
     colorId?: string | null;
     /**
-     * The conference-related information, such as details of a Google Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests.
+     * The conference-related information, such as details of a Google Meet conference. To create new conference details use the createRequest field. To persist your changes, remember to set the conferenceDataVersion request parameter to 1 for all event modification requests. Warning: Reusing Google Meet conference data across different events can cause access issues and expose meeting details to unintended users. To help ensure meeting privacy, always generate a unique conference for each event by using the createRequest field.
      */
     conferenceData?: Schema$ConferenceData;
     /**
@@ -960,6 +960,7 @@ export namespace calendar_v3 {
      */
     declineMessage?: string | null;
   }
+  export interface Schema$EventLabel {}
   export interface Schema$EventOutOfOfficeProperties {
     /**
      * Whether to decline meeting invitations which overlap Out of office events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Out of office event is present are to be declined.
@@ -1138,6 +1139,7 @@ export namespace calendar_v3 {
      */
     timeMin?: string | null;
   }
+  export interface Schema$LabelProperties {}
   export interface Schema$Setting {
     /**
      * ETag of the resource.
