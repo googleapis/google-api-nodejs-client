@@ -497,7 +497,7 @@ export namespace gkehub_v1 {
     policycontroller?: Schema$PolicyControllerMembershipSpec;
   }
   /**
-   * CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
+   * Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
    */
   export interface Schema$CompliancePostureConfig {
     /**
@@ -1157,11 +1157,11 @@ export namespace gkehub_v1 {
      */
     binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
     /**
-     * Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask.
+     * Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask.
      */
     compliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
-     * Enable/Disable Security Posture features for the cluster.
+     * Optional. Enable/Disable Security Posture features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
   }
@@ -1836,7 +1836,7 @@ export namespace gkehub_v1 {
      */
     nodeCount?: number | null;
     /**
-     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
+     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE on Google Cloud), the node_count will be zero and the node_provider_id will be empty.
      */
     nodeProviderId?: string | null;
     /**
@@ -2194,7 +2194,7 @@ export namespace gkehub_v1 {
      */
     edgeCluster?: Schema$EdgeCluster;
     /**
-     * Optional. Specific information for a GKE-on-GCP cluster.
+     * Optional. Specific information for a GKE on Google Cloud cluster.
      */
     gkeCluster?: Schema$GkeCluster;
     /**

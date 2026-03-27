@@ -1414,7 +1414,7 @@ export namespace gkehub_v2 {
      */
     deleteTime?: string | null;
     /**
-     * GCP labels for this MembershipFeature.
+     * Google Cloud labels for this MembershipFeature.
      */
     labels?: {[key: string]: string} | null;
     /**

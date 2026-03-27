@@ -15,6 +15,18 @@
   "description": "",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -482,7 +494,7 @@
       }
     }
   },
-  "revision": "20260126",
+  "revision": "20260313",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -2411,7 +2423,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "GCP labels for this MembershipFeature.",
+          "description": "Google Cloud labels for this MembershipFeature.",
           "type": "object"
         },
         "lifecycleState": {
@@ -3076,6 +3088,7 @@
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
             "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "CONFIG_APPLY_BLOCKED",
             "LEGACY_MC_SECRETS",
             "WORKLOAD_IDENTITY_REQUIRED",
             "NON_STANDARD_BINARY_USAGE",
@@ -3131,6 +3144,7 @@
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
             "NetworkEndpointGroup quota exceeded error code.",
+            "Configuration failed to apply due to fleet being blocked.",
             "Legacy istio secrets found for multicluster error code",
             "Workload identity required error code",
             "Non-standard binary usage error code",

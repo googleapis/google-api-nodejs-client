@@ -129,7 +129,7 @@ export namespace gkehub_v1beta1 {
    */
   export interface Schema$ApplianceCluster {
     /**
-     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
+     * Immutable. Self-link of the Google Cloud resource for the Appliance Cluster. For example: //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      */
     resourceLink?: string | null;
   }
@@ -227,7 +227,7 @@ export namespace gkehub_v1beta1 {
    */
   export interface Schema$EdgeCluster {
     /**
-     * Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      */
     resourceLink?: string | null;
   }
@@ -287,7 +287,7 @@ export namespace gkehub_v1beta1 {
      */
     clusterMissing?: boolean | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
+     * Immutable. Self-link of the Google Cloud resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
      */
     resourceLink?: string | null;
   }
@@ -325,7 +325,7 @@ export namespace gkehub_v1beta1 {
      */
     nodeCount?: number | null;
     /**
-     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
+     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-Google Cloud), the node_count will be zero and the node_provider_id will be empty.
      */
     nodeProviderId?: string | null;
     /**
@@ -463,7 +463,7 @@ export namespace gkehub_v1beta1 {
      */
     infrastructureType?: string | null;
     /**
-     * Optional. GCP labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.
+     * Optional. Google Cloud labels for this membership. These labels are not leveraged by multi-cluster features, instead, we prefer cluster labels, which can be set on GKE cluster or other cluster types.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -508,7 +508,7 @@ export namespace gkehub_v1beta1 {
      */
     edgeCluster?: Schema$EdgeCluster;
     /**
-     * Optional. Specific information for a GKE-on-GCP cluster.
+     * Optional. Specific information for a GKE-on-Google Cloud cluster.
      */
     gkeCluster?: Schema$GkeCluster;
     /**
@@ -579,7 +579,7 @@ export namespace gkehub_v1beta1 {
      */
     clusterMissing?: boolean | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/attachedClusters/my-cluster
      */
     resourceLink?: string | null;
   }
@@ -600,7 +600,7 @@ export namespace gkehub_v1beta1 {
      */
     clusterType?: string | null;
     /**
-     * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     * Immutable. Self-link of the Google Cloud resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
      */
     resourceLink?: string | null;
   }

@@ -281,6 +281,10 @@ export namespace gkehub_v1alpha {
      */
     postConditions?: Schema$ClusterUpgradePostConditions;
     /**
+     * Output only. The effective upgrade engine for the fleet.
+     */
+    upgradeEngine?: string | null;
+    /**
      * This fleet consumes upgrades that have COMPLETE status code in the upstream fleets. See UpgradeStatus.Code for code definitions. The fleet name should be either fleet project number or id. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream fleet.
      */
     upstreamFleets?: string[] | null;
@@ -586,7 +590,7 @@ export namespace gkehub_v1alpha {
     policycontroller?: Schema$PolicyControllerMembershipSpec;
   }
   /**
-   * CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
+   * Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
    */
   export interface Schema$CompliancePostureConfig {
     /**
@@ -1285,11 +1289,11 @@ export namespace gkehub_v1alpha {
      */
     binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
     /**
-     * Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask.
+     * Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask.
      */
     compliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
-     * Enable/Disable Security Posture features for the cluster.
+     * Optional. Enable/Disable Security Posture features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
   }
@@ -1306,19 +1310,6 @@ export namespace gkehub_v1alpha {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
-  /**
-   * An excluded cluster from the rollout.
-   */
-  export interface Schema$ExcludedCluster {
-    /**
-     * Output only. The name of the fleet Membership resource associated to the excluded cluster.
-     */
-    membership?: string | null;
-    /**
-     * Output only. The reason for excluding the cluster from the rollout.
-     */
-    reason?: string | null;
-  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -1439,19 +1430,6 @@ export namespace gkehub_v1alpha {
      * The time this status and any related Feature-specific details were updated.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Feature config to use for Rollout.
-   */
-  export interface Schema$FeatureUpdate {
-    /**
-     * Optional. Configuration for Binary Authorization.
-     */
-    binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
-    /**
-     * Optional. Configuration for Security Posture.
-     */
-    securityPostureConfig?: Schema$SecurityPostureConfig;
   }
   /**
    * Fleet contains the Fleet-wide metadata and configuration.
@@ -2016,7 +1994,7 @@ export namespace gkehub_v1alpha {
      */
     nodeCount?: number | null;
     /**
-     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
+     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE on Google Cloud), the node_count will be zero and the node_provider_id will be empty.
      */
     nodeProviderId?: string | null;
     /**
@@ -2417,7 +2395,7 @@ export namespace gkehub_v1alpha {
      */
     edgeCluster?: Schema$EdgeCluster;
     /**
-     * Optional. Specific information for a GKE-on-GCP cluster.
+     * Optional. Specific information for a GKE on Google Cloud cluster.
      */
     gkeCluster?: Schema$GkeCluster;
     /**
@@ -3140,7 +3118,7 @@ export namespace gkehub_v1alpha {
     predefinedRole?: string | null;
   }
   /**
-   * Rollout contains the Rollout metadata and configuration.
+   * Rollout contains the Rollout metadata and configuration. Next ID: 28
    */
   export interface Schema$Rollout {
     /**
@@ -3164,14 +3142,6 @@ export namespace gkehub_v1alpha {
      */
     etag?: string | null;
     /**
-     * Optional. Output only. The excluded clusters from the rollout.
-     */
-    excludedClusters?: Schema$ExcludedCluster[];
-    /**
-     * Optional. Feature config to use for Rollout.
-     */
-    feature?: Schema$FeatureUpdate;
-    /**
      * Optional. Labels for this Rollout.
      */
     labels?: {[key: string]: string} | null;
@@ -3188,10 +3158,6 @@ export namespace gkehub_v1alpha {
      */
     rolloutSequence?: string | null;
     /**
-     * Output only. The schedule of the Rollout.
-     */
-    schedule?: Schema$Schedule;
-    /**
      * Output only. The stages of the Rollout.
      */
     stages?: Schema$RolloutStage[];
@@ -3203,6 +3169,10 @@ export namespace gkehub_v1alpha {
      * Output only. A human-readable description explaining the reason for the current state.
      */
     stateReason?: string | null;
+    /**
+     * Output only. StateReasonType specifies the reason type of the Rollout state.
+     */
+    stateReasonType?: string | null;
     /**
      * Output only. Google-generated UUID for this resource. This is unique across all Rollout resources. If a Rollout resource is deleted and another resource with the same name is created, it gets a different uid.
      */
@@ -3266,6 +3236,10 @@ export namespace gkehub_v1alpha {
      */
     stages?: Schema$Stage[];
     /**
+     * Output only. State of the Rollout Sequence as a whole.
+     */
+    state?: Schema$RolloutSequenceState;
+    /**
      * Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.
      */
     uid?: string | null;
@@ -3275,27 +3249,44 @@ export namespace gkehub_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * State and reasons of the Rollout Sequence.
+   */
+  export interface Schema$RolloutSequenceState {
+    /**
+     * Output only. The timestamp at which the LifecycleState was last changed. Used to track how long it has been in the current state.
+     */
+    lastStateChangeTime?: string | null;
+    /**
+     * Output only. Lifecycle state of the Rollout Sequence.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Output only. StateReason represents the reason for the Rollout Sequence state.
+     */
+    stateReasons?: string[] | null;
+  }
+  /**
    * Stage represents a single stage in the Rollout.
    */
   export interface Schema$RolloutStage {
     /**
-     * Optional. Output only. The time at which the wave ended.
+     * Optional. Output only. The time at which the stage ended.
      */
     endTime?: string | null;
     /**
-     * Optional. Duration to soak after this wave before starting the next wave.
+     * Optional. Duration to soak after this stage before starting the next stage.
      */
     soakDuration?: string | null;
     /**
-     * Output only. The wave number to which this status applies.
+     * Output only. The stage number to which this status applies.
      */
     stageNumber?: number | null;
     /**
-     * Optional. Output only. The time at which the wave started.
+     * Optional. Output only. The time at which the stage started.
      */
     startTime?: string | null;
     /**
-     * Output only. The state of the wave.
+     * Output only. The state of the stage.
      */
     state?: string | null;
   }
@@ -3323,15 +3314,6 @@ export namespace gkehub_v1alpha {
      * Output only. The high-level, machine-readable status of this Rollout for the target.
      */
     state?: string | null;
-  }
-  /**
-   * Schedule represents the schedule of the Rollout.
-   */
-  export interface Schema$Schedule {
-    /**
-     * Output only. The schedule of each wave in the Rollout.
-     */
-    waves?: Schema$WaveSchedule[];
   }
   /**
    * Scope represents a Scope in a Fleet.
@@ -3743,23 +3725,6 @@ export namespace gkehub_v1alpha {
      * Optional. Type of version upgrade specifies which component should be upgraded.
      */
     type?: string | null;
-  }
-  /**
-   * WaveSchedule represents the schedule of a single rollout wave.
-   */
-  export interface Schema$WaveSchedule {
-    /**
-     * Output only. The time at which the wave ends.
-     */
-    waveEndTime?: string | null;
-    /**
-     * Output only. The wave number to which this schedule applies.
-     */
-    waveNumber?: number | null;
-    /**
-     * Output only. The time at which the wave starts.
-     */
-    waveStartTime?: string | null;
   }
   /**
    * **WorkloadIdentity**: Global feature specification.
@@ -11218,16 +11183,14 @@ export namespace gkehub_v1alpha {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
-     *   //   "excludedClusters": [],
-     *   //   "feature": {},
      *   //   "labels": {},
      *   //   "membershipStates": {},
      *   //   "name": "my_name",
      *   //   "rolloutSequence": "my_rolloutSequence",
-     *   //   "schedule": {},
      *   //   "stages": [],
      *   //   "state": "my_state",
      *   //   "stateReason": "my_stateReason",
+     *   //   "stateReasonType": "my_stateReasonType",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "versionUpgrade": {}
@@ -11551,6 +11514,7 @@ export namespace gkehub_v1alpha {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "stages": [],
+     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -11848,6 +11812,7 @@ export namespace gkehub_v1alpha {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "stages": [],
+     *   //   "state": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -12142,6 +12107,7 @@ export namespace gkehub_v1alpha {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "stages": [],
+     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
