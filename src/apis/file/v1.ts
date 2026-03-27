@@ -278,7 +278,7 @@ export namespace file_v1 {
      */
     sourceBackup?: string | null;
     /**
-     * The resource name of the BackupDR backup, in the format `projects/{project_id\}/locations/{location_id\}/backupVaults/{backupvault_id\}/dataSources/{datasource_id\}/backups/{backup_id\}`, TODO (b/443690479) - Remove visibility restrictions once the feature is ready
+     * The resource name of the BackupDR backup, in the format `projects/{project_id\}/locations/{location_id\}/backupVaults/{backupvault_id\}/dataSources/{datasource_id\}/backups/{backup_id\}`,
      */
     sourceBackupdrBackup?: string | null;
   }
@@ -1308,7 +1308,7 @@ export namespace file_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
