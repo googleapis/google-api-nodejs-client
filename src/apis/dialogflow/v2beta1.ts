@@ -397,6 +397,7 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -895,6 +896,7 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -1475,6 +1477,14 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateIntentsResponse {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1CesAppSpec {
+    cesApp?: string | null;
+    confirmationRequirement?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1CesToolSpec {
+    cesTool?: string | null;
+    confirmationRequirement?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata {
     conversationProfile?: string | null;
     createTime?: string | null;
@@ -1519,6 +1529,12 @@ export namespace dialogflow_v2beta1 {
         key: string
       ]: Schema$GoogleCloudDialogflowV2beta1ConversationContextReference;
     } | null;
+    initialConversationProfile?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+    initialGeneratorContexts?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowV2beta1ConversationGeneratorContext;
+    } | null;
     lifecycleState?: string | null;
     name?: string | null;
     phoneNumber?: Schema$GoogleCloudDialogflowV2beta1ConversationPhoneNumber;
@@ -1547,6 +1563,9 @@ export namespace dialogflow_v2beta1 {
     newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult;
     type?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationGeneratorContext {
+    generatorType?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowV2beta1ConversationPhoneNumber {
     countryCode?: number | null;
     phoneNumber?: string | null;
@@ -1568,6 +1587,7 @@ export namespace dialogflow_v2beta1 {
     timeZone?: string | null;
     ttsConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
     updateTime?: string | null;
+    useBidiStreaming?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfo {
     dialedNumber?: string | null;
@@ -1784,6 +1804,8 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1Generator {
     agentCoachingContext?: Schema$GoogleCloudDialogflowV2beta1AgentCoachingContext;
+    cesAppSpecs?: Schema$GoogleCloudDialogflowV2beta1CesAppSpec[];
+    cesToolSpecs?: Schema$GoogleCloudDialogflowV2beta1CesToolSpec[];
     createTime?: string | null;
     description?: string | null;
     freeFormContext?: Schema$GoogleCloudDialogflowV2beta1FreeFormContext;
@@ -1793,6 +1815,7 @@ export namespace dialogflow_v2beta1 {
     suggestionDedupingConfig?: Schema$GoogleCloudDialogflowV2beta1SuggestionDedupingConfig;
     summarizationContext?: Schema$GoogleCloudDialogflowV2beta1SummarizationContext;
     tools?: string[] | null;
+    toolsetTools?: Schema$GoogleCloudDialogflowV2beta1ToolsetTool[];
     triggerEvent?: string | null;
     updateTime?: string | null;
   }
@@ -2473,10 +2496,16 @@ export namespace dialogflow_v2beta1 {
     role?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1PhoneNumber {
+    allowedSipTrunks?: Schema$GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks;
     conversationProfile?: string | null;
     lifecycleState?: string | null;
     name?: string | null;
     phoneNumber?: string | null;
+    purgeTime?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1PhoneNumberAllowedSipTrunks {
+    carrierIds?: string[] | null;
+    sipTrunks?: string[] | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1QueryInput {
     audioConfig?: Schema$GoogleCloudDialogflowV2beta1InputAudioConfig;
@@ -2982,6 +3011,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -2992,6 +3024,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
@@ -3031,6 +3066,11 @@ export namespace dialogflow_v2beta1 {
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolServiceDirectoryConfig {
     service?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1ToolsetTool {
+    confirmationRequirement?: string | null;
+    operationId?: string | null;
+    toolset?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ToolTLSConfig {
     caCerts?: Schema$GoogleCloudDialogflowV2beta1ToolTLSConfigCACert[];
@@ -3602,6 +3642,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -3612,6 +3655,9 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
@@ -17133,7 +17179,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -17156,7 +17203,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -17452,7 +17500,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -17767,7 +17816,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -17790,7 +17840,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -18197,6 +18248,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -18355,6 +18408,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "conversationStage": "my_conversationStage",
      *       //   "endTime": "my_endTime",
      *       //   "ingestedContextReferences": {},
+     *       //   "initialConversationProfile": {},
+     *       //   "initialGeneratorContexts": {},
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
      *       //   "phoneNumber": {},
@@ -18371,6 +18426,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -18527,6 +18584,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -21706,6 +21765,8 @@ export namespace dialogflow_v2beta1 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -21715,6 +21776,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -21725,6 +21787,8 @@ export namespace dialogflow_v2beta1 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -21734,6 +21798,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -36210,7 +36275,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -36233,7 +36299,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -36531,7 +36598,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -36848,7 +36916,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -36871,7 +36940,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -37281,6 +37351,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -37440,6 +37512,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "conversationStage": "my_conversationStage",
      *       //   "endTime": "my_endTime",
      *       //   "ingestedContextReferences": {},
+     *       //   "initialConversationProfile": {},
+     *       //   "initialGeneratorContexts": {},
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
      *       //   "phoneNumber": {},
@@ -37456,6 +37530,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -37612,6 +37688,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -40809,6 +40887,8 @@ export namespace dialogflow_v2beta1 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -40818,6 +40898,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -40828,6 +40909,8 @@ export namespace dialogflow_v2beta1 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -40837,6 +40920,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -41120,6 +41204,8 @@ export namespace dialogflow_v2beta1 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -41129,6 +41215,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -41431,6 +41518,8 @@ export namespace dialogflow_v2beta1 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -41440,6 +41529,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -41450,6 +41540,8 @@ export namespace dialogflow_v2beta1 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -41459,6 +41551,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -44833,10 +44926,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *
@@ -45138,10 +45233,12 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowedSipTrunks": {},
      *       //   "conversationProfile": "my_conversationProfile",
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
-     *       //   "phoneNumber": "my_phoneNumber"
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "purgeTime": "my_purgeTime"
      *       // }
      *     },
      *   });
@@ -45149,10 +45246,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *
@@ -45303,10 +45402,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *
@@ -48216,10 +48317,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *
@@ -48521,10 +48624,12 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowedSipTrunks": {},
      *       //   "conversationProfile": "my_conversationProfile",
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
-     *       //   "phoneNumber": "my_phoneNumber"
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "purgeTime": "my_purgeTime"
      *       // }
      *     },
      *   });
@@ -48532,10 +48637,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *
@@ -48686,10 +48793,12 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowedSipTrunks": {},
      *   //   "conversationProfile": "my_conversationProfile",
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
-     *   //   "phoneNumber": "my_phoneNumber"
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "purgeTime": "my_purgeTime"
      *   // }
      * }
      *

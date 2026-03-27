@@ -775,6 +775,10 @@ export namespace dialogflow_v3beta1 {
     enableMultiLanguageDetection?: boolean | null;
     supportedResponseLanguageCodes?: string[] | null;
   }
+  export interface Schema$GoogleCloudDialogflowCxV3beta1FlowTraceMetadata {
+    displayName?: string | null;
+    flow?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowCxV3beta1FlowTransition {
     displayName?: string | null;
     flow?: string | null;
@@ -985,6 +989,7 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -1282,6 +1287,10 @@ export namespace dialogflow_v3beta1 {
     steps?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookStep[];
     text?: string | null;
   }
+  export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookTraceMetadata {
+    displayName?: string | null;
+    playbook?: string | null;
+  }
   export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookTransition {
     displayName?: string | null;
     inputActionParameters?: {[key: string]: any} | null;
@@ -1340,6 +1349,7 @@ export namespace dialogflow_v3beta1 {
     responseMessages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
     sentimentAnalysisResult?: Schema$GoogleCloudDialogflowCxV3beta1SentimentAnalysisResult;
     text?: string | null;
+    traceBlocks?: Schema$GoogleCloudDialogflowCxV3beta1TraceBlock[];
     transcript?: string | null;
     triggerEvent?: string | null;
     triggerIntent?: string | null;
@@ -1513,6 +1523,9 @@ export namespace dialogflow_v3beta1 {
     name?: string | null;
     startTime?: string | null;
     tags?: string[] | null;
+  }
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SpeechProcessingMetadata {
+    displayName?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowCxV3beta1SpeechToTextSettings {
     enableSpeechAdaptation?: boolean | null;
@@ -1712,6 +1725,17 @@ export namespace dialogflow_v3beta1 {
     name?: string | null;
     tool?: Schema$GoogleCloudDialogflowCxV3beta1Tool;
     updateTime?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowCxV3beta1TraceBlock {
+    actions?: Schema$GoogleCloudDialogflowCxV3beta1Action[];
+    completeTime?: string | null;
+    endState?: string | null;
+    flowTraceMetadata?: Schema$GoogleCloudDialogflowCxV3beta1FlowTraceMetadata;
+    inputParameters?: {[key: string]: any} | null;
+    outputParameters?: {[key: string]: any} | null;
+    playbookTraceMetadata?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookTraceMetadata;
+    speechProcessingMetadata?: Schema$GoogleCloudDialogflowCxV3beta1SpeechProcessingMetadata;
+    startTime?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowCxV3beta1TrainFlowRequest {}
   export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverage {
@@ -2111,6 +2135,7 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -3136,6 +3161,9 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -3146,6 +3174,9 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
@@ -3697,6 +3728,9 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -3707,6 +3741,9 @@ export namespace dialogflow_v3beta1 {
   export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
@@ -18383,6 +18420,7 @@ export namespace dialogflow_v3beta1 {
      *       // {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "dtmfPattern": "my_dtmfPattern",
      *       //   "isFallback": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -18398,6 +18436,7 @@ export namespace dialogflow_v3beta1 {
      *   // {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "dtmfPattern": "my_dtmfPattern",
      *   //   "isFallback": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -18845,6 +18884,7 @@ export namespace dialogflow_v3beta1 {
      *   // {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "dtmfPattern": "my_dtmfPattern",
      *   //   "isFallback": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -19314,6 +19354,7 @@ export namespace dialogflow_v3beta1 {
      *       // {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "dtmfPattern": "my_dtmfPattern",
      *       //   "isFallback": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -19329,6 +19370,7 @@ export namespace dialogflow_v3beta1 {
      *   // {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "dtmfPattern": "my_dtmfPattern",
      *   //   "isFallback": false,
      *   //   "labels": {},
      *   //   "name": "my_name",

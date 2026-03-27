@@ -397,6 +397,7 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -895,6 +896,7 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     description?: string | null;
     displayName?: string | null;
+    dtmfPattern?: string | null;
     isFallback?: boolean | null;
     labels?: {[key: string]: string} | null;
     name?: string | null;
@@ -2050,6 +2052,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -2060,6 +2065,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2beta1ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2beta1ToolCallResultError;
@@ -2086,6 +2094,14 @@ export namespace dialogflow_v2 {
     payload?: {[key: string]: any} | null;
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
     source?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CesAppSpec {
+    cesApp?: string | null;
+    confirmationRequirement?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2CesToolSpec {
+    cesTool?: string | null;
+    confirmationRequirement?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
     conversationProfile?: string | null;
@@ -2119,6 +2135,10 @@ export namespace dialogflow_v2 {
     endTime?: string | null;
     ingestedContextReferences?: {
       [key: string]: Schema$GoogleCloudDialogflowV2ConversationContextReference;
+    } | null;
+    initialConversationProfile?: Schema$GoogleCloudDialogflowV2ConversationProfile;
+    initialGeneratorContexts?: {
+      [key: string]: Schema$GoogleCloudDialogflowV2ConversationGeneratorContext;
     } | null;
     lifecycleState?: string | null;
     name?: string | null;
@@ -2158,6 +2178,9 @@ export namespace dialogflow_v2 {
     newMessagePayload?: Schema$GoogleCloudDialogflowV2Message;
     newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2StreamingRecognitionResult;
     type?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ConversationGeneratorContext {
+    generatorType?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ConversationInfo {
     languageCode?: string | null;
@@ -2456,6 +2479,8 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2Generator {
     agentCoachingContext?: Schema$GoogleCloudDialogflowV2AgentCoachingContext;
+    cesAppSpecs?: Schema$GoogleCloudDialogflowV2CesAppSpec[];
+    cesToolSpecs?: Schema$GoogleCloudDialogflowV2CesToolSpec[];
     createTime?: string | null;
     description?: string | null;
     freeFormContext?: Schema$GoogleCloudDialogflowV2FreeFormContext;
@@ -2465,6 +2490,7 @@ export namespace dialogflow_v2 {
     suggestionDedupingConfig?: Schema$GoogleCloudDialogflowV2SuggestionDedupingConfig;
     summarizationContext?: Schema$GoogleCloudDialogflowV2SummarizationContext;
     tools?: string[] | null;
+    toolsetTools?: Schema$GoogleCloudDialogflowV2ToolsetTool[];
     triggerEvent?: string | null;
     updateTime?: string | null;
   }
@@ -3529,6 +3555,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2ToolCall {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     createTime?: string | null;
     inputParameters?: {[key: string]: any} | null;
     state?: string | null;
@@ -3539,6 +3568,9 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2ToolCallResult {
     action?: string | null;
     answerRecord?: string | null;
+    cesApp?: string | null;
+    cesTool?: string | null;
+    cesToolset?: string | null;
     content?: string | null;
     createTime?: string | null;
     error?: Schema$GoogleCloudDialogflowV2ToolCallResultError;
@@ -3578,6 +3610,11 @@ export namespace dialogflow_v2 {
   }
   export interface Schema$GoogleCloudDialogflowV2ToolServiceDirectoryConfig {
     service?: string | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2ToolsetTool {
+    confirmationRequirement?: string | null;
+    operationId?: string | null;
+    toolset?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2ToolTLSConfig {
     caCerts?: Schema$GoogleCloudDialogflowV2ToolTLSConfigCACert[];
@@ -19779,6 +19816,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -19937,6 +19976,8 @@ export namespace dialogflow_v2 {
      *       //   "conversationStage": "my_conversationStage",
      *       //   "endTime": "my_endTime",
      *       //   "ingestedContextReferences": {},
+     *       //   "initialConversationProfile": {},
+     *       //   "initialGeneratorContexts": {},
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
      *       //   "phoneNumber": {},
@@ -19953,6 +19994,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -20109,6 +20152,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -22774,6 +22819,8 @@ export namespace dialogflow_v2 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -22783,6 +22830,7 @@ export namespace dialogflow_v2 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -22793,6 +22841,8 @@ export namespace dialogflow_v2 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -22802,6 +22852,7 @@ export namespace dialogflow_v2 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -40611,6 +40662,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -40770,6 +40823,8 @@ export namespace dialogflow_v2 {
      *       //   "conversationStage": "my_conversationStage",
      *       //   "endTime": "my_endTime",
      *       //   "ingestedContextReferences": {},
+     *       //   "initialConversationProfile": {},
+     *       //   "initialGeneratorContexts": {},
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "name": "my_name",
      *       //   "phoneNumber": {},
@@ -40786,6 +40841,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -40942,6 +40999,8 @@ export namespace dialogflow_v2 {
      *   //   "conversationStage": "my_conversationStage",
      *   //   "endTime": "my_endTime",
      *   //   "ingestedContextReferences": {},
+     *   //   "initialConversationProfile": {},
+     *   //   "initialGeneratorContexts": {},
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "name": "my_name",
      *   //   "phoneNumber": {},
@@ -43972,6 +44031,8 @@ export namespace dialogflow_v2 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -43981,6 +44042,7 @@ export namespace dialogflow_v2 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -43991,6 +44053,8 @@ export namespace dialogflow_v2 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -44000,6 +44064,7 @@ export namespace dialogflow_v2 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -44283,6 +44348,8 @@ export namespace dialogflow_v2 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -44292,6 +44359,7 @@ export namespace dialogflow_v2 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -44594,6 +44662,8 @@ export namespace dialogflow_v2 {
      *       // request body parameters
      *       // {
      *       //   "agentCoachingContext": {},
+     *       //   "cesAppSpecs": [],
+     *       //   "cesToolSpecs": [],
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "freeFormContext": {},
@@ -44603,6 +44673,7 @@ export namespace dialogflow_v2 {
      *       //   "suggestionDedupingConfig": {},
      *       //   "summarizationContext": {},
      *       //   "tools": [],
+     *       //   "toolsetTools": [],
      *       //   "triggerEvent": "my_triggerEvent",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -44613,6 +44684,8 @@ export namespace dialogflow_v2 {
      *   // Example response
      *   // {
      *   //   "agentCoachingContext": {},
+     *   //   "cesAppSpecs": [],
+     *   //   "cesToolSpecs": [],
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "freeFormContext": {},
@@ -44622,6 +44695,7 @@ export namespace dialogflow_v2 {
      *   //   "suggestionDedupingConfig": {},
      *   //   "summarizationContext": {},
      *   //   "tools": [],
+     *   //   "toolsetTools": [],
      *   //   "triggerEvent": "my_triggerEvent",
      *   //   "updateTime": "my_updateTime"
      *   // }

@@ -8780,7 +8780,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260323",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9677,6 +9677,9 @@
           "type": "string"
         },
         "displayName": {
+          "type": "string"
+        },
+        "dtmfPattern": {
           "type": "string"
         },
         "isFallback": {
@@ -11709,6 +11712,9 @@
         "displayName": {
           "type": "string"
         },
+        "dtmfPattern": {
+          "type": "string"
+        },
         "isFallback": {
           "type": "boolean"
         },
@@ -13652,6 +13658,50 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2CesAppSpec": {
+      "id": "GoogleCloudDialogflowV2CesAppSpec",
+      "properties": {
+        "cesApp": {
+          "type": "string"
+        },
+        "confirmationRequirement": {
+          "enum": [
+            "CONFIRMATION_REQUIREMENT_UNSPECIFIED",
+            "REQUIRED",
+            "NOT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CesToolSpec": {
+      "id": "GoogleCloudDialogflowV2CesToolSpec",
+      "properties": {
+        "cesTool": {
+          "type": "string"
+        },
+        "confirmationRequirement": {
+          "enum": [
+            "CONFIRMATION_REQUIREMENT_UNSPECIFIED",
+            "REQUIRED",
+            "NOT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata": {
       "id": "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata",
       "properties": {
@@ -13871,6 +13921,17 @@
           "readOnly": true,
           "type": "object"
         },
+        "initialConversationProfile": {
+          "$ref": "GoogleCloudDialogflowV2ConversationProfile",
+          "readOnly": true
+        },
+        "initialGeneratorContexts": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDialogflowV2ConversationGeneratorContext"
+          },
+          "readOnly": true,
+          "type": "object"
+        },
         "lifecycleState": {
           "enum": [
             "LIFECYCLE_STATE_UNSPECIFIED",
@@ -14056,6 +14117,34 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ConversationGeneratorContext": {
+      "id": "GoogleCloudDialogflowV2ConversationGeneratorContext",
+      "properties": {
+        "generatorType": {
+          "enum": [
+            "GENERATOR_TYPE_UNSPECIFIED",
+            "FREE_FORM",
+            "AGENT_COACHING",
+            "SUMMARIZATION",
+            "TRANSLATION",
+            "AGENT_FEEDBACK",
+            "CUSTOMER_MESSAGE_GENERATION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -15232,6 +15321,18 @@
         "agentCoachingContext": {
           "$ref": "GoogleCloudDialogflowV2AgentCoachingContext"
         },
+        "cesAppSpecs": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2CesAppSpec"
+          },
+          "type": "array"
+        },
+        "cesToolSpecs": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2CesToolSpec"
+          },
+          "type": "array"
+        },
         "createTime": {
           "format": "google-datetime",
           "readOnly": true,
@@ -15262,6 +15363,12 @@
         "tools": {
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "toolsetTools": {
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2ToolsetTool"
           },
           "type": "array"
         },
@@ -19679,6 +19786,15 @@
         "answerRecord": {
           "type": "string"
         },
+        "cesApp": {
+          "type": "string"
+        },
+        "cesTool": {
+          "type": "string"
+        },
+        "cesToolset": {
+          "type": "string"
+        },
         "createTime": {
           "format": "google-datetime",
           "readOnly": true,
@@ -19724,6 +19840,15 @@
           "type": "string"
         },
         "answerRecord": {
+          "type": "string"
+        },
+        "cesApp": {
+          "type": "string"
+        },
+        "cesTool": {
+          "type": "string"
+        },
+        "cesToolset": {
           "type": "string"
         },
         "content": {
@@ -19918,6 +20043,31 @@
           "type": "string"
         },
         "displayName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ToolsetTool": {
+      "id": "GoogleCloudDialogflowV2ToolsetTool",
+      "properties": {
+        "confirmationRequirement": {
+          "enum": [
+            "CONFIRMATION_REQUIREMENT_UNSPECIFIED",
+            "REQUIRED",
+            "NOT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "operationId": {
+          "type": "string"
+        },
+        "toolset": {
           "type": "string"
         }
       },
@@ -22842,6 +22992,15 @@
         "answerRecord": {
           "type": "string"
         },
+        "cesApp": {
+          "type": "string"
+        },
+        "cesTool": {
+          "type": "string"
+        },
+        "cesToolset": {
+          "type": "string"
+        },
         "createTime": {
           "format": "google-datetime",
           "readOnly": true,
@@ -22887,6 +23046,15 @@
           "type": "string"
         },
         "answerRecord": {
+          "type": "string"
+        },
+        "cesApp": {
+          "type": "string"
+        },
+        "cesTool": {
+          "type": "string"
+        },
+        "cesToolset": {
           "type": "string"
         },
         "content": {
