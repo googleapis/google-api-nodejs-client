@@ -497,7 +497,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$BatchWriteResponse {
     /**
-     * The commit timestamp of the transaction that applied this batch. Present if `status` is `OK`, absent otherwise.
+     * The commit timestamp of the transaction that applied this batch. Present if status is OK and the mutation groups were applied, absent otherwise. For mutation groups with conditions, a status=OK and missing commit_timestamp means that the mutation groups were not applied due to the condition not being satisfied after evaluation.
      */
     commitTimestamp?: string | null;
     /**
