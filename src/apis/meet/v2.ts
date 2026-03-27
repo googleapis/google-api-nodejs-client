@@ -277,6 +277,19 @@ export namespace meet_v2 {
     recordings?: Schema$Recording[];
   }
   /**
+   * Response for ListSmartNotes method.
+   */
+  export interface Schema$ListSmartNotesResponse {
+    /**
+     * Token to be circulated back for further List call if current List doesn't include all the smart notes. Unset if all smart notes are returned.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of smart notes in one page.
+     */
+    smartNotes?: Schema$SmartNote[];
+  }
+  /**
    * Response for ListTranscriptEntries method.
    */
   export interface Schema$ListTranscriptEntriesResponse {
@@ -426,6 +439,31 @@ export namespace meet_v2 {
     user?: string | null;
   }
   /**
+   * Metadata for a smart note generated from a conference. It refers to the notes generated from Take Notes with Gemini during the conference.
+   */
+  export interface Schema$SmartNote {
+    /**
+     * Output only. The Google Doc destination where the smart notes are saved.
+     */
+    docsDestination?: Schema$DocsDestination;
+    /**
+     * Output only. Timestamp when the smart notes stopped.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifier. Resource name of the smart notes. Format: `conferenceRecords/{conference_record\}/smartNotes/{smart_note\}`, where `{smart_note\}` is a 1:1 mapping to each unique smart notes session of the conference.
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the smart notes started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. Current state.
+     */
+    state?: string | null;
+  }
+  /**
    * Configuration related to smart notes in a meeting space. For more information about smart notes, see ["Take notes for me" in Google Meet](https://support.google.com/meet/answer/14754931).
    */
   export interface Schema$SmartNotesConfig {
@@ -556,6 +594,7 @@ export namespace meet_v2 {
     context: APIRequestContext;
     participants: Resource$Conferencerecords$Participants;
     recordings: Resource$Conferencerecords$Recordings;
+    smartNotes: Resource$Conferencerecords$Smartnotes;
     transcripts: Resource$Conferencerecords$Transcripts;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -563,6 +602,7 @@ export namespace meet_v2 {
         this.context
       );
       this.recordings = new Resource$Conferencerecords$Recordings(this.context);
+      this.smartNotes = new Resource$Conferencerecords$Smartnotes(this.context);
       this.transcripts = new Resource$Conferencerecords$Transcripts(
         this.context
       );
@@ -1849,6 +1889,316 @@ export namespace meet_v2 {
     pageSize?: number;
     /**
      * Page token returned from previous List Call.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `conferenceRecords/{conference_record\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Conferencerecords$Smartnotes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets smart notes by smart note ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/meet.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const meet = google.meet('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await meet.conferenceRecords.smartNotes.get({
+     *     // Required. Resource name of the smart note. Format: conferenceRecords/{conference_record\}/smartNotes/{smart_note\}
+     *     name: 'conferenceRecords/my-conferenceRecord/smartNotes/my-smartNote',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "docsDestination": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Conferencerecords$Smartnotes$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Conferencerecords$Smartnotes$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SmartNote>>;
+    get(
+      params: Params$Resource$Conferencerecords$Smartnotes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Conferencerecords$Smartnotes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SmartNote>,
+      callback: BodyResponseCallback<Schema$SmartNote>
+    ): void;
+    get(
+      params: Params$Resource$Conferencerecords$Smartnotes$Get,
+      callback: BodyResponseCallback<Schema$SmartNote>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SmartNote>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Conferencerecords$Smartnotes$Get
+        | BodyResponseCallback<Schema$SmartNote>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SmartNote>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SmartNote>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SmartNote>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conferencerecords$Smartnotes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Conferencerecords$Smartnotes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://meet.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SmartNote>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SmartNote>(parameters);
+      }
+    }
+
+    /**
+     * Lists the set of smart notes from the conference record. By default, ordered by start time and in ascending order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/meet.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const meet = google.meet('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await meet.conferenceRecords.smartNotes.list({
+     *     // Optional. Maximum number of smart notes to return. The service might return fewer than this value. If unspecified, at most 10 smart notes are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token returned from previous List Call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `conferenceRecords/{conference_record\}`
+     *     parent: 'conferenceRecords/my-conferenceRecord',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "smartNotes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Conferencerecords$Smartnotes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Conferencerecords$Smartnotes$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSmartNotesResponse>>;
+    list(
+      params: Params$Resource$Conferencerecords$Smartnotes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Conferencerecords$Smartnotes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSmartNotesResponse>,
+      callback: BodyResponseCallback<Schema$ListSmartNotesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Conferencerecords$Smartnotes$List,
+      callback: BodyResponseCallback<Schema$ListSmartNotesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSmartNotesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Conferencerecords$Smartnotes$List
+        | BodyResponseCallback<Schema$ListSmartNotesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSmartNotesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSmartNotesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSmartNotesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Conferencerecords$Smartnotes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Conferencerecords$Smartnotes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://meet.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/smartNotes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSmartNotesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSmartNotesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Conferencerecords$Smartnotes$Get extends StandardParameters {
+    /**
+     * Required. Resource name of the smart note. Format: conferenceRecords/{conference_record\}/smartNotes/{smart_note\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Conferencerecords$Smartnotes$List extends StandardParameters {
+    /**
+     * Optional. Maximum number of smart notes to return. The service might return fewer than this value. If unspecified, at most 10 smart notes are returned. The maximum value is 100; values above 100 are coerced to 100. Maximum might change in the future.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token returned from previous List Call.
      */
     pageToken?: string;
     /**
