@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "workloadmanager.projects.locations.list",
@@ -183,6 +183,284 @@
             }
           },
           "resources": {
+            "deployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Deployment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments",
+                  "httpMethod": "POST",
+                  "id": "workloadmanager.projects.locations.deployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "deploymentId": {
+                      "description": "Required. Id of the deployment",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource prefix of the Deployment using the form: `projects/{project_id}/locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/deployments",
+                  "request": {
+                    "$ref": "Deployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Deployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "workloadmanager.projects.locations.deployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Deployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.deployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Deployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Deployments in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.deployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter resource follow https://google.aip.dev/160",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource prefix of the Deployment using the form: `projects/{project_id}/locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/deployments",
+                  "response": {
+                    "$ref": "ListDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "actuations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new actuation for an existing Deployment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations",
+                      "httpMethod": "POST",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the Actuation location using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/actuations",
+                      "request": {
+                        "$ref": "Actuation"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single Actuation",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations/{actuationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the book to delete. project/{project_id}/locations/{location_id}/deployments/{deployment_id}/actuations/{actuation_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Actuation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations/{actuationsId}",
+                      "httpMethod": "GET",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Actuation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Actuations in a given project, location and deployment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations",
+                      "httpMethod": "GET",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filtering results",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource prefix of the Actuation using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/actuations",
+                      "response": {
+                        "$ref": "ListActuationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "discoveredprofiles": {
               "methods": {
                 "get": {
@@ -296,12 +574,12 @@
                   ],
                   "parameters": {
                     "evaluationId": {
-                      "description": "Required. Id of the requesting object",
+                      "description": "Required. Id of the requesting object.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource prefix of the evaluation location using the form: `projects/{project_id}/locations/{location_id}`",
+                      "description": "Required. The resource prefix of the evaluation location using the form: `projects/{project_id}/locations/{location_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -334,12 +612,12 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Optional. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "description": "Optional. Followed the best practice from https://aip.dev/135#cascading-delete.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. Name of the resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
                       "required": true,
@@ -369,7 +647,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource",
+                      "description": "Required. Name of the resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
                       "required": true,
@@ -399,7 +677,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Hint for how to order the results",
+                      "description": "Hint for how to order the results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -415,7 +693,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListEvaluationsRequest",
+                      "description": "Required. Parent value for ListEvaluationsRequest.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -440,7 +718,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "name of resource names have the form 'projects/{project_id}/locations/{location_id}/evaluations/{evaluation_id}'",
+                      "description": "Name of resource that has the form `projects/{project_id}/locations/{location_id}/evaluations/{evaluation_id}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
                       "required": true,
@@ -483,7 +761,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the resource",
+                          "description": "Required. Name of the resource.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -513,7 +791,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the resource",
+                          "description": "Required. Name of the resource.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -538,7 +816,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filtering results",
+                          "description": "Filtering results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -559,7 +837,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource prefix of the Execution using the form: 'projects/{project}/locations/{location}/evaluations/{evaluation}'",
+                          "description": "Required. The resource prefix of the Execution using the form: `projects/{project}/locations/{location}/evaluations/{evaluation}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
                           "required": true,
@@ -584,7 +862,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Execution using the form: 'projects/{project}/locations/{location}/evaluations/{evaluation}/executions/{execution}'",
+                          "description": "Required. The resource name of the Evaluation using the form: `projects/{project}/locations/{location}/evaluations/{evaluation}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+$",
                           "required": true,
@@ -616,7 +894,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Filtering results",
+                              "description": "Filtering results.",
                               "location": "query",
                               "type": "string"
                             },
@@ -632,7 +910,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The execution results. Format: {parent}/evaluations/*/executions/*/results",
+                              "description": "Required. The execution results. Format: {parent}/evaluations/*/executions/*/results.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
                               "required": true,
@@ -661,7 +939,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Filtering results",
+                              "description": "Filtering results.",
                               "location": "query",
                               "type": "string"
                             },
@@ -682,14 +960,14 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. parent for ListScannedResourcesRequest",
+                              "description": "Required. Parent for ListScannedResourcesRequest.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/executions/[^/]+$",
                               "required": true,
                               "type": "string"
                             },
                             "rule": {
-                              "description": "rule name",
+                              "description": "Rule name.",
                               "location": "query",
                               "type": "string"
                             }
@@ -920,28 +1198,19 @@
                         "EVALUATION_TYPE_UNSPECIFIED",
                         "SAP",
                         "SQL_SERVER",
-                        "OTHER",
-                        "SCC_IAC"
-                      ],
-                      "enumDeprecated": [
-                        false,
-                        false,
-                        false,
-                        false,
-                        true
+                        "OTHER"
                       ],
                       "enumDescriptions": [
-                        "Not specified",
-                        "SAP best practices",
-                        "SQL best practices",
-                        "Customized best practices",
-                        "SCC IaC (Infra as Code) best practices."
+                        "Not specified.",
+                        "SAP best practices.",
+                        "SQL best practices.",
+                        "Customized best practices."
                       ],
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Filter based on primary_category, secondary_category",
+                      "description": "Filter based on primary_category, secondary_category.",
                       "location": "query",
                       "type": "string"
                     },
@@ -957,7 +1226,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The [project] on which to execute the request. The format is: projects/{project_id}/locations/{location} Currently, the pre-defined rules are global available to all projects and all regions",
+                      "description": "Required. The [project] on which to execute the request. The format is: projects/{project_id}/locations/{location} Currently, the pre-defined rules are global available to all projects and all regions.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -979,22 +1248,203 @@
       }
     }
   },
-  "revision": "20260121",
+  "revision": "20260217",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "ActiveDirectory": {
+      "description": "Active directory details",
+      "id": "ActiveDirectory",
+      "properties": {
+        "dnsAddress": {
+          "description": "Optional. DNS IP address",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Optional. human readable form of a domain such as “google.com”.",
+          "type": "string"
+        },
+        "domainUsername": {
+          "description": "Optional. domain username",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. active directory type",
+          "enum": [
+            "ACTIVE_DIRECTORY_TYPE_UNSPECIFIED",
+            "GCP_MANAGED",
+            "SELF_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified active directory type",
+            "GCP managed active directory type",
+            "Self managed active directory type"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Actuation": {
+      "description": "The Actuation object represents the bootstrap state and output results of deployed infrastructure and software.",
+      "id": "Actuation",
+      "properties": {
+        "actuationOutput": {
+          "$ref": "ActuationOutput",
+          "description": "Output only. [Output only] Actuation output",
+          "readOnly": true
+        },
+        "deploymentOutput": {
+          "description": "Output only. [Output only] Deployment output",
+          "items": {
+            "$ref": "DeploymentOutput"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "endTime": {
+          "description": "Output only. [Output only] End time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of actuation resource. The format is projects/{project}/locations/{location}/deployments/{deployment}/actuations/{actuation}",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. [Output only] Start time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output only] Actuation state",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INFRA_CREATING",
+            "SUCCEEDED",
+            "FAILED",
+            "POST_INFRA_CONFIGURING",
+            "INFRA_DESTROYING",
+            "TIMEOUT"
+          ],
+          "enumDescriptions": [
+            "state unspecified",
+            "creating infrastructure in backend (terraform applying)",
+            "success",
+            "failed either in infra creating, post infra configuring or infra destroying",
+            "configure workload after infrastructure is ready (ansible running)",
+            "destroying infrastructure in backend (terraform destroying)",
+            "ansible is timeout due to losing heartbeat in post infra configuring"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActuationOutput": {
+      "description": "Message for output of Actuation",
+      "id": "ActuationOutput",
+      "properties": {
+        "actuateLogs": {
+          "description": "A link to gcs file that store build logs",
+          "type": "string"
+        },
+        "ansibleError": {
+          "description": "Output only. error message return from ansible.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ansibleFailedTask": {
+          "description": "Output only. failed task name return from ansible.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "blueprintId": {
+          "description": "reference to Blueprint Controller deployment and revision resource",
+          "type": "string"
+        },
+        "cloudbuildId": {
+          "description": "Cloud Build instance UUID associated with this revision, without any suffix or prefix",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "Output only. Code describing any errors that may have occurred. If not specified, there is no error in actuation.",
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "TERRAFORM_FAILED",
+            "PERMISSION_DENIED_IN_TERRAFORM",
+            "QUOTA_EXCEED_IN_TERRAFORM",
+            "ANSIBLE_FAILED",
+            "CONSTRAINT_VIOLATION_IN_TERRAFORM",
+            "RESOURCE_ALREADY_EXISTS_IN_TERRAFORM",
+            "RESOURCE_UNAVAILABLE_IN_TERRAFORM",
+            "PERMISSION_DENIED_IN_ANSIBLE",
+            "INVALID_SECRET_IN_ANSIBLE",
+            "TERRAFORM_DELETION_FAILED",
+            "RESOURCE_IN_USE_IN_TERRAFORM_DELETION",
+            "ANSIBLE_START_FAILED"
+          ],
+          "enumDescriptions": [
+            "No error code was specified.",
+            "general terraform failure",
+            "permission error in terraform",
+            "quota related error in terraform",
+            "general ansible failure",
+            "constraint related error in terraform",
+            "resource already exists error in terraform",
+            "resource not found error in terraform",
+            "permission denied error in ansible",
+            "secret related error in ansible",
+            "general terraform failure during deletion",
+            "resource in use error in terraform deletion",
+            "start up failure in ansible"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorLogs": {
+          "description": "A link to actuation cloud build log.",
+          "type": "string"
+        },
+        "hasUserFacingErrorMsg": {
+          "description": "Output only. whether the error message is user facing. If true, the error message will be shown in the UI.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "terraformError": {
+          "description": "Output only. error message return from terraform.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terraformTemplate": {
+          "description": "reference to terraform template used",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AgentCommand": {
-      "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
+      "description": "An AgentCommand specifies a one-time executable program for the agent to run.",
       "id": "AgentCommand",
       "properties": {
         "command": {
-          "description": "command is the name of the agent one-time executable that will be invoked.",
+          "description": "The name of the agent one-time executable that will be invoked.",
           "type": "string"
         },
         "parameters": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
+          "description": "A map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
         }
       },
@@ -1297,6 +1747,81 @@
       },
       "type": "object"
     },
+    "AppDetails": {
+      "description": "Message for sap instant details",
+      "id": "AppDetails",
+      "properties": {
+        "appInstanceId": {
+          "description": "Optional. instance id for app",
+          "type": "string"
+        },
+        "appServiceAccount": {
+          "description": "Application service account - let custoemrs bring their own SA for application",
+          "type": "string"
+        },
+        "appVmNames": {
+          "description": "Optional. Customized vm names",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ascsImage": {
+          "description": "Required. image for ascs server",
+          "type": "string"
+        },
+        "ascsInstanceId": {
+          "description": "Optional. instance id for ascs",
+          "type": "string"
+        },
+        "ascsMachineType": {
+          "description": "Required. ascs_machine_type",
+          "type": "string"
+        },
+        "ascsServiceAccount": {
+          "description": "ASCS service account - let custoemrs bring their own SA for ASCS",
+          "type": "string"
+        },
+        "ascsVm": {
+          "description": "Optional. ASCS vm name",
+          "type": "string"
+        },
+        "ersInstanceId": {
+          "description": "Optional. instance id for ers",
+          "type": "string"
+        },
+        "ersVm": {
+          "description": "Optional. ERS vm name",
+          "type": "string"
+        },
+        "image": {
+          "description": "Required. image for app server and ascs server",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "sharedStorage": {
+          "description": "Optional. Storage location",
+          "type": "string"
+        },
+        "sid": {
+          "description": "Required. The SAP SID is a three-digit server-specific unique identification code.",
+          "type": "string"
+        },
+        "vmsMultiplier": {
+          "description": "Required. vms_multiplier",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "BackupProperties": {
       "description": "Backup properties.",
       "id": "BackupProperties",
@@ -1325,15 +1850,15 @@
       "type": "object"
     },
     "BigQueryDestination": {
-      "description": "Message describing big query destination",
+      "description": "BigQuery destination for evaluation results.",
       "id": "BigQueryDestination",
       "properties": {
         "createNewResultsTable": {
-          "description": "Optional. determine if results will be saved in a new table",
+          "description": "Optional. Determines if a new results table will be created when an Execution is created.",
           "type": "boolean"
         },
         "destinationDataset": {
-          "description": "Optional. destination dataset to save evaluation results",
+          "description": "Optional. Destination dataset to save evaluation results.",
           "type": "string"
         }
       },
@@ -1396,7 +1921,7 @@
       "type": "object"
     },
     "Command": {
-      "description": "* Command specifies the type of command to execute.",
+      "description": "Command specifies the type of command to execute.",
       "id": "Command",
       "properties": {
         "agentCommand": {
@@ -1471,6 +1996,110 @@
       },
       "type": "object"
     },
+    "Database": {
+      "description": "Database details",
+      "id": "Database",
+      "properties": {
+        "diskType": {
+          "description": "Required. disk_type",
+          "type": "string"
+        },
+        "floatingIpAddress": {
+          "description": "Optional. only useful for Linux High Availability setup",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "secondarySoleTenantNode": {
+          "description": "Optional. the name of a secondary-sole-tenant node/node group",
+          "type": "string"
+        },
+        "secondarySoleTenantNodeType": {
+          "description": "Optional. the type of a secondary-sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "smt": {
+          "description": "Required. whether simultaneous multithreading is enabled or not",
+          "type": "boolean"
+        },
+        "soleTenantNode": {
+          "description": "Optional. the name of a primary sole-tenant node/node group",
+          "type": "string"
+        },
+        "soleTenantNodeType": {
+          "description": "Optional. the type of a primary sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "type": "string"
+        },
+        "tempdbOnSsd": {
+          "description": "Required. whether to have TempDB on local SSD",
+          "type": "boolean"
+        },
+        "tenancyModel": {
+          "description": "Required. SHARED or SOLE_TENANT",
+          "enum": [
+            "TENANCY_MODEL_UNSPECIFIED",
+            "SHARED",
+            "SOLE_TENANT"
+          ],
+          "enumDescriptions": [
+            "Unspecified tenancy model",
+            "Shared tenancy model",
+            "Sole Tenant tenancy model"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetails": {
+      "description": "Message for sap instant details",
+      "id": "DatabaseDetails",
+      "properties": {
+        "databaseServiceAccount": {
+          "description": "Database service account - let custoemrs bring their own SA for database",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Required. disk_type",
+          "type": "string"
+        },
+        "image": {
+          "description": "Required. image for database server",
+          "type": "string"
+        },
+        "instanceId": {
+          "description": "Optional. instance id",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "primaryDbVm": {
+          "description": "Optional. primary db vm name",
+          "type": "string"
+        },
+        "secondaryDbVm": {
+          "description": "Optional. secondary db vm name",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "sid": {
+          "description": "Required. The SID is a three-digit server-specific unique identification code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DatabaseProperties": {
       "description": "Database Properties.",
       "id": "DatabaseProperties",
@@ -1506,6 +2135,108 @@
       },
       "type": "object"
     },
+    "Deployment": {
+      "description": "The Deployment object represents user intent for deploying a specific type of workload.",
+      "id": "Deployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the Deployment",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of deployment resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+          "type": "string"
+        },
+        "sapSystemS4Config": {
+          "$ref": "SapSystemS4Config",
+          "description": "SAP system workload input"
+        },
+        "serviceAccount": {
+          "description": "User-specified Service Account (SA) credentials to be used for cloud build Format: `projects/{projectID}/serviceAccounts/{serviceAccount}` The default Cloud Build SA will be used initially if this field is not set during deployment creation",
+          "type": "string"
+        },
+        "sqlServerWorkload": {
+          "$ref": "SqlServerWorkload",
+          "description": "MS SQL workload input"
+        },
+        "state": {
+          "description": "Output only. Current state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The deployment is being created.",
+            "The deployment is healthy.",
+            "The deployment is being updated.",
+            "The deployment is being deleted.",
+            "The deployment has encountered an unexpected error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "terraformVariables": {
+          "additionalProperties": {
+            "$ref": "TerraformVariable"
+          },
+          "description": "Optional. terraform_variables represents all the Terraform variables for the deployment workload. The key is the name of the Terraform variable, and the value is the TerraformVariable. For example: { \"project_id\": { \"input_value\": { \"string_value\": \"my-project-id\" } }, \"zone\": { \"input_value\": { \"string_value\": \"us-central1-a\" } } }",
+          "type": "object"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "Optional. The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project}/locations/{location}/workerPools/{workerPoolId}`. If this field is unspecified, the default Cloud Build worker pool will be used.",
+          "type": "string"
+        },
+        "workloadType": {
+          "description": "Optional. Workload type of the deployment",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "SAP_S4",
+            "SQL_SERVER",
+            "ORACLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified workload type",
+            "SAP S/4HANA workload type",
+            "SQL Server workload type",
+            "Oracle workload type"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeploymentOutput": {
+      "description": "Message for output of deployment resource",
+      "id": "DeploymentOutput",
+      "properties": {
+        "name": {
+          "description": "name of the resource",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of the resource",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1513,15 +2244,15 @@
       "type": "object"
     },
     "Evaluation": {
-      "description": "Message describing Evaluation object",
+      "description": "Represents a Workload Manager Evaluation configuration. An Evaluation defines a set of rules to be validated against a scope of Cloud resources.",
       "id": "Evaluation",
       "properties": {
         "bigQueryDestination": {
           "$ref": "BigQueryDestination",
-          "description": "Optional. BigQuery destination"
+          "description": "Optional. The BigQuery destination for detailed evaluation results. If this field is specified, the results of each evaluation execution are exported to BigQuery."
         },
         "createTime": {
-          "description": "Output only. [Output only] Create time stamp",
+          "description": "Output only. [Output only] Create time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1531,79 +2262,62 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the Evaluation",
+          "description": "Description of the Evaluation.",
           "type": "string"
         },
         "evaluationType": {
-          "description": "Evaluation type",
+          "description": "Evaluation type.",
           "enum": [
             "EVALUATION_TYPE_UNSPECIFIED",
             "SAP",
             "SQL_SERVER",
-            "OTHER",
-            "SCC_IAC"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            false,
-            true
+            "OTHER"
           ],
           "enumDescriptions": [
-            "Not specified",
-            "SAP best practices",
-            "SQL best practices",
-            "Customized best practices",
-            "SCC IaC (Infra as Code) best practices."
+            "Not specified.",
+            "SAP best practices.",
+            "SQL best practices.",
+            "Customized best practices."
           ],
           "type": "string"
         },
         "kmsKey": {
-          "description": "Optional. Immutable. Customer-managed encryption key name, in the format projects/*/locations/*/keyRings/*/cryptoKeys/*.",
+          "description": "Optional. Immutable. Customer-managed encryption key name, in the format projects/*/locations/*/keyRings/*/cryptoKeys/*. The key will be used for CMEK encryption of the evaluation resource.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels as key value pairs",
+          "description": "Labels as key value pairs.",
           "type": "object"
         },
         "name": {
-          "description": "name of resource names have the form 'projects/{project_id}/locations/{location_id}/evaluations/{evaluation_id}'",
+          "description": "Name of resource that has the form `projects/{project_id}/locations/{location_id}/evaluations/{evaluation_id}`.",
           "type": "string"
         },
         "resourceFilter": {
           "$ref": "ResourceFilter",
-          "description": "annotations as key value pairs"
+          "description": "Resource filter for an evaluation defining the scope of resources to be evaluated."
         },
         "resourceStatus": {
           "$ref": "ResourceStatus",
-          "description": "Output only. [Output only] The updated rule ids if exist.",
+          "description": "Output only. [Output only] The current lifecycle state of the evaluation resource.",
           "readOnly": true
         },
         "ruleNames": {
-          "description": "the name of the rule",
+          "description": "The names of the rules used for this evaluation.",
           "items": {
             "type": "string"
           },
-          "type": "array"
-        },
-        "ruleVersions": {
-          "description": "Output only. [Output only] The updated rule ids if exist.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
           "type": "array"
         },
         "schedule": {
-          "description": "crontab format schedule for scheduled evaluation, currently only support the following schedule: \"0 */1 * * *\", \"0 */6 * * *\", \"0 */12 * * *\", \"0 0 */1 * *\", \"0 0 */7 * *\",",
+          "description": "Crontab format schedule for scheduled evaluation, currently only supports the following fixed schedules: * `0 */1 * * *` # Hourly * `0 */6 * * *` # Every 6 hours * `0 */12 * * *` # Every 12 hours * `0 0 */1 * *` # Daily * `0 0 */7 * *` # Weekly * `0 0 */14 * *` # Every 14 days * `0 0 1 */1 *` # Monthly",
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. [Output only] Update time stamp",
+          "description": "Output only. [Output only] Update time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1612,43 +2326,43 @@
       "type": "object"
     },
     "Execution": {
-      "description": "Message describing Execution object",
+      "description": "Execution that represents a single run of an Evaluation.",
       "id": "Execution",
       "properties": {
         "endTime": {
-          "description": "Output only. [Output only] End time stamp",
+          "description": "Output only. [Output only] End time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "engine": {
-          "description": "Optional. Engine",
+          "description": "Optional. Engine.",
           "enum": [
             "ENGINE_UNSPECIFIED",
             "ENGINE_SCANNER",
             "V2"
           ],
           "enumDescriptions": [
-            "The original CG",
-            "SlimCG / Scanner",
-            "Evaluation Engine V2"
+            "The original CG.",
+            "SlimCG / Scanner.",
+            "Evaluation Engine V2."
           ],
           "type": "string"
         },
         "evaluationId": {
-          "description": "Output only. [Output only] Evaluation ID",
+          "description": "Output only. [Output only] Evaluation ID.",
           "readOnly": true,
           "type": "string"
         },
         "externalDataSources": {
-          "description": "Optional. External data sources",
+          "description": "Optional. External data sources.",
           "items": {
             "$ref": "ExternalDataSources"
           },
           "type": "array"
         },
         "inventoryTime": {
-          "description": "Output only. [Output only] Inventory time stamp",
+          "description": "Output only. [Output only] Inventory time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1657,15 +2371,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels as key value pairs",
+          "description": "Labels as key value pairs.",
           "type": "object"
         },
         "name": {
-          "description": "The name of execution resource. The format is projects/{project}/locations/{location}/evaluations/{evaluation}/executions/{execution}",
+          "description": "The name of execution resource. The format is projects/{project}/locations/{location}/evaluations/{evaluation}/executions/{execution}.",
           "type": "string"
         },
         "notices": {
-          "description": "Output only. Additional information generated by the execution",
+          "description": "Output only. Additional information generated by the execution.",
           "items": {
             "$ref": "Notice"
           },
@@ -1674,11 +2388,11 @@
         },
         "resultSummary": {
           "$ref": "Summary",
-          "description": "Output only. [Output only] Result summary for the execution",
+          "description": "Output only. [Output only] Result summary for the execution.",
           "readOnly": true
         },
         "ruleResults": {
-          "description": "Output only. execution result summary per rule",
+          "description": "Output only. Execution result summary per rule.",
           "items": {
             "$ref": "RuleExecutionResult"
           },
@@ -1686,27 +2400,27 @@
           "type": "array"
         },
         "runType": {
-          "description": "type represent whether the execution executed directly by user or scheduled according evaluation.schedule field.",
+          "description": "Type which represents whether the execution executed directly by user or scheduled according to the `Evaluation.schedule` field.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ONE_TIME",
             "SCHEDULED"
           ],
           "enumDescriptions": [
-            "type of execution is unspecified",
-            "type of execution is one time",
-            "type of execution is scheduled"
+            "Type of execution is unspecified.",
+            "Type of execution is one time.",
+            "Type of execution is scheduled."
           ],
           "type": "string"
         },
         "startTime": {
-          "description": "Output only. [Output only] Start time stamp",
+          "description": "Output only. [Output only] Start time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. [Output only] State",
+          "description": "Output only. [Output only] State.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RUNNING",
@@ -1714,10 +2428,10 @@
             "FAILED"
           ],
           "enumDescriptions": [
-            "state of execution is unspecified",
-            "the execution is running in backend service",
-            "the execution run success",
-            "the execution run failed"
+            "State of execution is unspecified.",
+            "The execution is running in backend service.",
+            "The execution run succeeded.",
+            "The execution run failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -1726,7 +2440,7 @@
       "type": "object"
     },
     "ExecutionResult": {
-      "description": "Message describing the result of an execution",
+      "description": "The result of an execution.",
       "id": "ExecutionResult",
       "properties": {
         "commands": {
@@ -1753,16 +2467,16 @@
           "type": "string"
         },
         "type": {
-          "description": "Execution result type of the scanned resource",
+          "description": "Execution result type of the scanned resource.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "TYPE_PASSED",
             "TYPE_VIOLATED"
           ],
           "enumDescriptions": [
-            "Unknown state",
-            "resource successfully passed the rule",
-            "resource violated the rule"
+            "Unknown state.",
+            "Resource successfully passed the rule.",
+            "Resource violated the rule."
           ],
           "type": "string"
         },
@@ -1778,7 +2492,7 @@
       "type": "object"
     },
     "ExternalDataSources": {
-      "description": "Message for external data sources",
+      "description": "External data sources for an execution.",
       "id": "ExternalDataSources",
       "properties": {
         "assetType": {
@@ -1786,34 +2500,34 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data",
+          "description": "Optional. Name of external data source. The name will be used inside the rego/sql to refer the external data.",
           "type": "string"
         },
         "type": {
-          "description": "Required. Type of external data source",
+          "description": "Required. Type of external data source.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "BIG_QUERY_TABLE"
           ],
           "enumDescriptions": [
-            "Unknown type",
-            "BigQuery table"
+            "Unknown type.",
+            "BigQuery table."
           ],
           "type": "string"
         },
         "uri": {
-          "description": "Required. URI of external data source. example of bq table {project_ID}.{dataset_ID}.{table_ID}",
+          "description": "Required. URI of external data source. example of bq table {project_ID}.{dataset_ID}.{table_ID}.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GceInstanceFilter": {
-      "description": "Message describing compute engine instance filter",
+      "description": "A filter for matching Compute Engine instances.",
       "id": "GceInstanceFilter",
       "properties": {
         "serviceAccounts": {
-          "description": "Service account of compute engine",
+          "description": "If non-empty, only Compute Engine instances associated with at least one of the provided service accounts will be included in the evaluation.",
           "items": {
             "type": "string"
           },
@@ -1978,37 +2692,50 @@
       },
       "type": "object"
     },
-    "InvalidRule": {
-      "description": "Message represent an rule that failed to be validated.",
-      "id": "InvalidRule",
+    "ListActuationsResponse": {
+      "description": "The response object from `ListActuations`.",
+      "id": "ListActuationsResponse",
       "properties": {
-        "displayName": {
-          "description": "display name of the invalid rule",
+        "actuations": {
+          "description": "The list of Actuation",
+          "items": {
+            "$ref": "Actuation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
-        "gcsUri": {
-          "description": "cloud storage destination of the invalid rule",
-          "type": "string"
-        },
-        "name": {
-          "description": "name of the invalid rule",
-          "type": "string"
-        },
-        "valiadtionError": {
-          "description": "The error message of valdating rule formats.",
-          "type": "string"
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
     },
-    "InvalidRulesWrapper": {
-      "description": "Message wrappes a list of invalid rules.",
-      "id": "InvalidRulesWrapper",
+    "ListDeploymentsResponse": {
+      "description": "Message for response to listing Deployments",
+      "id": "ListDeploymentsResponse",
       "properties": {
-        "invalidRules": {
-          "description": "The invalid rules that failed to be validated.",
+        "deployments": {
+          "description": "The list of Deployment",
           "items": {
-            "$ref": "InvalidRule"
+            "$ref": "Deployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -2043,11 +2770,11 @@
       "type": "object"
     },
     "ListEvaluationsResponse": {
-      "description": "Message for response to listing Evaluations",
+      "description": "Response message for the ListEvaluations RPC.",
       "id": "ListEvaluationsResponse",
       "properties": {
         "evaluations": {
-          "description": "The list of Evaluation",
+          "description": "The list of evaluations.",
           "items": {
             "$ref": "Evaluation"
           },
@@ -2068,7 +2795,7 @@
       "type": "object"
     },
     "ListExecutionResultsResponse": {
-      "description": "Message for response of list execution results",
+      "description": "Response message for the ListExecutionResults RPC.",
       "id": "ListExecutionResultsResponse",
       "properties": {
         "executionResults": {
@@ -2086,11 +2813,11 @@
       "type": "object"
     },
     "ListExecutionsResponse": {
-      "description": "Message for response to listing Executions",
+      "description": "Response message for the ListExecutions RPC.",
       "id": "ListExecutionsResponse",
       "properties": {
         "executions": {
-          "description": "The list of Execution",
+          "description": "The list of Execution.",
           "items": {
             "$ref": "Execution"
           },
@@ -2154,15 +2881,11 @@
       "type": "object"
     },
     "ListRulesResponse": {
-      "description": "Mesesage of response of list rules",
+      "description": "Response message for the ListRules RPC.",
       "id": "ListRulesResponse",
       "properties": {
-        "invalidRulesWrapper": {
-          "$ref": "InvalidRulesWrapper",
-          "description": "A wrapper of the invalid rules that failed to be validated."
-        },
         "rules": {
-          "description": "all rules in response",
+          "description": "All rules in response.",
           "items": {
             "$ref": "Rule"
           },
@@ -2172,7 +2895,7 @@
       "type": "object"
     },
     "ListScannedResourcesResponse": {
-      "description": "Message for response to list scanned resources",
+      "description": "Response message for the ListScannedResources RPC.",
       "id": "ListScannedResourcesResponse",
       "properties": {
         "nextPageToken": {
@@ -2180,7 +2903,7 @@
           "type": "string"
         },
         "scannedResources": {
-          "description": "All scanned resources in response",
+          "description": "All scanned resources in response.",
           "items": {
             "$ref": "ScannedResource"
           },
@@ -2223,12 +2946,79 @@
       },
       "type": "object"
     },
+    "LocationDetails": {
+      "description": "Message for sap instant details",
+      "id": "LocationDetails",
+      "properties": {
+        "createCommsFirewall": {
+          "description": "Optional. create firewall, if true, create firewall for the deployment. This field provides an option to not always create firewall for the deployment.",
+          "type": "boolean"
+        },
+        "customTags": {
+          "description": "Optional. network tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deploymentDnsEnabled": {
+          "description": "Optional. when user skip DNS configuration from UI, deployment_dns_enabled=false otherwise deployment_dns_enabled=true",
+          "type": "boolean"
+        },
+        "dnsZone": {
+          "description": "Optional. dns zone name",
+          "type": "string"
+        },
+        "dnsZoneNameSuffix": {
+          "description": "Optional. dns_zone_name_suffix",
+          "type": "string"
+        },
+        "internetAccess": {
+          "enum": [
+            "INTERNETACCESS_UNSPECIFIED",
+            "ALLOW_EXTERNAL_IP",
+            "CONFIGURE_NAT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "networkProject": {
+          "description": "Optional. network project",
+          "type": "string"
+        },
+        "regionName": {
+          "description": "Required. region_name",
+          "type": "string"
+        },
+        "subnetName": {
+          "description": "Required. subnet_name",
+          "type": "string"
+        },
+        "vpcName": {
+          "description": "Required. vpc_name",
+          "type": "string"
+        },
+        "zone1Name": {
+          "description": "Required. zone1_name",
+          "type": "string"
+        },
+        "zone2Name": {
+          "description": "Optional. zone2_name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Notice": {
-      "description": "Message for additional information generated by the execution",
+      "description": "Additional information generated by an execution.",
       "id": "Notice",
       "properties": {
         "message": {
-          "description": "Output only. Message of the notice",
+          "description": "Output only. Message of the notice.",
           "readOnly": true,
           "type": "string"
         }
@@ -2333,6 +3123,37 @@
       },
       "type": "object"
     },
+    "Pacemaker": {
+      "description": "pacemaker configuration",
+      "id": "Pacemaker",
+      "properties": {
+        "bucketNameNodeCertificates": {
+          "description": "Required. bucket location for node certificates",
+          "type": "string"
+        },
+        "pacemakerCluster": {
+          "description": "Required. pacemaker cluster name",
+          "type": "string"
+        },
+        "pacemakerClusterSecret": {
+          "description": "Required. pacemaker cluster secret name",
+          "type": "string"
+        },
+        "pacemakerClusterUsername": {
+          "description": "Required. pacemaker cluster username",
+          "type": "string"
+        },
+        "sqlPacemakerSecret": {
+          "description": "Required. sql pacemaker secret name",
+          "type": "string"
+        },
+        "sqlPacemakerUsername": {
+          "description": "Required. sql pacemaker username",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Product": {
       "description": "Contains the details of a product.",
       "id": "Product",
@@ -2349,7 +3170,7 @@
       "type": "object"
     },
     "Resource": {
-      "description": "Message represent resource in execution result",
+      "description": "Resource in execution result.",
       "id": "Resource",
       "properties": {
         "name": {
@@ -2368,29 +3189,29 @@
       "type": "object"
     },
     "ResourceFilter": {
-      "description": "Message describing resource filters",
+      "description": "Resource filter for an evaluation defining the scope of resources to be evaluated.",
       "id": "ResourceFilter",
       "properties": {
         "gceInstanceFilter": {
           "$ref": "GceInstanceFilter",
-          "description": "Filter compute engine resource"
+          "description": "Filter compute engine resources."
         },
         "inclusionLabels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The label used for filter resource",
+          "description": "Labels to filter resources by. Each key-value pair in the map must exist on the resource for it to be included (e.g. VM instance labels). For example, specifying `{ \"env\": \"prod\", \"database\": \"nosql\" }` will only include resources that have labels `env=prod` and `database=nosql`.",
           "type": "object"
         },
         "resourceIdPatterns": {
-          "description": "The id pattern for filter resource",
+          "description": "The pattern to filter resources by their id For example, a pattern of \".*prod-cluster.*\" will match all resources that contain \"prod-cluster\" in their ID.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "scopes": {
-          "description": "The scopes of evaluation resource",
+          "description": "The scopes of evaluation resource. Format: * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
           "items": {
             "type": "string"
           },
@@ -2400,19 +3221,11 @@
       "type": "object"
     },
     "ResourceStatus": {
-      "description": "Message describing resource status",
+      "description": "The lifecycle status of an Evaluation resource.",
       "id": "ResourceStatus",
       "properties": {
-        "rulesNewerVersions": {
-          "deprecated": true,
-          "description": "Historical: Used before 2023-05-22 the new version of rule id if exists",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "state": {
-          "description": "State of the resource",
+          "description": "State of the Evaluation resource.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -2431,7 +3244,7 @@
       "type": "object"
     },
     "Rule": {
-      "description": "Message represent a rule",
+      "description": "A rule to be evaluated.",
       "id": "Rule",
       "properties": {
         "assetType": {
@@ -2439,31 +3252,31 @@
           "type": "string"
         },
         "description": {
-          "description": "descrite rule in plain language",
+          "description": "Describe rule in plain language.",
           "type": "string"
         },
         "displayName": {
-          "description": "the name display in UI",
+          "description": "The name display in UI.",
           "type": "string"
         },
         "errorMessage": {
-          "description": "the message template for rule",
+          "description": "The message template for rule.",
           "type": "string"
         },
         "name": {
-          "description": "rule name",
+          "description": "Rule name.",
           "type": "string"
         },
         "primaryCategory": {
-          "description": "the primary category",
+          "description": "The primary category.",
           "type": "string"
         },
         "remediation": {
-          "description": "the remediation for the rule",
+          "description": "The remediation for the rule.",
           "type": "string"
         },
         "revisionId": {
-          "description": "Output only. the version of the rule",
+          "description": "Output only. The version of the rule.",
           "readOnly": true,
           "type": "string"
         },
@@ -2476,57 +3289,57 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Baseline rules",
-            "Custom rules"
+            "Baseline rules.",
+            "Custom rules."
           ],
           "type": "string"
         },
         "secondaryCategory": {
-          "description": "the secondary category",
+          "description": "The secondary category.",
           "type": "string"
         },
         "severity": {
-          "description": "the severity of the rule",
+          "description": "The severity of the rule.",
           "type": "string"
         },
         "tags": {
-          "description": "List of user-defined tags",
+          "description": "List of user-defined tags.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uri": {
-          "description": "the docuement url for the rule",
+          "description": "The document url for the rule.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "RuleExecutionResult": {
-      "description": "Message for execution result summary per rule",
+      "description": "Execution result summary per rule.",
       "id": "RuleExecutionResult",
       "properties": {
         "message": {
-          "description": "Execution message, if any",
+          "description": "Execution message, if any.",
           "type": "string"
         },
         "resultCount": {
-          "description": "Number of violations",
+          "description": "Number of violations.",
           "format": "int64",
           "type": "string"
         },
         "rule": {
-          "description": "rule name",
+          "description": "Rule name as plain text like `sap-hana-configured`.",
           "type": "string"
         },
         "scannedResourceCount": {
-          "description": "Number of total scanned resources",
+          "description": "Number of total scanned resources.",
           "format": "int64",
           "type": "string"
         },
         "state": {
-          "description": "Output only. The execution status",
+          "description": "Output only. The execution status.",
           "enum": [
             "STATE_UNSPECIFIED",
             "STATE_SUCCESS",
@@ -2535,9 +3348,9 @@
           ],
           "enumDescriptions": [
             "Unknown state",
-            "execution completed successfully",
-            "execution completed with failures",
-            "execution was not executed"
+            "Execution completed successfully",
+            "Execution completed with failures",
+            "Execution was not executed"
           ],
           "readOnly": true,
           "type": "string"
@@ -2566,15 +3379,15 @@
       "type": "object"
     },
     "RunEvaluationRequest": {
-      "description": "Message for creating a Execution",
+      "description": "Request message for the RunEvaluation RPC.",
       "id": "RunEvaluationRequest",
       "properties": {
         "execution": {
           "$ref": "Execution",
-          "description": "Required. The resource being created"
+          "description": "Required. The resource being created."
         },
         "executionId": {
-          "description": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and execution_id from the method_signature of Create RPC",
+          "description": "Required. ID of the execution which will be created.",
           "type": "string"
         },
         "requestId": {
@@ -3201,6 +4014,106 @@
       },
       "type": "object"
     },
+    "SapSystemS4Config": {
+      "description": "Message for sap system workload",
+      "id": "SapSystemS4Config",
+      "properties": {
+        "allowStoppingForUpdate": {
+          "type": "boolean"
+        },
+        "ansibleRunnerServiceAccount": {
+          "description": "Ansible runner service account - let custoemrs bring their own SA for Ansible runner",
+          "type": "string"
+        },
+        "app": {
+          "$ref": "AppDetails",
+          "description": "instance details"
+        },
+        "database": {
+          "$ref": "DatabaseDetails",
+          "description": "database details"
+        },
+        "deploymentModel": {
+          "description": "Required. two model non-HA and HA supported",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "DISTRIBUTED",
+            "DISTRIBUTED_HA"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Required. deployment environment",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "NON_PRODUCTION",
+            "PRODUCTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified environment type",
+            "Non-production environment type",
+            "Production environment type"
+          ],
+          "type": "string"
+        },
+        "gcpProjectId": {
+          "description": "the project that infrastructure deployed, current only support the same project where the deployment resource exist.",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "LocationDetails",
+          "description": "database details"
+        },
+        "mediaBucketName": {
+          "description": "Required. media_bucket_name",
+          "type": "string"
+        },
+        "sapBootDiskImage": {
+          "description": "Optional. sap_boot_disk_image",
+          "type": "string"
+        },
+        "scalingMethod": {
+          "description": "Required. support scale up and scale out",
+          "enum": [
+            "SCALE_METHOD_UNSPECIFIED",
+            "SCALE_UP",
+            "SCALE_OUT"
+          ],
+          "enumDescriptions": [
+            "",
+            "Scale up: Increases the size of a physical machine by increasing the amount of RAM and CPU available for processing",
+            "Scale out: Combines multiple independent computers into one system"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. sap hana version",
+          "enum": [
+            "VERSION_UNSPECIFIED",
+            "S4_HANA_2021",
+            "S4_HANA_2022",
+            "S4_HANA_2023"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "vmPrefix": {
+          "description": "vm_prefix",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapValidation": {
       "description": "A presentation of SAP workload insight. The schema of SAP workloads validation related data.",
       "id": "SapValidation",
@@ -3322,15 +4235,15 @@
       "type": "object"
     },
     "ScannedResource": {
-      "description": "Message of scanned resource",
+      "description": "A scanned resource.",
       "id": "ScannedResource",
       "properties": {
         "resource": {
-          "description": "resource name",
+          "description": "Resource name.",
           "type": "string"
         },
         "type": {
-          "description": "resource type",
+          "description": "Resource type.",
           "type": "string"
         }
       },
@@ -3373,21 +4286,239 @@
       "type": "object"
     },
     "ShellCommand": {
-      "description": "* A ShellCommand is invoked via the agent's command line executor",
+      "description": "A ShellCommand is invoked via the agent's command line executor.",
       "id": "ShellCommand",
       "properties": {
         "args": {
-          "description": "args is a string of arguments to be passed to the command.",
+          "description": "Arguments to be passed to the command.",
           "type": "string"
         },
         "command": {
-          "description": "command is the name of the command to be executed.",
+          "description": "The name of the command to be executed.",
           "type": "string"
         },
         "timeoutSeconds": {
           "description": "Optional. If not specified, the default timeout is 60 seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SqlLocationDetails": {
+      "description": "Location and networking details for configuring SQL server workload",
+      "id": "SqlLocationDetails",
+      "properties": {
+        "dnsZone": {
+          "description": "Optional. create a new DNS Zone when the field is empty, Only show for `Using an existing DNS` List of existing DNS Zones tf variable name: existing_dns_zone_name",
+          "type": "string"
+        },
+        "gcpProjectId": {
+          "description": "Required. the project that infrastructure deployed, currently only supports the same project where the deployment resource exists.",
+          "type": "string"
+        },
+        "internetAccess": {
+          "description": "Required. Internet Access",
+          "enum": [
+            "INTERNET_ACCESS_UNSPECIFIED",
+            "ALLOW_EXTERNAL_IP",
+            "CONFIGURE_NAT"
+          ],
+          "enumDescriptions": [
+            "Unspecified internet access",
+            "Allow external IP",
+            "Configure NAT"
+          ],
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. network name",
+          "type": "string"
+        },
+        "primaryZone": {
+          "description": "Required. primary zone",
+          "type": "string"
+        },
+        "region": {
+          "description": "Required. region name",
+          "type": "string"
+        },
+        "secondaryZone": {
+          "description": "Optional. secondary zone can't be same as primary_zone and is only for High Availability deployment mode",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Required. subnetwork name",
+          "type": "string"
+        },
+        "tertiaryZone": {
+          "description": "Optional. teriary zone can't be same as primary_zone and secondary zone, and it is only for High Availability deployment mode",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerWorkload": {
+      "description": "Message for MS SQL workload",
+      "id": "SqlServerWorkload",
+      "properties": {
+        "activeDirectory": {
+          "$ref": "ActiveDirectory",
+          "description": "Required. active directory details"
+        },
+        "computeEngineServiceAccount": {
+          "description": "Compute engine service account - let customers bring their own SA for Compute engine",
+          "type": "string"
+        },
+        "database": {
+          "$ref": "Database",
+          "description": "Required. database details"
+        },
+        "deploymentModel": {
+          "description": "Required. HIGH_AVAILABILITY or SINGLE_INSTANCE",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "HIGH_AVAILABILITY",
+            "SINGLE_INSTANCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified deployment model",
+            "High Availability deployment model",
+            "Single Instance deployment model"
+          ],
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Required. deployment environment",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "NON_PRODUCTION",
+            "PRODUCTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified environment type",
+            "Non-production environment type",
+            "Production environment type"
+          ],
+          "type": "string"
+        },
+        "fciType": {
+          "description": "Optional. SHARED_DISK or S2D",
+          "enum": [
+            "FCI_TYPE_UNSPECIFIED",
+            "SHARED_DISK",
+            "S2D"
+          ],
+          "enumDescriptions": [
+            "Unspecified FCI type",
+            "SHARED DISK FCI type",
+            "S2D FCI type"
+          ],
+          "type": "string"
+        },
+        "haType": {
+          "description": "Optional. AOAG or FCI, it is only needed for High Availability deployment mode",
+          "enum": [
+            "HA_TYPE_UNSPECIFIED",
+            "AOAG",
+            "FCI"
+          ],
+          "enumDescriptions": [
+            "Unspecified HA type",
+            "AOAG HA type",
+            "FCI HA type"
+          ],
+          "type": "string"
+        },
+        "isSqlPayg": {
+          "description": "Required. SQL licensing type",
+          "type": "boolean"
+        },
+        "location": {
+          "$ref": "SqlLocationDetails",
+          "description": "Required. location details"
+        },
+        "mediaBucket": {
+          "description": "Required. name of the media storing SQL server installation files",
+          "type": "string"
+        },
+        "operatingSystemType": {
+          "description": "Required. type of the operating system the SQL server is going to run on top of",
+          "enum": [
+            "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
+            "WINDOWS",
+            "UBUNTU",
+            "RED_HAT_ENTERPRISE_LINUX",
+            "SUSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified operating system type",
+            "Windows operating system type",
+            "Ubuntu operating system type",
+            "Red Hat Enterprise Linux operating system type",
+            "Suse operating system type"
+          ],
+          "type": "string"
+        },
+        "osImage": {
+          "description": "Required. the image of the operating system",
+          "type": "string"
+        },
+        "osImageType": {
+          "description": "Optional. OS image type, it's used to create boot disks for VM instances When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and default to custom image",
+          "enum": [
+            "OS_IMAGE_TYPE_UNSPECIFIED",
+            "PUBLIC_IMAGE",
+            "CUSTOM_IMAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified OS image type",
+            "Public image",
+            "Custom image"
+          ],
+          "type": "string"
+        },
+        "pacemaker": {
+          "$ref": "Pacemaker",
+          "description": "Optional. pacemaker configuration, only applicable for Linux HA deployments"
+        },
+        "sqlServerEdition": {
+          "description": "Optional. SQL Server Edition type, only applicable when Operating System is Linux",
+          "enum": [
+            "SQL_SERVER_EDITION_TYPE_UNSPECIFIED",
+            "SQL_SERVER_EDITION_TYPE_DEVELOPER",
+            "SQL_SERVER_EDITION_TYPE_ENTERPRISE",
+            "SQL_SERVER_EDITION_TYPE_STANDARD",
+            "SQL_SERVER_EDITION_TYPE_WEB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type",
+            "Developer type",
+            "Enterprise type",
+            "Standard type",
+            "Web type"
+          ],
+          "type": "string"
+        },
+        "sqlServerVersion": {
+          "description": "Optional. 2017 or 2019 or 2022",
+          "enum": [
+            "SQL_SERVER_VERSION_TYPE_UNSPECIFIED",
+            "SQL_SERVER_VERSION_TYPE_2017",
+            "SQL_SERVER_VERSION_TYPE_2019",
+            "SQL_SERVER_VERSION_TYPE_2022"
+          ],
+          "enumDescriptions": [
+            "Unspecified type",
+            "2017 type",
+            "2019 type",
+            "2022 type"
+          ],
+          "type": "string"
+        },
+        "vmPrefix": {
+          "description": "Required. should be unique in the project",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3508,26 +4639,37 @@
       "type": "object"
     },
     "Summary": {
-      "description": "Message for execution summary",
+      "description": "Execution summary.",
       "id": "Summary",
       "properties": {
         "failures": {
-          "description": "Output only. Number of failures",
+          "description": "Output only. Number of failures.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "newFailures": {
-          "description": "Output only. Number of new failures compared to the previous execution",
+          "description": "Output only. Number of new failures compared to the previous execution.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "newFixes": {
-          "description": "Output only. Number of new fixes compared to the previous execution",
+          "description": "Output only. Number of new fixes compared to the previous execution.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TerraformVariable": {
+      "description": "In order to align with Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest A Terraform input variable.",
+      "id": "TerraformVariable",
+      "properties": {
+        "inputValue": {
+          "description": "Optional. Input variable value.",
+          "type": "any"
         }
       },
       "type": "object"
@@ -3604,7 +4746,7 @@
       "type": "object"
     },
     "ViolationDetails": {
-      "description": "Message describing the violation in an evaluation result.",
+      "description": "The violation in an evaluation result.",
       "id": "ViolationDetails",
       "properties": {
         "asset": {
