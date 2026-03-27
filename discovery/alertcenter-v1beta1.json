@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20251117",
+  "revision": "20260323",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -609,7 +609,12 @@
     "ActionInfo": {
       "description": "Metadata related to the action.",
       "id": "ActionInfo",
-      "properties": {},
+      "properties": {
+        "evidenceLockerFilePath": {
+          "description": "Google Cloud Storage location of the content that violated the rule. This field has format: \"/\"",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ActivityRule": {
@@ -1048,6 +1053,27 @@
       },
       "type": "object"
     },
+    "ClientSideEncryptionServiceUnavailable": {
+      "description": "Alerts for client-side encryption outages.",
+      "id": "ClientSideEncryptionServiceUnavailable",
+      "properties": {
+        "idpError": {
+          "description": "Identity providers impacted by an outage or misconfiguration.",
+          "items": {
+            "$ref": "IdentityProviderError"
+          },
+          "type": "array"
+        },
+        "keyServiceError": {
+          "description": "External key services impacted by an outage or misconfiguration.",
+          "items": {
+            "$ref": "KeyServiceError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CloudPubsubTopic": {
       "description": "A reference to a Cloud Pubsub topic. To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the `projects.topics.publish` permission.",
       "id": "CloudPubsubTopic",
@@ -1378,6 +1404,95 @@
       },
       "type": "object"
     },
+    "IdentityProviderError": {
+      "description": "Error related to an identity provider.",
+      "id": "IdentityProviderError",
+      "properties": {
+        "authorizationBaseUrl": {
+          "description": "Authorization base url of the identity provider.",
+          "type": "string"
+        },
+        "errorCount": {
+          "description": "Number of similar errors encountered.",
+          "format": "int64",
+          "type": "string"
+        },
+        "errorInfo": {
+          "description": "Info on the identity provider error.",
+          "enum": [
+            "IDENTITY_PROVIDER_ERROR_INFO_UNSPECIFIED",
+            "EMAIL_MISMATCH",
+            "UNAVAILABLE_DISCOVERY_CONTENT",
+            "INVALID_DISCOVERY_CONTENT",
+            "UNAVAILABLE_CSE_CONFIGURATION_CONTENT",
+            "INVALID_CSE_CONFIGURATION_CONTENT",
+            "INVALID_ID_TOKEN",
+            "INVALID_OIDC_SETUP",
+            "UNAVAILABLE_IDP",
+            "AUTH_CODE_EXCHANGE_ERROR",
+            "AUTHENTICATION_TOKEN_MISSING_CLAIM_EMAIL"
+          ],
+          "enumDescriptions": [
+            "Error info not specified.",
+            "Email in the ID token is different from the user's email.",
+            "Discovery URL was unreachable.",
+            "Discovery URL did not contain all the necessary information.",
+            "URL for client-side encryption configuration content was unreachable.",
+            "Client-side encryption .well-known URL did not contain all the necessary information.",
+            "ID token returned by the identity provider is invalid.",
+            "OIDC setup error.",
+            "Identity provider was unreachable.",
+            "Auth code exchange error.",
+            "Authentication token has no \"email\" or \"google_email\" claim."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "KeyServiceError": {
+      "description": "Error related to an external key service.",
+      "id": "KeyServiceError",
+      "properties": {
+        "errorCount": {
+          "description": "Number of similar errors encountered.",
+          "format": "int64",
+          "type": "string"
+        },
+        "errorInfo": {
+          "description": "Info on the key service error.",
+          "enum": [
+            "KEY_SERVICE_ERROR_INFO_UNSPECIFIED",
+            "MALFORMED_JSON",
+            "MISSING_KEY",
+            "MISSING_SIGNATURE",
+            "MISSING_ALGORITHM_NAME",
+            "UNSUPPORTED_ALGORITHM",
+            "FETCH_REQUEST_ERROR"
+          ],
+          "enumDescriptions": [
+            "Error info not specified.",
+            "The response has malformed JSON.",
+            "The response did not contain the wrapped/unwrapped key.",
+            "SMIME sign only: The sign response did not contain the signature.",
+            "SMIME only: The sign response does not include the algorithm name.",
+            "SMIME only: the algorithm name in the response is not supported by the client.",
+            "Fetch request on the client has failed."
+          ],
+          "type": "string"
+        },
+        "httpResponseCode": {
+          "description": "HTTP response status code from the key service.",
+          "format": "int64",
+          "type": "string"
+        },
+        "keyServiceUrl": {
+          "description": "Url of the external key service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAlertFeedbackResponse": {
       "description": "Response message for an alert feedback listing request.",
       "id": "ListAlertFeedbackResponse",
@@ -1696,12 +1811,14 @@
           "enum": [
             "DATA_SOURCE_UNSPECIFIED",
             "DRIVE",
+            "GMAIL",
             "CHROME",
             "CHAT"
           ],
           "enumDescriptions": [
             "Data source is unspecified.",
             "Drive data source.",
+            "Gmail data source.",
             "Chrome data source.",
             "Chat data source."
           ],
@@ -1751,7 +1868,12 @@
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
               "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+              "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL",
               "DRIVE_APPLY_DRIVE_LABELS",
+              "GMAIL_QUARANTINE_MESSAGE",
+              "GMAIL_BLOCK_MESSAGE",
+              "GMAIL_WARN_USERS",
+              "GMAIL_APPLY_CLASSIFICATION_LABELS",
               "CHROME_BLOCK_FILE_DOWNLOAD",
               "CHROME_WARN_FILE_DOWNLOAD",
               "CHROME_BLOCK_FILE_UPLOAD",
@@ -1760,10 +1882,14 @@
               "CHROME_WARN_WEB_CONTENT_UPLOAD",
               "CHROME_BLOCK_PAGE_PRINT",
               "CHROME_WARN_PAGE_PRINT",
+              "CHROME_BLOCK_FILE_TRANSFER",
+              "CHROME_WARN_FILE_TRANSFER",
               "CHROME_BLOCK_URL_VISITED",
               "CHROME_WARN_URL_VISITED",
               "CHROME_BLOCK_SCREENSHOT",
               "CHROME_STORE_CONTENT",
+              "CHROME_WATERMARK",
+              "CHROME_FORCE_SAVE_TO_CLOUD",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
               "CHAT_WARN_USER",
@@ -1776,7 +1902,12 @@
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
               "Disable download, print, and copy for commenters and viewers in drive.",
+              "Disable download, print, and copy for all collaborators in drive.",
               "Apply customer specified Drive labels to the file.",
+              "Quarantine message.",
+              "Block message.",
+              "Warn users.",
+              "Apply classification labels.",
               "Chrome actions. Block file download.",
               "Warn user about downloaded file.",
               "Block file upload.",
@@ -1785,10 +1916,14 @@
               "Warn user about uploaded web content.",
               "Block page print.",
               "Warn user about printed page.",
+              "Block ChromeOS file transfer.",
+              "Warn user about ChromeOS file transfer.",
               "Block Chrome URL visit.",
               "Warn user about Chrome URL visited.",
               "Block screenshot alert.",
               "Store the content that violated the rule.",
+              "Send watermark alert",
+              "Force save to cloud storage.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
               "Warn end user about Chat content.",
@@ -1805,24 +1940,28 @@
           "enum": [
             "TRIGGER_UNSPECIFIED",
             "DRIVE_SHARE",
+            "MAIL_BEING_SENT",
             "CHROME_FILE_DOWNLOAD",
             "CHROME_FILE_UPLOAD",
             "CHROME_WEB_CONTENT_UPLOAD",
             "CHAT_MESSAGE_SENT",
             "CHAT_ATTACHMENT_UPLOADED",
             "CHROME_PAGE_PRINT",
-            "CHROME_URL_VISITED"
+            "CHROME_URL_VISITED",
+            "CHROMEOS_FILE_TRANSFER"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
             "A Drive file is shared.",
+            "An email message is sent.",
             "A file being downloaded in a Chrome browser.",
             "A file being uploaded from a Chrome browser.",
             "Web content being uploaded from a Chrome browser.",
             "A Chat message is sent.",
             "A Chat attachment is uploaded.",
             "A page is being printed by Chrome.",
-            "A URL is visited within Chrome."
+            "A URL is visited within Chrome.",
+            "A file being transferred (copy or moved) between different file systems on ChromeOS."
           ],
           "type": "string"
         },
@@ -1841,7 +1980,12 @@
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
               "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+              "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY_FOR_ALL",
               "DRIVE_APPLY_DRIVE_LABELS",
+              "GMAIL_QUARANTINE_MESSAGE",
+              "GMAIL_BLOCK_MESSAGE",
+              "GMAIL_WARN_USERS",
+              "GMAIL_APPLY_CLASSIFICATION_LABELS",
               "CHROME_BLOCK_FILE_DOWNLOAD",
               "CHROME_WARN_FILE_DOWNLOAD",
               "CHROME_BLOCK_FILE_UPLOAD",
@@ -1850,10 +1994,14 @@
               "CHROME_WARN_WEB_CONTENT_UPLOAD",
               "CHROME_BLOCK_PAGE_PRINT",
               "CHROME_WARN_PAGE_PRINT",
+              "CHROME_BLOCK_FILE_TRANSFER",
+              "CHROME_WARN_FILE_TRANSFER",
               "CHROME_BLOCK_URL_VISITED",
               "CHROME_WARN_URL_VISITED",
               "CHROME_BLOCK_SCREENSHOT",
               "CHROME_STORE_CONTENT",
+              "CHROME_WATERMARK",
+              "CHROME_FORCE_SAVE_TO_CLOUD",
               "DELETE_WEBPROTECT_EVIDENCE",
               "CHAT_BLOCK_CONTENT",
               "CHAT_WARN_USER",
@@ -1866,7 +2014,12 @@
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
               "Disable download, print, and copy for commenters and viewers in drive.",
+              "Disable download, print, and copy for all collaborators in drive.",
               "Apply customer specified Drive labels to the file.",
+              "Quarantine message.",
+              "Block message.",
+              "Warn users.",
+              "Apply classification labels.",
               "Chrome actions. Block file download.",
               "Warn user about downloaded file.",
               "Block file upload.",
@@ -1875,10 +2028,14 @@
               "Warn user about uploaded web content.",
               "Block page print.",
               "Warn user about printed page.",
+              "Block ChromeOS file transfer.",
+              "Warn user about ChromeOS file transfer.",
               "Block Chrome URL visit.",
               "Warn user about Chrome URL visited.",
               "Block screenshot alert.",
               "Store the content that violated the rule.",
+              "Send watermark alert",
+              "Force save to cloud storage.",
               "Delete web protect evidence file",
               "Chat actions. Block Chat content to be sent out.",
               "Warn end user about Chat content.",

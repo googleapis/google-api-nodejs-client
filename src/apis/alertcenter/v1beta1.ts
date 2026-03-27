@@ -222,7 +222,12 @@ export namespace alertcenter_v1beta1 {
   /**
    * Metadata related to the action.
    */
-  export interface Schema$ActionInfo {}
+  export interface Schema$ActionInfo {
+    /**
+     * Google Cloud Storage location of the content that violated the rule. This field has format: "/"
+     */
+    evidenceLockerFilePath?: string | null;
+  }
   /**
    * Alerts from Google Workspace Security Center rules service configured by an admin.
    */
@@ -550,6 +555,19 @@ export namespace alertcenter_v1beta1 {
     successAlertIds?: string[] | null;
   }
   /**
+   * Alerts for client-side encryption outages.
+   */
+  export interface Schema$ClientSideEncryptionServiceUnavailable {
+    /**
+     * Identity providers impacted by an outage or misconfiguration.
+     */
+    idpError?: Schema$IdentityProviderError[];
+    /**
+     * External key services impacted by an outage or misconfiguration.
+     */
+    keyServiceError?: Schema$KeyServiceError[];
+  }
+  /**
    * A reference to a Cloud Pubsub topic. To register for notifications, the owner of the topic must grant `alerts-api-push-notifications@system.gserviceaccount.com` the `projects.topics.publish` permission.
    */
   export interface Schema$CloudPubsubTopic {
@@ -813,6 +831,44 @@ export namespace alertcenter_v1beta1 {
      * A one-line incident description.
      */
     title?: string | null;
+  }
+  /**
+   * Error related to an identity provider.
+   */
+  export interface Schema$IdentityProviderError {
+    /**
+     * Authorization base url of the identity provider.
+     */
+    authorizationBaseUrl?: string | null;
+    /**
+     * Number of similar errors encountered.
+     */
+    errorCount?: string | null;
+    /**
+     * Info on the identity provider error.
+     */
+    errorInfo?: string | null;
+  }
+  /**
+   * Error related to an external key service.
+   */
+  export interface Schema$KeyServiceError {
+    /**
+     * Number of similar errors encountered.
+     */
+    errorCount?: string | null;
+    /**
+     * Info on the key service error.
+     */
+    errorInfo?: string | null;
+    /**
+     * HTTP response status code from the key service.
+     */
+    httpResponseCode?: string | null;
+    /**
+     * Url of the external key service.
+     */
+    keyServiceUrl?: string | null;
   }
   /**
    * Response message for an alert feedback listing request.
