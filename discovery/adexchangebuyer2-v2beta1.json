@@ -12,7 +12,7 @@
   "baseUrl": "https://adexchangebuyer.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "AdExchangeBuyerII",
-  "description": "Accesses the latest features for managing Authorized Buyers accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.",
+  "description": "Access the latest features for managing Authorized Buyers accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/authorized-buyers/apis/reference/rest/",
   "icons": {
@@ -3115,7 +3115,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260319",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
