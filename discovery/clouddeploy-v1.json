@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "clouddeploy.projects.locations.list",
@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20260109",
+  "revision": "20260313",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2472,6 +2472,149 @@
         "wait": {
           "description": "Optional. How long to wait after a rollout is finished.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlertPolicyCheck": {
+      "description": "AlertPolicyCheck configures a set of Cloud Monitoring alerting policies that will be periodically polled for alerts. If any of the listed policies have an active alert, the analysis check will fail.",
+      "id": "AlertPolicyCheck",
+      "properties": {
+        "alertPolicies": {
+          "description": "Required. The Cloud Monitoring Alert Policies to check for active alerts. Format is `projects/{project}/alertPolicies/{alert_policy}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. The ID of the analysis check.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A set of labels to filter active alerts. If set, only alerts having all of the specified labels will be considered. Otherwise, all active alerts will be considered.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AlertPolicyCheckStatus": {
+      "description": "AlertPolicyCheckStatus contains information specific to a single run of an alert policy check.",
+      "id": "AlertPolicyCheckStatus",
+      "properties": {
+        "alertPolicies": {
+          "description": "Output only. The alert policies that this analysis monitors. Format is `projects/{project}/locations/{location}/alertPolicies/{alertPolicy}`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "failedAlertPolicies": {
+          "description": "Output only. The alert policies that were found to be firing during this check. This will be empty if no incidents were found.",
+          "items": {
+            "$ref": "FailedAlertPolicy"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "failureMessage": {
+          "description": "Output only. Additional information about the alert policy check failure, if available. This will be empty if the alert policy check succeeded.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of this analysis.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The resolved labels used to filter for specific incidents.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Analysis": {
+      "description": "Analysis contains the configuration for the set of analyses to be performed on the target.",
+      "id": "Analysis",
+      "properties": {
+        "customChecks": {
+          "description": "Optional. Custom analysis checks from 3P metric providers.",
+          "items": {
+            "$ref": "CustomCheck"
+          },
+          "type": "array"
+        },
+        "duration": {
+          "description": "Required. The amount of time in minutes the analysis on the target will last. If all analysis checks have successfully completed before the specified duration, the analysis is successful. If a check is still running while the specified duration passes, it will wait for that check to complete to determine if the analysis is successful. The maximum duration is 48 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "googleCloud": {
+          "$ref": "GoogleCloudAnalysis",
+          "description": "Optional. Google Cloud - based analysis checks."
+        }
+      },
+      "type": "object"
+    },
+    "AnalysisJob": {
+      "description": "An analysis Job.",
+      "id": "AnalysisJob",
+      "properties": {
+        "customChecks": {
+          "description": "Output only. Custom analysis checks from 3P metric providers that are run as part of the analysis Job.",
+          "items": {
+            "$ref": "CustomCheck"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "duration": {
+          "description": "Output only. The amount of time in minutes the analysis Job will run, up to a maximum of 48 hours. If any check in this Job is still running when the duration ends, the Job keeps running until that check completes.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "googleCloud": {
+          "$ref": "GoogleCloudAnalysis",
+          "description": "Output only. Google Cloud - based analysis checks that are run as part of the analysis Job.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "AnalysisJobRun": {
+      "description": "AnalysisJobRun contains information specific to an analysis `JobRun`.",
+      "id": "AnalysisJobRun",
+      "properties": {
+        "alertPolicyAnalyses": {
+          "description": "Output only. The status of the running alert policy checks configured for this analysis.",
+          "items": {
+            "$ref": "AlertPolicyCheckStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customCheckAnalyses": {
+          "description": "Output only. The status of the running custom checks configured for this analysis.",
+          "items": {
+            "$ref": "CustomCheckStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "failedCheckId": {
+          "description": "Output only. The ID of the configured check that failed. This will always be blank while the analysis is in progress or if it succeeded.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3039,6 +3182,10 @@
       "description": "CanaryDeployment represents the canary deployment configuration",
       "id": "CanaryDeployment",
       "properties": {
+        "analysis": {
+          "$ref": "Analysis",
+          "description": "Optional. Configuration for the analysis job. If configured, the analysis will run after each percentage deployment."
+        },
         "percentages": {
           "description": "Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100. If the GatewayServiceMesh is configured for Kubernetes, then the range for n is 0 <= n <= 100.",
           "items": {
@@ -3058,6 +3205,10 @@
         "verify": {
           "description": "Optional. Whether to run verify tests after each percentage deployment via `skaffold verify`.",
           "type": "boolean"
+        },
+        "verifyConfig": {
+          "$ref": "Verify",
+          "description": "Optional. Configuration for the verify job. Cannot be set if `verify` is set to true."
         }
       },
       "type": "object"
@@ -3175,6 +3326,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "previousRevision": {
+          "description": "Output only. The previous Cloud Run Revision name associated with a `Rollout`. Only set when a canary deployment strategy is configured. Format for service is projects/{project}/locations/{location}/services/{service}/revisions/{revision}. Format for worker pool is projects/{project}/locations/{location}/workerPools/{workerpool}/revisions/{revision}.",
+          "readOnly": true,
+          "type": "string"
+        },
         "revision": {
           "description": "Output only. The Cloud Run Revision id associated with a `Rollout`.",
           "readOnly": true,
@@ -3192,6 +3348,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "workerPool": {
+          "description": "Output only. The Cloud Run worker pool associated with a `Rollout`. Format is `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3200,8 +3361,23 @@
       "description": "CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render.",
       "id": "CloudRunRenderMetadata",
       "properties": {
+        "job": {
+          "description": "Output only. The name of the Cloud Run Job in the rendered manifest. Format is `projects/{project}/locations/{location}/jobs/{job}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revision": {
+          "description": "Output only. The name of the Cloud Run Revision in the rendered manifest. Format is `projects/{project}/locations/{location}/services/{service}/revisions/{revision}`.",
+          "readOnly": true,
+          "type": "string"
+        },
         "service": {
           "description": "Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project}/locations/{location}/services/{service}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "Output only. The name of the Cloud Run Worker Pool in the rendered manifest. Format is `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
           "readOnly": true,
           "type": "string"
         }
@@ -3231,6 +3407,38 @@
             "$ref": "SkaffoldVersion"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ContainerTask": {
+      "description": "This task is represented by a container that is executed in the Cloud Build execution environment.",
+      "id": "ContainerTask",
+      "properties": {
+        "args": {
+          "description": "Optional. Args is the container arguments to use. This overrides the default arguments defined in the container image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "Optional. Command is the container entrypoint to use. This overrides the default entrypoint defined in the container image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "env": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Environment variables that are set in the container.",
+          "type": "object"
+        },
+        "image": {
+          "description": "Required. Image is the container image to use.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3268,6 +3476,83 @@
             "$ref": "PhaseConfig"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomCheck": {
+      "description": "CustomCheck configures a third-party metric provider to run the analysis, via a Task that runs at a specified frequency.",
+      "id": "CustomCheck",
+      "properties": {
+        "frequency": {
+          "description": "Optional. The frequency at which the custom check will be run, with a minimum and default of 5 minutes.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. The ID of the custom Analysis check.",
+          "type": "string"
+        },
+        "task": {
+          "$ref": "Task",
+          "description": "Required. The Task to be run for this custom check."
+        }
+      },
+      "type": "object"
+    },
+    "CustomCheckStatus": {
+      "description": "CustomCheckStatus contains information specific to a single iteration of a custom analysis job.",
+      "id": "CustomCheckStatus",
+      "properties": {
+        "failureCause": {
+          "description": "Output only. The reason the analysis failed. This will always be unspecified while the analysis is in progress or if it succeeded.",
+          "enum": [
+            "FAILURE_CAUSE_UNSPECIFIED",
+            "CLOUD_BUILD_UNAVAILABLE",
+            "EXECUTION_FAILED",
+            "DEADLINE_EXCEEDED",
+            "CLOUD_BUILD_REQUEST_FAILED"
+          ],
+          "enumDescriptions": [
+            "No reason for failure is specified.",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](https://cloud.google.com/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "The analysis operation did not complete successfully; check Cloud Build logs.",
+            "The analysis job run did not complete within the alloted time defined in the target's execution environment configuration.",
+            "Cloud Build failed to fulfill Cloud Deploy's request. See failure_message for additional details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureMessage": {
+          "description": "Output only. Additional information about the analysis failure, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frequency": {
+          "description": "Output only. The frequency in minutes at which the custom check is run.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the custom check.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestBuild": {
+          "description": "Output only. The resource name of the Cloud Build `Build` object that was used to execute the latest run of this custom action check. Format is `projects/{project}/locations/{location}/builds/{build}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by the user-defined custom check operation. result.",
+          "readOnly": true
+        },
+        "task": {
+          "$ref": "Task",
+          "description": "Output only. The task that ran for this custom check.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3332,6 +3617,21 @@
       },
       "type": "object"
     },
+    "CustomTargetTasks": {
+      "description": "CustomTargetTasks represents the `CustomTargetType` configuration using tasks.",
+      "id": "CustomTargetTasks",
+      "properties": {
+        "deploy": {
+          "$ref": "Task",
+          "description": "Required. The task responsible for deploy operations."
+        },
+        "render": {
+          "$ref": "Task",
+          "description": "Optional. The task responsible for render operations. If not provided then Cloud Deploy will perform its default rendering operation."
+        }
+      },
+      "type": "object"
+    },
     "CustomTargetType": {
       "description": "A `CustomTargetType` resource in the Cloud Deploy API. A `CustomTargetType` defines a type of custom target that can be referenced in a `Target` in order to facilitate deploying to other systems besides the supported runtimes.",
       "id": "CustomTargetType",
@@ -3376,6 +3676,10 @@
         "name": {
           "description": "Identifier. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
+        },
+        "tasks": {
+          "$ref": "CustomTargetTasks",
+          "description": "Optional. Configures render and deploy for the `CustomTargetType` using tasks."
         },
         "uid": {
           "description": "Output only. Unique identifier of the `CustomTargetType`.",
@@ -3976,6 +4280,11 @@
       "description": "Deployment job composition.",
       "id": "DeploymentJobs",
       "properties": {
+        "analysisJob": {
+          "$ref": "Job",
+          "description": "Output only. The analysis Job. Runs after a verify if there is a verify job and the verify job succeeds.",
+          "readOnly": true
+        },
         "deployJob": {
           "$ref": "Job",
           "description": "Output only. The deploy Job. This is the deploy job in the phase.",
@@ -4039,7 +4348,8 @@
               "DEPLOY",
               "VERIFY",
               "PREDEPLOY",
-              "POSTDEPLOY"
+              "POSTDEPLOY",
+              "ANALYSIS"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
@@ -4047,7 +4357,8 @@
               "Use for deploying and deployment hooks.",
               "Use for deployment verification.",
               "Use for predeploy job execution.",
-              "Use for postdeploy job execution."
+              "Use for postdeploy job execution.",
+              "Use for analysis job execution."
             ],
             "type": "string"
           },
@@ -4083,6 +4394,26 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FailedAlertPolicy": {
+      "description": "FailedAlertPolicy contains information about an alert policy that was found to be firing during an alert policy check.",
+      "id": "FailedAlertPolicy",
+      "properties": {
+        "alertPolicy": {
+          "description": "Output only. The name of the alert policy that was found to be firing. Format is `projects/{project}/locations/{location}/alertPolicies/{alertPolicy}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "alerts": {
+          "description": "Output only. Open alerts for the alerting policies that matched the alert policy check configuration.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -4147,6 +4478,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudAnalysis": {
+      "description": "GoogleCloudAnalysis is a set of Google Cloud-based checks to perform on the deployment.",
+      "id": "GoogleCloudAnalysis",
+      "properties": {
+        "alertPolicyChecks": {
+          "description": "Optional. A list of Cloud Monitoring Alert Policy checks to perform as part of the analysis.",
+          "items": {
+            "$ref": "AlertPolicyCheck"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "IgnoreJobRequest": {
       "description": "The request object used by `IgnoreJob`.",
       "id": "IgnoreJobRequest",
@@ -4182,6 +4527,11 @@
         "advanceChildRolloutJob": {
           "$ref": "AdvanceChildRolloutJob",
           "description": "Output only. An advanceChildRollout Job.",
+          "readOnly": true
+        },
+        "analysisJob": {
+          "$ref": "AnalysisJob",
+          "description": "Output only. An analysis Job.",
           "readOnly": true
         },
         "createChildRolloutJob": {
@@ -4261,6 +4611,11 @@
         "advanceChildRolloutJobRun": {
           "$ref": "AdvanceChildRolloutJobRun",
           "description": "Output only. Information specific to an advanceChildRollout `JobRun`",
+          "readOnly": true
+        },
+        "analysisJobRun": {
+          "$ref": "AnalysisJobRun",
+          "description": "Output only. Information specific to an analysis `JobRun`.",
           "readOnly": true
         },
         "createChildRolloutJobRun": {
@@ -4442,6 +4797,28 @@
         "serviceNetworking": {
           "$ref": "ServiceNetworking",
           "description": "Optional. Kubernetes Service networking configuration."
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesRenderMetadata": {
+      "description": "KubernetesRenderMetadata contains Kubernetes information associated with a `Release` render.",
+      "id": "KubernetesRenderMetadata",
+      "properties": {
+        "canaryDeployment": {
+          "description": "Output only. Name of the canary version of the Kubernetes Deployment that will be applied to the GKE cluster. Only set if a canary deployment strategy was configured.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deployment": {
+          "description": "Output only. Name of the Kubernetes Deployment that will be applied to the GKE cluster. Only set if a single Deployment was provided in the rendered manifest.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kubernetesNamespace": {
+          "description": "Output only. Namespace the Kubernetes resources will be applied to in the GKE cluster. Only set if applying resources to a single namespace.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4962,6 +5339,10 @@
       "description": "PhaseConfig represents the configuration for a phase in the custom canary deployment.",
       "id": "PhaseConfig",
       "properties": {
+        "analysis": {
+          "$ref": "Analysis",
+          "description": "Optional. Configuration for the analysis job of this phase. If this is not configured, there will be no analysis job for this phase."
+        },
         "percentage": {
           "description": "Required. Percentage deployment for the phase.",
           "format": "int32",
@@ -4989,6 +5370,10 @@
         "verify": {
           "description": "Optional. Whether to run verify tests after the deployment via `skaffold verify`.",
           "type": "boolean"
+        },
+        "verifyConfig": {
+          "$ref": "Verify",
+          "description": "Optional. Configuration for the verify job. Cannot be set if `verify` is set to true."
         }
       },
       "type": "object"
@@ -5113,6 +5498,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "tasks": {
+          "description": "Optional. The tasks that will run as a part of the postdeploy job. The tasks are executed sequentially in the order specified. Only one of `actions` or `tasks` can be specified.",
+          "items": {
+            "$ref": "Task"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5125,6 +5517,14 @@
           "description": "Output only. The custom actions that the postdeploy Job executes.",
           "items": {
             "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "tasks": {
+          "description": "Output only. The tasks that are executed as part of the postdeploy Job.",
+          "items": {
+            "$ref": "Task"
           },
           "readOnly": true,
           "type": "array"
@@ -5164,6 +5564,23 @@
           "description": "Output only. Additional information about the postdeploy failure, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "PostdeployJobRunMetadata",
+          "description": "Output only. Metadata containing information about the postdeploy `JobRun`.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "PostdeployJobRunMetadata": {
+      "description": "PostdeployJobRunMetadata contains metadata about the postdeploy `JobRun`.",
+      "id": "PostdeployJobRunMetadata",
+      "properties": {
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user-defined postdeploy operation.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -5178,6 +5595,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "tasks": {
+          "description": "Optional. The tasks that will run as a part of the predeploy job. The tasks are executed sequentially in the order specified. Only one of `actions` or `tasks` can be specified.",
+          "items": {
+            "$ref": "Task"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5190,6 +5614,14 @@
           "description": "Output only. The custom actions that the predeploy Job executes.",
           "items": {
             "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "tasks": {
+          "description": "Output only. The tasks that are executed as part of the predeploy Job.",
+          "items": {
+            "$ref": "Task"
           },
           "readOnly": true,
           "type": "array"
@@ -5229,6 +5661,23 @@
           "description": "Output only. Additional information about the predeploy failure, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "PredeployJobRunMetadata",
+          "description": "Output only. Metadata containing information about the predeploy `JobRun`.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "PredeployJobRunMetadata": {
+      "description": "PredeployJobRunMetadata contains metadata about the predeploy `JobRun`.",
+      "id": "PredeployJobRunMetadata",
+      "properties": {
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user-defined predeploy operation.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -5659,6 +6108,11 @@
         "custom": {
           "$ref": "CustomMetadata",
           "description": "Output only. Custom metadata provided by user-defined render operation.",
+          "readOnly": true
+        },
+        "kubernetes": {
+          "$ref": "KubernetesRenderMetadata",
+          "description": "Output only. Metadata associated with rendering for a Kubernetes cluster (GKE or GKE Enterprise target).",
           "readOnly": true
         }
       },
@@ -6732,6 +7186,10 @@
       "description": "Standard represents the standard deployment strategy.",
       "id": "Standard",
       "properties": {
+        "analysis": {
+          "$ref": "Analysis",
+          "description": "Optional. Configuration for the analysis job. If this is not configured, the analysis job will not be present."
+        },
         "postdeploy": {
           "$ref": "Postdeploy",
           "description": "Optional. Configuration for the postdeploy job. If this is not configured, the postdeploy job will not be present."
@@ -6743,6 +7201,10 @@
         "verify": {
           "description": "Optional. Whether to verify a deployment via `skaffold verify`.",
           "type": "boolean"
+        },
+        "verifyConfig": {
+          "$ref": "Verify",
+          "description": "Optional. Configuration for the verify job. Cannot be set if `verify` is set to true."
         }
       },
       "type": "object"
@@ -7106,6 +7568,17 @@
       },
       "type": "object"
     },
+    "Task": {
+      "description": "A Task represents a unit of work that is executed as part of a Job.",
+      "id": "Task",
+      "properties": {
+        "container": {
+          "$ref": "ContainerTask",
+          "description": "Optional. This task is represented by a container that is executed in the Cloud Build execution environment."
+        }
+      },
+      "type": "object"
+    },
     "TerminateJobRunRequest": {
       "description": "The request object used by `TerminateJobRun`.",
       "id": "TerminateJobRunRequest",
@@ -7353,10 +7826,33 @@
       },
       "type": "object"
     },
+    "Verify": {
+      "description": "Verify contains the verify job configuration information.",
+      "id": "Verify",
+      "properties": {
+        "tasks": {
+          "description": "Optional. The tasks that will run as a part of the verify job. The tasks are executed sequentially in the order specified.",
+          "items": {
+            "$ref": "Task"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "VerifyJob": {
       "description": "A verify Job.",
       "id": "VerifyJob",
-      "properties": {},
+      "properties": {
+        "tasks": {
+          "description": "Output only. The tasks that are executed as part of the verify Job.",
+          "items": {
+            "$ref": "Task"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "VerifyJobRun": {
@@ -7403,6 +7899,23 @@
           "description": "Output only. Additional information about the verify failure, if available.",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "VerifyJobRunMetadata",
+          "description": "Output only. Metadata containing information about the verify `JobRun`.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "VerifyJobRunMetadata": {
+      "description": "VerifyJobRunMetadata contains metadata about the verify `JobRun`.",
+      "id": "VerifyJobRunMetadata",
+      "properties": {
+        "custom": {
+          "$ref": "CustomMetadata",
+          "description": "Output only. Custom metadata provided by user-defined verify operation.",
+          "readOnly": true
         }
       },
       "type": "object"

@@ -209,6 +209,99 @@ export namespace clouddeploy_v1 {
     wait?: string | null;
   }
   /**
+   * AlertPolicyCheck configures a set of Cloud Monitoring alerting policies that will be periodically polled for alerts. If any of the listed policies have an active alert, the analysis check will fail.
+   */
+  export interface Schema$AlertPolicyCheck {
+    /**
+     * Required. The Cloud Monitoring Alert Policies to check for active alerts. Format is `projects/{project\}/alertPolicies/{alert_policy\}`.
+     */
+    alertPolicies?: string[] | null;
+    /**
+     * Required. The ID of the analysis check.
+     */
+    id?: string | null;
+    /**
+     * Optional. A set of labels to filter active alerts. If set, only alerts having all of the specified labels will be considered. Otherwise, all active alerts will be considered.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
+   * AlertPolicyCheckStatus contains information specific to a single run of an alert policy check.
+   */
+  export interface Schema$AlertPolicyCheckStatus {
+    /**
+     * Output only. The alert policies that this analysis monitors. Format is `projects/{project\}/locations/{location\}/alertPolicies/{alertPolicy\}`.
+     */
+    alertPolicies?: string[] | null;
+    /**
+     * Output only. The alert policies that were found to be firing during this check. This will be empty if no incidents were found.
+     */
+    failedAlertPolicies?: Schema$FailedAlertPolicy[];
+    /**
+     * Output only. Additional information about the alert policy check failure, if available. This will be empty if the alert policy check succeeded.
+     */
+    failureMessage?: string | null;
+    /**
+     * Output only. The ID of this analysis.
+     */
+    id?: string | null;
+    /**
+     * Output only. The resolved labels used to filter for specific incidents.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
+   * Analysis contains the configuration for the set of analyses to be performed on the target.
+   */
+  export interface Schema$Analysis {
+    /**
+     * Optional. Custom analysis checks from 3P metric providers.
+     */
+    customChecks?: Schema$CustomCheck[];
+    /**
+     * Required. The amount of time in minutes the analysis on the target will last. If all analysis checks have successfully completed before the specified duration, the analysis is successful. If a check is still running while the specified duration passes, it will wait for that check to complete to determine if the analysis is successful. The maximum duration is 48 hours.
+     */
+    duration?: string | null;
+    /**
+     * Optional. Google Cloud - based analysis checks.
+     */
+    googleCloud?: Schema$GoogleCloudAnalysis;
+  }
+  /**
+   * An analysis Job.
+   */
+  export interface Schema$AnalysisJob {
+    /**
+     * Output only. Custom analysis checks from 3P metric providers that are run as part of the analysis Job.
+     */
+    customChecks?: Schema$CustomCheck[];
+    /**
+     * Output only. The amount of time in minutes the analysis Job will run, up to a maximum of 48 hours. If any check in this Job is still running when the duration ends, the Job keeps running until that check completes.
+     */
+    duration?: string | null;
+    /**
+     * Output only. Google Cloud - based analysis checks that are run as part of the analysis Job.
+     */
+    googleCloud?: Schema$GoogleCloudAnalysis;
+  }
+  /**
+   * AnalysisJobRun contains information specific to an analysis `JobRun`.
+   */
+  export interface Schema$AnalysisJobRun {
+    /**
+     * Output only. The status of the running alert policy checks configured for this analysis.
+     */
+    alertPolicyAnalyses?: Schema$AlertPolicyCheckStatus[];
+    /**
+     * Output only. The status of the running custom checks configured for this analysis.
+     */
+    customCheckAnalyses?: Schema$CustomCheckStatus[];
+    /**
+     * Output only. The ID of the configured check that failed. This will always be blank while the analysis is in progress or if it succeeded.
+     */
+    failedCheckId?: string | null;
+  }
+  /**
    * Information specifying an Anthos Cluster.
    */
   export interface Schema$AnthosCluster {
@@ -573,6 +666,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$CanaryDeployment {
     /**
+     * Optional. Configuration for the analysis job. If configured, the analysis will run after each percentage deployment.
+     */
+    analysis?: Schema$Analysis;
+    /**
      * Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100. If the GatewayServiceMesh is configured for Kubernetes, then the range for n is 0 <= n <= 100.
      */
     percentages?: number[] | null;
@@ -588,6 +685,10 @@ export namespace clouddeploy_v1 {
      * Optional. Whether to run verify tests after each percentage deployment via `skaffold verify`.
      */
     verify?: boolean | null;
+    /**
+     * Optional. Configuration for the verify job. Cannot be set if `verify` is set to true.
+     */
+    verifyConfig?: Schema$Verify;
   }
   /**
    * The request object used by `CancelAutomationRun`.
@@ -666,6 +767,10 @@ export namespace clouddeploy_v1 {
      */
     job?: string | null;
     /**
+     * Output only. The previous Cloud Run Revision name associated with a `Rollout`. Only set when a canary deployment strategy is configured. Format for service is projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}. Format for worker pool is projects/{project\}/locations/{location\}/workerPools/{workerpool\}/revisions/{revision\}.
+     */
+    previousRevision?: string | null;
+    /**
      * Output only. The Cloud Run Revision id associated with a `Rollout`.
      */
     revision?: string | null;
@@ -677,15 +782,31 @@ export namespace clouddeploy_v1 {
      * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
      */
     serviceUrls?: string[] | null;
+    /**
+     * Output only. The Cloud Run worker pool associated with a `Rollout`. Format is `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render.
    */
   export interface Schema$CloudRunRenderMetadata {
     /**
+     * Output only. The name of the Cloud Run Job in the rendered manifest. Format is `projects/{project\}/locations/{location\}/jobs/{job\}`.
+     */
+    job?: string | null;
+    /**
+     * Output only. The name of the Cloud Run Revision in the rendered manifest. Format is `projects/{project\}/locations/{location\}/services/{service\}/revisions/{revision\}`.
+     */
+    revision?: string | null;
+    /**
      * Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project\}/locations/{location\}/services/{service\}`.
      */
     service?: string | null;
+    /**
+     * Output only. The name of the Cloud Run Worker Pool in the rendered manifest. Format is `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * Service-wide configuration.
@@ -707,6 +828,27 @@ export namespace clouddeploy_v1 {
      * All supported versions of Skaffold.
      */
     supportedVersions?: Schema$SkaffoldVersion[];
+  }
+  /**
+   * This task is represented by a container that is executed in the Cloud Build execution environment.
+   */
+  export interface Schema$ContainerTask {
+    /**
+     * Optional. Args is the container arguments to use. This overrides the default arguments defined in the container image.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. Command is the container entrypoint to use. This overrides the default entrypoint defined in the container image.
+     */
+    command?: string[] | null;
+    /**
+     * Optional. Environment variables that are set in the container.
+     */
+    env?: {[key: string]: string} | null;
+    /**
+     * Required. Image is the container image to use.
+     */
+    image?: string | null;
   }
   /**
    * A createChildRollout Job.
@@ -733,6 +875,56 @@ export namespace clouddeploy_v1 {
      * Required. Configuration for each phase in the canary deployment in the order executed.
      */
     phaseConfigs?: Schema$PhaseConfig[];
+  }
+  /**
+   * CustomCheck configures a third-party metric provider to run the analysis, via a Task that runs at a specified frequency.
+   */
+  export interface Schema$CustomCheck {
+    /**
+     * Optional. The frequency at which the custom check will be run, with a minimum and default of 5 minutes.
+     */
+    frequency?: string | null;
+    /**
+     * Required. The ID of the custom Analysis check.
+     */
+    id?: string | null;
+    /**
+     * Required. The Task to be run for this custom check.
+     */
+    task?: Schema$Task;
+  }
+  /**
+   * CustomCheckStatus contains information specific to a single iteration of a custom analysis job.
+   */
+  export interface Schema$CustomCheckStatus {
+    /**
+     * Output only. The reason the analysis failed. This will always be unspecified while the analysis is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the analysis failure, if available.
+     */
+    failureMessage?: string | null;
+    /**
+     * Output only. The frequency in minutes at which the custom check is run.
+     */
+    frequency?: string | null;
+    /**
+     * Output only. The ID of the custom check.
+     */
+    id?: string | null;
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that was used to execute the latest run of this custom action check. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
+     */
+    latestBuild?: string | null;
+    /**
+     * Output only. Custom metadata provided by the user-defined custom check operation. result.
+     */
+    metadata?: Schema$CustomMetadata;
+    /**
+     * Output only. The task that ran for this custom check.
+     */
+    task?: Schema$Task;
   }
   /**
    * CustomMetadata contains information from a user-defined operation.
@@ -779,6 +971,19 @@ export namespace clouddeploy_v1 {
     renderAction?: string | null;
   }
   /**
+   * CustomTargetTasks represents the `CustomTargetType` configuration using tasks.
+   */
+  export interface Schema$CustomTargetTasks {
+    /**
+     * Required. The task responsible for deploy operations.
+     */
+    deploy?: Schema$Task;
+    /**
+     * Optional. The task responsible for render operations. If not provided then Cloud Deploy will perform its default rendering operation.
+     */
+    render?: Schema$Task;
+  }
+  /**
    * A `CustomTargetType` resource in the Cloud Deploy API. A `CustomTargetType` defines a type of custom target that can be referenced in a `Target` in order to facilitate deploying to other systems besides the supported runtimes.
    */
   export interface Schema$CustomTargetType {
@@ -814,6 +1019,10 @@ export namespace clouddeploy_v1 {
      * Identifier. Name of the `CustomTargetType`. Format is `projects/{project\}/locations/{location\}/customTargetTypes/{customTargetType\}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
      */
     name?: string | null;
+    /**
+     * Optional. Configures render and deploy for the `CustomTargetType` using tasks.
+     */
+    tasks?: Schema$CustomTargetTasks;
     /**
      * Output only. Unique identifier of the `CustomTargetType`.
      */
@@ -1020,6 +1229,10 @@ export namespace clouddeploy_v1 {
    * Deployment job composition.
    */
   export interface Schema$DeploymentJobs {
+    /**
+     * Output only. The analysis Job. Runs after a verify if there is a verify job and the verify job succeeds.
+     */
+    analysisJob?: Schema$Job;
     /**
      * Output only. The deploy Job. This is the deploy job in the phase.
      */
@@ -1253,6 +1466,19 @@ export namespace clouddeploy_v1 {
     title?: string | null;
   }
   /**
+   * FailedAlertPolicy contains information about an alert policy that was found to be firing during an alert policy check.
+   */
+  export interface Schema$FailedAlertPolicy {
+    /**
+     * Output only. The name of the alert policy that was found to be firing. Format is `projects/{project\}/locations/{location\}/alertPolicies/{alertPolicy\}`.
+     */
+    alertPolicy?: string | null;
+    /**
+     * Output only. Open alerts for the alerting policies that matched the alert policy check configuration.
+     */
+    alerts?: string[] | null;
+  }
+  /**
    * Information about the Kubernetes Gateway API service mesh configuration.
    */
   export interface Schema$GatewayServiceMesh {
@@ -1307,6 +1533,15 @@ export namespace clouddeploy_v1 {
     proxyUrl?: string | null;
   }
   /**
+   * GoogleCloudAnalysis is a set of Google Cloud-based checks to perform on the deployment.
+   */
+  export interface Schema$GoogleCloudAnalysis {
+    /**
+     * Optional. A list of Cloud Monitoring Alert Policy checks to perform as part of the analysis.
+     */
+    alertPolicyChecks?: Schema$AlertPolicyCheck[];
+  }
+  /**
    * The request object used by `IgnoreJob`.
    */
   export interface Schema$IgnoreJobRequest {
@@ -1335,6 +1570,10 @@ export namespace clouddeploy_v1 {
      * Output only. An advanceChildRollout Job.
      */
     advanceChildRolloutJob?: Schema$AdvanceChildRolloutJob;
+    /**
+     * Output only. An analysis Job.
+     */
+    analysisJob?: Schema$AnalysisJob;
     /**
      * Output only. A createChildRollout Job.
      */
@@ -1380,6 +1619,10 @@ export namespace clouddeploy_v1 {
      * Output only. Information specific to an advanceChildRollout `JobRun`
      */
     advanceChildRolloutJobRun?: Schema$AdvanceChildRolloutJobRun;
+    /**
+     * Output only. Information specific to an analysis `JobRun`.
+     */
+    analysisJobRun?: Schema$AnalysisJobRun;
     /**
      * Output only. Information specific to a createChildRollout `JobRun`.
      */
@@ -1490,6 +1733,23 @@ export namespace clouddeploy_v1 {
      * Optional. Kubernetes Service networking configuration.
      */
     serviceNetworking?: Schema$ServiceNetworking;
+  }
+  /**
+   * KubernetesRenderMetadata contains Kubernetes information associated with a `Release` render.
+   */
+  export interface Schema$KubernetesRenderMetadata {
+    /**
+     * Output only. Name of the canary version of the Kubernetes Deployment that will be applied to the GKE cluster. Only set if a canary deployment strategy was configured.
+     */
+    canaryDeployment?: string | null;
+    /**
+     * Output only. Name of the Kubernetes Deployment that will be applied to the GKE cluster. Only set if a single Deployment was provided in the rendered manifest.
+     */
+    deployment?: string | null;
+    /**
+     * Output only. Namespace the Kubernetes resources will be applied to in the GKE cluster. Only set if applying resources to a single namespace.
+     */
+    kubernetesNamespace?: string | null;
   }
   /**
    * The response object from `ListAutomationRuns`.
@@ -1851,6 +2111,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$PhaseConfig {
     /**
+     * Optional. Configuration for the analysis job of this phase. If this is not configured, there will be no analysis job for this phase.
+     */
+    analysis?: Schema$Analysis;
+    /**
      * Required. Percentage deployment for the phase.
      */
     percentage?: number | null;
@@ -1874,6 +2138,10 @@ export namespace clouddeploy_v1 {
      * Optional. Whether to run verify tests after the deployment via `skaffold verify`.
      */
     verify?: boolean | null;
+    /**
+     * Optional. Configuration for the verify job. Cannot be set if `verify` is set to true.
+     */
+    verifyConfig?: Schema$Verify;
   }
   /**
    * PipelineCondition contains all conditions relevant to a Delivery Pipeline.
@@ -1969,6 +2237,10 @@ export namespace clouddeploy_v1 {
      * Optional. A sequence of Skaffold custom actions to invoke during execution of the postdeploy job.
      */
     actions?: string[] | null;
+    /**
+     * Optional. The tasks that will run as a part of the postdeploy job. The tasks are executed sequentially in the order specified. Only one of `actions` or `tasks` can be specified.
+     */
+    tasks?: Schema$Task[];
   }
   /**
    * A postdeploy Job.
@@ -1978,6 +2250,10 @@ export namespace clouddeploy_v1 {
      * Output only. The custom actions that the postdeploy Job executes.
      */
     actions?: string[] | null;
+    /**
+     * Output only. The tasks that are executed as part of the postdeploy Job.
+     */
+    tasks?: Schema$Task[];
   }
   /**
    * PostdeployJobRun contains information specific to a postdeploy `JobRun`.
@@ -1995,6 +2271,19 @@ export namespace clouddeploy_v1 {
      * Output only. Additional information about the postdeploy failure, if available.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. Metadata containing information about the postdeploy `JobRun`.
+     */
+    metadata?: Schema$PostdeployJobRunMetadata;
+  }
+  /**
+   * PostdeployJobRunMetadata contains metadata about the postdeploy `JobRun`.
+   */
+  export interface Schema$PostdeployJobRunMetadata {
+    /**
+     * Output only. Custom metadata provided by user-defined postdeploy operation.
+     */
+    custom?: Schema$CustomMetadata;
   }
   /**
    * Predeploy contains the predeploy job configuration information.
@@ -2004,6 +2293,10 @@ export namespace clouddeploy_v1 {
      * Optional. A sequence of Skaffold custom actions to invoke during execution of the predeploy job.
      */
     actions?: string[] | null;
+    /**
+     * Optional. The tasks that will run as a part of the predeploy job. The tasks are executed sequentially in the order specified. Only one of `actions` or `tasks` can be specified.
+     */
+    tasks?: Schema$Task[];
   }
   /**
    * A predeploy Job.
@@ -2013,6 +2306,10 @@ export namespace clouddeploy_v1 {
      * Output only. The custom actions that the predeploy Job executes.
      */
     actions?: string[] | null;
+    /**
+     * Output only. The tasks that are executed as part of the predeploy Job.
+     */
+    tasks?: Schema$Task[];
   }
   /**
    * PredeployJobRun contains information specific to a predeploy `JobRun`.
@@ -2030,6 +2327,19 @@ export namespace clouddeploy_v1 {
      * Output only. Additional information about the predeploy failure, if available.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. Metadata containing information about the predeploy `JobRun`.
+     */
+    metadata?: Schema$PredeployJobRunMetadata;
+  }
+  /**
+   * PredeployJobRunMetadata contains metadata about the predeploy `JobRun`.
+   */
+  export interface Schema$PredeployJobRunMetadata {
+    /**
+     * Output only. Custom metadata provided by user-defined predeploy operation.
+     */
+    custom?: Schema$CustomMetadata;
   }
   /**
    * Execution using a private Cloud Build pool.
@@ -2299,6 +2609,10 @@ export namespace clouddeploy_v1 {
      * Output only. Custom metadata provided by user-defined render operation.
      */
     custom?: Schema$CustomMetadata;
+    /**
+     * Output only. Metadata associated with rendering for a Kubernetes cluster (GKE or GKE Enterprise target).
+     */
+    kubernetes?: Schema$KubernetesRenderMetadata;
   }
   /**
    * RepairPhase tracks the repair attempts that have been made for each `RepairPhaseConfig` specified in the `Automation` resource.
@@ -2942,6 +3256,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Standard {
     /**
+     * Optional. Configuration for the analysis job. If this is not configured, the analysis job will not be present.
+     */
+    analysis?: Schema$Analysis;
+    /**
      * Optional. Configuration for the postdeploy job. If this is not configured, the postdeploy job will not be present.
      */
     postdeploy?: Schema$Postdeploy;
@@ -2953,6 +3271,10 @@ export namespace clouddeploy_v1 {
      * Optional. Whether to verify a deployment via `skaffold verify`.
      */
     verify?: boolean | null;
+    /**
+     * Optional. Configuration for the verify job. Cannot be set if `verify` is set to true.
+     */
+    verifyConfig?: Schema$Verify;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -3181,6 +3503,15 @@ export namespace clouddeploy_v1 {
     status?: boolean | null;
   }
   /**
+   * A Task represents a unit of work that is executed as part of a Job.
+   */
+  export interface Schema$Task {
+    /**
+     * Optional. This task is represented by a container that is executed in the Cloud Build execution environment.
+     */
+    container?: Schema$ContainerTask;
+  }
+  /**
    * The request object used by `TerminateJobRun`.
    */
   export interface Schema$TerminateJobRunRequest {
@@ -3359,9 +3690,23 @@ export namespace clouddeploy_v1 {
     toolVersionSupportState?: string | null;
   }
   /**
+   * Verify contains the verify job configuration information.
+   */
+  export interface Schema$Verify {
+    /**
+     * Optional. The tasks that will run as a part of the verify job. The tasks are executed sequentially in the order specified.
+     */
+    tasks?: Schema$Task[];
+  }
+  /**
    * A verify Job.
    */
-  export interface Schema$VerifyJob {}
+  export interface Schema$VerifyJob {
+    /**
+     * Output only. The tasks that are executed as part of the verify Job.
+     */
+    tasks?: Schema$Task[];
+  }
   /**
    * VerifyJobRun contains information specific to a verify `JobRun`.
    */
@@ -3386,6 +3731,19 @@ export namespace clouddeploy_v1 {
      * Output only. Additional information about the verify failure, if available.
      */
     failureMessage?: string | null;
+    /**
+     * Output only. Metadata containing information about the verify `JobRun`.
+     */
+    metadata?: Schema$VerifyJobRunMetadata;
+  }
+  /**
+   * VerifyJobRunMetadata contains metadata about the verify `JobRun`.
+   */
+  export interface Schema$VerifyJobRunMetadata {
+    /**
+     * Output only. Custom metadata provided by user-defined verify operation.
+     */
+    custom?: Schema$CustomMetadata;
   }
   /**
    * Weekly windows. For example, blocking actions every Saturday and Sunday. Another example would be blocking actions every weekday from 5pm to midnight.
@@ -3712,7 +4070,7 @@ export namespace clouddeploy_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3953,6 +4311,7 @@ export namespace clouddeploy_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "tasks": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -4259,6 +4618,7 @@ export namespace clouddeploy_v1 {
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "tasks": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -4709,6 +5069,7 @@ export namespace clouddeploy_v1 {
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "tasks": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -10183,6 +10544,7 @@ export namespace clouddeploy_v1 {
      *   // Example response
      *   // {
      *   //   "advanceChildRolloutJobRun": {},
+     *   //   "analysisJobRun": {},
      *   //   "createChildRolloutJobRun": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployJobRun": {},
