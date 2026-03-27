@@ -273,7 +273,7 @@ export namespace sts_v1 {
      */
     accessBoundary?: Schema$GoogleIdentityStsV1AccessBoundary;
     /**
-     * The unpadded, base64url-encoded SHA-256 hash of the certificate's DER encoding and it must be 43 characters long. The resulting token will be bound to this value.
+     * The unpadded, url-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.
      */
     bindCertFingerprint?: string | null;
     /**

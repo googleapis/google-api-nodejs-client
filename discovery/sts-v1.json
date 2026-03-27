@@ -59,6 +59,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://sts.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -76,6 +81,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://sts.europe-north1.rep.googleapis.com/",
       "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
     },
     {
       "description": "Regional Endpoint",
@@ -343,7 +353,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260311",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -477,7 +487,7 @@
           "description": "An access boundary that defines the upper bound of permissions the credential may have. The value should be a JSON object of AccessBoundary. The access boundary can include up to 10 rules. The size of the parameter value should not exceed 2048 characters."
         },
         "bindCertFingerprint": {
-          "description": "The unpadded, base64url-encoded SHA-256 hash of the certificate's DER encoding and it must be 43 characters long. The resulting token will be bound to this value.",
+          "description": "The unpadded, url-escaped, base64-encoded SHA-256 hash of the certificate's DER encoding. It must be 43 characters long. The resulting token will be bound to this value.",
           "type": "string"
         },
         "userProject": {
