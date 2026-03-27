@@ -158,7 +158,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -183,7 +183,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The resource to save this contact for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -211,7 +211,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to delete. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -236,7 +236,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -272,7 +272,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent resource name. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -331,7 +331,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -406,7 +406,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -431,7 +431,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The resource to save this contact for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -459,7 +459,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to delete. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -484,7 +484,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -520,7 +520,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent resource name. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -579,7 +579,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -654,7 +654,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to compute contacts for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -679,7 +679,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The resource to save this contact for. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The resource to save this contact for. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -707,7 +707,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to delete. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to delete. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -732,7 +732,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+                  "description": "Required. The name of the contact to retrieve. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -768,7 +768,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent resource name. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The parent resource name. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -827,7 +827,7 @@
               ],
               "parameters": {
                 "resource": {
-                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id}, folders/{folder_id} or projects/{project_id}",
+                  "description": "Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization}, folders/{folder} or projects/{project} (where {project} is the project number)",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -850,7 +850,7 @@
       }
     }
   },
-  "revision": "20250522",
+  "revision": "20260319",
   "rootUrl": "https://essentialcontacts.googleapis.com/",
   "schemas": {
     "GoogleCloudEssentialcontactsV1ComputeContactsResponse": {
@@ -964,7 +964,7 @@
       "id": "GoogleCloudEssentialcontactsV1SendTestMessageRequest",
       "properties": {
         "contacts": {
-          "description": "Required. The list of names of the contacts to send a test message to. Format: organizations/{organization_id}/contacts/{contact_id}, folders/{folder_id}/contacts/{contact_id} or projects/{project_id}/contacts/{contact_id}",
+          "description": "Required. The list of names of the contacts to send a test message to. Format: organizations/{organization}/contacts/{contact}, folders/{folder}/contacts/{contact} or projects/{project}/contacts/{contact} (where {project} is the project number)",
           "items": {
             "type": "string"
           },

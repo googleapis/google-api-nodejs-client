@@ -188,7 +188,7 @@ export namespace essentialcontacts_v1 {
    */
   export interface Schema$GoogleCloudEssentialcontactsV1SendTestMessageRequest {
     /**
-     * Required. The list of names of the contacts to send a test message to. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The list of names of the contacts to send a test message to. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     contacts?: string[] | null;
     /**
@@ -253,7 +253,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -402,7 +402,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.folders.contacts.create({
-     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -568,7 +568,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.folders.contacts.delete({
-     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'folders/my-folder/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -701,7 +701,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.folders.contacts.get({
-     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'folders/my-folder/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -855,7 +855,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1169,7 +1169,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.folders.contacts.sendTestMessage({
-     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     resource: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -1300,13 +1300,13 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
   export interface Params$Resource$Folders$Contacts$Create extends StandardParameters {
     /**
-     * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
 
@@ -1317,13 +1317,13 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Folders$Contacts$Delete extends StandardParameters {
     /**
-     * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Contacts$Get extends StandardParameters {
     /**
-     * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
@@ -1337,7 +1337,7 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
@@ -1358,7 +1358,7 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Folders$Contacts$Sendtestmessage extends StandardParameters {
     /**
-     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     resource?: string;
 
@@ -1420,7 +1420,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -1569,7 +1569,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.organizations.contacts.create({
-     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -1735,7 +1735,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.organizations.contacts.delete({
-     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'organizations/my-organization/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -1868,7 +1868,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.organizations.contacts.get({
-     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'organizations/my-organization/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -2022,7 +2022,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -2336,7 +2336,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.organizations.contacts.sendTestMessage({
-     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     resource: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -2467,13 +2467,13 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Contacts$Create extends StandardParameters {
     /**
-     * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
 
@@ -2484,13 +2484,13 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Organizations$Contacts$Delete extends StandardParameters {
     /**
-     * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Contacts$Get extends StandardParameters {
     /**
-     * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
@@ -2504,7 +2504,7 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
@@ -2525,7 +2525,7 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Organizations$Contacts$Sendtestmessage extends StandardParameters {
     /**
-     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     resource?: string;
 
@@ -2587,7 +2587,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2736,7 +2736,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.projects.contacts.create({
-     *     // Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2902,7 +2902,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.projects.contacts.delete({
-     *     // Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'projects/my-project/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -3035,7 +3035,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.projects.contacts.get({
-     *     // Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     *     // Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      *     name: 'projects/my-project/contacts/my-contact',
      *   });
      *   console.log(res.data);
@@ -3189,7 +3189,7 @@ export namespace essentialcontacts_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3503,7 +3503,7 @@ export namespace essentialcontacts_v1 {
      *
      *   // Do the magic
      *   const res = await essentialcontacts.projects.contacts.sendTestMessage({
-     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     *     // Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      *     resource: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3634,13 +3634,13 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the resource to compute contacts for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to compute contacts for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Contacts$Create extends StandardParameters {
     /**
-     * Required. The resource to save this contact for. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The resource to save this contact for. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
 
@@ -3651,13 +3651,13 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Projects$Contacts$Delete extends StandardParameters {
     /**
-     * Required. The name of the contact to delete. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to delete. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Contacts$Get extends StandardParameters {
     /**
-     * Required. The name of the contact to retrieve. Format: organizations/{organization_id\}/contacts/{contact_id\}, folders/{folder_id\}/contacts/{contact_id\} or projects/{project_id\}/contacts/{contact_id\}
+     * Required. The name of the contact to retrieve. Format: organizations/{organization\}/contacts/{contact\}, folders/{folder\}/contacts/{contact\} or projects/{project\}/contacts/{contact\} (where {project\} is the project number)
      */
     name?: string;
   }
@@ -3671,7 +3671,7 @@ export namespace essentialcontacts_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The parent resource name. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     parent?: string;
   }
@@ -3692,7 +3692,7 @@ export namespace essentialcontacts_v1 {
   }
   export interface Params$Resource$Projects$Contacts$Sendtestmessage extends StandardParameters {
     /**
-     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization_id\}, folders/{folder_id\} or projects/{project_id\}
+     * Required. The name of the resource to send the test message for. All contacts must either be set directly on this resource or inherited from another resource that is an ancestor of this one. Format: organizations/{organization\}, folders/{folder\} or projects/{project\} (where {project\} is the project number)
      */
     resource?: string;
 
