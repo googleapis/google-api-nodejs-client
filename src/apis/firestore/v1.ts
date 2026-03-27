@@ -719,7 +719,7 @@ export namespace firestore_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The unique resource name of the Backup. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     * Output only. The unique resource name of the Backup. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location.
      */
     name?: string | null;
     /**
@@ -956,7 +956,7 @@ export namespace firestore_v1 {
      */
     keyPrefix?: string | null;
     /**
-     * The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.
+     * Required. The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.
      */
     locationId?: string | null;
     /**
@@ -988,7 +988,7 @@ export namespace firestore_v1 {
      */
     tags?: {[key: string]: string} | null;
     /**
-     * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
+     * Required. The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
     type?: string | null;
     /**
@@ -1418,12 +1418,7 @@ export namespace firestore_v1 {
   /**
    * The metadata message for google.cloud.location.Location.metadata.
    */
-  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {
-    /**
-     * The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like "us", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as "nam5" or "eur3".
-     */
-    availableStoragePlacements?: string[] | null;
-  }
+  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {}
   /**
    * A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.
    */
@@ -1552,7 +1547,7 @@ export namespace firestore_v1 {
     sizeBytes?: string | null;
   }
   /**
-   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.
+   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. For Enterprise edition databases, the timestamp value may also be stored in an array value in the TTL-enabled field. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.
    */
   export interface Schema$GoogleFirestoreAdminV1TtlConfig {
     /**
@@ -2131,7 +2126,7 @@ export namespace firestore_v1 {
      */
     offset?: number | null;
     /**
-     * The order to apply to the query results. Firestore allows callers to provide a full ordering, a partial ordering, or no ordering at all. In all cases, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a \> 1` becomes `WHERE a \> 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ \> ... AND a \> 1` becomes `WHERE __name__ \> ... AND a \> 1 ORDER BY a ASC, __name__ ASC`
+     * The order to apply to the query results. Callers can provide a full ordering, a partial ordering, or no ordering at all. While Firestore will always respect the provided order, the behavior for queries without a full ordering is different per database edition: In Standard edition, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a \> 1` becomes `WHERE a \> 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ \> ... AND a \> 1` becomes `WHERE __name__ \> ... AND a \> 1 ORDER BY a ASC, __name__ ASC` In Enterprise edition, Firestore does not guarantee a stable ordering. Instead it will pick the most efficient ordering based on the indexes available at the time of query execution. This will result in a different ordering for queries that are otherwise identical. To ensure a stable ordering, always include a unique field in the `order_by` clause, such as `__name__`.
      */
     orderBy?: Schema$Order[];
     /**
@@ -2300,6 +2295,10 @@ export namespace firestore_v1 {
      * A timestamp value. Precise only to microseconds. When stored, any additional precision is rounded down.
      */
     timestampValue?: string | null;
+    /**
+     * Pointer to a variable defined elsewhere in a pipeline. Unlike `field_reference_value` which references a field within a document, this refers to a variable, defined in a separate namespace than the fields of a document.
+     */
+    variableReferenceValue?: string | null;
   }
   /**
    * A write on a document.
@@ -11169,7 +11168,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

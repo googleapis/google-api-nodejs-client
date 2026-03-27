@@ -71,6 +71,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -113,6 +118,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -281,6 +291,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -323,6 +338,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -2284,7 +2304,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "firestore.projects.locations.list",
@@ -2425,7 +2445,7 @@
       }
     }
   },
-  "revision": "20260116",
+  "revision": "20260304",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3265,7 +3285,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`.",
+          "description": "Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location.",
           "readOnly": true,
           "type": "string"
         },
@@ -3671,7 +3691,7 @@
           "type": "string"
         },
         "locationId": {
-          "description": "The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.",
+          "description": "Required. The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.",
           "type": "string"
         },
         "mongodbCompatibleDataAccessMode": {
@@ -3738,7 +3758,7 @@
           "type": "object"
         },
         "type": {
-          "description": "The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.",
+          "description": "Required. The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.",
           "enum": [
             "DATABASE_TYPE_UNSPECIFIED",
             "FIRESTORE_NATIVE",
@@ -4455,15 +4475,7 @@
     "GoogleFirestoreAdminV1LocationMetadata": {
       "description": "The metadata message for google.cloud.location.Location.metadata.",
       "id": "GoogleFirestoreAdminV1LocationMetadata",
-      "properties": {
-        "availableStoragePlacements": {
-          "description": "The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like \"us\", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as \"nam5\" or \"eur3\".",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleFirestoreAdminV1PitrSnapshot": {
@@ -4649,7 +4661,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1TtlConfig": {
-      "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.",
+      "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. For Enterprise edition databases, the timestamp value may also be stored in an array value in the TTL-enabled field. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.",
       "id": "GoogleFirestoreAdminV1TtlConfig",
       "properties": {
         "state": {
@@ -5470,7 +5482,7 @@
           "type": "integer"
         },
         "orderBy": {
-          "description": "The order to apply to the query results. Firestore allows callers to provide a full ordering, a partial ordering, or no ordering at all. In all cases, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ > ... AND a > 1` becomes `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`",
+          "description": "The order to apply to the query results. Callers can provide a full ordering, a partial ordering, or no ordering at all. While Firestore will always respect the provided order, the behavior for queries without a full ordering is different per database edition: In Standard edition, Firestore guarantees a stable ordering through the following rules: * The `order_by` is required to reference all fields used with an inequality filter. * All fields that are required to be in the `order_by` but are not already present are appended in lexicographical ordering of the field name. * If an order on `__name__` is not specified, it is appended by default. Fields are appended with the same sort direction as the last order specified, or 'ASCENDING' if no order was specified. For example: * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC` * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC` * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC` * `WHERE __name__ > ... AND a > 1` becomes `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC` In Enterprise edition, Firestore does not guarantee a stable ordering. Instead it will pick the most efficient ordering based on the indexes available at the time of query execution. This will result in a different ordering for queries that are otherwise identical. To ensure a stable ordering, always include a unique field in the `order_by` clause, such as `__name__`.",
           "items": {
             "$ref": "Order"
           },
@@ -5700,6 +5712,10 @@
         "timestampValue": {
           "description": "A timestamp value. Precise only to microseconds. When stored, any additional precision is rounded down.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "variableReferenceValue": {
+          "description": "Pointer to a variable defined elsewhere in a pipeline. Unlike `field_reference_value` which references a field within a document, this refers to a variable, defined in a separate namespace than the fields of a document.",
           "type": "string"
         }
       },
