@@ -261,7 +261,7 @@ export namespace apikeys_v2 {
      */
     keyString?: string | null;
     /**
-     * Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      */
     name?: string | null;
     /**
@@ -708,7 +708,7 @@ export namespace apikeys_v2 {
      *   const res = await apikeys.projects.locations.keys.create({
      *     // User specified key id (optional). If specified, it will become the final component of the key resource name. The id must be unique within the project, must conform with RFC-1034, is restricted to lower-cased letters, and has a maximum length of 63 characters. In another word, the id must match the regular expression: `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`. The id must NOT be a UUID-like string.
      *     keyId: 'placeholder-value',
-     *     // Required. The project in which the API key is created.
+     *     // Required. The project in which the API key is created. The parent field must be in format of "projects//locations/global".
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1302,7 +1302,7 @@ export namespace apikeys_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Requests a specific page of results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Lists all API keys associated with this project.
+     *     // Required. Lists all API keys associated with this project. The parent field must be in format of "projects//locations/global".
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. Indicate that keys deleted in the past 30 days should also be returned.
      *     showDeleted: 'placeholder-value',
@@ -1439,7 +1439,7 @@ export namespace apikeys_v2 {
      *
      *   // Do the magic
      *   const res = await apikeys.projects.locations.keys.patch({
-     *     // Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     *     // Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      *     name: 'projects/my-project/locations/my-location/keys/my-key',
      *     // The field mask specifies which fields to be updated as part of this request. All other fields are ignored. Mutable fields are: `display_name`, `restrictions`, and `annotations`. If an update mask is not provided, the service treats it as an implied mask equivalent to all allowed fields that are set on the wire. If the field mask has a special value "*", the service treats it equivalent to replace all allowed mutable fields.
      *     updateMask: 'placeholder-value',
@@ -1720,7 +1720,7 @@ export namespace apikeys_v2 {
      */
     keyId?: string;
     /**
-     * Required. The project in which the API key is created.
+     * Required. The project in which the API key is created. The parent field must be in format of "projects//locations/global".
      */
     parent?: string;
 
@@ -1761,7 +1761,7 @@ export namespace apikeys_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Lists all API keys associated with this project.
+     * Required. Lists all API keys associated with this project. The parent field must be in format of "projects//locations/global".
      */
     parent?: string;
     /**
@@ -1771,7 +1771,7 @@ export namespace apikeys_v2 {
   }
   export interface Params$Resource$Projects$Locations$Keys$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.
      */
     name?: string;
     /**

@@ -185,7 +185,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The project in which the API key is created.",
+                      "description": "Required. The project in which the API key is created. The parent field must be in format of \"projects//locations/global\".",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -306,7 +306,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Lists all API keys associated with this project.",
+                      "description": "Required. Lists all API keys associated with this project. The parent field must be in format of \"projects//locations/global\".",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -337,7 +337,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.",
+                      "description": "Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/keys/[^/]+$",
                       "required": true,
@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20260109",
+  "revision": "20260317",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -584,8 +584,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the key. The `name` has the form: `projects//locations/global/keys/`. For example: `projects/123456867718/locations/global/keys/b7ff1f9f-8275-410a-94dd-3855ee9b5dd2` NOTE: Key is a global resource; hence the only supported value for location is `global`.",
           "type": "string"
         },
         "restrictions": {
