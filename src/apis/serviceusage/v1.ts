@@ -265,9 +265,26 @@ export namespace serviceusage_v1 {
      */
     kind?: string | null;
     /**
+     * Optional. Rules of the Configuration.
+     */
+    rules?: Schema$AspectRule[];
+    /**
      * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
+  }
+  /**
+   * Rule-based configuration for an aspect.
+   */
+  export interface Schema$AspectRule {
+    /**
+     * Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.
+     */
+    selector?: string | null;
   }
   /**
    * `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read
@@ -1787,49 +1804,6 @@ export namespace serviceusage_v1 {
     totalPollTimeout?: string | null;
   }
   /**
-   * McpEnableRule contains MCP enablement related rules.
-   */
-  export interface Schema$McpEnableRule {
-    /**
-     * List of enabled MCP services.
-     */
-    mcpServices?: Schema$McpService[];
-  }
-  /**
-   * MCP Consumer Policy is a set of rules that define MCP related policy for a cloud resource hierarchy.
-   */
-  export interface Schema$McpPolicy {
-    /**
-     * Output only. The time the policy was created. For singleton policies (such as the `default` policy), this is the first touch of the policy.
-     */
-    createTime?: string | null;
-    /**
-     * An opaque tag indicating the current version of the policy, used for concurrency control.
-     */
-    etag?: string | null;
-    /**
-     * McpEnableRules contains MCP enablement related rules.
-     */
-    mcpEnableRules?: Schema$McpEnableRule[];
-    /**
-     * Output only. The resource name of the policy. Only the `default` policy is supported. We allow the following formats: `projects/{PROJECT_NUMBER\}/mcpPolicies/default`, `projects/{PROJECT_ID\}/mcpPolicies/default`, `folders/{FOLDER_ID\}/mcpPolicies/default`, `organizations/{ORG_ID\}/mcpPolicies/default`.
-     */
-    name?: string | null;
-    /**
-     * Output only. The time the policy was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * McpService contains the service names that are enabled for MCP.
-   */
-  export interface Schema$McpService {
-    /**
-     * The names of the services that are enabled for MCP. Example: `services/library-example.googleapis.com`
-     */
-    service?: string | null;
-  }
-  /**
    * Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Method {
@@ -2466,10 +2440,6 @@ export namespace serviceusage_v1 {
    * Metadata for the `UpdateContentSecurityPolicy` method.
    */
   export interface Schema$UpdateContentSecurityPolicyMetadata {}
-  /**
-   * Metadata for the `UpdateMcpPolicy` method.
-   */
-  export interface Schema$UpdateMcpPolicyMetadata {}
   /**
    * Configuration controlling usage of a service.
    */

@@ -969,7 +969,7 @@
       }
     }
   },
-  "revision": "20260120",
+  "revision": "20260317",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -1176,6 +1176,13 @@
           "description": "The type of this aspect configuration.",
           "type": "string"
         },
+        "rules": {
+          "description": "Optional. Rules of the Configuration.",
+          "items": {
+            "$ref": "AspectRule"
+          },
+          "type": "array"
+        },
         "spec": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -1183,6 +1190,25 @@
           },
           "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AspectRule": {
+      "description": "Rule-based configuration for an aspect.",
+      "id": "AspectRule",
+      "properties": {
+        "config": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
+          "type": "object"
+        },
+        "selector": {
+          "description": "Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3532,66 +3558,6 @@
       },
       "type": "object"
     },
-    "McpEnableRule": {
-      "description": "McpEnableRule contains MCP enablement related rules.",
-      "id": "McpEnableRule",
-      "properties": {
-        "mcpServices": {
-          "description": "List of enabled MCP services.",
-          "items": {
-            "$ref": "McpService"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "McpPolicy": {
-      "description": "MCP Consumer Policy is a set of rules that define MCP related policy for a cloud resource hierarchy.",
-      "id": "McpPolicy",
-      "properties": {
-        "createTime": {
-          "description": "Output only. The time the policy was created. For singleton policies (such as the `default` policy), this is the first touch of the policy.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "etag": {
-          "description": "An opaque tag indicating the current version of the policy, used for concurrency control.",
-          "type": "string"
-        },
-        "mcpEnableRules": {
-          "description": "McpEnableRules contains MCP enablement related rules.",
-          "items": {
-            "$ref": "McpEnableRule"
-          },
-          "type": "array"
-        },
-        "name": {
-          "description": "Output only. The resource name of the policy. Only the `default` policy is supported. We allow the following formats: `projects/{PROJECT_NUMBER}/mcpPolicies/default`, `projects/{PROJECT_ID}/mcpPolicies/default`, `folders/{FOLDER_ID}/mcpPolicies/default`, `organizations/{ORG_ID}/mcpPolicies/default`.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. The time the policy was last updated.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "McpService": {
-      "description": "McpService contains the service names that are enabled for MCP.",
-      "id": "McpService",
-      "properties": {
-        "service": {
-          "description": "The names of the services that are enabled for MCP. Example: `services/library-example.googleapis.com`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Method": {
       "description": "Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.",
       "id": "Method",
@@ -4755,12 +4721,6 @@
     "UpdateContentSecurityPolicyMetadata": {
       "description": "Metadata for the `UpdateContentSecurityPolicy` method.",
       "id": "UpdateContentSecurityPolicyMetadata",
-      "properties": {},
-      "type": "object"
-    },
-    "UpdateMcpPolicyMetadata": {
-      "description": "Metadata for the `UpdateMcpPolicy` method.",
-      "id": "UpdateMcpPolicyMetadata",
       "properties": {},
       "type": "object"
     },
