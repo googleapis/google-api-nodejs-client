@@ -295,7 +295,7 @@ export namespace travelimpactmodel_v1 {
      */
     emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
     /**
-     * Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
+     * Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
     flight?: Schema$Flight;
     /**
@@ -315,28 +315,6 @@ export namespace travelimpactmodel_v1 {
      * Required. IATA airport code for flight origin, e.g. "LHR".
      */
     origin?: string | null;
-  }
-  /**
-   * Profile describing the data handling characteristics of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: "google.com/tool.profiles/data_handling"
-   */
-  export interface Schema$McpToolDataHandlingProfile {
-    /**
-     * // The data access level of the tool's inputs.
-     */
-    inputDataAccessLevel?: string | null;
-    /**
-     * The data access level of the tool's outputs.
-     */
-    outputDataAccessLevel?: string | null;
-  }
-  /**
-   * Profile describing the lifecycle stage of an MCP tool. When used within the McpTool.meta field, this message should be packed into a google.protobuf.Any and associated with the key: "google.com/tool.profiles/lifecycle"
-   */
-  export interface Schema$McpToolLifecycleProfile {
-    /**
-     * Output only. The current launch state of the MCP tool.
-     */
-    launchState?: string | null;
   }
   /**
    * Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning).
@@ -364,7 +342,7 @@ export namespace travelimpactmodel_v1 {
    */
   export interface Schema$Scope3FlightEmissions {
     /**
-     * Required. Matches the flight identifiers in the request.
+     * Identifier. Matches the flight identifiers in the request.
      */
     flight?: Schema$Scope3FlightSegment;
     /**
@@ -426,7 +404,7 @@ export namespace travelimpactmodel_v1 {
      */
     emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
     /**
-     * Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
+     * Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
     market?: Schema$Market;
   }
