@@ -100,12 +100,12 @@
     "typescript": "^5.8.3",
     "yargs-parser": "^21.1.1"
   },
-    "overrides": {
+  "overrides": {
     "@sinonjs/fake-timers": "15.2.1"
   },
   "pnpm": {
     "overrides": {
       "@sinonjs/fake-timers": "15.2.1"
     }
-  },
+  }
 }
